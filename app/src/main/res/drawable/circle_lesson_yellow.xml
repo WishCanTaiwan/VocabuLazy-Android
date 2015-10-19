@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <solid android:color="@color/circle_image_color_yellow" />
+
+    <size
+        android:width="@dimen/circle_lesson_diameter"
+        android:height="@dimen/circle_lesson_diameter" />
+</shape>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VocabuLazy</string>
+    <string name="EnterSpell">Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_person">Personal Information</string>
+    <string name="dialog_addnote">自訂清單名稱</string>
+    <string name="dialog_addtonote">新增至清單</string>
+    <string name="dialog_delete_note">刪除清單</string>
+    <string name="search_hint">Search here</string>
+    <string name="tab0_str">BOOK</string>
+    <string name="tab1_str">NOTE</string>
+    <string name="tab2_str">TEST</string>
+    <string name="tab3_str">INFO</string>
+    <string name="voc_detail_next_text">NEXT</string>
+    <string name="voc_detail_play_text">PLAY</string>
+    <string name="voc_detail_previous_text">PREVIOUS</string>
+
+    <string name="loop">Loop</string>
+    <string name="random">Random</string>
+    <string name="previous">Previous</string>
+    <string name="playpause">PlayPause</string>
+    <string name="next">Next</string>
+    <string name="mark">Mark</string>
+    <string name="timer">Timer</string>
+
+    <string name="button_cancel">取消</string>
+    <string name="button_confirm">確定</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name= "time_count_option">
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+
+    <string name="book_title">學習單元</string>
+    <string name="list_title">我的清單</string>
+    <string name="test_title">測驗模式</string>
+    <string name="info_title">關於我們</string>
+    <string name="title_activity_search">SearchActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_player">PlayerActivity</string>
+
+    <!--player_option_view_str-->
+    <string name="player_option_tab_0_str">自訂模式</string>
+    <string name="player_option_tab_1_str">睡眠模式</string>
+    <string name="player_option_tab_2_str">通勤模式</string>
+    <string name="player_option_second_chinese">間隔秒數</string>
+    <string name="player_option_second">second</string>
+    <string name="player_option_frequency_chinese">播放次數</string>
+    <string name="player_option_frequency">frequency</string>
+    <string name="player_option_speed_chinese">播放速度</string>
+    <string name="player_option_speed">speed</string>
+    <string name="player_option_play_time_chinese">播放時間</string>
+    <string name="player_option_play_time">play-time</string>
+    <string name="title_activity_test">TestActivity</string>
+
+    <!--NumeralPicker_view_str-->
+    <string name="numeral_picker_main_indicator_string_default">主要標題</string>
+    <string name="numeral_picker_second_indicator_string_default">次要標題</string>
+</resources>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:background="@color/theme_color_green">
+
+    <LinearLayout
+        android:id="@+id/image_views_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="33dp"
+        android:paddingRight="33dp"
+        android:paddingTop="31dp"
+        android:paddingBottom="31dp"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/action_set_random"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_random"
+            android:paddingTop="@dimen/player_option_image_padding"
+            android:paddingBottom="@dimen/player_option_image_padding"
+            />
+        <ImageView
+            android:id="@+id/action_set_repeat"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_repeat"
+            android:paddingTop="@dimen/player_option_image_padding"
+            android:paddingBottom="@dimen/player_option_image_padding"
+            />
+        <ImageView
+            android:id="@+id/action_set_sentence"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_sentence"
+            android:paddingTop="@dimen/player_option_image_padding"
+            android:paddingBottom="@dimen/player_option_image_padding"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="31dp"
+        android:paddingBottom="31dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_second_chinese" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_second" />
+            </LinearLayout>
+
+            <com.wishcan.www.vocabulazy.view.picker.NumeralPicker
+                android:id="@+id/action_picker_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                custom:setPickerBackgroundColor="#ffffff"
+                custom:setPickerMaximumNumber="9"
+                custom:setPickerMinimumNumber="0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_frequency_chinese" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_frequency" />
+            </LinearLayout>
+
+            <com.wishcan.www.vocabulazy.view.picker.NumeralPicker
+                android:id="@+id/action_picker_frequency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                custom:setPickerBackgroundColor="#ffffff"
+                custom:setPickerMaximumNumber="5"
+                custom:setPickerMinimumNumber="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_speed_chinese" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_speed" />
+            </LinearLayout>
+
+            <com.wishcan.www.vocabulazy.view.picker.NumeralPicker
+                android:id="@+id/action_picker_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:setPickerBackgroundColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                custom:setPickerMaximumNumber="2"
+                custom:setPickerMinimumNumber="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_play_time_chinese" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+
+                    android:text="@string/player_option_play_time" />
+            </LinearLayout>
+
+            <com.wishcan.www.vocabulazy.view.picker.NumeralPicker
+                android:id="@+id/action_picker_play_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:setPickerBackgroundColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                custom:setPickerMaximumNumber="2"
+                custom:setPickerMinimumNumber="0" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

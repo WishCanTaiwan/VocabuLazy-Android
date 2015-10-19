@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name = "expandedGroupLayoutId"    type = "id"/>
+    <item name = "childLayoutId"            type = "id"/>
+    <item name = "listText1"                type = "id"/>
+    <item name = "listText2"                type = "id"/>
+    <item name = "tab_home"                 type = "id"/>
+    <item name = "tab_list"                 type = "id"/>
+    <item name = "tab_favorite"             type = "id"/>
+    <item name = "tab_playing"              type = "id"/>
+
+    <item name = "note_name"                type = "id"/>
+    <item name = "note_name_parent"         type = "id"/>
+    <item name = "note_add_function"        type = "id"/>
+
+    <item name = "lesson_circle_0"          type = "id"/>
+    <item name = "lesson_circle_1"          type = "id"/>
+    <item name = "lesson_circle_2"          type = "id"/>
+    <item name = "lesson_circle_3"          type = "id"/>
+    <item name = "lesson_circle_4"          type = "id"/>
+
+    <item name = "player_voc_spell"         type = "id"/>
+    <item name = "player_voc_translation"   type = "id"/>
+
+    <item name="search_result_eng_text_view" type="id" />
+
+</resources>

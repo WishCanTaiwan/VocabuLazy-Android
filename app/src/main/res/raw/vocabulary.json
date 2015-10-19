@@ -1,0 +1,364 @@
+{
+  "vocabulary": [
+    {
+      "id": 1,
+      "spell": "global",
+      "category": "adj.",
+      "translate": "全球的",
+      "audio": "global.mp3",
+      "en_sentence": "The problem of global warming is getting worse and worse.",
+      "cn_sentence": "全球暖化的問題愈來愈惡化。",
+      "sentence_audio": "global-1.mp3"
+    },
+    {
+      "id": 2,
+      "spell": "globe",
+      "category": "n.",
+      "translate": "球體",
+      "audio": "globe.mp3",
+      "en_sentence": "Our Earth is in the shape of a globe.",
+      "cn_sentence": "我們的地球是個球體。",
+      "sentence_audio": "globe-1.mp3"
+    },
+    {
+      "id": 3,
+      "spell": "novel",
+      "category": "n.",
+      "translate": "（長篇）小說",
+      "audio": "novel.mp3",
+      "en_sentence": "One of Jane’s favorite novels is The Da Vinci Code.",
+      "cn_sentence": "珍最喜歡的小說之一是《達文西密碼》。",
+      "sentence_audio": "novel-1.mp3"
+    },
+    {
+      "id": 4,
+      "spell": "novelist",
+      "category": "n.",
+      "translate": "小說家",
+      "audio": "novelist.mp3",
+      "en_sentence": "Dan Brown, who wrote the book The Da Vinci Code, is a world-famous novelist.",
+      "cn_sentence": "《達文西密碼》的作者丹‧布朗，是世界知名小說家。",
+      "sentence_audio": "novelist-1.mp3"
+    },
+    {
+      "id": 5,
+      "spell": "instead ",
+      "category": "adv.",
+      "translate": "代替；反而",
+      "audio": "instead.mp3",
+      "en_sentence": "Can I have a beef sandwich instead of a cheeseburger?",
+      "cn_sentence": "我可以吃牛肉三明治，而不要起司漢堡嗎？",
+      "sentence_audio": "instead-1.mp3"
+    },
+    {
+      "id": 6,
+      "spell": "translation",
+      "category": "n.",
+      "translate": "翻譯；譯文",
+      "audio": "translation.mp3",
+      "en_sentence": "I’ve only read the story in Chinese translation.",
+      "cn_sentence": "我只有讀過那個故事的中文譯本。",
+      "sentence_audio": "translation-1.mp3"
+    },
+    {
+      "id": 7,
+      "spell": "translate",
+      "category": "vi. vt.",
+      "translate": "翻譯",
+      "audio": "translate.mp3",
+      "en_sentence": "Ted didn’t understand French, so I offered to translate.",
+      "cn_sentence": "泰德不懂法文，所以我自願為他翻譯。",
+      "sentence_audio": "translate-1.mp3"
+    },
+    {
+      "id": 8,
+      "spell": "communication",
+      "category": "n.",
+      "translate": "溝通",
+      "audio": "communication.mp3",
+      "en_sentence": "Careful listening is the key to good communication.",
+      "cn_sentence": "仔細傾聽是良好溝通的關鍵。",
+      "sentence_audio": "communication-1.mp3"
+    },
+    {
+      "id": 9,
+      "spell": "communicate",
+      "category": "vi.",
+      "translate": "溝通",
+      "audio": "communicate.mp3",
+      "en_sentence": "In the movie, Dr. Dolittle can communicate with animals.",
+      "cn_sentence": "在這部電影裡，杜立德醫生能與動物溝通。",
+      "sentence_audio": "communicate-1.mp3"
+    },
+    {
+      "id": 10,
+      "spell": "billion",
+      "category": "n.",
+      "translate": "十億",
+      "audio": "billion.mp3",
+      "en_sentence": "The company has lost two billion dollars in the market.",
+      "cn_sentence": "該公司已在市場損失二十億元。",
+      "sentence_audio": "billion-1.mp3"
+    },
+    {
+      "id": 11,
+      "spell": "population",
+      "category": "n.",
+      "translate": "人口（總數）",
+      "audio": "population.mp3",
+      "en_sentence": "The population of Taiwan is about 23 ,000,000.",
+      "cn_sentence": "臺灣的人口大約為二千三百萬。",
+      "sentence_audio": "population-1.mp3"
+    },
+    {
+      "id": 12,
+      "spell": "major",
+      "category": "adj.",
+      "translate": "主要的；較重大的",
+      "audio": "major.mp3",
+      "en_sentence": "Lack of parking space is a major traffic problem in many cities.",
+      "cn_sentence": "缺乏停車位是許多城市的主要交通問題。",
+      "sentence_audio": "major-1.mp3"
+    },
+    {
+      "id": 13,
+      "spell": "major",
+      "category": "n.",
+      "translate": "主修科目",
+      "audio": "major-n.mp3",
+      "en_sentence": "What’s your major?",
+      "cn_sentence": "你的主修科目為何？",
+      "sentence_audio": "major-n-1.mp3"
+    },
+    {
+      "id": 14,
+      "spell": "major",
+      "category": "vi.",
+      "translate": "主修",
+      "audio": "major-v.mp3",
+      "en_sentence": "I major in computer science.",
+      "cn_sentence": "我主修電腦科學。",
+      "sentence_audio": "major-v-1.mp3"
+    },
+    {
+      "id": 15,
+      "spell": "government",
+      "category": "n.",
+      "translate": "行政；統治",
+      "audio": "government.mp3",
+      "en_sentence": "There is no perfect system of government in the world.",
+      "cn_sentence": "世上沒有完美的行政系統。",
+      "sentence_audio": "government-1.mp3"
+    },
+    {
+      "id": 16,
+      "spell": "education",
+      "category": "n.",
+      "translate": "教育",
+      "audio": "education.mp3",
+      "en_sentence": "1.He received a good education, and got a well-paid job.\n2.Linda chose to major in education in college because she wanted to become a schoolteacher.",
+      "cn_sentence": "1. 他受良好的教育，並找到一份高薪的工作。\n2. 琳達選擇在大學主修教育因為她想成為學校老師",
+      "sentence_audio": "education-1.mp3"
+    },
+    {
+      "id": 17,
+      "spell": "educate",
+      "category": "v.",
+      "translate": "教育",
+      "audio": "educate.mp3",
+      "en_sentence": "The government is trying to educate people about the dangers of drunk driving.",
+      "cn_sentence": "政府正試著教育民眾酒醉駕車的危害性。",
+      "sentence_audio": "educate-1.mp3"
+    },
+    {
+      "id": 18,
+      "spell": "hardly",
+      "category": "adv.",
+      "translate": "幾乎不；幾乎沒有",
+      "audio": "hardly.mp3",
+      "en_sentence": "Although Rick lives next to a convenience store, he hardly goes there.",
+      "cn_sentence": "雖然瑞克住在便利商店隔壁，他幾乎不去那兒。",
+      "sentence_audio": "hardly-1.mp3"
+    },
+    {
+      "id": 19,
+      "spell": "imagine",
+      "category": "v.",
+      "translate": "想像",
+      "audio": "imagine.mp3",
+      "en_sentence": "Just imagine what you could do with one billion dollars.",
+      "cn_sentence": "想像一下你能拿十億元做什麼。",
+      "sentence_audio": "imagine-1.mp3"
+    },
+    {
+      "id": 20,
+      "spell": "imagination",
+      "category": "n.",
+      "translate": "想像力",
+      "audio": "imagination.mp3",
+      "en_sentence": "1. It takes a wonderful imagination to write such an interesting ghost story.\n2. Imagination is very important if you want to be a writer.",
+      "cn_sentence": "1. 寫出如此有趣的鬼故事需要奇妙的想像力。\n2. 如果你想要當作家，想像力是很重要的。",
+      "sentence_audio": "imagination-1.mp3"
+    },
+    {
+      "id": 21,
+      "spell": "main",
+      "category": "adj.",
+      "translate": "主要的；最重要的",
+      "audio": "main.mp3",
+      "en_sentence": "Let’s meet at the school’s main entrance at seven o’clock\ntomorrow morning.",
+      "cn_sentence": "我們明早七點在學校大門碰面吧。",
+      "sentence_audio": "main-1.mp3"
+    },
+    {
+      "id": 22,
+      "spell": "media",
+      "category": "n.",
+      "translate": "媒體",
+      "audio": "media.mp3",
+      "en_sentence": "CNN, ABC, and Time Magazine are important news media.",
+      "cn_sentence": "CNN、ABC 以及《時代雜誌》是重要的新聞媒體。",
+      "sentence_audio": "media-1.mp3"
+    },
+    {
+      "id": 23,
+      "spell": "international",
+      "category": "adj.",
+      "translate": "國際的",
+      "audio": "international.mp3",
+      "en_sentence": "Nike and Adidas are two famous international sports businesses.",
+      "cn_sentence": "耐吉與愛迪達是兩家知名的國際運動企業。",
+      "sentence_audio": "international-1.mp3"
+    },
+    {
+      "id": 24,
+      "spell": "percent",
+      "category": "n.",
+      "translate": "百分比",
+      "audio": "percent.mp3",
+      "en_sentence": "1.Sixty percent of the teachers in our school are male.\n2.Twenty percent of the money belongs to us.",
+      "cn_sentence": "1. 我們學校百分之六十的老師是男的。\n2. 百分之二十的錢屬於我們。",
+      "sentence_audio": "percent-1.mp3"
+    },
+    {
+      "id": 25,
+      "spell": "percentage",
+      "category": "n.",
+      "translate": "百分比",
+      "audio": "percentage.mp3",
+      "en_sentence": "What is the percentage of foreign students in your school?",
+      "cn_sentence": "你們學校外籍學生的比例是多少？",
+      "sentence_audio": "percentage-1.mp3"
+    },
+    {
+      "id": 26,
+      "spell": "information",
+      "category": "n.",
+      "translate": "資訊；資料",
+      "audio": "information.mp3",
+      "en_sentence": "Feel free to ask me if you need any further information.",
+      "cn_sentence": "如果需要更進一步的資訊，請儘管問我。",
+      "sentence_audio": "information-1.mp3"
+    },
+    {
+      "id": 27,
+      "spell": "thus ",
+      "category": "adv.",
+      "translate": "因此",
+      "audio": "thus.mp3",
+      "en_sentence": "They don’t open on Mondays. Thus, don’t go there on Monday.",
+      "cn_sentence": "他們週一不開門，所以週一不要去。",
+      "sentence_audio": "thus-1.mp3"
+    },
+    {
+      "id": 28,
+      "spell": "connect",
+      "category": "vi vt.",
+      "translate": "連接",
+      "audio": "connect.mp3",
+      "en_sentence": "1.The subway connects with the high-speed rail at this station.\n2.The Manhattan Bridge connects Lower Manhattan with Brooklyn.",
+      "cn_sentence": "1. 地鐵在此站連結高鐵。\n2. 曼哈頓大橋連接下曼哈頓與布   魯克林。",
+      "sentence_audio": "connect-1.mp3"
+    },
+    {
+      "id": 29,
+      "spell": "connection",
+      "category": "n.",
+      "translate": "連接",
+      "audio": "connection.mp3",
+      "en_sentence": "Because of a poor telephone connection, I couldn’t hear Sam clearly.",
+      "cn_sentence": "由於電話線路收訊不佳，我聽不清楚山姆說什麼。",
+      "sentence_audio": "connection-1.mp3"
+    },
+    {
+      "id": 30,
+      "spell": "researcher",
+      "category": "n.",
+      "translate": "研究者",
+      "audio": "researcher.mp3",
+      "en_sentence": "Not every researcher agrees that boys do better in math than girls.",
+      "cn_sentence": " 並非每位研究者都同意男生的數學比女生好。",
+      "sentence_audio": "researcher-1.mp3"
+    },
+    {
+      "id": 31,
+      "spell": "research",
+      "category": "vi. vt.",
+      "translate": "研究",
+      "audio": "research-v.mp3",
+      "en_sentence": "1. The scientists will research into why so many people got sick in such a short time.\n2. I need to research his proposition before I make any decision.",
+      "cn_sentence": "1. 這些科學家將研究為何這麼多人在這麼短期間內染病。\n2. 我得先研究一下他的提議，然後才做決定。",
+      "sentence_audio": "research-v-1.mp3"
+    },
+    {
+      "id": 32,
+      "spell": "research",
+      "category": "n.",
+      "translate": "研究",
+      "audio": "research-n.mp3",
+      "en_sentence": "It’s smart to do some research before you start a business.",
+      "cn_sentence": "創業之前，做點研究是聰明的。",
+      "sentence_audio": "research-n-1.mp3"
+    },
+    {
+      "id": 33,
+      "spell": "a means of",
+      "category": "ph.",
+      "translate": "一種⋯⋯方式、手段",
+      "audio": "a means of.mp3",
+      "en_sentence": "Stir-frying is a means of Chinese cooking. ",
+      "cn_sentence": "炒菜是中華料理的一種方式。",
+      "sentence_audio": "a means of-1mp3"
+    },
+    {
+      "id": 34,
+      "spell": "to some degree",
+      "category": "ph.",
+      "translate": "有點兒；在某種程度上",
+      "audio": "to some degree.mp3",
+      "en_sentence": "1. To some degree, I agree with what Lisa said. \n2. Jerry’s car looks very new, but in fact, it is second-hand.",
+      "cn_sentence": "某種程度上來說，我同意莉莎所說的話。",
+      "sentence_audio": "to some degree-1.mp3"
+    },
+    {
+      "id": 35,
+      "spell": "in fact",
+      "category": "ph.",
+      "translate": "事實上",
+      "audio": "in fact.mp3",
+      "en_sentence": "My roommate Charlie is in fact my tennis partner and best friend.",
+      "cn_sentence": "傑瑞的車看起來非常新，但事實上，它是二手的。",
+      "sentence_audio": "in fact-1.mp3"
+    },
+    {
+      "id": 36,
+      "spell": "for example",
+      "category": "ph.",
+      "translate": "例如；比方",
+      "audio": "for example.mp3",
+      "en_sentence": "The early bird gets the worm. For example, if you book your ticket earlier, you will get a better seat.",
+      "cn_sentence": "早起的鳥兒有蟲吃。譬如說，早一點兒訂票，座位會比較好。",
+      "sentence_audio": "for example-1.mp3"
+    }
+  ]
+}

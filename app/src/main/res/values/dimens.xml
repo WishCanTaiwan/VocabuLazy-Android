@@ -1,0 +1,85 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">2dp</dimen>
+    <dimen name="activity_vertical_margin">2dp</dimen>
+
+    <!-- SwallowBBAppo TabView Dimension-->
+    <dimen name="tab_view_tab_stripe">66dp</dimen>
+    <!-- SwallowBBAppo Search Dimension -->
+    <dimen name="search_result_add_to_note_dialog_height">290dp</dimen>
+    <dimen name="search_result_add_to_note_dialog_width">233dp</dimen>
+    <dimen name="search_result_add_to_note_dialog_title_width">240dp</dimen>
+
+    <!-- SwallowBBAppo SearchResultAddToNote-->
+    <dimen name="search_result_add_to_note_view_title_parent_height">73dp</dimen>
+    <dimen name="search_result_add_to_note_view_title_parent_width">233dp</dimen>
+    <dimen name="search_result_add_to_note_view_title_text_height">50dp</dimen>
+    <dimen name="search_result_add_to_note_view_title_text_width">208dp</dimen>
+    <dimen name="search_result_add_to_note_view_title_text_size">20sp</dimen>
+    <dimen name="search_result_add_to_note_view_item_height">40dp</dimen>
+    <dimen name="search_result_add_to_note_view_item_width">208dp</dimen>
+
+    <!-- SwallowBBAppo Books_Grid_View Dimension-->
+    <dimen name="books_grid_vertical_spacing_dimension">19dp</dimen>
+
+    <!-- SwallowBBAppo Circle_View Dimension-->
+    <dimen name="circle_book_diameter">136dp</dimen>
+    <dimen name="circle_book_shadow_diameter">136dp</dimen>
+    <dimen name="circle_lesson_diameter">34dp</dimen>
+
+    <!-- SwallowBBAppo Circle_Text Size-->
+    <dimen name="circle_book_text_size">24sp</dimen>
+    <dimen name="circle_lesson_text_size">20sp</dimen>
+
+    <!-- SwallowBBAppo Divider Height-->
+    <dimen name="divider_height">2dp</dimen>
+
+    <!-- SwallowBBAppo NumberalPicker Dimension-->
+    <dimen name="picker_arrow_image_padding">10dp</dimen>
+    <dimen name="picker_text_padding">25dp</dimen>
+    <dimen name="picker_text_size">34sp</dimen>
+
+    <!-- SwallowBBAppo Note_list_item Dimension-->
+    <dimen name="note_list_item_height">73dp</dimen>
+    <dimen name="note_list_item_image_padding">15dp</dimen>
+    <dimen name="note_list_item_text_padding">15dp</dimen>
+    <dimen name="note_list_item_text_size">30sp</dimen>
+    <dimen name="note_list_item_move_offset">190dp</dimen>
+
+    <!-- SwallowBBAppo Note_Cross_View Dimension-->
+    <dimen name="note_cross_thick">5dp</dimen>
+    <dimen name="note_cross_size">35dp</dimen>
+    <dimen name="note_cross_smaller_size">15dp</dimen>
+
+    <!-- SwallowBBAppo Note_xx_view Dimension-->
+    <dimen name="search_xx_circle_size">50dp</dimen>
+    <dimen name="search_xx_length_size">14dp</dimen>
+    <dimen name="search_xx_view_padding">5dp</dimen>
+    <dimen name="search_xx_thick">5dp</dimen>
+
+    <!-- SwallowBBAppo Dialog_New_Note Dimension-->
+    <dimen name="dialog_new_note_input_text_width">184dp</dimen>
+    <dimen name="dialog_new_note_vertical_margin">20dp</dimen>
+    <dimen name="dialog_new_note_horizontal_margin">10dp</dimen>
+    <dimen name="dialog_new_note_title_height">171dp</dimen>
+    <dimen name="dialog_new_note_button_height">40dp</dimen>
+    <dimen name="dialog_new_note_title_text_size">15sp</dimen>
+    <dimen name="dialog_new_note_button_text_size">15sp</dimen>
+    <dimen name="dialog_circle_cross_padding">5dp</dimen>
+    <dimen name="dialog_new_note_input_text_size">23sp</dimen>
+
+    <!-- SwallowBBAppo Player_list_item Dimension-->
+    <dimen name="player_list_item_text0_size">25sp</dimen>
+    <dimen name="player_list_item_text1_size">15sp</dimen>
+
+    <!-- SwallowBBAppo Player_Option_ View Dimension-->
+    <dimen name="player_option_trapezoid_long_height">63dp</dimen>
+    <dimen name="player_option_trapezoid_short_height">50dp</dimen>
+    <dimen name="player_option_tab_text_size">18sp</dimen>
+    <dimen name="player_option_picker_indicator_text_size">12sp</dimen>
+    <dimen name="player_option_image_padding">5dp</dimen>
+
+    <!-- SwallowBBAppo Search_Activity Dimension-->
+    <dimen name="search_list_result_cross">25dp</dimen>
+    <dimen name="search_dialog_cross">20dp</dimen>
+</resources>
