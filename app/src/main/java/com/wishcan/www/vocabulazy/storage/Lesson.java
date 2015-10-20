@@ -57,6 +57,10 @@ public class Lesson implements Parcelable {
         mName = name;
     }
 
+    public void setID(int id) {
+        mID = id;
+    }
+
     @Override
     public int describeContents() {
         return 0;

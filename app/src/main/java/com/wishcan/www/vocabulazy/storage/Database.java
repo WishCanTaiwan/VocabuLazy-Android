@@ -388,8 +388,15 @@ public class Database implements Parcelable {
                 break;
             }
         }
+        refreshNoteIDs();
 
+    }
 
+    private void refreshNoteIDs() {
+        for (int index = 0; index < mNotes.size(); index++) {
+            Lesson note = mNotes.get(index);
+            note.setID(index+1);
+        }
     }
 
     public void deleteNoteAt(int position) {
