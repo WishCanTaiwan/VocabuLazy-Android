@@ -5,6 +5,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Log;
 
@@ -69,6 +70,9 @@ public class AudioPlayer {
 
     private ArrayList<Option> mOptions;
 
+    private Handler mHandler;
+    private Runnable mRunnable;
+
     public AudioPlayer(Context context) {
 
         Log.d(TAG, "AudioPlayer");
@@ -99,6 +103,7 @@ public class AudioPlayer {
         mListLoopCount = mListLoop;
         mItemLoopCount = mItemLoop;
 
+        mHandler = new Handler();
     }
 
     public void initPlayerLists() {
@@ -242,17 +247,14 @@ public class AudioPlayer {
             mItemLoopCount = mItemLoop;
             mOnPlayerCompletionListener.onItemComplete();
 
-            new Thread(new Runnable() {
+            mRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        Thread.sleep(mStopPeriod * 1000);
-                        lookForNextItem();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    lookForNextItem();
                 }
-            }).run();
+            };
+
+            mHandler.postDelayed(mRunnable, mStopPeriod * 1000);
 
         } else {
             startPlayingItemAt(mCurrentPlayingIndex);
@@ -260,6 +262,7 @@ public class AudioPlayer {
     }
 
     private void lookForNextItem() {
+        mRunnable = null;
         int indexOfNextItem;
         if (mIsRandom) {
             indexOfNextItem = randomNextIndex(mNumOfVocabulariesInList, mCurrentPlayingIndex);
@@ -292,6 +295,11 @@ public class AudioPlayer {
             next = random.nextInt(size);
         } while (currentIndex == next);
         return next;
+    }
+
+    public void removePendingTask() {
+        if (mRunnable != null)
+            mHandler.removeCallbacks(mRunnable);
     }
 
     public void resume() {

@@ -273,6 +273,9 @@ public class PlayerFragment extends Fragment {
                 intent.setAction(AudioService.ACTION_STOP);
                 mMainActivity.startService(intent);
 
+                Intent intent2 = new Intent(mMainActivity, AudioService.class);
+                intent2.setAction(AudioService.ACTION_REMOVE_PENDING_TASK);
+                mMainActivity.startService(intent2);
 
             }
         });
@@ -297,6 +300,10 @@ public class PlayerFragment extends Fragment {
             public void onPageChanged(int direction) {
 
                 Log.d(TAG, "onPageChanged");
+
+                Intent intent = new Intent(mMainActivity, AudioService.class);
+                intent.setAction(AudioService.ACTION_REMOVE_PENDING_TASK);
+                mMainActivity.startService(intent);
 
                 mCurrentLessonIndex = (mCurrentLessonIndex - direction + mNumOfLesson) % mNumOfLesson;
 

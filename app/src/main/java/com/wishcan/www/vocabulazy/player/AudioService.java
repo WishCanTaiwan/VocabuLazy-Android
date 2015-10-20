@@ -48,6 +48,8 @@ public class AudioService extends IntentService {
 
     public static final String ACTION_GET_CURRENT_PLAYER_INFO = "getCurrentPlayerInfo";
 
+    public static final String ACTION_REMOVE_PENDING_TASK = "removePendingTask";
+
     public static final String BROADCAST = "broadcast";
 
     public static final String BROADCAST_ACTION = "broadcastAction";
@@ -135,54 +137,65 @@ public class AudioService extends IntentService {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         switch (intent.getAction()) {
+
             case ACTION_INIT:
                 Log.d(TAG, ACTION_INIT);
                 initAudioPlayer();
                 break;
+
             case ACTION_SET_CONTENT:
                 Log.d(TAG, ACTION_SET_CONTENT);
-
                 Bundle contentBundle = intent.getBundleExtra("contentBundle");
                 ArrayList<Integer> content = contentBundle.getIntegerArrayList("mCurrentContentInPlayer");
                 int currentLessonID = intent.getIntExtra("mCurrentList", -1);
                 int currentBook = intent.getIntExtra("mCurrentBook", -1);
                 setContentToPlayer(content);
                 break;
+
             case ACTION_START:
                 Log.d(TAG, ACTION_START);
                 int position = intent.getIntExtra("position", 0);
                 startPlayingItemAt(position);
                 break;
+
             case ACTION_RESUME:
                 break;
+
             case ACTION_PAUSE:
                 Log.d(TAG, ACTION_PAUSE);
                 if (isPlaying()) {
                     stop();
                 }
                 break;
+
             case ACTION_RESET:
                 break;
+
             case ACTION_STOP:
                 Log.d(TAG, ACTION_STOP);
                 if (isPlaying()) {
                     stop();
                 }
                 break;
+
             case ACTION_PLAYPAUSE:
                 play_pause();
-
                 break;
+
             case ACTION_UPDATE_OPTION:
                 ArrayList<Option> options = mDatabase.getOptions();
                 int currentMode = mDatabase.getCurrentOptionMode();
                 updateOptions(options, currentMode);
                 break;
+
             case ACTION_GET_CURRENT_PLAYER_INFO:
-
                 // broadcast back to mainactivity
-
                 break;
+
+            case ACTION_REMOVE_PENDING_TASK:
+                mAudioPlayer.removePendingTask();
+                break;
+
             default:
                 break;
         }
