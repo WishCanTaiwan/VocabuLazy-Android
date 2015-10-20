@@ -13,9 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.view.lessons.LessonsFragment;
 import com.wishcan.www.vocabulazy.view.main.MainFragment;
 import com.wishcan.www.vocabulazy.view.player.PlayerFragment;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity implements PlayerFragment.OptionOnClickListener {
 
@@ -232,7 +235,13 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
                 mSearchActivityEnabled = false;
                 Bundle bundle = data.getExtras();
                 mDatabase = bundle.getParcelable("database");
-                Log.d(TAG, "" + mDatabase.getNoteContents(1).size());
+//                Log.d(TAG, "" + mDatabase.getNoteContents(1).size());
+
+                ArrayList<Lesson> note = mDatabase.getLessonsByBook(-1);
+                for (int index = 0; index < note.size(); index++) {
+                    Log.d(TAG, "" + note.get(index).getName());
+                }
+
                 mMainFragment.refreshFragment();
             }
         }

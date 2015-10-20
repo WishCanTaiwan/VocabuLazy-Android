@@ -359,8 +359,9 @@ public class Database implements Parcelable {
     }
 
     public void createNewNote(String name) {
-        int id = mNotes.size();
-        mNotes.add(new Lesson(id, name, new ArrayList<Integer>()));
+        int index = mNotes.size();
+        Log.d(TAG, "create " + name + " at " + index);
+        mNotes.add(index, new Lesson(index+1, name, new ArrayList<Integer>()));
     }
 
     public void renameNoteAt(int position, String name) {
@@ -382,10 +383,13 @@ public class Database implements Parcelable {
         for (int index = 0; index < mNotes.size(); index++) {
             Lesson note = mNotes.get(index);
             if (id == note.getID()) {
+                Log.d(TAG, "delete: " + note.getName());
                 mNotes.remove(note);
-                return;
+                break;
             }
         }
+
+
     }
 
     public void deleteNoteAt(int position) {
@@ -748,7 +752,7 @@ public class Database implements Parcelable {
             JSONObject vocabularyObject = new JSONObject();
             vocabularyObject.put("vocabulary", jsonArray);
 
-            FileOutputStream fos = mContext.openFileOutput("vocabulary.json", Context.MODE_PRIVATE);
+                FileOutputStream fos = mContext.openFileOutput("vocabulary.json", Context.MODE_PRIVATE);
             Log.d(TAG, "open file to write");
             fos.write(vocabularyObject.toString().getBytes());
             fos.close();

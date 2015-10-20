@@ -1,6 +1,5 @@
 package com.wishcan.www.vocabulazy;
 
-
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.ActionBar;
@@ -29,7 +28,6 @@ import com.wishcan.www.vocabulazy.storage.Vocabulary;
 import com.wishcan.www.vocabulazy.view.customview.DialogView;
 import com.wishcan.www.vocabulazy.vocabulary.WordObject;
 
-
 public class SearchActivity extends Activity {
 
     private static final String TAG = SearchActivity.class.getSimpleName();
@@ -55,7 +53,6 @@ public class SearchActivity extends Activity {
     private static final int DEFAULT_SEARCH_DETAIL_ITEM3_RES_ID = R.id.search_voc_sentence_detail;
 
     private static final int DEFAULT_SEARCH_DETAIL_ITEM4_RES_ID = R.id.search_voc_sentence_translation_detail;
-
 
     private Vocabulary mVocabulary;
 
