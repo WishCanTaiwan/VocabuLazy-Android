@@ -65,6 +65,8 @@ public class AudioPlayer {
     private boolean mIsEnSentenceEnabled;
     private boolean mIsCnSentenceEnabled;
 
+    private int mStopPeriod;
+
     private ArrayList<Option> mOptions;
 
     public AudioPlayer(Context context) {
@@ -135,6 +137,8 @@ public class AudioPlayer {
         mIsEnSentenceEnabled = option.isSentence();
         mListLoop = option.getListLoop();
         mItemLoop = option.getItemLoop();
+
+        mStopPeriod = option.getStopPeriod();
 
         mItemLoopCount = mItemLoop;
         mListLoopCount = mListLoop;
@@ -237,7 +241,19 @@ public class AudioPlayer {
         if (mItemLoopCount == 0) {
             mItemLoopCount = mItemLoop;
             mOnPlayerCompletionListener.onItemComplete();
-            lookForNextItem();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(mStopPeriod * 1000);
+                        lookForNextItem();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).run();
+
         } else {
             startPlayingItemAt(mCurrentPlayingIndex);
         }
