@@ -516,13 +516,14 @@ public class PlayerFragment extends Fragment {
         mOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
             @Override
             public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
-
+                Log.d("PlayerOption", " " + optionLL);
                 mDatabase.setCurrentOptions(optionLL);
                 mDatabase.setCurrentOptionMode(currentMode);
 
                 Intent intent = new Intent(getActivity(), AudioService.class);
                 intent.setAction(AudioService.ACTION_UPDATE_OPTION);
                 getActivity().startService(intent);
+
 
             }
         });
