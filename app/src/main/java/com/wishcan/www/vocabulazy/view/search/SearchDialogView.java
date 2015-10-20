@@ -81,7 +81,7 @@ public class SearchDialogView extends DialogView {
         mXXView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeDialog();
+                ((SearchActivity) getContext()).onNavigateUp();
             }
         });
 
@@ -92,11 +92,6 @@ public class SearchDialogView extends DialogView {
         mLinkedList = linkedList;
         mAdapter = new MyAdapter(getContext(), DEFAULT_NOTE_LIST_ITEM_RES_ID, DEFAULT_NOTE_TEXT_VIEW_RES_ID, DEFAULT_ADD_NEW_NOTE_RES_ID, mLinkedList);
         mListView.setAdapter(mAdapter);
-    }
-
-    @Override
-    public void closeDialog() {
-        ((SearchActivity) getContext()).closeDialog(this);
     }
 
     @Override

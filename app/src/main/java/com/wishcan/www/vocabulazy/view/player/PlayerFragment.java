@@ -217,7 +217,7 @@ public class PlayerFragment extends Fragment {
 
         mAudioServiceBroadcastIntentFilter = new IntentFilter(AudioService.BROADCAST);
         mAudioServiceBoardcastReceiver = new AudioServiceBroadcastReceiver();
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mAudioServiceBoardcastReceiver, mAudioServiceBroadcastIntentFilter);
+        LocalBroadcastManager.getInstance(mMainActivity).registerReceiver(mAudioServiceBoardcastReceiver, mAudioServiceBroadcastIntentFilter);
 
         mCurrentBookID = mDatabase.getBookID(mCurrentBookIndex);
         mCurrentLessonID = mDatabase.getLessonID(mCurrentBookIndex, mCurrentLessonIndex);
@@ -314,7 +314,7 @@ public class PlayerFragment extends Fragment {
                 ArrayList<Integer> refreshedContentIDs = refreshContentIDsOfThreeViews(mCurrentLessonIndex, direction);
                 mPlayerThreeView.addNewPlayer(refreshedContentIDs);
                 mPlayerThreeView.cleanOldPlayer(direction == InfiniteThreeView.MOVE_TO_RIGHT ? InfiniteThreeView.RIGHT_VIEW_INDEX : InfiniteThreeView.LEFT_VIEW_INDEX);
-                ((MainActivity) getActivity()).switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
+                (mMainActivity).switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
 
             }
         });
@@ -378,17 +378,17 @@ public class PlayerFragment extends Fragment {
         else
             contentBundle.putIntegerArrayList("mCurrentContentInPlayer", currentNoteContents);
 
-        Intent intent = new Intent(getActivity(), AudioService.class);
+        Intent intent = new Intent(mMainActivity, AudioService.class);
         intent.setAction(AudioService.ACTION_SET_CONTENT);
         intent.putExtra("contentBundle", contentBundle);
         mDatabase.setCurrentPlayingBook(mCurrentBookIndex);
         mDatabase.setCurrentPlayingList(mCurrentLessonIndex);
-        getActivity().startService(intent);
+        mMainActivity.startService(intent);
 
-        Intent intent2 = new Intent(getActivity(), AudioService.class);
+        Intent intent2 = new Intent(mMainActivity, AudioService.class);
         intent2.setAction(AudioService.ACTION_START);
         intent.putExtra("position", mPlayerThreeView.getCurrentFocusedPosition());
-        getActivity().startService(intent2);
+        mMainActivity.startService(intent2);
     }
 
     private void loadContentIDsOfThreeViews() {
@@ -474,18 +474,19 @@ public class PlayerFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        ActionBar actionBar = getActivity().getActionBar();
-        if(actionBar != null) {
-            Log.d("PlayerFragment", "onResume");
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            ((MainActivity) getActivity()).switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
+        if(mMainActivity != null) {
+            ActionBar actionBar = mMainActivity.getActionBar();
+            if (actionBar != null)
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+            mMainActivity.switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        MainActivity parentActivity = ((MainActivity)getActivity());
+        MainActivity parentActivity = mMainActivity;
 
         parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
         parentActivity.switchActionBarTitle(mPreviousTitle);
@@ -527,14 +528,14 @@ public class PlayerFragment extends Fragment {
                 mDatabase.setCurrentOptions(optionLL);
                 mDatabase.setCurrentOptionMode(currentMode);
 
-                Intent intent = new Intent(getActivity(), AudioService.class);
+                Intent intent = new Intent(mMainActivity, AudioService.class);
                 intent.setAction(AudioService.ACTION_UPDATE_OPTION);
-                getActivity().startService(intent);
+                mMainActivity.startService(intent);
 
             }
         });
 
-        Animation comeInAnimation = AnimationUtils.loadAnimation(getActivity(), ANIMATE_TRANSLATE_BOTTOM_UP);
+        Animation comeInAnimation = AnimationUtils.loadAnimation(mMainActivity, ANIMATE_TRANSLATE_BOTTOM_UP);
         mOptionView.startAnimation(comeInAnimation);
 
         mTransparentGrayView.invalidate();
@@ -544,7 +545,7 @@ public class PlayerFragment extends Fragment {
     public void exitOptionView(final View view) {
         if (view.getVisibility() != View.VISIBLE)
             return;
-        Animation goOutAnimation = AnimationUtils.loadAnimation(getActivity(), ANIMATE_TRANSLATE_UP_BOTTOM);
+        Animation goOutAnimation = AnimationUtils.loadAnimation(mMainActivity, ANIMATE_TRANSLATE_UP_BOTTOM);
         mOptionView.startAnimation(goOutAnimation);
         goOutAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
