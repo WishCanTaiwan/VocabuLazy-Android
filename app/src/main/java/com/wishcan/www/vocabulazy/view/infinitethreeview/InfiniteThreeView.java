@@ -7,12 +7,16 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.v4.util.CircularArray;
 import android.support.v4.util.TimeUtils;
+import android.support.v4.view.MotionEventCompat;
+import android.support.v4.view.VelocityTrackerCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -46,6 +50,8 @@ public class InfiniteThreeView extends RelativeLayout {
 
     public static final int MOVE_TO_LEFT = -1;
 
+    private static final int MIN_FLING_VELOCITY = 400; // dips
+
     private Context mContext;
 
     private RelativeLayout.LayoutParams mDefaultLayoutParams;
@@ -69,6 +75,14 @@ public class InfiniteThreeView extends RelativeLayout {
     private float mOnTouchX;
 
     private float mOnTouchY;
+
+    private int mMinimumVelocity;
+
+    private int mMaximumVelocity;
+
+    private VelocityTracker mVelocityTracker;
+
+    private int mActivePointerId = -1;
 
     public InfiniteThreeView(Context context) {
         this(context, null);
@@ -119,6 +133,11 @@ public class InfiniteThreeView extends RelativeLayout {
             public void onPageChanged(int direction) {
             }
         });
+
+        final float density = mContext.getResources().getDisplayMetrics().density;
+        mMinimumVelocity = (int) (MIN_FLING_VELOCITY * density);
+        final ViewConfiguration configuration = ViewConfiguration.get(mContext);
+        mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
     }
 
     public void setCurrentItem(int index) {
@@ -214,14 +233,21 @@ public class InfiniteThreeView extends RelativeLayout {
         float offset = 0;
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-//                Log.d("InfiniteThreeView", "Action_DOWN");
+                if(mVelocityTracker == null) {
+                    mVelocityTracker = VelocityTracker.obtain();
+                    Log.d("ACTION_DOWN", " ");
+                }
+                mVelocityTracker.addMovement(ev);
+                mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
                 mOnInitialTouch = mOnTouchX = ev.getAxisValue(0);
                 break;
+//                return true;
             case MotionEvent.ACTION_MOVE:
                 offset = (ev.getAxisValue(0) - mOnTouchX);
-
                 if (Math.abs(ev.getAxisValue(0) - mOnInitialTouch) < mOneViewWidth * 0.1)
                     break;
+
+                mVelocityTracker.addMovement(ev);
 
                 mOnTouchX = ev.getAxisValue(0);
                 mThreeViewLL.get(LEFT_VIEW_INDEX).setX(mThreeViewLL.get(LEFT_VIEW_INDEX).getX() + offset);
@@ -231,10 +257,17 @@ public class InfiniteThreeView extends RelativeLayout {
                 return true;
             case MotionEvent.ACTION_UP:
                 float differ = ev.getAxisValue(0) - mOnInitialTouch;
+
+                final VelocityTracker velocityTracker = mVelocityTracker;
+                velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
+                int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(
+                        velocityTracker, mActivePointerId);
+                Log.d("onInterceptTouchEvent", "" + initialVelocity);
+
                 AnimatorSet set = new AnimatorSet();
                 ValueAnimator animatorLeft, animatorCenter, animatorRight;
                 final int moveToLeftOrRight = differ > 0 ? MOVE_TO_RIGHT : MOVE_TO_LEFT;       // 1: right, -1: left
-                if (Math.abs(differ) > mOneViewWidth * 0.5) {
+                if (Math.abs(differ) > mOneViewWidth * 0.5 || Math.abs(initialVelocity) > mMinimumVelocity) {
                     if (moveToLeftOrRight == MOVE_TO_RIGHT) {
                         animatorLeft = ObjectAnimator.ofFloat(mThreeViewLL.get(LEFT_VIEW_INDEX), "X", mThreeViewLL.get(LEFT_VIEW_INDEX).getX(), moveToLeftOrRight * mOneViewWidth);
                         animatorRight = ObjectAnimator.ofFloat(mThreeViewLL.get(RIGHT_VIEW_INDEX), "X", mThreeViewLL.get(RIGHT_VIEW_INDEX).getX(), 0);
@@ -264,6 +297,13 @@ public class InfiniteThreeView extends RelativeLayout {
                 set.setInterpolator(new AccelerateDecelerateInterpolator());
                 set.addListener(new ThreeViewAnimatorListener(moveToLeftOrRight, orderChanged));
                 set.start();
+
+
+                if(mVelocityTracker != null) {
+                    mVelocityTracker.recycle();
+                    mVelocityTracker = null;
+                }
+
 
                 break;
         }

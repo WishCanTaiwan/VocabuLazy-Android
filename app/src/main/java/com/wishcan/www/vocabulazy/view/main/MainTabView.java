@@ -3,8 +3,12 @@ package com.wishcan.www.vocabulazy.view.main;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.view.books.BooksGridView;
