@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -25,11 +26,13 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.view.adapter.LinkedListPagerAdapter;
 
 /**
  * Created by swallow on 2015/8/13.
@@ -145,6 +148,10 @@ public class PlayerScrollView extends RelativeLayout {
      * Height for our child
      * */
     private int mChildViewHeight;
+
+    private int mPlayerItemDetailWidth;
+
+    private int mPlayerItemDetailHeight;
 
     /**
      * mChildViewZoomInWidth is used for focused child view
@@ -305,6 +312,8 @@ public class PlayerScrollView extends RelativeLayout {
         mPlayerViewWidth = mChildViewZoomInWidth;
         mPlayerViewTopMargin = (int)(mChildViewHeight * (((float)DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW - 1) / 2));
         mPlayerViewBottomMargin = mPlayerViewTopMargin;
+        mPlayerItemDetailHeight = (int) (getContext().getResources().getDisplayMetrics().heightPixels * 0.28);
+        mPlayerItemDetailWidth = mPlayerViewWidth;
 
         ViewGroup.LayoutParams viewGroupLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         setLayoutParams(viewGroupLayoutParams);
@@ -435,47 +444,30 @@ public class PlayerScrollView extends RelativeLayout {
     /**
      * showItemDetails shows the detail of each item
      * it will do the following thing
-     * 1. Make the currentFocusedItem's content disappear slowly (0.3s) (Canceled)
-     * 2. Add a new faked layout (fakedLinearLayout) which size is the same with ZoomIn item (Immediately)
+     * 1. Add a new faked layout (fakedLinearLayout) which size is the same with ZoomIn item (Immediately)
      * and make the faked layout stretch to the larger size slowly (0.5s)
-     * 3. Show the detail content of word (0.3s)
+     * 2. Show the detail content of word (0.3s)
      * */
-//    public void showItemDetails(int position, LinkedList<HashMap<String, String>> dataList, String[] from, int[] to){
     public void showItemDetails(){
+        ArrayList<String> arrayList = new ArrayList<>();
         if(mItemDetailsLinearLayout == null) {
-//            mItemDetailsLinearLayout = new LinearLayout(mContext);
-            mItemDetailsLinearLayout = new ItemDetailLinearLayout(mContext);
+
+            arrayList.add("TestTestTestTest");
+            arrayList.add("Test222222222222");
+            mItemDetailsLinearLayout = new ItemDetailLinearLayout(mContext, 2, arrayList, arrayList);
         }
         else
             return;
 
         mCurrentShowingDetailsItem = getCurrentFocusedView();
 
-        View contentView = ((ViewGroup) mCurrentShowingDetailsItem).getChildAt(0);
-
-        View currentItemDetailsView =
-                ((LayoutInflater)getContext()
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                        .inflate(R.layout.player_layout_details, null);
-
-        // Before perform animation, fill in the information based on the currentFocusedItem
-
-        HashMap<String, String> dataMap = mDetailsLL.get(getCurrentFocusedPosition());
-        for(int i = DEFAULT_PLAYER_LIST_ITEM_COUNT;
-            i < DEFAULT_PLAYER_LIST_ITEM_COUNT + DEFAULT_PLAYER_LIST_DETAIL_ITEM_COUNT; i++)
-            ((TextView) currentItemDetailsView.findViewById(mDetailsTo[i])).setText(dataMap.get(mDetailsFrom[i]));
         // Step 1
 
-        // Step 2
-
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mChildViewZoomInWidth, 550);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(CENTER_HORIZONTAL);
-        layoutParams.setMargins(0, mPlayerViewTopMargin - (550 - mChildViewHeight) / 2, 0, 0);
+        layoutParams.setMargins(0, mPlayerViewTopMargin - ( - mChildViewHeight) / 2, 0, 0);
         mItemDetailsLinearLayout.setLayoutParams(layoutParams);
 
-
-        currentItemDetailsView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        mItemDetailsLinearLayout.addView(currentItemDetailsView);
         mItemDetailsLinearLayout.setBackgroundColor(getResources().getColor(DEFAULT_DETAILS_COLOR_RES_ID));
 
         PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mChildViewZoomInHeight) / 550, 1f);
@@ -488,7 +480,7 @@ public class PlayerScrollView extends RelativeLayout {
         setLayoutTransition(layoutTransition);
 
 
-        // step 3
+        // step 2
 
         addView(mItemDetailsLinearLayout);
         View detailContentView = mItemDetailsLinearLayout.getChildAt(0);
@@ -518,8 +510,6 @@ public class PlayerScrollView extends RelativeLayout {
 
         if(mItemDetailsLinearLayout == null)
             return;
-
-        final View contentView = ((ViewGroup) mCurrentShowingDetailsItem).getChildAt(0);
 
         AnimatorSet animatorSet = new AnimatorSet();
 
@@ -668,24 +658,51 @@ public class PlayerScrollView extends RelativeLayout {
 
     private class ItemDetailLinearLayout extends LinearLayout{
 
-        public ItemDetailLinearLayout(Context context) {
+        private Context context;
+
+        private WrapContentViewPager viewPager;
+
+        private LinkedList<ViewGroup> mItemPagesList;
+
+        public ItemDetailLinearLayout(Context context,
+                                      int pageCount,
+                                      ArrayList<String> en_sentenceList,
+                                      ArrayList<String> cn_sentenceList) {
             super(context);
+            this.context = context;
+            setLayoutParams(new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            setOrientation(VERTICAL);
+            ViewGroup itemView = (ViewGroup)((LayoutInflater) getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                    .inflate(R.layout.player_layout_details, null);
+            viewPager = new WrapContentViewPager(context);
+            addView(itemView);
+            ((ViewGroup)itemView.findViewById(R.id.pager_parent)).addView(viewPager);
+
+            createItemPages(pageCount, en_sentenceList, cn_sentenceList);
+
         }
 
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-            int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-            if( heightMode == MeasureSpec.AT_MOST || heightMode == MeasureSpec.UNSPECIFIED){
-                if(heightSize < 500)
-                    super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(500, MeasureSpec.EXACTLY));
-                else
-                    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        private void createItemPages(int pageCount, ArrayList<String> en_sentenceList,
+                                     ArrayList<String> cn_sentenceList){
+
+
+            mItemPagesList = new LinkedList<>();
+            for(int i = 0; i < pageCount; i++) {
+                ViewGroup currentItemDetailsView =
+                        (ViewGroup)((LayoutInflater) getContext()
+                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                                .inflate(R.layout.player_layout_details_sentence, null);
+
+                ((TextView) currentItemDetailsView.findViewById(R.id.player_voc_sentence_detail))
+                        .setText(en_sentenceList.get(i));
+                ((TextView) currentItemDetailsView.findViewById(R.id.player_voc_sentence_translation_detail))
+                        .setText(cn_sentenceList.get(i));
+
+                mItemPagesList.add(currentItemDetailsView);
             }
-            else
-                super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            viewPager.setAdapter(new LinkedListPagerAdapter(mItemPagesList));
         }
-
 
     }
 
@@ -871,5 +888,24 @@ public class PlayerScrollView extends RelativeLayout {
 
     }
 
+    /**
+     * WrapContentViewPager enables ViewPager can be assigned a specific size.
+     * */
+    private class WrapContentViewPager extends ViewPager {
 
+        public WrapContentViewPager(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mPlayerItemDetailHeight, MeasureSpec.EXACTLY);
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mPlayerItemDetailWidth, MeasureSpec.EXACTLY);
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        }
+
+
+
+    }
 }

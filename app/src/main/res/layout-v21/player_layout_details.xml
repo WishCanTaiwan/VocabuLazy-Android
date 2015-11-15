@@ -34,32 +34,11 @@
             android:textColor="#ffffffff"/>
     </RelativeLayout>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
-        android:padding="5dp"
-        android:background="#ffffffff">
+        android:id="@+id/pager_parent"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
-        <TextView
-            android:id="@+id/player_voc_sentence_detail"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="John's appearance in the doorway was welcomed with shouts."
-            android:textColor="#ff000000"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#ffd3ac49"/>
-        <TextView
-            android:id="@+id/player_voc_sentence_translation_detail"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="約翰出現在門口的時候，大家高喊著歡迎他。"
-            android:textColor="#ff000000"/>
-
-    </LinearLayout>
 
 </LinearLayout>
