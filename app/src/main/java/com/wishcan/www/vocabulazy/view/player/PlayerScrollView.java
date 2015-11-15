@@ -463,14 +463,17 @@ public class PlayerScrollView extends RelativeLayout {
 
         // Step 1
 
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mPlayerItemDetailWidth, mPlayerItemDetailHeight);
         layoutParams.addRule(CENTER_HORIZONTAL);
-        layoutParams.setMargins(0, mPlayerViewTopMargin - ( - mChildViewHeight) / 2, 0, 0);
+//        layoutParams.setMargins(0, mPlayerViewTopMargin - (550 - mChildViewHeight) / 2, 0, 0);
+        layoutParams.setMargins(0, mPlayerViewTopMargin - (mPlayerItemDetailHeight - mChildViewHeight) / 2, 0, 0);
         mItemDetailsLinearLayout.setLayoutParams(layoutParams);
 
         mItemDetailsLinearLayout.setBackgroundColor(getResources().getColor(DEFAULT_DETAILS_COLOR_RES_ID));
 
-        PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mChildViewZoomInHeight) / 550, 1f);
+//        PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mChildViewZoomInHeight) / 550, 1f);
+                PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mChildViewZoomInHeight) / mPlayerItemDetailHeight, 1f);
         PropertyValuesHolder elevateVH = PropertyValuesHolder.ofFloat("Elevation", 0, 40);
         Animator animator = ObjectAnimator.ofPropertyValuesHolder(mItemDetailsLinearLayout, stretchVH, elevateVH);
         animator.setDuration(500);
@@ -897,13 +900,13 @@ public class PlayerScrollView extends RelativeLayout {
             super(context);
         }
 
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mPlayerItemDetailHeight, MeasureSpec.EXACTLY);
-            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mPlayerItemDetailWidth, MeasureSpec.EXACTLY);
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        }
+//        @Override
+//        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//
+//            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mPlayerItemDetailHeight, MeasureSpec.EXACTLY);
+//            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mPlayerItemDetailWidth, MeasureSpec.EXACTLY);
+//            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        }
 
 
 
