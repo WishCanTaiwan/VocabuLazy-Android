@@ -491,14 +491,6 @@ public class PlayerScrollView extends RelativeLayout {
         detailAppearAnim.setStartDelay(500);
         detailAppearAnim.setDuration(300).start();
 
-        mItemDetailsLinearLayout.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mShowingDetails)
-                    hideItemDetails();
-            }
-        });
-
         mShowingDetails = true;
     }
 
@@ -659,6 +651,10 @@ public class PlayerScrollView extends RelativeLayout {
         return position*mChildViewHeight;
     }
 
+    public boolean isShowingDetails(){
+        return mShowingDetails;
+    }
+
     private class ItemDetailLinearLayout extends LinearLayout{
 
         private Context context;
@@ -706,7 +702,6 @@ public class PlayerScrollView extends RelativeLayout {
             }
             viewPager.setAdapter(new LinkedListPagerAdapter(mItemPagesList));
         }
-
     }
 
     class MyScrollView extends ScrollView{
@@ -770,10 +765,13 @@ public class PlayerScrollView extends RelativeLayout {
         @Override
         public boolean onInterceptTouchEvent(MotionEvent ev) {
             if(ev.getAction() == MotionEvent.ACTION_DOWN){
-                if (mShowingDetails || !getInitialItemCheck())
+                if (mShowingDetails) {
+                    hideItemDetails();
                     return false;
-//                if(mShowingDetails)
-//                    return false;
+                }
+                if(!getInitialItemCheck())
+                    return false;
+
             }
             return super.onInterceptTouchEvent(ev);
         }
@@ -876,7 +874,6 @@ public class PlayerScrollView extends RelativeLayout {
                     TextView textView = (TextView) v.findViewById(mTo[i]);
                     textView.setText(dataMap.get(mFrom[i]));
                 }
-//                Log.d("PlayerScrollView", " "+index);
 
 
                 mParent.postDelayed(new Runnable() {

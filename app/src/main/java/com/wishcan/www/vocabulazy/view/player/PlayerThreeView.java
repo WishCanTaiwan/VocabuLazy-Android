@@ -229,14 +229,16 @@ public class PlayerThreeView extends InfiniteThreeView {
             return 0;
     }
 
-//    public void setCurrentFocusedPosition()
-
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 break;
             case MotionEvent.ACTION_MOVE:
+                if(getCurrentItem() != null)
+                    if(((PlayerScrollView) getCurrentItem()).isShowingDetails())
+                        return false;
+
                 mOnPlayerScrollListener.onPlayerScrollStarted();
                 break;
             default:
