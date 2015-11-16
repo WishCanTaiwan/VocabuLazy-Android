@@ -157,8 +157,6 @@ public class PlayerFragment extends Fragment {
 
         Log.d(TAG, "onCreate");
 
-
-
     }
 
     @Override
@@ -177,14 +175,13 @@ public class PlayerFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreatedView");
 
 
         mMainActivity = (MainActivity) getActivity();
 
-        Log.d(TAG, "mMainActivity: " + mMainActivity);
+//        Log.d(TAG, "mMainActivity: " + mMainActivity);
 
         mDatabase = mMainActivity.getDatabase();
 
@@ -211,9 +208,9 @@ public class PlayerFragment extends Fragment {
             }
         }
 
-        Log.d(TAG, "mCurrentBookIndex: " + mCurrentBookIndex);
-        Log.d(TAG, "mCurrentLessonIndex: " + mCurrentLessonIndex);
-        Log.d(TAG, "mDatabase: " + mDatabase);
+//        Log.d(TAG, "mCurrentBookIndex: " + mCurrentBookIndex);
+//        Log.d(TAG, "mCurrentLessonIndex: " + mCurrentLessonIndex);
+//        Log.d(TAG, "mDatabase: " + mDatabase);
 
         mAudioServiceBroadcastIntentFilter = new IntentFilter(AudioService.BROADCAST);
         mAudioServiceBoardcastReceiver = new AudioServiceBroadcastReceiver();
@@ -255,7 +252,6 @@ public class PlayerFragment extends Fragment {
             public void onPlayerScrollStopped() {
 
                 Log.d(TAG, "onPlayerScrollStopped");
-
 
                 Intent intent = new Intent(mMainActivity, AudioService.class);
                 intent.setAction(AudioService.ACTION_START);
@@ -307,9 +303,9 @@ public class PlayerFragment extends Fragment {
 
                 mCurrentLessonIndex = (mCurrentLessonIndex - direction + mNumOfLesson) % mNumOfLesson;
 
-                Log.d(TAG, "direction: " + direction);
-                Log.d(TAG, "mCurrentBookIndex: " + mCurrentBookIndex);
-                Log.d(TAG, "mCurrentLessonIndex: " + mCurrentLessonIndex);
+//                Log.d(TAG, "direction: " + direction);
+//                Log.d(TAG, "mCurrentBookIndex: " + mCurrentBookIndex);
+//                Log.d(TAG, "mCurrentLessonIndex: " + mCurrentLessonIndex);
 
                 ArrayList<Integer> refreshedContentIDs = refreshContentIDsOfThreeViews(mCurrentLessonIndex, direction);
                 mPlayerThreeView.addNewPlayer(refreshedContentIDs);
@@ -367,7 +363,7 @@ public class PlayerFragment extends Fragment {
     private void setContentToPlayerAndStart() {
         ArrayList<Integer> currentNoteContents = (ArrayList<Integer>) mContentIDsOfThreeViews.get(0).clone();
 
-        Log.d(TAG, "currentNoteContents: " + currentNoteContents);
+//        Log.d(TAG, "currentNoteContents: " + currentNoteContents);
 
         mDatabase.setCurrentContentInPlayer(currentNoteContents);
 
@@ -400,8 +396,6 @@ public class PlayerFragment extends Fragment {
         ArrayList<Integer> centralNoteContentIDs = mDatabase.getContentIDs(mCurrentBookIndex, centralIndex);
 
         mContentIDsOfThreeViews.add(centralNoteContentIDs);
-
-
     }
 
     private ArrayList<Integer> refreshContentIDsOfThreeViews(int refreshedLessonIndex, int direction) {
@@ -466,6 +460,7 @@ public class PlayerFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        Log.d(TAG, "onDetach");
         super.onDetach();
         mListener = null;
     }
@@ -485,14 +480,16 @@ public class PlayerFragment extends Fragment {
 
     @Override
     public void onStop() {
+        Log.d(TAG, "onStop");
         super.onStop();
         MainActivity parentActivity = mMainActivity;
 
         parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
         parentActivity.switchActionBarTitle(mPreviousTitle);
 
-    }
+        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
 
+    }
 
     private void playpauseDochi() {
 
@@ -521,19 +518,24 @@ public class PlayerFragment extends Fragment {
         if (mTransparentGrayView.getVisibility() == View.INVISIBLE)
             mTransparentGrayView.setVisibility(View.VISIBLE);
 
-        mOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
-            @Override
-            public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+        if (mOptionView.isListenerNull()) {
+            Log.d(TAG, "setListener");
+            mOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
+                @Override
+                public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
 
-                mDatabase.setCurrentOptions(optionLL);
-                mDatabase.setCurrentOptionMode(currentMode);
+                    Log.d(TAG, "onOptionChanged");
 
-                Intent intent = new Intent(mMainActivity, AudioService.class);
-                intent.setAction(AudioService.ACTION_UPDATE_OPTION);
-                mMainActivity.startService(intent);
+                    mDatabase.setCurrentOptions(optionLL);
+                    mDatabase.setCurrentOptionMode(currentMode);
 
-            }
-        });
+                    Intent intent = new Intent(mMainActivity, AudioService.class);
+                    intent.setAction(AudioService.ACTION_UPDATE_OPTION);
+                    mMainActivity.startService(intent);
+
+                }
+            });
+        }
 
         Animation comeInAnimation = AnimationUtils.loadAnimation(mMainActivity, ANIMATE_TRANSLATE_BOTTOM_UP);
         mOptionView.startAnimation(comeInAnimation);
@@ -578,7 +580,7 @@ public class PlayerFragment extends Fragment {
                 case AudioService.BROADCAST_ACTION_ITEM_START:
 
                     int itemIndex = intent.getIntExtra("itemIndex", -1);
-                    Log.d("BROADCAST_ACTION_START", " "+itemIndex);
+//                    Log.d("BROADCAST_。ACTION_S。TART", " "+itmIndex);
                     mPlayerThreeView.moveToPosition(itemIndex);
                     setPlayPauseImage(true);
                     break;

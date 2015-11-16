@@ -47,6 +47,7 @@ public class MainTabView extends TabView {
     private TabItem mTabItem1;
     private TabItem mTabItem2;
     private TabItem mTabItem3;
+    private TabItem mTabItem4;
 
     /**
      * The View Above will be added to a LinkedList in
@@ -55,6 +56,7 @@ public class MainTabView extends TabView {
     private NotesListView mNotesListView;
     private InfiniteThreeView mEmptyLayout2;
     private LinearLayout mEmptyLayout3;
+    private LinearLayout mEmptyLayout4;
 
 
     public MainTabView(Context context) {
@@ -76,16 +78,21 @@ public class MainTabView extends TabView {
         mTabItem3 = new TabItem(context);
         mTabItem3.setDrawableIcon(ContextCompat.getDrawable(context, DEFAULT_TAB_ITEM_3_DRAWABLE_RES_ID));
         mTabItem3.setTabItemTag(context.getString(DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID));
+        mTabItem4 = new TabItem(context);
+        mTabItem4.setDrawableIcon(ContextCompat.getDrawable(context, DEFAULT_TAB_ITEM_3_DRAWABLE_RES_ID));
+        mTabItem4.setTabItemTag(context.getString(DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID));
 
         mBooksGridView = new BooksGridView(context);
         mNotesListView = new NotesListView(context);
         mEmptyLayout2 = new InfiniteThreeView(context);
         mEmptyLayout3 = (LinearLayout) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.test_layout, null);
+        mEmptyLayout4 = (LinearLayout) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.test_layout, null);
 
         addTabAndTabContent(mTabItem0, mBooksGridView);
         addTabAndTabContent(mTabItem1, mNotesListView);
         addTabAndTabContent(mTabItem2, mEmptyLayout2);
         addTabAndTabContent(mTabItem3, mEmptyLayout3);
+        addTabAndTabContent(mTabItem4, mEmptyLayout4);
 
         setTabStripeColor(getResources().getColor(DEFAULT_TAB_STRIPE_COLOR_RES_ID));
 

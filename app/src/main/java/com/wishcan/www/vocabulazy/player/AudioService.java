@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
@@ -50,6 +51,8 @@ public class AudioService extends IntentService {
 
     public static final String ACTION_REMOVE_PENDING_TASK = "removePendingTask";
 
+    public static final String ACTION_POST_STOP_SERVICE = "postStopService";
+
     public static final String BROADCAST = "broadcast";
 
     public static final String BROADCAST_ACTION = "broadcastAction";
@@ -84,6 +87,10 @@ public class AudioService extends IntentService {
 
     private int mCurrentItem;
 
+    private Handler mHandler;
+
+    private Runnable mStopServiceRunnable;
+
     public AudioService() {
         super("AudioService");
         Log.d(TAG, "constructor");
@@ -91,20 +98,24 @@ public class AudioService extends IntentService {
 
     @Override
     public void onCreate() {
-        super.onCreate();
         Log.d(TAG, "onCreate");
-
-//        PendingIntent pausePendingIntent
+        super.onCreate();
 
         mMainActivity = MainActivity.mMainActivity;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Notification notification = new Notification.Builder(mMainActivity)
-                    .setVisibility(Notification.VISIBILITY_PRIVATE)
+                    .setContentTitle("ContentTitle")
+                    .setContentText("ContentText")
+                    .setSmallIcon(R.drawable.launcher_icon)
+                    .setVisibility(Notification.VISIBILITY_SECRET)
                     .build();
             startForeground(1, notification);
         } else {
             Notification notification = new Notification.Builder(mMainActivity)
+                    .setContentInfo("ContentInfo")
+                    .setContentTitle("ContentTitle")
+                    .setContentText("ContentText")
                     .build();
             startForeground(1, notification);
         }
@@ -113,20 +124,28 @@ public class AudioService extends IntentService {
             mDatabase = mMainActivity.getDatabase();
         }
 
-        initAudioPlayer();
+        if (mHandler == null) {
+            Log.d(TAG, "handler null");
+            mHandler = new Handler();
+        }
+
+        if (mStopServiceRunnable == null) {
+            Log.d(TAG, "runnable null");
+            mStopServiceRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    stopSelf();
+                }
+            };
+        }
+
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         Log.d(TAG, "onDestroy");
+        super.onDestroy();
     }
-
-//    @Nullable
-//    @Override
-//    public IBinder onBind(Intent intent) {
-//        return null;
-//    }
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -141,14 +160,15 @@ public class AudioService extends IntentService {
             case ACTION_INIT:
                 Log.d(TAG, ACTION_INIT);
                 initAudioPlayer();
+                if (mStopServiceRunnable != null) {
+                    mHandler.removeCallbacks(mStopServiceRunnable);
+                }
                 break;
 
             case ACTION_SET_CONTENT:
                 Log.d(TAG, ACTION_SET_CONTENT);
                 Bundle contentBundle = intent.getBundleExtra("contentBundle");
                 ArrayList<Integer> content = contentBundle.getIntegerArrayList("mCurrentContentInPlayer");
-                int currentLessonID = intent.getIntExtra("mCurrentList", -1);
-                int currentBook = intent.getIntExtra("mCurrentBook", -1);
                 setContentToPlayer(content);
                 break;
 
@@ -183,6 +203,7 @@ public class AudioService extends IntentService {
                 break;
 
             case ACTION_UPDATE_OPTION:
+//                Log.d(TAG, "update option");
                 ArrayList<Option> options = mDatabase.getOptions();
                 int currentMode = mDatabase.getCurrentOptionMode();
                 updateOptions(options, currentMode);
@@ -196,6 +217,12 @@ public class AudioService extends IntentService {
                 mAudioPlayer.removePendingTask();
                 break;
 
+            case ACTION_POST_STOP_SERVICE:
+                Log.d(TAG, "stop service");
+                if (!isPlaying())
+                    mHandler.postDelayed(mStopServiceRunnable, 30 * 60 * 1000); // 30 minutes
+                break;
+
             default:
                 break;
         }
@@ -204,7 +231,6 @@ public class AudioService extends IntentService {
     }
 
     private void initAudioPlayer() {
-//        Log.d(TAG, "initAudioPlayer");
         mAudioPlayer = new AudioPlayer(mMainActivity);
         mAudioPlayer.initPlayerLists();
     }
@@ -213,49 +239,32 @@ public class AudioService extends IntentService {
         mAudioPlayer.updateOptions(options, currentMode);
     }
 
-    public void sendPlayerInfo() {
-        Intent intent = new Intent(BROADCAST);
-        intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_CURRENT_PLAYER_INFO);
-        intent.putExtra("mCurrentListID", mAudioPlayer.getCurrentListID());
-        LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
-    }
-
     public void setContentToPlayer(ArrayList<Integer> content) {
         mAudioPlayer.reset();
         mAudioPlayer.initPlayerLists();
         mAudioPlayer.setOnPlayerStatusChangedListener(new AudioPlayer.OnPlayerStatusChangedListener() {
             @Override
             public void onItemStartPlaying(int itemIndex) {
-
-//                Log.d(TAG, "onItemStartPlaying");
-
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_ITEM_START);
                 intent.putExtra("itemIndex", itemIndex);
                 LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
 
                 mDatabase.setCurrentPlayingItem(itemIndex);
-//                mOnServiceStatusChangedListener.onItemStartPlaying(itemIndex);
             }
 
             @Override
             public void onSentenceStart() {
-
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_SENTENCE_START);
                 LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
-
-//                mOnServiceStatusChangedListener.onSentenceStart();
             }
 
             @Override
             public void onSentenceComplete() {
-
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_SENTENCE_COMPLETE);
                 LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
-
-//                mOnServiceStatusChangedListener.onSentenceComplete();
             }
 
             @Override
@@ -264,8 +273,6 @@ public class AudioService extends IntentService {
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_ITEM_RESUME);
                 LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
-
-//                mOnServiceStatusChangedListener.onItemResumePlaying();
             }
 
             @Override
@@ -274,13 +281,9 @@ public class AudioService extends IntentService {
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_ITEM_STOP);
                 LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
-
-//                mOnServiceStatusChangedListener.onItemStopPlaying();
             }
         });
         mAudioPlayer.setPlaylistContent(content);
-//        mAudioPlayer.startPlayingItemAt(0);
-//        mAudioPlayer.setCurrentNoteID(noteID);
         mAudioPlayer.setOnPlayerCompletionListener(new AudioPlayer.OnPlayerCompletionListener() {
             @Override
             public void onItemComplete() {
@@ -288,8 +291,6 @@ public class AudioService extends IntentService {
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_ITEM_COMPLETE);
                 LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
-
-//                mOnServiceCompletionListener.onItemCompleted();
             }
 
             @Override
@@ -300,28 +301,17 @@ public class AudioService extends IntentService {
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_LIST_COMPLETE);
                 LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
-
-//                mOnServiceCompletionListener.onListCompleted();
             }
         });
 
     }
 
     public void startPlayingItemAt(int index) {
-//        Log.d(TAG, "startPlayingItemAt: " + index);
         mAudioPlayer.startPlayingItemAt(index);
-    }
-
-    public AudioPlayer getAudioPlayer() {
-        return mAudioPlayer;
     }
 
     public boolean isPlaying() {
         return mAudioPlayer.isPlaying();
-    }
-
-    public void reset() {
-        mAudioPlayer.reset();
     }
 
     public void resume() {

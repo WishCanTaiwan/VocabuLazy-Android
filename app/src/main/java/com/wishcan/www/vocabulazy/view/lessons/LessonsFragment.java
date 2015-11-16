@@ -27,6 +27,8 @@ import com.wishcan.www.vocabulazy.storage.Lesson;
  */
 public class LessonsFragment extends Fragment {
 
+    private static final String TAG = LessonsFragment.class.getSimpleName();
+
     public static final String ARG_BOOK_INDEX = "bookIndex";
 
     private static final int DEFAULT_FRAGMENT_VIEW_RES_ID = R.layout.fragment_lessons;
@@ -81,7 +83,7 @@ public class LessonsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d("LessonsFragment", "onCreate");
+        Log.d(TAG, "onCreate");
 
         if (getArguments() != null) {
             mPreviousTitle = getArguments().getString(MainActivity.PREVIOUS_TITLE);
@@ -109,7 +111,7 @@ public class LessonsFragment extends Fragment {
 
         // This LinkedList is used to show how many unit this book has
         LinkedList<Integer> ll = new LinkedList<>();
-        Log.d("LessonsFragment", " " + mLessonLL.size());
+        Log.d(TAG, " " + mLessonLL.size());
         for (int i = 0; i < mLessonLL.size(); i++) {
             ll.add(i);
         }
@@ -136,7 +138,7 @@ public class LessonsFragment extends Fragment {
         super.onStart();
         ActionBar actionBar = getActivity().getActionBar();
         if (actionBar != null) {
-            Log.d("LessonFragment", "onStart");
+            Log.d(TAG, "onStart");
             ((MainActivity) getActivity()).switchActionBarTitle(mBook.getName());
             actionBar.setDisplayHomeAsUpEnabled(true);
         }

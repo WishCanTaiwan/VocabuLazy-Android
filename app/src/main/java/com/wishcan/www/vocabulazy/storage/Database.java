@@ -431,15 +431,15 @@ public class Database implements Parcelable {
 
         try {
             FileInputStream fis = mContext.openFileInput("vocabulary.json");
-            Log.d(TAG, "vocabulary file found");
+//            Log.d(TAG, "vocabulary file found");
             sizeOfFile = fis.available();
             bytes = new byte[sizeOfFile];
             fis.read(bytes);
             fis.close();
         } catch (FileNotFoundException e) {
 //            e.printStackTrace();
-            Log.d(TAG, "vocabulary file not found in internal storage");
-            Log.d(TAG, "using raw file");
+//            Log.d(TAG, "vocabulary file not found in internal storage");
+//            Log.d(TAG, "using raw file");
             InputStream is = mContext.getResources().openRawResource(R.raw.vocabulary);
             try {
                 sizeOfFile = is.available();
@@ -496,15 +496,15 @@ public class Database implements Parcelable {
 
         try {
             FileInputStream fis = mContext.openFileInput("book.json");
-            Log.d(TAG, "book file found");
+//            Log.d(TAG, "book file found");
             sizeOfFile = fis.available();
             bytes = new byte[sizeOfFile];
             fis.read(bytes);
             fis.close();
         } catch (FileNotFoundException e) {
 //            e.printStackTrace();
-            Log.d(TAG, "book file not found in internal storage");
-            Log.d(TAG, "using raw file");
+//            Log.d(TAG, "book file not found in internal storage");
+//            Log.d(TAG, "using raw file");
             InputStream is = mContext.getResources().openRawResource(R.raw.book);
             try {
                 sizeOfFile = is.available();
@@ -558,15 +558,15 @@ public class Database implements Parcelable {
 
         try {
             FileInputStream fis = mContext.openFileInput("lesson.json");
-            Log.d(TAG, "lesson file found");
+//            Log.d(TAG, "lesson file found");
             sizeOfFile = fis.available();
             bytes = new byte[sizeOfFile];
             fis.read(bytes);
             fis.close();
         } catch (FileNotFoundException e) {
 //            e.printStackTrace();
-            Log.d(TAG, "lesson file not found in internal storage");
-            Log.d(TAG, "using raw file");
+//            Log.d(TAG, "lesson file not found in internal storage");
+//            Log.d(TAG, "using raw file");
             InputStream is = mContext.getResources().openRawResource(R.raw.lesson);
             try {
                 sizeOfFile = is.available();
@@ -620,15 +620,15 @@ public class Database implements Parcelable {
 
         try {
             FileInputStream fis = mContext.openFileInput("note.json");
-            Log.d(TAG, "note file found");
+//            Log.d(TAG, "note file found");
             sizeOfFile = fis.available();
             bytes = new byte[sizeOfFile];
             fis.read(bytes);
             fis.close();
         } catch (FileNotFoundException e) {
 //            e.printStackTrace();
-            Log.d(TAG, "note file not found in internal storage");
-            Log.d(TAG, "using raw file");
+//            Log.d(TAG, "note file not found in internal storage");
+//            Log.d(TAG, "using raw file");
             InputStream is = mContext.getResources().openRawResource(R.raw.note);
             try {
                 sizeOfFile = is.available();
@@ -682,15 +682,15 @@ public class Database implements Parcelable {
 
         try {
             FileInputStream fis = mContext.openFileInput("option.json");
-            Log.d(TAG, "option file found");
+//            Log.d(TAG, "option file found");
             sizeOfFile = fis.available();
             bytes = new byte[sizeOfFile];
             fis.read(bytes);
             fis.close();
         } catch (FileNotFoundException e) {
 //            e.printStackTrace();
-            Log.d(TAG, "option file not found in internal storage");
-            Log.d(TAG, "using raw file");
+//            Log.d(TAG, "option file not found in internal storage");
+//            Log.d(TAG, "using raw file");
             InputStream is = mContext.getResources().openRawResource(R.raw.option);
             try {
                 sizeOfFile = is.available();
@@ -760,11 +760,11 @@ public class Database implements Parcelable {
             vocabularyObject.put("vocabulary", jsonArray);
 
                 FileOutputStream fos = mContext.openFileOutput("vocabulary.json", Context.MODE_PRIVATE);
-            Log.d(TAG, "open file to write");
+//            Log.d(TAG, "open file to write");
             fos.write(vocabularyObject.toString().getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
-            Log.d(TAG, "file not found while writing");
+//            Log.d(TAG, "file not found while writing");
 //            e.printStackTrace();
         } catch (IOException e) {
 //            e.printStackTrace();
@@ -803,7 +803,7 @@ public class Database implements Parcelable {
             fos.write(bookObject.toString().getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
-            Log.d(TAG, "file not found while writing");
+//            Log.d(TAG, "file not found while writing");
 //            e.printStackTrace();
         } catch (IOException e) {
 //            e.printStackTrace();
@@ -842,7 +842,7 @@ public class Database implements Parcelable {
             fos.write(lessonObject.toString().getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
-            Log.d(TAG, "file not found while writing");
+//            Log.d(TAG, "file not found while writing");
 //            e.printStackTrace();
         } catch (IOException e) {
 //            e.printStackTrace();
@@ -877,11 +877,11 @@ public class Database implements Parcelable {
             noteObject.put("note", jsonArray);
 
             FileOutputStream fos = mContext.openFileOutput("note.json", Context.MODE_PRIVATE);
-            Log.d(TAG, "open file to write");
+//            Log.d(TAG, "open file to write");
             fos.write(noteObject.toString().getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
-            Log.d(TAG, "file not found while writing");
+//            Log.d(TAG, "file not found while writing");
 //            e.printStackTrace();
         } catch (IOException e) {
 //            e.printStackTrace();
@@ -915,11 +915,11 @@ public class Database implements Parcelable {
             optionObject.put("option", jsonArray);
 
             FileOutputStream fos = mContext.openFileOutput("option.json", Context.MODE_PRIVATE);
-            Log.d(TAG, "open file to write");
+//            Log.d(TAG, "open file to write");
             fos.write(optionObject.toString().getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
-            Log.d(TAG, "file not found while writing");
+//            Log.d(TAG, "file not found while writing");
 //            e.printStackTrace();
         } catch (IOException e) {
 //            e.printStackTrace();

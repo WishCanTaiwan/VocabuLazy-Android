@@ -152,7 +152,7 @@ public class NotesListView extends ListView {
         mNoteNames = new ArrayList<>();
         for (int index = 0; index < mNotes.size(); index++) {
             mNoteNames.add(mNotes.get(index).getName());
-            Log.d("loadNotesName", " " + mNotes.get(index).getName());
+//            Log.d("loadNotesName", " " + mNotes.get(index).getName());
         }
     }
 

@@ -252,7 +252,7 @@ public class PlayerOptionView extends LinearLayout {
     }
 
     public void setOptionInTabContent(int mode, int optionID, int option) {
-        Log.d(TAG, "setOptionInTabContent: " + mode);
+//        Log.d(TAG, "setOptionInTabContent: " + mode);
         ViewGroup tabContent = getTabContent(mode);
         View v = tabContent.findViewById(optionID);
         if(v instanceof ImageView)
@@ -324,7 +324,12 @@ public class PlayerOptionView extends LinearLayout {
         switchToTabContent(nextTabIndex);
         mCurrentTab = v;
         mCurrentTabIndex = nextTabIndex;
+        Log.d(TAG, "setCurrentTab " + mCurrentTabIndex);
         mListener.onOptionChanged(v, mOptionLL, mCurrentTabIndex);
+    }
+
+    public boolean isListenerNull() {
+        return mListener == null;
     }
 
     public View getCurrentTab(){ return mCurrentTab; }
@@ -389,7 +394,6 @@ public class PlayerOptionView extends LinearLayout {
                                     break;
                             }
                             mListener.onOptionChanged(v, mOptionLL, mCurrentTabIndex);
-                            Log.d("PlayerOptionView", "onOptionChanged");
                         }
                     });
                 }

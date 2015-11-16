@@ -48,9 +48,6 @@ public class MainFragment extends Fragment {
 
     public static MainFragment newInstance(Database database) {
         MainFragment mainFragment = new MainFragment();
-//        Bundle args = new Bundle();
-//        args.putParcelable("database", database);
-//        mainFragment.setArguments(args);
         return mainFragment;
     }
 

@@ -30,6 +30,8 @@ public class LessonsListView extends ListView {
         void onLessonClicked(int lessson);
     }
 
+    private static final String TAG = LessonsListView.class.getSimpleName();
+
     private static final int LESSON_COUNT = 47;
 
     private static final int LIST_ITEM_RES_ID = R.layout.lesson_list_view;
@@ -175,10 +177,10 @@ public class LessonsListView extends ListView {
 
             int len = mTo.length;
             HashMap<String, Integer> hm = mDataList.get(row);
-            Log.d("mDataListSize", " " + mDataList.size());
+            Log.d(TAG, "mDataListSize " + mDataList.size());
             for(int i = 0; i < len; i++) {
                 final int lesson = row * len + i;
-                Log.d("Lesson", " " + lesson);
+                Log.d(TAG, "Lesson " + lesson);
                 ViewGroup lessonParentView = (ViewGroup) v.findViewById(mTo[i]);
 
                 ImageView imageView = (ImageView) lessonParentView.getChildAt(0);

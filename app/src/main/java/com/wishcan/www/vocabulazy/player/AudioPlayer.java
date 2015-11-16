@@ -75,7 +75,7 @@ public class AudioPlayer {
 
     public AudioPlayer(Context context) {
 
-        Log.d(TAG, "AudioPlayer");
+        Log.d(TAG, "constructor");
 
         mAssetManager = context.getAssets();
         mDatabase = ((MainActivity) context).getDatabase();
@@ -133,6 +133,7 @@ public class AudioPlayer {
     }
 
     public void updateOptions(ArrayList<Option> options, int currentMode) {
+//        Log.d(TAG, "update option, mode: " + currentMode);
         mOptions = options;
         setOptions(options.get(currentMode));
     }
@@ -188,7 +189,7 @@ public class AudioPlayer {
             mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    Log.d(TAG, "start");
+//                    Log.d(TAG, "start");
                     mp.start();
                     mIsPlaying = true;
                     mOnPlayerStatusChangedListener.onItemStartPlaying(mCurrentPlayingIndex);
@@ -279,7 +280,7 @@ public class AudioPlayer {
 
     private void listCompleted() {
         mListLoopCount--;
-        Log.d(TAG, "mListLoopCoount: " + mListLoopCount);
+//        Log.d(TAG, "mListLoopCoount: " + mListLoopCount);
         if (mListLoopCount == 0) {
             mListLoopCount = mListLoop;
             mOnPlayerCompletionListener.onListComplete();
@@ -303,7 +304,7 @@ public class AudioPlayer {
     }
 
     public void resume() {
-        Log.d(TAG, "resume");
+//        Log.d(TAG, "resume");
         if (mPlayer != null) {
             mIsPlaying = true;
             mPlayer.start();
@@ -312,7 +313,7 @@ public class AudioPlayer {
     }
 
     public void pause() {
-        Log.d(TAG, "pause");
+//        Log.d(TAG, "pause");
         if (mPlayer != null) {
             mIsPlaying = false;
             mPlayer.pause();
@@ -322,7 +323,7 @@ public class AudioPlayer {
 
 
     public void stop() {
-        Log.d(TAG, "stop");
+//        Log.d(TAG, "stop");
         if (mPlayer != null) {
             mIsPlaying = false;
             mPlayer.pause();
@@ -332,13 +333,13 @@ public class AudioPlayer {
     }
 
     public void reset() {
-        Log.d(TAG, "reset");
-        mIsPlaying = false;
+//        Log.d(TAG, "reset");
+//        mIsPlaying = false;
         if (mPlayer != null) mPlayer.reset();
     }
 
     public void release() {
-        Log.d(TAG, "release");
+//        Log.d(TAG, "release");
         if (mPlayer != null) mPlayer.release();
     }
 
