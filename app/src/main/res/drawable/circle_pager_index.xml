@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <solid android:color="@color/player_pager_index_color" />
+    <size
+        android:width="@dimen/player_pager_index_diameter"
+        android:height="@dimen/player_pager_index_diameter" />
+
+</shape>

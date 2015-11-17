@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
     android:background="#ffd3ac49"
     android:alpha="1.0">
     <RelativeLayout
+        android:id="@+id/voc_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
@@ -35,10 +35,19 @@
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/pager_parent"
+        android:layout_below="@id/voc_parent"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
+    <LinearLayout
+        android:id="@+id/pager_index_parent"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
-</LinearLayout>
+</RelativeLayout>

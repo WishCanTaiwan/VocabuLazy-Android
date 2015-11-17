@@ -9,6 +9,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -21,6 +22,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -659,7 +661,11 @@ public class PlayerScrollView extends RelativeLayout {
 
         private Context context;
 
-        private WrapContentViewPager viewPager;
+        private int pageCount;
+
+        private PagerIndexView pagerIndexView;
+
+        private ViewPager viewPager;
 
         private LinkedList<ViewGroup> mItemPagesList;
 
@@ -674,9 +680,12 @@ public class PlayerScrollView extends RelativeLayout {
             ViewGroup itemView = (ViewGroup)((LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                     .inflate(R.layout.player_layout_details, null);
-            viewPager = new WrapContentViewPager(context);
+            viewPager = new ViewPager(context);
+            this.pageCount = pageCount;
+            pagerIndexView = new PagerIndexView(context, pageCount);
             addView(itemView);
             ((ViewGroup)itemView.findViewById(R.id.pager_parent)).addView(viewPager);
+            ((ViewGroup)itemView.findViewById(R.id.pager_index_parent)).addView(pagerIndexView);
 
             createItemPages(pageCount, en_sentenceList, cn_sentenceList);
 
@@ -701,6 +710,32 @@ public class PlayerScrollView extends RelativeLayout {
                 mItemPagesList.add(currentItemDetailsView);
             }
             viewPager.setAdapter(new LinkedListPagerAdapter(mItemPagesList));
+            viewPager.addOnPageChangeListener(new OnPageChangeListener());
+
+        }
+
+        protected class OnPageChangeListener implements ViewPager.OnPageChangeListener {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for(int i = 0; i < pageCount; i++) {
+                    if(i == position)
+                        ((GradientDrawable)((ImageView) pagerIndexView.getChildAt(i)).getDrawable())
+                                .setColor(ContextCompat.getColor(context, R.color.player_pager_index_selected));
+                    else
+                        ((GradientDrawable)((ImageView) pagerIndexView.getChildAt(i)).getDrawable())
+                                .setColor(ContextCompat.getColor(context, R.color.player_pager_index_color));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
         }
     }
 
@@ -888,24 +923,35 @@ public class PlayerScrollView extends RelativeLayout {
 
     }
 
-    /**
-     * WrapContentViewPager enables ViewPager can be assigned a specific size.
-     * */
-    private class WrapContentViewPager extends ViewPager {
+    class PagerIndexView extends LinearLayout{
 
-        public WrapContentViewPager(Context context) {
-            super(context);
+        private Context context;
+
+        private int pagerCount;
+
+        public PagerIndexView(Context context, int pagerCount) {
+            this(context, null, pagerCount);
         }
 
-//        @Override
-//        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//
-//            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mPlayerItemDetailHeight, MeasureSpec.EXACTLY);
-//            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mPlayerItemDetailWidth, MeasureSpec.EXACTLY);
-//            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//        }
+        public PagerIndexView(Context context, AttributeSet attrs, int pagerCount) {
+            super(context, attrs);
+            this.context = context;
+            this.pagerCount = pagerCount;
+            setLayoutParams(new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            createPagerIndex(this.pagerCount);
+        }
 
-
-
+        private void createPagerIndex(int indexCount){
+            for(int i = 0; i < indexCount; i++){
+                ImageView imageView = new ImageView(context);
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.circle_pager_index));
+                if(i == 0)
+                    ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, R.color.player_pager_index_selected));
+                else
+                    ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, R.color.player_pager_index_color));
+                imageView.setPadding(5, 5, 5, 5);
+                addView(imageView);
+            }
+        }
     }
 }
