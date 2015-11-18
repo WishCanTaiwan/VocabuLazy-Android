@@ -7,9 +7,11 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -189,8 +191,7 @@ public class PlayerScrollView extends RelativeLayout {
 
     public PlayerScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        Log.d(TAG, "on create");
+        Log.d(TAG, "Constructor");
 
         mContext = context;
 
@@ -230,7 +231,25 @@ public class PlayerScrollView extends RelativeLayout {
 
     }
 
-    /**
+    @Override
+    protected void onDraw(Canvas canvas) {
+        Log.d(TAG, "onDraw");
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Log.d(TAG, "onSaveInstanceState");
+        return super.onSaveInstanceState();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        Log.d(TAG, "onRestoreInstanceState");
+        super.onRestoreInstanceState(state);
+    }
+
+/**
      * This is important for PlayerScrollView,
      * Before the view is onDraw, system will first check the size.
      * Override onMeasure to tell how big our view we want.
@@ -362,7 +381,6 @@ public class PlayerScrollView extends RelativeLayout {
         performItemAppearanceChanged(previousFocusedPosition);
 
     }
-
 
     private void performItemAppearanceChanged(int previousFocusedPosition){
 
@@ -691,6 +709,8 @@ public class PlayerScrollView extends RelativeLayout {
 
     class MyScrollView extends ScrollView{
 
+        private final String TAG = MyScrollView.class.getSimpleName();
+
         private Runnable scrollerTask;
         private OnScrollStoppedListener onScrollStoppedListener;
         private int newCheck = 100;
@@ -705,7 +725,7 @@ public class PlayerScrollView extends RelativeLayout {
                 @Override
                 public void run() {
                     int newPosition = getScrollY();
-                    Log.d("PlayerScrollView", " " + initialPosition + " " +newPosition);
+//                    Log.d("PlayerScrollView", " " + initialPosition + " " +newPosition);
                     if(initialPosition - newPosition == 0){//has stopped
 
                         if(onScrollStoppedListener!=null){
@@ -718,6 +738,18 @@ public class PlayerScrollView extends RelativeLayout {
                 }
             };
 
+        }
+
+        @Override
+        protected Parcelable onSaveInstanceState() {
+            Log.d(TAG, "onSaveInstanceState");
+            return super.onSaveInstanceState();
+        }
+
+        @Override
+        protected void onRestoreInstanceState(Parcelable state) {
+            Log.d(TAG, "onRestoreInstanceState");
+            super.onRestoreInstanceState(state);
         }
 
         /**

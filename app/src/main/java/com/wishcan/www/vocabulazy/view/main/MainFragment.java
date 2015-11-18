@@ -214,9 +214,15 @@ public class MainFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        Log.d(TAG, "onActivityCreated");
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState");
-        outState.putInt(ARG_TAB_INDEX, mTabView.getCurrentTabIndex());
+//        outState.putInt(ARG_TAB_INDEX, mTabView.getCurrentTabIndex());
 //        outState.putParcelable("database", mDatabase);
         super.onSaveInstanceState(outState);
 

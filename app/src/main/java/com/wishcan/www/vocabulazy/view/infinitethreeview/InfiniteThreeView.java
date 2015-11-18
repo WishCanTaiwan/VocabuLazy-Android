@@ -5,6 +5,8 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.os.Parcelable;
 import android.support.v4.util.CircularArray;
 import android.support.v4.util.TimeUtils;
 import android.support.v4.view.MotionEventCompat;
@@ -37,6 +39,8 @@ public class InfiniteThreeView extends RelativeLayout {
 
         void onPageChanged(int direction);
     }
+
+    private static final String TAG = InfiniteThreeView.class.getSimpleName();
 
     private static final int[] TEST_COLOR_ARRAY = {R.color.test_color_0, R.color.test_color_1, R.color.test_color_2};
 
@@ -95,6 +99,24 @@ public class InfiniteThreeView extends RelativeLayout {
 
         init();
 
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Log.d(TAG, "onSaveInstanceState");
+        return super.onSaveInstanceState();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        Log.d(TAG, "onRestoreInstanceState");
+        super.onRestoreInstanceState(state);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        Log.d(TAG, "onDraw");
+        super.onDraw(canvas);
     }
 
     private void init() {

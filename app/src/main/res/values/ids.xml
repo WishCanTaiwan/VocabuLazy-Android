@@ -24,4 +24,6 @@
 
     <item name="search_result_eng_text_view" type="id" />
 
+    <item name="playerscrollview_id" type="id" />
+
 </resources>

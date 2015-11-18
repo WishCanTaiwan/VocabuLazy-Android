@@ -7,6 +7,7 @@ import android.graphics.Path;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.PathShape;
 import android.os.Build;
+import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -204,6 +205,18 @@ public class PlayerOptionView extends LinearLayout {
 //        setOptionsInTabContent(null);
 
         registerOptionsListener();
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        Log.d(TAG, "onRestoreInstanceState");
+        super.onRestoreInstanceState(state);
+    }
+
+    @Override
+    public Parcelable onSaveInstanceState() {
+        Log.d(TAG, "onSaveInstanceState");
+        return super.onSaveInstanceState();
     }
 
     public void setOptionsInTabContent(ArrayList<Option> optionLL){
@@ -432,6 +445,8 @@ public class PlayerOptionView extends LinearLayout {
      * */
     public class PlayerOptionTabView extends RelativeLayout{
 
+        private final String TAG = PlayerOptionTabView.class.getSimpleName();
+
         private TextView mTextView;
 
         private String mTagString;
@@ -463,6 +478,18 @@ public class PlayerOptionView extends LinearLayout {
             init();
             initAllLayout();
 
+        }
+
+        @Override
+        public void onRestoreInstanceState(Parcelable state) {
+            Log.d(TAG, "onRestoreInstanceState");
+            super.onRestoreInstanceState(state);
+        }
+
+        @Override
+        public Parcelable onSaveInstanceState() {
+            Log.d(TAG, "onSaveInstanceState");
+            return super.onSaveInstanceState();
         }
 
         private void init(){
@@ -534,12 +561,26 @@ public class PlayerOptionView extends LinearLayout {
      * */
     private class WrapContentViewPager extends ViewPager {
 
+        private final String TAG = WrapContentViewPager.class.getSimpleName();
+
         private Context mContext;
 
         public WrapContentViewPager(Context context) {
             super(context);
 
             mContext = context;
+        }
+
+        @Override
+        public void onRestoreInstanceState(Parcelable state) {
+            Log.d(TAG, "onRestoreInstanceState");
+            super.onRestoreInstanceState(state);
+        }
+
+        @Override
+        public Parcelable onSaveInstanceState() {
+            Log.d(TAG, "onSaveInstanceState");
+            return super.onSaveInstanceState();
         }
 
         @Override

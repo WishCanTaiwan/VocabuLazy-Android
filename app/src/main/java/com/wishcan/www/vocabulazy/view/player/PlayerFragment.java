@@ -153,13 +153,18 @@ public class PlayerFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
         Log.d(TAG, "onCreate");
-
+        super.onCreate(savedInstanceState);
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        Log.d(TAG, "onActivityCreated");
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+
     public void onSaveInstanceState(Bundle outState) {
 
         Log.d(TAG, "onSaveInstanceState");
@@ -172,12 +177,9 @@ public class PlayerFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreatedView");
-
 
         mMainActivity = (MainActivity) getActivity();
 
@@ -241,9 +243,78 @@ public class PlayerFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        Log.d(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
         ImageView playImageView = (ImageView) getView().findViewById(PLAYER_PLAY_IMAGE_VIEW_RES_ID);
         playImageView.setImageResource(PLAYER_PLAY_DRAWABLE_RES_ID);
+    }
+
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onOptionClicked(View v) {
+        int resId = v.getId();
+        int index;
+        switch (resId) {
+            case OPTION_PARENT_RES_ID:     //gray screen
+                exitOptionView(v);
+                break;
+            case OPTION_VIEW_RES_ID:       //option view, this is a TabView
+                break;
+            case PLAYER_FAVORITE_IMAGE_VIEW_RES_ID:
+                break;
+            case PLAYER_PLAY_IMAGE_VIEW_RES_ID:
+                playpauseDochi();       // here to call play/pause function
+                break;
+            case PLAYER_OPTION_IMAGE_VIEW_RES_ID:
+                showPlayerOptionView();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OptionOnClickListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        Log.d(TAG, "onDetach");
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (mMainActivity != null) {
+            ActionBar actionBar = mMainActivity.getActionBar();
+            if (actionBar != null)
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+            mMainActivity.switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
+        }
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG, "onStop");
+        super.onStop();
+        MainActivity parentActivity = mMainActivity;
+
+        parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
+        parentActivity.switchActionBarTitle(mPreviousTitle);
+
+        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
+
     }
 
     private void playerThreeViewListenerRegistration() {
@@ -422,73 +493,6 @@ public class PlayerFragment extends Fragment {
         }
 
         return refreshedContentIDs;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onOptionClicked(View v) {
-        int resId = v.getId();
-        int index;
-        switch (resId) {
-            case OPTION_PARENT_RES_ID:     //gray screen
-                exitOptionView(v);
-                break;
-            case OPTION_VIEW_RES_ID:       //option view, this is a TabView
-                break;
-            case PLAYER_FAVORITE_IMAGE_VIEW_RES_ID:
-                break;
-            case PLAYER_PLAY_IMAGE_VIEW_RES_ID:
-                playpauseDochi();       // here to call play/pause function
-                break;
-            case PLAYER_OPTION_IMAGE_VIEW_RES_ID:
-                showPlayerOptionView();
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OptionOnClickListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        Log.d(TAG, "onDetach");
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if(mMainActivity != null) {
-            ActionBar actionBar = mMainActivity.getActionBar();
-            if (actionBar != null)
-                actionBar.setDisplayHomeAsUpEnabled(true);
-
-            mMainActivity.switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
-        }
-    }
-
-    @Override
-    public void onStop() {
-        Log.d(TAG, "onStop");
-        super.onStop();
-        MainActivity parentActivity = mMainActivity;
-
-        parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
-        parentActivity.switchActionBarTitle(mPreviousTitle);
-
-        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
-
     }
 
     private void playpauseDochi() {

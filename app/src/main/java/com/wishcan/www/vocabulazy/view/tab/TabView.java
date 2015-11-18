@@ -169,6 +169,7 @@ public class TabView extends LinearLayout {
 
         }
 
+
         /**
          * Initialize the mTabStripe and the LayoutParams, which will be used when TabItem is added
          */

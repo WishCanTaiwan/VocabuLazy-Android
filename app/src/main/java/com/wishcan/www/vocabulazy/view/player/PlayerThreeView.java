@@ -1,7 +1,9 @@
 package com.wishcan.www.vocabulazy.view.player;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,6 +17,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.wishcan.www.vocabulazy.MainActivity;
+import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 import com.wishcan.www.vocabulazy.view.infinitethreeview.InfiniteThreeView;
@@ -104,6 +107,24 @@ public class PlayerThreeView extends InfiniteThreeView {
         mDatabase = ((MainActivity) context).getDatabase();
 
         mDefaultLayoutParams = new RelativeLayout.LayoutParams(ViewPager.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        Log.d(TAG, "onDraw");
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        Log.d(TAG, "onRestoreInstanceState");
+        super.onRestoreInstanceState(state);
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Log.d(TAG, "onSavedInstanceState");
+        return super.onSaveInstanceState();
     }
 
     public void addNewPlayer(ArrayList<Integer> playlistContentIDs) {
@@ -282,6 +303,7 @@ public class PlayerThreeView extends InfiniteThreeView {
             PlayerScrollView playerScrollView = new PlayerScrollView(getContext());
             PlayerScrollView.PlayerAdapter playerAdapter =
                     playerScrollView.getAdapter(mContext, PlayerScrollView.DEFAULT_PLAYER_LIST_ITEM_VIEW_RES_ID, playlistContent, mFrom, mTo);
+            playerScrollView.setId(R.id.playerscrollview_id);
             playerScrollView.setAdapter(playerAdapter);
             playerScrollView.setOnPlayerScrollStoppedListener(new PlayerScrollView.OnPlayerScrollStoppedListener() {
                 @Override
