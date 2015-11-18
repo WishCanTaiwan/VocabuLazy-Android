@@ -59,6 +59,8 @@
     <color name="player_list_item2_border_bottom_color">#ffddf5ef</color>
     <color name="player_list_item_focused_color">#fffdce5d</color>
     <color name="player_details_color">#ffd3ac49</color>
+    <color name="player_pager_index_color">#ffa09e9c</color>
+    <color name="player_pager_index_selected">#ffd3ac49</color>
 
     <!--player_option_view_color-->
     <color name="player_option_tab0_image_color">#ff48cfae</color>

@@ -233,10 +233,8 @@ public class InfiniteThreeView extends RelativeLayout {
         float offset = 0;
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if(mVelocityTracker == null) {
+                if(mVelocityTracker == null)
                     mVelocityTracker = VelocityTracker.obtain();
-                    Log.d("ACTION_DOWN", " ");
-                }
                 mVelocityTracker.addMovement(ev);
                 mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
                 mOnInitialTouch = mOnTouchX = ev.getAxisValue(0);
@@ -262,7 +260,6 @@ public class InfiniteThreeView extends RelativeLayout {
                 velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
                 int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(
                         velocityTracker, mActivePointerId);
-                Log.d("onInterceptTouchEvent", "" + initialVelocity);
 
                 AnimatorSet set = new AnimatorSet();
                 ValueAnimator animatorLeft, animatorCenter, animatorRight;

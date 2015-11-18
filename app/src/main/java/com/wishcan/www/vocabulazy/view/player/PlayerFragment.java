@@ -251,8 +251,6 @@ public class PlayerFragment extends Fragment {
             @Override
             public void onPlayerScrollStopped() {
 
-                Log.d(TAG, "onPlayerScrollStopped");
-
                 Intent intent = new Intent(mMainActivity, AudioService.class);
                 intent.setAction(AudioService.ACTION_START);
                 intent.putExtra("position", mPlayerThreeView.getCurrentFocusedPosition());
@@ -262,8 +260,6 @@ public class PlayerFragment extends Fragment {
 
             @Override
             public void onPlayerScrollStarted() {
-
-                Log.d(TAG, "onPlayerScrollStarted");
 
                 Intent intent = new Intent(mMainActivity, AudioService.class);
                 intent.setAction(AudioService.ACTION_STOP);
@@ -318,7 +314,6 @@ public class PlayerFragment extends Fragment {
         mPlayerThreeView.setOnFocusChangedListener(new PlayerThreeView.OnFocusChangedListener() {
             @Override
             public void onFocusChanged(int position) {
-                Log.d(TAG, "onFocusChanged to " + position);
 
                 Intent intent = new Intent(mMainActivity, AudioService.class);
                 intent.setAction(AudioService.ACTION_START);
