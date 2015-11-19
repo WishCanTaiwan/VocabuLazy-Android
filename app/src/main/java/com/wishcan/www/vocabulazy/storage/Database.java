@@ -9,11 +9,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -55,9 +57,6 @@ public class Database implements Parcelable {
     }
 
     protected Database(Parcel in) {
-
-//        Log.d(TAG, "context " + mContext);
-
         mBooks = in.readArrayList(Book.class.getClassLoader());
         mLessons = in.readArrayList(Lesson.class.getClassLoader());
         mNotes = in.readArrayList(Lesson.class.getClassLoader());
@@ -81,10 +80,23 @@ public class Database implements Parcelable {
         }
     };
 
-//    public void setContext(Context context) {
-//        Log.d(TAG, "setContext");
-//        mContext = context;
-//    }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(mBooks);
+        dest.writeList(mLessons);
+        dest.writeList(mNotes);
+        dest.writeList(mVocabularies);
+        dest.writeList(mOptions);
+        dest.writeList(mCurrentContentInPlayer);
+        dest.writeInt(mCurrentOptionMode);
+        dest.writeInt(mCurrentPlayingBook);
+        dest.writeInt(mCurrentPlayingList);
+    }
 
     private void loadDatabaseFiles() {
         loadVocabularies();
@@ -96,9 +108,6 @@ public class Database implements Parcelable {
 
     public void writeToFile(Context context) {
         mContext = context;
-//        writeVocabulary();
-//        writeBook();
-//        writeLesson();
         writeNote();
         writeOption();
     }
@@ -229,27 +238,78 @@ public class Database implements Parcelable {
         return vocabularies;
     }
 
-    public ArrayList<ArrayList<String>> getAudioNames(ArrayList<Integer> ids) {
-        ArrayList<ArrayList<String>> audionames = new ArrayList<>();
-
-        ArrayList<String> audio = new ArrayList<>();
-        ArrayList<String> sentence_audio = new ArrayList<>();
+    public ArrayList<String> getSpellAudios(ArrayList<Integer> ids) {
+        ArrayList<String> spellaudios = new ArrayList<>();
 
         for (int index = 0; index < ids.size(); index++) {
             for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
                 Vocabulary vocabulary = mVocabularies.get(index2);
                 if (ids.get(index) == vocabulary.getID()) {
-                    audio.add(vocabulary.getAudio());
-                    sentence_audio.add(vocabulary.getSentence_audio());
+                    spellaudios.add(vocabulary.getAudio());
+                    break;
                 }
             }
         }
 
-        audionames.add(audio);
-        audionames.add(sentence_audio);
-
-        return audionames;
+        return spellaudios;
     }
+
+    public ArrayList<ArrayList<String>> getSentenceAudios(ArrayList<Integer> ids) {
+        ArrayList<ArrayList<String>> sentenceaudios = new ArrayList<>();
+
+        for (int index = 0; index < ids.size(); index++) {
+            for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
+                Vocabulary vocabulary = mVocabularies.get(index2);
+                if (ids.get(index) == vocabulary.getID()) {
+                    sentenceaudios.add(vocabulary.getSentence_Audio());
+                    break;
+                }
+            }
+        }
+
+        return sentenceaudios;
+    }
+
+//    public ArrayList<ArrayList<String>> getAudios(ArrayList<Integer> ids) {
+//        ArrayList<ArrayList<String>> audios = new ArrayList<>();
+//
+//        for (int index = 0; index < ids.size(); index++) {
+//            for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
+//                Vocabulary vocabulary = mVocabularies.get(index2);
+//                ArrayList<String> audioNames = new ArrayList<>();
+//                if (ids.get(index) == vocabulary.getID()) {
+//                    audioNames.add(vocabulary.getAudio());
+//                    audioNames.addAll(vocabulary.getSentence_Audio());
+//                    audios.add(audioNames);
+//                    break;
+//                }
+//            }
+//        }
+//
+//        return audios;
+//    }
+
+//    public ArrayList<ArrayList<String>> getAudioNames(ArrayList<Integer> ids) {
+//        ArrayList<ArrayList<String>> audionames = new ArrayList<>();
+//
+//        ArrayList<String> audio = new ArrayList<>();
+//        ArrayList<String> sentence_audio = new ArrayList<>();
+//
+//        for (int index = 0; index < ids.size(); index++) {
+//            for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
+//                Vocabulary vocabulary = mVocabularies.get(index2);
+//                if (ids.get(index) == vocabulary.getID()) {
+//                    audio.add(vocabulary.getAudio());
+//                    sentence_audio.add(vocabulary.getSentence_Audio());
+//                }
+//            }
+//        }
+//
+//        audionames.add(audio);
+//        audionames.add(sentence_audio);
+//
+//        return audionames;
+//    }
 
     public ArrayList<Vocabulary> readSuggestVocabularyBySpell(String queryString) {
 
@@ -361,7 +421,7 @@ public class Database implements Parcelable {
     public void createNewNote(String name) {
         int index = mNotes.size();
         Log.d(TAG, "create " + name + " at " + index);
-        mNotes.add(index, new Lesson(index+1, name, new ArrayList<Integer>()));
+        mNotes.add(index, new Lesson(index + 1, name, new ArrayList<Integer>()));
     }
 
     public void renameNoteAt(int position, String name) {
@@ -404,501 +464,223 @@ public class Database implements Parcelable {
         deleteNote(id);
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeList(mBooks);
-        dest.writeList(mLessons);
-        dest.writeList(mNotes);
-        dest.writeList(mVocabularies);
-        dest.writeList(mOptions);
-        dest.writeList(mCurrentContentInPlayer);
-        dest.writeInt(mCurrentOptionMode);
-        dest.writeInt(mCurrentPlayingBook);
-        dest.writeInt(mCurrentPlayingList);
-    }
 
     private void loadVocabularies() {
 
-        int sizeOfFile;
-        byte[] bytes = new byte[0];
-        String jsonString;
-        JSONObject jsonObject;
-
+        InputStream is;
         try {
-            FileInputStream fis = mContext.openFileInput("vocabulary.json");
-//            Log.d(TAG, "vocabulary file found");
-            sizeOfFile = fis.available();
-            bytes = new byte[sizeOfFile];
-            fis.read(bytes);
-            fis.close();
+            is = mContext.openFileInput("vocabulary.json");
         } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            Log.d(TAG, "vocabulary file not found in internal storage");
-//            Log.d(TAG, "using raw file");
-            InputStream is = mContext.getResources().openRawResource(R.raw.vocabulary);
-            try {
-                sizeOfFile = is.available();
-                bytes = new byte[sizeOfFile];
-
-                is.read(bytes);
-                is.close();
-            } catch (IOException e1) {
-//                e1.printStackTrace();
-            }
-        } catch (IOException e) {
-//            e.printStackTrace();
+            is = mContext.getResources().openRawResource(R.raw.vocabulary);
         }
+
+        JSONArray jsonArray = readJSONArray(is);
 
         mVocabularies = new ArrayList<>();
 
-        try {
-            jsonString = new String(bytes, "UTF-8");
-            jsonObject = new JSONObject(jsonString);
+        for (int index = 0; index < jsonArray.length(); index++) {
+            JSONObject object;
 
-            JSONArray jsonArray = jsonObject.getJSONArray("vocabulary");
-            for (int index = 0; index < jsonArray.length(); index++) {
+            try {
+                object = jsonArray.getJSONObject(index);
 
-                JSONObject vocabularyObject = jsonArray.getJSONObject(index);
+                int id = object.getInt("id");
 
-                int id = vocabularyObject.getInt("id");
-                String spell = vocabularyObject.getString("spell");
-                String category = vocabularyObject.getString("category");
-                String translate = vocabularyObject.getString("translate");
-                String audio = vocabularyObject.getString("audio");
-                String en_sentence = vocabularyObject.getString("en_sentence");
-                String cn_sentence = vocabularyObject.getString("cn_sentence");
-                String sentence_audio = vocabularyObject.getString("sentence_audio");
+                String spell = object.getString("spell");
+                String kk = object.getString("kk");
+                String category = object.getString("category");
+                String translation = object.getString("translate");
+                String audio = object.getString("audio");
 
-                Vocabulary vocabulary
-                        = new Vocabulary(id, spell, category, translate, audio, en_sentence, cn_sentence, sentence_audio);
+                String en_sentence = object.getString("en_sentence");
+                String cn_sentence = object.getString("cn_sentence");
+                String sentence_audio = object.getString("audio_sentence");
 
+                ArrayList<String> en_sentence_array = splitString(en_sentence);
+                ArrayList<String> cn_sentence_array = splitString(cn_sentence);
+                ArrayList<String> sentence_audio_array = splitString(sentence_audio);
+
+                Vocabulary vocabulary = new Vocabulary(id, spell, kk, category, translation, audio, en_sentence_array, cn_sentence_array, sentence_audio_array);
                 mVocabularies.add(vocabulary);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
         }
+
     }
 
     private void loadBooks() {
 
-        int sizeOfFile;
-        byte[] bytes = new byte[0];
-        String jsonString;
-        JSONObject jsonObject;
-
+        InputStream is;
         try {
-            FileInputStream fis = mContext.openFileInput("book.json");
-//            Log.d(TAG, "book file found");
-            sizeOfFile = fis.available();
-            bytes = new byte[sizeOfFile];
-            fis.read(bytes);
-            fis.close();
+            is = mContext.openFileInput("book.json");
         } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            Log.d(TAG, "book file not found in internal storage");
-//            Log.d(TAG, "using raw file");
-            InputStream is = mContext.getResources().openRawResource(R.raw.book);
-            try {
-                sizeOfFile = is.available();
-                bytes = new byte[sizeOfFile];
-
-                is.read(bytes);
-                is.close();
-            } catch (IOException e1) {
-//                e1.printStackTrace();
-            }
-        } catch (IOException e) {
-//            e.printStackTrace();
+            is = mContext.getResources().openRawResource(R.raw.book);
         }
+
+        JSONArray jsonArray = readJSONArray(is);
 
         mBooks = new ArrayList<>();
 
-        try {
-            jsonString = new String(bytes, "UTF-8");
-            jsonObject = new JSONObject(jsonString);
+        for (int index = 0; index < jsonArray.length(); index++) {
+            JSONObject object;
 
-            JSONArray jsonArray = jsonObject.getJSONArray("book");
-            for (int index = 0; index < jsonArray.length(); index++) {
+            try {
+                object = jsonArray.getJSONObject(index);
 
-                JSONObject bookObject = jsonArray.getJSONObject(index);
-
-                int id = bookObject.getInt("id");
-                String name = bookObject.getString("name");
-
-                ArrayList<Integer> content = new ArrayList<>();
-                JSONArray bookcontentArray = bookObject.getJSONArray("content");
-                for (int index2 = 0; index2 < bookcontentArray.length(); index2++) {
-                    content.add(bookcontentArray.getInt(index2));
-                }
+                int id = object.getInt("id");
+                String name = object.getString("name");
+                ArrayList<Integer> content = convertJSONArrayToIntegerArrayList(object.getJSONArray("content_of_the_book"));
 
                 mBooks.add(new Book(id, name, content));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
         }
     }
 
     private void loadLessons() {
 
-        int sizeOfFile;
-        byte[] bytes = new byte[0];
-        String jsonString;
-        JSONObject jsonObject;
-
+        InputStream is;
         try {
-            FileInputStream fis = mContext.openFileInput("lesson.json");
-//            Log.d(TAG, "lesson file found");
-            sizeOfFile = fis.available();
-            bytes = new byte[sizeOfFile];
-            fis.read(bytes);
-            fis.close();
+            is = mContext.openFileInput("lesson.json");
         } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            Log.d(TAG, "lesson file not found in internal storage");
-//            Log.d(TAG, "using raw file");
-            InputStream is = mContext.getResources().openRawResource(R.raw.lesson);
-            try {
-                sizeOfFile = is.available();
-                bytes = new byte[sizeOfFile];
-
-                is.read(bytes);
-                is.close();
-            } catch (IOException e1) {
-//                e1.printStackTrace();
-            }
-        } catch (IOException e) {
-//            e.printStackTrace();
+            is = mContext.getResources().openRawResource(R.raw.lesson);
         }
+
+        JSONArray jsonArray = readJSONArray(is);
 
         mLessons = new ArrayList<>();
 
-        try {
-            jsonString = new String(bytes, "UTF-8");
-            jsonObject = new JSONObject(jsonString);
+        for (int index = 0; index < jsonArray.length(); index++) {
+            JSONObject object;
 
-            JSONArray jsonArray = jsonObject.getJSONArray("lesson");
-            for (int index = 0; index < jsonArray.length(); index++) {
+            try {
+                object = jsonArray.getJSONObject(index);
 
-                JSONObject lessonObject = jsonArray.getJSONObject(index);
-
-                int id = lessonObject.getInt("id");
-                String name = lessonObject.getString("name");
-
-                ArrayList<Integer> content = new ArrayList<>();
-                JSONArray lessoncontentArray = lessonObject.getJSONArray("content");
-                for (int index2 = 0; index2 < lessoncontentArray.length(); index2++) {
-                    content.add(lessoncontentArray.getInt(index2));
-                }
+                int id = object.getInt("id");
+                String name = object.getString("name");
+                ArrayList<Integer> content = convertJSONArrayToIntegerArrayList(object.getJSONArray("content_of_the_lesson"));
 
                 mLessons.add(new Lesson(id, name, content));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
         }
     }
 
     private void loadNotes() {
 
-        int sizeOfFile;
-        byte[] bytes = new byte[0];
-        String jsonString;
-        JSONObject jsonObject;
-
+        InputStream is;
         try {
-            FileInputStream fis = mContext.openFileInput("note.json");
-//            Log.d(TAG, "note file found");
-            sizeOfFile = fis.available();
-            bytes = new byte[sizeOfFile];
-            fis.read(bytes);
-            fis.close();
+            is = mContext.openFileInput("note.json");
         } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            Log.d(TAG, "note file not found in internal storage");
-//            Log.d(TAG, "using raw file");
-            InputStream is = mContext.getResources().openRawResource(R.raw.note);
-            try {
-                sizeOfFile = is.available();
-                bytes = new byte[sizeOfFile];
-
-                is.read(bytes);
-                is.close();
-            } catch (IOException e1) {
-//                e1.printStackTrace();
-            }
-        } catch (IOException e) {
-//            e.printStackTrace();
+            is = mContext.getResources().openRawResource(R.raw.note);
         }
+
+        JSONArray jsonArray = readJSONArray(is);
 
         mNotes = new ArrayList<>();
 
-        try {
-            jsonString = new String(bytes, "UTF-8");
-            jsonObject = new JSONObject(jsonString);
+        for (int index = 0; index < jsonArray.length(); index++) {
+            JSONObject object;
 
-            JSONArray jsonArray = jsonObject.getJSONArray("note");
-            for (int index = 0; index < jsonArray.length(); index++) {
+            try {
+                object = jsonArray.getJSONObject(index);
 
-                JSONObject noteObject = jsonArray.getJSONObject(index);
-
-                int id = noteObject.getInt("id");
-                String name = noteObject.getString("name");
-
-                ArrayList<Integer> content = new ArrayList<>();
-                JSONArray notecontentArray = noteObject.getJSONArray("content");
-                for (int index2 = 0; index2 < notecontentArray.length(); index2++) {
-                    content.add(notecontentArray.getInt(index2));
-                }
+                int id = object.getInt("id");
+                String name = object.getString("name");
+                ArrayList<Integer> content = convertJSONArrayToIntegerArrayList(object.getJSONArray("content_of_the_note"));
 
                 mNotes.add(new Lesson(id, name, content));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
         }
     }
 
     private void loadOptions() {
 
-        int sizeOfFile;
-        byte[] bytes = new byte[0];
-        String jsonString;
-        JSONObject jsonObject;
-
+        InputStream is;
         try {
-            FileInputStream fis = mContext.openFileInput("option.json");
-//            Log.d(TAG, "option file found");
-            sizeOfFile = fis.available();
-            bytes = new byte[sizeOfFile];
-            fis.read(bytes);
-            fis.close();
+            is = mContext.openFileInput("option.json");
         } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            Log.d(TAG, "option file not found in internal storage");
-//            Log.d(TAG, "using raw file");
-            InputStream is = mContext.getResources().openRawResource(R.raw.option);
-            try {
-                sizeOfFile = is.available();
-                bytes = new byte[sizeOfFile];
-
-                is.read(bytes);
-                is.close();
-            } catch (IOException e1) {
-//                e1.printStackTrace();
-            }
-        } catch (IOException e) {
-//            e.printStackTrace();
+            is = mContext.getResources().openRawResource(R.raw.option);
         }
+
+        JSONArray jsonArray = readJSONArray(is);
 
         mOptions = new ArrayList<>();
 
-        try {
-            jsonString = new String(bytes, "UTF-8");
-            jsonObject = new JSONObject(jsonString);
+        for (int index = 0; index < jsonArray.length(); index++) {
+            JSONObject object;
 
-            JSONArray jsonArray = jsonObject.getJSONArray("option");
-            for (int index = 0; index < jsonArray.length(); index++) {
+            try {
+                object = jsonArray.getJSONObject(index);
 
-                JSONObject optionObject = jsonArray.getJSONObject(index);
-
-                int mode = optionObject.getInt("mode");
-                boolean isRandom = optionObject.getBoolean("random");
-                int listloop = optionObject.getInt("listloop");
-                boolean sentence = optionObject.getBoolean("sentence");
-                int stopperiod = optionObject.getInt("stopperiod");
-                int itemloop = optionObject.getInt("itemloop");
-                int speed = optionObject.getInt("speed");
-                int playtime = optionObject.getInt("playtime");
+                int mode = object.getInt("mode");
+                boolean isRandom = object.getBoolean("random");
+                int listloop = object.getInt("listloop");
+                boolean sentence = object.getBoolean("sentence");
+                int stopperiod = object.getInt("stopperiod");
+                int itemloop = object.getInt("itemloop");
+                int speed = object.getInt("speed");
+                int playtime = object.getInt("playtime");
 
                 mOptions.add(new Option(mode, isRandom, listloop, sentence, stopperiod, itemloop, speed, playtime));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
-        }
-    }
-
-    private void writeVocabulary() {
-        try {
-
-            JSONArray jsonArray = new JSONArray();
-
-            for (int index = 0; index < mVocabularies.size(); index++) {
-                Vocabulary vocabulary = mVocabularies.get(index);
-
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("id", vocabulary.getID());
-                jsonObject.put("spell", vocabulary.getSpell());
-                jsonObject.put("category", vocabulary.getCategory());
-                jsonObject.put("translate", vocabulary.getTranslate());
-                jsonObject.put("audio", vocabulary.getAudio());
-                jsonObject.put("en_sentence", vocabulary.getEn_sentence());
-                jsonObject.put("cn_sentence", vocabulary.getCn_sentence());
-                jsonObject.put("sentence_audio", vocabulary.getSentence_audio());
-
-                jsonArray.put(jsonObject);
-            }
-
-            JSONObject vocabularyObject = new JSONObject();
-            vocabularyObject.put("vocabulary", jsonArray);
-
-                FileOutputStream fos = mContext.openFileOutput("vocabulary.json", Context.MODE_PRIVATE);
-//            Log.d(TAG, "open file to write");
-            fos.write(vocabularyObject.toString().getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-//            Log.d(TAG, "file not found while writing");
-//            e.printStackTrace();
-        } catch (IOException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
-        }
-    }
-
-    private void writeBook() {
-        try {
-
-            JSONArray jsonArray = new JSONArray();
-
-            for (int index = 0; index < mBooks.size(); index++) {
-                Book book = mBooks.get(index);
-
-                ArrayList<Integer> content = book.getContent();
-                JSONArray contentArray = new JSONArray();
-                for (int index2 = 0; index2 < content.size(); index2++) {
-                    contentArray.put(content.get(index2));
-                }
-
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("id", book.getID());
-                jsonObject.put("name", book.getName());
-                jsonObject.put("content", contentArray);
-
-                jsonArray.put(jsonObject);
-            }
-
-            JSONObject bookObject = new JSONObject();
-            bookObject.put("book", jsonArray);
-
-            FileOutputStream fos = mContext.openFileOutput("book.json", Context.MODE_PRIVATE);
-            Log.d(TAG, "open file to write");
-            fos.write(bookObject.toString().getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-//            Log.d(TAG, "file not found while writing");
-//            e.printStackTrace();
-        } catch (IOException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
-        }
-    }
-
-    private void writeLesson() {
-        try {
-
-            JSONArray jsonArray = new JSONArray();
-
-            for (int index = 0; index < mLessons.size(); index++) {
-                Lesson lesson = mLessons.get(index);
-
-                ArrayList<Integer> content = lesson.getContent();
-                JSONArray contentArray = new JSONArray();
-                for (int index2 = 0; index2 < content.size(); index2++) {
-                    contentArray.put(content.get(index2));
-                }
-
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("id", lesson.getID());
-                jsonObject.put("name", lesson.getName());
-                jsonObject.put("content", contentArray);
-
-                jsonArray.put(jsonObject);
-            }
-
-            JSONObject lessonObject = new JSONObject();
-            lessonObject.put("lesson", jsonArray);
-
-            FileOutputStream fos = mContext.openFileOutput("lesson.json", Context.MODE_PRIVATE);
-            Log.d(TAG, "open file to write");
-            fos.write(lessonObject.toString().getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-//            Log.d(TAG, "file not found while writing");
-//            e.printStackTrace();
-        } catch (IOException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
         }
     }
 
     private void writeNote() {
-        try {
+        JSONArray jsonArray = new JSONArray();
 
-            JSONArray jsonArray = new JSONArray();
+        for (int index = 0; index < mNotes.size(); index++) {
+            Lesson note = mNotes.get(index);
 
-            for (int index = 0; index < mNotes.size(); index++) {
-                Lesson note = mNotes.get(index);
-
-                ArrayList<Integer> content = note.getContent();
-                JSONArray contentArray = new JSONArray();
-                for (int index2 = 0; index2 < content.size(); index2++) {
-                    contentArray.put(content.get(index2));
-                }
-
-                JSONObject jsonObject = new JSONObject();
+            JSONObject jsonObject = new JSONObject();
+            try {
                 jsonObject.put("id", note.getID());
                 jsonObject.put("name", note.getName());
-                jsonObject.put("content", contentArray);
-
-                jsonArray.put(jsonObject);
+                jsonObject.put("content", convertIntegerArrayListToJSONArray(note.getContent()));
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-            JSONObject noteObject = new JSONObject();
-            noteObject.put("note", jsonArray);
+            jsonArray.put(jsonObject);
+        }
 
-            FileOutputStream fos = mContext.openFileOutput("note.json", Context.MODE_PRIVATE);
-//            Log.d(TAG, "open file to write");
-            fos.write(noteObject.toString().getBytes());
+        FileOutputStream fos;
+        try {
+            fos = mContext.openFileOutput("note.json", Context.MODE_PRIVATE);
+            fos.write(jsonArray.toString().getBytes());
             fos.close();
-        } catch (FileNotFoundException e) {
-//            Log.d(TAG, "file not found while writing");
-//            e.printStackTrace();
-        } catch (IOException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     private void writeOption() {
-        try {
+        JSONArray jsonArray = new JSONArray();
 
-            JSONArray jsonArray = new JSONArray();
+        for (int index = 0; index < mOptions.size(); index++) {
+            Option option = mOptions.get(index);
 
-            for (int index = 0; index < mOptions.size(); index++) {
-                Option option = mOptions.get(index);
-
-                JSONObject jsonObject = new JSONObject();
+            JSONObject jsonObject = new JSONObject();
+            try {
                 jsonObject.put("mode", option.getMode());
                 jsonObject.put("random", option.isIsRandom());
                 jsonObject.put("listloop", option.getListLoop());
@@ -907,24 +689,93 @@ public class Database implements Parcelable {
                 jsonObject.put("itemloop", option.getItemLoop());
                 jsonObject.put("speed", option.getSpeed());
                 jsonObject.put("playtime", option.getPlayTime());
-
-                jsonArray.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-            JSONObject optionObject = new JSONObject();
-            optionObject.put("option", jsonArray);
-
-            FileOutputStream fos = mContext.openFileOutput("option.json", Context.MODE_PRIVATE);
-//            Log.d(TAG, "open file to write");
-            fos.write(optionObject.toString().getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-//            Log.d(TAG, "file not found while writing");
-//            e.printStackTrace();
-        } catch (IOException e) {
-//            e.printStackTrace();
-        } catch (JSONException e) {
-//            e.printStackTrace();
+            jsonArray.put(jsonObject);
         }
+
+        FileOutputStream fos;
+        try {
+            fos = mContext.openFileOutput("option.json", Context.MODE_PRIVATE);
+            fos.write(jsonArray.toString().getBytes());
+            fos.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private JSONArray readJSONArray(InputStream is) {
+        JSONArray jsonArray = new JSONArray();
+
+        InputStreamReader isr = null;
+        try {
+            isr = new InputStreamReader(is, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        BufferedReader bfdReader = new BufferedReader(isr);
+        String readline;
+        StringBuilder jsonStringBuilder = new StringBuilder();
+
+        try {
+            while ((readline = bfdReader.readLine()) != null) {
+                jsonStringBuilder.append(readline);
+            }
+
+            bfdReader.close();
+            isr.close();
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String jsonString = jsonStringBuilder.toString();
+
+        try {
+            jsonArray = new JSONArray(jsonString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonArray;
+    }
+
+    private ArrayList<String> splitString(String str) {
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        String[] strings = str.split("# ");
+
+        for (int index = 0; index < strings.length; index++) {
+            if (!strings[index].equals("")) {
+                arrayList.add(strings[index]);
+            }
+        }
+
+        return arrayList;
+    }
+
+    private ArrayList<Integer> convertJSONArrayToIntegerArrayList(JSONArray jsonArray) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int index = 0; index < jsonArray.length(); index++) {
+
+            try {
+                arrayList.add(jsonArray.getInt(index));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return arrayList;
+    }
+
+    private JSONArray convertIntegerArrayListToJSONArray(ArrayList<Integer> arrayList) {
+        JSONArray jsonArray = new JSONArray();
+        for (int index = 0; index < arrayList.size(); index++) {
+            jsonArray.put(arrayList.get(index));
+        }
+        return jsonArray;
     }
 }

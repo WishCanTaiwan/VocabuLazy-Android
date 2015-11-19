@@ -203,7 +203,6 @@ public class AudioService extends IntentService {
                 break;
 
             case ACTION_UPDATE_OPTION:
-//                Log.d(TAG, "update option");
                 ArrayList<Option> options = mDatabase.getOptions();
                 int currentMode = mDatabase.getCurrentOptionMode();
                 updateOptions(options, currentMode);
@@ -254,9 +253,10 @@ public class AudioService extends IntentService {
             }
 
             @Override
-            public void onSentenceStart() {
+            public void onSentenceStart(int sentence) {
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_SENTENCE_START);
+                intent.putExtra("sentenceIndex", sentence);
                 LocalBroadcastManager.getInstance(mMainActivity).sendBroadcast(intent);
             }
 

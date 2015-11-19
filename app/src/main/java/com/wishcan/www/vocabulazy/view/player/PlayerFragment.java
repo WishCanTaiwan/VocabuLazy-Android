@@ -171,10 +171,13 @@ public class PlayerFragment extends Fragment {
 
         outState.putInt("mCurrentBookIndex", mCurrentBookIndex);
         outState.putInt("mCurrentLessonIndex", mCurrentLessonIndex);
-//        outState.putInt("mCurrentFocusedPosition", mCurrentFocusedPosition);
-//        outState.putParcelable("database", mDatabase);
 
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -183,36 +186,23 @@ public class PlayerFragment extends Fragment {
 
         mMainActivity = (MainActivity) getActivity();
 
-//        Log.d(TAG, "mMainActivity: " + mMainActivity);
-
         mDatabase = mMainActivity.getDatabase();
 
         if (savedInstanceState != null) {
             mCurrentBookIndex = savedInstanceState.getInt("mCurrentBookIndex");
             mCurrentLessonIndex = savedInstanceState.getInt("mCurrentLessonIndex");
-//            mCurrentFocusedPosition = savedInstanceState.getInt("mCurrentFocusedPosition");
-//            mDatabase = savedInstanceState.getParcelable("database");
             mCurrentContentInPlayer = mDatabase.getCurrentContentInPlayer();
         } else {
             mCurrentBookIndex = -1;
             mCurrentLessonIndex = -1;
-//            mCurrentFocusedPosition = 0;
-//            mDatabase = null;
             mCurrentContentInPlayer = null;
-
-//            mDatabase.setCurrentPlayingItem(mCurrentFocusedPosition);
 
             if (getArguments() != null) {
                 mPreviousTitle = getArguments().getString(MainActivity.PREVIOUS_TITLE);
                 mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
                 mCurrentLessonIndex = getArguments().getInt(ARG_LESSON_INDEX);
-//                mDatabase = getArguments().getParcelable("database");
             }
         }
-
-//        Log.d(TAG, "mCurrentBookIndex: " + mCurrentBookIndex);
-//        Log.d(TAG, "mCurrentLessonIndex: " + mCurrentLessonIndex);
-//        Log.d(TAG, "mDatabase: " + mDatabase);
 
         mAudioServiceBroadcastIntentFilter = new IntentFilter(AudioService.BROADCAST);
         mAudioServiceBoardcastReceiver = new AudioServiceBroadcastReceiver();
@@ -249,80 +239,10 @@ public class PlayerFragment extends Fragment {
         playImageView.setImageResource(PLAYER_PLAY_DRAWABLE_RES_ID);
     }
 
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onOptionClicked(View v) {
-        int resId = v.getId();
-        int index;
-        switch (resId) {
-            case OPTION_PARENT_RES_ID:     //gray screen
-                exitOptionView(v);
-                break;
-            case OPTION_VIEW_RES_ID:       //option view, this is a TabView
-                break;
-            case PLAYER_FAVORITE_IMAGE_VIEW_RES_ID:
-                break;
-            case PLAYER_PLAY_IMAGE_VIEW_RES_ID:
-                playpauseDochi();       // here to call play/pause function
-                break;
-            case PLAYER_OPTION_IMAGE_VIEW_RES_ID:
-                showPlayerOptionView();
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OptionOnClickListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        Log.d(TAG, "onDetach");
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (mMainActivity != null) {
-            ActionBar actionBar = mMainActivity.getActionBar();
-            if (actionBar != null)
-                actionBar.setDisplayHomeAsUpEnabled(true);
-
-            mMainActivity.switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
-        }
-    }
-
-    @Override
-    public void onStop() {
-        Log.d(TAG, "onStop");
-        super.onStop();
-        MainActivity parentActivity = mMainActivity;
-
-        parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
-        parentActivity.switchActionBarTitle(mPreviousTitle);
-
-        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
-
-    }
-
     private void playerThreeViewListenerRegistration() {
         mPlayerThreeView.setOnPlayerScrollStoppedListener(new PlayerThreeView.OnPlayerScrollListener() {
             @Override
             public void onPlayerScrollStopped() {
-
-                Log.d(TAG, "onPlayerScrollStopped");
 
                 Intent intent = new Intent(mMainActivity, AudioService.class);
                 intent.setAction(AudioService.ACTION_START);
@@ -333,8 +253,6 @@ public class PlayerFragment extends Fragment {
 
             @Override
             public void onPlayerScrollStarted() {
-
-                Log.d(TAG, "onPlayerScrollStarted");
 
                 Intent intent = new Intent(mMainActivity, AudioService.class);
                 intent.setAction(AudioService.ACTION_STOP);
@@ -389,7 +307,6 @@ public class PlayerFragment extends Fragment {
         mPlayerThreeView.setOnFocusChangedListener(new PlayerThreeView.OnFocusChangedListener() {
             @Override
             public void onFocusChanged(int position) {
-                Log.d(TAG, "onFocusChanged to " + position);
 
                 Intent intent = new Intent(mMainActivity, AudioService.class);
                 intent.setAction(AudioService.ACTION_START);
@@ -405,36 +322,22 @@ public class PlayerFragment extends Fragment {
         mPlayerThreeView.setOnItemPreparedListener(new PlayerThreeView.OnItemPreparedListener() {
             @Override
             public void onInitialItemPrepared() {
-                Log.d(TAG, "onInitialItemPrepared");
-
-                Log.d(TAG, "" + mCurrentBookIndex);
-                Log.d(TAG, "" + mDatabase.getCurrentPlayingBook());
-                Log.d(TAG, "" + mCurrentLessonIndex);
-                Log.d(TAG, "" + mDatabase.getCurrentPlayingList());
-
                 if (mCurrentBookIndex != mDatabase.getCurrentPlayingBook() || mCurrentLessonIndex != mDatabase.getCurrentPlayingList())
                     setContentToPlayerAndStart();
-
             }
 
             @Override
             public void onFinalItemPrepared() {
                 Log.d(TAG, "onFinalItemPrepared");
-
-//                Log.d(TAG, "mCurrentFocusedPosition: " + mCurrentFocusedPosition);
-
                 if (mCurrentBookIndex == mDatabase.getCurrentPlayingBook() && mCurrentLessonIndex == mDatabase.getCurrentPlayingList()) {
                     mPlayerThreeView.moveToPosition(mDatabase.getCurrentPlayingItem());
                 }
-
             }
         });
     }
 
     private void setContentToPlayerAndStart() {
         ArrayList<Integer> currentNoteContents = (ArrayList<Integer>) mContentIDsOfThreeViews.get(0).clone();
-
-//        Log.d(TAG, "currentNoteContents: " + currentNoteContents);
 
         mDatabase.setCurrentContentInPlayer(currentNoteContents);
 
@@ -495,6 +398,73 @@ public class PlayerFragment extends Fragment {
         return refreshedContentIDs;
     }
 
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onOptionClicked(View v) {
+        int resId = v.getId();
+        int index;
+        switch (resId) {
+            case OPTION_PARENT_RES_ID:     //gray screen
+                exitOptionView(v);
+                break;
+            case OPTION_VIEW_RES_ID:       //option view, this is a TabView
+                break;
+            case PLAYER_FAVORITE_IMAGE_VIEW_RES_ID:
+                break;
+            case PLAYER_PLAY_IMAGE_VIEW_RES_ID:
+                playpauseDochi();       // here to call play/pause function
+                break;
+            case PLAYER_OPTION_IMAGE_VIEW_RES_ID:
+                showPlayerOptionView();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OptionOnClickListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        Log.d(TAG, "onDetach");
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(mMainActivity != null) {
+            ActionBar actionBar = mMainActivity.getActionBar();
+            if (actionBar != null)
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+            mMainActivity.switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
+        }
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG, "onStop");
+        super.onStop();
+        MainActivity parentActivity = mMainActivity;
+
+        parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
+        parentActivity.switchActionBarTitle(mPreviousTitle);
+
+        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
+
+    }
+
     private void playpauseDochi() {
 
         Intent intent = new Intent(mMainActivity, AudioService.class);
@@ -522,24 +492,18 @@ public class PlayerFragment extends Fragment {
         if (mTransparentGrayView.getVisibility() == View.INVISIBLE)
             mTransparentGrayView.setVisibility(View.VISIBLE);
 
-        if (mOptionView.isListenerNull()) {
-            Log.d(TAG, "setListener");
-            mOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
-                @Override
-                public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+        mOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
+            @Override
+            public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+                mDatabase.setCurrentOptions(optionLL);
+                mDatabase.setCurrentOptionMode(currentMode);
 
-                    Log.d(TAG, "onOptionChanged");
+                Intent intent = new Intent(mMainActivity, AudioService.class);
+                intent.setAction(AudioService.ACTION_UPDATE_OPTION);
+                mMainActivity.startService(intent);
 
-                    mDatabase.setCurrentOptions(optionLL);
-                    mDatabase.setCurrentOptionMode(currentMode);
-
-                    Intent intent = new Intent(mMainActivity, AudioService.class);
-                    intent.setAction(AudioService.ACTION_UPDATE_OPTION);
-                    mMainActivity.startService(intent);
-
-                }
-            });
-        }
+            }
+        });
 
         Animation comeInAnimation = AnimationUtils.loadAnimation(mMainActivity, ANIMATE_TRANSLATE_BOTTOM_UP);
         mOptionView.startAnimation(comeInAnimation);
@@ -590,6 +554,12 @@ public class PlayerFragment extends Fragment {
                     break;
 
                 case AudioService.BROADCAST_ACTION_SENTENCE_START:
+                    /**
+                     * TODO : "sentenceIndex" variable is made for notifying views to
+                     * TODO : switch.
+                     */
+                    int sentenceIndex = intent.getIntExtra("sentenceIndex", -1);
+
                     mPlayerThreeView.showDetail();
                     break;
 

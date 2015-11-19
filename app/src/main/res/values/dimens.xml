@@ -34,7 +34,7 @@
     <!-- SwallowBBAppo Divider Height-->
     <dimen name="divider_height">2dp</dimen>
 
-    <!-- SwallowBBAppo NumberalPicker Dimension-->
+    <!-- SwallowBBAppo NumeralPicker Dimension-->
     <dimen name="picker_arrow_image_padding">10dp</dimen>
     <dimen name="picker_text_padding">25dp</dimen>
     <dimen name="picker_text_size">34sp</dimen>
@@ -71,6 +71,7 @@
     <!-- SwallowBBAppo Player_list_item Dimension-->
     <dimen name="player_list_item_text0_size">25sp</dimen>
     <dimen name="player_list_item_text1_size">15sp</dimen>
+    <dimen name="player_pager_index_diameter">7dp</dimen>
 
     <!-- SwallowBBAppo Player_Option_ View Dimension-->
     <dimen name="player_option_trapezoid_long_height">63dp</dimen>

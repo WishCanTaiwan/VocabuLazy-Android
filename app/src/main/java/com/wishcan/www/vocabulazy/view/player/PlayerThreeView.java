@@ -205,9 +205,9 @@ public class PlayerThreeView extends InfiniteThreeView {
             hm.put(mFrom[1], vocabulary.getTranslate());
             hm.put(mFrom[2], vocabulary.getSpell());
             hm.put(mFrom[3], vocabulary.getTranslate());
-            hm.put(mFrom[4], "[KK音標]");
-            hm.put(mFrom[5], vocabulary.getEn_sentence());
-            hm.put(mFrom[6], vocabulary.getCn_sentence());
+            hm.put(mFrom[4], vocabulary.getKK());
+            hm.put(mFrom[5], vocabulary.getEn_Sentence().get(0));
+            hm.put(mFrom[6], vocabulary.getCn_Sentence().get(0));
 
 //            Log.d(TAG, "createPlaylistContent: " + hm);
 
@@ -250,14 +250,16 @@ public class PlayerThreeView extends InfiniteThreeView {
             return 0;
     }
 
-//    public void setCurrentFocusedPosition()
-
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 break;
             case MotionEvent.ACTION_MOVE:
+                if(getCurrentItem() != null)
+                    if(((PlayerScrollView) getCurrentItem()).isShowingDetails())
+                        return false;
+
                 mOnPlayerScrollListener.onPlayerScrollStarted();
                 break;
             default:

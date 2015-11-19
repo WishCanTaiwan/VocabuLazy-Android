@@ -417,6 +417,7 @@ public class PlayerOptionView extends LinearLayout {
                             Option option = mOptionLL.get(mCurrentTabIndex);
                             switch (v.getId()){
                                 case PLAYER_OPTION_SECOND_PICKER_RES_ID:
+                                    Log.d(TAG, "stop peroid: " + Integer.valueOf(valueStr));
                                     option.setStopPeriod(Integer.valueOf(valueStr));
                                     break;
                                 case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:

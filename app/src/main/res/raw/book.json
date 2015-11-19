@@ -1,11 +1,5 @@
-{
-  "book": [
-    {
-      "id": 1,
-      "name": "Book 1",
-      "content": [
-        1
-      ]
-    }
-  ]
-}
+[
+  {"id":0, "name":"book 1", "content_of_the_book":[0, 1, 2, 3, 4, 5]},
+  {"id":1, "name":"book 2", "content_of_the_book":[6, 7, 8, 9]},
+  {"id":2, "name":"book 3", "content_of_the_book":[10, 11, 12]}
+]

@@ -141,10 +141,10 @@ public class DatabaseService extends IntentService {
                 String cn_sentence = vocabularyObject.getString("cn_sentence");
                 String sentence_audio = vocabularyObject.getString("sentence_audio");
 
-                Vocabulary vocabulary
-                        = new Vocabulary(id, spell, category, translate, audio, en_sentence, cn_sentence, sentence_audio);
+//                Vocabulary vocabulary
+//                        = new Vocabulary(id, spell, category, translate, audio, en_sentence, cn_sentence, sentence_audio);
 
-                mVocabularies.add(vocabulary);
+//                mVocabularies.add(vocabulary);
             }
 
         } catch (UnsupportedEncodingException e) {
