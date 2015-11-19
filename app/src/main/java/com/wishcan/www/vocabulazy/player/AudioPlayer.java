@@ -42,8 +42,8 @@ public class AudioPlayer {
     private Database mDatabase;
 
     private ArrayList<Integer> mPlaylistContentIDs;
-    private ArrayList<String> mAudios;
-    private ArrayList<String> mSentence_Audios;
+    private ArrayList<String> mSpellAudios;
+    private ArrayList<ArrayList<String>> mSentence_Audios;
 
     private MediaPlayer mPlayer;
     private OnPlayerCompletionListener mOnPlayerCompletionListener;
@@ -72,6 +72,12 @@ public class AudioPlayer {
 
     private Handler mHandler;
     private Runnable mRunnable;
+
+    private int mNumOfSentence;
+    private int mSentenceIndex;
+
+    String mCurrentSpellAudio;
+    ArrayList<String> mCurrentSentenceAudio;
 
     public AudioPlayer(Context context) {
 
@@ -104,6 +110,9 @@ public class AudioPlayer {
         mItemLoopCount = mItemLoop;
 
         mHandler = new Handler();
+
+        mNumOfSentence = 0;
+        mSentenceIndex = -1;
     }
 
     public void initPlayerLists() {
@@ -113,7 +122,7 @@ public class AudioPlayer {
             mPlaylistContentIDs = new ArrayList<>();
         }
 
-        mAudios = new ArrayList<>();
+        mSpellAudios = new ArrayList<>();
         mSentence_Audios = new ArrayList<>();
     }
 
@@ -123,9 +132,8 @@ public class AudioPlayer {
 
         Log.d(TAG, "" + mNumOfVocabulariesInList);
 
-        ArrayList<ArrayList<String>> audionames = mDatabase.getAudioNames(mPlaylistContentIDs);
-        mAudios = audionames.get(0);
-        mSentence_Audios = audionames.get(1);
+        mSpellAudios = mDatabase.getSpellAudios(mPlaylistContentIDs);
+        mSentence_Audios = mDatabase.getSentenceAudios(mPlaylistContentIDs);
     }
 
     public ArrayList<Integer> getPlaylistContentIDs() {
@@ -133,7 +141,6 @@ public class AudioPlayer {
     }
 
     public void updateOptions(ArrayList<Option> options, int currentMode) {
-//        Log.d(TAG, "update option, mode: " + currentMode);
         mOptions = options;
         setOptions(options.get(currentMode));
     }
@@ -157,15 +164,21 @@ public class AudioPlayer {
 
     public void startPlayingItemAt(int index) {
         setCurrentPlayingIndex(index);
-        String audio = mAudios.get(mCurrentPlayingIndex);
-        setDataSourceAndPlay(audio);
+        mCurrentSpellAudio = mSpellAudios.get(mCurrentPlayingIndex);
+        mCurrentSentenceAudio = mSentence_Audios.get(mCurrentPlayingIndex);
+        mNumOfSentence = mCurrentSentenceAudio.size();
+        mSentenceIndex = 0;
+        startPlayingSpell();
+    }
+
+    private void startPlayingSpell() {
+        setDataSourceAndPlay(mCurrentSpellAudio);
         mNowPlaying = AudioCategory.SPELL;
     }
 
     private void startPlayingSentence() {
-        mOnPlayerStatusChangedListener.onSentenceStart();
-        String sentence_audio = mSentence_Audios.get(mCurrentPlayingIndex);
-        setDataSourceAndPlay(sentence_audio);
+        mOnPlayerStatusChangedListener.onSentenceStart(mSentenceIndex);
+        setDataSourceAndPlay(mCurrentSentenceAudio.get(mSentenceIndex));
         mNowPlaying = AudioCategory.EN_SENTENCE;
     }
 
@@ -220,7 +233,14 @@ public class AudioPlayer {
             case TRANSLATE:
                 break;
             case EN_SENTENCE:
-                en_sentenceCompleted();
+
+                mSentenceIndex++;
+
+                if (mSentenceIndex == mNumOfSentence)
+                    en_sentenceCompleted();
+                else
+                    startPlayingSentence();
+
                 break;
             case CN_SENTENCE:
                 break;
@@ -231,6 +251,7 @@ public class AudioPlayer {
 
     private void spellCompleted() {
         if (mIsEnSentenceEnabled) {
+            mSentenceIndex = 0;
             startPlayingSentence();
         } else {
             itemCompleted();
@@ -280,7 +301,6 @@ public class AudioPlayer {
 
     private void listCompleted() {
         mListLoopCount--;
-//        Log.d(TAG, "mListLoopCoount: " + mListLoopCount);
         if (mListLoopCount == 0) {
             mListLoopCount = mListLoop;
             mOnPlayerCompletionListener.onListComplete();
@@ -304,7 +324,6 @@ public class AudioPlayer {
     }
 
     public void resume() {
-//        Log.d(TAG, "resume");
         if (mPlayer != null) {
             mIsPlaying = true;
             mPlayer.start();
@@ -313,7 +332,6 @@ public class AudioPlayer {
     }
 
     public void pause() {
-//        Log.d(TAG, "pause");
         if (mPlayer != null) {
             mIsPlaying = false;
             mPlayer.pause();
@@ -323,7 +341,6 @@ public class AudioPlayer {
 
 
     public void stop() {
-//        Log.d(TAG, "stop");
         if (mPlayer != null) {
             mIsPlaying = false;
             mPlayer.pause();
@@ -333,13 +350,10 @@ public class AudioPlayer {
     }
 
     public void reset() {
-//        Log.d(TAG, "reset");
-//        mIsPlaying = false;
         if (mPlayer != null) mPlayer.reset();
     }
 
     public void release() {
-//        Log.d(TAG, "release");
         if (mPlayer != null) mPlayer.release();
     }
 
@@ -394,7 +408,7 @@ public class AudioPlayer {
 
         void onItemStartPlaying(int itemIndex);
 
-        void onSentenceStart();
+        void onSentenceStart(int sentenceIndex);
 
         void onSentenceComplete();
 
@@ -409,24 +423,24 @@ public class AudioPlayer {
             mPlaylistContentIDs.add(index);
         }
 
-        mAudios.add("a means of.mp3");
-        mAudios.add("African.mp3");
-        mAudios.add("air-traffic control.mp3");
-        mAudios.add("Arabic.mp3");
-        mAudios.add("billion.mp3");
-        mAudios.add("communication.mp3");
-        mAudios.add("connect.mp3");
-        mAudios.add("David Crystal.mp3");
-        mAudios.add("embrace.mp3");
+//        mAudios.add("a means of.mp3");
+//        mAudios.add("African.mp3");
+//        mAudios.add("air-traffic control.mp3");
+//        mAudios.add("Arabic.mp3");
+//        mAudios.add("billion.mp3");
+//        mAudios.add("communication.mp3");
+//        mAudios.add("connect.mp3");
+//        mAudios.add("David Crystal.mp3");
+//        mAudios.add("embrace.mp3");
 
-        mSentence_Audios.add("a means of-1.mp3");
-        mSentence_Audios.add("African-1.mp3");
-        mSentence_Audios.add("air-traffic control-1.mp3");
-        mSentence_Audios.add("Arabic-1.mp3");
-        mSentence_Audios.add("billion-1.mp3");
-        mSentence_Audios.add("communication-1.mp3");
-        mSentence_Audios.add("connect-1.mp3");
-        mSentence_Audios.add("David Crystal-1.mp3");
-        mSentence_Audios.add("embrace-1.mp3");
+//        mSentence_Audios.add("a means of-1.mp3");
+//        mSentence_Audios.add("African-1.mp3");
+//        mSentence_Audios.add("air-traffic control-1.mp3");
+//        mSentence_Audios.add("Arabic-1.mp3");
+//        mSentence_Audios.add("billion-1.mp3");
+//        mSentence_Audios.add("communication-1.mp3");
+//        mSentence_Audios.add("connect-1.mp3");
+//        mSentence_Audios.add("David Crystal-1.mp3");
+//        mSentence_Audios.add("embrace-1.mp3");
     }
 }

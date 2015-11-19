@@ -166,13 +166,14 @@ public class PlayerFragment extends Fragment {
 
         outState.putInt("mCurrentBookIndex", mCurrentBookIndex);
         outState.putInt("mCurrentLessonIndex", mCurrentLessonIndex);
-//        outState.putInt("mCurrentFocusedPosition", mCurrentFocusedPosition);
-//        outState.putParcelable("database", mDatabase);
 
         super.onSaveInstanceState(outState);
     }
 
-
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -181,36 +182,23 @@ public class PlayerFragment extends Fragment {
 
         mMainActivity = (MainActivity) getActivity();
 
-//        Log.d(TAG, "mMainActivity: " + mMainActivity);
-
         mDatabase = mMainActivity.getDatabase();
 
         if (savedInstanceState != null) {
             mCurrentBookIndex = savedInstanceState.getInt("mCurrentBookIndex");
             mCurrentLessonIndex = savedInstanceState.getInt("mCurrentLessonIndex");
-//            mCurrentFocusedPosition = savedInstanceState.getInt("mCurrentFocusedPosition");
-//            mDatabase = savedInstanceState.getParcelable("database");
             mCurrentContentInPlayer = mDatabase.getCurrentContentInPlayer();
         } else {
             mCurrentBookIndex = -1;
             mCurrentLessonIndex = -1;
-//            mCurrentFocusedPosition = 0;
-//            mDatabase = null;
             mCurrentContentInPlayer = null;
-
-//            mDatabase.setCurrentPlayingItem(mCurrentFocusedPosition);
 
             if (getArguments() != null) {
                 mPreviousTitle = getArguments().getString(MainActivity.PREVIOUS_TITLE);
                 mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
                 mCurrentLessonIndex = getArguments().getInt(ARG_LESSON_INDEX);
-//                mDatabase = getArguments().getParcelable("database");
             }
         }
-
-//        Log.d(TAG, "mCurrentBookIndex: " + mCurrentBookIndex);
-//        Log.d(TAG, "mCurrentLessonIndex: " + mCurrentLessonIndex);
-//        Log.d(TAG, "mDatabase: " + mDatabase);
 
         mAudioServiceBroadcastIntentFilter = new IntentFilter(AudioService.BROADCAST);
         mAudioServiceBoardcastReceiver = new AudioServiceBroadcastReceiver();
@@ -329,36 +317,22 @@ public class PlayerFragment extends Fragment {
         mPlayerThreeView.setOnItemPreparedListener(new PlayerThreeView.OnItemPreparedListener() {
             @Override
             public void onInitialItemPrepared() {
-                Log.d(TAG, "onInitialItemPrepared");
-
-                Log.d(TAG, "" + mCurrentBookIndex);
-                Log.d(TAG, "" + mDatabase.getCurrentPlayingBook());
-                Log.d(TAG, "" + mCurrentLessonIndex);
-                Log.d(TAG, "" + mDatabase.getCurrentPlayingList());
-
                 if (mCurrentBookIndex != mDatabase.getCurrentPlayingBook() || mCurrentLessonIndex != mDatabase.getCurrentPlayingList())
                     setContentToPlayerAndStart();
-
             }
 
             @Override
             public void onFinalItemPrepared() {
                 Log.d(TAG, "onFinalItemPrepared");
-
-//                Log.d(TAG, "mCurrentFocusedPosition: " + mCurrentFocusedPosition);
-
                 if (mCurrentBookIndex == mDatabase.getCurrentPlayingBook() && mCurrentLessonIndex == mDatabase.getCurrentPlayingList()) {
                     mPlayerThreeView.moveToPosition(mDatabase.getCurrentPlayingItem());
                 }
-
             }
         });
     }
 
     private void setContentToPlayerAndStart() {
         ArrayList<Integer> currentNoteContents = (ArrayList<Integer>) mContentIDsOfThreeViews.get(0).clone();
-
-//        Log.d(TAG, "currentNoteContents: " + currentNoteContents);
 
         mDatabase.setCurrentContentInPlayer(currentNoteContents);
 
@@ -513,24 +487,18 @@ public class PlayerFragment extends Fragment {
         if (mTransparentGrayView.getVisibility() == View.INVISIBLE)
             mTransparentGrayView.setVisibility(View.VISIBLE);
 
-        if (mOptionView.isListenerNull()) {
-            Log.d(TAG, "setListener");
-            mOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
-                @Override
-                public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+        mOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
+            @Override
+            public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+                mDatabase.setCurrentOptions(optionLL);
+                mDatabase.setCurrentOptionMode(currentMode);
 
-                    Log.d(TAG, "onOptionChanged");
+                Intent intent = new Intent(mMainActivity, AudioService.class);
+                intent.setAction(AudioService.ACTION_UPDATE_OPTION);
+                mMainActivity.startService(intent);
 
-                    mDatabase.setCurrentOptions(optionLL);
-                    mDatabase.setCurrentOptionMode(currentMode);
-
-                    Intent intent = new Intent(mMainActivity, AudioService.class);
-                    intent.setAction(AudioService.ACTION_UPDATE_OPTION);
-                    mMainActivity.startService(intent);
-
-                }
-            });
-        }
+            }
+        });
 
         Animation comeInAnimation = AnimationUtils.loadAnimation(mMainActivity, ANIMATE_TRANSLATE_BOTTOM_UP);
         mOptionView.startAnimation(comeInAnimation);
@@ -581,6 +549,12 @@ public class PlayerFragment extends Fragment {
                     break;
 
                 case AudioService.BROADCAST_ACTION_SENTENCE_START:
+                    /**
+                     * TODO : "sentenceIndex" variable is made for notifying views to
+                     * TODO : switch.
+                     */
+                    int sentenceIndex = intent.getIntExtra("sentenceIndex", -1);
+
                     mPlayerThreeView.showDetail();
                     break;
 
