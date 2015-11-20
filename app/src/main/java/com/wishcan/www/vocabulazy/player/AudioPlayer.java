@@ -71,13 +71,15 @@ public class AudioPlayer {
     private ArrayList<Option> mOptions;
 
     private Handler mHandler;
-    private Runnable mRunnable;
+    private Runnable mStopPeriodRunnable;
 
     private int mNumOfSentence;
     private int mSentenceIndex;
 
     String mCurrentSpellAudio;
     ArrayList<String> mCurrentSentenceAudio;
+
+    private boolean isItemCompleted;
 
     public AudioPlayer(Context context) {
 
@@ -99,13 +101,6 @@ public class AudioPlayer {
 
         setOptions(mOptions.get(0));
 
-        //Configurable
-//        mIsRandom = false;
-//        mIsEnSentenceEnabled = false;
-//        mIsCnSentenceEnabled = false;
-//        mListLoop = 1;
-//        mItemLoop = 1;
-
         mListLoopCount = mListLoop;
         mItemLoopCount = mItemLoop;
 
@@ -113,6 +108,8 @@ public class AudioPlayer {
 
         mNumOfSentence = 0;
         mSentenceIndex = -1;
+
+        isItemCompleted = true;
     }
 
     public void initPlayerLists() {
@@ -205,6 +202,7 @@ public class AudioPlayer {
 //                    Log.d(TAG, "start");
                     mp.start();
                     mIsPlaying = true;
+                    isItemCompleted = false;
                     mOnPlayerStatusChangedListener.onItemStartPlaying(mCurrentPlayingIndex);
                 }
             });
@@ -267,16 +265,17 @@ public class AudioPlayer {
         mItemLoopCount--;
         if (mItemLoopCount == 0) {
             mItemLoopCount = mItemLoop;
+            isItemCompleted = true;
             mOnPlayerCompletionListener.onItemComplete();
 
-            mRunnable = new Runnable() {
+            mStopPeriodRunnable = new Runnable() {
                 @Override
                 public void run() {
                     lookForNextItem();
                 }
             };
 
-            mHandler.postDelayed(mRunnable, mStopPeriod * 1000);
+            mHandler.postDelayed(mStopPeriodRunnable, mStopPeriod * 1000);
 
         } else {
             startPlayingItemAt(mCurrentPlayingIndex);
@@ -284,7 +283,7 @@ public class AudioPlayer {
     }
 
     private void lookForNextItem() {
-        mRunnable = null;
+        mStopPeriodRunnable = null;
         int indexOfNextItem;
         if (mIsRandom) {
             indexOfNextItem = randomNextIndex(mNumOfVocabulariesInList, mCurrentPlayingIndex);
@@ -319,15 +318,17 @@ public class AudioPlayer {
     }
 
     public void removePendingTask() {
-        if (mRunnable != null)
-            mHandler.removeCallbacks(mRunnable);
+        if (mStopPeriodRunnable != null)
+            mHandler.removeCallbacks(mStopPeriodRunnable);
     }
 
     public void resume() {
-        if (mPlayer != null) {
+        if (mPlayer != null && !isItemCompleted) {
             mIsPlaying = true;
             mPlayer.start();
             mOnPlayerStatusChangedListener.onItemResumePlaying();
+        } else if (mPlayer != null && isItemCompleted) {
+            lookForNextItem();
         }
     }
 
@@ -335,6 +336,7 @@ public class AudioPlayer {
         if (mPlayer != null) {
             mIsPlaying = false;
             mPlayer.pause();
+            removePendingTask();
             mOnPlayerStatusChangedListener.onItemStopPlaying();
         }
     }

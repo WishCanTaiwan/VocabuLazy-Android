@@ -244,6 +244,7 @@ public class AudioService extends IntentService {
         mAudioPlayer.setOnPlayerStatusChangedListener(new AudioPlayer.OnPlayerStatusChangedListener() {
             @Override
             public void onItemStartPlaying(int itemIndex) {
+
                 Intent intent = new Intent(BROADCAST);
                 intent.putExtra(BROADCAST_ACTION, BROADCAST_ACTION_ITEM_START);
                 intent.putExtra("itemIndex", itemIndex);
