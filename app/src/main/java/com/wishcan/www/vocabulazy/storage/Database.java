@@ -469,11 +469,11 @@ public class Database implements Parcelable {
     private void loadVocabularies() {
 
         InputStream is;
-        try {
-            is = mContext.openFileInput("vocabulary.json");
-        } catch (FileNotFoundException e) {
+//        try {
+//            is = mContext.openFileInput("vocabulary.json");
+//        } catch (FileNotFoundException e) {
             is = mContext.getResources().openRawResource(R.raw.vocabulary);
-        }
+//        }
 
         JSONArray jsonArray = readJSONArray(is);
 
@@ -515,11 +515,11 @@ public class Database implements Parcelable {
     private void loadBooks() {
 
         InputStream is;
-        try {
-            is = mContext.openFileInput("book.json");
-        } catch (FileNotFoundException e) {
+//        try {
+//            is = mContext.openFileInput("book.json");
+//        } catch (FileNotFoundException e) {
             is = mContext.getResources().openRawResource(R.raw.book);
-        }
+//        }
 
         JSONArray jsonArray = readJSONArray(is);
 
@@ -547,11 +547,11 @@ public class Database implements Parcelable {
     private void loadLessons() {
 
         InputStream is;
-        try {
-            is = mContext.openFileInput("lesson.json");
-        } catch (FileNotFoundException e) {
+//        try {
+//            is = mContext.openFileInput("lesson.json");
+//        } catch (FileNotFoundException e) {
             is = mContext.getResources().openRawResource(R.raw.lesson);
-        }
+//        }
 
         JSONArray jsonArray = readJSONArray(is);
 
@@ -579,11 +579,11 @@ public class Database implements Parcelable {
     private void loadNotes() {
 
         InputStream is;
-        try {
-            is = mContext.openFileInput("note.json");
-        } catch (FileNotFoundException e) {
+//        try {
+//            is = mContext.openFileInput("note.json");
+//        } catch (FileNotFoundException e) {
             is = mContext.getResources().openRawResource(R.raw.note);
-        }
+//        }
 
         JSONArray jsonArray = readJSONArray(is);
 
@@ -611,11 +611,11 @@ public class Database implements Parcelable {
     private void loadOptions() {
 
         InputStream is;
-        try {
-            is = mContext.openFileInput("option.json");
-        } catch (FileNotFoundException e) {
+//        try {
+//            is = mContext.openFileInput("option.json");
+//        } catch (FileNotFoundException e) {
             is = mContext.getResources().openRawResource(R.raw.option);
-        }
+//        }
 
         JSONArray jsonArray = readJSONArray(is);
 

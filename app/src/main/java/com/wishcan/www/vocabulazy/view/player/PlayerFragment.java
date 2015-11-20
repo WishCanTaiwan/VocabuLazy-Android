@@ -199,10 +199,6 @@ public class PlayerFragment extends Fragment {
             }
         }
 
-        mAudioServiceBroadcastIntentFilter = new IntentFilter(AudioService.BROADCAST);
-        mAudioServiceBoardcastReceiver = new AudioServiceBroadcastReceiver();
-        LocalBroadcastManager.getInstance(mMainActivity).registerReceiver(mAudioServiceBoardcastReceiver, mAudioServiceBroadcastIntentFilter);
-
         mCurrentBookID = mDatabase.getBookID(mCurrentBookIndex);
         mCurrentLessonID = mDatabase.getLessonID(mCurrentBookIndex, mCurrentLessonIndex);
         mNumOfLesson = mDatabase.getNumOfLesson(mCurrentBookIndex);
@@ -232,6 +228,79 @@ public class PlayerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ImageView playImageView = (ImageView) getView().findViewById(PLAYER_PLAY_IMAGE_VIEW_RES_ID);
         playImageView.setImageResource(PLAYER_PLAY_DRAWABLE_RES_ID);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        Log.d(TAG, "onAttach deprecated");
+        super.onAttach(activity);
+        try {
+            mListener = (OptionOnClickListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        Log.d(TAG, "onDetach");
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        Log.d(TAG, "onResume");
+        super.onResume();
+
+        if(mMainActivity != null) {
+            ActionBar actionBar = mMainActivity.getActionBar();
+            if (actionBar != null)
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+            mMainActivity.switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy");
+        super.onDestroy();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        Log.d(TAG, "onAttach");
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onStart() {
+        Log.d(TAG, "onStart");
+        super.onStart();
+        mAudioServiceBroadcastIntentFilter = new IntentFilter(AudioService.BROADCAST);
+        mAudioServiceBoardcastReceiver = new AudioServiceBroadcastReceiver();
+        LocalBroadcastManager.getInstance(mMainActivity).registerReceiver(mAudioServiceBoardcastReceiver, mAudioServiceBroadcastIntentFilter);
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG, "onStop");
+        super.onStop();
+        MainActivity parentActivity = mMainActivity;
+
+        parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
+        parentActivity.switchActionBarTitle(mPreviousTitle);
+
+        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
+
     }
 
     private void playerThreeViewListenerRegistration() {
@@ -414,50 +483,6 @@ public class PlayerFragment extends Fragment {
             default:
                 break;
         }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OptionOnClickListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        Log.d(TAG, "onDetach");
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if(mMainActivity != null) {
-            ActionBar actionBar = mMainActivity.getActionBar();
-            if (actionBar != null)
-                actionBar.setDisplayHomeAsUpEnabled(true);
-
-            mMainActivity.switchActionBarTitle(mDatabase.getLessonName(mCurrentBookIndex, mCurrentLessonIndex));
-        }
-    }
-
-    @Override
-    public void onStop() {
-        Log.d(TAG, "onStop");
-        super.onStop();
-        MainActivity parentActivity = mMainActivity;
-
-        parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
-        parentActivity.switchActionBarTitle(mPreviousTitle);
-
-        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
-
     }
 
     private void playpauseDochi() {

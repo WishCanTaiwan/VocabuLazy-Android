@@ -136,8 +136,8 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
         Log.d(TAG, "onRestoreInstanceState");
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
@@ -157,7 +157,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         if(mActionBarTitleWhenStop!= null)
             switchActionBarTitle(mActionBarTitleWhenStop);
 
-        Log.d(TAG, "Current Fragment: " + mCurrentFragmentTag);
+//        Log.d(TAG, "Current Fragment: " + mCurrentFragmentTag);
 
         if (mCurrentFragmentTag.equals("mainfragment"))
             mActionBar.setDisplayHomeAsUpEnabled(false);
@@ -185,15 +185,15 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     protected void onStop() {
         Log.d(TAG, "onStop");
         super.onStop();
-        if (!mSearchActivityEnabled) {
-            mDatabase.writeToFile(this);
-        }
-        stopAudioService();
     }
 
     @Override
     protected void onDestroy() {
         Log.d(TAG, "onDestroy");
+        if (!mSearchActivityEnabled) {
+            mDatabase.writeToFile(this);
+        }
+        stopAudioService();
         super.onDestroy();
     }
 
@@ -233,12 +233,8 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
                 mSearchActivityEnabled = false;
                 Bundle bundle = data.getExtras();
                 mDatabase = bundle.getParcelable("database");
-//                Log.d(TAG, "" + mDatabase.getNoteContents(1).size());
 
                 ArrayList<Lesson> note = mDatabase.getLessonsByBook(-1);
-//                for (int index = 0; index < note.size(); index++) {
-//                    Log.d(TAG, "" + note.get(index).getName());
-//                }
 
                 mMainFragment.refreshFragment();
             }
