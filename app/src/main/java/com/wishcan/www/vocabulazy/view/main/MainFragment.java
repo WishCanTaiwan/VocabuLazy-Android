@@ -46,6 +46,8 @@ public class MainFragment extends Fragment {
 
     private TabView mTabView;
 
+    private int mFocusedIndex;
+
     public static MainFragment newInstance(Database database) {
         MainFragment mainFragment = new MainFragment();
         return mainFragment;
@@ -86,15 +88,9 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(MAIN_FRAGMENT_RES_ID, container, false);
         mTabView = (TabView) view.findViewById(R.id.mytabhost);
 
+        mFocusedIndex = 0;
         if (savedInstanceState != null) {
-            int index = savedInstanceState.getInt(ARG_TAB_INDEX);
-//            Log.d(TAG, "savedInstanceState: " + index);
-            mTabView.switchToTabContent(index);
-            mTabView.setCurrentTabIndex(index);
-
-
-        } else {
-//            Log.d(TAG, "savedBundle: Bundle is null");
+            mFocusedIndex = savedInstanceState.getInt(ARG_TAB_INDEX);
         }
 
         mBooksGridView = (BooksGridView) mTabView.getTabContent(0);
@@ -188,6 +184,9 @@ public class MainFragment extends Fragment {
             }
         });
 
+        mTabView.switchToTabContent(mFocusedIndex);
+        mTabView.setCurrentTabIndex(mFocusedIndex);
+
         return view;
     }
 
@@ -222,7 +221,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState");
-//        outState.putInt(ARG_TAB_INDEX, mTabView.getCurrentTabIndex());
+        outState.putInt(ARG_TAB_INDEX, mTabView.getCurrentTabIndex());
 //        outState.putParcelable("database", mDatabase);
         super.onSaveInstanceState(outState);
 

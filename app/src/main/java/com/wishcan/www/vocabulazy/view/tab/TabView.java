@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.view.tab;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
@@ -77,6 +78,17 @@ public class TabView extends LinearLayout {
 
         addView(mViewPager);
         addView(mTabStripe);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        super.onRestoreInstanceState(state);
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+
+        return super.onSaveInstanceState();
     }
 
     public void addTabAndTabContent(TabItem tabItem, ViewGroup tabContent) {
