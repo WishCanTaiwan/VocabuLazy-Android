@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -27,7 +28,9 @@ public class LessonsViewPager extends ViewPager {
 
     private LinearLayout mEmptyLayoutForNavigateUp;
 
-    private LessonsListView mLessonsListView;
+    private ViewGroup mLessonsListView;
+
+    private Context mContext;
 
     public LessonsViewPager(Context context) {
         super(context);
@@ -36,11 +39,14 @@ public class LessonsViewPager extends ViewPager {
     public LessonsViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        mContext = context;
+
         ll = new LinkedList<>();
 
-        mEmptyLayoutForNavigateUp = new LinearLayout(context);
+        mEmptyLayoutForNavigateUp = new LinearLayout(mContext);
         mEmptyLayoutForNavigateUp.setBackgroundColor(Color.argb(0, 0, 0, 0));
-        mLessonsListView = new LessonsListView(context);
+
+        mLessonsListView = setMainPage();
 
         ll.add(mEmptyLayoutForNavigateUp);
         ll.add(mLessonsListView);
@@ -52,7 +58,13 @@ public class LessonsViewPager extends ViewPager {
         setCurrentItem(1);
     }
 
-    public LessonsListView getLessonsListView() {
+    public ViewGroup setMainPage(){
+
+        return mLessonsListView = new LessonsListView(mContext);
+
+    }
+
+    public ViewGroup getLessonsListView() {
         return mLessonsListView;
     }
 

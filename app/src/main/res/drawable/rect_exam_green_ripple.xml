@@ -1,0 +1,4 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#ffa8d9d1">
+    <item android:drawable="@drawable/rect_exam_green_shadow" />
+</ripple>

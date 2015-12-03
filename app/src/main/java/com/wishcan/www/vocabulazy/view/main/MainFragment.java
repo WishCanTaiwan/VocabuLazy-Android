@@ -38,6 +38,8 @@ public class MainFragment extends Fragment {
 
     private NotesListView mNotesListView;
 
+    private ViewGroup mExamView;
+
     private AudioService mAudioService;
 
     private DialogView mDialogView;
@@ -45,8 +47,6 @@ public class MainFragment extends Fragment {
     private Database mDatabase;
 
     private TabView mTabView;
-
-    private int mFocusedIndex;
 
     public static MainFragment newInstance(Database database) {
         MainFragment mainFragment = new MainFragment();
@@ -88,9 +88,15 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(MAIN_FRAGMENT_RES_ID, container, false);
         mTabView = (TabView) view.findViewById(R.id.mytabhost);
 
-        mFocusedIndex = 0;
         if (savedInstanceState != null) {
-            mFocusedIndex = savedInstanceState.getInt(ARG_TAB_INDEX);
+            int index = savedInstanceState.getInt(ARG_TAB_INDEX);
+//            Log.d(TAG, "savedInstanceState: " + index);
+            mTabView.switchToTabContent(index);
+            mTabView.setCurrentTabIndex(index);
+
+
+        } else {
+//            Log.d(TAG, "savedBundle: Bundle is null");
         }
 
         mBooksGridView = (BooksGridView) mTabView.getTabContent(0);
@@ -184,8 +190,21 @@ public class MainFragment extends Fragment {
             }
         });
 
-        mTabView.switchToTabContent(mFocusedIndex);
-        mTabView.setCurrentTabIndex(mFocusedIndex);
+        mExamView = mTabView.getTabContent(2);
+        mExamView.findViewById(R.id.exam_unit_book).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mExamView.findViewById(R.id.exam_unit_note).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         return view;
     }

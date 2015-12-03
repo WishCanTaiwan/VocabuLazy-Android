@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="3dp"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#a5c4e2"
+        android:clipToPadding="false"
+        android:elevation="2dp">
+        <TextView
+            android:id="@+id/unit_expandable_child_list_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="HelloWorld"
+            android:textSize="30sp"/>
+    </LinearLayout>
+
+</LinearLayout>

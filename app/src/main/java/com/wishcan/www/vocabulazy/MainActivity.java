@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.wishcan.www.vocabulazy.player.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
+import com.wishcan.www.vocabulazy.view.reading.ReadingLessonFragment;
 import com.wishcan.www.vocabulazy.view.lessons.LessonsFragment;
 import com.wishcan.www.vocabulazy.view.main.MainFragment;
 import com.wishcan.www.vocabulazy.view.player.PlayerFragment;
@@ -66,6 +67,8 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
      *
      * */
     private PlayerFragment mPlayerFragment;
+
+    private ReadingLessonFragment mReadingLessonFragment;
 
     /**
      *
@@ -308,6 +311,16 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         fragmentTransaction.add(R.id.activity_main_container, mLessonsFragment, "lessonsfragment");
         fragmentTransaction.addToBackStack(mCurrentFragmentTag);
         mCurrentFragmentTag = "lessonsfragment";
+        fragmentTransaction.commit();
+    }
+
+    public void goReadingLessonFragment(int bookID){
+        mReadingLessonFragment = ReadingLessonFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookID, mDatabase);
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
+        fragmentTransaction.add(R.id.activity_main_container, mReadingLessonFragment, "readinglessonsfragment");
+        fragmentTransaction.addToBackStack(mCurrentFragmentTag);
+        mCurrentFragmentTag = "readinglessonsfragment";
         fragmentTransaction.commit();
     }
 

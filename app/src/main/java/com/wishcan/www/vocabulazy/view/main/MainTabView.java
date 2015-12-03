@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.view.books.BooksGridView;
 import com.wishcan.www.vocabulazy.view.notes.NotesListView;
+import com.wishcan.www.vocabulazy.view.reading.ReadingBooksGridView;
 import com.wishcan.www.vocabulazy.view.tab.TabView;
 import com.wishcan.www.vocabulazy.view.infinitethreeview.InfiniteThreeView;
 
@@ -54,8 +56,8 @@ public class MainTabView extends TabView {
      */
     private BooksGridView mBooksGridView;
     private NotesListView mNotesListView;
-    private InfiniteThreeView mEmptyLayout2;
-    private LinearLayout mEmptyLayout3;
+    private ViewGroup mExamView;
+    private ReadingBooksGridView mReadingBookGridView;
     private LinearLayout mEmptyLayout4;
 
 
@@ -84,14 +86,14 @@ public class MainTabView extends TabView {
 
         mBooksGridView = new BooksGridView(context);
         mNotesListView = new NotesListView(context);
-        mEmptyLayout2 = new InfiniteThreeView(context);
-        mEmptyLayout3 = (LinearLayout) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.test_layout, null);
+        mExamView = (ViewGroup)((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.exam_view, null);
+        mReadingBookGridView = new ReadingBooksGridView(context);
         mEmptyLayout4 = (LinearLayout) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.test_layout, null);
 
         addTabAndTabContent(mTabItem0, mBooksGridView);
         addTabAndTabContent(mTabItem1, mNotesListView);
-        addTabAndTabContent(mTabItem2, mEmptyLayout2);
-        addTabAndTabContent(mTabItem3, mEmptyLayout3);
+        addTabAndTabContent(mTabItem2, mExamView);
+        addTabAndTabContent(mTabItem3, mReadingBookGridView);
         addTabAndTabContent(mTabItem4, mEmptyLayout4);
 
         setTabStripeColor(getResources().getColor(DEFAULT_TAB_STRIPE_COLOR_RES_ID));
