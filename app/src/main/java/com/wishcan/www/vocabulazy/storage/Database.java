@@ -227,9 +227,17 @@ public class Database implements Parcelable {
         ArrayList<Vocabulary> vocabularies = new ArrayList<>();
 
         for (int index = 0; index < ids.size(); index++) {
+            Log.d(TAG, index + ": " + ids.get(index));
+        }
+
+        Log.d(TAG, "size: " + mVocabularies.size());
+
+        for (int index = 0; index < ids.size(); index++) {
             for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
                 Vocabulary vocabulary = mVocabularies.get(index2);
-                if (ids.get(index) == vocabulary.getID()) {
+                Log.d(TAG, "voc id: " + vocabulary.getID());
+                if (ids.get(index).equals(vocabulary.getID())) {
+                    Log.d(TAG, "id: " + vocabulary.getID());
                     vocabularies.add(vocabulary);
                 }
             }
@@ -490,12 +498,12 @@ public class Database implements Parcelable {
                 String spell = object.getString("spell");
                 String kk = object.getString("kk");
                 String category = object.getString("category");
-                String translation = object.getString("translate");
-                String audio = object.getString("audio");
+                String translation = object.getString("translation");
+                String audio = object.getString("spell_audio");
 
                 String en_sentence = object.getString("en_sentence");
                 String cn_sentence = object.getString("cn_sentence");
-                String sentence_audio = object.getString("audio_sentence");
+                String sentence_audio = object.getString("sentence_audio");
 
                 ArrayList<String> en_sentence_array = splitString(en_sentence);
                 ArrayList<String> cn_sentence_array = splitString(cn_sentence);

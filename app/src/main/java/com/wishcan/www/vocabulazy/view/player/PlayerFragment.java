@@ -433,6 +433,10 @@ public class PlayerFragment extends Fragment {
         int rightIndex = (centralIndex + 1 + mNumOfLesson) % mNumOfLesson;
         ArrayList<Integer> centralNoteContentIDs = mDatabase.getContentIDs(mCurrentBookIndex, centralIndex);
 
+//        for (int index = 0; index < centralNoteContentIDs.size(); index++) {
+//            Log.d(TAG, index + ": " + centralNoteContentIDs.get(index));
+//        }
+
         mContentIDsOfThreeViews.add(centralNoteContentIDs);
     }
 

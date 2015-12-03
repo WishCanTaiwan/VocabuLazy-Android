@@ -175,6 +175,7 @@ public class AudioService extends IntentService {
             case ACTION_START:
                 Log.d(TAG, ACTION_START);
                 int position = intent.getIntExtra("position", 0);
+                Log.d(TAG, "position: " + position);
                 startPlayingItemAt(position);
                 break;
 

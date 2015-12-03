@@ -188,7 +188,7 @@ public class AudioPlayer {
         mPlayer.reset();
 
         try {
-            AssetFileDescriptor mAFD = mAssetManager.openFd("audio/" + audio);
+            AssetFileDescriptor mAFD = mAssetManager.openFd("audio2/" + audio);
             FileDescriptor mFD = mAFD.getFileDescriptor();
             long mOffset = mAFD.getStartOffset();
             long mLength = mAFD.getLength();
