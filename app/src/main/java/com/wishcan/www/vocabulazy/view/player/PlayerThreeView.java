@@ -131,34 +131,6 @@ public class PlayerThreeView extends InfiniteThreeView {
         this.addNewPlayer(playlistContentIDs, CENTER_VIEW_INDEX);
     }
 
-//    public void addNewPlayer(LinkedList<Integer> playlistContentIDs, int position){
-//
-//        LinkedList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(playlistContentIDs);
-//
-//        LinkedList<HashMap> playlistContent = createPlaylistContent(vocabularies);
-//        PlayerScrollView playerScrollView = new PlayerScrollView(getContext());
-//
-//        PlayerScrollView.PlayerAdapter playerAdapter =
-//                playerScrollView.getAdapter(mContext, PlayerScrollView.DEFAULT_PLAYER_LIST_ITEM_VIEW_RES_ID, playlistContent, mFrom, mTo);
-//        playerScrollView.setAdapter(playerAdapter);
-//        playerScrollView.setOnPlayerScrollStoppedListener(new PlayerScrollView.OnPlayerScrollStoppedListener() {
-//            @Override
-//            public void onPlayerScrollStopped() {
-//                mOnPlayerScrollListener.onPlayerScrollStopped();
-//            }
-//        });
-//
-//        playerScrollView.setOnFocusChangedListener(new PlayerScrollView.OnFocusChangedListener() {
-//            @Override
-//            public void onFocusChanged(int position) {
-//                mOnFocusChangedListener.onFocusChanged(position);
-//            }
-//        });
-//
-//        refreshItem(position, playerScrollView);
-////        mOnNewPlayerViewAddedListener.onNewPlayerViewRefreshed();;
-//    }
-
     public void addNewPlayer(ArrayList<Integer> playlistContentIDs, int position) {
         AddNewPlayerAsyncTask addNewPlayerAsyncTask = new AddNewPlayerAsyncTask(this, position);
         addNewPlayerAsyncTask.execute(playlistContentIDs);

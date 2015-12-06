@@ -96,7 +96,7 @@ public class ReadingLessonFragment extends Fragment {
         mListView.setOnLessonClickedListener(new LessonsListView.OnLessonClickedListener() {
             @Override
             public void onLessonClicked(int lesson) {
-                ((MainActivity) getActivity()).goPlayerFragment(mBookIndex, lesson);
+                ((MainActivity) getActivity()).goReadingMainFragment(mBookIndex, lesson);
             }
         });
         return mParentView;

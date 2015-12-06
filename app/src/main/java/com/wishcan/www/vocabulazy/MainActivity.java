@@ -20,6 +20,7 @@ import com.wishcan.www.vocabulazy.view.reading.ReadingLessonFragment;
 import com.wishcan.www.vocabulazy.view.lessons.LessonsFragment;
 import com.wishcan.www.vocabulazy.view.main.MainFragment;
 import com.wishcan.www.vocabulazy.view.player.PlayerFragment;
+import com.wishcan.www.vocabulazy.view.reading.ReadingMainFragment;
 
 import java.util.ArrayList;
 
@@ -69,6 +70,8 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     private PlayerFragment mPlayerFragment;
 
     private ReadingLessonFragment mReadingLessonFragment;
+
+    private ReadingMainFragment mReadingMainFragment;
 
     /**
      *
@@ -303,9 +306,9 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         fragmentTransaction.commit();
     }
 
-    public void goLessonFragment(int bookID){
+    public void goLessonFragment(int bookIndex){
 
-        mLessonsFragment = LessonsFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookID, mDatabase);
+        mLessonsFragment = LessonsFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, mDatabase);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
         fragmentTransaction.add(R.id.activity_main_container, mLessonsFragment, "lessonsfragment");
@@ -314,13 +317,24 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         fragmentTransaction.commit();
     }
 
-    public void goReadingLessonFragment(int bookID){
-        mReadingLessonFragment = ReadingLessonFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookID, mDatabase);
+    public void goReadingLessonFragment(int bookIndex){
+
+        mReadingLessonFragment = ReadingLessonFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, mDatabase);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
         fragmentTransaction.add(R.id.activity_main_container, mReadingLessonFragment, "readinglessonsfragment");
         fragmentTransaction.addToBackStack(mCurrentFragmentTag);
         mCurrentFragmentTag = "readinglessonsfragment";
+        fragmentTransaction.commit();
+    }
+
+    public void goReadingMainFragment(int bookIndex, int lessonIndex){
+        mReadingMainFragment = ReadingMainFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, lessonIndex, mDatabase);
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
+        fragmentTransaction.add(R.id.activity_main_container, mReadingMainFragment, "readingmainfragment");
+        fragmentTransaction.addToBackStack(mCurrentFragmentTag);
+        mCurrentFragmentTag = "readingmainfragment";
         fragmentTransaction.commit();
     }
 
@@ -340,8 +354,32 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     @Override
     public void onOptionClicked(View v) {
+        int optionViewId = v.getId();
         mPlayerFragment = (PlayerFragment) mFragmentManager.findFragmentByTag("playerfragment");
-        mPlayerFragment.onOptionClicked(v);
+        switch(optionViewId){
+            case R.id.action_player_favorite:
+                mPlayerFragment.onOptionClicked(v);
+                break;
+            case R.id.action_player_option:
+                mPlayerFragment.onOptionClicked(v);
+                break;
+            case R.id.action_player_play:
+                mPlayerFragment.onOptionClicked(v);
+                break;
+//            case R.id.action_reading_main_mute:
+//                break;
+//            case R.id.action_reading_main_play:
+//                break;
+//            case R.id.action_reading_main_next:
+//                break;
+//            case R.id.action_reading_main_previous:
+//                break;
+            default:
+                break;
+
+        }
+
+
     }
 
     public Database getDatabase() {
