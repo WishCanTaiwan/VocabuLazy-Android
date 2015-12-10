@@ -543,7 +543,7 @@ public class Database implements Parcelable {
         }
     }
 
-    private void loadNotes() {
+    public void loadNotes() {
 
         InputStream is;
         try {

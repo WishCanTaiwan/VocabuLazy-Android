@@ -113,11 +113,12 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
         mFragmentManager = getFragmentManager();
 
+        mDatabase = new Database(this);
+
         if (savedInstanceState == null) {
 
             Log.d(TAG, "savedInstanceState: null");
 
-            mDatabase = new Database(this);
 
             mMainFragment = MainFragment.newInstance(mDatabase);
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
@@ -134,7 +135,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
             mPlayerFragment = (PlayerFragment) mFragmentManager.findFragmentByTag("playerfragment");
 
 //            mDatabase = savedInstanceState.getParcelable("database");
-            mDatabase = new Database(this);
         }
 
         mSearchActivityEnabled = false;
@@ -161,7 +161,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         Log.d(TAG, "onResume");
         super.onResume();
 
-        mDatabase = new Database(this);
+//        mDatabase = new Database(this);
 
         if(mActionBarTitleWhenStop!= null)
             switchActionBarTitle(mActionBarTitleWhenStop);
@@ -245,6 +245,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
                 Bundle bundle = data.getExtras();
 //                mDatabase = bundle.getParcelable("database");
 
+                mDatabase.loadNotes();
                 ArrayList<Lesson> note = mDatabase.getLessonsByBook(-1);
 
                 mMainFragment.refreshFragment();
