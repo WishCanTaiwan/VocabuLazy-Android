@@ -230,14 +230,14 @@ public class Database implements Parcelable {
 //            Log.d(TAG, index + ": " + ids.get(index));
 //        }
 
-        Log.d(TAG, "size: " + mVocabularies.size());
+//        Log.d(TAG, "size: " + mVocabularies.size());
 
         for (int index = 0; index < ids.size(); index++) {
             for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
                 Vocabulary vocabulary = mVocabularies.get(index2);
-                Log.d(TAG, "voc id: " + vocabulary.getID());
+//                Log.d(TAG, "voc id: " + vocabulary.getID());
                 if (ids.get(index).equals(vocabulary.getID())) {
-                    Log.d(TAG, "id: " + vocabulary.getID());
+//                    Log.d(TAG, "id: " + vocabulary.getID());
                     vocabularies.add(vocabulary);
                 }
             }
@@ -277,47 +277,6 @@ public class Database implements Parcelable {
 
         return sentenceaudios;
     }
-
-//    public ArrayList<ArrayList<String>> getAudios(ArrayList<Integer> ids) {
-//        ArrayList<ArrayList<String>> audios = new ArrayList<>();
-//
-//        for (int index = 0; index < ids.size(); index++) {
-//            for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
-//                Vocabulary vocabulary = mVocabularies.get(index2);
-//                ArrayList<String> audioNames = new ArrayList<>();
-//                if (ids.get(index) == vocabulary.getID()) {
-//                    audioNames.add(vocabulary.getAudio());
-//                    audioNames.addAll(vocabulary.getSentence_Audio());
-//                    audios.add(audioNames);
-//                    break;
-//                }
-//            }
-//        }
-//
-//        return audios;
-//    }
-
-//    public ArrayList<ArrayList<String>> getAudioNames(ArrayList<Integer> ids) {
-//        ArrayList<ArrayList<String>> audionames = new ArrayList<>();
-//
-//        ArrayList<String> audio = new ArrayList<>();
-//        ArrayList<String> sentence_audio = new ArrayList<>();
-//
-//        for (int index = 0; index < ids.size(); index++) {
-//            for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
-//                Vocabulary vocabulary = mVocabularies.get(index2);
-//                if (ids.get(index) == vocabulary.getID()) {
-//                    audio.add(vocabulary.getAudio());
-//                    sentence_audio.add(vocabulary.getSentence_Audio());
-//                }
-//            }
-//        }
-//
-//        audionames.add(audio);
-//        audionames.add(sentence_audio);
-//
-//        return audionames;
-//    }
 
     public ArrayList<Vocabulary> readSuggestVocabularyBySpell(String queryString) {
 
@@ -428,7 +387,7 @@ public class Database implements Parcelable {
 
     public void createNewNote(String name) {
         int index = mNotes.size();
-        Log.d(TAG, "create " + name + " at " + index);
+//        Log.d(TAG, "create " + name + " at " + index);
         mNotes.add(index, new Lesson(index + 1, name, new ArrayList<Integer>()));
     }
 
@@ -587,11 +546,11 @@ public class Database implements Parcelable {
     private void loadNotes() {
 
         InputStream is;
-//        try {
-//            is = mContext.openFileInput("note.json");
-//        } catch (FileNotFoundException e) {
+        try {
+            is = mContext.openFileInput("note.json");
+        } catch (FileNotFoundException e) {
             is = mContext.getResources().openRawResource(R.raw.note);
-//        }
+        }
 
         JSONArray jsonArray = readJSONArray(is);
 
@@ -619,11 +578,11 @@ public class Database implements Parcelable {
     private void loadOptions() {
 
         InputStream is;
-//        try {
-//            is = mContext.openFileInput("option.json");
-//        } catch (FileNotFoundException e) {
+        try {
+            is = mContext.openFileInput("option.json");
+        } catch (FileNotFoundException e) {
             is = mContext.getResources().openRawResource(R.raw.option);
-//        }
+        }
 
         JSONArray jsonArray = readJSONArray(is);
 
@@ -654,6 +613,9 @@ public class Database implements Parcelable {
     }
 
     private void writeNote() {
+
+        Log.d(TAG, "writeNote");
+
         JSONArray jsonArray = new JSONArray();
 
         for (int index = 0; index < mNotes.size(); index++) {
@@ -663,7 +625,7 @@ public class Database implements Parcelable {
             try {
                 jsonObject.put("id", note.getID());
                 jsonObject.put("name", note.getName());
-                jsonObject.put("content", convertIntegerArrayListToJSONArray(note.getContent()));
+                jsonObject.put("content_of_the_note", convertIntegerArrayListToJSONArray(note.getContent()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -682,6 +644,9 @@ public class Database implements Parcelable {
     }
 
     private void writeOption() {
+
+        Log.d(TAG, "writeOption");
+
         JSONArray jsonArray = new JSONArray();
 
         for (int index = 0; index < mOptions.size(); index++) {

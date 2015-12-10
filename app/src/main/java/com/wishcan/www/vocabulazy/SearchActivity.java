@@ -199,8 +199,8 @@ public class SearchActivity extends Activity {
         else {
             Log.d(TAG, "onNavigateUp");
             Bundle bundle = new Bundle();
-            bundle.putParcelable("database", mDatabase);
-            Log.d(TAG, "" + mDatabase.getNoteContents(1).size());
+//            bundle.putParcelable("database", mDatabase);
+//            Log.d(TAG, "" + mDatabase.getNoteContents(1).size());
             setResult(RESULT_OK, new Intent().putExtras(bundle));
             super.onBackPressed();
         }
@@ -219,6 +219,8 @@ public class SearchActivity extends Activity {
             mSearchDetailParentView = findViewById(DEFAULT_SEARCH_DETAIL_PARENT_VIEW);
         if(mSearchDetailView == null)
             mSearchDetailView = findViewById(DEFAULT_SEARCH_DETAIL_VIEW);
+
+        mDatabase = new Database(this);
     }
 
     public void refreshSearchResult(ArrayList<Vocabulary> vocabularies){
@@ -373,6 +375,7 @@ public class SearchActivity extends Activity {
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
+        mDatabase.writeToFile(this);
         super.onPause();
     }
 

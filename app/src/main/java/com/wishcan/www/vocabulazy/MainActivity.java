@@ -133,7 +133,8 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
             mLessonsFragment = (LessonsFragment) mFragmentManager.findFragmentByTag("lessonsfragment");
             mPlayerFragment = (PlayerFragment) mFragmentManager.findFragmentByTag("playerfragment");
 
-            mDatabase = savedInstanceState.getParcelable("database");
+//            mDatabase = savedInstanceState.getParcelable("database");
+            mDatabase = new Database(this);
         }
 
         mSearchActivityEnabled = false;
@@ -149,7 +150,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState");
-        outState.putParcelable("database", mDatabase);
+//        outState.putParcelable("database", mDatabase);
         outState.putString(MainActivity.CURRENT_FRAGMENT_TAG, mCurrentFragmentTag);
         outState.putString(MainActivity.PREVIOUS_TITLE, mActionBarTitleTextView.getText().toString());
         super.onSaveInstanceState(outState);
@@ -158,8 +159,10 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     @Override
     protected void onResume() {
         Log.d(TAG, "onResume");
-
         super.onResume();
+
+        mDatabase = new Database(this);
+
         if(mActionBarTitleWhenStop!= null)
             switchActionBarTitle(mActionBarTitleWhenStop);
 
@@ -183,7 +186,9 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause");
+        mDatabase.writeToFile(this);
         super.onPause();
+
 
     }
 
@@ -238,7 +243,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
                 Log.d(TAG, "result code: ok");
                 mSearchActivityEnabled = false;
                 Bundle bundle = data.getExtras();
-                mDatabase = bundle.getParcelable("database");
+//                mDatabase = bundle.getParcelable("database");
 
                 ArrayList<Lesson> note = mDatabase.getLessonsByBook(-1);
 
