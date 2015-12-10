@@ -120,9 +120,12 @@ public class SearchActivity extends Activity {
         if(mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
         }
+
         mSearchListView = (SearchListView) findViewById(R.id.search_list_view);
 
-        mDatabase = intent.getExtras().getParcelable("database");
+        mDatabase = new Database(this);
+
+//        mDatabase = intent.getExtras().getParcelable("database");
     }
 
     @Override

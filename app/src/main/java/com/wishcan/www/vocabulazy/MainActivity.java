@@ -219,7 +219,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
             mSearchActivityEnabled = true;
             Intent intent = new Intent(this, SearchActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable("database", mDatabase);
+//            bundle.putParcelable("database", mDatabase);
             intent.putExtras(bundle);
             // the number "1" is to identify the action
             startActivityForResult(intent, REQUEST_CODE_DATABASE_UPDATE);

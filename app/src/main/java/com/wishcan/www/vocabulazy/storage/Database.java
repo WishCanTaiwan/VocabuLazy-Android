@@ -226,9 +226,9 @@ public class Database implements Parcelable {
     public ArrayList<Vocabulary> getVocabulariesByIDs(ArrayList<Integer> ids) {
         ArrayList<Vocabulary> vocabularies = new ArrayList<>();
 
-        for (int index = 0; index < ids.size(); index++) {
-            Log.d(TAG, index + ": " + ids.get(index));
-        }
+//        for (int index = 0; index < ids.size(); index++) {
+//            Log.d(TAG, index + ": " + ids.get(index));
+//        }
 
         Log.d(TAG, "size: " + mVocabularies.size());
 
