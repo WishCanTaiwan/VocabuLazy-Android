@@ -234,22 +234,11 @@ public class NotesListView extends ListView {
                 }
             });
 
-            if(position >= mData.size()){
-                view = v.findViewById(R.id.note_add_function);
-                if(view != null) {
-                    view.setVisibility(VISIBLE);
-                    view.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            mOnListIconClickedListener.onListIconClicked(ICON_NEW_NOTE, position, v);
-                        }
-                    });
-                }
-                return;
-            }
-            else
+            //**mOnListIconClickedListener.onListIconClicked(ICON_NEW_NOTE, position, v);*/
+            if(position < mData.size())
                 dataMap = (HashMap<String, Object>) mData.get(position);
-
+            else
+                return;
             for(int i = 0; i < len; i++){
                 view = v.findViewById(mTo[i]);
                 if(view instanceof TextView)
@@ -313,7 +302,7 @@ public class NotesListView extends ListView {
 
         @Override
         public int getCount() {
-            return mData.size() + 1;
+            return mData.size();
         }
 
         private void handleListSlidingAnimation(View v, View iconView, float startX, float endX) {

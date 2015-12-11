@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.view.books.BooksGridView;
+import com.wishcan.www.vocabulazy.view.notes.NotesListAddButtonView;
 import com.wishcan.www.vocabulazy.view.notes.NotesListView;
 import com.wishcan.www.vocabulazy.view.reading.ReadingBooksGridView;
 import com.wishcan.www.vocabulazy.view.tab.TabView;
@@ -55,10 +57,11 @@ public class MainTabView extends TabView {
      * The View Above will be added to a LinkedList in
      */
     private BooksGridView mBooksGridView;
-    private NotesListView mNotesListView;
+//    private NotesListView mNotesListView;
+    private NotesListAddButtonView mNotesListAddButtonView;
     private ViewGroup mExamView;
     private ReadingBooksGridView mReadingBookGridView;
-    private LinearLayout mEmptyLayout4;
+    private RelativeLayout mEmptyLayout4;
 
 
     public MainTabView(Context context) {
@@ -85,13 +88,15 @@ public class MainTabView extends TabView {
         mTabItem4.setTabItemTag(context.getString(DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID));
 
         mBooksGridView = new BooksGridView(context);
-        mNotesListView = new NotesListView(context);
+//        mNotesListView = new NotesListView(context);
+        mNotesListAddButtonView = new NotesListAddButtonView(context);
         mExamView = (ViewGroup)((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.exam_view, null);
         mReadingBookGridView = new ReadingBooksGridView(context);
-        mEmptyLayout4 = (LinearLayout) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.test_layout, null);
+        mEmptyLayout4 = (RelativeLayout) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.test_layout, null);
 
         addTabAndTabContent(mTabItem0, mBooksGridView);
-        addTabAndTabContent(mTabItem1, mNotesListView);
+//        addTabAndTabContent(mTabItem1, mNotesListView);
+        addTabAndTabContent(mTabItem1, mNotesListAddButtonView);
         addTabAndTabContent(mTabItem2, mExamView);
         addTabAndTabContent(mTabItem3, mReadingBookGridView);
         addTabAndTabContent(mTabItem4, mEmptyLayout4);

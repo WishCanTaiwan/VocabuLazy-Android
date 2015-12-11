@@ -372,14 +372,14 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
             case R.id.action_player_play:
                 mPlayerFragment.onOptionClicked(v);
                 break;
-//            case R.id.action_reading_main_mute:
-//                break;
-//            case R.id.action_reading_main_play:
-//                break;
-//            case R.id.action_reading_main_next:
-//                break;
-//            case R.id.action_reading_main_previous:
-//                break;
+            case R.id.action_reading_main_mute:
+                break;
+            case R.id.action_reading_main_play:
+                break;
+            case R.id.action_reading_main_next:
+                break;
+            case R.id.action_reading_main_previous:
+                break;
             default:
                 break;
 

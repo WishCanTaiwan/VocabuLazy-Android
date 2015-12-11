@@ -17,6 +17,7 @@ import com.wishcan.www.vocabulazy.view.books.BooksGridView;
 import com.wishcan.www.vocabulazy.view.notes.AddNoteDialogView;
 import com.wishcan.www.vocabulazy.view.notes.CombineNoteDialogView;
 import com.wishcan.www.vocabulazy.view.notes.DeleteNoteDialogView;
+import com.wishcan.www.vocabulazy.view.notes.NotesListAddButtonView;
 import com.wishcan.www.vocabulazy.view.notes.NotesListView;
 import com.wishcan.www.vocabulazy.view.notes.RenameNoteDialogView;
 import com.wishcan.www.vocabulazy.view.tab.TabView;
@@ -83,57 +84,48 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.d(TAG, "onCreateView");
-
         View view = inflater.inflate(MAIN_FRAGMENT_RES_ID, container, false);
         mTabView = (TabView) view.findViewById(R.id.mytabhost);
 
         if (savedInstanceState != null) {
             int index = savedInstanceState.getInt(ARG_TAB_INDEX);
-//            Log.d(TAG, "savedInstanceState: " + index);
             mTabView.switchToTabContent(index);
             mTabView.setCurrentTabIndex(index);
 
 
-        } else {
-//            Log.d(TAG, "savedBundle: Bundle is null");
         }
 
         mBooksGridView = (BooksGridView) mTabView.getTabContent(0);
 
-//        LinkedList<String> booksTitleLL = new LinkedList<>();
-//        booksTitleLL.add("Book1");
-//        mBooksGridView.refreshBooksView(booksTitleLL.size(), booksTitleLL);
+        mNotesListView = ((NotesListAddButtonView) mTabView.getTabContent(1)).getNotesListView();
+        ((NotesListAddButtonView) mTabView.getTabContent(1)).getAddButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialogView = new AddNoteDialogView(getActivity());
+                mDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickedListener() {
+                    @Override
+                    public void onYesClicked() {
+                        String newNoteName = (String) mDialogView.getDialogOutput();
+                        mDatabase.createNewNote(newNoteName);
+                        mNotesListView.refresh();
+                        closeDialog(mDialogView);
+                    }
 
-        mNotesListView = (NotesListView) mTabView.getTabContent(1);
-
+                    @Override
+                    public void onNoClicked() {
+                        closeDialog(mDialogView);
+                    }
+                });
+                showDialog();
+            }
+        });
         mNotesListView.setOnListIconClickedListener(new NotesListView.OnListIconClickedListener() {
             @Override
             public void onListIconClicked(int iconId, int listIndex, View v) {
                 final int position = listIndex;
                 switch (iconId) {
                     case NotesListView.ICON_PLAY:
-//                        loadNoteContentFromDBToPlayer(listIndex);
                         ((MainActivity) getActivity()).goPlayerFragment(-1, listIndex);
-                        break;
-                    case NotesListView.ICON_NEW_NOTE:
-                        mDialogView = new AddNoteDialogView(getActivity());
-                        mDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickedListener() {
-                            @Override
-                            public void onYesClicked() {
-                                String newNoteName = (String) mDialogView.getDialogOutput();
-                                mDatabase.createNewNote(newNoteName);
-//                                mNotesListView.refreshDatabase();
-                                mNotesListView.refresh();
-                                closeDialog(mDialogView);
-                            }
-
-                            @Override
-                            public void onNoClicked() {
-                                closeDialog(mDialogView);
-                            }
-                        });
-                        showDialog();
                         break;
                     case NotesListView.ICON_COMBINE:
                         mDialogView = new CombineNoteDialogView(getActivity());
