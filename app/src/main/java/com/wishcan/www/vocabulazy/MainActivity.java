@@ -16,7 +16,8 @@ import android.widget.TextView;
 import com.wishcan.www.vocabulazy.player.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
-import com.wishcan.www.vocabulazy.view.reading.ReadingLessonFragment;
+import com.wishcan.www.vocabulazy.view.exam.ExamBooksFragment;
+import com.wishcan.www.vocabulazy.view.exam.ExamFragment;
 import com.wishcan.www.vocabulazy.view.lessons.LessonsFragment;
 import com.wishcan.www.vocabulazy.view.main.MainFragment;
 import com.wishcan.www.vocabulazy.view.player.PlayerFragment;
@@ -69,9 +70,11 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
      * */
     private PlayerFragment mPlayerFragment;
 
-    private ReadingLessonFragment mReadingLessonFragment;
-
     private ReadingMainFragment mReadingMainFragment;
+
+    private ExamBooksFragment mExamBooksFragment;
+
+    private ExamFragment mExamFragment;
 
     /**
      *
@@ -312,25 +315,15 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         fragmentTransaction.commit();
     }
 
-    public void goLessonFragment(int bookIndex){
+    // because there may be different entry use goLessonFragment
+    public void goLessonFragment(int bookIndex, int mode){
 
-        mLessonsFragment = LessonsFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, mDatabase);
+        mLessonsFragment = LessonsFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, mDatabase, mode);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
         fragmentTransaction.add(R.id.activity_main_container, mLessonsFragment, "lessonsfragment");
         fragmentTransaction.addToBackStack(mCurrentFragmentTag);
         mCurrentFragmentTag = "lessonsfragment";
-        fragmentTransaction.commit();
-    }
-
-    public void goReadingLessonFragment(int bookIndex){
-
-        mReadingLessonFragment = ReadingLessonFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, mDatabase);
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
-        fragmentTransaction.add(R.id.activity_main_container, mReadingLessonFragment, "readinglessonsfragment");
-        fragmentTransaction.addToBackStack(mCurrentFragmentTag);
-        mCurrentFragmentTag = "readinglessonsfragment";
         fragmentTransaction.commit();
     }
 
@@ -341,6 +334,26 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         fragmentTransaction.add(R.id.activity_main_container, mReadingMainFragment, "readingmainfragment");
         fragmentTransaction.addToBackStack(mCurrentFragmentTag);
         mCurrentFragmentTag = "readingmainfragment";
+        fragmentTransaction.commit();
+    }
+
+    public void goExamBooksFragment(){
+        mExamBooksFragment = ExamBooksFragment.newInstance(mActionBarTitleTextView.getText().toString());
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
+        fragmentTransaction.add(R.id.activity_main_container, mExamBooksFragment, "readingmainfragment");
+        fragmentTransaction.addToBackStack(mCurrentFragmentTag);
+        mCurrentFragmentTag = "exambooksfragment";
+        fragmentTransaction.commit();
+    }
+
+    public void goExamMainFragment(int bookIndex, int lessonIndex){
+        mExamFragment = ExamFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, lessonIndex);
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
+        fragmentTransaction.add(R.id.activity_main_container, mExamFragment, "readingmainfragment");
+        fragmentTransaction.addToBackStack(mCurrentFragmentTag);
+        mCurrentFragmentTag = "examfragment";
         fragmentTransaction.commit();
     }
 

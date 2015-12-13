@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- mode constant-->
+    <integer name="MODE_PLAYER">1</integer>
+    <integer name="MODE_READING">2</integer>
+    <integer name="MODE_EXAM">3</integer>
+    <integer-array name="mode">
+        <item>@integer/MODE_PLAYER</item>
+        <item>@integer/MODE_READING</item>
+        <item>@integer/MODE_EXAM</item>
+    </integer-array>
+
     <color name="default_color_white">#ffffffff</color>
     <color name="test_color_0">#00ffff</color>
     <color name="test_color_1">#ff00ff</color>

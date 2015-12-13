@@ -115,13 +115,13 @@ public class NotesListView extends ListView {
         mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, mResource, from, to);
         setAdapter(mAdapter);
 
-        setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus == true)
-                    ((MainActivity) mContext).switchActionBarTitle(mActionBarTitle);
-            }
-        });
+//        setOnFocusChangeListener(new OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus == true)
+//                    ((MainActivity) mContext).switchActionBarTitle(mActionBarTitle);
+//            }
+//        });
 
     }
 

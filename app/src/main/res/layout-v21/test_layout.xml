@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/exam_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/rect_exam_question"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@drawable/rect_exam_green"
         android:layout_centerInParent="true"
         />
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ import com.wishcan.www.vocabulazy.view.notes.DeleteNoteDialogView;
 import com.wishcan.www.vocabulazy.view.notes.NotesListAddButtonView;
 import com.wishcan.www.vocabulazy.view.notes.NotesListView;
 import com.wishcan.www.vocabulazy.view.notes.RenameNoteDialogView;
+import com.wishcan.www.vocabulazy.view.reading.ReadingBooksGridView;
 import com.wishcan.www.vocabulazy.view.tab.TabView;
 import com.wishcan.www.vocabulazy.view.customview.DialogView;
 
@@ -40,6 +42,8 @@ public class MainFragment extends Fragment {
     private NotesListView mNotesListView;
 
     private ViewGroup mExamView;
+
+    private ReadingBooksGridView mReadingBooksGridView;
 
     private AudioService mAudioService;
 
@@ -89,18 +93,32 @@ public class MainFragment extends Fragment {
 
         if (savedInstanceState != null) {
             int index = savedInstanceState.getInt(ARG_TAB_INDEX);
-            mTabView.switchToTabContent(index);
-            mTabView.setCurrentTabIndex(index);
-
+            mTabView.setCurrentTab(index);
 
         }
 
+        /**
+         * Set TabContent(0) (mBooksGridView) on click event
+         * */
         mBooksGridView = (BooksGridView) mTabView.getTabContent(0);
-
-        mNotesListView = ((NotesListAddButtonView) mTabView.getTabContent(1)).getNotesListView();
-        ((NotesListAddButtonView) mTabView.getTabContent(1)).getAddButton().setOnClickListener(new View.OnClickListener() {
+        mBooksGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, " " + position);
+                if (position < mBooksGridView.getBooksCount())
+                    ((MainActivity) getActivity()).goLessonFragment(position, R.integer.MODE_PLAYER);
+
+            }
+        });
+
+
+        /**
+         * Set TabContent(1) (mNotesListView) on click event
+         * */
+        mNotesListView = ((NotesListAddButtonView) mTabView.getTabContent(1)).getNotesListView();
+        ((NotesListAddButtonView) mTabView.getTabContent(1)).setAddOnButtonClickListener(new NotesListAddButtonView.AddButtonOnClickListener() {
+            @Override
+            public void onAddButtonOnClick() {
                 mDialogView = new AddNoteDialogView(getActivity());
                 mDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickedListener() {
                     @Override
@@ -119,6 +137,7 @@ public class MainFragment extends Fragment {
                 showDialog();
             }
         });
+
         mNotesListView.setOnListIconClickedListener(new NotesListView.OnListIconClickedListener() {
             @Override
             public void onListIconClicked(int iconId, int listIndex, View v) {
@@ -182,14 +201,17 @@ public class MainFragment extends Fragment {
             }
         });
 
+
+        /**
+         * Set TabContent(2) (mExamView) on click event
+         * */
         mExamView = mTabView.getTabContent(2);
         mExamView.findViewById(R.id.exam_unit_book).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ((MainActivity) getActivity()).goExamBooksFragment();
             }
         });
-
         mExamView.findViewById(R.id.exam_unit_note).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,23 +219,17 @@ public class MainFragment extends Fragment {
             }
         });
 
-
+        /***
+         * Set TabContent(3) (mReadingBooksGridView) on click event
+         */
+        mReadingBooksGridView = (ReadingBooksGridView) mTabView.getTabContent(3);
+        mReadingBooksGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((MainActivity) getActivity()).goLessonFragment(position, R.integer.MODE_READING);
+            }
+        });
         return view;
-    }
-
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-//        Log.d(TAG, "onViewCreated");
-//
-//        if (savedInstanceState != null) {
-//            int index = savedInstanceState.getInt(ARG_TAB_INDEX);
-////            Log.d(TAG, "savedBundle: " + index);
-//            mTabView.switchToTabContent(index);
-//            mTabView.setCurrentTabIndex(index);
-//        } else {
-//            Log.d(TAG, "savedBundle: Bundle is null");
-//        }
     }
 
     @Override

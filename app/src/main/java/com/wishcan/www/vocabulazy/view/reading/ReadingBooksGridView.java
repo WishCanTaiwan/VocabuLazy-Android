@@ -38,16 +38,4 @@ public class ReadingBooksGridView extends BooksGridView {
             }
         });
     }
-
-    @Override
-    public void setOnItemClickListener() {
-        setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position < getBooksCount())
-                    ((MainActivity) getContext()).goReadingLessonFragment(position);
-
-            }
-        });
-    }
 }

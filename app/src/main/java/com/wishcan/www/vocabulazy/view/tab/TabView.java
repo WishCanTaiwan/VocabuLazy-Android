@@ -27,7 +27,9 @@ import com.wishcan.www.vocabulazy.view.adapter.LinkedListPagerAdapter;
  * 2. Create another content View corresponding to the TabItem
  * 3. Add both TabItem in step1 and content View in step2 by calling addTabAndTabContent
  */
-public class TabView extends LinearLayout {
+abstract public class TabView extends LinearLayout {
+
+    abstract public void initWhenTabIsSelected(int position);
 
     private LinearLayout.LayoutParams mDefaultViewGroupLayoutParams;
 
@@ -107,13 +109,17 @@ public class TabView extends LinearLayout {
         mViewPager.setAdapter(new LinkedListPagerAdapter(mTabContentList));
     }
 
-    public void setCurrentTab(View v) {
-
+    private void setCurrentTab(View v) {
         int nextTabIndex = mTabStripe.indexOfItem(v);
-        switchToTabContent(nextTabIndex);
-        mTabStripe.setCurrentTabIndex(nextTabIndex);
-
+        setCurrentTab(nextTabIndex);
     }
+
+    public void setCurrentTab(int position){
+        switchToTabContent(position);
+        mTabStripe.setCurrentTabIndex(position);
+        initWhenTabIsSelected(position);
+    }
+
 
     public TabItem getCurrentTab() {
         return mTabStripe.getCurrentTabItem();
@@ -136,7 +142,7 @@ public class TabView extends LinearLayout {
         mViewPager.addOnPageChangeListener(listener);
     }
 
-    public void setCurrentTabIndex(int index) {
+    private void setCurrentTabIndex(int index) {
         mTabStripe.setCurrentTabIndex(index);
     }
 
@@ -365,7 +371,8 @@ public class TabView extends LinearLayout {
         @Override
         public void onPageSelected(int position) {
             mTabStripe.moveTabMask(position);
-            getCurrentTabContent().requestFocus();
+//            getCurrentTabContent().requestFocus();
+            initWhenTabIsSelected(position);
         }
 
         @Override

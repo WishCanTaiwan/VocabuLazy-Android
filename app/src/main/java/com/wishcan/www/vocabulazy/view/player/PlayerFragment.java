@@ -115,9 +115,7 @@ public class PlayerFragment extends Fragment {
 
     private int mNumOfLesson;
 
-    private int mCurrentBookIndex;
-
-    private int mCurrentLessonIndex;
+    private int mCurrentBookIndex, mCurrentLessonIndex;
 
     private int mCurrentBookID;
 
@@ -429,8 +427,6 @@ public class PlayerFragment extends Fragment {
 
         int centralIndex = mCurrentLessonIndex;
 
-        int leftIndex = (centralIndex - 1 + mNumOfLesson) % mNumOfLesson;
-        int rightIndex = (centralIndex + 1 + mNumOfLesson) % mNumOfLesson;
         ArrayList<Integer> centralNoteContentIDs = mDatabase.getContentIDs(mCurrentBookIndex, centralIndex);
 
 //        for (int index = 0; index < centralNoteContentIDs.size(); index++) {

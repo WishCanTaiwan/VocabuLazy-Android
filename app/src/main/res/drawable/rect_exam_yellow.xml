@@ -4,9 +4,9 @@
 
     <solid android:color="@color/circle_image_color_yellow" />
 
-    <corners android:radius="16dp" />
+    <corners android:radius="10dp" />
     <size
-        android:width="330dp"
-        android:height="150dp" />
+        android:width="136dp"
+        android:height="136dp" />
 
 </shape>

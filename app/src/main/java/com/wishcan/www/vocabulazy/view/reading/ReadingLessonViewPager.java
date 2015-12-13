@@ -11,8 +11,6 @@ import com.wishcan.www.vocabulazy.view.lessons.LessonsViewPager;
  */
 public class ReadingLessonViewPager extends LessonsViewPager {
 
-    private Context mContext;
-
     public ReadingLessonViewPager(Context context) {
         super(context);
     }

@@ -27,6 +27,10 @@ public class NotesListAddButtonView extends RelativeLayout {
         void onScrollStopped();
     }
 
+    public interface AddButtonOnClickListener{
+        void onAddButtonOnClick();
+    }
+
     private final static int COUNTER_SECS = 15;
 
     private final static int CIRCLE_ENLARGE = 0;
@@ -40,6 +44,8 @@ public class NotesListAddButtonView extends RelativeLayout {
     private Runnable mScrollStopCounterTask;
 
     private ScrollStoppedListener mOnScrollStoppedListener;
+
+    private AddButtonOnClickListener mAddOnButtonClickListener;
 
     private int mInitialPosition, mCounter;
 
@@ -114,11 +120,23 @@ public class NotesListAddButtonView extends RelativeLayout {
             }
         };
 
+        mAddButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mAddOnButtonClickListener != null) {
+                    startAddButtonAnimation(CIRCLE_DWINDLE);
+                    mAddOnButtonClickListener.onAddButtonOnClick();
+                }
+            }
+        });
+
     }
 
     public NotesListView getNotesListView(){ return mNotesListView; }
 
-    public View getAddButton(){ return mAddButton; }
+    public void setAddOnButtonClickListener(AddButtonOnClickListener listener){
+        mAddOnButtonClickListener = listener;
+    }
 
     private void startAddButtonAnimation(final int action){
 

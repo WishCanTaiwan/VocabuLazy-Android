@@ -147,22 +147,8 @@ public class BooksGridView extends GridView {
 
         setAdapter(mAdapter);
 
-        setOnItemClickListener();
+//        setActionBarTitle();
 
-        setActionBarTitle();
-
-    }
-
-    public void setOnItemClickListener(){
-        setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, " " + position);
-                if (position < getBooksCount())
-                    ((MainActivity) getContext()).goLessonFragment(position);
-
-            }
-        });
     }
 
     public int getBooksCount(){
@@ -171,11 +157,10 @@ public class BooksGridView extends GridView {
 
     public void setActionBarTitle(){
 
-
         setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus == true)
+                if (hasFocus)
                     ((MainActivity) mContext).switchActionBarTitle(mActionBarTitle);
             }
         });

@@ -31,6 +31,8 @@ public class LessonsFragment extends Fragment {
 
     public static final String ARG_BOOK_INDEX = "bookIndex";
 
+    public static final String ENTRY_MODE_TAG = "entry_mode_tag";
+
     private static final int DEFAULT_FRAGMENT_VIEW_RES_ID = R.layout.fragment_lessons;
 
     private ViewGroup mParentView;
@@ -45,15 +47,9 @@ public class LessonsFragment extends Fragment {
 
     private Database mDatabase;
 
-    private int mBookIndex;
-
     private String mPreviousTitle;
 
-    private int mLessonIndex;
-
-    private int mBookID;
-
-    private int mLessonID;
+    private int mBookIndex, mLessonIndex, mBookID, mLessonID, mEntryMode;
 
     /**
      * Use this factory method to create a new instance of
@@ -63,13 +59,14 @@ public class LessonsFragment extends Fragment {
      * @return A new instance of fragment LessonsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LessonsFragment newInstance(String previousTitle, int bookIndex, Database database) {
+    public static LessonsFragment newInstance(String previousTitle, int bookIndex, Database database, int entryMode) {
         LessonsFragment fragment = new LessonsFragment();
         Bundle args = new Bundle();
         //        args.putString(ARG_PARAM1, param1);
         //        args.putString(ARG_PARAM2, param2);
         args.putString(MainActivity.PREVIOUS_TITLE, previousTitle);
         args.putInt(ARG_BOOK_INDEX, bookIndex);
+        args.putInt(ENTRY_MODE_TAG, entryMode);
         args.putParcelable("database", database);
         fragment.setArguments(args);
         return fragment;
@@ -89,6 +86,7 @@ public class LessonsFragment extends Fragment {
             mPreviousTitle = getArguments().getString(MainActivity.PREVIOUS_TITLE);
             mBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
             mDatabase = getArguments().getParcelable("database");
+            mEntryMode = getArguments().getInt(ENTRY_MODE_TAG);
         }
 
 
@@ -121,7 +119,21 @@ public class LessonsFragment extends Fragment {
             @Override
             public void onLessonClicked(int lesson) {
                 mLessonID = lesson;
-                ((MainActivity) getActivity()).goPlayerFragment(mBookIndex, lesson);
+
+                switch (mEntryMode){
+                    case R.integer.MODE_EXAM:
+                        ((MainActivity) getActivity()).goExamMainFragment(mBookIndex, lesson);
+                        break;
+                    case R.integer.MODE_PLAYER:
+                        ((MainActivity) getActivity()).goPlayerFragment(mBookIndex, lesson);
+                        break;
+                    case R.integer.MODE_READING:
+                        ((MainActivity) getActivity()).goReadingMainFragment(mBookIndex, lesson);
+                        break;
+                    default:
+                        break;
+                }
+
             }
         });
         return mParentView;

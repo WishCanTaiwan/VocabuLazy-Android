@@ -14,7 +14,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginRight="12dp">
 
-        <ImageView android:src="@drawable/rect_exam_green_shadow"
+        <ImageView android:src="@drawable/rect_exam_green_ripple"
             android:id="@+id/exam_unit_book"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="12dp" >
 
-        <ImageView android:src="@drawable/rect_exam_green_shadow"
+        <ImageView android:src="@drawable/rect_exam_green_ripple"
             android:id="@+id/exam_unit_note"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
