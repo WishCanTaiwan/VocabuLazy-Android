@@ -60,7 +60,7 @@ public class ReadingMainFragment extends Fragment{
             mPreviousTitle = getArguments().getString(MainActivity.PREVIOUS_TITLE);
             mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
             mCurrentLessonIndex = getArguments().getInt(ARG_LESSON_INDEX);
-            mDatabase = getArguments().getParcelable("database");
+//            mDatabase = getArguments().getParcelable("database");
         }
 
         if(mPreviousTitle.equals("") || mCurrentBookIndex < 0 || mCurrentLessonIndex < 0 || mDatabase == null){

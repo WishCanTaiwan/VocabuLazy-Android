@@ -3,15 +3,21 @@ package com.wishcan.www.vocabulazy.view.reading;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.wishcan.www.vocabulazy.MainActivity;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.view.infinitethreeview.InfiniteThreeView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by swallow on 2015/12/5.
  */
 public class ReadingMainThreeView extends InfiniteThreeView {
+
+    private static final String TAG = ReadingMainThreeView.class.getSimpleName();
 
     private Context mContext;
 
@@ -54,9 +60,19 @@ public class ReadingMainThreeView extends InfiniteThreeView {
 
             /** Get Reading data from database Here */
             // TODO: The input is the chosen lessonID, please use the id to load the content
+            Log.d(TAG, "doInBackground - " + "lessonID: " + params[0]);
 
+            JSONObject readingObject = mDatabase.getReadingContent(params[0]);
+
+            String outputString = "null content";
+            try {
+                outputString = readingObject.getString("en_content");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             /** This is the example string to be shown*/
+            /*
             String outputString = "I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.\n" +
                     "Five score years ago, a great American, in whose symbolic shadow we stand today, signed the Emancipation Proclamation. This momentous decree came as a great beacon light of hope to millions of Negro slaves who had been seared in the flames of withering injustice. It came as a joyous daybreak to end the long night of captivity. \n" +
                     "But one hundred years later, the Negro still is not free. One hundred years later, the life of the Negro is still sadly crippled by the manacles of segregation and the chains of discrimination. One hundred years later, the Negro lives on a lonely island of poverty in the midst of a vast ocean of material prosperity. One hundred years later, the Negro is still languished in the corners of American society and finds himself in exile in his own land. So we have come here today to dramatize an shameful condition. \n" +
@@ -87,7 +103,7 @@ public class ReadingMainThreeView extends InfiniteThreeView {
                     "I have a dream that one day down in Alabama, with its vicious racists, with its governor having his lips dripping with the words of interposition and nullification, that one day right down in Alabama little black boys and black girls will be able to join hands with little white boys and white girls as sisters and brothers. \n"+
                     "I have a dream today. " +
                     "I have a dream that one day every valley shall be exhalted, every hill and mountain shall be made low, the rough places will be made plain, and the crooked places will be made straight, and the glory of the Lord shall be revealed, and all flesh shall see it together.\n" ;
-
+            */
             /** Finally return the Reading data as a very long String, or even a bufferStream */
 
             // TODO: please return the final content string here, the function onPostExecute(String) will handle

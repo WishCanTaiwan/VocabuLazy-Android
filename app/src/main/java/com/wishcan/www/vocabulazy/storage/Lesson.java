@@ -3,6 +3,8 @@ package com.wishcan.www.vocabulazy.storage;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -16,17 +18,20 @@ public class Lesson implements Parcelable {
     private int mID;
     private String mName;
     private ArrayList<Integer> mContent;
+    public JSONObject mReading;
 
-    public Lesson(int id, String name, ArrayList<Integer> content) {
+    public Lesson(int id, String name, ArrayList<Integer> content, JSONObject reading) {
         mID = id;
         mName = name;
         mContent = content;
+        mReading = reading;
     }
 
     protected Lesson(Parcel in) {
         mID = in.readInt();
         mName = in.readString();
         mContent = in.readArrayList(Integer.class.getClassLoader());
+        mReading = null;
     }
 
     public static final Creator<Lesson> CREATOR = new Creator<Lesson>() {

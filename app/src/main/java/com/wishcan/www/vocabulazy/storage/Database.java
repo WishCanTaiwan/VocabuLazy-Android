@@ -179,6 +179,20 @@ public class Database implements Parcelable {
         return content;
     }
 
+    public JSONObject getReadingContent(int lessonID) {
+
+        JSONObject readingObject = new JSONObject();
+
+        for (int index = 0; index < mLessons.size(); index++) {
+            Lesson lesson = mLessons.get(index);
+            if (lessonID == lesson.getID()) {
+                readingObject = lesson.mReading;
+            }
+        }
+
+        return readingObject;
+    }
+
     public String getLessonName(int bookIndex, int lessonIndex) {
         if (bookIndex >= 0) {
             int lessonID = mBooks.get(bookIndex).getContent().get(lessonIndex);
@@ -388,7 +402,7 @@ public class Database implements Parcelable {
     public void createNewNote(String name) {
         int index = mNotes.size();
 //        Log.d(TAG, "create " + name + " at " + index);
-        mNotes.add(index, new Lesson(index + 1, name, new ArrayList<Integer>()));
+        mNotes.add(index, new Lesson(index + 1, name, new ArrayList<Integer>(), null));
     }
 
     public void renameNoteAt(int position, String name) {
@@ -430,8 +444,6 @@ public class Database implements Parcelable {
         int id = mNotes.get(position).getID();
         deleteNote(id);
     }
-
-
 
     private void loadVocabularies() {
 
@@ -533,8 +545,9 @@ public class Database implements Parcelable {
                 int id = object.getInt("id");
                 String name = object.getString("name");
                 ArrayList<Integer> content = convertJSONArrayToIntegerArrayList(object.getJSONArray("content_of_the_lesson"));
+                JSONObject readingObject = object.getJSONObject("reading");
 
-                mLessons.add(new Lesson(id, name, content));
+                mLessons.add(new Lesson(id, name, content, readingObject));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -566,7 +579,7 @@ public class Database implements Parcelable {
                 String name = object.getString("name");
                 ArrayList<Integer> content = convertJSONArrayToIntegerArrayList(object.getJSONArray("content_of_the_note"));
 
-                mNotes.add(new Lesson(id, name, content));
+                mNotes.add(new Lesson(id, name, content, null));
 
             } catch (JSONException e) {
                 e.printStackTrace();
