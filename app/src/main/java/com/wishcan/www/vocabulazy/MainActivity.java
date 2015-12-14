@@ -18,6 +18,7 @@ import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.view.exam.ExamBooksFragment;
 import com.wishcan.www.vocabulazy.view.exam.ExamFragment;
+import com.wishcan.www.vocabulazy.view.exam.ExamResultFragment;
 import com.wishcan.www.vocabulazy.view.lessons.LessonsFragment;
 import com.wishcan.www.vocabulazy.view.main.MainFragment;
 import com.wishcan.www.vocabulazy.view.player.PlayerFragment;
@@ -75,6 +76,8 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     private ExamBooksFragment mExamBooksFragment;
 
     private ExamFragment mExamFragment;
+
+    private ExamResultFragment mExamResultFragment;
 
     /**
      *
@@ -341,7 +344,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         mExamBooksFragment = ExamBooksFragment.newInstance(mActionBarTitleTextView.getText().toString());
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
-        fragmentTransaction.add(R.id.activity_main_container, mExamBooksFragment, "readingmainfragment");
+        fragmentTransaction.add(R.id.activity_main_container, mExamBooksFragment, "exambooksfragment");
         fragmentTransaction.addToBackStack(mCurrentFragmentTag);
         mCurrentFragmentTag = "exambooksfragment";
         fragmentTransaction.commit();
@@ -351,9 +354,19 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         mExamFragment = ExamFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, lessonIndex);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
-        fragmentTransaction.add(R.id.activity_main_container, mExamFragment, "readingmainfragment");
+        fragmentTransaction.add(R.id.activity_main_container, mExamFragment, "exammainfragment");
         fragmentTransaction.addToBackStack(mCurrentFragmentTag);
-        mCurrentFragmentTag = "examfragment";
+        mCurrentFragmentTag = "exammainfragment";
+        fragmentTransaction.commit();
+    }
+
+    public void goExamResultFragment(){
+        mExamResultFragment = ExamResultFragment.newInstance(mActionBarTitleTextView.getText().toString());
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
+        fragmentTransaction.add(R.id.activity_main_container, mExamResultFragment, "examresultfragment");
+        /** Here can not addToBackStack because the transaction is determined according to different situation*/
+        mCurrentFragmentTag = "examresultfragment";
         fragmentTransaction.commit();
     }
 

@@ -132,6 +132,19 @@ public class ExamFragment extends Fragment {
 
     }
 
+    public void restartExam(){
+        mPuzzleSetter = new PuzzleSetter(mDatabase, mCurrentBookIndex, mCurrentLessonIndex);
+        HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();      // should call first to refresh question index
+        mLayoutController.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
+        mLayoutController.startVanish();
+        mFragmentView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mLayoutController.startPopOutSequentially();
+            }
+        }, 600);
+    }
+
     private void registerOnOptionClickEvent(){
         for(int i = 1; i < EXAM_PARENT_VIEW_IDs.length - 1; i++){   // NEXT icon should not be handle here
             final int checkIndex = i;
@@ -164,11 +177,13 @@ public class ExamFragment extends Fragment {
         mFragmentView.findViewById(NEXT_VIEW_ID).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
+                    ((MainActivity) getActivity()).goExamResultFragment();
+                    return;
+                }
+
                 mLayoutController.startVanish();
                 mRefreshAnimTask.run();
-//                HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();
-//                mLayoutController.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
-//                mLayoutController.startPopOut();
             }
         });
     }
@@ -310,7 +325,7 @@ public class ExamFragment extends Fragment {
             vanishAnimator.setDuration(300);
 
             LayoutTransition layoutTransition = new LayoutTransition();
-            layoutTransition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, vanishAnimator);
+            layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, vanishAnimator);
             layoutTransition.setAnimator(LayoutTransition.APPEARING, popOutAnimator);
             layoutTransition.addTransitionListener(new LayoutTransition.TransitionListener() {
                 @Override
@@ -337,7 +352,7 @@ public class ExamFragment extends Fragment {
         }
 
         public void startVanish(){
-            for(int i = 0; i < mParentIds.length; i++)      // should vanish all icon
+            for(int i = 1; i < mParentIds.length; i++)      // should vanish all icon
                 mView.findViewById(mParentIds[i]).setVisibility(View.GONE);
         }
 

@@ -8,21 +8,13 @@
 
 
     <ImageView
-        android:id="@+id/exam_question"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:background="@drawable/rect_exam_green"
-        android:layout_centerInParent="true"
-        />
-
-    <ImageView
         android:id="@+id/exam_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/circle_exam_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-25dp"
-        android:layout_alignTop="@id/exam_question" />
+        android:layout_height="50dp"
+        android:background="@drawable/rect_exam_oval_gray"
+        android:layout_centerInParent="true"
+
+        />
 
 
 
