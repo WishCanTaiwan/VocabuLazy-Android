@@ -75,8 +75,6 @@ public class ExamResultFragment extends Fragment {
 
         mTryOtherView = mFragmentView.findViewById(TRY_OTHER_VIEW_RES_ID);
 
-
-
         mTryOtherView.setOnClickListener(new View.OnClickListener() {
 
             @Override

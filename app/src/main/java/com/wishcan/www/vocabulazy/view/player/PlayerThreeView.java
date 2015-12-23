@@ -148,40 +148,21 @@ public class PlayerThreeView extends InfiniteThreeView {
             ((PlayerScrollView) getCurrentItem()).moveToPosition(position);
     }
 
-    /**
-     * temporary function for development
-     */
-    private LinkedList<String> createPlaylistContentSpells(LinkedList<Vocabulary> vocabularies) {
-        LinkedList<String> playlistContetnSpells = new LinkedList<>();
-
-        for (int index = 0; index < vocabularies.size(); index++) {
-            playlistContetnSpells.add(vocabularies.get(index).getSpell());
-        }
-
-        return playlistContetnSpells;
-    }
-
     private LinkedList<HashMap> createPlaylistContent(ArrayList<Vocabulary> vocabularies) {
         LinkedList<HashMap> playlistContent = new LinkedList<>();
-
-//        Log.d(TAG, "createPlaylistContent: " + vocabularies);
 
         Iterator<Vocabulary> ii = vocabularies.iterator();
         while (ii.hasNext()) {
             Vocabulary vocabulary = ii.next();
 
-//            Log.d(TAG, "createPlaylistContent: "+vocabulary);
-
-            HashMap<String, String> hm = new HashMap<>();
+            HashMap<String, Object> hm = new HashMap<>();
             hm.put(mFrom[0], vocabulary.getSpell());
             hm.put(mFrom[1], vocabulary.getTranslate());
             hm.put(mFrom[2], vocabulary.getSpell());
             hm.put(mFrom[3], vocabulary.getTranslate());
             hm.put(mFrom[4], vocabulary.getKK());
-            hm.put(mFrom[5], vocabulary.getEn_Sentence().get(0));
-            hm.put(mFrom[6], vocabulary.getCn_Sentence().get(0));
-
-//            Log.d(TAG, "createPlaylistContent: " + hm);
+            hm.put(mFrom[5], vocabulary.getEn_Sentence());      // En_Sentence is an ArrayList<String>
+            hm.put(mFrom[6], vocabulary.getCn_Sentence());      // Cn_Sentence is an ArrayList<String>
 
             playlistContent.add(hm);
         }
@@ -258,10 +239,6 @@ public class PlayerThreeView extends InfiniteThreeView {
             Log.d(TAG, "doInBackground");
 
             ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(params[0]);
-
-//            for (int index = 0; index < vocabularies.size(); index++) {
-//                Log.d(TAG, ""+vocabularies.get(index).getSpell());
-//            }
 
             LinkedList<HashMap> playlistContent = createPlaylistContent(vocabularies);
 

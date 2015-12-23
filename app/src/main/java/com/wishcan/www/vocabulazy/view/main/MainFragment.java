@@ -215,7 +215,7 @@ public class MainFragment extends Fragment {
         mExamView.findViewById(R.id.exam_unit_note).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ((MainActivity) getActivity()).goExamNoteFragment();
             }
         });
 

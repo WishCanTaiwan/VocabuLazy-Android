@@ -114,7 +114,8 @@ public class ExamFragment extends Fragment {
 
         // fill in the question and option, which are from PuzzleSetter
         HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();      // should call first to refresh question index
-        mLayoutController.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
+        if(map != null)
+            mLayoutController.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
 
         // Inflate the layout for this fragment
         return mFragmentView;
@@ -151,7 +152,6 @@ public class ExamFragment extends Fragment {
             mFragmentView.findViewById(EXAM_PARENT_VIEW_IDs[i]).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("PuzzleSetter", "check answer");
                     mPuzzleSetter.checkAnswer(checkIndex);
                     mLayoutController.popOutNextIcon();
                 }
@@ -181,7 +181,6 @@ public class ExamFragment extends Fragment {
                     ((MainActivity) getActivity()).goExamResultFragment();
                     return;
                 }
-
                 mLayoutController.startVanish();
                 mRefreshAnimTask.run();
             }
@@ -212,6 +211,9 @@ public class ExamFragment extends Fragment {
              *     KEY is QuestionAndOption, 0 means Question, 1-4 means option
              *     VALUE is english and translation
              */
+
+            if(mTotalQuestionNum < 5)
+                return null;
 
             mCurrentQuestionIndex++;
 
@@ -361,6 +363,10 @@ public class ExamFragment extends Fragment {
         }
 
         public void refreshContent(int qIndex, int qCount, HashMap<Integer, ArrayList<String>> map){
+
+            if(map == null)
+                return;
+
             // 8, 9 is current_question_index and question_count individually
             ((TextView) mView.findViewById(mTextViewIds[9])).setText(String.valueOf(qIndex));
             ((TextView) mView.findViewById(mTextViewIds[10])).setText(String.valueOf(qCount));

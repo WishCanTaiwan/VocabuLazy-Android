@@ -5,23 +5,20 @@ import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import com.wishcan.www.vocabulazy.MainActivity;
 import com.wishcan.www.vocabulazy.view.adapter.LinkedListPagerAdapter;
+import com.wishcan.www.vocabulazy.view.books.BooksGridView;
+import com.wishcan.www.vocabulazy.view.notes.NotesListView;
 
 import java.util.LinkedList;
 
-import com.wishcan.www.vocabulazy.view.books.BooksGridView;
-
 /**
- * Created by swallow on 2015/12/12.
+ * Created by swallow on 2015/12/17.
  */
-public class ExamBooksViewPager extends ViewPager {
+public class ExamNoteViewPager extends ViewPager {
 
     private Context mContext;
 
@@ -31,13 +28,13 @@ public class ExamBooksViewPager extends ViewPager {
 
     private LinearLayout mEmptyLayoutForNavigateUp;
 
-    private BooksGridView mExamBooksGridView;
+    private NotesListView mExamNotesListView;
 
-    public ExamBooksViewPager(Context context) {
+    public ExamNoteViewPager(Context context) {
         this(context, null);
     }
 
-    public ExamBooksViewPager(Context context, AttributeSet attrs) {
+    public ExamNoteViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mContext = context;
@@ -47,21 +44,26 @@ public class ExamBooksViewPager extends ViewPager {
         mEmptyLayoutForNavigateUp = new LinearLayout(mContext);
         mEmptyLayoutForNavigateUp.setBackgroundColor(Color.argb(0, 0, 0, 0));
 
-        mExamBooksGridView = setMainPage();
+        mExamNotesListView = setMainPage();
 
         ll.add(mEmptyLayoutForNavigateUp);
-        ll.add(mExamBooksGridView);
+        ll.add(mExamNotesListView);
 
         mAdapter = new LinkedListPagerAdapter(ll);
         setAdapter(mAdapter);
         addOnPageChangeListener(new OnPageChangeToNavigateUpListener());
 
         setCurrentItem(1);
+
     }
 
-    public BooksGridView getExamBooksGridView(){ return mExamBooksGridView; }
+    public NotesListView getExamNotesListView(){ return mExamNotesListView; }
 
-    private BooksGridView setMainPage() { return new BooksGridView(mContext); }
+    private NotesListView setMainPage(){
+        NotesListView view = new NotesListView(mContext);
+        view.setEnableEtcFunction(false);
+        return view;
+    }
 
     private class OnPageChangeToNavigateUpListener implements OnPageChangeListener {
 

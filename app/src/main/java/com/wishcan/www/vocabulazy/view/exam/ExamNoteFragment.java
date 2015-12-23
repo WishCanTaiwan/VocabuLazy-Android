@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,27 +12,38 @@ import android.widget.AdapterView;
 
 import com.wishcan.www.vocabulazy.MainActivity;
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.view.books.BooksGridView;
+import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.view.notes.NotesListView;
 
-public class ExamBooksFragment extends Fragment {
+public class ExamNoteFragment extends Fragment {
 
-    private static final int DEFAULT_FRAGMENT_VIEW_RES_ID = R.layout.fragment_exam_books;
+    private static final int DEFAULT_FRAGMENT_VIEW_RES_ID = R.layout.fragment_exam_note;
 
     private ViewGroup mParentView;
 
-    private BooksGridView mExamBooksGridView;
+    private NotesListView mNotesListView;
+
+    private Database mDatabase;
 
     private String mPreviousTitle;
 
-    public static ExamBooksFragment newInstance(String previousTitle) {
-        ExamBooksFragment fragment = new ExamBooksFragment();
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param previousTitle Parameter 1.
+     * @return A new instance of fragment ExamNoteFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ExamNoteFragment newInstance(String previousTitle) {
+        ExamNoteFragment fragment = new ExamNoteFragment();
         Bundle args = new Bundle();
         args.putString(MainActivity.PREVIOUS_TITLE, previousTitle);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public ExamBooksFragment() {
+    public ExamNoteFragment() {
         // Required empty public constructor
     }
 
@@ -48,15 +58,16 @@ public class ExamBooksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         mParentView = (ViewGroup) inflater.inflate(DEFAULT_FRAGMENT_VIEW_RES_ID, container, false);
-
-        mExamBooksGridView = ((ExamBooksViewPager) mParentView.getChildAt(0)).getExamBooksGridView();
-        mExamBooksGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mNotesListView = ((ExamNoteViewPager) mParentView.getChildAt(0)).getExamNotesListView();
+        mNotesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((MainActivity) getActivity()).goLessonFragment(position, R.integer.MODE_EXAM);
+                // TODO: I want to make a if condition, if the vocabulary is too less (less than 5),
+                // TODO: then not to go ExamMainFragment
+                if(true) {
+                    ((MainActivity) getActivity()).goExamMainFragment(-1, position);
+                }
             }
         });
 
@@ -66,6 +77,13 @@ public class ExamBooksFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
     }
 
     @Override
@@ -83,13 +101,4 @@ public class ExamBooksFragment extends Fragment {
         parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
         parentActivity.switchActionBarTitle(mPreviousTitle);
     }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-
-
-    }
-
 }

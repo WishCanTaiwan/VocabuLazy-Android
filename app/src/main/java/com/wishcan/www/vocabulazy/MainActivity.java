@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.view.exam.ExamBooksFragment;
 import com.wishcan.www.vocabulazy.view.exam.ExamFragment;
+import com.wishcan.www.vocabulazy.view.exam.ExamNoteFragment;
 import com.wishcan.www.vocabulazy.view.exam.ExamResultFragment;
 import com.wishcan.www.vocabulazy.view.lessons.LessonsFragment;
 import com.wishcan.www.vocabulazy.view.main.MainFragment;
@@ -75,6 +77,8 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     private ExamBooksFragment mExamBooksFragment;
 
+    private ExamNoteFragment mExamNoteFragment;
+
     private ExamFragment mExamFragment;
 
     private ExamResultFragment mExamResultFragment;
@@ -99,7 +103,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate");
+
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
@@ -122,25 +126,14 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         mDatabase = new Database(this);
 
         if (savedInstanceState == null) {
-
-            Log.d(TAG, "savedInstanceState: null");
-
-
             mMainFragment = MainFragment.newInstance(mDatabase);
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.activity_main_container, mMainFragment, "mainfragment");
             fragmentTransaction.commit();
-
-
         } else {
-
-            Log.d(TAG, "savedInstanceState: not null");
-
             mMainFragment = (MainFragment) mFragmentManager.findFragmentByTag("mainfragment");
             mLessonsFragment = (LessonsFragment) mFragmentManager.findFragmentByTag("lessonsfragment");
             mPlayerFragment = (PlayerFragment) mFragmentManager.findFragmentByTag("playerfragment");
-
-//            mDatabase = savedInstanceState.getParcelable("database");
         }
 
         mSearchActivityEnabled = false;
@@ -149,14 +142,11 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        Log.d(TAG, "onRestoreInstanceState");
         super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState");
-//        outState.putParcelable("database", mDatabase);
         outState.putString(MainActivity.CURRENT_FRAGMENT_TAG, mCurrentFragmentTag);
         outState.putString(MainActivity.PREVIOUS_TITLE, mActionBarTitleTextView.getText().toString());
         super.onSaveInstanceState(outState);
@@ -164,15 +154,10 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "onResume");
         super.onResume();
-
-//        mDatabase = new Database(this);
 
         if(mActionBarTitleWhenStop!= null)
             switchActionBarTitle(mActionBarTitleWhenStop);
-
-//        Log.d(TAG, "Current Fragment: " + mCurrentFragmentTag);
 
         if (mCurrentFragmentTag.equals("mainfragment"))
             mActionBar.setDisplayHomeAsUpEnabled(false);
@@ -184,14 +169,13 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     @Override
     protected void onStart() {
-        Log.d(TAG, "onStart");
         super.onStart();
         mActionBar = getActionBar();
+        switchActionBarTitle(getResources().getString(R.string.book_title));
     }
 
     @Override
     protected void onPause() {
-        Log.d(TAG, "onPause");
         mDatabase.writeToFile(this);
         super.onPause();
 
@@ -200,13 +184,11 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     @Override
     protected void onStop() {
-        Log.d(TAG, "onStop");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
         if (!mSearchActivityEnabled) {
             mDatabase.writeToFile(this);
         }
@@ -230,7 +212,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
             mSearchActivityEnabled = true;
             Intent intent = new Intent(this, SearchActivity.class);
             Bundle bundle = new Bundle();
-//            bundle.putParcelable("database", mDatabase);
             intent.putExtras(bundle);
             // the number "1" is to identify the action
             startActivityForResult(intent, REQUEST_CODE_DATABASE_UPDATE);
@@ -241,12 +222,10 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_DATABASE_UPDATE) {
             if (resultCode == RESULT_OK) {
-                Log.d(TAG, "result code: ok");
                 mSearchActivityEnabled = false;
                 Bundle bundle = data.getExtras();
 //                mDatabase = bundle.getParcelable("database");
@@ -269,12 +248,21 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     @Override
     public void onBackPressed() {
 
+        // For ExamResultFragment, doing some specific handling
+        // TODO: DEBUG
+        Fragment fragment;
+        if((fragment = getFragmentManager().findFragmentByTag("examresultfragment")) != null){
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_right);
+            transaction.remove(fragment);
+            transaction.commit();
+            super.onBackPressed();
+        }
+
         // only when there's no dialog, a popup will occur
         if(mMainFragment.getDialog() == null){
 
             int backStackEntryCount = getFragmentManager().getBackStackEntryCount();
-//            Log.d("MainActivity", "onBackPressed " + backStackEntryCount);
-//            Log.d("MainActivity", "onBackPressed " + getFragmentManager().getBackStackEntryAt(backStackEntryCount -1).getName());
 
             if (backStackEntryCount > 0) {
                 if (getFragmentManager().getBackStackEntryAt(backStackEntryCount - 1).getName().equals("mainfragment")) {
@@ -350,6 +338,16 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         fragmentTransaction.commit();
     }
 
+    public void goExamNoteFragment(){
+        mExamNoteFragment = ExamNoteFragment.newInstance(mActionBarTitleTextView.getText().toString());
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
+        fragmentTransaction.add(R.id.activity_main_container, mExamNoteFragment, "examnotefragment");
+        fragmentTransaction.addToBackStack(mCurrentFragmentTag);
+        mCurrentFragmentTag = "examnotefragment";
+        fragmentTransaction.commit();
+    }
+
     public void goExamMainFragment(int bookIndex, int lessonIndex){
         mExamFragment = ExamFragment.newInstance(mActionBarTitleTextView.getText().toString(), bookIndex, lessonIndex);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
@@ -396,6 +394,9 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
                 mPlayerFragment.onOptionClicked(v);
                 break;
             case R.id.action_player_play:
+                mPlayerFragment.onOptionClicked(v);
+                break;
+            case R.id.player_option_parent:
                 mPlayerFragment.onOptionClicked(v);
                 break;
             case R.id.action_reading_main_mute:

@@ -8,6 +8,7 @@
     android:paddingLeft="20dp"
     android:background="@color/default_color_white"
     android:layout_gravity="center_horizontal"
+    android:clickable="true"
     tools:context="com.wishcan.www.vocabulazy.view.exam.ExamFragment">
 
 

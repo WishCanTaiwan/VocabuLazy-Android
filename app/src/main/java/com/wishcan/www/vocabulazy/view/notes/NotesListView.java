@@ -80,13 +80,11 @@ public class NotesListView extends ListView {
 
     private ArrayAdapter mAdapter;
 
-//    private AudioPlayer mAudioPlayer;
-
-    private AudioService mAudioService;
-
     private Database mDatabase;
 
     private OnListIconClickedListener mOnListIconClickedListener;
+
+    private boolean mEnableEtcFunction;
 
     public NotesListView(Context context) {
         this(context, null);
@@ -101,7 +99,6 @@ public class NotesListView extends ListView {
 
         mResource = LIST_ITEM_RES_ID;
 
-//        mAudioService = ((MainActivity) context).getMusicService();
         mDatabase = ((MainActivity) context).getDatabase();
 
         loadNotes();
@@ -112,16 +109,11 @@ public class NotesListView extends ListView {
         setDivider(new ColorDrawable(getResources().getColor(DIVIDER_COLOR)));
         setDividerHeight((int) getResources().getDimension(DIVIDER_HEIGHT));
 
+        setEnableEtcFunction(true);
+
         mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, mResource, from, to);
         setAdapter(mAdapter);
 
-//        setOnFocusChangeListener(new OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (hasFocus == true)
-//                    ((MainActivity) mContext).switchActionBarTitle(mActionBarTitle);
-//            }
-//        });
 
     }
 
@@ -169,6 +161,10 @@ public class NotesListView extends ListView {
             hm.put(from[0], ii.next());
             mDataList.add(hm);
         }
+    }
+
+    public void setEnableEtcFunction(boolean bool){
+        mEnableEtcFunction = bool;
     }
 
     public ArrayList<Lesson> getNotes() {
@@ -227,12 +223,14 @@ public class NotesListView extends ListView {
 
             HashMap<String, Object> dataMap;
 
-            v.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnListIconClickedListener.onListIconClicked(ICON_PLAY, position, v);
-                }
-            });
+            if(mOnListIconClickedListener != null) {
+                v.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mOnListIconClickedListener.onListIconClicked(ICON_PLAY, position, v);
+                    }
+                });
+            }
 
             //**mOnListIconClickedListener.onListIconClicked(ICON_NEW_NOTE, position, v);*/
             if(position < mData.size())
@@ -246,58 +244,60 @@ public class NotesListView extends ListView {
 
             }
 
-            mNoteEtcParentView.setOnClickListener(new OnClickListener() {
+            if(mEnableEtcFunction && mOnListIconClickedListener != null) {
+                mNoteEtcParentView.setOnClickListener(new OnClickListener() {
 
-                @Override
-                public void onClick(View iconView) {
-                    float startX = mParentView.getX();
-                    float endX;
-                    if (startX >= 0)
-                        endX = startX - animateMoveOffset;
-                    else
-                        endX = startX + animateMoveOffset;
-                    handleListSlidingAnimation(mParentView, mNoteEtcFunctionView, startX, endX);
-                    mOnListIconClickedListener.onListIconClicked(ICON_ETC, position, v);
-                }
-            });
+                    @Override
+                    public void onClick(View iconView) {
+                        float startX = mParentView.getX();
+                        float endX;
+                        if (startX >= 0)
+                            endX = startX - animateMoveOffset;
+                        else
+                            endX = startX + animateMoveOffset;
+                        handleListSlidingAnimation(mParentView, mNoteEtcFunctionView, startX, endX);
+                        mOnListIconClickedListener.onListIconClicked(ICON_ETC, position, v);
+                    }
+                });
 
 
-            mNoteEtcCloseFunctionView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View iconView) {
-                    View mParentView = v.findViewById(R.id.note_name_parent);
-                    float startX = mParentView.getX();
-                    float endX;
-                    if (startX >= 0)
-                        endX = startX - animateMoveOffset;
-                    else
-                        endX = startX + animateMoveOffset;
+                mNoteEtcCloseFunctionView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View iconView) {
+                        View mParentView = v.findViewById(R.id.note_name_parent);
+                        float startX = mParentView.getX();
+                        float endX;
+                        if (startX >= 0)
+                            endX = startX - animateMoveOffset;
+                        else
+                            endX = startX + animateMoveOffset;
 
-                    handleListSlidingAnimation(mParentView, mNoteEtcFunctionView, startX, endX);
-                    mOnListIconClickedListener.onListIconClicked(ICON_ETC_CLOSE, position, v);
-                }
-            });
+                        handleListSlidingAnimation(mParentView, mNoteEtcFunctionView, startX, endX);
+                        mOnListIconClickedListener.onListIconClicked(ICON_ETC_CLOSE, position, v);
+                    }
+                });
 
-            mNoteDeleteFunctionView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnListIconClickedListener.onListIconClicked(ICON_DEL, position, mNoteNameTextView);
-                }
-            });
+                mNoteDeleteFunctionView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mOnListIconClickedListener.onListIconClicked(ICON_DEL, position, mNoteNameTextView);
+                    }
+                });
 
-            mNoteRenameFunctionView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnListIconClickedListener.onListIconClicked(ICON_RENAME, position, v);
-                }
-            });
+                mNoteRenameFunctionView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mOnListIconClickedListener.onListIconClicked(ICON_RENAME, position, v);
+                    }
+                });
 
-            mNoteCombineFunctionView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnListIconClickedListener.onListIconClicked(ICON_COMBINE, position, v);
-                }
-            });
+                mNoteCombineFunctionView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mOnListIconClickedListener.onListIconClicked(ICON_COMBINE, position, v);
+                    }
+                });
+            }
         }
 
         @Override

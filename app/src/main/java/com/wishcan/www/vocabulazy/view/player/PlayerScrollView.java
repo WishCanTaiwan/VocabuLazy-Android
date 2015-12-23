@@ -83,7 +83,6 @@ public class PlayerScrollView extends RelativeLayout {
 
     public static final int DEFAULT_PLAYER_DETAIL_ITEM4_RES_ID = R.id.player_voc_sentence_translation_detail;
 
-
     public static final int DEFAULT_PLAYER_LIST_ITEM_COUNT = 2;
 
     public static final int DEFAULT_PLAYER_LIST_DETAIL_ITEM_COUNT = 5;
@@ -101,6 +100,12 @@ public class PlayerScrollView extends RelativeLayout {
     private static final int DEFAULT_DETAILS_COLOR_RES_ID = R.color.player_details_color;
 
     private Context mContext;
+
+    private LinkedList<HashMap> mDataList;
+
+    private String[] mFrom;
+
+    private int[] mTo;
 
     private MyScrollView mScrollView;
 
@@ -470,12 +475,9 @@ public class PlayerScrollView extends RelativeLayout {
      * */
     public void showItemDetails(){
         ArrayList<String> arrayList = new ArrayList<>();
-        if(mItemDetailsLinearLayout == null) {
+        if(mItemDetailsLinearLayout == null)
+            mItemDetailsLinearLayout = new ItemDetailLinearLayout(mContext, getCurrentFocusedPosition());
 
-            arrayList.add("TestTestTestTest");
-            arrayList.add("Test222222222222");
-            mItemDetailsLinearLayout = new ItemDetailLinearLayout(mContext, 2, arrayList, arrayList);
-        }
         else
             return;
 
@@ -493,7 +495,7 @@ public class PlayerScrollView extends RelativeLayout {
         mItemDetailsLinearLayout.setBackgroundColor(getResources().getColor(DEFAULT_DETAILS_COLOR_RES_ID));
 
 //        PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mChildViewZoomInHeight) / 550, 1f);
-                PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mChildViewZoomInHeight) / mPlayerItemDetailHeight, 1f);
+        PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mChildViewZoomInHeight) / mPlayerItemDetailHeight, 1f);
         PropertyValuesHolder elevateVH = PropertyValuesHolder.ofFloat("Elevation", 0, 40);
         Animator animator = ObjectAnimator.ofPropertyValuesHolder(mItemDetailsLinearLayout, stretchVH, elevateVH);
         animator.setDuration(500);
@@ -679,18 +681,16 @@ public class PlayerScrollView extends RelativeLayout {
 
         private Context context;
 
-        private int pageCount;
-
         private PagerIndexView pagerIndexView;
 
         private ViewPager viewPager;
 
         private LinkedList<ViewGroup> mItemPagesList;
 
+        private int pageCount;
+
         public ItemDetailLinearLayout(Context context,
-                                      int pageCount,
-                                      ArrayList<String> en_sentenceList,
-                                      ArrayList<String> cn_sentenceList) {
+                                      int index) {
             super(context);
             this.context = context;
             setLayoutParams(new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -699,13 +699,21 @@ public class PlayerScrollView extends RelativeLayout {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                     .inflate(R.layout.player_layout_details, null);
             viewPager = new ViewPager(context);
-            this.pageCount = pageCount;
+            HashMap map = mDataList.get(index);
+            for(int i = 2; i < DEFAULT_PLAYER_LIST_DETAIL_ITEM_COUNT; i++)
+                ((TextView) itemView.findViewById(mTo[i])).setText((String) map.get(mFrom[i]));
+
+
+            ArrayList<String> en_sentences = (ArrayList<String>) map.get(mFrom[5]);
+            ArrayList<String> cn_sentences = (ArrayList<String>) map.get(mFrom[6]);
+            pageCount = en_sentences.size();
+
             pagerIndexView = new PagerIndexView(context, pageCount);
             addView(itemView);
             ((ViewGroup)itemView.findViewById(R.id.pager_parent)).addView(viewPager);
             ((ViewGroup)itemView.findViewById(R.id.pager_index_parent)).addView(pagerIndexView);
 
-            createItemPages(pageCount, en_sentenceList, cn_sentenceList);
+            createItemPages(pageCount, en_sentences, cn_sentences);
 
         }
 
@@ -878,9 +886,6 @@ public class PlayerScrollView extends RelativeLayout {
         private Context mContext;
         private ViewGroup mParent;
         private int mResource;
-        private LinkedList<HashMap> mDataList;
-        private String[] mFrom;
-        private int[] mTo;
 
         private LayoutInflater mInflater;
 
@@ -920,7 +925,7 @@ public class PlayerScrollView extends RelativeLayout {
                 else
                     layoutParams.setMargins(0, 0, 0, 0);
 
-
+                final HashMap<String, Object> dataMap = ii.next();
                 v.setLayoutParams(layoutParams);
                 v.setOnClickListener(new OnClickListener() {
                     @Override
@@ -936,10 +941,10 @@ public class PlayerScrollView extends RelativeLayout {
                     }
                 });
 
-                HashMap<String, String> dataMap = ii.next();
+
                 for(int i = itemFilledStartIndex; i < itemFilledEndIndex; i++){
                     TextView textView = (TextView) v.findViewById(mTo[i]);
-                    textView.setText(dataMap.get(mFrom[i]));
+                    textView.setText((String) dataMap.get(mFrom[i]));
                 }
 
 
