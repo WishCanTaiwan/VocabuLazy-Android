@@ -8,6 +8,7 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -700,8 +701,17 @@ public class PlayerScrollView extends RelativeLayout {
                     .inflate(R.layout.player_layout_details, null);
             viewPager = new ViewPager(context);
             HashMap map = mDataList.get(index);
-            for(int i = 2; i < DEFAULT_PLAYER_LIST_DETAIL_ITEM_COUNT; i++)
-                ((TextView) itemView.findViewById(mTo[i])).setText((String) map.get(mFrom[i]));
+            for(int i = 2; i < DEFAULT_PLAYER_LIST_DETAIL_ITEM_COUNT; i++) {
+                TextView textview = (TextView) itemView.findViewById(mTo[i]);
+                /**
+                 * if the field to be filled is kk, then apply the specific font for kk.
+                 */
+                if (mTo[i] == DEFAULT_PLAYER_DETAIL_ITEM2_RES_ID) {
+                    Typeface kkTypeFace = Typeface.createFromAsset(mContext.getAssets(), "fonts/kk.TTE");
+                    textview.setTypeface(kkTypeFace);
+                }
+                textview.setText((String) map.get(mFrom[i]));
+            }
 
 
             ArrayList<String> en_sentences = (ArrayList<String>) map.get(mFrom[5]);
@@ -932,10 +942,9 @@ public class PlayerScrollView extends RelativeLayout {
                     public void onClick(View v) {
                         int position = mParent.indexOfChild(v);
                         if (position != mCurrentFocusedPosition) {
-                            if(mShowingDetails)
+                            if (mShowingDetails)
                                 hideItemDetails();
-                        }
-                        else
+                        } else
                             showItemDetails();
 
                     }
@@ -943,6 +952,9 @@ public class PlayerScrollView extends RelativeLayout {
 
 
                 for(int i = itemFilledStartIndex; i < itemFilledEndIndex; i++){
+                    /**
+                     * here only contains spell and translation.
+                     */
                     TextView textView = (TextView) v.findViewById(mTo[i]);
                     textView.setText((String) dataMap.get(mFrom[i]));
                 }
