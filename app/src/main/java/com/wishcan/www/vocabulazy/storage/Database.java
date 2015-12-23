@@ -472,13 +472,15 @@ public class Database implements Parcelable {
                 String translation = object.getString("translation");
                 String audio = object.getString("spell_audio");
 
-                String en_sentence = object.getString("en_sentence");
-                String cn_sentence = object.getString("cn_sentence");
-                String sentence_audio = object.getString("sentence_audio");
+                JSONArray en_sentence = object.getJSONArray("en_sentence");
+                JSONArray cn_sentence = object.getJSONArray("cn_sentence");
+                JSONArray sentence_audio = object.getJSONArray("sentence_audio");
 
-                ArrayList<String> en_sentence_array = splitString(en_sentence);
-                ArrayList<String> cn_sentence_array = splitString(cn_sentence);
-                ArrayList<String> sentence_audio_array = splitString(sentence_audio);
+                ArrayList<String> en_sentence_array = toArrayList(en_sentence, new ArrayList<String>());
+                ArrayList<String> cn_sentence_array = toArrayList(cn_sentence, new ArrayList<String>());
+                ArrayList<String> sentence_audio_array = toArrayList(sentence_audio, new ArrayList<String>());
+
+                Log.d(TAG, "length of arraylist: " + en_sentence.length());
 
                 Vocabulary vocabulary = new Vocabulary(id, spell, kk, category, translation, audio, en_sentence_array, cn_sentence_array, sentence_audio_array);
                 mVocabularies.add(vocabulary);
@@ -729,22 +731,34 @@ public class Database implements Parcelable {
         return jsonArray;
     }
 
-    private ArrayList<String> splitString(String str) {
-        ArrayList<String> arrayList = new ArrayList<>();
+//    private ArrayList<String> splitString(JSONArray jsonArray) {
+//        ArrayList<String> arrayList = new ArrayList<>();
+//
+//        strings = str.split("# ");
+//
+//        for (int index = 0; index < strings.length; index++) {
+//            if (!strings[index].equals("")) {
+//                arrayList.add(strings[index]);
+//            }
+//        }
+//
+//        return arrayList;
+//    }
 
-        String[] strings = str.split("# ");
-
-        for (int index = 0; index < strings.length; index++) {
-            if (!strings[index].equals("")) {
-                arrayList.add(strings[index]);
+    private ArrayList toArrayList(JSONArray jsonArray, ArrayList arrayList) {
+        for (int index = 0; index < jsonArray.length(); index++) {
+            try {
+                arrayList.add(jsonArray.get(index));
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
-
         return arrayList;
     }
 
     private ArrayList<Integer> convertJSONArrayToIntegerArrayList(JSONArray jsonArray) {
         ArrayList<Integer> arrayList = new ArrayList<>();
+
         for (int index = 0; index < jsonArray.length(); index++) {
 
             try {
