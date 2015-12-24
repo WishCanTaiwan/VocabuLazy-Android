@@ -952,6 +952,11 @@ public class PlayerScrollView extends RelativeLayout {
 
 
                 for(int i = itemFilledStartIndex; i < itemFilledEndIndex; i++){
+                    if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM0_RES_ID) {
+                        Log.d(TAG, "spell");
+                    } else if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM1_RES_ID) {
+                        Log.d(TAG, "translation");
+                    }
                     /**
                      * here only contains spell and translation.
                      */

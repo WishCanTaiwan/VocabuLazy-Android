@@ -470,17 +470,13 @@ public class Database implements Parcelable {
                 String kk = object.getString("kk");
                 String category = object.getString("category");
                 String translation = object.getString("translation");
+//                ArrayList<String> category = toArrayList(object.getJSONArray("category"), new ArrayList<String>());
+//                ArrayList<String> translation = toArrayList(object.getJSONArray("translation"), new ArrayList<String>());
                 String audio = object.getString("spell_audio");
 
-                JSONArray en_sentence = object.getJSONArray("en_sentence");
-                JSONArray cn_sentence = object.getJSONArray("cn_sentence");
-                JSONArray sentence_audio = object.getJSONArray("sentence_audio");
-
-                ArrayList<String> en_sentence_array = toArrayList(en_sentence, new ArrayList<String>());
-                ArrayList<String> cn_sentence_array = toArrayList(cn_sentence, new ArrayList<String>());
-                ArrayList<String> sentence_audio_array = toArrayList(sentence_audio, new ArrayList<String>());
-
-                Log.d(TAG, "length of arraylist: " + en_sentence.length());
+                ArrayList<String> en_sentence_array = toArrayList(object.getJSONArray("en_sentence"), new ArrayList<String>());
+                ArrayList<String> cn_sentence_array = toArrayList(object.getJSONArray("cn_sentence"), new ArrayList<String>());
+                ArrayList<String> sentence_audio_array = toArrayList(object.getJSONArray("sentence_audio"), new ArrayList<String>());
 
                 Vocabulary vocabulary = new Vocabulary(id, spell, kk, category, translation, audio, en_sentence_array, cn_sentence_array, sentence_audio_array);
                 mVocabularies.add(vocabulary);

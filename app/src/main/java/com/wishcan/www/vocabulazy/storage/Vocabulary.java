@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.storage;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -73,6 +74,19 @@ public class Vocabulary implements Parcelable {
     public String getTranslate() {
         return mTranslate;
     }
+
+//    public String getTranslationInOneString() {
+//        StringBuilder builder = new StringBuilder();
+//        for (int index = 0; index < mTranslate.size(); index++) {
+//            Log.d(TAG, mTranslate.get(index));
+//            builder.append(mTranslate.get(index));
+//            if (index != mTranslate.size() - 1) {
+//                builder.append("；");
+//            }
+//        }
+//
+//        return builder.toString();
+//    }
 
     public String getAudio() {
         return mAudio;
