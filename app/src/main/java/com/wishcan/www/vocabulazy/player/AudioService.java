@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -103,22 +105,12 @@ public class AudioService extends IntentService {
 
         mMainActivity = MainActivity.mMainActivity;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Notification notification = new Notification.Builder(mMainActivity)
-                    .setContentTitle("ContentTitle")
-                    .setContentText("ContentText")
-                    .setSmallIcon(R.drawable.launcher_icon)
-                    .setVisibility(Notification.VISIBILITY_SECRET)
-                    .build();
-            startForeground(1, notification);
-        } else {
-            Notification notification = new Notification.Builder(mMainActivity)
-                    .setContentInfo("ContentInfo")
-                    .setContentTitle("ContentTitle")
-                    .setContentText("ContentText")
-                    .build();
-            startForeground(1, notification);
-        }
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(mMainActivity)
+                        .setContentTitle("VocabuaLazy")
+                        .setContentText("James Bond")
+                        .setSmallIcon(R.drawable.ic_launcher);
+        startForeground(1, builder.build());
 
         if (mDatabase == null) {
             mDatabase = mMainActivity.getDatabase();
