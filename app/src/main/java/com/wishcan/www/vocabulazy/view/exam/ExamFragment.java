@@ -235,14 +235,14 @@ public class ExamFragment extends Fragment {
                 else if(i == mAnswerOptionIndex){
                     pickIndex = mCurrentQuestionIndex;
                     strArr.add("");
-                    strArr.add(mVocabularies.get(pickIndex).getTranslate());
+                    strArr.add(mVocabularies.get(pickIndex).getTranslationInOneString());
                 }
                 else {
                     do {
                         pickIndex = new Random().nextInt(mTotalQuestionNum);
                     } while(pickIndex == mCurrentQuestionIndex);
                     strArr.add(mVocabularies.get(pickIndex).getSpell());
-                    strArr.add(mVocabularies.get(pickIndex).getTranslate());
+                    strArr.add(mVocabularies.get(pickIndex).getTranslationInOneString());
                 }
                 questionMap.put(i, strArr);
             }

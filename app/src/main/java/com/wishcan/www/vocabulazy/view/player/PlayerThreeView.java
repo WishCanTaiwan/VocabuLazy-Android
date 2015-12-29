@@ -157,9 +157,9 @@ public class PlayerThreeView extends InfiniteThreeView {
 
             HashMap<String, Object> hm = new HashMap<>();
             hm.put(mFrom[0], vocabulary.getSpell());
-            hm.put(mFrom[1], vocabulary.getTranslate());
+            hm.put(mFrom[1], vocabulary.getTranslationInOneString());
             hm.put(mFrom[2], vocabulary.getSpell());
-            hm.put(mFrom[3], vocabulary.getTranslate());
+            hm.put(mFrom[3], vocabulary.getTranslationInOneString());
             hm.put(mFrom[4], vocabulary.getKK());
             hm.put(mFrom[5], vocabulary.getEn_Sentence());      // En_Sentence is an ArrayList<String>
             hm.put(mFrom[6], vocabulary.getCn_Sentence());      // Cn_Sentence is an ArrayList<String>

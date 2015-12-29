@@ -111,7 +111,7 @@ public class SearchListView extends ListView {
             HashMap<String, Object> dataMap = new HashMap<>();
             dataMap.put(mFrom[0], vocabulary.getSpell());
             dataMap.put(mFrom[1], "(" + vocabulary.getCategory() + ")");
-            dataMap.put(mFrom[2], vocabulary.getTranslate());
+            dataMap.put(mFrom[2], vocabulary.getTranslationInOneString());
             mDataList.add(dataMap);
         }
     }

@@ -950,20 +950,16 @@ public class PlayerScrollView extends RelativeLayout {
                     }
                 });
 
-
                 for(int i = itemFilledStartIndex; i < itemFilledEndIndex; i++){
-//                    if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM0_RES_ID) {
-//                        Log.d(TAG, "spell");
-//                    } else if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM1_RES_ID) {
-//                        Log.d(TAG, "translation");
-//                    }
+                    if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM1_RES_ID) {
+                        Log.d(TAG, dataMap.get(mFrom[i]).toString());
+                    }
                     /**
                      * here only contains spell and translation.
                      */
                     TextView textView = (TextView) v.findViewById(mTo[i]);
-                    textView.setText((String) dataMap.get(mFrom[i]));
+                    textView.setText(dataMap.get(mFrom[i]).toString());
                 }
-
 
                 mParent.postDelayed(new Runnable() {
                     @Override
@@ -973,8 +969,6 @@ public class PlayerScrollView extends RelativeLayout {
                 }, index * 100);
             }
         }
-
-
     }
 
     class PagerIndexView extends LinearLayout{

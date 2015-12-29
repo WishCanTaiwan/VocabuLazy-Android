@@ -352,7 +352,7 @@ public class SearchActivity extends Activity {
         mSearchDetailView.requestFocus();
 
         ((TextView) mSearchDetailView.findViewById(mTo[0])).setText(vocabulary.getSpell());
-        ((TextView) mSearchDetailView.findViewById(mTo[1])).setText(vocabulary.getTranslate());
+        ((TextView) mSearchDetailView.findViewById(mTo[1])).setText(vocabulary.getTranslationInOneString());
         ((TextView) mSearchDetailView.findViewById(mTo[2])).setText(vocabulary.getKK());
         ((TextView) mSearchDetailView.findViewById(mTo[3])).setText(vocabulary.getEn_Sentence().get(0));
         ((TextView) mSearchDetailView.findViewById(mTo[4])).setText(vocabulary.getCn_Sentence().get(0));

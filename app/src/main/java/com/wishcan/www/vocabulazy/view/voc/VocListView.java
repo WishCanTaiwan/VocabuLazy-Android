@@ -77,7 +77,7 @@ public class VocListView extends ListView{
             HashMap<String, Object> hm = new HashMap<>();
             hm.put(mFrom[0], vocabulary.getSpell());
             hm.put(mFrom[1], vocabulary.getKK());
-            hm.put(mFrom[2], vocabulary.getTranslate());
+            hm.put(mFrom[2], vocabulary.getTranslationInOneString());
             mDataList.add(hm);
         }
     }

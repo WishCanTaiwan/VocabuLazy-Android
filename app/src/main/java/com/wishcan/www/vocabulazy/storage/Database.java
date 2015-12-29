@@ -253,6 +253,7 @@ public class Database implements Parcelable {
                 if (ids.get(index).equals(vocabulary.getID())) {
 //                    Log.d(TAG, "id: " + vocabulary.getID());
                     vocabularies.add(vocabulary);
+                    Log.d(TAG, "getVocabulariesByIDs - " + vocabulary.getSpell());
                 }
             }
         }
@@ -469,9 +470,9 @@ public class Database implements Parcelable {
                 String spell = object.getString("spell");
                 String kk = object.getString("kk");
                 String category = object.getString("category");
-                String translation = object.getString("translation");
+//                String translation = object.getString("translation");
 //                ArrayList<String> category = toArrayList(object.getJSONArray("category"), new ArrayList<String>());
-//                ArrayList<String> translation = toArrayList(object.getJSONArray("translation"), new ArrayList<String>());
+                ArrayList<String> translation = toArrayList(object.getJSONArray("translation"), new ArrayList<String>());
                 String audio = object.getString("spell_audio");
 
                 ArrayList<String> en_sentence_array = toArrayList(object.getJSONArray("en_sentence"), new ArrayList<String>());
@@ -727,11 +728,10 @@ public class Database implements Parcelable {
         return jsonArray;
     }
 
-
     private ArrayList toArrayList(JSONArray jsonArray, ArrayList arrayList) {
         for (int index = 0; index < jsonArray.length(); index++) {
             try {
-                arrayList.add(jsonArray.get(index));
+                arrayList.add(jsonArray.getString(index));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

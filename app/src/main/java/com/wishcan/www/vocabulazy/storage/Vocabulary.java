@@ -17,7 +17,7 @@ public class Vocabulary implements Parcelable {
     public String mSpell;
     public String mKK;
     public String mCategory;
-    public String mTranslate;
+    public ArrayList<String> mTranslate;
     public String mAudio;
 
     public ArrayList<String> mEn_Sentence;
@@ -25,7 +25,7 @@ public class Vocabulary implements Parcelable {
     public ArrayList<String> mSentence_Audio;
 
     public Vocabulary(int id, String spell, String kk,
-                      String category, String translate, String audio,
+                      String category, ArrayList<String> translate, String audio,
                       ArrayList<String> en_sentence, ArrayList<String> cn_sentence,
                       ArrayList<String> sentence_audio) {
         mID = id;
@@ -47,7 +47,7 @@ public class Vocabulary implements Parcelable {
         mSpell = in.readString();
         mKK = in.readString();
         mCategory = in.readString();
-        mTranslate = in.readString();
+        mTranslate = in.readArrayList(String.class.getClassLoader());
         mAudio = in.readString();
 
         mEn_Sentence = in.readArrayList(String.class.getClassLoader());
@@ -71,22 +71,22 @@ public class Vocabulary implements Parcelable {
         return mCategory;
     }
 
-    public String getTranslate() {
+    public ArrayList<String>  getTranslate() {
         return mTranslate;
     }
 
-//    public String getTranslationInOneString() {
-//        StringBuilder builder = new StringBuilder();
-//        for (int index = 0; index < mTranslate.size(); index++) {
-//            Log.d(TAG, mTranslate.get(index));
-//            builder.append(mTranslate.get(index));
-//            if (index != mTranslate.size() - 1) {
-//                builder.append("；");
-//            }
-//        }
-//
-//        return builder.toString();
-//    }
+    public String getTranslationInOneString() {
+        StringBuilder builder = new StringBuilder();
+        for (int index = 0; index < mTranslate.size(); index++) {
+//            Log.d(TAG, mTranslate.get(index).toString());
+            builder.append(mTranslate.get(index).toString());
+            if (index != mTranslate.size() - 1) {
+                builder.append("；");
+            }
+        }
+
+        return builder.toString();
+    }
 
     public String getAudio() {
         return mAudio;
@@ -128,7 +128,7 @@ public class Vocabulary implements Parcelable {
         dest.writeString(mSpell);
         dest.writeString(mKK);
         dest.writeString(mCategory);
-        dest.writeString(mTranslate);
+        dest.writeList(mTranslate);
         dest.writeString(mAudio);
 
         dest.writeList(mEn_Sentence);

@@ -197,7 +197,6 @@ public class AudioPlayer {
         mStopPeriod = option.getStopPeriod();
         mStopPlaying = option.mPlayTime;
 
-
         mItemLoopCount = mItemLoop;
         mListLoopCount = mListLoop;
 
