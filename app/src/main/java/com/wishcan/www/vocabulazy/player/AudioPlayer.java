@@ -61,6 +61,7 @@ public class AudioPlayer {
     private int mItemLoopCount;
 
     private boolean mIsPlaying;
+    private boolean stopped;
 
     private boolean mIsRandom;
     private boolean mIsEnSentenceEnabled;
@@ -99,6 +100,7 @@ public class AudioPlayer {
 
         mNowPlaying = AudioCategory.IDLE;
         mIsPlaying = false;
+        stopped = true;
 
         mOptions = mDatabase.getOptions();
 
@@ -123,6 +125,10 @@ public class AudioPlayer {
 //                    Log.d(TAG, "start");
                 mPlayer.start();
                 mIsPlaying = true;
+                if (stopped) {
+                    startStopPlayingRunnable();
+                }
+                stopped = false;
                 isItemCompleted = false;
                 mOnPlayerStatusChangedListener.onItemStartPlaying(mCurrentPlayingIndex);
             }
@@ -179,6 +185,7 @@ public class AudioPlayer {
     public void updateOptions(ArrayList<Option> options, int currentMode) {
         mOptions = options;
         setOptions(options.get(currentMode));
+        startStopPlayingRunnable();
     }
 
     private void setOptions(Option option) {
@@ -189,6 +196,7 @@ public class AudioPlayer {
 
         mStopPeriod = option.getStopPeriod();
         mStopPlaying = option.mPlayTime;
+
 
         mItemLoopCount = mItemLoop;
         mListLoopCount = mListLoop;
@@ -371,6 +379,7 @@ public class AudioPlayer {
             mPlayer.seekTo(0);
             mOnPlayerStatusChangedListener.onItemStopPlaying();
             removePendingTask();
+            stopped = true;
         }
     }
 
