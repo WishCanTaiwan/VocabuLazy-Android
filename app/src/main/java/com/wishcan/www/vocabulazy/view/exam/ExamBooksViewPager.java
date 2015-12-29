@@ -23,6 +23,8 @@ import com.wishcan.www.vocabulazy.view.books.BooksGridView;
  */
 public class ExamBooksViewPager extends ViewPager {
 
+    private static final String TAG = ExamBooksViewPager.class.getSimpleName();
+
     private Context mContext;
 
     private LinkedListPagerAdapter mAdapter;
@@ -71,7 +73,7 @@ public class ExamBooksViewPager extends ViewPager {
 
         @Override
         public void onPageSelected(int position) {
-            Log.d("onPageSelected", " " + position);
+//            Log.d(TAG, "onPageSelected: " + position);
             if (position == 0)
                 ((MainActivity) getContext()).onBackPressed();
         }

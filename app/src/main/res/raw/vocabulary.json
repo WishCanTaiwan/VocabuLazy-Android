@@ -45,7 +45,7 @@
   "cn_sentence": ["我可以吃牛肉三明治，而不要起司漢堡嗎？ ", "喬沒有跟朋友出去。反而整晚工作。"],
   "en_sentence": ["Can I have a beef sandwich instead of a cheeseburger? ", "Joe didn\u2019t go out with his friends.  He worked all night instead."],
   "kk": "[0n'stGd]",
-  "sentence_audio": ["510105-1.mp3 ", "510105-2.mp3"],
+  "sentence_audio": ["510105-1.mp3", "510105-2.mp3"],
   "spell_audio": "510105.mp3",
   "spell": "instead"
 }, {
@@ -55,7 +55,7 @@
   "cn_sentence": ["我只有讀過那個故事的中文譯本。 ", "秘書把報告的粗略譯本交給老闆。"],
   "en_sentence": ["I\u2019ve only read the story in Chinese translation. ", "The secretary gave her boss a rough translation of the report."],
   "kk": "[tr$ns'leNDn]",
-  "sentence_audio": ["510106-1.mp3 ", "510106-2.mp3 ", "510106-3.mp3"],
+  "sentence_audio": ["510106-1.mp3", "510106-2.mp3"],
   "spell_audio": "510106.mp3",
   "spell": "translation"
 }, {
@@ -65,7 +65,7 @@
   "cn_sentence": ["泰德不懂法文，所以我自願為他翻譯。 ", "你能把這封信從英文翻譯成日文嗎？"],
   "en_sentence": ["Ted didn\u2019t understand French, so I offered to translate. ", "Can you translate this letter from English into Japanese?"],
   "kk": "[tr$ns'let]",
-  "sentence_audio": ["510107-1.mp3 ", "510107-2.mp3"],
+  "sentence_audio": ["510107-1.mp3", "510107-2.mp3"],
   "spell_audio": "510107.mp3",
   "spell": "translate"
 }, {
@@ -143,7 +143,7 @@
   "cn_sentence": ["他受良好的教育，並找到一份高薪的工作。 ", "琳達選擇在大學主修教育因為她想成為學校老師。"],
   "en_sentence": ["He received a good education, and got a well-paid job. ", "Linda chose to major in education in college because she wanted to become a schoolteacher."],
   "kk": "[`GdID'keNDn]",
-  "sentence_audio": ["510116-1.mp3 ", "510116-2.mp3"],
+  "sentence_audio": ["510116-1.mp3", "510116-2.mp3"],
   "spell_audio": "510116.mp3",
   "spell": "education"
 }, {
@@ -183,7 +183,7 @@
   "cn_sentence": ["寫出如此有趣的鬼故事需要奇妙的想像力。 ", "如果你想要當作家，想像力是很重要的。"],
   "en_sentence": ["It takes a wonderful imagination to write such an interesting ghost story. ", "Imagination is very important if you want to be a writer."],
   "kk": "[0`m$dID'neNDn]",
-  "sentence_audio": ["510120-1.mp3 ", "510120-2.mp3"],
+  "sentence_audio": ["510120-1.mp3", "510120-2.mp3"],
   "spell_audio": "510120.mp3",
   "spell": "imagination"
 }, {
@@ -223,7 +223,7 @@
   "cn_sentence": ["我們學校百分之六十的老師是男的。 ", "百分之二十的錢屬於我們。"],
   "en_sentence": ["Sixty percent of the teachers in our school are male. ", "Twenty percent of the money belongs to us."],
   "kk": "[pQ'sGnt]",
-  "sentence_audio": ["510124-1.mp3 ", "510124-2.mp3"],
+  "sentence_audio": ["510124-1.mp3", "510124-2.mp3"],
   "spell_audio": "510124.mp3",
   "spell": "percent"
 }, {
@@ -263,7 +263,7 @@
   "cn_sentence": ["地鐵在此站連結高鐵。 ", "曼哈頓大橋連接下曼哈頓與布魯克林。"],
   "en_sentence": ["The subway connects with the high-speed rail at this station. ", "The Manhattan Bridge connects Lower Manhattan with Brooklyn."],
   "kk": "[kD'nGkt]",
-  "sentence_audio": ["510128-1.mp3 ", "510128-2.mp3"],
+  "sentence_audio": ["510128-1.mp3", "510128-2.mp3"],
   "spell_audio": "510128.mp3",
   "spell": "connect"
 }, {
@@ -273,7 +273,7 @@
   "cn_sentence": ["由於電話線路收訊不佳，我聽不清楚山姆說什麼。 ", "有些旅館提供免費的網路連結服務。"],
   "en_sentence": ["Because of a poor telephone connection, I couldn\u2019t hear Sam clearly. ", "Some hotels offer free Internet connection service."],
   "kk": "[kD'nGkNDn]",
-  "sentence_audio": ["510129-1.mp3 ", "510129-2.mp3"],
+  "sentence_audio": ["510129-1.mp3", "510129-2.mp3"],
   "spell_audio": "510129.mp3",
   "spell": "connection"
 }, {
@@ -299,7 +299,7 @@
   "cn_sentence": ["這些科學家將研究為何這麼多人在這麼短期間內染病。 ", "我得先研究一下他的提議，然後才做決定。", "創業之前，做點研究是聰明的。"],
   "en_sentence": ["The scientists will research into why so many people got sick in such a short time. ", "I need to research his proposition before I make any decision.", "It\u2019s smart to do some research before you start a business."],
   "kk": "['ris\"tN]",
-  "sentence_audio": ["510131-1.mp3 ", "510131-2.mp3", "510132-1.mp3"],
+  "sentence_audio": ["510131-1.mp3", "510131-2.mp3", "510132-1.mp3"],
   "spell_audio": "510132.mp3",
   "spell": "research"
 }, {
@@ -329,7 +329,7 @@
   "cn_sentence": ["我的室友查理事實上是我的網球夥伴及最好的朋友。 ", "傑瑞的車看起來非常新，但事實上，它是二手的。"],
   "en_sentence": ["My roommate Charlie is in fact my tennis partner and best friend. ", "Jerry\u2019s car looks very new, but in fact, it is second-hand."],
   "kk": "",
-  "sentence_audio": ["510135-1.mp3 ", "510135-2.mp3"],
+  "sentence_audio": ["510135-1.mp3", "510135-2.mp3"],
   "spell_audio": "510135.mp3",
   "spell": "in fact"
 }, {
@@ -481,7 +481,7 @@
   "cn_sentence": ["漢克在最後一刻是如此忙於完成他的作業，以致於他沒吃中餐。", "當我閱讀的時候，我往往會跳過乏味的部分，先看有趣的部分。 ", "教授從緒論直接跳到這本書的第二章。"],
   "en_sentence": ["Hank was so busy trying to finish his homework at the last minute that he skipped lunch.", "When I read, I usually skip the boring sections and read the interesting ones first. ", "The professor skipped from the introduction to the second chapter of the book."],
   "kk": "[sk0p]",
-  "sentence_audio": ["510216-1.mp3", "510217-1.mp3 ", "510217-2.mp3"],
+  "sentence_audio": ["510216-1.mp3", "510217-1.mp3", "510217-2.mp3"],
   "spell_audio": "510217.mp3",
   "spell": "skip"
 }, {
@@ -671,7 +671,7 @@
   "cn_sentence": ["我們不要總是在意朋友的缺點，而是該更寬大為懷。 ", "法官在法庭上判定彼得有過失，因為是他造成這意外。"],
   "en_sentence": ["Instead of always caring about our friends\u2019 faults, we should be more forgiving. ", "The judge in court decided that Peter was at fault, for he had caused the accident."],
   "kk": "[fClt]",
-  "sentence_audio": ["510240-1.mp3 ", "510240-2.mp3"],
+  "sentence_audio": ["510240-1.mp3", "510240-2.mp3"],
   "spell_audio": "510240.mp3",
   "spell": "fault"
 }, {
@@ -691,7 +691,7 @@
   "cn_sentence": ["去年夏天我在祖父母的農場度過的時光是我最美好的回憶之一；我將永難忘懷。 ", "據報導如果人在三天內不複習所學過的東西，它將永遠從他或她的記憶中消失。"],
   "en_sentence": ["The time I spent last summer at my grandparents\u2019 farm is one of my most beautiful memories; I will never forget it. ", "It is reported that if one doesn\u2019t review what has been learned within three days, it will disappear from his or her memory."],
   "kk": "['mGm3r0]",
-  "sentence_audio": ["510242-1.mp3 ", "510242-2.mp3"],
+  "sentence_audio": ["510242-1.mp3", "510242-2.mp3"],
   "spell_audio": "510242.mp3",
   "spell": "memory"
 }, {
@@ -771,7 +771,7 @@
   "cn_sentence": ["約翰的病很嚴重，以致於他必須住院兩個禮拜。 ", "我從未聽說過這種疾病。"],
   "en_sentence": ["John\u2019s illness was so serious that he had to spend two weeks in the hospital. ", "I have never heard of this kind of illness."],
   "kk": "['0ln0s]",
-  "sentence_audio": ["510302-1.mp3 ", "510302-2.mp3"],
+  "sentence_audio": ["510302-1.mp3", "510302-2.mp3"],
   "spell_audio": "510302.mp3",
   "spell": "illness"
 }, {
@@ -865,7 +865,7 @@
   "cn_sentence": ["那位侍者的服務很好，所以我賞給他一大筆小費。 ", "你們的公司提供何種服務？"],
   "en_sentence": ["The waiter gave me excellent service so I rewarded him with a big tip. ", "What kinds of services does your company provide?"],
   "kk": "['s\"v0s]",
-  "sentence_audio": ["510313-1.mp3 ", "510313-2.mp3"],
+  "sentence_audio": ["510313-1.mp3", "510313-2.mp3"],
   "spell_audio": "510313.mp3",
   "spell": "service"
 }, {
@@ -875,7 +875,7 @@
   "cn_sentence": ["王先生已在學校服務四十年了。 ", "傑克儘可能為他的顧客服務。"],
   "en_sentence": ["Mr. Wang has served in the school for forty years. ", "Jack served his customers as well as he could."],
   "kk": "[s\"v]",
-  "sentence_audio": ["510314-1.mp3 ", "510314-2.mp3"],
+  "sentence_audio": ["510314-1.mp3", "510314-2.mp3"],
   "spell_audio": "510314.mp3",
   "spell": "serve"
 }, {
@@ -943,7 +943,7 @@
   "cn_sentence": ["地球到太陽之間有很長的一段距離。 ", "臺北市和高雄市之間的距離約三百公里。"],
   "en_sentence": ["It is a long distance from the Earth to the Sun. ", "The distance between Taipei City and Kaohsiung City is about 300 kilometers."],
   "kk": "['d0stDns]",
-  "sentence_audio": ["510322-1.mp3 ", "510322-2.mp3"],
+  "sentence_audio": ["510322-1.mp3", "510322-2.mp3"],
   "spell_audio": "510322.mp3",
   "spell": "distance"
 }, {
@@ -963,7 +963,7 @@
   "cn_sentence": ["路易士向警方詳細描述那名銀行搶匪。 ", "班夫國家公園裡的露易絲湖其風景真是美得無法形容。"],
   "en_sentence": ["Louis gave the police a detailed description of the bank robber. ", "The scenery of Lake Louise in Banff National Park is beyond description."],
   "kk": "[d0'skr0pNDn]",
-  "sentence_audio": ["510324-1.mp3 ", "510324-2.mp3"],
+  "sentence_audio": ["510324-1.mp3", "510324-2.mp3"],
   "spell_audio": "510324.mp3",
   "spell": "description"
 }, {
@@ -1023,7 +1023,7 @@
   "cn_sentence": ["癌症的治療藥物將會是重大的醫學發現。 ", "傑克的父母很驚訝地發現他過去一直在欺騙他們。"],
   "en_sentence": ["A cure for cancer would be an important medical discovery. ", "Jack\u2019s parents were very surprised at the discovery that he had been lying to them."],
   "kk": "[d0'skKvr0]",
-  "sentence_audio": ["510330-1.mp3 ", "510330-2.mp3"],
+  "sentence_audio": ["510330-1.mp3", "510330-2.mp3"],
   "spell_audio": "510330.mp3",
   "spell": "discovery"
 }, {
@@ -1033,7 +1033,7 @@
   "cn_sentence": ["暑假後學生回到學校都充滿活力。 ", "約瑟夫致力於寫作，而非教書。"],
   "en_sentence": ["When students come back to school after the summer vacation, they are full of energy. ", "Joseph has devoted his energies to writing instead of teaching."],
   "kk": "['GnQdI0]",
-  "sentence_audio": ["510331-1.mp3 ", "510331-2.mp3"],
+  "sentence_audio": ["510331-1.mp3", "510331-2.mp3"],
   "spell_audio": "510331.mp3",
   "spell": "energy"
 }, {
@@ -1079,7 +1079,7 @@
   "cn_sentence": ["用磚造的房子比用木造的更堅固。 ", "我們看到路旁要用來建工廠的幾堆磚塊。"],
   "en_sentence": ["A house that is built of brick is stronger than one that is built of wood. ", "We saw piles of bricks on the roadside that are to be used for building the factory."],
   "kk": "[br0k]",
-  "sentence_audio": ["510336-1.mp3 ", "510336-2.mp3"],
+  "sentence_audio": ["510336-1.mp3", "510336-2.mp3"],
   "spell_audio": "510336.mp3",
   "spell": "brick"
 }, {
@@ -1189,7 +1189,7 @@
   "cn_sentence": ["瑪莉不是愛貓族。她喜愛狗勝於貓。 ", "他比較喜歡搭捷運上學，因為快速、安全、又便宜。"],
   "en_sentence": ["Mary is not a cat person.  She prefers dogs to cats. ", "He prefers to go to school by MRT, because it\u2019s fast, safe, and cheap."],
   "kk": "[pr0'f\"]",
-  "sentence_audio": ["510403-1.mp3 ", "510403-2.mp3"],
+  "sentence_audio": ["510403-1.mp3", "510403-2.mp3"],
   "spell_audio": "510403.mp3",
   "spell": "prefer"
 }, {
@@ -1239,7 +1239,7 @@
   "cn_sentence": ["我的祖父死於心臟疾病。 ", "我們應避免養成會導致疾病的習慣，像是抽菸和喝酒等。"],
   "en_sentence": ["My grandfather died of a heart disease. ", "We should avoid disease-causing habits like smoking and drinking."],
   "kk": "[d0'ziz]",
-  "sentence_audio": ["510408-1.mp3 ", "510408-2.mp3"],
+  "sentence_audio": ["510408-1.mp3", "510408-2.mp3"],
   "spell_audio": "510408.mp3",
   "spell": "disease"
 }, {
@@ -1321,7 +1321,7 @@
   "cn_sentence": ["下一期雜誌將有全新的封面設計。 ", "我喜歡那張沙發的顏色，但我不喜歡它的設計。", "這家店所賣的服飾是為青少年所設計的。"],
   "en_sentence": ["The next issue of the magazine will have a brand new cover design. ", "I like the color of that sofa, but I don\u2019t like the design.", "The clothes in this shop are designed for teenagers."],
   "kk": "[d0'za0n]",
-  "sentence_audio": ["510416-1.mp3 ", "510416-2.mp3", "510417-1.mp3"],
+  "sentence_audio": ["510416-1.mp3", "510416-2.mp3", "510417-1.mp3"],
   "spell_audio": "510417.mp3",
   "spell": "design"
 }, {
@@ -1453,7 +1453,7 @@
   "cn_sentence": ["不要在想睡覺時開車，否則你會撞到其他人或車。 ", "傑克太高，天花板太低，結果他撞到頭了。"],
   "en_sentence": ["Don\u2019t drive when you feel sleepy, or you\u2019ll bump into people or cars. ", "Jack was so tall and the ceiling was so low that he bumped his head."],
   "kk": "[bKmp]",
-  "sentence_audio": ["510431-1.mp3 ", "510431-2.mp3"],
+  "sentence_audio": ["510431-1.mp3", "510431-2.mp3"],
   "spell_audio": "510431.mp3",
   "spell": "bump"
 }, {
@@ -1523,7 +1523,7 @@
   "cn_sentence": ["有徵兆顯示天氣正在變化。 ", "我沒說他正計劃犯罪。"],
   "en_sentence": ["There are indications that the weather is changing. ", "I had no indication that he was planning a crime."],
   "kk": "[`0nd3'keN3n]",
-  "sentence_audio": ["510503-1.mp3 ", "510503-2.mp3"],
+  "sentence_audio": ["510503-1.mp3", "510503-2.mp3"],
   "spell_audio": "510503.mp3",
   "spell": "indication"
 }, {
@@ -1543,7 +1543,7 @@
   "cn_sentence": ["提米在雪融化前趕緊拍下幾張山頂的照片。 ", "你不需要融化在麵包上的奶油。"],
   "en_sentence": ["Timmy hurried to take pictures of the mountaintop before the snow melted. ", "You don\u2019t need to melt the butter on the bread."],
   "kk": "[mGlt]",
-  "sentence_audio": ["510505-1.mp3 ", "510505-2.mp3"],
+  "sentence_audio": ["510505-1.mp3", "510505-2.mp3"],
   "spell_audio": "510505.mp3",
   "spell": "melt"
 }, {
@@ -1601,7 +1601,7 @@
   "cn_sentence": ["在英文中，我們利用字母形成單字，而單字再形成句子。 ", "冰是在淡水0°C時、在海水−2°C時形成。", "自然界裡水有三態。"],
   "en_sentence": ["In English, we use letters to form words and then sentences. ", "Ice forms out of fresh water at 0°C, out of sea water at -2°C.", "There are three forms of water in nature."],
   "kk": "[fCrm]",
-  "sentence_audio": ["510511-1.mp3 ", "510511-2.mp3", "510512-1.mp3"],
+  "sentence_audio": ["510511-1.mp3", "510511-2.mp3", "510512-1.mp3"],
   "spell_audio": "510512.mp3",
   "spell": "form"
 }, {
@@ -1627,7 +1627,7 @@
   "cn_sentence": ["父母親應該要供給小孩要求的每樣東西嗎？", "幾日雨天之後，蔬菜供應短缺。 ", "下星期學生將會收到新的筆記本。"],
   "en_sentence": ["Should parents supply their children with everything that they ask for?", "Vegetables are in short supply after these rainy days. ", "The students will receive new supplies of notebooks next week."],
   "kk": "[sD'pla0]",
-  "sentence_audio": ["510514-1.mp3", "510515-1.mp3 ", "510515-2.mp3"],
+  "sentence_audio": ["510514-1.mp3", "510515-1.mp3", "510515-2.mp3"],
   "spell_audio": "510515.mp3",
   "spell": "supply"
 }, {
@@ -1661,7 +1661,7 @@
   "cn_sentence": ["新的公路把五個鄉鎮連結在一起。 ", "老師要學生站成一個圓圈，手拉著手串連起來。", "有任何已知事實顯示抽菸和肺癌有關係嗎？"],
   "en_sentence": ["The new highway links all five towns together. ", "The teacher asked the students to stand in a circle and link up by holding each other\u2019s arms.", "Is there any known fact that there is a link between smoking and lung cancer?"],
   "kk": "[l0Hk]",
-  "sentence_audio": ["510519-1.mp3 ", "510519-2.mp3", "510520-1.mp3"],
+  "sentence_audio": ["510519-1.mp3", "510519-2.mp3", "510520-1.mp3"],
   "spell_audio": "510520.mp3",
   "spell": "link"
 }, {
@@ -1743,7 +1743,7 @@
   "cn_sentence": ["傑基的父親跟隨他的祖父進入國貿界。", "在美國和中國之間交易的船隻很多。 ", "最早在美國的歐洲人以金屬和原住民交換玉米。"],
   "en_sentence": ["Jackie\u2019s father entered international trade, following his grandfather.", "There are many ships trading between America and China. ", "The first Europeans in America traded metal for corn with the natives."],
   "kk": "[tred]",
-  "sentence_audio": ["510530-1.mp3", "510531-1.mp3 ", "510531-2.mp3"],
+  "sentence_audio": ["510530-1.mp3", "510531-1.mp3", "510531-2.mp3"],
   "spell_audio": "510531.mp3",
   "spell": "trade"
 }, {
@@ -1909,7 +1909,7 @@
   "cn_sentence": ["December 和 remember 押韻。 ", "康妮在她的歌曲中將 June 和 moon 兩字押韻。", "我聽到有個男孩子唱著一首韻文：「雨啊，雨啊，快走啊。改天再來吧。小小強尼想玩呀！」 ", "莎士比亞用押韻寫了很多有名的情詩。"],
   "en_sentence": ["The word \u201cDecember\u201d rhymes with the word \u201cremember.\u201d ", "Connie rhymed the word \u201cJune\u201d with \u201cmoon\u201d in her song.", "I heard a boy singing the rhyme, \u201cRain, rain, go away.  Come again another day. Little Johnny wants to play.\u201d ", "Shakespeare wrote many famous love poems in rhyme."],
   "kk": "[ra0m]",
-  "sentence_audio": ["510602-1.mp3 ", "510602-2.mp3", "510603-1.mp3 ", "510603-2.mp3"],
+  "sentence_audio": ["510602-1.mp3", "510602-2.mp3", "510603-1.mp3", "510603-2.mp3"],
   "spell_audio": "510603.mp3",
   "spell": "rhyme"
 }, {
@@ -1949,7 +1949,7 @@
   "cn_sentence": ["許多大鑽石是在非洲開採，但卻銷往世界其他各國。 ", "鑽石是地球上所有礦石中硬度最高的。"],
   "en_sentence": ["Many large diamonds are found in Africa but sold in countries around the world. ", "Diamond is the hardest stone on earth."],
   "kk": "['da0(D)mDnd]",
-  "sentence_audio": ["510608-1.mp3 ", "510608-2.mp3"],
+  "sentence_audio": ["510608-1.mp3", "510608-2.mp3"],
   "spell_audio": "510608.mp3",
   "spell": "diamond"
 }, {
@@ -1995,7 +1995,7 @@
   "cn_sentence": ["雖然費歐娜真的想成為一位作家，但她就為了使父母高興而修法律學位。 ", "珍妮很容易取悅；只要買一杯咖啡給她，她就會開心。"],
   "en_sentence": ["Although she really wanted to be a writer, Fiona took a degree in law just to please her parents. ", "Jenny is easy to please; just buy her a cup of coffee and she will be happy."],
   "kk": "[pliz]",
-  "sentence_audio": ["510613-1.mp3 ", "510613-2.mp3"],
+  "sentence_audio": ["510613-1.mp3", "510613-2.mp3"],
   "spell_audio": "510613.mp3",
   "spell": "please"
 }, {
@@ -2011,7 +2011,7 @@
   "cn_sentence": ["學生被要求考英文聽力測驗時不許發出任何聲音。 ", "聲音在水中比在空氣中傳導得快。", "舉辦池畔生日派對聽起來是一個好主意。"],
   "en_sentence": ["Students are asked not to make a sound when they are taking an English listening test. ", "Sound travels faster in water than in air.", "It sounds like a good idea to have a birthday pool party."],
   "kk": "[sa?nd]",
-  "sentence_audio": ["510614-1.mp3 ", "510614-2.mp3", "510615-1.mp3"],
+  "sentence_audio": ["510614-1.mp3", "510614-2.mp3", "510615-1.mp3"],
   "spell_audio": "510615.mp3",
   "spell": "sound"
 }, {
@@ -2415,7 +2415,7 @@
   "cn_sentence": ["火勢迅速蔓延整間房子，造成兩人喪生。 ", "在網路上散播不實消息是不對的。", "這疾病擴散得比我們想像中快。"],
   "en_sentence": ["The fire spread quickly through the house and killed two people. ", "It is wrong to spread incorrect information on the Internet.", "The spread of the disease is faster than we can imagine."],
   "kk": "[sprGd]",
-  "sentence_audio": ["510722-1.mp3 ", "510722-2.mp3", "510723-1.mp3"],
+  "sentence_audio": ["510722-1.mp3", "510722-2.mp3", "510723-1.mp3"],
   "spell_audio": "510723.mp3",
   "spell": "spread"
 }, {
@@ -2481,7 +2481,7 @@
   "cn_sentence": ["這位男士深怕被人們發現沒有講實話，而迅速離場。 ", "火災發生時，觀眾們被引導撤離電影院。", "這架飛機在每邊各有三個緊急逃生口。"],
   "en_sentence": ["The man quickly exited for fear that people might realize he didn\u2019t tell the truth. ", "The audience was led to exit the theater in a fire.", "This plane has three emergency exits on each side."],
   "kk": "['Ggz0t]",
-  "sentence_audio": ["510729-1.mp3 ", "510729-2.mp3", "510730-1.mp3"],
+  "sentence_audio": ["510729-1.mp3", "510729-2.mp3", "510730-1.mp3"],
   "spell_audio": "510730.mp3",
   "spell": "exit"
 }, {
@@ -2659,7 +2659,7 @@
   "cn_sentence": ["到處都有賣咖啡，可是它的味道因地而異。 ", "一位好演員變化其表演風格以飾演不同的角色。"],
   "en_sentence": ["Coffee is sold everywhere, but its taste varies from place to place. ", "A good actor varies his acting style to play different roles."],
   "kk": "['vGr0]",
-  "sentence_audio": ["510807-1.mp3 ", "510807-2.mp3"],
+  "sentence_audio": ["510807-1.mp3", "510807-2.mp3"],
   "spell_audio": "510807.mp3",
   "spell": "vary"
 }, {
@@ -2669,7 +2669,7 @@
   "cn_sentence": ["那家茶館提供各式各樣的茶飲。 ", "我喜歡 7-Eleven 所賣食品的多樣性，所以我常去那裡。"],
   "en_sentence": ["A great variety of tea drinks are offered at the tea shop. ", "I like the variety of foods sold in a 7-Eleven, so I go there very often."],
   "kk": "[vD'ra0Dt0]",
-  "sentence_audio": ["510808-1.mp3 ", "510808-2.mp3"],
+  "sentence_audio": ["510808-1.mp3", "510808-2.mp3"],
   "spell_audio": "510808.mp3",
   "spell": "variety"
 }, {
@@ -2725,7 +2725,7 @@
   "cn_sentence": ["夏威夷的氣候溫暖晴朗，帶著涼爽的微風。 ", "臺灣的夏季氣候很炎熱。"],
   "en_sentence": ["Hawaii has a warm and sunny climate with cool breezes. ", "The summer climate is very hot in Taiwan."],
   "kk": "['kla0m0t]",
-  "sentence_audio": ["510814-1.mp3 ", "510814-2.mp3"],
+  "sentence_audio": ["510814-1.mp3", "510814-2.mp3"],
   "spell_audio": "510814.mp3",
   "spell": "climate"
 }, {
@@ -2801,7 +2801,7 @@
   "cn_sentence": ["我哥哥喜歡咖啡裡添加香草香料，可是我只喜歡黑咖啡。", "在中國菜裡，辛香料很受歡迎。 ", "大蒜是臺灣菜裡常被使用的一種香料。"],
   "en_sentence": ["My brother prefers coffee spiced with vanilla, but I just like it black.", "Spices are very welcome in Chinese dishes. ", "Garlic is a kind of spice often used in Taiwanese dishes."],
   "kk": "[spa0s]",
-  "sentence_audio": ["510821-1.mp3", "510822-1.mp3 ", "510822-2.mp3"],
+  "sentence_audio": ["510821-1.mp3", "510822-1.mp3", "510822-2.mp3"],
   "spell_audio": "510822.mp3",
   "spell": "spice"
 }, {
@@ -2861,7 +2861,7 @@
   "cn_sentence": ["肉類很快腐敗，所以你必須儘快把它放進冰箱。 ", "吃完飯要刷牙，否則殘留在口腔的食物會腐蝕你的牙齒。"],
   "en_sentence": ["Meat rots very quickly, so you have to put it in the refrigerator as soon as possible. ", "Brush your teeth after meals, or the food left in the mouth will rot your teeth."],
   "kk": "[rAt]",
-  "sentence_audio": ["510828-1.mp3 ", "510828-2.mp3"],
+  "sentence_audio": ["510828-1.mp3", "510828-2.mp3"],
   "spell_audio": "510828.mp3",
   "spell": "rot"
 }, {
@@ -3017,7 +3017,7 @@
   "cn_sentence": ["我們計劃花二週時間騎自行車環島。 ", "飛機有時在降落之前，會在機場上空盤旋。"],
   "en_sentence": ["We plan to circle the island on our bikes in two weeks. ", "Airplanes sometimes circle above the airport before they land."],
   "kk": "['s\"k9]",
-  "sentence_audio": ["510905-1.mp3 ", "510905-2.mp3"],
+  "sentence_audio": ["510905-1.mp3", "510905-2.mp3"],
   "spell_audio": "510905.mp3",
   "spell": "circle"
 }, {
@@ -3037,7 +3037,7 @@
   "cn_sentence": ["蒂娜對日語和日本文化感興趣。 ", "旅行是學習外國文化的好方式。"],
   "en_sentence": ["Tina is interested in Japanese language and culture. ", "Traveling is a good way to learn about foreign cultures."],
   "kk": "['kKltNQ]",
-  "sentence_audio": ["510907-1.mp3 ", "510907-2.mp3"],
+  "sentence_audio": ["510907-1.mp3", "510907-2.mp3"],
   "spell_audio": "510907.mp3",
   "spell": "culture"
 }, {
@@ -3057,7 +3057,7 @@
   "cn_sentence": ["這個旅館房間使你能看見富士山的全貌。 ", "我的父母不允許我加入樂團，因為他們要我專心在學業上。"],
   "en_sentence": ["This hotel room allows you to have a complete view of Mount Fuji. ", "My parents wouldn\u2019t allow me to join the band, because they wanted me to focus on my schoolwork."],
   "kk": "[D'la?]",
-  "sentence_audio": ["510909-1.mp3 ", "510909-2.mp3"],
+  "sentence_audio": ["510909-1.mp3", "510909-2.mp3"],
   "spell_audio": "510909.mp3",
   "spell": "allow"
 }, {
@@ -3137,7 +3137,7 @@
   "cn_sentence": ["傑森投入許多精力在他的事業上。 ", "我看得出來，你下了許多苦功要改善你的英文。"],
   "en_sentence": ["Jason put a lot of effort into his business. ", "I can see that you have made a great effort to improve your English."],
   "kk": "['GfQt]",
-  "sentence_audio": ["510917-1.mp3 ", "510917-2.mp3"],
+  "sentence_audio": ["510917-1.mp3", "510917-2.mp3"],
   "spell_audio": "510917.mp3",
   "spell": "effort"
 }, {
@@ -3157,7 +3157,7 @@
   "cn_sentence": ["他們正計劃為新車做特別的促銷活動。 ", "這所學校以提倡科學教育聞名。"],
   "en_sentence": ["They are planning a special promotion for the new car. ", "This school is famous for its promotion of science education."],
   "kk": "[prD'moNDn]",
-  "sentence_audio": ["510919-1.mp3 ", "510919-2.mp3"],
+  "sentence_audio": ["510919-1.mp3", "510919-2.mp3"],
   "spell_audio": "510919.mp3",
   "spell": "promotion"
 }, {
@@ -3223,7 +3223,7 @@
   "cn_sentence": ["凱文忘了帶他的鑰匙，結果他必須在門外等待，直到他媽媽回家為止。 ", "撒謊的一個可能後果就是人們以後不會信任說謊的人。", "大雨導致水災，許多房屋都被沖毀了。"],
   "en_sentence": ["Kevin forgot to take his key. As a result, he had to wait outside until his mother came home. ", "One possible result of lying is that people will not trust a liar.", "The heavy rain resulted in a flood; many houses were ruined."],
   "kk": "[r0'zKlt]",
-  "sentence_audio": ["510925-1.mp3 ", "510925-2.mp3", "510926-1.mp3"],
+  "sentence_audio": ["510925-1.mp3", "510925-2.mp3", "510926-1.mp3"],
   "spell_audio": "510926.mp3",
   "spell": "result"
 }, {
@@ -3333,7 +3333,7 @@
   "cn_sentence": ["我們應當合作保持環境整潔。 ", "在溫暖、快樂的家庭環境長大對兒童是很重要的。"],
   "en_sentence": ["We should work together to keep our environment clean. ", "It\u2019s important for children to grow up in a warm and happy family environment."],
   "kk": "[0n'va0rDnmDnt]",
-  "sentence_audio": ["510937-1.mp3 ", "510937-2.mp3"],
+  "sentence_audio": ["510937-1.mp3", "510937-2.mp3"],
   "spell_audio": "510937.mp3",
   "spell": "environment"
 }, {
@@ -3463,7 +3463,7 @@
   "cn_sentence": ["今日，多數美國人仍遵循感恩節吃火雞的傳統。 ", "根據傳統，許多美國人復活節時會吃由巧克力和糖做成的蛋。"],
   "en_sentence": ["Nowadays, most Americans still follow the tradition of eating turkey on Thanksgiving Day. ", "According to tradition, many Americans eat eggs made of chocolate and sugar on Easter."],
   "kk": "[trD'd0NDn]",
-  "sentence_audio": ["511002-1.mp3 ", "511002-2.mp3"],
+  "sentence_audio": ["511002-1.mp3", "511002-2.mp3"],
   "spell_audio": "511002.mp3",
   "spell": "tradition"
 }, {
@@ -3493,7 +3493,7 @@
   "cn_sentence": ["郵差一日送兩次信。 ", "由於這家餐廳免費、快速的外送，它的生意蒸蒸日上。"],
   "en_sentence": ["The mailman makes a delivery of mail twice a day. ", "Because of the free and fast delivery, the restaurant\u2019s business is getting better and better."],
   "kk": "[d0'l0vDr0]",
-  "sentence_audio": ["511005-1.mp3 ", "511005-2.mp3"],
+  "sentence_audio": ["511005-1.mp3", "511005-2.mp3"],
   "spell_audio": "511005.mp3",
   "spell": "delivery"
 }, {
@@ -3563,7 +3563,7 @@
   "cn_sentence": ["艾咪的粗心大意讓做這份工作的難度增加了。 ", "六加上五得十一。"],
   "en_sentence": ["Amy\u2019s carelessness added to the difficulty of doing the job. ", "Add five to six, and you have eleven."],
   "kk": "[$d]",
-  "sentence_audio": ["511012-1.mp3 ", "511012-2.mp3"],
+  "sentence_audio": ["511012-1.mp3", "511012-2.mp3"],
   "spell_audio": "511012.mp3",
   "spell": "add"
 }, {
@@ -3573,7 +3573,7 @@
   "cn_sentence": ["布茲太太昨晚生下一個女嬰；這個嬰兒是這個家庭的新成員。 ", "茱蒂唱得很好。此外，她也跳得很美。"],
   "en_sentence": ["Mrs. Booth gave birth to a baby girl last night; the baby is a new addition to the family. ", "Judy sings well.  In addition, she also dances beautifully."],
   "kk": "[3'd0NDn]",
-  "sentence_audio": ["511013-1.mp3 ", "511013-2.mp3"],
+  "sentence_audio": ["511013-1.mp3", "511013-2.mp3"],
   "spell_audio": "511013.mp3",
   "spell": "addition"
 }, {
@@ -3623,7 +3623,7 @@
   "cn_sentence": ["我們不應以貌取人。 ", "當你應徵化妝品銷售員的工作時，外貌通常是最重要的因素。"],
   "en_sentence": ["We should not judge people only by their appearances. ", "Appearance is usually the most important factor when you apply for a job as a salesperson of make-up."],
   "kk": "[3'p0r3ns]",
-  "sentence_audio": ["511018-1.mp3 ", "511018-2.mp3"],
+  "sentence_audio": ["511018-1.mp3", "511018-2.mp3"],
   "spell_audio": "511018.mp3",
   "spell": "appearance"
 }, {
@@ -3769,7 +3769,7 @@
   "cn_sentence": ["今天早上，整個城市籠罩在霧氣中。 ", "在濃霧中很容易迷路。"],
   "en_sentence": ["The whole city was bathed in fogs this morning. ", "It\u2019s easy to get lost in the thick fog."],
   "kk": "[fAg]",
-  "sentence_audio": ["511033-1.mp3 ", "511033-2.mp3"],
+  "sentence_audio": ["511033-1.mp3", "511033-2.mp3"],
   "spell_audio": "511033.mp3",
   "spell": "fog"
 }, {
@@ -3995,7 +3995,7 @@
   "cn_sentence": ["林先生的猝死對他的家人而言是一大不幸。 ", "那銀行家的垮臺並不是悲劇。他一直盜用銀行裡的錢。"],
   "en_sentence": ["Mr. Lin\u2019s sudden death was a tragedy to his family. ", "There\u2019s no tragedy in the banker\u2019s downfall. He\u2019s been stealing from the bank."],
   "kk": "['tr$dIDd0]",
-  "sentence_audio": ["511114-1.mp3 ", "511114-2.mp3"],
+  "sentence_audio": ["511114-1.mp3", "511114-2.mp3"],
   "spell_audio": "511114.mp3",
   "spell": "tragedy"
 }, {
@@ -4435,7 +4435,7 @@
   "cn_sentence": ["我懷疑你正在對我說謊。 ", "警方懷疑這個人偷竊而將他逮捕。"],
   "en_sentence": ["I have a suspicion that you are lying to me. ", "The police arrested the man on suspicion of theft."],
   "kk": "[sD'sp0NDn]",
-  "sentence_audio": ["511213-1.mp3 ", "511213-2.mp3"],
+  "sentence_audio": ["511213-1.mp3", "511213-2.mp3"],
   "spell_audio": "511213.mp3",
   "spell": "suspicion"
 }, {
@@ -4461,7 +4461,7 @@
   "cn_sentence": ["我們懷疑他沒有說實話。 ", "賈許被懷疑在超市行竊。", "警局裡有一些嫌疑犯等著接受詢問。"],
   "en_sentence": ["We suspect that he did not tell the truth. ", "Josh was suspected of shoplifting in the supermarket.", "There were a number of suspects in the police station waiting to be questioned."],
   "kk": "['sKspGkt]",
-  "sentence_audio": ["511215-1.mp3 ", "511215-2.mp3", "511216-1.mp3"],
+  "sentence_audio": ["511215-1.mp3", "511215-2.mp3", "511216-1.mp3"],
   "spell_audio": "511216.mp3",
   "spell": "suspect"
 }, {
@@ -4631,7 +4631,7 @@
   "cn_sentence": ["約翰仔細考慮他的選擇，然後決定不要買這間房子。 ", "葛莉絲沉思著上課中老師所說的話。"],
   "en_sentence": ["John pondered his options and then decided not to buy the house. ", "Grace pondered on what her teacher had said in class."],
   "kk": "['pAndQ]",
-  "sentence_audio": ["530101-1.mp3 ", "530101-2.mp3"],
+  "sentence_audio": ["530101-1.mp3", "530101-2.mp3"],
   "spell_audio": "530101.mp3",
   "spell": "ponder"
 }, {
@@ -4873,7 +4873,7 @@
   "cn_sentence": ["在美國有一個關於命名的習俗是父親依自己的名字為小孩命名，然後稱他們為「二世」。 ", "根據傳統，這個辦公室是保留給高階經理的。"],
   "en_sentence": ["A convention in the United States regarding names is for fathers to name their sons after themselves and then call them \u201cjunior.\u201d ", "By convention, this office is reserved for a senior manager."],
   "kk": "[kDn'vGnNDn]",
-  "sentence_audio": ["530126-1.mp3 ", "530126-2.mp3"],
+  "sentence_audio": ["530126-1.mp3", "530126-2.mp3"],
   "spell_audio": "530126.mp3",
   "spell": "convention"
 }, {
@@ -4893,7 +4893,7 @@
   "cn_sentence": ["會議的時間由經理決定。 ", "喬下定決心這是該找新工作的時候了。"],
   "en_sentence": ["The time of the meeting was determined by the manager. ", "Joe determined it was time to find a new job."],
   "kk": "[d0't\"m0n]",
-  "sentence_audio": ["530128-1.mp3 ", "530128-2.mp3"],
+  "sentence_audio": ["530128-1.mp3", "530128-2.mp3"],
   "spell_audio": "530128.mp3",
   "spell": "determine"
 }, {
@@ -4903,7 +4903,7 @@
   "cn_sentence": ["法庭決定將這名囚犯立即釋放。 ", "大衛下了很大的決心練習籃球。"],
   "en_sentence": ["It is the determination of this court that the prisoner be set free immediately. ", "David practices basketball with great determination."],
   "kk": "[d0`t\"mD'neNDn]",
-  "sentence_audio": ["530129-1.mp3 ", "530129-2.mp3"],
+  "sentence_audio": ["530129-1.mp3", "530129-2.mp3"],
   "spell_audio": "530129.mp3",
   "spell": "determination"
 }, {
@@ -5045,7 +5045,7 @@
   "cn_sentence": ["最近市區裡的店租愈來愈高了。 ", "根據合約，珍必須在每個月初付租金。", "有兩間臥房的公寓在這裡一個月至少要一萬五千元的租金。 ", "瑪莉安計畫去西班牙旅行時租一部車。"],
   "en_sentence": ["Shop rents in the downtown area are getting higher these days. ", "According to the contract, Jane has to pay the rent at the beginning of every month.", "Apartments with two bedrooms rent for at least $15,000 a month here. ", "Marian plans to rent a car during her trip to Spain."],
   "kk": "[rGnt]",
-  "sentence_audio": ["530203-1.mp3 ", "530203-2.mp3", "530204-1.mp3 ", "530204-2.mp3"],
+  "sentence_audio": ["530203-1.mp3", "530203-2.mp3", "530204-1.mp3", "530204-2.mp3"],
   "spell_audio": "530204.mp3",
   "spell": "rent"
 }, {
@@ -5081,7 +5081,7 @@
   "cn_sentence": ["我車子的引擎有問題。你知道我可以去哪裡修理嗎？", "我們不能搭捷運站裡的電梯，因為它當時關閉維修中。 ", "水災之後，這個地區裡許多道路和橋樑都需要維修。"],
   "en_sentence": ["There is something wrong with my car engine. Do you know where I can get it repaired?", "We couldn\u2019t take the elevator in the MRT station as it was closed for repairs. ", "After the flood, many of the roads and bridges in this area are in need of repair."],
   "kk": "[r0'pGr]",
-  "sentence_audio": ["530207-1.mp3", "530208-1.mp3 ", "530208-2.mp3"],
+  "sentence_audio": ["530207-1.mp3", "530208-1.mp3", "530208-2.mp3"],
   "spell_audio": "530208.mp3",
   "spell": "repair"
 }, {
@@ -5111,7 +5111,7 @@
   "cn_sentence": ["這個球隊輸了比賽對它的球迷來說很失望。 ", "很令吉娜失望的是，很少賓客參加她的生日派對。"],
   "en_sentence": ["The team\u2019s loss was a great disappointment for its fans. ", "Much to Gina\u2019s disappointment, few guests turned up at her birthday party."],
   "kk": "[`d0s3'pC0ntm3nt]",
-  "sentence_audio": ["530211-1.mp3 ", "530211-2.mp3"],
+  "sentence_audio": ["530211-1.mp3", "530211-2.mp3"],
   "spell_audio": "530211.mp3",
   "spell": "disappointment"
 }, {
@@ -5121,7 +5121,7 @@
   "cn_sentence": ["那個小女孩在玩具店裡乞求她媽媽買洋娃娃。 ", "那個穿著破爛衣服的可憐孩子挨家挨戶地乞討食物。"],
   "en_sentence": ["The little girl begged her mom for the doll in the toy shop. ", "The poor child in rags went from door to door begging for food."],
   "kk": "[bGg]",
-  "sentence_audio": ["530212-1.mp3 ", "530212-2.mp3"],
+  "sentence_audio": ["530212-1.mp3", "530212-2.mp3"],
   "spell_audio": "530212.mp3",
   "spell": "beg"
 }, {
@@ -5157,7 +5157,7 @@
   "cn_sentence": ["政府在每個菸盒上放了受損的肺部照片以警告大家不要抽菸。 ", "中央氣象局警告我們颱風正靠近中，好讓我們採取防範措施。"],
   "en_sentence": ["The government warns against smoking by putting a picture of damaged lungs on every pack of cigarettes. ", "The Central Weather Bureau warned us of the approaching typhoon so that we could take precautions against it."],
   "kk": "[wCrn]",
-  "sentence_audio": ["530216-1.mp3 ", "530216-2.mp3"],
+  "sentence_audio": ["530216-1.mp3", "530216-2.mp3"],
   "spell_audio": "530216.mp3",
   "spell": "warn"
 }, {
@@ -5167,7 +5167,7 @@
   "cn_sentence": ["法律要求菸盒上要有健康警語。 ", "敵人趁大家在睡夢中毫無戒備時攻擊。"],
   "en_sentence": ["The law requires that cigarette packs have health warnings on them. ", "The enemy attacked without warning while everybody was fast asleep."],
   "kk": "['wCrn0H]",
-  "sentence_audio": ["530217-1.mp3 ", "530217-2.mp3"],
+  "sentence_audio": ["530217-1.mp3", "530217-2.mp3"],
   "spell_audio": "530217.mp3",
   "spell": "warning"
 }, {
@@ -5183,7 +5183,7 @@
   "cn_sentence": ["聽了安令人傷心的故事，泰德開始同情她。 ", "你不能來真是令人非常遺憾。", "路易士對那些晚上睡在街上無家可歸的人感到同情。"],
   "en_sentence": ["Listening to Anne\u2019s sad story, Ted started to take pity on her. ", "It is a great pity that you cannot come.", "Louis pitied the homeless who slept on the streets at night."],
   "kk": "['p0t0]",
-  "sentence_audio": ["530218-1.mp3 ", "530218-2.mp3", "530219-1.mp3"],
+  "sentence_audio": ["530218-1.mp3", "530218-2.mp3", "530219-1.mp3"],
   "spell_audio": "530219.mp3",
   "spell": "pity"
 }, {
@@ -5281,7 +5281,7 @@
   "cn_sentence": ["如果我們不慢下來，我們就會撞上那棟建築物。 ", "那個小偷在被警方追逐時撞壞了偷來的車子。", "柔伊被告知她兒子在車子撞擊裡只受輕傷時鬆了一大口氣。"],
   "en_sentence": ["If we don\u2019t slow down, we\u2019re going to crash into the building. ", "The thief crashed the stolen car while he was being chased by the police.", "Zoe felt greatly relieved when she was told that her son was only slightly injured in the car crash."],
   "kk": "[kr$N]",
-  "sentence_audio": ["530229-1.mp3 ", "530229-2.mp3", "530230-1.mp3"],
+  "sentence_audio": ["530229-1.mp3", "530229-2.mp3", "530230-1.mp3"],
   "spell_audio": "530230.mp3",
   "spell": "crash"
 }, {
@@ -5291,7 +5291,7 @@
   "cn_sentence": ["這家公司拒絕召回有引擎問題的車子。 ", "瑪姬禮貌地拒絕我這週末一起吃午餐的邀請，她說她有份報告要完成。"],
   "en_sentence": ["The company refused to recall its cars with engine problems. ", "Maggie politely refused my invitation to lunch this weekend, saying she had a report to finish."],
   "kk": "[r0'fjuz]",
-  "sentence_audio": ["530231-1.mp3 ", "530231-2.mp3"],
+  "sentence_audio": ["530231-1.mp3", "530231-2.mp3"],
   "spell_audio": "530231.mp3",
   "spell": "refuse"
 }, {
@@ -5301,7 +5301,7 @@
   "cn_sentence": ["鮑伯邀瑪莉出去時，瑪莉斷然拒絕了他。 ", "狗仔隊對於那位明星拒絕討論醜聞並不意外。"],
   "en_sentence": ["Marie responded to Bob with a flat refusal when he asked her out. ", "The paparazzi were not surprised by the star\u2019s refusal to discuss the scandal."],
   "kk": "[r0'fjuz9]",
-  "sentence_audio": ["530232-1.mp3 ", "530232-2.mp3"],
+  "sentence_audio": ["530232-1.mp3", "530232-2.mp3"],
   "spell_audio": "530232.mp3",
   "spell": "refusal"
 }, {
@@ -5389,7 +5389,7 @@
   "cn_sentence": ["我們期待在禮拜五前完成這項計畫，但我們失敗了。 ", "我們期待你能有更好的表現，所以你下次應該更努力。"],
   "en_sentence": ["We expected to finish the whole project by Friday but failed. ", "We expect a better performance from you, so you should work harder next time."],
   "kk": "[0k'spGkt]",
-  "sentence_audio": ["530242-1.mp3 ", "530242-2.mp3"],
+  "sentence_audio": ["530242-1.mp3", "530242-2.mp3"],
   "spell_audio": "530242.mp3",
   "spell": "expect"
 }, {
@@ -5399,7 +5399,7 @@
   "cn_sentence": ["大多數的父母對孩子們都有很高的期望。他們希望他們的孩子可以替家族爭光。 ", "與歌迷的期望相反，那位歌手只唱了十首歌就從舞臺上消失不見了。"],
   "en_sentence": ["Most parents have high expectations of their children. They hope that their children can bring honor to the family. ", "Contrary to the expectation of the fans, the singer sang only ten songs and then disappeared behind the stage."],
   "kk": "[`GkspGk'teN3n]",
-  "sentence_audio": ["530243-1.mp3 ", "530243-2.mp3"],
+  "sentence_audio": ["530243-1.mp3", "530243-2.mp3"],
   "spell_audio": "530243.mp3",
   "spell": "expectation"
 }, {
@@ -5449,7 +5449,7 @@
   "cn_sentence": ["我盡我所能完成考試。 ", "艾瑞克有能力把任何東西賣給任何人。"],
   "en_sentence": ["I completed the test to the best of my ability. ", "Eric has the ability to sell anything to anybody."],
   "kk": "[D'b0lDt0]",
-  "sentence_audio": ["530301-1.mp3 ", "530301-2.mp3"],
+  "sentence_audio": ["530301-1.mp3", "530301-2.mp3"],
   "spell_audio": "530301.mp3",
   "spell": "ability"
 }, {
@@ -5571,7 +5571,7 @@
   "cn_sentence": ["小心去非洲的旅程不要冒太多風險。 ", "做任何的事情都要小心；不要把自己陷入危險中。", "我願意冒著失去一切的風險來達成我的目標。"],
   "en_sentence": ["Do not take any risks on your journey to Africa. ", "Be careful with everything you do; don\u2019t put yourself at risk.", "I am willing to risk losing everything to achieve my goal."],
   "kk": "[r0sk]",
-  "sentence_audio": ["530313-1.mp3 ", "530313-2.mp3", "530314-1.mp3"],
+  "sentence_audio": ["530313-1.mp3", "530313-2.mp3", "530314-1.mp3"],
   "spell_audio": "530314.mp3",
   "spell": "risk"
 }, {
@@ -5681,7 +5681,7 @@
   "cn_sentence": ["認識新朋友是麥克加入社團的主要動機。 ", "肯特在學業上表現不佳是因為缺乏動機。"],
   "en_sentence": ["Meeting new friends is a great motivation for Mike to join the club. ", "Kent performs poorly in his studies due to his lack of motivation."],
   "kk": "[`motD'veNDn]",
-  "sentence_audio": ["530325-1.mp3 ", "530325-2.mp3"],
+  "sentence_audio": ["530325-1.mp3", "530325-2.mp3"],
   "spell_audio": "530325.mp3",
   "spell": "motivation"
 }, {
@@ -5781,7 +5781,7 @@
   "cn_sentence": ["獨自完成計劃使艾咪很有成就感。 ", "那位女演員獲頒奧斯卡金像獎，表彰她在電影界的終身成就。"],
   "en_sentence": ["Completing the project alone gave Amy a great sense of achievement. ", "That actress was given an Academy Award for her lifetime achievements in the movie industry."],
   "kk": "[D'tNivmDnt]",
-  "sentence_audio": ["530335-1.mp3 ", "530335-2.mp3"],
+  "sentence_audio": ["530335-1.mp3", "530335-2.mp3"],
   "spell_audio": "530335.mp3",
   "spell": "achievement"
 }, {
@@ -5811,7 +5811,7 @@
   "cn_sentence": ["這位歷史老師比較古代中國和日本的文明。 ", "這位醫生在雨林中待了五年之後返回文明。"],
   "en_sentence": ["The history teacher compared the civilizations of ancient China and Japan. ", "The doctor returned to civilization after five years of living in the rain forest."],
   "kk": "[`s0v9D'zeNDn]",
-  "sentence_audio": ["530338-1.mp3 ", "530338-2.mp3"],
+  "sentence_audio": ["530338-1.mp3", "530338-2.mp3"],
   "spell_audio": "530338.mp3",
   "spell": "civilization"
 }, {
@@ -5857,7 +5857,7 @@
   "cn_sentence": ["這個蛋糕是由數種不同的水果製成的。 ", "美國是由五十個州和一個聯邦特區所組成的。"],
   "en_sentence": ["This cake is made from a combination of several different kinds of fruits. ", "The combination of fifty states and a federal district forms the United States."],
   "kk": "[`kAmbD'neNDn]",
-  "sentence_audio": ["530343-1.mp3 ", "530343-2.mp3"],
+  "sentence_audio": ["530343-1.mp3", "530343-2.mp3"],
   "spell_audio": "530343.mp3",
   "spell": "combination"
 }, {
@@ -6099,7 +6099,7 @@
   "cn_sentence": ["那位總裁提及他公司新的員工僱用政策。 ", "他說他已經盡了全力。", "首相針對高失業率所作的談話激怒了許多民眾。"],
   "en_sentence": ["The president remarked on his company\u2019s new employment policy. ", "He remarked that he had done his best.", "The prime minister\u2019s remarks on the high unemployment rate angered a lot of citizens."],
   "kk": "[r0'mArk]",
-  "sentence_audio": ["530414-1.mp3 ", "530414-2.mp3", "530415-1.mp3"],
+  "sentence_audio": ["530414-1.mp3", "530414-2.mp3", "530415-1.mp3"],
   "spell_audio": "530415.mp3",
   "spell": "remark"
 }, {
@@ -6161,7 +6161,7 @@
   "cn_sentence": ["學會從容的看待失敗是一個重要的課程。 ", "在2009年的世界經典棒球賽中，臺灣在一場比賽中慘敗給南韓。", "讓我們失望的是，我們校隊在冠軍賽的第一回合就輸了。"],
   "en_sentence": ["It is important to learn to take defeat well. ", "Taiwan suffered a heavy defeat in the game against South Korea in the 2009 World Baseball Classic.", "To our disappointment, our school team was defeated in the first round of the championship series."],
   "kk": "[d0'fit]",
-  "sentence_audio": ["530421-1.mp3 ", "530421-2.mp3", "530422-1.mp3"],
+  "sentence_audio": ["530421-1.mp3", "530421-2.mp3", "530422-1.mp3"],
   "spell_audio": "530422.mp3",
   "spell": "defeat"
 }, {
@@ -6201,7 +6201,7 @@
   "cn_sentence": ["勤奮及好的判斷力會帶你一路通往勝利。 ", "那位網球選手險勝他的對手。"],
   "en_sentence": ["Diligence and good judgment will lead you to victory. ", "The tennis player won a narrow victory over his opponent."],
   "kk": "['v0kt(D)r0]",
-  "sentence_audio": ["530426-1.mp3 ", "530426-2.mp3"],
+  "sentence_audio": ["530426-1.mp3", "530426-2.mp3"],
   "spell_audio": "530426.mp3",
   "spell": "victory"
 }, {
@@ -6221,7 +6221,7 @@
   "cn_sentence": ["那個理論缺乏研究上紮實的基礎。 ", "尊重是良好人際關係的基石。"],
   "en_sentence": ["That theory lacks a solid foundation in research. ", "Respect is the foundation of good interpersonal relationships."],
   "kk": "[fa?n'deNDn]",
-  "sentence_audio": ["530428-1.mp3 ", "530428-2.mp3"],
+  "sentence_audio": ["530428-1.mp3", "530428-2.mp3"],
   "spell_audio": "530428.mp3",
   "spell": "foundation"
 }, {
@@ -6303,7 +6303,7 @@
   "cn_sentence": ["每個人一定要勇敢的面對生命中所有的挑戰。逃避不能解決問題。 ", "提姆對新工作的挑戰感到很興奮，因為他相信這份工作會幫助他學習更多的生意技巧。", "約瑟夫試著找一份有挑戰性的工作，因為他不想要過無趣的生活。"],
   "en_sentence": ["Everyone must be brave enough to face all the challenges in his or her life. Running away doesn\u2019t help. ", "Tim is excited about the challenge of his new job because he believes that it will help him learn more business skills.", "Joseph is trying to find a job that challenges him because he doesn\u2019t want a boring life."],
   "kk": "['tN$l0ndI]",
-  "sentence_audio": ["530436-1.mp3 ", "530436-2.mp3", "530437-1.mp3"],
+  "sentence_audio": ["530436-1.mp3", "530436-2.mp3", "530437-1.mp3"],
   "spell_audio": "530437.mp3",
   "spell": "challenge"
 }, {
@@ -6449,7 +6449,7 @@
   "cn_sentence": ["生活在民主國家的人享有言論自由。 ", "政府應該保護人民的權利與自由，讓他們免於恐懼與痛苦。"],
   "en_sentence": ["People living in a democratic country enjoy freedom of speech. ", "The government should protect the rights and freedoms of citizens so that they can be free from fear and pain."],
   "kk": "['fridDm]",
-  "sentence_audio": ["530501-1.mp3 ", "530501-2.mp3"],
+  "sentence_audio": ["530501-1.mp3", "530501-2.mp3"],
   "spell_audio": "530501.mp3",
   "spell": "freedom"
 }, {
@@ -6517,7 +6517,7 @@
   "cn_sentence": ["規律的運動和充足的睡眠是對抗壓力的好方法。", "那些士兵正和敵軍激戰。 ", "我的祖父年輕時曾在越南作戰一年。"],
   "en_sentence": ["Regular exercise and enough sleep are good ways to combat stress.", "The soldiers were engaged in a fierce combat against their enemies. ", "When my grandfather was young, he spent a year in combat in Vietnam."],
   "kk": "['kAm`b$t]",
-  "sentence_audio": ["530510-1.mp3", "530511-1.mp3 ", "530511-2.mp3"],
+  "sentence_audio": ["530510-1.mp3", "530511-1.mp3", "530511-2.mp3"],
   "spell_audio": "530511.mp3",
   "spell": "combat"
 }, {
@@ -6557,7 +6557,7 @@
   "cn_sentence": ["哈利在演說中強調學習外語的重要性。 ", "我父母相當強調誠實。"],
   "en_sentence": ["Harry delivered his speech with an emphasis on the importance of learning a foreign language. ", "My parents put great emphasis on honesty."],
   "kk": "['GmfDs0s]",
-  "sentence_audio": ["530515-1.mp3 ", "530515-2.mp3"],
+  "sentence_audio": ["530515-1.mp3", "530515-2.mp3"],
   "spell_audio": "530515.mp3",
   "spell": "emphasis"
 }, {
@@ -6593,7 +6593,7 @@
   "cn_sentence": ["現代舞是在芭蕾舞限制下所衍生出來的變化型態。", "尼克喜歡做白日夢，常常幻想以逃避現實。 ", "雷夫很少到人潮擁擠的地方。那就是為什麼他沒有感染流行性感冒的原因。"],
   "en_sentence": ["Modern dance is an escape from the confines of ballet.", "Nick likes daydreaming and often escapes into his own imagination. ", "Ralph rarely goes to crowded places. That\u2019s why he escaped catching the flu."],
   "kk": "[D'skep]",
-  "sentence_audio": ["530518-1.mp3", "530519-1.mp3 ", "530519-2.mp3"],
+  "sentence_audio": ["530518-1.mp3", "530519-1.mp3", "530519-2.mp3"],
   "spell_audio": "530519.mp3",
   "spell": "escape"
 }, {
@@ -6619,7 +6619,7 @@
   "cn_sentence": ["我們驚訝地觀賞那芭蕾舞者以腳趾為支點旋轉。 ", "要多練習才能打好陀螺。"],
   "en_sentence": ["We watched in amazement as the ballet dancer spun on her toes. ", "It takes some practice to be good at spinning a top."],
   "kk": "[sp0n]",
-  "sentence_audio": ["530522-1.mp3 ", "530522-2.mp3"],
+  "sentence_audio": ["530522-1.mp3", "530522-2.mp3"],
   "spell_audio": "530522.mp3",
   "spell": "spin"
 }, {
@@ -6759,7 +6759,7 @@
   "cn_sentence": ["阿爾文為了即將到來的運動會做準備在每天早上慢跑十公里。 ", "納塔莎正忙著準備今晚的派對。"],
   "en_sentence": ["Alvin jogs ten kilometers every morning in preparation for the coming sports meet. ", "Natasha is busy making preparations for the party tonight."],
   "kk": "[`prGpD'reNDn]",
-  "sentence_audio": ["530536-1.mp3 ", "530536-2.mp3"],
+  "sentence_audio": ["530536-1.mp3", "530536-2.mp3"],
   "spell_audio": "530536.mp3",
   "spell": "preparation"
 }, {
@@ -6769,7 +6769,7 @@
   "cn_sentence": ["你最好開始準備期中考。它就快到了。 ", "我們應該隨時準備應付最壞的情況，並期盼最好的結果。"],
   "en_sentence": ["It\u2019s best that you start preparing for the midterm exam. It\u2019s just around the corner. ", "We should always prepare ourselves for the worst while hoping for the best."],
   "kk": "[pr0'pGr]",
-  "sentence_audio": ["530537-1.mp3 ", "530537-2.mp3"],
+  "sentence_audio": ["530537-1.mp3", "530537-2.mp3"],
   "spell_audio": "530537.mp3",
   "spell": "prepare"
 }, {
@@ -6795,7 +6795,7 @@
   "cn_sentence": ["艾莉森動也不動，一直坐在那裡看電視好幾個小時。 ", "那位舞者做了一些人類似乎無法做到的動作，觀眾全都驚歎不已。"],
   "en_sentence": ["Alison has been sitting there watching TV without any movement for hours. ", "The audience were all stunned by the dancer\u2019s movements, which seemed impossible for human beings."],
   "kk": "['muvmDnt]",
-  "sentence_audio": ["530540-1.mp3 ", "530540-2.mp3"],
+  "sentence_audio": ["530540-1.mp3", "530540-2.mp3"],
   "spell_audio": "530540.mp3",
   "spell": "movement"
 }, {
@@ -6885,7 +6885,7 @@
   "cn_sentence": ["河岸邊排列著櫻花樹。 ", "果園裡有一些櫻桃樹以及許多其他果樹。"],
   "en_sentence": ["The river bank is lined with cherry trees. ", "There are a number of cherry trees in the orchard along with many other fruit-bearing trees."],
   "kk": "['tNGr0]",
-  "sentence_audio": ["530601-1.mp3 ", "530601-2.mp3"],
+  "sentence_audio": ["530601-1.mp3", "530601-2.mp3"],
   "spell_audio": "530601.mp3",
   "spell": "cherry"
 }, {
@@ -6901,7 +6901,7 @@
   "cn_sentence": ["橙花聞起來很香。 ", "沿著街道佇立的樹開滿了花，非常漂亮。", "爺爺院子裡的蘋果樹正在開花。"],
   "en_sentence": ["Orange blossoms smell sweet. ", "The trees along the street are in full blossom.  It is a beautiful sight.", "The apple trees in Grandpa\u2019s yard are blossoming."],
   "kk": "['blAsDm]",
-  "sentence_audio": ["530602-1.mp3 ", "530602-2.mp3", "530603-1.mp3"],
+  "sentence_audio": ["530602-1.mp3", "530602-2.mp3", "530603-1.mp3"],
   "spell_audio": "530603.mp3",
   "spell": "blossom"
 }, {
@@ -6931,7 +6931,7 @@
   "cn_sentence": ["當春天來時，農夫們在田裡撒滿種子。 ", "一聽到爆炸的聲音，街上的人們四處逃命。"],
   "en_sentence": ["When spring comes, farmers scatter seeds over their fields. ", "At the sound of the explosion, people on the street scattered for their lives."],
   "kk": "['sk$tQ]",
-  "sentence_audio": ["530606-1.mp3 ", "530606-2.mp3"],
+  "sentence_audio": ["530606-1.mp3", "530606-2.mp3"],
   "spell_audio": "530606.mp3",
   "spell": "scatter"
 }, {
@@ -7061,7 +7061,7 @@
   "cn_sentence": ["很容易可以分辨出有些在夜市裡賣的手錶是很差的仿冒品。 ", "小孩子藉著模仿學習說話。"],
   "en_sentence": ["It is easy to tell that some watches sold at the night market are poor imitations. ", "Children learn to speak through imitation."],
   "kk": "[`0mD'teNDn]",
-  "sentence_audio": ["530619-1.mp3 ", "530619-2.mp3"],
+  "sentence_audio": ["530619-1.mp3", "530619-2.mp3"],
   "spell_audio": "530619.mp3",
   "spell": "imitation"
 }, {
@@ -7081,7 +7081,7 @@
   "cn_sentence": ["旅館的大廳中間放置了一個很漂亮的插花擺飾。 ", "這對夫妻不喜歡他們新公寓裡的家具擺設。"],
   "en_sentence": ["In the center of the hotel\u2019s main hall sits a beautiful flower arrangement. ", "The couple don\u2019t like the arrangement of the furniture in their new apartment."],
   "kk": "[D'rendImDnt]",
-  "sentence_audio": ["530621-1.mp3 ", "530621-2.mp3"],
+  "sentence_audio": ["530621-1.mp3", "530621-2.mp3"],
   "spell_audio": "530621.mp3",
   "spell": "arrangement"
 }, {
@@ -7167,7 +7167,7 @@
   "cn_sentence": ["這些旅客將他們的隨身物品打包並在清晨出發。 ", "凱莉在三個小時之後終於完成打包。"],
   "en_sentence": ["The travelers packed their belongings and set off at dawn. ", "Kelly finally finished packing after three hours."],
   "kk": "[p$k]",
-  "sentence_audio": ["530630-1.mp3 ", "530630-2.mp3"],
+  "sentence_audio": ["530630-1.mp3", "530630-2.mp3"],
   "spell_audio": "530630.mp3",
   "spell": "pack"
 }, {
@@ -7177,7 +7177,7 @@
   "cn_sentence": ["這個鐘錶匠用一塊木頭雕刻出一個男孩的身形來。 ", "這個房子是用不同種類的木材建造的。"],
   "en_sentence": ["The watchmaker carved a boy\u2019s figure out of a piece of wood. ", "The house was built with a variety of different woods."],
   "kk": "[w?d]",
-  "sentence_audio": ["530631-1.mp3 ", "530631-2.mp3"],
+  "sentence_audio": ["530631-1.mp3", "530631-2.mp3"],
   "spell_audio": "530631.mp3",
   "spell": "wood"
 }, {
@@ -7329,7 +7329,7 @@
   "cn_sentence": ["你可以留在家看電視或是跟我出去探望你的阿姨。 ", "不是你就是你的丈夫必須簽署這份文件。"],
   "en_sentence": ["You can either stay home watching TV or go out with me to visit your aunt. ", "Either you or your husband has to sign the paper."],
   "kk": "",
-  "sentence_audio": ["530647-1.mp3 ", "530647-2.mp3"],
+  "sentence_audio": ["530647-1.mp3", "530647-2.mp3"],
   "spell_audio": "530647.mp3",
   "spell": "either...or..."
 }, {
@@ -7349,7 +7349,7 @@
   "cn_sentence": ["在上學途中，我遇見我的英文老師，她載了我一程。 ", "這個演員被看見在下班途中和他的新女友在一起。"],
   "en_sentence": ["On my way to school, I met my English teacher and she gave me a ride. ", "The actor was seen with his new girlfriend on his way from work."],
   "kk": "",
-  "sentence_audio": ["530649-1.mp3 ", "530649-2.mp3"],
+  "sentence_audio": ["530649-1.mp3", "530649-2.mp3"],
   "spell_audio": "530649.mp3",
   "spell": "on one\u2019s way to/from"
 }, {
@@ -7359,7 +7359,7 @@
   "cn_sentence": ["數月辛苦的工作後，音樂家終於將那詩句譜成一首美麗的曲子。 ", "莎士比亞以詩文寫成許多戲劇，使得裡頭的對白讀起來像詩句。"],
   "en_sentence": ["After months of hard work, the musician has finally turned the verses into a beautiful song. ", "Many of Shakespeare\u2019s plays were written in verse; that is, the lines read like poetry."],
   "kk": "[v\"s]",
-  "sentence_audio": ["530701-1.mp3 ", "530701-2.mp3"],
+  "sentence_audio": ["530701-1.mp3", "530701-2.mp3"],
   "spell_audio": "530701.mp3",
   "spell": "verse"
 }, {
@@ -7369,7 +7369,7 @@
   "cn_sentence": ["沒有適當的訓練，她的音樂才華很可能會浪費掉。 ", "羅伯小時候便被發現有寫作天分。"],
   "en_sentence": ["Without proper training, her talent for music would probably be wasted. ", "Robert was found to have a talent for writing when he was a child."],
   "kk": "['t$lDnt]",
-  "sentence_audio": ["530702-1.mp3 ", "530702-2.mp3"],
+  "sentence_audio": ["530702-1.mp3", "530702-2.mp3"],
   "spell_audio": "530702.mp3",
   "spell": "talent"
 }, {
@@ -7459,7 +7459,7 @@
   "cn_sentence": ["你不用告訴我這部電影的每個細節；我會親自去看。 ", "老師很詳細地解釋實驗的步驟。"],
   "en_sentence": ["You don\u2019t have to tell me every single detail of the movie; I will go and watch it for myself. ", "The teacher explained the steps of the experiment in detail."],
   "kk": "['ditel]",
-  "sentence_audio": ["530711-1.mp3 ", "530711-2.mp3"],
+  "sentence_audio": ["530711-1.mp3", "530711-2.mp3"],
   "spell_audio": "530711.mp3",
   "spell": "detail"
 }, {
@@ -7479,7 +7479,7 @@
   "cn_sentence": ["為了偵破此樁謀殺案，聯邦調查局正對犯案現場所採集到的指紋做分析。 ", "教授對這問題的分析可幫助我們找出更好的解決方法。"],
   "en_sentence": ["To solve the murder case, the FBI made an analysis of the fingerprints gathered at the crime scene. ", "The professor\u2019s analysis of the problem may help us find a better solution to it."],
   "kk": "[D'n$lDs0s]",
-  "sentence_audio": ["530713-1.mp3 ", "530713-2.mp3"],
+  "sentence_audio": ["530713-1.mp3", "530713-2.mp3"],
   "spell_audio": "530713.mp3",
   "spell": "analysis"
 }, {
@@ -7741,7 +7741,7 @@
   "cn_sentence": ["生第一胎小孩的婦女平均年紀隨國家的不同而有所差異。", "10 加4 的平均是7。 ", "平均來說，人們工作一天八小時、一週五天。"],
   "en_sentence": ["The average age of women giving birth to their first baby varies from country to country.", "The average of 10 and 4 is 7. ", "On average, people work eight hours a day, five days a week."],
   "kk": "['$vDr0dI]",
-  "sentence_audio": ["530811-1.mp3", "530812-1.mp3 ", "530812-2.mp3"],
+  "sentence_audio": ["530811-1.mp3", "530812-1.mp3", "530812-2.mp3"],
   "spell_audio": "530812.mp3",
   "spell": "average"
 }, {
@@ -7787,7 +7787,7 @@
   "cn_sentence": ["這跑車的最高速度可以到達每小時250公里。 ", "那颱風的速度增加中，而且會在明天早上前侵襲臺灣。", "看到那隻狗朝著他跑過來，詹姆士騎著腳踏車迅速離開。"],
   "en_sentence": ["This sports car has a top speed of 250 kilometers per hour. ", "The typhoon is picking up speed and will hit Taiwan by tomorrow morning.", "Seeing the dog come running toward him, James sped away on his bike."],
   "kk": "[spid]",
-  "sentence_audio": ["530816-1.mp3 ", "530816-2.mp3", "530817-1.mp3"],
+  "sentence_audio": ["530816-1.mp3", "530816-2.mp3", "530817-1.mp3"],
   "spell_audio": "530817.mp3",
   "spell": "speed"
 }, {
@@ -7967,7 +7967,7 @@
   "cn_sentence": ["很多種類的鳥在這湖四周的溼地繁殖。 ", "史密斯先生經營農場，繁殖馬和綿羊。", "黃金獵犬和米格魯兩種都是狗的品種。"],
   "en_sentence": ["Many kinds of birds breed in the wetlands around this lake. ", "Mr. Smith runs a farm that breeds horses and sheep.", "Golden retrievers and beagles are both breeds of dogs."],
   "kk": "[brid]",
-  "sentence_audio": ["530836-1.mp3 ", "530836-2.mp3", "530837-1.mp3"],
+  "sentence_audio": ["530836-1.mp3", "530836-2.mp3", "530837-1.mp3"],
   "spell_audio": "530837.mp3",
   "spell": "breed"
 }, {
@@ -8215,7 +8215,7 @@
   "cn_sentence": ["許多國旗在風中舞動，形成一幅壯麗的景象。 ", "在花園中，我們看見一些蝴蝶拍動翅膀，優雅地在花叢中飛舞。"],
   "en_sentence": ["Dozens of flags were fluttering in the wind, making a splendid scene. ", "In the garden, we saw some butterflies fluttering their wings and flying gracefully among the flowers."],
   "kk": "['flKtQ]",
-  "sentence_audio": ["530917-1.mp3 ", "530917-2.mp3"],
+  "sentence_audio": ["530917-1.mp3", "530917-2.mp3"],
   "spell_audio": "530917.mp3",
   "spell": "flutter"
 }, {
@@ -8297,7 +8297,7 @@
   "cn_sentence": ["艾利克斯拉拉南西的袖子，企圖要把她從白日夢中喚醒。 ", "這兩個女孩打架時，用力拉扯對方的頭髮。", "這個爭論造成了政府不同部門之間的角力。"],
   "en_sentence": ["Alex tugged at Nancy\u2019s sleeve, attempting to awaken her from her daydreams. ", "The two girls tugged each other\u2019s hair as they were fighting.", "The argument has resulted in a tug of war between the different departments of the government."],
   "kk": "[tKg]",
-  "sentence_audio": ["530925-1.mp3 ", "530925-2.mp3", "530926-1.mp3"],
+  "sentence_audio": ["530925-1.mp3", "530925-2.mp3", "530926-1.mp3"],
   "spell_audio": "530926.mp3",
   "spell": "tug"
 }, {
@@ -8393,7 +8393,7 @@
   "cn_sentence": ["火車上的廣播告訴我們快到達目的地了。 ", "當冬天接近時，白天就會越來越短。", "隨著校慶的接近，學生們愈來愈興奮。"],
   "en_sentence": ["The announcement on the train told us that we were approaching our destination. ", "As winter approaches, the days become shorter and shorter.", "With the approach of the school\u2019s anniversary, students are getting more and more excited."],
   "kk": "[D'protN]",
-  "sentence_audio": ["530935-1.mp3 ", "530935-2.mp3", "530936-1.mp3"],
+  "sentence_audio": ["530935-1.mp3", "530935-2.mp3", "530936-1.mp3"],
   "spell_audio": "530936.mp3",
   "spell": "approach"
 }, {
@@ -8555,7 +8555,7 @@
   "cn_sentence": ["這兩個國家互相宣戰之前，一定要開始協商。 ", "合約的細節還可以協商。"],
   "en_sentence": ["The two countries must start negotiations before they declare war against each other. ", "The details of the contract are still open to negotiation."],
   "kk": "[n0`goN0'eNDn]",
-  "sentence_audio": ["531006-1.mp3 ", "531006-2.mp3"],
+  "sentence_audio": ["531006-1.mp3", "531006-2.mp3"],
   "spell_audio": "531006.mp3",
   "spell": "negotiation"
 }, {
@@ -8565,7 +8565,7 @@
   "cn_sentence": ["我們都必須學會和他人協商，才能避免不必要的衝突。 ", "琳達在決定買東西之前總會先殺價。"],
   "en_sentence": ["We all need to learn to negotiate with others to avoid unnecessary conflicts. ", "Linda always negotiates the price before she makes up her mind to buy something."],
   "kk": "[n0'goN0`et]",
-  "sentence_audio": ["531007-1.mp3 ", "531007-2.mp3"],
+  "sentence_audio": ["531007-1.mp3", "531007-2.mp3"],
   "spell_audio": "531007.mp3",
   "spell": "negotiate"
 }, {
@@ -8651,7 +8651,7 @@
   "cn_sentence": ["蓋瑞的擇偶偏好使得他連女朋友都找不到。 ", "在自助餐廳用餐的其中一個優點就是你可以依照個人喜好選擇食物。"],
   "en_sentence": ["Gary\u2019s preferences in choosing a wife made it hard for him to even find a girlfriend. ", "One advantage of eating at a buffet restaurant is that you can choose food by personal preference."],
   "kk": "['prGf(D)rDns]",
-  "sentence_audio": ["531016-1.mp3 ", "531016-2.mp3"],
+  "sentence_audio": ["531016-1.mp3", "531016-2.mp3"],
   "spell_audio": "531016.mp3",
   "spell": "preference"
 }, {
@@ -8697,7 +8697,7 @@
   "cn_sentence": ["我很喜歡我的髮型，但我的朋友們沒做任何評論。 ", "有許多有關新教育政策的評論。", "人們喜歡評論名人的言行。 ", "大部分的觀眾評論這導演的新電影很棒。"],
   "en_sentence": ["I really like my hairstyle, but my friends won\u2019t make any comments about it. ", "There is a lot of comment about the new educational policy.", "People like to comment on what famous people say or do. ", "Most viewers commented that the director\u2019s new movie was terrific."],
   "kk": "['kAmGnt]",
-  "sentence_audio": ["531020-1.mp3 ", "531020-2.mp3", "531021-1.mp3 ", "531021-2.mp3"],
+  "sentence_audio": ["531020-1.mp3", "531020-2.mp3", "531021-1.mp3", "531021-2.mp3"],
   "spell_audio": "531021.mp3",
   "spell": "comment"
 }, {
@@ -8707,7 +8707,7 @@
   "cn_sentence": ["一直有一些人抱怨那家餐廳食物難吃，服務又很差勁。 ", "因為有位店員大聲罵她，潔西卡寫了一封抱怨信給那家超市的經理。"],
   "en_sentence": ["There have been several complaints about the restaurant\u2019s terrible food and poor service. ", "Jessica wrote a letter of complaint to the manager of the supermarket because a clerk shouted at her."],
   "kk": "[kDm'plent]",
-  "sentence_audio": ["531022-1.mp3 ", "531022-2.mp3"],
+  "sentence_audio": ["531022-1.mp3", "531022-2.mp3"],
   "spell_audio": "531022.mp3",
   "spell": "complaint"
 }, {
@@ -8807,7 +8807,7 @@
   "cn_sentence": ["時間許可的話，請順道來拜訪我們。 ", "沒有人可以在校園內抽菸。"],
   "en_sentence": ["If time permits, please drop in on us. ", "No one is permitted to smoke on campus."],
   "kk": "[pQ'm0t]",
-  "sentence_audio": ["531032-1.mp3 ", "531032-2.mp3"],
+  "sentence_audio": ["531032-1.mp3", "531032-2.mp3"],
   "spell_audio": "531032.mp3",
   "spell": "permit"
 }, {
@@ -9071,7 +9071,7 @@
   "cn_sentence": ["完成所有課程並不表示你有資格當律師；你必須參加律師考試。 ", "為了成為一位合格的牙醫師，她用心讀書努力練習。"],
   "en_sentence": ["Finishing all the courses doesn\u2019t qualify you to be a lawyer; you still have to take the bar exam. ", "She studied and practiced very hard in order to qualify as a dentist."],
   "kk": "['kwAlD`fa0]",
-  "sentence_audio": ["531114-1.mp3 ", "531114-2.mp3"],
+  "sentence_audio": ["531114-1.mp3", "531114-2.mp3"],
   "spell_audio": "531114.mp3",
   "spell": "qualify"
 }, {
@@ -9177,7 +9177,7 @@
   "cn_sentence": ["他有外向的個性，所以他很容易交到朋友。 ", "你／妳所挑選的禮物顯示你／妳的個性。"],
   "en_sentence": ["He has such an outgoing personality that he makes friends easily. ", "The gift you choose often shows your personality."],
   "kk": "[`p\"s%'$lDt0]",
-  "sentence_audio": ["531125-1.mp3 ", "531125-2.mp3"],
+  "sentence_audio": ["531125-1.mp3", "531125-2.mp3"],
   "spell_audio": "531125.mp3",
   "spell": "personality"
 }, {
@@ -9227,7 +9227,7 @@
   "cn_sentence": ["一個人必須要經歷相當大的困難才會真正地珍惜生命。 ", "童年時期的窮苦生活結果卻幫助那貧窮的小孩答對了電視益智節目的所有問題。"],
   "en_sentence": ["A man has to experience great hardship before he can truly appreciate life. ", "The hardships of his childhood turned out to help the poor boy answer all the questions correctly in the TV quiz show."],
   "kk": "['hArdN0p]",
-  "sentence_audio": ["531130-1.mp3 ", "531130-2.mp3"],
+  "sentence_audio": ["531130-1.mp3", "531130-2.mp3"],
   "spell_audio": "531130.mp3",
   "spell": "hardship"
 }, {
@@ -9283,7 +9283,7 @@
   "cn_sentence": ["那位有創意的作家把幻想和狂想編織在他的新小說裡。 ", "我過去常幻想當個間諜，就像007 電影系列裡的詹姆士\u2027龐德。"],
   "en_sentence": ["The creative author weaves fantasy and wild imagination into his new novel. ", "I used to have fantasies about working as a spy like James Bond in the 007 film series."],
   "kk": "['f$ntDs0]",
-  "sentence_audio": ["531136-1.mp3 ", "531136-2.mp3"],
+  "sentence_audio": ["531136-1.mp3", "531136-2.mp3"],
   "spell_audio": "531136.mp3",
   "spell": "fantasy"
 }, {
@@ -9339,7 +9339,7 @@
   "cn_sentence": ["我想如果沒有更多的錢，我無法完成。 ", "雖然這任務很困難，凱洛仍有辦法完成它。"],
   "en_sentence": ["I think I cannot manage without more money. ", "Though the task was very difficult, Carol was able to manage it."],
   "kk": "['m$n0dI]",
-  "sentence_audio": ["531142-1.mp3 ", "531142-2.mp3"],
+  "sentence_audio": ["531142-1.mp3", "531142-2.mp3"],
   "spell_audio": "531142.mp3",
   "spell": "manage"
 }, {
@@ -9645,7 +9645,7 @@
   "cn_sentence": ["動物用不同方式來標記出牠們的領土並且抵抗其他動物的入侵。 ", "兩個鄰近國家重疊的領土問題，造成逐年反覆的衝突。"],
   "en_sentence": ["Animals use different ways to mark their territory and resist the invasion of others. ", "The territories claimed by the two neighboring countries overlap, causing conflicts year after year."],
   "kk": "['tGrD`tor0]",
-  "sentence_audio": ["531216-1.mp3 ", "531216-2.mp3"],
+  "sentence_audio": ["531216-1.mp3", "531216-2.mp3"],
   "spell_audio": "531216.mp3",
   "spell": "territory"
 }, {
@@ -9751,7 +9751,7 @@
   "cn_sentence": ["遙遠地區學校和醫院的建立是新政府很重要的政策。 ", "在有限的預算內很難維持大型的建設。"],
   "en_sentence": ["The establishment of schools and hospitals in remote areas is an important policy of the new government. ", "It is hard to maintain a large establishment on a limited budget."],
   "kk": "[D'st$bl0NmDnt]",
-  "sentence_audio": ["531227-1.mp3 ", "531227-2.mp3"],
+  "sentence_audio": ["531227-1.mp3", "531227-2.mp3"],
   "spell_audio": "531227.mp3",
   "spell": "establishment"
 }, {
@@ -9807,7 +9807,7 @@
   "cn_sentence": ["她正保衛新生的小狗。 ", "武裝部隊處於高度警戒來對抗暴力和搶奪。", "在警察總部的每個入口都駐有警衛。"],
   "en_sentence": ["She carefully guards her newborn puppies. ", "The armed forces were on high alert to guard against any violence or looting.", "There are guards at every entrance to the police headquarters."],
   "kk": "[gArd]",
-  "sentence_audio": ["531232-1.mp3 ", "531232-2.mp3", "531233-1.mp3"],
+  "sentence_audio": ["531232-1.mp3", "531232-2.mp3", "531233-1.mp3"],
   "spell_audio": "531233.mp3",
   "spell": "guard"
 }, {
@@ -10051,7 +10051,7 @@
   "cn_sentence": ["麗莎胃部開刀後緩慢復元。 ", "有時候，感冒痊癒所花的時間比我們預期的來得久。"],
   "en_sentence": ["Lisa made a slow recovery from her stomach operation. ", "Recovery from a cold sometimes takes longer than we expect."],
   "kk": "[r0'kKvDr0]",
-  "sentence_audio": ["550115-1.mp3 ", "550115-2.mp3"],
+  "sentence_audio": ["550115-1.mp3", "550115-2.mp3"],
   "spell_audio": "550115.mp3",
   "spell": "recovery"
 }, {
@@ -10287,7 +10287,7 @@
   "cn_sentence": ["不要含糊地說抱歉，要不然別人會覺得不夠真誠。 ", "不要自言自語。請提高音量，把每個字都說清楚。"],
   "en_sentence": ["Don\u2019t just mumble your apology, or the other person will think it insincere. ", "Stop mumbling to yourself.  Please raise your voice and say every word clearly."],
   "kk": "['mKmb9]",
-  "sentence_audio": ["550139-1.mp3 ", "550139-2.mp3"],
+  "sentence_audio": ["550139-1.mp3", "550139-2.mp3"],
   "spell_audio": "550139.mp3",
   "spell": "mumble"
 }, {
@@ -10453,7 +10453,7 @@
   "cn_sentence": ["懷特先生經常宣揚誠實的價值。", "牧師以上帝之愛為主題布道。 ", "路克神父在大教堂裡對群眾傳教已經很多年了。"],
   "en_sentence": ["Mr. White is always preaching the value of honesty.", "The minister preached a sermon on the love of God. ", "Father Luke has been preaching to the public in that big church for many years."],
   "kk": "[pritN]",
-  "sentence_audio": ["550204-1.mp3", "550205-1.mp3 ", "550205-2.mp3"],
+  "sentence_audio": ["550204-1.mp3", "550205-1.mp3", "550205-2.mp3"],
   "spell_audio": "550205.mp3",
   "spell": "preach"
 }, {
@@ -10493,7 +10493,7 @@
   "cn_sentence": ["恐怖分子以汽車炸彈和刺殺行動來威脅政府。 ", "亞伯拉罕．林肯是政治刺殺的眾多受害者之一。"],
   "en_sentence": ["The terrorists used car bombs and assassinations to threaten the government. ", "Abraham Lincoln is among the many victims of political assassination."],
   "kk": "[D`s$s%'eNDn]",
-  "sentence_audio": ["550209-1.mp3 ", "550209-2.mp3"],
+  "sentence_audio": ["550209-1.mp3", "550209-2.mp3"],
   "spell_audio": "550209.mp3",
   "spell": "assassination"
 }, {
@@ -10573,7 +10573,7 @@
   "cn_sentence": ["考試作弊違背我的原則。 ", "喬是個有原則的人；他總是遵守諾言。"],
   "en_sentence": ["It is against my principles to cheat on the exam. ", "Joe is a man of principle; he always keeps his word."],
   "kk": "['pr0nsDp9]",
-  "sentence_audio": ["550217-1.mp3 ", "550217-2.mp3"],
+  "sentence_audio": ["550217-1.mp3", "550217-2.mp3"],
   "spell_audio": "550217.mp3",
   "spell": "principle"
 }, {
@@ -10619,7 +10619,7 @@
   "cn_sentence": ["如果我們想要成功地完成這項任務，努力是必需的。 ", "所有傑克為了贏得珊卓芳心而做的努力都白費了。", "社工努力把這位受虐孩童從他的酒鬼父親那救出來。"],
   "en_sentence": ["Endeavor is necessary if we want to complete the task successfully. ", "All of Jack\u2019s endeavors to win Sandra\u2019s heart proved unsuccessful.", "The social workers endeavored to save the abused child from his alcoholic father."],
   "kk": "[0n'dGvQ]",
-  "sentence_audio": ["550221-1.mp3 ", "550221-2.mp3", "550222-1.mp3"],
+  "sentence_audio": ["550221-1.mp3", "550221-2.mp3", "550222-1.mp3"],
   "spell_audio": "550222.mp3",
   "spell": "endeavor"
 }, {
@@ -10761,7 +10761,7 @@
   "cn_sentence": ["貝多芬是寫了非常多作品的偉大作曲家。 ", "韓德爾八歲的時候就能夠用鋼琴作曲。", "這個班級是由二十八個男生和十二個女生組成的。"],
   "en_sentence": ["Beethoven was a great composer who composed a great many pieces. ", "At the age of eight, Handel was able to compose on the piano.", "The class is composed of twenty-eight boys and twelve girls."],
   "kk": "[kDm'poz]",
-  "sentence_audio": ["550236-1.mp3 ", "550236-2.mp3", "550237-1.mp3"],
+  "sentence_audio": ["550236-1.mp3", "550236-2.mp3", "550237-1.mp3"],
   "spell_audio": "550237.mp3",
   "spell": "compose"
 }, {
@@ -10771,7 +10771,7 @@
   "cn_sentence": ["經過兩年的練習，愛麗絲創作了一首很棒的樂曲。 ", "教授在解釋製作車用輪胎新材質的組成。"],
   "en_sentence": ["After two years of practice, Alice wrote a very good musical composition. ", "The professor was explaining the composition of the new material for making car tires."],
   "kk": "[`kAmpD'z0NDn]",
-  "sentence_audio": ["550238-1.mp3 ", "550238-2.mp3"],
+  "sentence_audio": ["550238-1.mp3", "550238-2.mp3"],
   "spell_audio": "550238.mp3",
   "spell": "composition"
 }, {
@@ -10797,7 +10797,7 @@
   "cn_sentence": ["我很久沒有去看任何表演了。我們找一個晚上去歌劇院。", "你曾經看過普契尼的歌劇《杜蘭朵公主》嗎？ ", "我爸爸聽歌劇當作消遣。"],
   "en_sentence": ["I haven\u2019t been to any shows for a long time.  Let\u2019s spend a night at the opera.", "Have you ever watched the opera Turandot by Puccini? ", "My dad listens to opera for entertainment."],
   "kk": "['ApDrD]",
-  "sentence_audio": ["550240-1.mp3", "550241-1.mp3 ", "550241-2.mp3"],
+  "sentence_audio": ["550240-1.mp3", "550241-1.mp3", "550241-2.mp3"],
   "spell_audio": "550241.mp3",
   "spell": "opera"
 }, {
@@ -10817,7 +10817,7 @@
   "cn_sentence": ["爺爺砍了一棵小松樹當作聖誕樹。 ", "奶奶喜歡松木家具；她所有的櫥櫃都是松樹製成的。"],
   "en_sentence": ["Grandpa cut down a small pine to serve as a Christmas tree. ", "Grandma loves pine furniture; all her cabinets are made of pine."],
   "kk": "[pa0n]",
-  "sentence_audio": ["550243-1.mp3 ", "550243-2.mp3"],
+  "sentence_audio": ["550243-1.mp3", "550243-2.mp3"],
   "spell_audio": "550243.mp3",
   "spell": "pine"
 }, {
@@ -11083,7 +11083,7 @@
   "cn_sentence": ["禮尚往來。 ", "當狗一直抓門的時候，是指牠想要進來裡面或出去房子外面。", "這片DVD 因為它上面的大刮痕而無法播放。"],
   "en_sentence": ["Scratch my back and I will scratch yours. ", "When a dog keeps scratching at the door, it means it wants to come into or get out of the house.", "This DVD can\u2019t be played because of the big scratch on it. "],
   "kk": "[skr$tN]",
-  "sentence_audio": ["550318-1.mp3 ", "550318-2.mp3", "550319-1.mp3"],
+  "sentence_audio": ["550318-1.mp3", "550318-2.mp3", "550319-1.mp3"],
   "spell_audio": "550319.mp3",
   "spell": "scratch"
 }, {
@@ -11093,7 +11093,7 @@
   "cn_sentence": ["這些居民可以感覺到砂石車經過他們房子時所造成的震動。 ", "汽車製造商試著減低車子的震動使得行駛更加順暢。"],
   "en_sentence": ["The residents can feel the vibrations caused by gravel trucks passing by their houses. ", "Car manufacturers try to reduce vibration in vehicles for a smoother ride."],
   "kk": "[va0'breNDn]",
-  "sentence_audio": ["550320-1.mp3 ", "550320-2.mp3"],
+  "sentence_audio": ["550320-1.mp3", "550320-2.mp3"],
   "spell_audio": "550320.mp3",
   "spell": "vibration"
 }, {
@@ -11103,7 +11103,7 @@
   "cn_sentence": ["聲帶振動以產生聲音。 ", "深水炸彈爆炸使得水震動並造成漣漪。"],
   "en_sentence": ["Vocal cords vibrate to produce voices. ", "The underwater bomb blast vibrated the water and caused ripples."],
   "kk": "['va0bret]",
-  "sentence_audio": ["550321-1.mp3 ", "550321-2.mp3"],
+  "sentence_audio": ["550321-1.mp3", "550321-2.mp3"],
   "spell_audio": "550321.mp3",
   "spell": "vibrate"
 }, {
@@ -11149,7 +11149,7 @@
   "cn_sentence": ["握手是一種友好的表示。 ", "大蒜的優點已經被科學證明。"],
   "en_sentence": ["Shaking hands is a demonstration of friendship. ", "The benefits of garlic have been proved by scientific demonstration."],
   "kk": "[`dGmDn'streNDn]",
-  "sentence_audio": ["550326-1.mp3 ", "550326-2.mp3"],
+  "sentence_audio": ["550326-1.mp3", "550326-2.mp3"],
   "spell_audio": "550326.mp3",
   "spell": "demonstration"
 }, {
@@ -11195,7 +11195,7 @@
   "cn_sentence": ["安迪是個外向的人，他喜歡與人交際。 ", "孩子們需要被社會化，也就是說，他們該被教導如何在群體之中舉止得宜。"],
   "en_sentence": ["Andy is an outgoing person who loves to socialize with people. ", "Children need to be socialized\u2014that is, they need to be taught to behave properly in groups."],
   "kk": "['soND`la0z]",
-  "sentence_audio": ["550331-1.mp3 ", "550331-2.mp3"],
+  "sentence_audio": ["550331-1.mp3", "550331-2.mp3"],
   "spell_audio": "550331.mp3",
   "spell": "socialize"
 }, {
@@ -11215,7 +11215,7 @@
   "cn_sentence": ["那個世界頂尖球員在今年的網球錦標賽中，如去年一樣地稱霸。 ", "這個老闆喜歡主導每一場會議，且不歡迎員工們的意見。"],
   "en_sentence": ["In this year\u2019s tennis tournaments, the world\u2019s top player dominated as he had last year. ", "The boss likes to dominate every meeting, and doesn\u2019t welcome the opinions of his employees."],
   "kk": "['dAmD`net]",
-  "sentence_audio": ["550333-1.mp3 ", "550333-2.mp3"],
+  "sentence_audio": ["550333-1.mp3", "550333-2.mp3"],
   "spell_audio": "550333.mp3",
   "spell": "dominate"
 }, {
@@ -11327,7 +11327,7 @@
   "cn_sentence": ["這些群眾圍過來聽這些候選人說話。 ", "看到龍捲風接近，這位母親聚集她的孩子們，並且催促他們進到地下室。"],
   "en_sentence": ["The crowd gathered around to hear the candidates talk. ", "Seeing the tornado approaching, the mother gathered her children and hurried them into the basement."],
   "kk": "['g$MQ]",
-  "sentence_audio": ["550345-1.mp3 ", "550345-2.mp3"],
+  "sentence_audio": ["550345-1.mp3", "550345-2.mp3"],
   "spell_audio": "550345.mp3",
   "spell": "gather"
 }, {
@@ -11357,7 +11357,7 @@
   "cn_sentence": ["這位老太太為她死掉的孫子而憂傷。 ", "肯恩為他在股票市場所輸掉的錢悲歎。"],
   "en_sentence": ["The old lady mourned for her dead grandson. ", "Ken mourned the loss of his money in the stock market."],
   "kk": "[mCrn]",
-  "sentence_audio": ["550348-1.mp3 ", "550348-2.mp3"],
+  "sentence_audio": ["550348-1.mp3", "550348-2.mp3"],
   "spell_audio": "550348.mp3",
   "spell": "mourn"
 }, {
@@ -11589,7 +11589,7 @@
   "cn_sentence": ["地球和宇宙生命的起源是許多人認為只有宗教可以解釋的謎。 ", "「kindergarten」這個字的起源是德文，意思是「孩子們的園地」。"],
   "en_sentence": ["The origins of life on Earth and of the universe are mysteries that many people think only religion can explain. ", "The word \u201ckindergarten\u201d is German in origin and means \u201cchildren\u2019s garden.\u201d"],
   "kk": "['CrDdI0n]",
-  "sentence_audio": ["550416-1.mp3 ", "550416-2.mp3"],
+  "sentence_audio": ["550416-1.mp3", "550416-2.mp3"],
   "spell_audio": "550416.mp3",
   "spell": "origin"
 }, {
@@ -11599,7 +11599,7 @@
   "cn_sentence": ["德國於一九三九年入侵波蘭，進而開啟了第二次世界大戰。 ", "好幾千名士兵被派去對抗已入侵的敵軍。"],
   "en_sentence": ["Germany invaded Poland in 1939 to begin WWII. ", "Several thousand soldiers were sent to fight against the enemy troops that had invaded."],
   "kk": "[0n'ved]",
-  "sentence_audio": ["550417-1.mp3 ", "550417-2.mp3"],
+  "sentence_audio": ["550417-1.mp3", "550417-2.mp3"],
   "spell_audio": "550417.mp3",
   "spell": "invade"
 }, {
@@ -11609,7 +11609,7 @@
   "cn_sentence": ["一九三一年九月十八日是日本對中國東北發動入侵的那天。 ", "一九四四年諾曼地入侵是第二次世界大戰最有名的戰役之一。"],
   "en_sentence": ["September 18th, 1931 marks the day when Japan launched an invasion of China\u2019s northeast. ", "The invasion of Normandy in 1944 is one of the best-known battles of WWII."],
   "kk": "[0n'veIDn]",
-  "sentence_audio": ["550418-1.mp3 ", "550418-2.mp3"],
+  "sentence_audio": ["550418-1.mp3", "550418-2.mp3"],
   "spell_audio": "550418.mp3",
   "spell": "invasion"
 }, {
@@ -11619,7 +11619,7 @@
   "cn_sentence": ["瑪姬生氣地對著她先生吼叫說：「你為什麼要對我說謊？」 ", "那間酒吧非常吵，裡面的人需要用吼叫來讓他們自己被聽見。"],
   "en_sentence": ["\u201cWhy did you lie to me?\u201d bellowed Maggie angrily at her husband. ", "The pub was extremely noisy and people there had to bellow to make themselves heard."],
   "kk": "['bGlo]",
-  "sentence_audio": ["550419-1.mp3 ", "550419-2.mp3"],
+  "sentence_audio": ["550419-1.mp3", "550419-2.mp3"],
   "spell_audio": "550419.mp3",
   "spell": "bellow"
 }, {
@@ -11685,7 +11685,7 @@
   "cn_sentence": ["颱風所帶來過剩的水量造成這條河川淹過河岸。", "醫生在給病人檢查時，發現白血球過量。 ", "過度吃喝非常有害於健康。"],
   "en_sentence": ["The excess water brought by the typhoon caused the river to overflow its banks.", "An excess of white blood cells was found when the doctor gave the patient a test. ", "Eating or drinking to excess is very bad for your health."],
   "kk": "[0k'sGs]",
-  "sentence_audio": ["550425-1.mp3", "550426-1.mp3 ", "550426-2.mp3"],
+  "sentence_audio": ["550425-1.mp3", "550426-1.mp3", "550426-2.mp3"],
   "spell_audio": "550426.mp3",
   "spell": "excess"
 }, {
@@ -11881,7 +11881,7 @@
   "cn_sentence": ["儘管有一些文法錯誤，我必須承認這是一篇好論文。 ", "珍妮向我承認她暗戀我哥哥。"],
   "en_sentence": ["I must admit that this is a good essay in spite of some grammatical mistakes. ", "Jenny admitted to me that she had a crush on my brother."],
   "kk": "[Dd'm0t]",
-  "sentence_audio": ["550446-1.mp3 ", "550446-2.mp3"],
+  "sentence_audio": ["550446-1.mp3", "550446-2.mp3"],
   "spell_audio": "550446.mp3",
   "spell": "admit"
 }, {
@@ -12031,7 +12031,7 @@
   "cn_sentence": ["根據古老的中國神話，天上有十個太陽，九個被后羿射了下來。 ", "我們必須知道神話與歷史的不同，以避免對史實的誤解。"],
   "en_sentence": ["According to an ancient Chinese myth, there were ten suns in the sky, and nine of them were shot down by Houyi. ", "We must know the differences between myth and history to avoid misunderstanding of historical facts."],
   "kk": "[m0L]",
-  "sentence_audio": ["550503-1.mp3 ", "550503-2.mp3"],
+  "sentence_audio": ["550503-1.mp3", "550503-2.mp3"],
   "spell_audio": "550503.mp3",
   "spell": "myth"
 }, {
@@ -12117,7 +12117,7 @@
   "cn_sentence": ["蓋瑞在吉兒答應跟他出去後非常高興。 ", "在湖人隊贏得NBA 冠軍的那一刻，湖人隊的球迷陷入狂喜。"],
   "en_sentence": ["Gary was in ecstasy after Jill agreed to go out with him. ", "The Lakers fans went into ecstasies the minute the team won the NBA championship."],
   "kk": "['GkstDs0]",
-  "sentence_audio": ["550513-1.mp3 ", "550513-2.mp3"],
+  "sentence_audio": ["550513-1.mp3", "550513-2.mp3"],
   "spell_audio": "550513.mp3",
   "spell": "ecstasy"
 }, {
@@ -12133,7 +12133,7 @@
   "cn_sentence": ["當我們的競爭對手發表一款更強大的產品時，我們新產品的命運就此終結。 ", "肯恩在信上簽名、密封信件，並拿去郵局郵寄。", "這份文件上有市長辦公室的印章。"],
   "en_sentence": ["The fate of our new product was sealed when our competitor unveiled a more powerful product. ", "Ken signed his letter, sealed it, and went to the post office to mail it.", "This document carries the seal of the mayor\u2019s office."],
   "kk": "[sil]",
-  "sentence_audio": ["550514-1.mp3 ", "550514-2.mp3", "550515-1.mp3"],
+  "sentence_audio": ["550514-1.mp3", "550514-2.mp3", "550515-1.mp3"],
   "spell_audio": "550515.mp3",
   "spell": "seal"
 }, {
@@ -12153,7 +12153,7 @@
   "cn_sentence": ["這間餐廳自豪他們的餐具一直都有消毒以避免感染。 ", "在住院三天後，那位101歲的老人死於多重器官感染。"],
   "en_sentence": ["This restaurant boasts that its tableware is always sterilized to prevent infection. ", "After being hospitalized for three days, that 101-year-old man died of multiple organ infections."],
   "kk": "[0n'fGkNDn]",
-  "sentence_audio": ["550517-1.mp3 ", "550517-2.mp3"],
+  "sentence_audio": ["550517-1.mp3", "550517-2.mp3"],
   "spell_audio": "550517.mp3",
   "spell": "infection"
 }, {
@@ -12223,7 +12223,7 @@
   "cn_sentence": ["身為資深藝品商，維特可以分辨出真的骨董與仿冒品。 ", "教導孩童明辨是非是重要的。"],
   "en_sentence": ["As a senior art dealer, Victor can distinguish a real antique from a duplicate. ", "It is important to teach children how to distinguish between right and wrong."],
   "kk": "[d0'st0Hgw0N]",
-  "sentence_audio": ["550524-1.mp3 ", "550524-2.mp3"],
+  "sentence_audio": ["550524-1.mp3", "550524-2.mp3"],
   "spell_audio": "550524.mp3",
   "spell": "distinguish"
 }, {
@@ -12243,7 +12243,7 @@
   "cn_sentence": ["內戰一定會使一個國家陷入混亂。 ", "聽到哨聲後，所有游泳者都跳入泳池裡。"],
   "en_sentence": ["A civil war will definitely plunge a country into chaos. ", "On hearing the whistle, all the swimmers plunged into the pool."],
   "kk": "[plKndI]",
-  "sentence_audio": ["550526-1.mp3 ", "550526-2.mp3"],
+  "sentence_audio": ["550526-1.mp3", "550526-2.mp3"],
   "spell_audio": "550526.mp3",
   "spell": "plunge"
 }, {
@@ -12253,7 +12253,7 @@
   "cn_sentence": ["這個疾病的症狀包括發燒、咳嗽跟體重下降。 ", "泰德因為感冒所以發燒、喉嚨痛。"],
   "en_sentence": ["The symptoms of this disease include fever, coughing, and weight loss. ", "Ted has a fever and a sore throat because he caught a cold."],
   "kk": "['fivQ]",
-  "sentence_audio": ["550527-1.mp3 ", "550527-2.mp3"],
+  "sentence_audio": ["550527-1.mp3", "550527-2.mp3"],
   "spell_audio": "550527.mp3",
   "spell": "fever"
 }, {
@@ -12293,7 +12293,7 @@
   "cn_sentence": ["因別人的不幸而幸災樂禍是不道德的。 ", "固執通常會導致不幸。"],
   "en_sentence": ["It is not ethical to take pleasure in the misfortunes of others. ", "Stubbornness usually leads to misfortune."],
   "kk": "[m0s'fCrtNDn]",
-  "sentence_audio": ["550531-1.mp3 ", "550531-2.mp3"],
+  "sentence_audio": ["550531-1.mp3", "550531-2.mp3"],
   "spell_audio": "550531.mp3",
   "spell": "misfortune"
 }, {
@@ -12359,7 +12359,7 @@
   "cn_sentence": ["愛麗莎對她男友的不誠實感到很心煩，而他的冷漠更加激怒了她。", "在山區裡，人們跟城裡的人用不同的燃料。 ", "煤炭、天然氣跟石油是三種常用的燃料。"],
   "en_sentence": ["Alisa was upset by her boyfriend\u2019s dishonesty, and his indifference just fueled her anger.", "In the mountains, people use different fuels from those in the city. ", "Coal, natural gas, and oil are three types of commonly used fuel."],
   "kk": "['fjuDl]",
-  "sentence_audio": ["550537-1.mp3", "550538-1.mp3 ", "550538-2.mp3"],
+  "sentence_audio": ["550537-1.mp3", "550538-1.mp3", "550538-2.mp3"],
   "spell_audio": "550538.mp3",
   "spell": "fuel"
 }, {
@@ -12379,7 +12379,7 @@
   "cn_sentence": ["法蘭從不在網路上買鞋子，因為她不確定它們是否合腳。 ", "六號尺寸不適合你，你需要更大的尺寸。"],
   "en_sentence": ["Fran never buys shoes online because she isn\u2019t sure if they will fit. ", "Size six doesn\u2019t fit you. You need a bigger size."],
   "kk": "[f0t]",
-  "sentence_audio": ["550540-1.mp3 ", "550540-2.mp3"],
+  "sentence_audio": ["550540-1.mp3", "550540-2.mp3"],
   "spell_audio": "550540.mp3",
   "spell": "fit"
 }, {
@@ -12569,7 +12569,7 @@
   "cn_sentence": ["瑪莎本是一片好意，但她卻使問題更糟糕。 ", "我絕對無意傷害你的感情。"],
   "en_sentence": ["Despite her good intentions, Martha only made the problem worse. ", "It was never my intention to hurt your feelings."],
   "kk": "[0n'tGnNDn]",
-  "sentence_audio": ["550608-1.mp3 ", "550608-2.mp3"],
+  "sentence_audio": ["550608-1.mp3", "550608-2.mp3"],
   "spell_audio": "550608.mp3",
   "spell": "intention"
 }, {
@@ -12655,7 +12655,7 @@
   "cn_sentence": ["自從珮特離開喬恩之後，他真的很悲慘。 ", "他們在印度的房地產投資，結果是一個悲慘的失敗。"],
   "en_sentence": ["Jon has been really miserable ever since Pat left him. ", "Their investment in real estate in India turned out to be a miserable failure."],
   "kk": "['m0zrDb9]",
-  "sentence_audio": ["550617-1.mp3 ", "550617-2.mp3"],
+  "sentence_audio": ["550617-1.mp3", "550617-2.mp3"],
   "spell_audio": "550617.mp3",
   "spell": "miserable"
 }, {
@@ -12701,7 +12701,7 @@
   "cn_sentence": ["珍對於她父親過世時未能陪在他身邊，一直覺得遺憾。", "前任的執行長說他對於在顛峰時期下臺，他沒有任何的遺憾。 ", "首相對於在炸彈攻擊中喪生的無辜犧牲者表達深深的遺憾。"],
   "en_sentence": ["Jean has always regretted not being there when her father died.", "The former CEO said he had no regrets about stepping down from his position in his prime. ", "The prime minister expressed deep regret at the death of innocent victims in the bombing."],
   "kk": "[r0'grGt]",
-  "sentence_audio": ["550621-1.mp3", "550622-1.mp3 ", "550622-2.mp3"],
+  "sentence_audio": ["550621-1.mp3", "550622-1.mp3", "550622-2.mp3"],
   "spell_audio": "550622.mp3",
   "spell": "regret"
 }, {
@@ -12747,7 +12747,7 @@
   "cn_sentence": ["當教授第一次解釋這個新理論時，大部分的學生未能領略。", "莎莉恭喜我得獎，並用力地與我握手。 ", "因失去她的小孩而消沉，這位母親開始分不清現實。"],
   "en_sentence": ["Most of the students failed to grasp the new theory the first time the professor explained it.", "Sally congratulated me on winning the award and shook my hand with a firm grasp. ", "Depressed by the loss of her child, the mother began to lose her grasp on reality."],
   "kk": "[gr$sp]",
-  "sentence_audio": ["550626-1.mp3", "550627-1.mp3 ", "550627-2.mp3"],
+  "sentence_audio": ["550626-1.mp3", "550627-1.mp3", "550627-2.mp3"],
   "spell_audio": "550627.mp3",
   "spell": "grasp"
 }, {
@@ -12823,7 +12823,7 @@
   "cn_sentence": ["當珍妮靠近河流時，鴨子拍打翅膀飛到空中。 ", "拍打著牠的小翅膀，小雞離開地面一點點，然後又掉落下來。"],
   "en_sentence": ["As Jenny approached the river, the ducks flapped away into the air. ", "Flapping its tiny wings, the chick lifted itself a little off the ground and then fell again."],
   "kk": "[fl$p]",
-  "sentence_audio": ["550635-1.mp3 ", "550635-2.mp3"],
+  "sentence_audio": ["550635-1.mp3", "550635-2.mp3"],
   "spell_audio": "550635.mp3",
   "spell": "flap"
 }, {
@@ -13063,7 +13063,7 @@
   "cn_sentence": ["電腦是二十世紀最有用的發明之一。 ", "因我們身處科技創新的時代裡，我們享有比以前更多的便利。"],
   "en_sentence": ["The computer is one of the most useful innovations of the twentieth century. ", "As we are living in an age of technological innovation, we enjoy more convenience than before."],
   "kk": "[`0nD'veNDn]",
-  "sentence_audio": ["550715-1.mp3 ", "550715-2.mp3"],
+  "sentence_audio": ["550715-1.mp3", "550715-2.mp3"],
   "spell_audio": "550715.mp3",
   "spell": "innovation"
 }, {
@@ -13083,7 +13083,7 @@
   "cn_sentence": ["過去幾年來我們已經累積了大量資料。 ", "因為昨晚我們忘了關窗戶，房間裡累積了灰塵。"],
   "en_sentence": ["We have accumulated a large amount of data in the past few years. ", "Dust has been accumulating in the room because we forgot to close the window last night."],
   "kk": "[D'kjumjD`let]",
-  "sentence_audio": ["550717-1.mp3 ", "550717-2.mp3"],
+  "sentence_audio": ["550717-1.mp3", "550717-2.mp3"],
   "spell_audio": "550717.mp3",
   "spell": "accumulate"
 }, {
@@ -13093,7 +13093,7 @@
   "cn_sentence": ["這個圖書館的藏書很豐富。 ", "脂肪和膽固醇的累積會對我們的身體有害。"],
   "en_sentence": ["There is a vast accumulation of books in this library. ", "The accumulation of fat and cholesterol will do great harm to our body."],
   "kk": "[D`kjumjD'leNDn]",
-  "sentence_audio": ["550718-1.mp3 ", "550718-2.mp3"],
+  "sentence_audio": ["550718-1.mp3", "550718-2.mp3"],
   "spell_audio": "550718.mp3",
   "spell": "accumulation"
 }, {
@@ -13163,7 +13163,7 @@
   "cn_sentence": ["賴瑞喜愛運用當總經理貴賓的特權。 ", "皇室享有特權般的生活。"],
   "en_sentence": ["Larry enjoys exercising his privileges as a special guest of the general manager. ", "The royal family lives a life of privilege."],
   "kk": "['pr0vl0dI]",
-  "sentence_audio": ["550725-1.mp3 ", "550725-2.mp3"],
+  "sentence_audio": ["550725-1.mp3", "550725-2.mp3"],
   "spell_audio": "550725.mp3",
   "spell": "privilege"
 }, {
@@ -13293,7 +13293,7 @@
   "cn_sentence": ["以文化多樣性著稱的美國，常被認為是一個大熔爐。 ", "關於興建核電廠的意見有很大的分歧。"],
   "en_sentence": ["The U.S., known for its cultural diversity, is often considered a big melting pot. ", "There is a great diversity of opinions with regard to the construction of a nuclear power plant."],
   "kk": "[da0'v\"sDt0]",
-  "sentence_audio": ["550802-1.mp3 ", "550802-2.mp3"],
+  "sentence_audio": ["550802-1.mp3", "550802-2.mp3"],
   "spell_audio": "550802.mp3",
   "spell": "diversity"
 }, {
@@ -13569,7 +13569,7 @@
   "cn_sentence": ["霍華珍視他的活動人偶收藏，只讓他最親近的朋友把玩。", "羅浮宮收藏了許多藝術珍品。 ", "那些惡名昭彰的海盜正在找尋埋藏的寶藏。"],
   "en_sentence": ["Howard treasures his collection of action figures and only lets his closest friends play with them.", "The Louvre houses many artistic treasures. ", "Those notorious pirates were hunting for buried treasure."],
   "kk": "['trGIQ]",
-  "sentence_audio": ["550829-1.mp3", "550830-1.mp3 ", "550830-2.mp3"],
+  "sentence_audio": ["550829-1.mp3", "550830-1.mp3", "550830-2.mp3"],
   "spell_audio": "550830.mp3",
   "spell": "treasure"
 }, {
@@ -13589,7 +13589,7 @@
   "cn_sentence": ["我的父母為了我的教育不惜重金。 ", "亨利的薪水不足以支付他每個月的花費，所以他決定尋求另一份工作。"],
   "en_sentence": ["My parents spared no expense for my education. ", "Henry\u2019s salary is not enough to cover his monthly expenses, so he\u2019s decided to seek another job."],
   "kk": "[0k'spGns]",
-  "sentence_audio": ["550832-1.mp3 ", "550832-2.mp3"],
+  "sentence_audio": ["550832-1.mp3", "550832-2.mp3"],
   "spell_audio": "550832.mp3",
   "spell": "expense"
 }, {
@@ -13659,7 +13659,7 @@
   "cn_sentence": ["猴子們在雪中抱在一起以保持彼此溫暖。 ", "那個小女孩睡覺的時候喜歡抱著她的芭比娃娃，因為它給她一種安全感。"],
   "en_sentence": ["The monkeys cuddled together in the snow to keep each other warm. ", "That little girl likes to cuddle her Barbie doll while sleeping, for it gives her a sense of security."],
   "kk": "['kKd9]",
-  "sentence_audio": ["550901-1.mp3 ", "550901-2.mp3"],
+  "sentence_audio": ["550901-1.mp3", "550901-2.mp3"],
   "spell_audio": "550901.mp3",
   "spell": "cuddle"
 }, {
@@ -13775,7 +13775,7 @@
   "cn_sentence": ["這個軟體讓我們可以容易地剪貼數個文字區塊。 ", "盜墓者在這個墳墓裡發現了古老的文本，他們相信這是凱薩大帝的講稿之一。"],
   "en_sentence": ["This software allows us to cut and paste numerous blocks of text easily. ", "The tomb raiders found an ancient text in the tomb, which they believed was the manuscript of one of Caesar\u2019s speeches."],
   "kk": "[tGkst]",
-  "sentence_audio": ["550913-1.mp3 ", "550913-2.mp3"],
+  "sentence_audio": ["550913-1.mp3", "550913-2.mp3"],
   "spell_audio": "550913.mp3",
   "spell": "text"
 }, {
@@ -13791,7 +13791,7 @@
   "cn_sentence": ["那個媽媽試著在她的雙胞胎吵架的時候不要偏袒任何一個人。", "她贏得國王的偏愛、寵幸，到了國王荒廢國事，只為了跟她在一起的地步了。 ", "榮恩，你能幫我個忙，把暖氣調小一點好嗎？"],
   "en_sentence": ["The mother tries not to favor either of her twins when they fight.", "She won the favor and affection of the king, to the extent that he neglected state affairs to spend time with her. ", "Ron, could you do me a favor and turn down the heat?"],
   "kk": "['fevQ]",
-  "sentence_audio": ["550914-1.mp3", "550915-1.mp3 ", "550915-2.mp3"],
+  "sentence_audio": ["550914-1.mp3", "550915-1.mp3", "550915-2.mp3"],
   "spell_audio": "550915.mp3",
   "spell": "favor"
 }, {
@@ -13801,7 +13801,7 @@
   "cn_sentence": ["雷德博士最新的研究報告在他演講前就被公開了。 ", "為了知道這本書大概在說什麼，薇琪很快地瀏覽了目次。"],
   "en_sentence": ["The content of Dr. Red\u2019s latest research paper was made public before his speech. ", "To find out what this book was mainly about, Vicky quickly browsed through the table of contents."],
   "kk": "['kAntGnt]",
-  "sentence_audio": ["550916-1.mp3 ", "550916-2.mp3"],
+  "sentence_audio": ["550916-1.mp3", "550916-2.mp3"],
   "spell_audio": "550916.mp3",
   "spell": "content"
 }, {
@@ -13885,7 +13885,7 @@
   "cn_sentence": ["這棟摩天大樓擁有世界上最快的電梯。", "歐文是個謙卑自抑的人。他很少誇耀自己的成就。 ", "威爾森正在向派對裡的女孩們誇耀自己的旅遊經驗。", "約翰誇耀自己收藏CD 甚多，卻因缺乏音樂知識而打了折扣。"],
   "en_sentence": ["This skyscraper boasts the fastest elevator in the world.", "Owen is a humble and modest man.  He seldom boasts about his achievements. ", "Wilson was boasting his travel experiences to the girls at the party.", "John\u2019s boasts about his huge CD collection were undermined by his lack of musical knowledge."],
   "kk": "[bost]",
-  "sentence_audio": ["550924-1.mp3", "550925-1.mp3 ", "550925-2.mp3", "550926-1.mp3"],
+  "sentence_audio": ["550924-1.mp3", "550925-1.mp3", "550925-2.mp3", "550926-1.mp3"],
   "spell_audio": "550926.mp3",
   "spell": "boast"
 }, {
@@ -13957,7 +13957,7 @@
   "cn_sentence": ["這本字典的封皮磨損得很嚴重了。它現在需要修復。 ", "這本書的漂亮書封由一位知名插畫家所設計。"],
   "en_sentence": ["The binding of this dictionary is totally worn out.  It needs to be repaired now. ", "The binding of this book was beautifully designed by a famous illustrator."],
   "kk": "['ba0nd0H]",
-  "sentence_audio": ["550936-1.mp3 ", "550936-2.mp3"],
+  "sentence_audio": ["550936-1.mp3", "550936-2.mp3"],
   "spell_audio": "550936.mp3",
   "spell": "binding"
 }, {
@@ -13987,7 +13987,7 @@
   "cn_sentence": ["一個公正的法官不應該讓他個人的情感影響他的判斷。 ", "自從總統的醜聞爆發後，公眾對其觀感有很大的改變。"],
   "en_sentence": ["A fair judge should not allow any personal sentiments to influence his judgment. ", "There has been a significant shift in public sentiment since the president\u2019s scandal broke out."],
   "kk": "['sGntDmDnt]",
-  "sentence_audio": ["550939-1.mp3 ", "550939-2.mp3"],
+  "sentence_audio": ["550939-1.mp3", "550939-2.mp3"],
   "spell_audio": "550939.mp3",
   "spell": "sentiment"
 }, {
@@ -14133,7 +14133,7 @@
   "cn_sentence": ["沒有人能像那樣胡亂指控的！ ", "指控我考試作弊完全不公平。"],
   "en_sentence": ["No one can make wild accusations like that! ", "The accusation that I had cheated on the exam was totally unjust."],
   "kk": "[`$kjD'zeNDn]",
-  "sentence_audio": ["551004-1.mp3 ", "551004-2.mp3"],
+  "sentence_audio": ["551004-1.mp3", "551004-2.mp3"],
   "spell_audio": "551004.mp3",
   "spell": "accusation"
 }, {
@@ -14143,7 +14143,7 @@
   "cn_sentence": ["毆打奴隸是有違人權的犯罪。 ", "法庭裁定吉姆無罪，所以他被釋放了。"],
   "en_sentence": ["Beating up slaves is a crime against human rights. ", "The court found that Jim had committed no crime, so he was set free."],
   "kk": "[kra0m]",
-  "sentence_audio": ["551005-1.mp3 ", "551005-2.mp3"],
+  "sentence_audio": ["551005-1.mp3", "551005-2.mp3"],
   "spell_audio": "551005.mp3",
   "spell": "crime"
 }, {
@@ -14169,7 +14169,7 @@
   "cn_sentence": ["好幾萬人聚集在廣場，抗議法律制度不公。 ", "所有學生聚在一起，慶祝校慶。"],
   "en_sentence": ["Tens of thousands of people assembled in the square to protest against the unfair legal system. ", "All the students are assembled to celebrate the school\u2019s anniversary."],
   "kk": "[D'sGmb9]",
-  "sentence_audio": ["551008-1.mp3 ", "551008-2.mp3"],
+  "sentence_audio": ["551008-1.mp3", "551008-2.mp3"],
   "spell_audio": "551008.mp3",
   "spell": "assemble"
 }, {
@@ -14199,7 +14199,7 @@
   "cn_sentence": ["那複雜的審判持續了好幾年，不過都沒有結果。 ", "被告必須因為詐欺而受審。"],
   "en_sentence": ["The complicated trial went on for years, but no decision was made. ", "The defendants had to stand trial for fraud."],
   "kk": "['tra0Dl]",
-  "sentence_audio": ["551011-1.mp3 ", "551011-2.mp3"],
+  "sentence_audio": ["551011-1.mp3", "551011-2.mp3"],
   "spell_audio": "551011.mp3",
   "spell": "trial"
 }, {
@@ -14259,7 +14259,7 @@
   "cn_sentence": ["麥克家人提出有用的資訊來證明他是無辜的。 ", "我現在找不到身分證明，因為我的皮包被偷了。"],
   "en_sentence": ["Michael\u2019s family is presenting useful information to establish proof of his innocence. ", "I can\u2019t find any proof of my identity right now because my purse was stolen."],
   "kk": "[pruf]",
-  "sentence_audio": ["551017-1.mp3 ", "551017-2.mp3"],
+  "sentence_audio": ["551017-1.mp3", "551017-2.mp3"],
   "spell_audio": "551017.mp3",
   "spell": "proof"
 }, {
@@ -14433,7 +14433,7 @@
   "cn_sentence": ["紅色時常被用來代表危險的信號。", "路上正在施工，其中的一名工人正在打信號給經過的車子，以便讓他們走另一條路。 ", "學校鐘聲在每堂課開始和結束時會敲鐘讓老師和學生知道。"],
   "en_sentence": ["The color red is often used as a signal for danger.", "There was construction work on the road, and one of the workers was signaling to the passing cars so they could go another way. ", "The school bell signals the beginning and the end of each class period for students and teachers."],
   "kk": "['s0gn9]",
-  "sentence_audio": ["551035-1.mp3", "551036-1.mp3 ", "551036-2.mp3"],
+  "sentence_audio": ["551035-1.mp3", "551036-1.mp3", "551036-2.mp3"],
   "spell_audio": "551036.mp3",
   "spell": "signal"
 }, {
@@ -14443,7 +14443,7 @@
   "cn_sentence": ["忌妒破壞了蔓蒂和蓮納之間的友誼。 ", "莎拉因為無謂的忌妒晚上無法睡覺。"],
   "en_sentence": ["It was jealousy that ruined Mandy and Lena\u2019s friendship. ", "Sarah couldn\u2019t sleep at night because of petty jealousies."],
   "kk": "['dIGlDs0]",
-  "sentence_audio": ["551037-1.mp3 ", "551037-2.mp3"],
+  "sentence_audio": ["551037-1.mp3", "551037-2.mp3"],
   "spell_audio": "551037.mp3",
   "spell": "jealousy"
 }, {

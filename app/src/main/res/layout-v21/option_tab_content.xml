@@ -212,8 +212,8 @@
                 android:layout_height="wrap_content"
                 custom:setPickerBackgroundColor="#ffffff"
                 android:layout_marginStart="15dp"
-                custom:setPickerMaximumNumber="2"
-                custom:setPickerMinimumNumber="0" />
+                custom:setPickerMaximumNumber="40"
+                custom:setPickerMinimumNumber="10" />
 
         </LinearLayout>
 

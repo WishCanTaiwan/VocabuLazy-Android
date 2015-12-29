@@ -9,16 +9,16 @@ import android.os.Parcelable;
 public class Option implements Parcelable {
     private static final String TAG = Option.class.getSimpleName();
 
-    private int mMode;
+    public int mMode;
 
-    private boolean mIsRandom;
-    private int mListLoop;
-    private boolean mSentence;
+    public boolean mIsRandom;
+    public int mListLoop;
+    public boolean mSentence;
 
-    private int mStopPeriod;
-    private int mItemLoop;
-    private int mSpeed;
-    private int mPlayTime;
+    public int mStopPeriod;
+    public int mItemLoop;
+    public int mSpeed;
+    public int mPlayTime;
 
     public Option(int mode, boolean isRandom, int listLoop, boolean sentence, int stopPeriod, int itemLoop, int speed, int playTime) {
         mMode = mode;

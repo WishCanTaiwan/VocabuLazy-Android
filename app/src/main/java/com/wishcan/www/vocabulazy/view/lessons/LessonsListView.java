@@ -177,10 +177,10 @@ public class LessonsListView extends ListView {
 
             int len = mTo.length;
             HashMap<String, Integer> hm = mDataList.get(row);
-            Log.d(TAG, "mDataListSize " + mDataList.size());
+//            Log.d(TAG, "mDataListSize " + mDataList.size());
             for(int i = 0; i < len; i++) {
                 final int lesson = row * len + i;
-                Log.d(TAG, "Lesson " + lesson);
+//                Log.d(TAG, "Lesson " + lesson);
                 ViewGroup lessonParentView = (ViewGroup) v.findViewById(mTo[i]);
 
                 ImageView imageView = (ImageView) lessonParentView.getChildAt(0);

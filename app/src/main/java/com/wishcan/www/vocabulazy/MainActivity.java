@@ -50,27 +50,27 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     /**
      * The object is used for recording the user's favorite word
-     * */
+     */
 //    private VocabularyList mFavoriteVocabularyList;
 
     /**
      * The object is used for recording the user's playing list
-     * */
+     */
 //    private VocabularyList mPlayingVocabularyList;
 
     /**
      *
-     * */
+     */
     private MainFragment mMainFragment;
 
     /**
      *
-     * */
+     */
     private LessonsFragment mLessonsFragment;
 
     /**
      *
-     * */
+     */
     private PlayerFragment mPlayerFragment;
 
     private ReadingMainFragment mReadingMainFragment;
@@ -85,10 +85,10 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     /**
      *
-     * */
+     */
     private FragmentManager mFragmentManager;
 
-    private Database mDatabase;
+    private static Database mDatabase;
 
     private ActionBar mActionBar;
 
@@ -96,22 +96,20 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     /**
      * This is an important parameter for restoring the fragment in our activity
-     * */
+     */
     private String mCurrentFragmentTag;
-
-    private boolean mSearchActivityEnabled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
+//        Log.d(TAG, "onCreate");
 
         if (savedInstanceState != null) {
             mCurrentFragmentTag = savedInstanceState.getString(MainActivity.CURRENT_FRAGMENT_TAG);
         } else {
             mCurrentFragmentTag = "mainfragment";
         }
-//        vocabulary = new Vocabulary(getResources(), "database/Vocabulary.json");
 
         setContentView(ACTIVITY_RESOURCE_ID);
 
@@ -119,12 +117,13 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
         mMainActivity = this;
 
-        startAudioService();
-
         mFragmentManager = getFragmentManager();
 
-        mDatabase = new Database(this);
-
+        if (mDatabase == null) {
+            mDatabase = new Database(this);
+        } else {
+            Log.d(TAG, "database alrdy exist.");
+        }
         if (savedInstanceState == null) {
             mMainFragment = MainFragment.newInstance(mDatabase);
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
@@ -135,14 +134,48 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
             mLessonsFragment = (LessonsFragment) mFragmentManager.findFragmentByTag("lessonsfragment");
             mPlayerFragment = (PlayerFragment) mFragmentManager.findFragmentByTag("playerfragment");
         }
+    }
 
-        mSearchActivityEnabled = false;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+//        Log.d(TAG, "onActivityResult");
+
+        if (requestCode == REQUEST_CODE_DATABASE_UPDATE) {
+            if (resultCode == RESULT_OK) {
+                mDatabase.loadNotes();
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+//        Log.d(TAG, "onStart");
+
+        mActionBar = getActionBar();
+        switchActionBarTitle(getResources().getString(R.string.book_title));
+
+        if (mActionBarTitleWhenStop != null)
+            switchActionBarTitle(mActionBarTitleWhenStop);
+
+        mActionBar.setDisplayHomeAsUpEnabled(!mCurrentFragmentTag.equals("mainfragment"));
+
+        startAudioService();
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+//        Log.d(TAG, "onRestoreInstanceState");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mDatabase.writeToFile(this);
     }
 
     @Override
@@ -150,50 +183,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         outState.putString(MainActivity.CURRENT_FRAGMENT_TAG, mCurrentFragmentTag);
         outState.putString(MainActivity.PREVIOUS_TITLE, mActionBarTitleTextView.getText().toString());
         super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if(mActionBarTitleWhenStop!= null)
-            switchActionBarTitle(mActionBarTitleWhenStop);
-
-        if (mCurrentFragmentTag.equals("mainfragment"))
-            mActionBar.setDisplayHomeAsUpEnabled(false);
-        else
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mActionBar = getActionBar();
-        switchActionBarTitle(getResources().getString(R.string.book_title));
-    }
-
-    @Override
-    protected void onPause() {
-        mDatabase.writeToFile(this);
-        super.onPause();
-
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (!mSearchActivityEnabled) {
-            mDatabase.writeToFile(this);
-        }
-        stopAudioService();
-        super.onDestroy();
+//        Log.d(TAG, "onSaveInstanceState");
     }
 
     @Override
@@ -209,7 +199,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
         int id = item.getItemId();
         if(id == R.id.action_search) {
-            mSearchActivityEnabled = true;
             Intent intent = new Intent(this, SearchActivity.class);
             Bundle bundle = new Bundle();
             intent.putExtras(bundle);
@@ -218,25 +207,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE_DATABASE_UPDATE) {
-            if (resultCode == RESULT_OK) {
-                mSearchActivityEnabled = false;
-                Bundle bundle = data.getExtras();
-//                mDatabase = bundle.getParcelable("database");
-
-                mDatabase.loadNotes();
-                ArrayList<Lesson> note = mDatabase.getLessonsByBook(-1);
-
-                mMainFragment.refreshFragment();
-            }
-        }
-
     }
 
     @Override
@@ -251,7 +221,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         // For ExamResultFragment, doing some specific handling
         // TODO: DEBUG
         Fragment fragment;
-        if((fragment = getFragmentManager().findFragmentByTag("examresultfragment")) != null){
+        if ((fragment = getFragmentManager().findFragmentByTag("examresultfragment")) != null) {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_right);
             transaction.remove(fragment);
@@ -276,7 +246,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
             } else {
 
             }
-
             super.onBackPressed();
         }
         else
@@ -285,7 +254,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
 
     private void startAudioService() {
         Intent intent = new Intent(this, AudioService.class);
-        intent.setAction(AudioService.ACTION_INIT);
+        intent.setAction(AudioService.ACTION_START_SERVICE);
         startService(intent);
     }
 
@@ -411,8 +380,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
                 break;
 
         }
-
-
     }
 
     public Database getDatabase() {

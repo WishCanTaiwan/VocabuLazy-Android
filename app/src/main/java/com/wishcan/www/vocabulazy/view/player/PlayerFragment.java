@@ -101,6 +101,8 @@ public class PlayerFragment extends Fragment {
 
     private AudioService mAudioService;
 
+    private AudioServiceCaller mAudioServiceCaller;
+
     private Database mDatabase;
 
     private IntentFilter mAudioServiceBroadcastIntentFilter;
@@ -277,9 +279,17 @@ public class PlayerFragment extends Fragment {
     public void onStart() {
         Log.d(TAG, "onStart");
         super.onStart();
-        mAudioServiceBroadcastIntentFilter = new IntentFilter(AudioService.BROADCAST);
-        mAudioServiceBoardcastReceiver = new AudioServiceBroadcastReceiver();
-        LocalBroadcastManager.getInstance(mMainActivity).registerReceiver(mAudioServiceBoardcastReceiver, mAudioServiceBroadcastIntentFilter);
+
+        /**
+         * register the caller and receiver for communicating with Audio Serivce
+         */
+        registerAudioServiceCaller();
+        registerAudioServiceBroadcastReceiver();
+
+        /**
+         * initialize the audioplayer
+         */
+        mAudioServiceCaller.initAudioPlayer();
     }
 
     @Override
@@ -297,7 +307,11 @@ public class PlayerFragment extends Fragment {
         parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
         parentActivity.switchActionBarTitle(mPreviousTitle);
 
-        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
+        /**
+         * unregister the caller and receiver
+         */
+        unregisterAudioServiceCaller();
+        unregisterAudioServiceBroadcastReciever();
 
     }
 
@@ -305,25 +319,20 @@ public class PlayerFragment extends Fragment {
         mPlayerThreeView.setOnPlayerScrollStoppedListener(new PlayerThreeView.OnPlayerScrollListener() {
             @Override
             public void onPlayerScrollStopped() {
-
-                Intent intent = new Intent(mMainActivity, AudioService.class);
-                intent.setAction(AudioService.ACTION_START);
-                intent.putExtra("position", mPlayerThreeView.getCurrentFocusedPosition());
-                mMainActivity.startService(intent);
-
+                /**
+                 * when the scroll stopped, retrieve the current focused position and start play the
+                 * item at which position.
+                 */
+                mAudioServiceCaller.start(mPlayerThreeView.getCurrentFocusedPosition());
             }
 
             @Override
             public void onPlayerScrollStarted() {
-
-                Intent intent = new Intent(mMainActivity, AudioService.class);
-                intent.setAction(AudioService.ACTION_STOP);
-                mMainActivity.startService(intent);
-
-                Intent intent2 = new Intent(mMainActivity, AudioService.class);
-                intent2.setAction(AudioService.ACTION_REMOVE_PENDING_TASK);
-                mMainActivity.startService(intent2);
-
+                /**
+                 * halt the playing processes
+                 */
+                mAudioServiceCaller.stop();
+                mAudioServiceCaller.removePendingTask();
             }
         });
 
@@ -337,10 +346,10 @@ public class PlayerFragment extends Fragment {
         mPlayerThreeView.setOnPageChangedListener(new InfiniteThreeView.OnPageChangedListener() {
             @Override
             public void onPageScrolled() {
-
-                Intent intent = new Intent(mMainActivity, AudioService.class);
-                intent.setAction(AudioService.ACTION_STOP);
-                mMainActivity.startService(intent);
+                /**
+                 * halt the playing process
+                 */
+                mAudioServiceCaller.stop();
             }
 
             @Override
@@ -348,15 +357,12 @@ public class PlayerFragment extends Fragment {
 
                 Log.d(TAG, "onPageChanged");
 
-                Intent intent = new Intent(mMainActivity, AudioService.class);
-                intent.setAction(AudioService.ACTION_REMOVE_PENDING_TASK);
-                mMainActivity.startService(intent);
+                /**
+                 * halt the playing process
+                 */
+                mAudioServiceCaller.stop();
 
                 mCurrentLessonIndex = (mCurrentLessonIndex - direction + mNumOfLesson) % mNumOfLesson;
-
-//                Log.d(TAG, "direction: " + direction);
-//                Log.d(TAG, "mCurrentBookIndex: " + mCurrentBookIndex);
-//                Log.d(TAG, "mCurrentLessonIndex: " + mCurrentLessonIndex);
 
                 ArrayList<Integer> refreshedContentIDs = refreshContentIDsOfThreeViews(mCurrentLessonIndex, direction);
                 mPlayerThreeView.addNewPlayer(refreshedContentIDs);
@@ -369,28 +375,26 @@ public class PlayerFragment extends Fragment {
         mPlayerThreeView.setOnFocusChangedListener(new PlayerThreeView.OnFocusChangedListener() {
             @Override
             public void onFocusChanged(int position) {
-
-                Intent intent = new Intent(mMainActivity, AudioService.class);
-                intent.setAction(AudioService.ACTION_START);
-                intent.putExtra("position", mPlayerThreeView.getCurrentFocusedPosition());
-                mMainActivity.startService(intent);
-
-//                mCurrentFocusedPosition = position;
-//                mDatabase.setCurrentPlayingItem(mCurrentFocusedPosition);
-
+                /**
+                 * after focused item has changed, play the newly focused item.
+                 */
+                mAudioServiceCaller.start(mPlayerThreeView.getCurrentFocusedPosition());
             }
         });
 
         mPlayerThreeView.setOnItemPreparedListener(new PlayerThreeView.OnItemPreparedListener() {
             @Override
             public void onInitialItemPrepared() {
-                if (mCurrentBookIndex != mDatabase.getCurrentPlayingBook() || mCurrentLessonIndex != mDatabase.getCurrentPlayingList())
+                if (mCurrentBookIndex != mDatabase.getCurrentPlayingBook() || mCurrentLessonIndex != mDatabase.getCurrentPlayingList()) {
                     setContentToPlayerAndStart();
+                }
             }
 
             @Override
             public void onFinalItemPrepared() {
                 Log.d(TAG, "onFinalItemPrepared");
+
+
                 if (mCurrentBookIndex == mDatabase.getCurrentPlayingBook() && mCurrentLessonIndex == mDatabase.getCurrentPlayingList()) {
                     mPlayerThreeView.moveToPosition(mDatabase.getCurrentPlayingItem());
                 }
@@ -410,17 +414,13 @@ public class PlayerFragment extends Fragment {
         else
             contentBundle.putIntegerArrayList("mCurrentContentInPlayer", currentNoteContents);
 
-        Intent intent = new Intent(mMainActivity, AudioService.class);
-        intent.setAction(AudioService.ACTION_SET_CONTENT);
-        intent.putExtra("contentBundle", contentBundle);
         mDatabase.setCurrentPlayingBook(mCurrentBookIndex);
         mDatabase.setCurrentPlayingList(mCurrentLessonIndex);
-        mMainActivity.startService(intent);
 
-        Intent intent2 = new Intent(mMainActivity, AudioService.class);
-        intent2.setAction(AudioService.ACTION_START);
-        intent.putExtra("position", mPlayerThreeView.getCurrentFocusedPosition());
-        mMainActivity.startService(intent2);
+        mAudioServiceCaller.setContent(contentBundle);
+        mAudioServiceCaller.start(0);
+        mAudioServiceCaller.startTimer();
+
     }
 
     private void loadContentIDsOfThreeViews() {
@@ -428,10 +428,6 @@ public class PlayerFragment extends Fragment {
         int centralIndex = mCurrentLessonIndex;
 
         ArrayList<Integer> centralNoteContentIDs = mDatabase.getContentIDs(mCurrentBookIndex, centralIndex);
-
-//        for (int index = 0; index < centralNoteContentIDs.size(); index++) {
-//            Log.d(TAG, index + ": " + centralNoteContentIDs.get(index));
-//        }
 
         mContentIDsOfThreeViews.add(centralNoteContentIDs);
     }
@@ -451,7 +447,6 @@ public class PlayerFragment extends Fragment {
         } else if (direction == PlayerThreeView.MOVE_TO_LEFT) {
             ll.removeFirst();
             ll.addLast(refreshedContentIDs);
-        } else {
         }
 
         mContentIDsOfThreeViews.clear();
@@ -486,10 +481,7 @@ public class PlayerFragment extends Fragment {
     }
 
     private void playpauseDochi() {
-
-        Intent intent = new Intent(mMainActivity, AudioService.class);
-        intent.setAction(AudioService.ACTION_PLAYPAUSE);
-        mMainActivity.startService(intent);
+        mAudioServiceCaller.playpause();
     }
 
     private void setPlayPauseImage(boolean isPlaying) {
@@ -517,11 +509,7 @@ public class PlayerFragment extends Fragment {
             public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
                 mDatabase.setCurrentOptions(optionLL);
                 mDatabase.setCurrentOptionMode(currentMode);
-
-                Intent intent = new Intent(mMainActivity, AudioService.class);
-                intent.setAction(AudioService.ACTION_UPDATE_OPTION);
-                mMainActivity.startService(intent);
-
+                mAudioServiceCaller.updateOptions();
             }
         });
 
@@ -552,6 +540,77 @@ public class PlayerFragment extends Fragment {
             public void onAnimationRepeat(Animation animation) {
             }
         });
+    }
+
+    private void registerAudioServiceCaller() {
+        mAudioServiceCaller = new AudioServiceCaller();
+    }
+
+    private void unregisterAudioServiceCaller() {
+        mAudioServiceCaller = null;
+    }
+
+    private void registerAudioServiceBroadcastReceiver() {
+        mAudioServiceBroadcastIntentFilter = new IntentFilter(AudioService.BROADCAST);
+        mAudioServiceBoardcastReceiver = new AudioServiceBroadcastReceiver();
+        LocalBroadcastManager.getInstance(mMainActivity).registerReceiver(mAudioServiceBoardcastReceiver, mAudioServiceBroadcastIntentFilter);
+    }
+
+    private void unregisterAudioServiceBroadcastReciever() {
+        LocalBroadcastManager.getInstance(mMainActivity).unregisterReceiver(mAudioServiceBoardcastReceiver);
+    }
+
+    protected class AudioServiceCaller {
+
+        void initAudioPlayer() {
+            Intent intent = new Intent(mMainActivity, AudioService.class);
+            intent.setAction(AudioService.ACTION_INIT_PLAYER);
+            mMainActivity.startService(intent);
+        }
+
+        void setContent(Bundle bundle) {
+            Intent intent = new Intent(mMainActivity, AudioService.class);
+            intent.setAction(AudioService.ACTION_SET_CONTENT);
+            intent.putExtra("contentBundle", bundle);
+            mMainActivity.startService(intent);
+        }
+
+        void start(int position) {
+            Intent intent = new Intent(mMainActivity, AudioService.class);
+            intent.setAction(AudioService.ACTION_START);
+            intent.putExtra("position", position);
+            mMainActivity.startService(intent);
+        }
+
+        void playpause() {
+            Intent intent = new Intent(mMainActivity, AudioService.class);
+            intent.setAction(AudioService.ACTION_PLAYPAUSE);
+            mMainActivity.startService(intent);
+        }
+
+        void stop() {
+            Intent intent = new Intent(mMainActivity, AudioService.class);
+            intent.setAction(AudioService.ACTION_STOP);
+            mMainActivity.startService(intent);
+        }
+
+        void removePendingTask() {
+            Intent intent = new Intent(mMainActivity, AudioService.class);
+            intent.setAction(AudioService.ACTION_REMOVE_PENDING_TASK);
+            mMainActivity.startService(intent);
+        }
+
+        void startTimer() {
+            Intent intent = new Intent(mMainActivity, AudioService.class);
+            intent.setAction(AudioService.ACTION_START_TIMER);
+            mMainActivity.startService(intent);
+        }
+
+        void updateOptions() {
+            Intent intent = new Intent(mMainActivity, AudioService.class);
+            intent.setAction(AudioService.ACTION_UPDATE_OPTION);
+            mMainActivity.startService(intent);
+        }
     }
 
     public class AudioServiceBroadcastReceiver extends BroadcastReceiver {

@@ -103,19 +103,19 @@ public class InfiniteThreeView extends RelativeLayout {
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        Log.d(TAG, "onSaveInstanceState");
+//        Log.d(TAG, "onSaveInstanceState");
         return super.onSaveInstanceState();
     }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        Log.d(TAG, "onRestoreInstanceState");
+//        Log.d(TAG, "onRestoreInstanceState");
         super.onRestoreInstanceState(state);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d(TAG, "onDraw");
+//        Log.d(TAG, "onDraw");
         super.onDraw(canvas);
     }
 

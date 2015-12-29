@@ -31,7 +31,9 @@ public class AudioService extends IntentService {
 
     private static final String TAG = AudioService.class.getSimpleName();
 
-    public static final String ACTION_INIT = "init";
+    public static final String ACTION_START_SERVICE = "startService";
+
+    public static final String ACTION_INIT_PLAYER = "init";
 
     public static final String ACTION_SET_CONTENT = "setContent";
 
@@ -54,6 +56,8 @@ public class AudioService extends IntentService {
     public static final String ACTION_REMOVE_PENDING_TASK = "removePendingTask";
 
     public static final String ACTION_POST_STOP_SERVICE = "postStopService";
+
+    public static final String ACTION_START_TIMER = "startTimer";
 
     public static final String BROADCAST = "broadcast";
 
@@ -79,7 +83,7 @@ public class AudioService extends IntentService {
 
     private MainActivity mMainActivity;
 
-    private AudioPlayer mAudioPlayer;
+    private static AudioPlayer mAudioPlayer;
 
     private Database mDatabase;
 
@@ -95,48 +99,6 @@ public class AudioService extends IntentService {
 
     public AudioService() {
         super("AudioService");
-        Log.d(TAG, "constructor");
-    }
-
-    @Override
-    public void onCreate() {
-        Log.d(TAG, "onCreate");
-        super.onCreate();
-
-        mMainActivity = MainActivity.mMainActivity;
-
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(mMainActivity)
-                        .setContentTitle("VocabuaLazy")
-                        .setContentText("James Bond")
-                        .setSmallIcon(R.drawable.ic_launcher);
-        startForeground(1, builder.build());
-
-        if (mDatabase == null) {
-            mDatabase = mMainActivity.getDatabase();
-        }
-
-        if (mHandler == null) {
-            Log.d(TAG, "handler null");
-            mHandler = new Handler();
-        }
-
-        if (mStopServiceRunnable == null) {
-            Log.d(TAG, "runnable null");
-            mStopServiceRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    stopSelf();
-                }
-            };
-        }
-
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.d(TAG, "onDestroy");
-        super.onDestroy();
     }
 
     @Override
@@ -149,8 +111,34 @@ public class AudioService extends IntentService {
 
         switch (intent.getAction()) {
 
-            case ACTION_INIT:
-                Log.d(TAG, ACTION_INIT);
+            case ACTION_START_SERVICE:
+                Log.d(TAG, ACTION_START_SERVICE);
+                mMainActivity = MainActivity.mMainActivity;
+
+                setUpNotification();
+
+                if (mDatabase == null) {
+                    mDatabase = mMainActivity.getDatabase();
+                }
+
+                if (mHandler == null) {
+                    Log.d(TAG, "handler null");
+                    mHandler = new Handler();
+                }
+
+                if (mStopServiceRunnable == null) {
+                    Log.d(TAG, "runnable null");
+                    mStopServiceRunnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            stopSelf();
+                        }
+                    };
+                }
+                break;
+
+            case ACTION_INIT_PLAYER:
+                Log.d(TAG, ACTION_INIT_PLAYER);
                 initAudioPlayer();
                 if (mStopServiceRunnable != null) {
                     mHandler.removeCallbacks(mStopServiceRunnable);
@@ -210,9 +198,14 @@ public class AudioService extends IntentService {
                 break;
 
             case ACTION_POST_STOP_SERVICE:
-                Log.d(TAG, "stop service");
-                if (!isPlaying())
-                    mHandler.postDelayed(mStopServiceRunnable, 30 * 60 * 1000); // 30 minutes
+                if (!isPlaying()) {
+                    Log.d(TAG, "stop service");
+                    mHandler.postDelayed(mStopServiceRunnable, 60 * 1000); // 30 minute
+                }
+                break;
+
+            case ACTION_START_TIMER:
+                mAudioPlayer.startStopPlayingRunnable();
                 break;
 
             default:
@@ -222,9 +215,20 @@ public class AudioService extends IntentService {
         return START_STICKY;
     }
 
+    private void setUpNotification() {
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(mMainActivity)
+                        .setContentTitle("VocabuaLazy")
+                        .setContentText("James Bond")
+                        .setSmallIcon(R.drawable.ic_launcher);
+        startForeground(1, builder.build());
+    }
+
     private void initAudioPlayer() {
-        mAudioPlayer = new AudioPlayer(mMainActivity);
-        mAudioPlayer.initPlayerLists();
+        if (mAudioPlayer == null) {
+            mAudioPlayer = new AudioPlayer(mMainActivity);
+            mAudioPlayer.initPlayerLists();
+        }
     }
 
     public void updateOptions(ArrayList<Option> options, int currentMode) {

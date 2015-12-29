@@ -111,19 +111,19 @@ public class PlayerThreeView extends InfiniteThreeView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d(TAG, "onDraw");
+//        Log.d(TAG, "onDraw");
         super.onDraw(canvas);
     }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        Log.d(TAG, "onRestoreInstanceState");
+//        Log.d(TAG, "onRestoreInstanceState");
         super.onRestoreInstanceState(state);
     }
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        Log.d(TAG, "onSavedInstanceState");
+//        Log.d(TAG, "onSavedInstanceState");
         return super.onSaveInstanceState();
     }
 
@@ -236,7 +236,7 @@ public class PlayerThreeView extends InfiniteThreeView {
         @Override
         protected LinkedList<HashMap> doInBackground(ArrayList<Integer>... params) {
 
-            Log.d(TAG, "doInBackground");
+//            Log.d(TAG, "doInBackground");
 
             ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(params[0]);
 
@@ -249,7 +249,7 @@ public class PlayerThreeView extends InfiniteThreeView {
         protected void onPostExecute(LinkedList<HashMap> playlistContent) {
             super.onPostExecute(playlistContent);
 
-            Log.d(TAG, "onPostExecute: execute?");
+//            Log.d(TAG, "onPostExecute: execute?");
 
             PlayerScrollView playerScrollView = new PlayerScrollView(getContext());
             PlayerScrollView.PlayerAdapter playerAdapter =

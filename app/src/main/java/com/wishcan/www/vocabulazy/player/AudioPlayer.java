@@ -67,11 +67,13 @@ public class AudioPlayer {
     private boolean mIsCnSentenceEnabled;
 
     private int mStopPeriod;
+    private int mStopPlaying;
 
     private ArrayList<Option> mOptions;
 
     private Handler mHandler;
     private Runnable mStopPeriodRunnable;
+    private Runnable mStopPlayingRunnable;
 
     private int mNumOfSentence;
     private int mSentenceIndex;
@@ -93,7 +95,8 @@ public class AudioPlayer {
 
         mNumOfNotes = mDatabase.getNumOfNotes();
 
-        mPlayer = new MediaPlayer();
+        initMediaPlayer();
+
         mNowPlaying = AudioCategory.IDLE;
         mIsPlaying = false;
 
@@ -112,15 +115,51 @@ public class AudioPlayer {
         isItemCompleted = true;
     }
 
+    private void initMediaPlayer() {
+        mPlayer = new MediaPlayer();
+        mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+//                    Log.d(TAG, "start");
+                mPlayer.start();
+                mIsPlaying = true;
+                isItemCompleted = false;
+                mOnPlayerStatusChangedListener.onItemStartPlaying(mCurrentPlayingIndex);
+            }
+        });
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                playerCompleted();
+            }
+        });
+        mPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                Log.d(TAG, "onError");
+
+                return true;
+            }
+        });
+    }
+
     public void initPlayerLists() {
+
+        Log.d(TAG, "init");
+
         if (mPlaylistContentIDs != null) {
             mPlaylistContentIDs.clear();
         } else {
             mPlaylistContentIDs = new ArrayList<>();
         }
 
-        mSpellAudios = new ArrayList<>();
-        mSentence_Audios = new ArrayList<>();
+        if (mSpellAudios == null) {
+            mSpellAudios = new ArrayList<>();
+        }
+
+        if (mSentence_Audios == null) {
+            mSentence_Audios = new ArrayList<>();
+        }
     }
 
     public void setPlaylistContent(ArrayList<Integer> content) {
@@ -149,14 +188,11 @@ public class AudioPlayer {
         mItemLoop = option.getItemLoop();
 
         mStopPeriod = option.getStopPeriod();
+        mStopPlaying = option.mPlayTime;
 
         mItemLoopCount = mItemLoop;
         mListLoopCount = mListLoop;
 
-//        Log.d(TAG, "random: " + mIsRandom);
-//        Log.d(TAG, "listloop: " + mListLoop);
-//        Log.d(TAG, "sentence: " + mIsCnSentenceEnabled);
-//        Log.d(TAG, "itemloop: " + mItemLoop);
     }
 
     public void startPlayingItemAt(int index) {
@@ -175,6 +211,7 @@ public class AudioPlayer {
 
     private void startPlayingSentence() {
         mOnPlayerStatusChangedListener.onSentenceStart(mSentenceIndex);
+//        Log.d(TAG, "sentence: " + mCurrentSentenceAudio.get(mSentenceIndex));
         setDataSourceAndPlay(mCurrentSentenceAudio.get(mSentenceIndex));
         mNowPlaying = AudioCategory.EN_SENTENCE;
     }
@@ -188,6 +225,7 @@ public class AudioPlayer {
         mPlayer.reset();
 
         try {
+//            Log.d(TAG, "audio: " + audio);
             AssetFileDescriptor mAFD = mAssetManager.openFd("audio2/" + audio);
             FileDescriptor mFD = mAFD.getFileDescriptor();
             long mOffset = mAFD.getStartOffset();
@@ -196,24 +234,9 @@ public class AudioPlayer {
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mPlayer.setDataSource(mFD, mOffset, mLength);
             mPlayer.prepareAsync();
-            mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-//                    Log.d(TAG, "start");
-                    mp.start();
-                    mIsPlaying = true;
-                    isItemCompleted = false;
-                    mOnPlayerStatusChangedListener.onItemStartPlaying(mCurrentPlayingIndex);
-                }
-            });
-            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    playerCompleted();
 
-                }
-            });
         } catch (IOException ioe) {
+            ioe.printStackTrace();
             if (ioe instanceof FileNotFoundException && mNowPlaying == AudioCategory.EN_SENTENCE) {
                 en_sentenceCompleted();
             }
@@ -341,13 +364,13 @@ public class AudioPlayer {
         }
     }
 
-
     public void stop() {
         if (mPlayer != null) {
             mIsPlaying = false;
             mPlayer.pause();
             mPlayer.seekTo(0);
             mOnPlayerStatusChangedListener.onItemStopPlaying();
+            removePendingTask();
         }
     }
 
@@ -367,28 +390,23 @@ public class AudioPlayer {
         mCurrentListID = noteID;
     }
 
-    public void setItemLoop(int itemLoop) {
-        mItemLoop = itemLoop;
-    }
-
-    public void setListLoop(int listLoop) {
-        mListLoop = listLoop;
-    }
-
-//    public void setIsCnSentenceEnabled(boolean mIsCnSentenceEnabled) {
-//        this.mIsCnSentenceEnabled = mIsCnSentenceEnabled;
-//    }
-
-    public void setIsEnSentenceEnabled(boolean isEnSentenceEnabled) {
-        mIsEnSentenceEnabled = isEnSentenceEnabled;
-    }
-
-    public void setIsRandom(boolean isRandom) {
-        mIsRandom = isRandom;
-    }
-
     public boolean isPlaying() {
         return mIsPlaying;
+    }
+
+    /**
+     * Every time the PLAY started by users should triggered this function, which
+     * set up the time to stop playing.
+     */
+    public void startStopPlayingRunnable() {
+        mHandler.removeCallbacks(mStopPlayingRunnable);
+        mStopPlayingRunnable = new Runnable() {
+            @Override
+            public void run() {
+                stop();
+            }
+        };
+        mHandler.postDelayed(mStopPlayingRunnable, mStopPlaying * 60 * 1000);
     }
 
     public void setOnPlayerCompletionListener(OnPlayerCompletionListener listener) {

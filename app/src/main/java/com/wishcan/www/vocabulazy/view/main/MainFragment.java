@@ -64,29 +64,15 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate");
-
+//        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
-
-        if (savedInstanceState != null) {
-//            mDatabase = savedInstanceState.getParcelable("database");
-//            Log.d(TAG, "onCreate savedInstanceState: " + mDatabase);
-        }
-
-        if (getArguments() != null && mDatabase == null) {
-//            Log.d(TAG, "onCreate getArguments");
-//            mDatabase = getArguments().getParcelable("database");
-        } else {
-
-        }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+//        Log.d(TAG, "onCreateView");
 
         View view = inflater.inflate(MAIN_FRAGMENT_RES_ID, container, false);
         mTabView = (TabView) view.findViewById(R.id.mytabhost);
@@ -94,7 +80,6 @@ public class MainFragment extends Fragment {
         if (savedInstanceState != null) {
             int index = savedInstanceState.getInt(ARG_TAB_INDEX);
             mTabView.setCurrentTab(index);
-
         }
 
         /**
@@ -233,63 +218,61 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        Log.d(TAG, "onResume");
-        super.onResume();
-//        mDatabase = ((MainActivity) getActivity()).getDatabase();
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        Log.d(TAG, "onActivityCreated");
+//        Log.d(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState");
-        outState.putInt(ARG_TAB_INDEX, mTabView.getCurrentTabIndex());
-//        outState.putParcelable("database", mDatabase);
-        super.onSaveInstanceState(outState);
+    public void onStart() {
+//        Log.d(TAG, "onStart");
+        super.onStart();
+    }
 
+    @Override
+    public void onResume() {
+//        Log.d(TAG, "onResume");
+        super.onResume();
+        mDatabase = ((MainActivity) getActivity()).getDatabase();
+//        mTabView.setCurrentTab(2);
+    }
+
+    @Override
+    public void onPause() {
+//        Log.d(TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+//        Log.d(TAG, "onSaveInstanceState");
+        outState.putInt(ARG_TAB_INDEX, mTabView.getCurrentTabIndex());
+        super.onSaveInstanceState(outState);
     }
 
     @Override
     public void onStop() {
-        Log.d(TAG, "onStop");
+//        Log.d(TAG, "onStop");
         super.onStop();
         MainActivity parentActivity = ((MainActivity) getActivity());
-
         parentActivity.setActionBarTitleWhenStop(parentActivity.getActionBarTitleTextView());
     }
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy");
+//        Log.d(TAG, "onDestroy");
         super.onDestroy();
     }
 
     @Override
     public void onDestroyView() {
-        Log.d(TAG, "onDestroyView");
+//        Log.d(TAG, "onDestroyView");
         super.onDestroyView();
     }
 
     @Override
-    public void onPause() {
-        Log.d(TAG, "onPause");
-        super.onPause();
-    }
-
-    @Override
-    public void onStart() {
-        Log.d(TAG, "onStart");
-        super.onStart();
-    }
-
-    @Override
     public void onDetach() {
-        Log.d(TAG, "onDetach");
+//        Log.d(TAG, "onDetach");
         super.onDetach();
     }
 
@@ -306,14 +289,6 @@ public class MainFragment extends Fragment {
     public void renameNoteInNoteList(String newNoteName, int index) {
         mDatabase.renameNoteAt(index, newNoteName);
         mNotesListView.refresh();
-    }
-
-    private void loadNoteContentFromDBToPlayer(int position) {
-
-        ArrayList<Integer> content = mNotesListView.getNotes().get(position).getContent();
-
-//        mAudioService.setContentToPlayer(content, position);
-
     }
 
     public void showDialog() {

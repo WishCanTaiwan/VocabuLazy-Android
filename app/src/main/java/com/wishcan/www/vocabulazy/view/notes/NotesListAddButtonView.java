@@ -23,6 +23,8 @@ import com.wishcan.www.vocabulazy.R;
  */
 public class NotesListAddButtonView extends RelativeLayout {
 
+    private static final String TAG = NotesListAddButtonView.class.getSimpleName();
+
     private interface ScrollStoppedListener{
         void onScrollStopped();
     }
@@ -85,7 +87,7 @@ public class NotesListAddButtonView extends RelativeLayout {
 
                 }else{
                     mInitialPosition = mNotesListView.getScrollY();
-                    Log.d("Counter", " " + mCounter);
+//                    Log.d(TAG, "Counter " + mCounter);
                     mCounter++;
                     NotesListAddButtonView.this.postDelayed(mScrollStopCounterTask, 100);
                 }

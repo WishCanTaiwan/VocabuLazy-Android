@@ -108,9 +108,9 @@ public class SearchActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
 
-        super.onCreate(savedInstanceState);
         setContentView(DEFAULT_LAYOUT_VIEW_RES_ID);
 
         Intent intent = getIntent();
@@ -126,6 +126,29 @@ public class SearchActivity extends Activity {
         mDatabase = new Database(this);
 
 //        mDatabase = intent.getExtras().getParcelable("database");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(TAG, "onResume");
+
+        if(mSearchDetailParentView == null)
+            mSearchDetailParentView = findViewById(DEFAULT_SEARCH_DETAIL_PARENT_VIEW);
+        if(mSearchDetailView == null)
+            mSearchDetailView = findViewById(DEFAULT_SEARCH_DETAIL_VIEW);
+
+        mDatabase = new Database(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.d(TAG, "onPause");
+
+        mDatabase.writeToFile(this);
     }
 
     @Override
@@ -191,17 +214,13 @@ public class SearchActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        Log.d(TAG, "onBackPressed");
+//        Log.d(TAG, "onBackPressed");
         if (mNewNoteDialogView != null)
             closeDialog(mNewNoteDialogView);
         else if (mDialogView != null)
             closeDialog(mDialogView);
         else {
-            Log.d(TAG, "onNavigateUp");
-            Bundle bundle = new Bundle();
-//            bundle.putParcelable("database", mDatabase);
-//            Log.d(TAG, "" + mDatabase.getNoteContents(1).size());
-            setResult(RESULT_OK, new Intent().putExtras(bundle));
+            setResult(RESULT_OK, new Intent());
             super.onBackPressed();
         }
     }
@@ -212,16 +231,7 @@ public class SearchActivity extends Activity {
         return true;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(mSearchDetailParentView == null)
-            mSearchDetailParentView = findViewById(DEFAULT_SEARCH_DETAIL_PARENT_VIEW);
-        if(mSearchDetailView == null)
-            mSearchDetailView = findViewById(DEFAULT_SEARCH_DETAIL_VIEW);
 
-        mDatabase = new Database(this);
-    }
 
     public void refreshSearchResult(ArrayList<Vocabulary> vocabularies){
         mSearchListView.refresh(vocabularies);
@@ -364,36 +374,5 @@ public class SearchActivity extends Activity {
         for (int index = 0; index < notes.size(); index++) {
             mNoteList.add(notes.get(index).getName());
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d(TAG, "onPause");
-        mDatabase.writeToFile(this);
-        super.onPause();
-    }
-
-    @Override
-    protected void onStart() {
-        Log.d(TAG, "onStart");
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.d(TAG, "onStop");
-        super.onStop();
-    }
-
-    @Override
-    protected void onRestart() {
-        Log.d(TAG, "onRestart");
-        super.onRestart();
     }
 }

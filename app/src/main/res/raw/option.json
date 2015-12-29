@@ -3,11 +3,11 @@
     "mode": 1,
     "random": false,
     "listloop": 0,
-    "sentence": false,
-    "stopperiod": 3,
+    "sentence": true,
+    "stopperiod": 0,
     "itemloop": 1,
     "speed": 1,
-    "playtime": 1
+    "playtime": 10
   },
   {
     "mode": 2,
@@ -17,7 +17,7 @@
     "stopperiod": 3,
     "itemloop": 1,
     "speed": 1,
-    "playtime": 1
+    "playtime": 10
   },
   {
     "mode": 3,
@@ -27,6 +27,6 @@
     "stopperiod": 3,
     "itemloop": 1,
     "speed": 1,
-    "playtime": 1
+    "playtime": 10
   }
 ]

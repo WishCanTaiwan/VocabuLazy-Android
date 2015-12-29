@@ -206,7 +206,7 @@ public class PlayerScrollView extends RelativeLayout {
 
     public PlayerScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Log.d(TAG, "Constructor");
+//        Log.d(TAG, "Constructor");
 
         mContext = context;
 
@@ -248,19 +248,19 @@ public class PlayerScrollView extends RelativeLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d(TAG, "onDraw");
+//        Log.d(TAG, "onDraw");
         super.onDraw(canvas);
     }
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        Log.d(TAG, "onSaveInstanceState");
+//        Log.d(TAG, "onSaveInstanceState");
         return super.onSaveInstanceState();
     }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        Log.d(TAG, "onRestoreInstanceState");
+//        Log.d(TAG, "onRestoreInstanceState");
         super.onRestoreInstanceState(state);
     }
 
@@ -810,13 +810,13 @@ public class PlayerScrollView extends RelativeLayout {
 
         @Override
         protected Parcelable onSaveInstanceState() {
-            Log.d(TAG, "onSaveInstanceState");
+//            Log.d(TAG, "onSaveInstanceState");
             return super.onSaveInstanceState();
         }
 
         @Override
         protected void onRestoreInstanceState(Parcelable state) {
-            Log.d(TAG, "onRestoreInstanceState");
+//            Log.d(TAG, "onRestoreInstanceState");
             super.onRestoreInstanceState(state);
         }
 
@@ -952,11 +952,11 @@ public class PlayerScrollView extends RelativeLayout {
 
 
                 for(int i = itemFilledStartIndex; i < itemFilledEndIndex; i++){
-                    if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM0_RES_ID) {
-                        Log.d(TAG, "spell");
-                    } else if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM1_RES_ID) {
-                        Log.d(TAG, "translation");
-                    }
+//                    if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM0_RES_ID) {
+//                        Log.d(TAG, "spell");
+//                    } else if (mTo[i] == DEFAULT_PLAYER_LIST_ITEM1_RES_ID) {
+//                        Log.d(TAG, "translation");
+//                    }
                     /**
                      * here only contains spell and translation.
                      */

@@ -98,7 +98,7 @@ public class Database implements Parcelable {
         dest.writeInt(mCurrentPlayingList);
     }
 
-    private void loadDatabaseFiles() {
+    public void loadDatabaseFiles() {
         loadVocabularies();
         loadBooks();
         loadLessons();
@@ -649,7 +649,7 @@ public class Database implements Parcelable {
             fos = mContext.openFileOutput("note.json", Context.MODE_PRIVATE);
             fos.write(jsonArray.toString().getBytes());
             fos.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -727,19 +727,6 @@ public class Database implements Parcelable {
         return jsonArray;
     }
 
-//    private ArrayList<String> splitString(JSONArray jsonArray) {
-//        ArrayList<String> arrayList = new ArrayList<>();
-//
-//        strings = str.split("# ");
-//
-//        for (int index = 0; index < strings.length; index++) {
-//            if (!strings[index].equals("")) {
-//                arrayList.add(strings[index]);
-//            }
-//        }
-//
-//        return arrayList;
-//    }
 
     private ArrayList toArrayList(JSONArray jsonArray, ArrayList arrayList) {
         for (int index = 0; index < jsonArray.length(); index++) {

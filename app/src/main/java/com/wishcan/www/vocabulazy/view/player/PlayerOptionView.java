@@ -152,7 +152,7 @@ public class PlayerOptionView extends LinearLayout {
     public PlayerOptionView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        Log.d(TAG, "Constructor");
+//        Log.d(TAG, "Constructor");
 
         mContext = context;
         /**
@@ -209,13 +209,13 @@ public class PlayerOptionView extends LinearLayout {
 
     @Override
     public void onRestoreInstanceState(Parcelable state) {
-        Log.d(TAG, "onRestoreInstanceState");
+//        Log.d(TAG, "onRestoreInstanceState");
         super.onRestoreInstanceState(state);
     }
 
     @Override
     public Parcelable onSaveInstanceState() {
-        Log.d(TAG, "onSaveInstanceState");
+//        Log.d(TAG, "onSaveInstanceState");
         return super.onSaveInstanceState();
     }
 
@@ -337,7 +337,7 @@ public class PlayerOptionView extends LinearLayout {
         switchToTabContent(nextTabIndex);
         mCurrentTab = v;
         mCurrentTabIndex = nextTabIndex;
-        Log.d(TAG, "setCurrentTab " + mCurrentTabIndex);
+//        Log.d(TAG, "setCurrentTab " + mCurrentTabIndex);
         mListener.onOptionChanged(v, mOptionLL, mCurrentTabIndex);
     }
 
@@ -417,7 +417,7 @@ public class PlayerOptionView extends LinearLayout {
                             Option option = mOptionLL.get(mCurrentTabIndex);
                             switch (v.getId()){
                                 case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                                    Log.d(TAG, "stop peroid: " + Integer.valueOf(valueStr));
+//                                    Log.d(TAG, "stop peroid: " + Integer.valueOf(valueStr));
                                     option.setStopPeriod(Integer.valueOf(valueStr));
                                     break;
                                 case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
@@ -483,13 +483,13 @@ public class PlayerOptionView extends LinearLayout {
 
         @Override
         public void onRestoreInstanceState(Parcelable state) {
-            Log.d(TAG, "onRestoreInstanceState");
+//            Log.d(TAG, "onRestoreInstanceState");
             super.onRestoreInstanceState(state);
         }
 
         @Override
         public Parcelable onSaveInstanceState() {
-            Log.d(TAG, "onSaveInstanceState");
+//            Log.d(TAG, "onSaveInstanceState");
             return super.onSaveInstanceState();
         }
 
@@ -574,13 +574,13 @@ public class PlayerOptionView extends LinearLayout {
 
         @Override
         public void onRestoreInstanceState(Parcelable state) {
-            Log.d(TAG, "onRestoreInstanceState");
+//            Log.d(TAG, "onRestoreInstanceState");
             super.onRestoreInstanceState(state);
         }
 
         @Override
         public Parcelable onSaveInstanceState() {
-            Log.d(TAG, "onSaveInstanceState");
+//            Log.d(TAG, "onSaveInstanceState");
             return super.onSaveInstanceState();
         }
 
