@@ -130,7 +130,7 @@ public class NumeralPicker extends LinearLayout {
 
     public void setNumberTextView(){
         mNumberTextView = new TextView(mContext);
-        mNumberTextView.setText(Integer.toString(DEFAULT_MINIMUM));
+        mNumberTextView.setText(Integer.toString(mMinimumNumber));
         mNumberTextView.setTextColor(mPickerTextColor);
         mNumberTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(DEFAULT_PICKER_TEXT_SIZE_RES_ID));
     }

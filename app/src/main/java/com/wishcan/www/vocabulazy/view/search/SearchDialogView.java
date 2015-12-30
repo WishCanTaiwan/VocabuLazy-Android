@@ -16,6 +16,7 @@ import java.util.List;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.SearchActivity;
 import com.wishcan.www.vocabulazy.view.customview.DialogView;
+import com.wishcan.www.vocabulazy.view.customview.XXView;
 
 /**
  * Created by swallow on 2015/9/27.
@@ -48,7 +49,7 @@ public class SearchDialogView extends DialogView {
 
     private ListView mListView;
 
-    private SearchXXView mXXView;
+    private XXView mXXView;
 
     private ArrayAdapter mAdapter;
 
@@ -77,7 +78,7 @@ public class SearchDialogView extends DialogView {
         });
 
 
-        mXXView = (SearchXXView) viewGroup.findViewById(DEFAULT_DIALOG_CANCEL_VIEW_RES_ID);
+        mXXView = (XXView) viewGroup.findViewById(DEFAULT_DIALOG_CANCEL_VIEW_RES_ID);
         mXXView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

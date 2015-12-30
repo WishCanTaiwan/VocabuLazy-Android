@@ -2,12 +2,10 @@ package com.wishcan.www.vocabulazy.view.exam;
 
 
 import android.animation.Animator;
-import android.animation.AnimatorSet;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
-import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -22,11 +20,8 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -43,20 +38,14 @@ public class ExamFragment extends Fragment {
 
     private static final int NEXT_VIEW_ID = R.id.exam_next_parent;
 
-    private static final int[] EXAM_PARENT_VIEW_IDs =
-            {R.id.exam_question_parent, R.id.exam_question_title_parent, R.id.exam_option1_parent,
-                    R.id.exam_option2_parent, R.id.exam_option3_parent,
-                    R.id.exam_option3_parent, R.id.exam_option4_parent,
-                    R.id.exam_next_parent};
+    private static final int[] EXAM_PARENT_VIEW_RES_IDs = {
+            R.id.exam_question_parent, R.id.exam_question_title_parent,
+            R.id.exam_option1_parent, R.id.exam_option2_parent,
+            R.id.exam_option3_parent, R.id.exam_option4_parent,
+            R.id.exam_next_parent};
 
     private static final int[] QUESTION_OPTION_TEXT_VIEW_IDs = {
-            R.id.exam_question_text,
-            R.id.exam_option1_english, R.id.exam_option1_translate,
-            R.id.exam_option2_english, R.id.exam_option2_translate,
-            R.id.exam_option3_english, R.id.exam_option3_translate,
-            R.id.exam_option4_english, R.id.exam_option4_translate,
-            R.id.exam_question_number, R.id.exam_question_count
-    };
+            R.id.exam_question_text, R.id.exam_question_number, R.id.exam_question_count };
 
     private View mFragmentView;
 
@@ -101,7 +90,7 @@ public class ExamFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         mFragmentView = inflater.inflate(R.layout.fragment_exam, container, false);
-        mLayoutController = new LayoutController(mFragmentView, EXAM_PARENT_VIEW_IDs, QUESTION_OPTION_TEXT_VIEW_IDs);
+        mLayoutController = new LayoutController(mFragmentView, EXAM_PARENT_VIEW_RES_IDs, QUESTION_OPTION_TEXT_VIEW_IDs);
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         mPuzzleSetter = new PuzzleSetter(mDatabase, mCurrentBookIndex, mCurrentLessonIndex);
 
@@ -144,16 +133,32 @@ public class ExamFragment extends Fragment {
                 mLayoutController.startPopOutSequentially();
             }
         }, 600);
+        registerOnOptionClickEvent();
+        registerOnNextClickEvent();
     }
 
     private void registerOnOptionClickEvent(){
-        for(int i = 1; i < EXAM_PARENT_VIEW_IDs.length - 1; i++){   // NEXT icon should not be handle here
-            final int checkIndex = i;
-            mFragmentView.findViewById(EXAM_PARENT_VIEW_IDs[i]).setOnClickListener(new View.OnClickListener() {
+        for(int i = 2; i < EXAM_PARENT_VIEW_RES_IDs.length -1; i++){   // NEXT icon should not be handle here
+            final int checkIndex = i - 1;
+            mFragmentView.findViewById(EXAM_PARENT_VIEW_RES_IDs[i]).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mPuzzleSetter.checkAnswer(checkIndex);
+//                    ((ExamOptionItem) v).performOnClickAnimation();
+                    int correctIndex = mPuzzleSetter.checkAnswer(checkIndex);
+                    mLayoutController.showAnswer(correctIndex, checkIndex);
                     mLayoutController.popOutNextIcon();
+                    unregisterOnOptionClickEvent();
+                }
+            });
+        }
+    }
+
+    private void unregisterOnOptionClickEvent(){
+        for(int i = 2; i < EXAM_PARENT_VIEW_RES_IDs.length -1; i++) {   // NEXT icon should not be handle here
+            mFragmentView.findViewById(EXAM_PARENT_VIEW_RES_IDs[i]).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
                 }
             });
         }
@@ -178,9 +183,12 @@ public class ExamFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
-                    ((MainActivity) getActivity()).goExamResultFragment();
+                    ((MainActivity) getActivity()).goExamResultFragment(
+                            (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum(),
+                            mPuzzleSetter.getCorrectCount());
                     return;
                 }
+                registerOnOptionClickEvent();
                 mLayoutController.startVanish();
                 mRefreshAnimTask.run();
             }
@@ -193,7 +201,7 @@ public class ExamFragment extends Fragment {
      * */
     private class PuzzleSetter{
 
-        private int mCurrentQuestionIndex, mTotalQuestionNum, mAnswerOptionIndex;
+        private int mCurrentQuestionIndex, mTotalQuestionNum, mAnswerOptionIndex, mCorrectCount;
 
         private ArrayList<Vocabulary> mVocabularies;
 
@@ -202,6 +210,7 @@ public class ExamFragment extends Fragment {
             mVocabularies = shuffleArrayList(newArrayList);
             mCurrentQuestionIndex = -1;
             mTotalQuestionNum = mVocabularies.size();
+            mCorrectCount = 0;
 
         }
 
@@ -250,7 +259,11 @@ public class ExamFragment extends Fragment {
             return questionMap;
         }
 
-        public boolean checkAnswer(int checkIndex){ return checkIndex == mAnswerOptionIndex; }
+        public int checkAnswer(int checkIndex){
+            if(checkIndex == mAnswerOptionIndex)
+                mCorrectCount++;
+            return mAnswerOptionIndex;
+        }
 
         private ArrayList<Vocabulary> shuffleArrayList(ArrayList<Vocabulary> oldArrayList){
             ArrayList<Vocabulary> newArrayList = new ArrayList<>();
@@ -270,6 +283,8 @@ public class ExamFragment extends Fragment {
         public int getTotalQuestionNum(){
             return mTotalQuestionNum;
         }
+
+        public int getCorrectCount() { return mCorrectCount; }
     }
 
     /**
@@ -362,25 +377,39 @@ public class ExamFragment extends Fragment {
             return mAnimLocker;
         }
 
+        public void showAnswer(int correctIndex, int chosenIndex){
+            for(int i = 2 ; i < mParentIds.length - 1; i++){
+                ((ExamOptionItem) mView.findViewById(mParentIds[i])).performShowAnswerAction((i - 1) == correctIndex);
+
+                if((i - 1) == correctIndex)
+                    ((ExamOptionItem) mView.findViewById(mParentIds[i])).showCorrectImage(true);
+                else if((i-1) == chosenIndex)
+                    ((ExamOptionItem) mView.findViewById(mParentIds[i])).showCorrectImage(false);
+            }
+        }
+
         public void refreshContent(int qIndex, int qCount, HashMap<Integer, ArrayList<String>> map){
 
             if(map == null)
                 return;
 
-            // 8, 9 is current_question_index and question_count individually
-            ((TextView) mView.findViewById(mTextViewIds[9])).setText(String.valueOf(qIndex));
-            ((TextView) mView.findViewById(mTextViewIds[10])).setText(String.valueOf(qCount));
+            for(int i = 2; i < mParentIds.length - 1; i++)  // but question and next should not be handled
+                ((ExamOptionItem) mView.findViewById(mParentIds[i])).initState();
 
-            // 1, 3, 5, 7 is translation of option, should hide the spelling// 1, 3, 5, 7 is translation of option, should hide the translation
-            for(int i = 1 ; i < mTextViewIds.length - 2; i += 2)
-                mView.findViewById(mTextViewIds[i]).setVisibility(View.GONE);
+            // 0 is question
+            ArrayList<String> questionArr = map.get(0);
+            ((TextView) mView.findViewById(mTextViewIds[0])).setText(questionArr.get(0));
+            // 1, 2 is current_question_index and question_count individually
+            ((TextView) mView.findViewById(mTextViewIds[1])).setText(String.valueOf(qIndex));
+            ((TextView) mView.findViewById(mTextViewIds[2])).setText(String.valueOf(qCount));
 
-            for(int i = 0, j = 0 ; i < mTextViewIds.length - 2 && j < map.size(); j++ ){
-                // 0 is question
-                ArrayList<String> strArr = map.get(j);  // j should be 0~4, an answer and 4 options
-                for(int z = 0; z < strArr.size(); z++, i++) // find the corresponding view (by i) and fill in (z)
-                    ((TextView) mView.findViewById(mTextViewIds[i])).setText(strArr.get(z));
 
+            for(int i = 2, j = 1 ; i < mParentIds.length - 1 && j < map.size(); j++, i++ ){
+                // next option(0) should not be handled
+                // 1 and 2 are parent view
+                ArrayList<String> strArr = map.get(j);  // j should be 1~4, i.e. 4 options, 0 is question
+                ((ExamOptionItem) mView.findViewById(mParentIds[i])).setEnglishText(strArr.get(0));
+                ((ExamOptionItem) mView.findViewById(mParentIds[i])).setTransText(strArr.get(1));
             }
 
         }

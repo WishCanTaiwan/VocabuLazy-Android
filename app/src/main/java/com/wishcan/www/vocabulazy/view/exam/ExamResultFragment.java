@@ -19,6 +19,10 @@ import com.wishcan.www.vocabulazy.R;
  */
 public class ExamResultFragment extends Fragment {
 
+    private static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
+
+    private static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
+
     private static final int CORRECT_COUNT_VIEW_RES_ID = R.id.exam_correct_count;
 
     private static final int CORRECT_RATIO_VIEW_RES_ID = R.id.exam_correct_ratio;
@@ -28,6 +32,10 @@ public class ExamResultFragment extends Fragment {
     private static final int TRY_OTHER_VIEW_RES_ID = R.id.exam_try_other;
 
     private String mPreviousTitle;
+
+    private float mRatio;
+
+    private int mCorrectCount;
 
     private View mFragmentView;
 
@@ -39,10 +47,12 @@ public class ExamResultFragment extends Fragment {
 
     private View mTryOtherView;
 
-    public static ExamResultFragment newInstance(String previousTitle) {
+    public static ExamResultFragment newInstance(String previousTitle, float ratio, int correctCount) {
         ExamResultFragment fragment = new ExamResultFragment();
         Bundle args = new Bundle();
         args.putString(MainActivity.PREVIOUS_TITLE, previousTitle);
+        args.putFloat(BUNDLE_RATIO_STRING, ratio);
+        args.putInt(BUNDLE_COUNT_STRING, correctCount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,6 +66,8 @@ public class ExamResultFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mPreviousTitle = getArguments().getString(MainActivity.PREVIOUS_TITLE);
+            mRatio = getArguments().getFloat(BUNDLE_RATIO_STRING);
+            mCorrectCount = getArguments().getInt(BUNDLE_COUNT_STRING);
         }
     }
 
@@ -74,6 +86,11 @@ public class ExamResultFragment extends Fragment {
         mTryAgainView = mFragmentView.findViewById(TRY_AGAIN_VIEW_RES_ID);
 
         mTryOtherView = mFragmentView.findViewById(TRY_OTHER_VIEW_RES_ID);
+
+        mCorrectCountTextView.setText(String.valueOf(mCorrectCount));
+
+        mCorrectRatioTextView.setText( String.valueOf((int)(mRatio * 100)));
+
 
         mTryOtherView.setOnClickListener(new View.OnClickListener() {
 

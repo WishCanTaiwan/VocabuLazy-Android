@@ -327,8 +327,8 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
         fragmentTransaction.commit();
     }
 
-    public void goExamResultFragment(){
-        mExamResultFragment = ExamResultFragment.newInstance(mActionBarTitleTextView.getText().toString());
+    public void goExamResultFragment(float ratio, int correctCount){
+        mExamResultFragment = ExamResultFragment.newInstance(mActionBarTitleTextView.getText().toString(), ratio, correctCount);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
         fragmentTransaction.add(R.id.activity_main_container, mExamResultFragment, "examresultfragment");

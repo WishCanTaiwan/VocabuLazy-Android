@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -101,240 +102,34 @@
         </RelativeLayout>
 
         <!-- Option1 -->
-        <LinearLayout
+        <com.wishcan.www.vocabulazy.view.exam.ExamOptionItem
             android:id="@+id/exam_option1_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/rect_exam_gray">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:visibility="invisible"
-                android:src="@drawable/icon_exam_correct"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/exam_option1_english"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textColor="#ff000000"
-                    android:singleLine="true"/>
-
-                <TextView
-                    android:id="@+id/exam_option1_translate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text="隱密"
-                    android:textSize="20sp"
-                    android:textColor="#ff000000"
-                    android:singleLine="true"/>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:visibility="invisible"
-                android:src="@drawable/icon_exam_correct"/>
-
-        </LinearLayout>
+            android:layout_marginTop="12dp"/>
 
         <!-- Option2 -->
-        <LinearLayout
+        <com.wishcan.www.vocabulazy.view.exam.ExamOptionItem
             android:id="@+id/exam_option2_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/rect_exam_gray">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:visibility="invisible"
-                android:src="@drawable/icon_exam_correct"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/exam_option2_english"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textColor="#ff000000"
-                    android:singleLine="true"/>
-
-                <TextView
-                    android:id="@+id/exam_option2_translate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text="透明"
-                    android:textSize="20sp"
-                    android:textColor="#ff000000"
-                    android:singleLine="true"/>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:visibility="invisible"
-                android:src="@drawable/icon_exam_correct"/>
-
-        </LinearLayout>
+            android:layout_marginTop="12dp"/>
 
         <!-- Option3 -->
-        <LinearLayout
+        <com.wishcan.www.vocabulazy.view.exam.ExamOptionItem
             android:id="@+id/exam_option3_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/rect_exam_gray">
+            android:layout_marginTop="12dp"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:visibility="invisible"
-                android:src="@drawable/icon_exam_correct"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/exam_option3_english"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textColor="#ff000000"
-                    android:singleLine="true"/>
-
-                <TextView
-                    android:id="@+id/exam_option3_translate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text="出現"
-                    android:textSize="20sp"
-                    android:textColor="#ff000000"
-                    android:singleLine="true"/>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:visibility="invisible"
-                android:src="@drawable/icon_exam_correct"/>
-
-        </LinearLayout>
-
-        <!-- Option4-->
-        <LinearLayout
+        <!-- Option4 -->
+        <com.wishcan.www.vocabulazy.view.exam.ExamOptionItem
             android:id="@+id/exam_option4_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/rect_exam_gray">
+            android:layout_marginTop="12dp"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:visibility="invisible"
-                android:src="@drawable/icon_exam_correct"/>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/exam_option4_english"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text=""
-                    android:textSize="20sp"
-                    android:textColor="#ff000000"
-                    android:singleLine="true"/>
-
-                <TextView
-                    android:id="@+id/exam_option4_translate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text="消失"
-                    android:textSize="20sp"
-                    android:textColor="#ff000000"
-                    android:singleLine="true"/>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:visibility="invisible"
-                android:src="@drawable/icon_exam_correct"/>
-
-        </LinearLayout>
 
         <!-- next icon-->
         <RelativeLayout

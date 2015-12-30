@@ -1,6 +1,7 @@
-package com.wishcan.www.vocabulazy.view.search;
+package com.wishcan.www.vocabulazy.view.customview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -14,7 +15,7 @@ import com.wishcan.www.vocabulazy.R;
 /**
  * Created by swallow on 2015/9/4.
  */
-public class SearchXXView extends View {
+public class XXView extends View {
 
     private static int DEFAULT_PAINT_THICK_RES_ID = R.dimen.search_xx_thick;
 
@@ -40,13 +41,21 @@ public class SearchXXView extends View {
 
     private int mPaintThick;
 
+    private boolean mCircleOutline;
 
-    public SearchXXView(Context context) {
+    public XXView(Context context) {
         this(context, null);
     }
 
-    public SearchXXView(Context context, AttributeSet attrs) {
+    public XXView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.XXView, 0, 0);
+        try {
+            mCircleOutline = ta.getBoolean(R.styleable.XXView_setXXCircleOutline, true);
+        } finally {
+            ta.recycle();
+        }
 
         mPaintThick = (int) getResources().getDimension(DEFAULT_PAINT_THICK_RES_ID);
         mCircleSize = (int) getResources().getDimension(DEFAULT_XX_CIRCLE_SIZE_RES_ID);
@@ -80,14 +89,15 @@ public class SearchXXView extends View {
         center = (float) 0.5 * mViewSize;
         radius = (float) 0.5 * mCircleSize;
 
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(mXXBackgroundColor);
-        canvas.drawCircle(center, center, radius, mPaint);
+        if(mCircleOutline) {
+            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setColor(mXXBackgroundColor);
+            canvas.drawCircle(center, center, radius, mPaint);
 
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(mXXColor);
-        canvas.drawCircle(center, center, radius, mPaint);
-
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setColor(mXXColor);
+            canvas.drawCircle(center, center, radius, mPaint);
+        }
 
         float startX, stopX, startY, stopY;
         startX = startY = (float) 0.35 * mViewSize;

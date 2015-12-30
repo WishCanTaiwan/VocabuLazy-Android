@@ -45,4 +45,8 @@
         <attr name="setPickerNumberTextColor" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="XXView">
+        <attr name="setXXCircleOutline" format="boolean"/>
+    </declare-styleable>
+
 </resources>
