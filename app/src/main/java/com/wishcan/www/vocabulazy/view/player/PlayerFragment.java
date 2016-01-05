@@ -638,8 +638,8 @@ public class PlayerFragment extends Fragment {
                      * TODO : switch.
                      */
                     int sentenceIndex = intent.getIntExtra("sentenceIndex", -1);
-
                     mPlayerThreeView.showDetail();
+                    mPlayerThreeView.setDetailPage(sentenceIndex);
                     break;
 
                 case AudioService.BROADCAST_ACTION_SENTENCE_COMPLETE:

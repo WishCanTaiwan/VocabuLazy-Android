@@ -119,7 +119,7 @@ public class PlayerScrollView extends RelativeLayout {
      * mItemDetailsLinearLayout will be added in the center of PlayerScrollView for showing the
      * details of the item in mCurrentFocusedPosition
      * */
-    private LinearLayout mItemDetailsLinearLayout;
+    private ItemDetailLinearLayout mItemDetailsLinearLayout;
 
     private LinearLayout mTopGradientMask;
 
@@ -563,6 +563,11 @@ public class PlayerScrollView extends RelativeLayout {
         });
     }
 
+    public void setDetailsItemPage(int index){
+        if(mItemDetailsLinearLayout != null)
+            mItemDetailsLinearLayout.setCurrentPage(index);
+    }
+
     public PlayerAdapter getAdapter(Context context,int resource, LinkedList<HashMap> dataList, String[] from, int[] to){
 
         mDetailsLL = dataList;
@@ -748,6 +753,10 @@ public class PlayerScrollView extends RelativeLayout {
             viewPager.setAdapter(new LinkedListPagerAdapter(mItemPagesList));
             viewPager.addOnPageChangeListener(new OnPageChangeListener());
 
+        }
+
+        public void setCurrentPage(int index){
+            viewPager.setCurrentItem(index);
         }
 
         protected class OnPageChangeListener implements ViewPager.OnPageChangeListener {

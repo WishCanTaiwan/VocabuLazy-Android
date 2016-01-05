@@ -180,6 +180,12 @@ public class PlayerThreeView extends InfiniteThreeView {
             ((PlayerScrollView) getCurrentItem()).hideItemDetails();
     }
 
+    public void setDetailPage(int index){
+        if (getCurrentItem () != null)
+            if(((PlayerScrollView) getCurrentItem()).isShowingDetails())
+                ((PlayerScrollView) getCurrentItem()).setDetailsItemPage(index);
+    }
+
     public void setOnPlayerScrollStoppedListener(OnPlayerScrollListener listener) {
         mOnPlayerScrollListener = listener;
     }
