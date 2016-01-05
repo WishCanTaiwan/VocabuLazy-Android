@@ -4,23 +4,35 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
+import com.wishcan.www.vocabulazy.view.adapter.LinkedListPagerAdapter;
 import com.wishcan.www.vocabulazy.view.notes.AddNoteDialogView;
 import com.wishcan.www.vocabulazy.view.search.SearchDialogView;
 import com.wishcan.www.vocabulazy.view.search.SearchListView;
@@ -54,8 +66,6 @@ public class SearchActivity extends Activity {
 
     private static final int DEFAULT_SEARCH_DETAIL_ITEM4_RES_ID = R.id.search_voc_sentence_translation_detail;
 
-    private Vocabulary mVocabulary;
-
     private SearchView mSearchView;
 
     private MenuItem mSearchItem;
@@ -76,7 +86,7 @@ public class SearchActivity extends Activity {
 
     private View mSearchDetailView;
 
-    private View mSearchDetailParentView;
+    private ViewGroup mSearchDetailParentView;
 
     private Database mDatabase;
 
@@ -135,9 +145,7 @@ public class SearchActivity extends Activity {
         Log.d(TAG, "onResume");
 
         if(mSearchDetailParentView == null)
-            mSearchDetailParentView = findViewById(DEFAULT_SEARCH_DETAIL_PARENT_VIEW);
-        if(mSearchDetailView == null)
-            mSearchDetailView = findViewById(DEFAULT_SEARCH_DETAIL_VIEW);
+            mSearchDetailParentView = (ViewGroup) findViewById(DEFAULT_SEARCH_DETAIL_PARENT_VIEW);
 
         mDatabase = new Database(this);
     }
@@ -184,7 +192,6 @@ public class SearchActivity extends Activity {
         mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Log.d("SearchActivity", "TextFocus");
                 if (mNewNoteDialogView != null)
                     closeDialog(mNewNoteDialogView);
                 if (mDialogView != null)
@@ -324,8 +331,15 @@ public class SearchActivity extends Activity {
     }
 
     public void showSearchDetail(Vocabulary vocabulary){
-        if(mSearchDetailParentView == null || mSearchDetailView == null || mDatabase == null)
+        if(mSearchDetailParentView == null || mDatabase == null)
             return;
+        if(mSearchDetailView == null) {
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(900, 600);
+            mSearchDetailView = new ItemDetailLinearLayout(this, vocabulary);
+            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+            mSearchDetailView.setLayoutParams(layoutParams);
+
+        }
 
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -335,14 +349,9 @@ public class SearchActivity extends Activity {
             view.clearFocus();
         }
 
+        mSearchDetailParentView.addView(mSearchDetailView);
         mSearchDetailParentView.setVisibility(View.VISIBLE);
         mSearchDetailParentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeSearchDetail();
-            }
-        });
-        mSearchDetailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 closeSearchDetail();
@@ -351,11 +360,11 @@ public class SearchActivity extends Activity {
 
         mSearchDetailView.requestFocus();
 
-        ((TextView) mSearchDetailView.findViewById(mTo[0])).setText(vocabulary.getSpell());
-        ((TextView) mSearchDetailView.findViewById(mTo[1])).setText(vocabulary.getTranslationInOneString());
-        ((TextView) mSearchDetailView.findViewById(mTo[2])).setText(vocabulary.getKK());
-        ((TextView) mSearchDetailView.findViewById(mTo[3])).setText(vocabulary.getEn_Sentence().get(0));
-        ((TextView) mSearchDetailView.findViewById(mTo[4])).setText(vocabulary.getCn_Sentence().get(0));
+//        ((TextView) mSearchDetailView.findViewById(mTo[0])).setText(vocabulary.getSpell());
+//        ((TextView) mSearchDetailView.findViewById(mTo[1])).setText(vocabulary.getTranslationInOneString());
+//        ((TextView) mSearchDetailView.findViewById(mTo[2])).setText(vocabulary.getKK());
+//        ((TextView) mSearchDetailView.findViewById(mTo[3])).setText(vocabulary.getEn_Sentence().get(0));
+//        ((TextView) mSearchDetailView.findViewById(mTo[4])).setText(vocabulary.getCn_Sentence().get(0));
 
         Animator alphaAnim = ObjectAnimator.ofFloat(mSearchDetailView, "Alpha", 0f, 1f);
         alphaAnim.setDuration(300);
@@ -366,6 +375,10 @@ public class SearchActivity extends Activity {
     private void closeSearchDetail(){
         mSearchDetailParentView.setVisibility(View.GONE);
         mSearchDetailParentView.setOnClickListener(null);
+        if(mSearchDetailView != null) {
+            mSearchDetailParentView.removeView(mSearchDetailView);
+            mSearchDetailView = null;
+        }
     }
 
     public void createNoteList() {
@@ -373,6 +386,129 @@ public class SearchActivity extends Activity {
         mNoteList = new LinkedList<>();
         for (int index = 0; index < notes.size(); index++) {
             mNoteList.add(notes.get(index).getName());
+        }
+    }
+
+    private class ItemDetailLinearLayout extends LinearLayout {
+
+        private Context context;
+
+        private PagerIndexView pagerIndexView;
+
+        private ViewPager viewPager;
+
+        private LinkedList<ViewGroup> mItemPagesList;
+
+        private int pageCount;
+
+        public ItemDetailLinearLayout(Context context, Vocabulary vocabulary) {
+            super(context);
+            this.context = context;
+            setLayoutParams(new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            setOrientation(VERTICAL);
+            ViewGroup itemView = (ViewGroup)((LayoutInflater) getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                    .inflate(R.layout.search_layout_details, null);
+            viewPager = new ViewPager(context);
+
+            ((TextView) itemView.findViewById(mTo[0])).setText(vocabulary.getSpell());
+            ((TextView) itemView.findViewById(mTo[1])).setText(vocabulary.getTranslationInOneString());
+            ((TextView) itemView.findViewById(mTo[2])).setText(vocabulary.getKK());
+            Typeface kkTypeFace = Typeface.createFromAsset(context.getAssets(), "fonts/kk.TTE");
+            ((TextView) itemView.findViewById(mTo[2])).setTypeface(kkTypeFace);
+            //((TextView) itemView.findViewById(mTo[3])).setText(vocabulary.getEn_Sentence().get(0));
+            //((TextView) itemView.findViewById(mTo[4])).setText(vocabulary.getCn_Sentence().get(0));
+
+            ArrayList<String> en_sentences = vocabulary.getEn_Sentence();
+            ArrayList<String> cn_sentences = vocabulary.getCn_Sentence();
+            pageCount = en_sentences.size();
+
+            pagerIndexView = new PagerIndexView(context, pageCount);
+            addView(itemView);
+            ((ViewGroup)itemView.findViewById(R.id.pager_parent)).addView(viewPager);
+            ((ViewGroup)itemView.findViewById(R.id.pager_index_parent)).addView(pagerIndexView);
+
+            createItemPages(pageCount, en_sentences, cn_sentences);
+
+        }
+
+        private void createItemPages(int pageCount, ArrayList<String> en_sentenceList,
+                                     ArrayList<String> cn_sentenceList){
+
+
+            mItemPagesList = new LinkedList<>();
+            for(int i = 0; i < pageCount; i++) {
+                ViewGroup currentItemDetailsView =
+                        (ViewGroup)((LayoutInflater) getContext()
+                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                                .inflate(R.layout.search_layout_details_sentence, null);
+
+                ((TextView) currentItemDetailsView.findViewById(R.id.search_voc_sentence_detail))
+                        .setText(en_sentenceList.get(i));
+                ((TextView) currentItemDetailsView.findViewById(R.id.search_voc_sentence_translation_detail))
+                        .setText(cn_sentenceList.get(i));
+
+                mItemPagesList.add(currentItemDetailsView);
+            }
+            viewPager.setAdapter(new LinkedListPagerAdapter(mItemPagesList));
+            viewPager.addOnPageChangeListener(new OnPageChangeListener());
+
+        }
+
+        protected class OnPageChangeListener implements ViewPager.OnPageChangeListener {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for(int i = 0; i < pageCount; i++) {
+                    if(i == position)
+                        ((GradientDrawable)((ImageView) pagerIndexView.getChildAt(i)).getDrawable())
+                                .setColor(ContextCompat.getColor(context, R.color.player_pager_index_selected));
+                    else
+                        ((GradientDrawable)((ImageView) pagerIndexView.getChildAt(i)).getDrawable())
+                                .setColor(ContextCompat.getColor(context, R.color.player_pager_index_color));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        }
+    }
+
+    class PagerIndexView extends LinearLayout{
+
+        private Context context;
+
+        private int pagerCount;
+
+        public PagerIndexView(Context context, int pagerCount) {
+            this(context, null, pagerCount);
+        }
+
+        public PagerIndexView(Context context, AttributeSet attrs, int pagerCount) {
+            super(context, attrs);
+            this.context = context;
+            this.pagerCount = pagerCount;
+            setLayoutParams(new LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            createPagerIndex(this.pagerCount);
+        }
+
+        private void createPagerIndex(int indexCount){
+            for(int i = 0; i < indexCount; i++){
+                ImageView imageView = new ImageView(context);
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.circle_pager_index));
+                if(i == 0)
+                    ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, R.color.player_pager_index_selected));
+                else
+                    ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, R.color.player_pager_index_color));
+                imageView.setPadding(5, 5, 5, 5);
+                addView(imageView);
+            }
         }
     }
 }

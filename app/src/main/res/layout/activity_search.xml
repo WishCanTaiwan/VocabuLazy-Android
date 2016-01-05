@@ -20,13 +20,6 @@
         android:layout_height="match_parent"
         android:visibility="gone">
 
-        <include
-            layout="@layout/search_layout_details"
-            android:id="@+id/search_detail_view"
-            android:layout_width="900px"
-            android:layout_height="600px"
-            android:layout_centerInParent="true" />
-
     </RelativeLayout>
 
 
