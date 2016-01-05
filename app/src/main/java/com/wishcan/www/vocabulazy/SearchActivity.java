@@ -366,7 +366,7 @@ public class SearchActivity extends Activity {
 //        ((TextView) mSearchDetailView.findViewById(mTo[3])).setText(vocabulary.getEn_Sentence().get(0));
 //        ((TextView) mSearchDetailView.findViewById(mTo[4])).setText(vocabulary.getCn_Sentence().get(0));
 
-        Animator alphaAnim = ObjectAnimator.ofFloat(mSearchDetailView, "Alpha", 0f, 1f);
+        Animator alphaAnim = ObjectAnimator.ofFloat(mSearchDetailParentView, "Alpha", 0f, 1f);
         alphaAnim.setDuration(300);
         alphaAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         alphaAnim.start();
