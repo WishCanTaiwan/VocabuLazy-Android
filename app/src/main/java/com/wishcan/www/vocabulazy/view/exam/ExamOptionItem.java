@@ -97,7 +97,7 @@ public class ExamOptionItem extends LinearLayout {
                 getResources().getDimensionPixelSize(PADDING_RES_IDs[1]),
                 getResources().getDimensionPixelSize(PADDING_RES_IDs[2]),
                 getResources().getDimensionPixelSize(PADDING_RES_IDs[3]));
-        mEnglishTextView.setSingleLine(true);
+        mEnglishTextView.setSingleLine();
         mEnglishTextView.setVisibility(GONE);
 
         mTranslationTextView = new TextView(mContext);
@@ -109,7 +109,7 @@ public class ExamOptionItem extends LinearLayout {
                 getResources().getDimensionPixelSize(PADDING_RES_IDs[1]),
                 getResources().getDimensionPixelSize(PADDING_RES_IDs[2]),
                 getResources().getDimensionPixelSize(PADDING_RES_IDs[3]));
-        mTranslationTextView.setSingleLine(true);
+        mTranslationTextView.setSingleLine();
 
         linearLayout.addView(mEnglishTextView);
         linearLayout.addView(mTranslationTextView);

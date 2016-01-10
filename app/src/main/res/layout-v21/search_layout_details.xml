@@ -6,7 +6,7 @@
     android:padding="5dp"
     android:background="@color/theme_color_green"
     android:alpha="1.0">
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/voc_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,25 +15,24 @@
             android:id="@+id/search_voc_spell_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:text="appearance"
             android:textColor="#ffffffff"/>
         <TextView
             android:id="@+id/search_voc_translation_detail"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@id/search_voc_spell_detail"
+            android:layout_marginRight="10dp"
             android:text="出現，顯現"
             android:textColor="#ffffffff"/>
         <TextView
             android:id="@+id/search_voc_kk_detail"
             android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_height="wrap_content"
             android:text="[KK音標]"
             android:textColor="#ffffffff"/>
-    </RelativeLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/pager_parent"
         android:layout_below="@id/voc_parent"
