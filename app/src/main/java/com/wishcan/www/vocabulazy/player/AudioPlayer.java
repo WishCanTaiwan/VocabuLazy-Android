@@ -238,6 +238,8 @@ public class AudioPlayer {
             long mOffset = mAFD.getStartOffset();
             long mLength = mAFD.getLength();
 
+            Log.d(TAG, "fd: " + mFD + "; offset: " + mOffset + "; length: " + mLength);
+
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mPlayer.setDataSource(mFD, mOffset, mLength);
             mPlayer.prepareAsync();

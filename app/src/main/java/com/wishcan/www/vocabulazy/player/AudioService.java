@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.player;
 
 import android.app.IntentService;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -83,7 +85,7 @@ public class AudioService extends IntentService {
 
     private MainActivity mMainActivity;
 
-    private static AudioPlayer mAudioPlayer;
+    private AudioPlayer mAudioPlayer;
 
     private Database mDatabase;
 
@@ -216,12 +218,13 @@ public class AudioService extends IntentService {
     }
 
     private void setUpNotification() {
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(mMainActivity)
-                        .setContentTitle("VocabuaLazy")
-                        .setContentText("James Bond")
-                        .setSmallIcon(R.drawable.ic_launcher);
-        startForeground(1, builder.build());
+//        NotificationCompat.Builder builder =
+//                new NotificationCompat.Builder(mMainActivity)
+//                        .setContentTitle("VocabuaLazy")
+//                        .setContentText("James Bond")
+//                        .setSmallIcon(R.drawable.ic_launcher);
+//
+//        startForeground(1, builder.build());
     }
 
     private void initAudioPlayer() {

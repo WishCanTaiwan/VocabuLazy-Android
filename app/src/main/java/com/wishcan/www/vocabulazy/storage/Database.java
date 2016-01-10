@@ -743,13 +743,11 @@ public class Database implements Parcelable {
         ArrayList<Integer> arrayList = new ArrayList<>();
 
         for (int index = 0; index < jsonArray.length(); index++) {
-
             try {
                 arrayList.add(jsonArray.getInt(index));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
         return arrayList;
     }
