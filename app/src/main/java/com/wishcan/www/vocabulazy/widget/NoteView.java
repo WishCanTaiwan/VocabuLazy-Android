@@ -1,4 +1,4 @@
-package com.wishcan.www.vocabulazy.view.notes;
+package com.wishcan.www.vocabulazy.widget;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.wishcan.www.vocabulazy.MainActivity;
+import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.storage.Lesson;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,19 +27,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.wishcan.www.vocabulazy.MainActivity;
-import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.player.AudioService;
-import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Lesson;
-
 /**
  * Created by swallow on 2015/8/5.
  */
-public class NotesListView extends ListView {
+public class NoteView extends ListView implements AdapterView<String>{
+
+    @Override
+    public void refreshView(int count, LinkedList<String> linkedList) {
+
+    }
 
     public interface OnListIconClickedListener {
         void onListIconClicked(int iconId, int position, View v);
+        void onPlayIconClicked(int positioin, View v);
     }
 
     public static final int ICON_PLAY = 0;
@@ -45,15 +49,9 @@ public class NotesListView extends ListView {
     public static final int ICON_RENAME = 4;
     public static final int ICON_COMBINE = 5;
     public static final int ICON_NEW_NOTE = 6;
-
-    private static final int DEFAULT_ACTION_BAR_TITLE_RES_ID = R.string.list_title;
-
     private static final int DIVIDER_COLOR = R.color.divider_color_gray;
-
     private static final int DIVIDER_HEIGHT = R.dimen.divider_height;
-
     private static final int LIST_ITEM_RES_ID = R.layout.note_list_layout;
-
     private static final int LIST_ITEM_ANIMATE_MOVE_OFFSET = R.dimen.note_list_item_move_offset;
 
     private String[] from = {"NOTE_NAME"};
@@ -70,34 +68,22 @@ public class NotesListView extends ListView {
 
     private LinkedList<HashMap<String, Object>> mDataList;
 
-    private String mActionBarTitle;
-
     private ArrayAdapter mAdapter;
-
-    private Database mDatabase;
 
     private OnListIconClickedListener mOnListIconClickedListener;
 
     private boolean mEnableEtcFunction;
 
-    public NotesListView(Context context) {
+    public NoteView(Context context) {
         this(context, null);
     }
 
-    public NotesListView(Context context, AttributeSet attrs) {
+    public NoteView(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
 
         mContext = context;
 
-        mActionBarTitle = mContext.getString(DEFAULT_ACTION_BAR_TITLE_RES_ID);
-
         mResource = LIST_ITEM_RES_ID;
-
-        mDatabase = ((MainActivity) context).getDatabase();
-
-        loadNotes();
-        loadNoteNames();
-        createDataList();
 
         setBackgroundColor(Color.WHITE);
         setDivider(new ColorDrawable(getResources().getColor(DIVIDER_COLOR)));
@@ -108,61 +94,18 @@ public class NotesListView extends ListView {
         mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, mResource, from, to);
         setAdapter(mAdapter);
 
-
     }
 
     public void setOnListIconClickedListener(OnListIconClickedListener listener) {
         mOnListIconClickedListener = listener;
     }
 
-    public void refreshDatabase() {
-        mDatabase = ((MainActivity) mContext).getDatabase();
-    }
-
     public void refresh(){
-
-        loadNotes();
-        loadNoteNames();
-        createDataList();
         mAdapter.notifyDataSetChanged();
-//        mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, mResource, from, to);
-//        setAdapter(mAdapter);
-    }
-
-    private void loadNotes() {
-        mNotes = new ArrayList<>();
-        mNotes = mDatabase.getLessonsByBook(-1);
-    }
-
-    private void loadNoteNames() {
-        mNoteNames = new ArrayList<>();
-        for (int index = 0; index < mNotes.size(); index++) {
-            mNoteNames.add(mNotes.get(index).getName());
-//            Log.d("loadNotesName", " " + mNotes.get(index).getName());
-        }
-    }
-
-    private void createDataList(){
-        if (mDataList == null)
-            mDataList = new LinkedList<>();
-        else {
-            mDataList.clear();
-        }
-
-        Iterator<String> ii = mNoteNames.iterator();
-        while(ii.hasNext()){
-            HashMap<String, Object> hm = new HashMap<>();
-            hm.put(from[0], ii.next());
-            mDataList.add(hm);
-        }
     }
 
     public void setEnableEtcFunction(boolean bool){
         mEnableEtcFunction = bool;
-    }
-
-    public ArrayList<Lesson> getNotes() {
-        return mNotes;
     }
 
     private class CustomizedSimpleAdapter extends ArrayAdapter {
@@ -221,7 +164,7 @@ public class NotesListView extends ListView {
                 v.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mOnListIconClickedListener.onListIconClicked(ICON_PLAY, position, v);
+                        mOnListIconClickedListener.onPlayIconClicked(position, v);
                     }
                 });
             }

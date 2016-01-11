@@ -26,4 +26,7 @@
 
     <item name="playerscrollview_id" type="id" />
 
+
+    <item name="tab_view_pager_id"          type="id"/>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.wishcan.www.vocabulazy.view.main;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.wishcan.www.vocabulazy.MainActivity;
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.main.voc.fragment.VocBookFragment;
 import com.wishcan.www.vocabulazy.view.books.BooksGridView;
 import com.wishcan.www.vocabulazy.view.notes.NotesListAddButtonView;
 import com.wishcan.www.vocabulazy.view.reading.ReadingBooksGridView;

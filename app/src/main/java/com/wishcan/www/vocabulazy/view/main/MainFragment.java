@@ -231,7 +231,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onResume() {
-//        Log.d(TAG, "onResume");
+        Log.d(TAG, "onResume");
         super.onResume();
         mDatabase = ((MainActivity) getActivity()).getDatabase();
 //        mTabView.setCurrentTab(2);

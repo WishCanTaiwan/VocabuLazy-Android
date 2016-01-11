@@ -1,26 +1,8 @@
-<menu
-    xmlns:android   ="http://schemas.android.com/apk/res/android"
-    xmlns:tools     ="http://schemas.android.com/tools"
-    xmlns:app       ="http://schemas.android.com/apk/res-auto"
-    tools:context   =".MainActivity">
-
-    <item
-        android:title           = "@string/action_search"
-        android:id              = "@+id/action_search"
-        android:icon            = "@drawable/ic_action_search"
-        android:showAsAction    = "ifRoom" />
-    <!--
-    <item
-        android:title           = "@string/action_person"
-        android:id              = "@+id/action_person"
-        android:icon            = "@drawable/ic_action_person"
-        app:showAsAction        = "ifRoom" />
-
-    <item
-        android:id              = "@+id/action_settings"
-        android:title           = "@string/action_settings"
-        android:icon            = "@drawable/ic_action_settings"
-        app:showAsAction        = "ifRoom" />
-     -->
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wishcan.www.vocabulazy.main.MainActivity">
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="ifRoom" />
 </menu>
