@@ -19,6 +19,6 @@ public class VocBookView extends BookView {
     public VocBookView(Context context, AttributeSet attrs, LinkedList<String> booksNameLL) {
         super(context, attrs);
         if(booksNameLL != null)
-            refreshBookView(booksNameLL.size(), booksNameLL);
+            refreshView(booksNameLL.size(), booksNameLL);
     }
 }

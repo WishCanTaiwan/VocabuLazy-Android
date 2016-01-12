@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import java.util.Map;
 
 import com.wishcan.www.vocabulazy.MainActivity;
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.player.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
 
@@ -52,7 +50,7 @@ public class NotesListView extends ListView {
 
     private static final int DIVIDER_HEIGHT = R.dimen.divider_height;
 
-    private static final int LIST_ITEM_RES_ID = R.layout.note_list_layout;
+    private static final int LIST_ITEM_RES_ID = R.layout.widget_note_view_list_item;
 
     private static final int LIST_ITEM_ANIMATE_MOVE_OFFSET = R.dimen.note_list_item_move_offset;
 

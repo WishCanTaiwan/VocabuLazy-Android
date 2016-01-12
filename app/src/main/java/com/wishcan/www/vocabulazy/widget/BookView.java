@@ -24,7 +24,10 @@ import java.util.LinkedList;
  */
 public class BookView extends GridView implements AdapterView<String>{
 
-
+    @Override
+    public void refreshView(int count, LinkedList<String> linkedList) {
+        refreshBookView(count, linkedList);
+    }
 
     public interface BookItemOnClickListener{
         void bookItemOnClick();
@@ -80,10 +83,7 @@ public class BookView extends GridView implements AdapterView<String>{
             mBookNames.add("Book"+i);
     }
 
-    @Override
-    public void refreshView(int count, LinkedList<String> linkedList) {
-        refreshBookView(count, linkedList);
-    }
+
 
     private void refreshBookView() {
         refreshBookView(mBookCount, mBookNames);

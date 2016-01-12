@@ -4,12 +4,24 @@ package com.wishcan.www.vocabulazy.main.usr.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.usr.view.UsrNoteView;
+import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.storage.Lesson;
+import com.wishcan.www.vocabulazy.storage.Note;
+import com.wishcan.www.vocabulazy.widget.ErrorView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,54 +29,53 @@ import com.wishcan.www.vocabulazy.R;
  * create an instance of this fragment.
  */
 public class UsrNoteFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Database mDatabase;
 
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UsrNoteFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UsrNoteFragment newInstance(String param1, String param2) {
+    public static UsrNoteFragment newInstance() {
         UsrNoteFragment fragment = new UsrNoteFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
     public UsrNoteFragment() {
         // Required empty public constructor
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mDatabase = ((MainActivity) getActivity()).getDatabase();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(mDatabase == null)
+            mDatabase = ((MainActivity) getActivity()).getDatabase();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+        UsrNoteView usrNoteView = new UsrNoteView(getActivity());
+        ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
+        LinkedList<String> dataList = new LinkedList<>();
+
+        if(notes == null)
+            return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
+
+        for(int i = 0; i < notes.size(); i++){
+            dataList.add(notes.get(i).getName());
+        }
+
+        usrNoteView.refreshView(notes.size(), dataList);
+        return usrNoteView;
     }
+
+
 
 
 }

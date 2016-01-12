@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.wishcan.www.vocabulazy.MainActivity;
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Lesson;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -35,11 +32,18 @@ public class NoteView extends ListView implements AdapterView<String>{
     @Override
     public void refreshView(int count, LinkedList<String> linkedList) {
 
+        mDataList.clear();
+        Iterator<String> ii = linkedList.iterator();
+        while(ii.hasNext()){
+            HashMap<String, Object> hm = new HashMap<>();
+            hm.put(FROM[0], ii.next());
+            mDataList.add(hm);
+        }
+        refresh();
     }
 
     public interface OnListIconClickedListener {
         void onListIconClicked(int iconId, int position, View v);
-        void onPlayIconClicked(int positioin, View v);
     }
 
     public static final int ICON_PLAY = 0;
@@ -48,23 +52,14 @@ public class NoteView extends ListView implements AdapterView<String>{
     public static final int ICON_DEL = 3;
     public static final int ICON_RENAME = 4;
     public static final int ICON_COMBINE = 5;
-    public static final int ICON_NEW_NOTE = 6;
     private static final int DIVIDER_COLOR = R.color.divider_color_gray;
     private static final int DIVIDER_HEIGHT = R.dimen.divider_height;
-    private static final int LIST_ITEM_RES_ID = R.layout.note_list_layout;
+    private static final int LIST_ITEM_RES_ID = R.layout.widget_note_view_list_item;
     private static final int LIST_ITEM_ANIMATE_MOVE_OFFSET = R.dimen.note_list_item_move_offset;
 
-    private String[] from = {"NOTE_NAME"};
+    public static final String[] FROM = {"NOTE_NAME"};
 
-    private int[]   to = {R.id.note_name};
-
-    private int mResource;
-
-    private Context mContext;
-
-    private ArrayList<Lesson> mNotes;
-
-    private ArrayList<String> mNoteNames;
+    public static final int[] TO = {R.id.note_name};
 
     private LinkedList<HashMap<String, Object>> mDataList;
 
@@ -81,17 +76,14 @@ public class NoteView extends ListView implements AdapterView<String>{
     public NoteView(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
 
-        mContext = context;
-
-        mResource = LIST_ITEM_RES_ID;
-
         setBackgroundColor(Color.WHITE);
-        setDivider(new ColorDrawable(getResources().getColor(DIVIDER_COLOR)));
+        setDivider(new ColorDrawable(ContextCompat.getColor(context, DIVIDER_COLOR)));
         setDividerHeight((int) getResources().getDimension(DIVIDER_HEIGHT));
 
         setEnableEtcFunction(true);
 
-        mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, mResource, from, to);
+        mDataList = new LinkedList<>();
+        mAdapter = new CustomizedSimpleAdapter(context, mDataList, LIST_ITEM_RES_ID, FROM, TO);
         setAdapter(mAdapter);
 
     }
@@ -100,7 +92,7 @@ public class NoteView extends ListView implements AdapterView<String>{
         mOnListIconClickedListener = listener;
     }
 
-    public void refresh(){
+    private void refresh(){
         mAdapter.notifyDataSetChanged();
     }
 
@@ -126,7 +118,7 @@ public class NoteView extends ListView implements AdapterView<String>{
             mFrom = from;
             mTo = to;
 
-            mInflater = (LayoutInflater) mContext.getSystemService(mContext.LAYOUT_INFLATER_SERVICE);
+            mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
@@ -145,6 +137,9 @@ public class NoteView extends ListView implements AdapterView<String>{
 
         private void bindView(final int position, final View v) {
 
+            if(mData == null)
+                return;
+
             int len = mTo.length;
             View view;
             final View mNoteNameTextView = v.findViewById(mTo[0]);
@@ -158,26 +153,32 @@ public class NoteView extends ListView implements AdapterView<String>{
 
             final int animateMoveOffset = (int) getResources().getDimension(LIST_ITEM_ANIMATE_MOVE_OFFSET);
 
-            HashMap<String, Object> dataMap;
+            HashMap<String, Object> dataMap = null;
 
             if(mOnListIconClickedListener != null) {
                 v.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mOnListIconClickedListener.onPlayIconClicked(position, v);
+                        mOnListIconClickedListener.onListIconClicked(ICON_PLAY, position, v);
                     }
                 });
             }
 
             //**mOnListIconClickedListener.onListIconClicked(ICON_NEW_NOTE, position, v);*/
-            if(position < mData.size())
-                dataMap = (HashMap<String, Object>) mData.get(position);
+            if(position < mData.size()) {
+                if (mData.get(position) instanceof HashMap)
+                    dataMap = (HashMap<String, Object>) mData.get(position);
+                if (dataMap == null)
+                    return;
+            }
             else
                 return;
+
             for(int i = 0; i < len; i++){
                 view = v.findViewById(mTo[i]);
-                if(view instanceof TextView)
-                    ((TextView) view).setText((String) dataMap.get(mFrom[i]));
+                Object obj = dataMap.get(mFrom[i]);
+                if(view instanceof TextView && obj instanceof String)
+                    ((TextView) view).setText((String) obj);
 
             }
 
@@ -239,6 +240,8 @@ public class NoteView extends ListView implements AdapterView<String>{
 
         @Override
         public int getCount() {
+            if(mData == null)
+                return 0;
             return mData.size();
         }
 
