@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
+import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 import com.wishcan.www.vocabulazy.storage.Database;
 
 public class MainActivity extends FragmentActivity {
@@ -63,5 +64,15 @@ public class MainActivity extends FragmentActivity {
 
     public Database getDatabase() {
         return mDatabase;
+    }
+
+    public void goLessonFragment(int bookIndex){
+
+        VocLessonFragment mLessonsFragment = VocLessonFragment.newInstance();
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        //fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_slide_from_right_to_center, R.anim.fragment_translate_slide_from_center_to_left, R.anim.fragment_translate_slide_from_left_to_center, R.anim.fragment_translate_slide_from_center_to_right);
+        fragmentTransaction.add(R.id.activity_main_container, mLessonsFragment, "VocLessonFragment");
+        fragmentTransaction.addToBackStack("VocBookFragment");
+        fragmentTransaction.commit();
     }
 }

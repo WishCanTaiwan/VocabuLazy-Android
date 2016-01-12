@@ -64,6 +64,7 @@ public class VocBookFragment extends Fragment {
             @Override
             public void bookItemOnClick() {
                 //TODO: The function for entering VocLessonFragment
+                ((MainActivity) getActivity()).goLessonFragment(0);
             }
 
             @Override
