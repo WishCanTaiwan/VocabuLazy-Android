@@ -1,4 +1,4 @@
-package com.wishcan.www.vocabulazy.main.voc.fragment;
+package com.wishcan.www.vocabulazy.main.exam.fragment;
 
 
 import android.os.Bundle;
@@ -9,8 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.exam.view.ExamBookView;
+import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 import com.wishcan.www.vocabulazy.main.voc.view.VocBookView;
 import com.wishcan.www.vocabulazy.storage.Book;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -22,23 +26,18 @@ import java.util.LinkedList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link VocBookFragment#newInstance} factory method to
+ * Use the {@link ExamBookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VocBookFragment extends Fragment {
-
+public class ExamBookFragment extends Fragment {
 
     private Database mDatabase;
 
-    public static VocBookFragment newInstance() {
-        VocBookFragment fragment = new VocBookFragment();
+    public static ExamBookFragment newInstance() {
+        ExamBookFragment fragment = new ExamBookFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public VocBookFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -57,13 +56,13 @@ public class VocBookFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        VocBookView vocBookView = new VocBookView(getActivity());
+        ExamBookView examBookView = new ExamBookView(getActivity());
         ArrayList<Book> books = (mDatabase == null) ? null : mDatabase.getBooks();
         LinkedList<String> bookNames = new LinkedList<>();
-        vocBookView.setOnBookItemClickListener(new BookView.OnBookItemClickListener() {
+        examBookView.setOnBookItemClickListener(new BookView.OnBookItemClickListener() {
             @Override
             public void onBookItemClick(int position) {
-                goVocLessonFragment(position);
+                goExamLessonFragment(position);
             }
 
             @Override
@@ -79,19 +78,20 @@ public class VocBookFragment extends Fragment {
             return new ErrorView(getActivity()).setErrorMsg("get book failed");
 
 
-        vocBookView.refreshView(bookNames.size(), bookNames);
-        return vocBookView;
+        examBookView.refreshView(bookNames.size(), bookNames);
+        return examBookView;
     }
 
-    private void goVocLessonFragment(int bookIndex){
+    private void goExamLessonFragment(int bookIndex){
+
         FragmentManager fragmentManager = getFragmentManager();
-        VocLessonFragment lessonsFragment = VocLessonFragment.newInstance(bookIndex);
+        ExamLessonFragment lessonsFragment = ExamLessonFragment.newInstance(bookIndex);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.
                 setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
                         MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, lessonsFragment, "VocLessonFragment");
-        fragmentTransaction.addToBackStack("VocBookFragment");
+        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, lessonsFragment, "ExamLessonFragment");
+        fragmentTransaction.addToBackStack("ExamBookFragment");
         fragmentTransaction.commit();
     }
 

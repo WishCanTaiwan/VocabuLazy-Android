@@ -33,10 +33,10 @@ public class NoteView extends ListView implements AdapterView<String>{
     public void refreshView(int count, LinkedList<String> linkedList) {
 
         mDataList.clear();
-        Iterator<String> ii = linkedList.iterator();
-        while(ii.hasNext()){
+
+        for(String ii:linkedList){
             HashMap<String, Object> hm = new HashMap<>();
-            hm.put(FROM[0], ii.next());
+            hm.put(FROM[0], ii);
             mDataList.add(hm);
         }
         refresh();
@@ -58,15 +58,10 @@ public class NoteView extends ListView implements AdapterView<String>{
     private static final int LIST_ITEM_ANIMATE_MOVE_OFFSET = R.dimen.note_list_item_move_offset;
 
     public static final String[] FROM = {"NOTE_NAME"};
-
     public static final int[] TO = {R.id.note_name};
-
     private LinkedList<HashMap<String, Object>> mDataList;
-
     private ArrayAdapter mAdapter;
-
     private OnListIconClickedListener mOnListIconClickedListener;
-
     private boolean mEnableEtcFunction;
 
     public NoteView(Context context) {
@@ -164,7 +159,6 @@ public class NoteView extends ListView implements AdapterView<String>{
                 });
             }
 
-            //**mOnListIconClickedListener.onListIconClicked(ICON_NEW_NOTE, position, v);*/
             if(position < mData.size()) {
                 if (mData.get(position) instanceof HashMap)
                     dataMap = (HashMap<String, Object>) mData.get(position);

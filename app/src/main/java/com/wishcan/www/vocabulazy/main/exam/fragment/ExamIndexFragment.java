@@ -4,11 +4,16 @@ package com.wishcan.www.vocabulazy.main.exam.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.exam.view.ExamIndexView;
+import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +22,7 @@ import com.wishcan.www.vocabulazy.R;
  */
 public class ExamIndexFragment extends Fragment {
 
-    public static ExamIndexFragment newInstance(String param1, String param2) {
+    public static ExamIndexFragment newInstance() {
         ExamIndexFragment fragment = new ExamIndexFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -37,8 +42,35 @@ public class ExamIndexFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.view_exam_index, container, false);
+        ExamIndexView examIndexView = new ExamIndexView(getActivity());
+        examIndexView.setOnExamItemClickListener(new ExamIndexView.OnExamItemClickListener() {
+            @Override
+            public void onExamUnitBookClick() {
+                goExamBookFragment();
+            }
+
+            @Override
+            public void onExamUnitNoteClick() {
+                goExamNoteFragment();
+            }
+        });
+        return examIndexView;
     }
 
+    private void goExamBookFragment(){
+        FragmentManager fragmentManager = getFragmentManager();
+        ExamBookFragment examBookFragment = ExamBookFragment.newInstance();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.
+                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examBookFragment, "ExamBookFragment");
+        fragmentTransaction.addToBackStack("ExamIndexFragment");
+        fragmentTransaction.commit();
+    }
+
+    private void goExamNoteFragment(){
+
+    }
 
 }

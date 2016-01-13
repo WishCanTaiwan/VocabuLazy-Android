@@ -83,4 +83,6 @@
 
     <!--dialog_default_setting-->
     <color name="default_dialog_background_color">#90000000</color>
+
+    <color name="default_transparent_background">#00000000</color>
 </resources>

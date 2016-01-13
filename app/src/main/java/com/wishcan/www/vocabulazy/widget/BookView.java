@@ -13,7 +13,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.wishcan.www.vocabulazy.widget.AdapterView;
+
 import com.wishcan.www.vocabulazy.R;
 
 import java.util.LinkedList;
@@ -22,34 +22,14 @@ import java.util.LinkedList;
 /**
  * Created by swallow on 2015/6/25.
  */
-public class BookView extends GridView implements AdapterView<String>{
+abstract public class BookView extends SlideBackViewPager{
 
-    @Override
-    public void refreshView(int count, LinkedList<String> linkedList) {
-        refreshBookView(count, linkedList);
+    private BookGridView mBookGridView;
+
+    public interface OnBookItemClickListener{
+        void onBookItemClick(int position);
+        void onNewItemClick();
     }
-
-    public interface BookItemOnClickListener{
-        void bookItemOnClick();
-        void newItemOnClick();
-    }
-
-    private static final int DEFAULT_NUM_COLUMNS = 2;
-    private static final int DEFAULT_NUM_BOOKS = 1;
-    private static final int DEFAULT_BOOKS_GRID_VERTICAL_SPACING_RES_ID = R.dimen.books_grid_vertical_spacing_dimension;
-    private static final int CIRCLE_BOOK_LAYOUT_RES_ID = R.layout.circle_book_layout;
-    private static final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_book_green_ripple;
-    private static final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_book_yellow_ripple;
-    private static final int CIRCLE_GREEN_DRAWABLE_RES_ID = R.drawable.circle_book_green_shadow;
-    private static final int CIRCLE_YELLOW_DRAWABLE_RES_ID = R.drawable.circle_book_yellow_shadow;
-
-    ImageAdapter mAdapter;
-    ViewGroup.LayoutParams layoutParams;
-    private Context mContext;
-    private int mVerticalSpacing;
-    private int mBookCount;
-    private LinkedList<String> mBookNames;
-    private BookItemOnClickListener mBookItemOnClickListener;
 
     public BookView(Context context) {
         this(context, null);
@@ -57,141 +37,190 @@ public class BookView extends GridView implements AdapterView<String>{
 
     public BookView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        mContext = context;
-
-        mVerticalSpacing = (int) getResources().getDimension(DEFAULT_BOOKS_GRID_VERTICAL_SPACING_RES_ID);
-        layoutParams = new ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
-        setLayoutParams(layoutParams);
-        setBackgroundColor(Color.WHITE);
-        setNumColumns(DEFAULT_NUM_COLUMNS);
-        setGravity(Gravity.CENTER);
-        setVerticalSpacing(mVerticalSpacing);
-        setHorizontalSpacing(0);
-        setSmoothScrollbarEnabled(true);
-        setScrollbarFadingEnabled(true);
-
-        init();
-        refreshBookView();
     }
 
-    private void init(){
-        mBookCount = DEFAULT_NUM_BOOKS;
-        mBookNames = new LinkedList<>();
-        for(int i=1; i <= mBookCount; i++)
-            mBookNames.add("Book"+i);
+    @Override
+    public ViewGroup getMainPage() {
+        mBookGridView = new BookGridView(getContext());
+        return mBookGridView;
     }
 
-
-
-    private void refreshBookView() {
-        refreshBookView(mBookCount, mBookNames);
+    public void refreshView(int count, LinkedList<String> linkedList) {
+        mBookGridView.refreshView(count, linkedList);
     }
 
-    private void refreshBookView(int count){
-        refreshBookView(count, null);
+    public void setOnBookItemClickListener(OnBookItemClickListener listener){
+        mBookGridView.setOnBookItemClickListener(listener);
     }
 
-    private void refreshBookView(int count, LinkedList<String> booksTitleLL){
-        mBookCount = count;
-        mBookNames = booksTitleLL;
-        mAdapter = new ImageAdapter(mContext, mBookNames);
-        mAdapter.setCount(count + 1);
-        setAdapter(mAdapter);
-    }
+    public class BookGridView extends GridView implements AdapterView<String>{
 
-    public int getBooksCount(){
-        return mBookCount;
-    }
+        @Override
+        public void refreshView(int count, LinkedList<String> linkedList) {
+            refreshBookView(count, linkedList);
+        }
 
-    public void setBookItemOnClickListener(BookItemOnClickListener listener){
-        mBookItemOnClickListener = listener;
-    }
+        private static final int DEFAULT_NUM_COLUMNS = 2;
+        private static final int DEFAULT_NUM_BOOKS = 1;
+        private static final int DEFAULT_BOOKS_GRID_VERTICAL_SPACING_RES_ID = R.dimen.books_grid_vertical_spacing_dimension;
+        private static final int CIRCLE_BOOK_LAYOUT_RES_ID = R.layout.circle_book_layout;
+        private static final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_book_green_ripple;
+        private static final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_book_yellow_ripple;
+        private static final int CIRCLE_GREEN_DRAWABLE_RES_ID = R.drawable.circle_book_green_shadow;
+        private static final int CIRCLE_YELLOW_DRAWABLE_RES_ID = R.drawable.circle_book_yellow_shadow;
 
-    public class ImageAdapter extends BaseAdapter {
-
+        ImageAdapter mAdapter;
+        ViewGroup.LayoutParams layoutParams;
         private Context mContext;
-        private int mCount;
-        private LinkedList<String> mImgStrLL;
+        private int mVerticalSpacing;
+        private int mBookCount;
+        private LinkedList<String> mBookNames;
+        private OnBookItemClickListener mBookItemOnClickListener;
 
-        public ImageAdapter(Context c, LinkedList<String> imageStrLL) {
-            mContext = c;
-            mImgStrLL = imageStrLL;
+        public BookGridView(Context context) {
+            this(context, null);
         }
 
-        public int getCount() {
-            return mCount;
+        public BookGridView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+
+            mContext = context;
+
+            mVerticalSpacing = (int) getResources().getDimension(DEFAULT_BOOKS_GRID_VERTICAL_SPACING_RES_ID);
+            layoutParams = new ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+            setLayoutParams(layoutParams);
+            setBackgroundColor(Color.WHITE);
+            setNumColumns(DEFAULT_NUM_COLUMNS);
+            setGravity(Gravity.CENTER);
+            setVerticalSpacing(mVerticalSpacing);
+            setHorizontalSpacing(0);
+            setSmoothScrollbarEnabled(true);
+            setScrollbarFadingEnabled(true);
+
+            init();
+            refreshBookView();
         }
 
-        public Object getItem(int position) {
-            return null;
+        private void init(){
+            mBookCount = DEFAULT_NUM_BOOKS;
+            mBookNames = new LinkedList<>();
+            for(int i=1; i <= mBookCount; i++)
+                mBookNames.add("Book"+i);
         }
 
-        public long getItemId(int position) {
-            return 0;
+
+
+        private void refreshBookView() {
+            refreshBookView(mBookCount, mBookNames);
         }
 
-        public void setCount(int count){
-            mCount = count;
+        private void refreshBookView(int count){
+            refreshBookView(count, null);
         }
 
-        // create a new ImageView for each item referenced by the Adapter
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewGroup bookParentView = (ViewGroup) ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(CIRCLE_BOOK_LAYOUT_RES_ID, null);
-            bookParentView.setPadding(5,5,5,5);
+        private void refreshBookView(int count, LinkedList<String> booksTitleLL){
+            mBookCount = count;
+            mBookNames = booksTitleLL;
+            mAdapter = new ImageAdapter(mContext, mBookNames);
+            mAdapter.setCount(count + 1);
+            setAdapter(mAdapter);
+        }
 
-            ImageView imageView = (ImageView) bookParentView.getChildAt(0);
-            TextView textView = (TextView) bookParentView.getChildAt(1);
-            RelativeLayout crossViewParent = (RelativeLayout) bookParentView.getChildAt(2);
+        public int getBooksCount(){
+            return mBookCount;
+        }
 
-            if(position % 4 < 2) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                    imageView.setImageResource(CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID);
-                else
-                    imageView.setImageResource(CIRCLE_GREEN_DRAWABLE_RES_ID);
-                if(position < 2) {
-                    imageView.setPadding(0, mVerticalSpacing, 0, 0);
-                    textView.setPadding(0, mVerticalSpacing, 0, 0);
-                    crossViewParent.setPadding(0, mVerticalSpacing, 0, 0);
+        public void setOnBookItemClickListener(OnBookItemClickListener listener){
+            mBookItemOnClickListener = listener;
+        }
+
+        public class ImageAdapter extends BaseAdapter {
+
+            private Context mContext;
+            private int mCount;
+            private LinkedList<String> mImgStrLL;
+
+            public ImageAdapter(Context c, LinkedList<String> imageStrLL) {
+                mContext = c;
+                mImgStrLL = imageStrLL;
+            }
+
+            public int getCount() {
+                return mCount;
+            }
+
+            public Object getItem(int position) {
+                return null;
+            }
+
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            public void setCount(int count){
+                mCount = count;
+            }
+
+            // create a new ImageView for each item referenced by the Adapter
+            public View getView(int pressedPosition, View convertView, ViewGroup parent) {
+                final int position = pressedPosition;
+                ViewGroup bookParentView = (ViewGroup) ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(CIRCLE_BOOK_LAYOUT_RES_ID, null);
+                bookParentView.setPadding(5,5,5,5);
+
+                ImageView imageView = (ImageView) bookParentView.getChildAt(0);
+                TextView textView = (TextView) bookParentView.getChildAt(1);
+                RelativeLayout crossViewParent = (RelativeLayout) bookParentView.getChildAt(2);
+
+                if(position % 4 < 2) {
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                        imageView.setImageResource(CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID);
+                    else
+                        imageView.setImageResource(CIRCLE_GREEN_DRAWABLE_RES_ID);
+                    if(position < 2) {
+                        imageView.setPadding(0, mVerticalSpacing, 0, 0);
+                        textView.setPadding(0, mVerticalSpacing, 0, 0);
+                        crossViewParent.setPadding(0, mVerticalSpacing, 0, 0);
+                    }
+
+                }
+                else {
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                        imageView.setImageResource(CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID);
+                    else
+                        imageView.setImageResource(CIRCLE_YELLOW_DRAWABLE_RES_ID);
                 }
 
-            }
-            else {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                    imageView.setImageResource(CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID);
-                else
-                    imageView.setImageResource(CIRCLE_YELLOW_DRAWABLE_RES_ID);
-            }
+                if(mImgStrLL == null)
+                    return bookParentView;
 
-            if(mImgStrLL == null)
+                if(position < mImgStrLL.size()) {
+                    textView.setText(mImgStrLL.get(position));
+                    bookParentView.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(mBookItemOnClickListener != null)
+                                mBookItemOnClickListener.onBookItemClick(position);
+                        }
+                    });
+                }
+                else{
+                    textView.setVisibility(GONE);
+                    crossViewParent.setVisibility(VISIBLE);
+                    bookParentView.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(mBookItemOnClickListener != null)
+                                mBookItemOnClickListener.onNewItemClick();
+                        }
+                    });
+                }
+
                 return bookParentView;
-
-            if(position < mImgStrLL.size()) {
-                textView.setText(mImgStrLL.get(position));
-                bookParentView.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(mBookItemOnClickListener != null)
-                            mBookItemOnClickListener.bookItemOnClick();
-                    }
-                });
             }
-            else{
-                textView.setVisibility(GONE);
-                crossViewParent.setVisibility(VISIBLE);
-                bookParentView.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(mBookItemOnClickListener != null)
-                            mBookItemOnClickListener.newItemOnClick();
-                    }
-                });
-            }
-
-            return bookParentView;
         }
-    }
 
+
+    }
 
 }

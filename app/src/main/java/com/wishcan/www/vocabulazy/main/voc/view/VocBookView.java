@@ -21,4 +21,9 @@ public class VocBookView extends BookView {
         if(booksNameLL != null)
             refreshView(booksNameLL.size(), booksNameLL);
     }
+
+    @Override
+    public boolean enableSlideBack() {
+        return false;
+    }
 }
