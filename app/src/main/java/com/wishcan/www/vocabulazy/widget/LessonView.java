@@ -28,7 +28,6 @@ public class LessonView extends SlideBackViewPager {
         void onLessonClick(int lesson);
     }
 
-    private Context mContext;
     LessonListView mLessonListView;
 
     public LessonView(Context context) {
@@ -37,7 +36,6 @@ public class LessonView extends SlideBackViewPager {
 
     public LessonView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mContext = context;
     }
 
     @Override

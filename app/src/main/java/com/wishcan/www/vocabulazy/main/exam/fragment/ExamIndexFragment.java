@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamIndexView;
-import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,7 +69,15 @@ public class ExamIndexFragment extends Fragment {
     }
 
     private void goExamNoteFragment(){
-
+        FragmentManager fragmentManager = getFragmentManager();
+        ExamNoteFragment examNoteFragment = ExamNoteFragment.newInstance();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.
+                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examNoteFragment, "ExamNoteFragment");
+        fragmentTransaction.addToBackStack("ExamIndexFragment");
+        fragmentTransaction.commit();
     }
 
 }

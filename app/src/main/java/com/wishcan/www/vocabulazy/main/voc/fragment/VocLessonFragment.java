@@ -4,6 +4,8 @@ package com.wishcan.www.vocabulazy.main.voc.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.voc.view.VocLessonView;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
@@ -30,6 +33,7 @@ public class VocLessonFragment extends Fragment {
     private static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
     private Database mDatabase;
     private int mBookIndex;
+    private int mLessonIndex;
 
     public static VocLessonFragment newInstance(int bookIndex) {
         VocLessonFragment fragment = new VocLessonFragment();
@@ -48,7 +52,7 @@ public class VocLessonFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
-
+        mLessonIndex = 0;
     }
 
     @Override
@@ -67,7 +71,8 @@ public class VocLessonFragment extends Fragment {
         vocLessonView.setOnLessonClickListener(new LessonView.OnLessonClickListener() {
             @Override
             public void onLessonClick(int lesson) {
-
+                mLessonIndex = lesson;
+                goPlayerFragment(mBookIndex, mLessonIndex);
             }
         });
         if(lessons != null)
@@ -80,5 +85,15 @@ public class VocLessonFragment extends Fragment {
         return vocLessonView;
     }
 
-
+    private void goPlayerFragment(int bookIndex, int lessonIndex){
+        FragmentManager fragmentManager = getFragmentManager();
+        PlayerFragment playerFragment = PlayerFragment.newInstance(bookIndex, lessonIndex);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.
+                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, playerFragment, "PlayerFragment");
+        fragmentTransaction.addToBackStack("VocLessonFragment");
+        fragmentTransaction.commit();
+    }
 }

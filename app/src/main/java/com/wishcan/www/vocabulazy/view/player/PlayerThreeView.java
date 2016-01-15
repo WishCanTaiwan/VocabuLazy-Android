@@ -109,24 +109,6 @@ public class PlayerThreeView extends InfiniteThreeView {
         mDefaultLayoutParams = new RelativeLayout.LayoutParams(ViewPager.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-//        Log.d(TAG, "onDraw");
-        super.onDraw(canvas);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-//        Log.d(TAG, "onRestoreInstanceState");
-        super.onRestoreInstanceState(state);
-    }
-
-    @Override
-    protected Parcelable onSaveInstanceState() {
-//        Log.d(TAG, "onSavedInstanceState");
-        return super.onSaveInstanceState();
-    }
-
     public void addNewPlayer(ArrayList<Integer> playlistContentIDs) {
         this.addNewPlayer(playlistContentIDs, CENTER_VIEW_INDEX);
     }
