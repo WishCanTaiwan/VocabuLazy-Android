@@ -7,12 +7,10 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -22,16 +20,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.view.adapter.LinkedListPagerAdapter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -44,7 +39,7 @@ import java.util.LinkedList;
  * some rectangle views, such as TextViews.
  *
  * Version 2.0 is developed from 2015/1/14.
- * I am ready for providing TWO API, related to
+ * I am ready for an API, related to
  * customize PopItem and PopItemDetail
  *
  */
@@ -53,7 +48,7 @@ abstract public class PopScrollView extends RelativeLayout {
     protected abstract View getItemDetailView();
 
     public interface OnPopScrollStoppedListener{
-        void onPopScrollStopped();
+        void onPopScrollStopped(int index);
     }
 
     public interface OnItemPreparedListener{
@@ -67,7 +62,7 @@ abstract public class PopScrollView extends RelativeLayout {
     public static final int DEFAULT_PLAYER_LIST_ITEM_COUNT = 2;
 
     private static final float ZOOM_IN_FACTORY = 1.05f;
-    private static final int DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW = 6;
+    private static final int DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW = 5;
     private static final int DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID = R.color.player_list_item_focused_color;
     private static final int DEFAULT_LIST_ITEM0_COLOR_RES_ID = R.color.player_list_item0_border_bottom_color;
     private static final int DEFAULT_DETAILS_COLOR_RES_ID = R.color.player_details_color;
@@ -75,6 +70,10 @@ abstract public class PopScrollView extends RelativeLayout {
     private static final int DEFAULT_BOT_GRADIENT_DRAWABLE_RES_ID = R.drawable.bottom_gradient_filter;
     private static final int DEFAULT_FOCUSED_ITEM_DRAWABLE_RES_ID = R.drawable.player_item0;
     private static final int DEFAULT_ITEM_DRAWABLE_RES_ID = R.drawable.player_item1;
+
+    public static final int STATE_ITEM_DETAIL_SHOW = 1;
+    public static final int STATE_ITEM_DETAIL_CHANGING = 0;
+    public static final int STATE_ITEM_DETAIL_NOT_SHOW = -1;
 
     /** Remember to write where's the default layout come from*/
 
@@ -105,7 +104,7 @@ abstract public class PopScrollView extends RelativeLayout {
     private int mPopItemZoomInHeight;
     private int mCurrentFocusedPopItemPosition;
     private int mPopItemCount;
-    private boolean mShowingDetails;
+    private int mShowingDetails;
     private boolean mInitialItemCheckFlag;
     private boolean mFinalItemCheckFlag;
     private final Runnable checkFinalItemStateTask;
@@ -164,6 +163,7 @@ abstract public class PopScrollView extends RelativeLayout {
         setChildZoomInSize();
         setPopViewWithDefaultSize();
 
+        mShowingDetails = STATE_ITEM_DETAIL_NOT_SHOW;
         mLinearLayout = new LinearLayout(mContext);
         LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         mLinearLayout.setLayoutParams(mLayoutParams);
@@ -256,7 +256,7 @@ abstract public class PopScrollView extends RelativeLayout {
 
         if(newPosition >= mPopItemCount || newPosition < 0)
             return;
-        if(mShowingDetails)
+        if(mShowingDetails == STATE_ITEM_DETAIL_SHOW)
             hideItemDetails();
 
         previousFocusedPosition = mCurrentFocusedPopItemPosition;
@@ -333,7 +333,7 @@ abstract public class PopScrollView extends RelativeLayout {
      * 2. Show the detail content of word (0.3s)
      * */
     public void showItemDetails(){
-        if(mItemDetailsLinearLayout == null)
+        if(mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
             mItemDetailsLinearLayout = new ItemDetailLinearLayout(mContext, getCurrentFocusedPosition());
         else
             return;
@@ -360,7 +360,7 @@ abstract public class PopScrollView extends RelativeLayout {
         detailAppearAnim.setStartDelay(500);
         detailAppearAnim.setDuration(300).start();
 
-        mShowingDetails = true;
+        mShowingDetails = STATE_ITEM_DETAIL_SHOW;
     }
 
     /**
@@ -385,21 +385,23 @@ abstract public class PopScrollView extends RelativeLayout {
         detailDisappearAnim.setDuration(500);
 
         animatorSet.play(detailDisappearAnim).before(detailZoomOutAnim);
-        animatorSet.start();
         animatorSet.addListener(new Animator.AnimatorListener() {
             @Override
-            public void onAnimationStart(Animator animation) {}
+            public void onAnimationStart(Animator animation) {
+                mShowingDetails = STATE_ITEM_DETAIL_CHANGING;
+            }
             @Override
             public void onAnimationEnd(Animator animation) {
+                mItemDetailsLinearLayout.removeAllViews();
                 removeView(mItemDetailsLinearLayout);
-                mItemDetailsLinearLayout = null;
-                mShowingDetails = false;
+                mShowingDetails = STATE_ITEM_DETAIL_NOT_SHOW;
             }
             @Override
             public void onAnimationCancel(Animator animation) {}
             @Override
             public void onAnimationRepeat(Animator animation) {}
         });
+        animatorSet.start();
     }
 
     public PopItemAdapter getPopItemAdapter(Context context,int resource, LinkedList<HashMap> dataList, String[] from, int[] to){
@@ -420,7 +422,7 @@ abstract public class PopScrollView extends RelativeLayout {
 
     private void setChildSize(){
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        mPopItemHeight = (int) Math.floor(displayMetrics.heightPixels*0.125);
+        mPopItemHeight = (int) Math.floor(displayMetrics.heightPixels* ((1 - 0.25) / DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW));
         mPopItemWidth = (int) Math.floor(displayMetrics.widthPixels*0.90);
     }
 
@@ -469,7 +471,7 @@ abstract public class PopScrollView extends RelativeLayout {
         return position* mPopItemHeight;
     }
 
-    public boolean isShowingDetails(){
+    public int isShowingDetails(){
         return mShowingDetails;
     }
 
@@ -521,10 +523,12 @@ abstract public class PopScrollView extends RelativeLayout {
                     public void onClick(View v) {
                         int position = mParent.indexOfChild(v);
                         if (position != mCurrentFocusedPopItemPosition) {
-                            if (mShowingDetails)
+                            if (mShowingDetails == STATE_ITEM_DETAIL_SHOW)
                                 hideItemDetails();
-                        } else
-                            showItemDetails();
+                        } else {
+                            if(mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
+                                showItemDetails();
+                        }
 
 
                     }
@@ -601,7 +605,7 @@ abstract public class PopScrollView extends RelativeLayout {
         @Override
         public boolean onInterceptTouchEvent(MotionEvent ev) {
             if(ev.getAction() == MotionEvent.ACTION_DOWN){
-                if (mShowingDetails) {
+                if (mShowingDetails == STATE_ITEM_DETAIL_SHOW) {
                     hideItemDetails();
                     return false;
                 }
@@ -638,7 +642,7 @@ abstract public class PopScrollView extends RelativeLayout {
                     setCurrentFocusedPosition(newPosition);
 
                 if(mOnPopScrollStoppedListener != null)
-                    mOnPopScrollStoppedListener.onPopScrollStopped();
+                    mOnPopScrollStoppedListener.onPopScrollStopped(mCurrentFocusedPopItemPosition);
             }
         }
     }
@@ -648,10 +652,11 @@ abstract public class PopScrollView extends RelativeLayout {
         public ItemDetailLinearLayout(Context context, int index) {
             super(context);
             View itemDetailView = getItemDetailView();
+
             setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
-            if(itemDetailView != null) {
-                addView(getItemDetailView());
+            if(itemDetailView != null ) {
+                addView(itemDetailView);
                 setOrientation(VERTICAL);
             }
             else {

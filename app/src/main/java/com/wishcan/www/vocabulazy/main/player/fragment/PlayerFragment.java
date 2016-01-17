@@ -1,24 +1,22 @@
 package com.wishcan.www.vocabulazy.main.player.fragment;
 
-
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.player.model.PlayerModel;
+import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
+import com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView;
+import com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerView;
 import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.storage.Option;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,9 +29,14 @@ public class PlayerFragment extends Fragment {
     private static final String LESSON_INDEX_STR = "LESSON_INDEX_STR";
 
     private Database mDatabase;
+    private PlayerModel mPlayerModel;
     private int mBookIndex;
     private int mLessonIndex;
-    private PlayerView mPlayerView;
+    private ArrayList<Vocabulary> mVocabularies;
+    private PlayerMainView mPlayerMainView;
+    private PlayerPanelView mPlayerPanelView;
+    private PlayerOptionView mPlayerOptionView;
+    private ViewGroup mPlayerOptionGrayBack;
 
     public static PlayerFragment newInstance(int bookIndex, int lessonIndex) {
         PlayerFragment fragment = new PlayerFragment();
@@ -51,57 +54,87 @@ public class PlayerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPlayerModel = new PlayerModel();
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         mLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
-
+        mVocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIDs(mBookIndex, mLessonIndex));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mPlayerView = new PlayerView(getContext());
-        ArrayList<Integer> contentIDs = mDatabase.getContentIDs(mBookIndex, mLessonIndex);
-        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
-        final LinkedList<HashMap> playlistContent = new LinkedList<>();
-        for(Vocabulary voc : vocabularies) {
-            HashMap<String, String> hm = new HashMap<>();
-            hm.put(PlayerView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
-            hm.put(PlayerView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], voc.getTranslationInOneString());
-            playlistContent.add(hm);
-        }
+        final PlayerView playerView = new PlayerView(getActivity());
+        mPlayerMainView = playerView.getPlayerMainView();
+        mPlayerPanelView = playerView.getPlayerPanelView();
+        mPlayerOptionGrayBack = playerView.getPlayerOptionGrayBack();
+        mPlayerOptionView = playerView.getPlayerOptionView();
 
-        mPlayerView.postDelayed(new Runnable() {
+        /**Initialize and  Refresh PlayerView */
+        mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
+
+        /** set Scroll Listener, update Player's detail content every time the scroll stopped */
+        mPlayerMainView.setOnPlayerScrollStopListener(new PlayerMainView.OnPlayerScrollListener() {
+            @Override
+            public void onPlayerVerticalScrollStop(int currentPosition) {
+                mPlayerMainView.refreshPlayerDetail(
+                        mPlayerModel.createPlayerDetailContent(
+                                mVocabularies.get(currentPosition)));
+            }
+
+            @Override
+            public void onPlayerHorizontalScrollStop(int direction) {
+                mLessonIndex += 1;
+                mVocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIDs(mBookIndex, mLessonIndex));
+                mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
+                mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
+            }
+
+            @Override
+            public void onPlayerHorizontalScrolling() {
+            }
+        });
+
+        mPlayerPanelView.setOnPanelItemClickListener(new PlayerPanelView.OnPanelItemClickListener() {
+            @Override
+            public void onOptionFavoriteClick() {
+
+            }
+
+            @Override
+            public void onOptionPlayClick() {
+
+            }
+
+            @Override
+            public void onOptionOptionClick() {
+                playerView.showPlayerOptionView();
+            }
+        });
+
+        mPlayerOptionGrayBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playerView.exitOptionView();
+            }
+        });
+
+        mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
+            @Override
+            public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+                mDatabase.setCurrentOptions(optionLL);
+                mDatabase.setCurrentOptionMode(currentMode);
+            }
+        });
+
+        mPlayerMainView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mPlayerView.addNewPlayer(playlistContent);
+                mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
             }
         }, 600);
 
-        return mPlayerView;
-    }
-
-    private class AddNewPlayerAsyncTask extends AsyncTask<ArrayList<Integer>, Void, LinkedList<HashMap>> {
-
-        private PlayerView view;
-
-        private int mPlayerPosition;
-
-        public AddNewPlayerAsyncTask(PlayerView view, int position) {
-            this.view = view;
-            mPlayerPosition = position;
-        }
-
-        @Override
-        protected LinkedList<HashMap> doInBackground(ArrayList<Integer>... params) {
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(LinkedList<HashMap> playlistContent) {
-            super.onPostExecute(playlistContent);
-
-        }
+        return playerView;
     }
 
 }
