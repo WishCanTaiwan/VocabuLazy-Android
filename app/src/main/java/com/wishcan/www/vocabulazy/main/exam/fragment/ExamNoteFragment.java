@@ -2,6 +2,8 @@ package com.wishcan.www.vocabulazy.main.exam.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,5 +60,18 @@ public class ExamNoteFragment extends Fragment {
 
         examNoteView.refreshView(notes.size(), dataList);
         return examNoteView;
+    }
+
+    private void goExamFragment(int noteIndex){
+
+        FragmentManager fragmentManager = getFragmentManager();
+        ExamFragment examFragment = ExamFragment.newInstance(-1, noteIndex);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.
+                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examFragment, "ExamFragment");
+        fragmentTransaction.addToBackStack("ExamLessonFragment");
+        fragmentTransaction.commit();
     }
 }

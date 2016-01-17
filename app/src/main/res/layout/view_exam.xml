@@ -102,28 +102,28 @@
         </RelativeLayout>
 
         <!-- Option1 -->
-        <com.wishcan.www.vocabulazy.view.exam.ExamOptionItem
+        <com.wishcan.www.vocabulazy.main.exam.view.ExamOptionItem
             android:id="@+id/exam_option1_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"/>
 
         <!-- Option2 -->
-        <com.wishcan.www.vocabulazy.view.exam.ExamOptionItem
+        <com.wishcan.www.vocabulazy.main.exam.view.ExamOptionItem
             android:id="@+id/exam_option2_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"/>
 
         <!-- Option3 -->
-        <com.wishcan.www.vocabulazy.view.exam.ExamOptionItem
+        <com.wishcan.www.vocabulazy.main.exam.view.ExamOptionItem
             android:id="@+id/exam_option3_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"/>
 
         <!-- Option4 -->
-        <com.wishcan.www.vocabulazy.view.exam.ExamOptionItem
+        <com.wishcan.www.vocabulazy.main.exam.view.ExamOptionItem
             android:id="@+id/exam_option4_parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"

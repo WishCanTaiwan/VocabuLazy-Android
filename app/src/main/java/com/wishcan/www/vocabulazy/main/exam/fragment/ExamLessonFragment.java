@@ -4,6 +4,8 @@ package com.wishcan.www.vocabulazy.main.exam.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +63,7 @@ public class ExamLessonFragment extends Fragment {
         examLessonView.setOnLessonClickListener(new LessonView.OnLessonClickListener() {
             @Override
             public void onLessonClick(int lesson) {
-
+                goExamFragment(lesson);
             }
         });
         if(lessons != null)
@@ -74,5 +76,16 @@ public class ExamLessonFragment extends Fragment {
         return examLessonView;
     }
 
+    private void goExamFragment(int lessonIndex){
 
+        FragmentManager fragmentManager = getFragmentManager();
+        ExamFragment examFragment = ExamFragment.newInstance(mBookIndex, lessonIndex);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.
+                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examFragment, "ExamFragment");
+        fragmentTransaction.addToBackStack("ExamLessonFragment");
+        fragmentTransaction.commit();
+    }
 }
