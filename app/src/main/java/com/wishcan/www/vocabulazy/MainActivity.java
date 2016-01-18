@@ -105,8 +105,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        Log.d(TAG, "onCreate");
-
         if (savedInstanceState != null) {
             mCurrentFragmentTag = savedInstanceState.getString(MainActivity.CURRENT_FRAGMENT_TAG);
         } else {
@@ -142,8 +140,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        Log.d(TAG, "onActivityResult");
-
         if (requestCode == REQUEST_CODE_DATABASE_UPDATE) {
             if (resultCode == RESULT_OK) {
                 mDatabase.loadNotes();
@@ -154,9 +150,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     @Override
     protected void onStart() {
         super.onStart();
-
-//        Log.d(TAG, "onStart");
-
         mActionBar = getActionBar();
         switchActionBarTitle(getResources().getString(R.string.book_title));
 
@@ -207,7 +200,6 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
             // the number "1" is to identify the action
             startActivityForResult(intent, REQUEST_CODE_DATABASE_UPDATE);
         }
-
         return super.onOptionsItemSelected(item);
     }
 

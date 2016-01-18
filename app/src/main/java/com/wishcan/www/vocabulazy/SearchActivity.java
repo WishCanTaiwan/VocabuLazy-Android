@@ -221,7 +221,6 @@ public class SearchActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-//        Log.d(TAG, "onBackPressed");
         if (mNewNoteDialogView != null)
             closeDialog(mNewNoteDialogView);
         else if (mDialogView != null)
@@ -359,12 +358,6 @@ public class SearchActivity extends Activity {
         });
 
         mSearchDetailView.requestFocus();
-
-//        ((TextView) mSearchDetailView.findViewById(mTo[0])).setText(vocabulary.getSpell());
-//        ((TextView) mSearchDetailView.findViewById(mTo[1])).setText(vocabulary.getTranslationInOneString());
-//        ((TextView) mSearchDetailView.findViewById(mTo[2])).setText(vocabulary.getKK());
-//        ((TextView) mSearchDetailView.findViewById(mTo[3])).setText(vocabulary.getEn_Sentence().get(0));
-//        ((TextView) mSearchDetailView.findViewById(mTo[4])).setText(vocabulary.getCn_Sentence().get(0));
 
         Animator alphaAnim = ObjectAnimator.ofFloat(mSearchDetailParentView, "Alpha", 0f, 1f);
         alphaAnim.setDuration(300);

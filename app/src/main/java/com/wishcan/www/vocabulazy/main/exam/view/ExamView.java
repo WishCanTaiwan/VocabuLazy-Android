@@ -53,7 +53,9 @@ public class ExamView extends LinearLayout {
 
 	public ExamView(Context context, AttributeSet attr) {
 		super(context, attr);
-        mView = (ViewGroup) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_RES_ID, null);
+        mView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_RES_ID, null);
+        setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        addView(mView);
         mSequentialCounter = 0;
         mAnimLocker = false;
         mPopOutTask = new Runnable() {
@@ -68,7 +70,7 @@ public class ExamView extends LinearLayout {
             }
         };
         initPopOutAnimation();
-        addView(mView);
+
 	}
 
 	private void initPopOutAnimation() {
@@ -100,13 +102,13 @@ public class ExamView extends LinearLayout {
         });
 
         ((ViewGroup) v).setLayoutTransition(layoutTransition);
-        for(int i = 0; i < EXAM_PARENT_VIEW_RES_IDs.length; i++)
+        for(int i = 1; i < EXAM_PARENT_VIEW_RES_IDs.length; i++)
             mView.findViewById(EXAM_PARENT_VIEW_RES_IDs[i]).setVisibility(View.GONE);
 
 	}
 
 	public void startPopOut(){
-        for(int i = 0; i < EXAM_PARENT_VIEW_RES_IDs.length -1; i++)   // should not pop out next icon
+        for(int i = 1; i < EXAM_PARENT_VIEW_RES_IDs.length -1; i++)   // should not pop out next icon
             mView.findViewById(EXAM_PARENT_VIEW_RES_IDs[i]).setVisibility(View.VISIBLE);
     }
 

@@ -13,6 +13,7 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamNoteView;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
+import com.wishcan.www.vocabulazy.widget.NoteView;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -59,6 +60,18 @@ public class ExamNoteFragment extends Fragment {
         }
 
         examNoteView.refreshView(notes.size(), dataList);
+        examNoteView.setOnListIconClickListener(new NoteView.OnListIconClickListener() {
+            @Override
+            public void onListIconClick(int iconId, int position, View v) {
+                switch(iconId) {
+                    case NoteView.ICON_PLAY:
+                        goExamFragment(position);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
         return examNoteView;
     }
 

@@ -58,6 +58,10 @@ abstract public class NoteView extends SlideBackViewPager{
         mNoteListView.setOnListIconClickListener(listener);
     }
 
+    public void setEnableEtcFunction(boolean bool){
+        mNoteListView.setEnableEtcFunction(bool);
+    }
+
     @Override
     public ViewGroup getMainPage() {
         mNoteListView = new NoteListView(getContext());
@@ -82,7 +86,6 @@ abstract public class NoteView extends SlideBackViewPager{
             }
             refresh();
         }
-
 
         private static final int DIVIDER_COLOR = R.color.divider_color_gray;
         private static final int DIVIDER_HEIGHT = R.dimen.divider_height;

@@ -107,6 +107,11 @@ public class PlayerMainView extends Infinite3View {
     public static class PlayerScrollView extends PopScrollView {
 
         private static final int PLAYER_ITEM_LAYOUT_RES_ID = R.layout.player_layout;
+        private static final int PLAYER_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.player_layout_details;
+        private static final int PLAYER_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID = R.layout.player_layout_details_sentence;
+        private static final int PLAYER_ITEM_DETAIL_PAGER_PARENT_LAYOUT_RES_ID = R.id.pager_parent;
+        private static final int PLAYER_ITEM_DETAIL_PAGER_INDEX_PARENT_LAYOUT_RES_ID = R.id.pager_index_parent;
+        
         public static final String[] PLAYER_ITEM_CONTENT_FROM = {
                 "voc_spell", "voc_translation"
         };
@@ -114,10 +119,6 @@ public class PlayerMainView extends Infinite3View {
                R.id.player_voc_spell, R.id.player_voc_translation
         };
 
-        private static final int PLAYER_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.player_layout_details;
-        private static final int PLAYER_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID = R.layout.player_layout_details_sentence;
-        private static final int PLAYER_ITEM_DETAIL_PAGER_PARENT_LAYOUT_RES_ID = R.id.pager_parent;
-        private static final int PLAYER_ITEM_DETAIL_PAGER_INDEX_PARENT_LAYOUT_RES_ID = R.id.pager_index_parent;
         public static final String[] PLAYER_ITEM_DETAIL_CONTENT_FROM ={
                 "voc_spell_detail",
                 "voc_translation_detail",
@@ -133,7 +134,7 @@ public class PlayerMainView extends Infinite3View {
                 R.id.player_voc_sentence_translation_detail
         };
 
-        public enum PLAYER_ITEM_CONTENT_ID_s {
+        public static enum PLAYER_ITEM_CONTENT_ID_s {
             VOC_SPELL_DETAIL(0),
             VOC_TRANSLATION_DETAIL(1),
             VOC_KK_DETAIL(2),

@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -10,14 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.storage.Database;
 
 public class MainActivity extends FragmentActivity {
 
-    public static final int VIEW_MAIN_RES_ID    = R.id.activity_main_container;
-    public static final int ANIM_ENTER_RES_ID   = R.anim.translation_from_right_to_center;
-    public static final int ANIM_EXIT_RES_ID    = R.anim.translation_from_center_to_right;
+    public static final int VIEW_MAIN_RES_ID = R.id.activity_main_container;
+    public static final int ANIM_ENTER_RES_ID = R.anim.fragment_translate_slide_from_right_to_center;
+    public static final int ANIM_EXIT_RES_ID = R.anim.fragment_translate_slide_from_center_to_right;
+
+    private static final int VIEW_ACTIVITY_RES_ID = R.layout.view_main_activity;
 
     private MainFragment mMainFragment;
     private FragmentManager mFragmentManager;
@@ -26,7 +30,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_main_activity);
+        setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
             mMainFragment = new MainFragment();
             mFragmentManager = getSupportFragmentManager();
@@ -59,6 +63,9 @@ public class MainActivity extends FragmentActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SearchActivity.class);
+            // the number "1" is to identify the action
+            startActivityForResult(intent, 1);
             return true;
         }
 

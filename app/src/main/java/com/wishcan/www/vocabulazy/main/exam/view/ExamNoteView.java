@@ -20,5 +20,6 @@ public class ExamNoteView extends NoteView {
 
     public ExamNoteView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setEnableEtcFunction(false);
     }
 }
