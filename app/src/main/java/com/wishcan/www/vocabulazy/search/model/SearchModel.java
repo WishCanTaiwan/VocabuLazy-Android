@@ -32,4 +32,14 @@ public class SearchModel {
         }
         return dataMap;
     }
+
+    public HashMap<String, Object> createSearchResultDetailMap(Vocabulary voc) {
+        HashMap<String, Object> hm = new HashMap<>();
+        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SPELL_DETAIL.getResFrom(), voc.getSpell());
+        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_KK_DETAIL.getResFrom(), voc.getKK());
+        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_TRANSLATION_DETAIL.getResFrom(), voc.getTranslationInOneString());
+        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_DETAIL.getResFrom(), voc.getEn_Sentence());
+        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_TRANSLATION_DETAIL.getResFrom(), voc.getCn_Sentence());
+        return hm;
+    }
 }

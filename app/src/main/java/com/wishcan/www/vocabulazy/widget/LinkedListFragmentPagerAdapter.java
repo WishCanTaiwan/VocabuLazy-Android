@@ -32,4 +32,6 @@ public class LinkedListFragmentPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return ll.size();
     }
+
+
 }

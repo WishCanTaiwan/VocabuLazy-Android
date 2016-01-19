@@ -36,44 +36,37 @@ public class SearchView extends RelativeLayout {
 	}
 
 	private static final int SEARCH_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.search_layout_details;
-	private static final int SEARCH_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID = R.layout.player_layout_details_sentence;
+	private static final int SEARCH_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID = R.layout.search_layout_details_sentence;
     private static final int SEARCH_ITEM_DETAIL_PAGER_PARENT_LAYOUT_RES_ID = R.id.pager_parent;
     private static final int SEARCH_ITEM_DETAIL_PAGER_INDEX_PARENT_LAYOUT_RES_ID = R.id.pager_index_parent;
 
-	public static final String[] LIST_ITEM_DETAIL_CONTENT_FROM = {
-        "voc_spell_detail",
-        "voc_translation_detail",
-        "voc_kk_detail",
-        "voc_sentence_detail",
-        "voc_sentence_translation_detail"
-    };
-    public static final int[] LIST_ITEM_DETAIL_CONTENT_TO = {
-      	R.id.search_voc_spell_detail,
-        R.id.search_voc_translation_detail,
-       	R.id.search_voc_kk_detail,
-        R.id.search_voc_sentence_detail,
-        R.id.search_voc_sentence_translation_detail
-    };
+    public enum LIST_ITEM_DETAIL_CONTENT_TO_FROM_s {
+        VOC_SPELL_DETAIL(
+                "voc_spell_detail", R.id.search_voc_spell_detail),
+        VOC_TRANSLATION_DETAIL(
+                "voc_translation_detail", R.id.search_voc_translation_detail),
+        VOC_KK_DETAIL(
+                "voc_kk_detail", R.id.search_voc_kk_detail),
+        VOC_SENTENCE_DETAIL(
+                "voc_sentence_detail", R.id.search_voc_sentence_detail),
+        VOC_SENTENCE_TRANSLATION_DETAIL(
+                "voc_sentence_translation_detail", R.id.search_voc_sentence_translation_detail);
 
-    public enum SEARCH_ITEM_DETAIL_CONTENT_ID_s {
-        VOC_SPELL_DETAIL(0),
-        VOC_TRANSLATION_DETAIL(1),
-        VOC_KK_DETAIL(2),
-        VOC_SENTENCE_DETAIL(3),
-        VOC_SENTENCE_TRANSLATION_DETAIL(4);
-
-        private int value;
-        SEARCH_ITEM_DETAIL_CONTENT_ID_s(int value){
-            this.value = value;
+        private String from;
+        private int to;
+        LIST_ITEM_DETAIL_CONTENT_TO_FROM_s(String from, int to){
+            this.from = from;
+            this.to = to;
         }
 
-        public int getValue(){
-            return this.value;
-        }
+        public int getResTo() { return to; }
+
+        public String getResFrom() { return from; }
     }
 
     private SearchListView mSearchListView;
     private SearchDetailView mSearchDetailView;
+    private RelativeLayout mSearchDetailParentView;     // use for exit SearchDetailView
     private Context mContext;
     private static OnItemClickListener mOnItemClickListener;
 
@@ -86,12 +79,27 @@ public class SearchView extends RelativeLayout {
         mContext = context;
     	mSearchListView = new SearchListView(context);
     	mSearchDetailView = new SearchDetailView(context);
+        mSearchDetailParentView = new RelativeLayout(context);
 
     	mSearchListView.refreshView(0, null);
-    	mSearchDetailView.setVisibility(View.INVISIBLE);
-    	
+
+        LayoutParams detailViewLayoutParams = new LayoutParams(
+                900, 600);
+        detailViewLayoutParams.addRule(CENTER_IN_PARENT);
+    	mSearchDetailView.setLayoutParams(detailViewLayoutParams);
+
+        mSearchDetailParentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        mSearchDetailParentView.addView(mSearchDetailView);
+        mSearchDetailParentView.setVisibility(View.GONE);
+        mSearchDetailParentView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeSearchDetail();
+            }
+        });
+
     	addView(mSearchListView);
-    	addView(mSearchDetailView);
+    	addView(mSearchDetailParentView);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -106,8 +114,16 @@ public class SearchView extends RelativeLayout {
 
     public void refreshSearchDetail(HashMap<String, Object> dataMap) {
     	mSearchDetailView.setAdapter(
-                mSearchDetailView.getAdapter(
-                        mContext, dataMap, LIST_ITEM_DETAIL_CONTENT_FROM, LIST_ITEM_DETAIL_CONTENT_TO));
+                mSearchDetailView.getAdapter(mContext, dataMap));
+    }
+    
+    public void showSearchDetail() {
+        mSearchDetailParentView.setVisibility(VISIBLE);
+    }
+
+    public void closeSearchDetail() {
+        mSearchDetailParentView.setVisibility(GONE);
+
     }
 
 	public static class SearchListView extends ListView implements AdapterView<HashMap> {
@@ -289,7 +305,7 @@ public class SearchView extends RelativeLayout {
             super(context);
             this.context = context;
             mContainer = this;
-            setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             pageCount = 0;
             setOrientation(VERTICAL);
 
@@ -299,8 +315,8 @@ public class SearchView extends RelativeLayout {
             mAdapter.setChildViewToGroup();
         }
 
-        public PopItemDetailAdapter getAdapter(Context context, HashMap<String, Object> dataMap, String[] from, int[] to){
-            return new PopItemDetailAdapter(context, dataMap, from, to);
+        public PopItemDetailAdapter getAdapter(Context context, HashMap<String, Object> dataMap) {
+            return new PopItemDetailAdapter(context, dataMap);
         }
 
         public void setCurrentPage(int index){
@@ -311,18 +327,12 @@ public class SearchView extends RelativeLayout {
         private class PopItemDetailAdapter{
             private Context mContext;
             private HashMap<String, Object> mDataMap;
-            private String[] mFrom;
-            private int[] mTo;
             private LayoutInflater mInflater;
 
             PopItemDetailAdapter(Context context,
-                                 HashMap<String, Object> dataMap,
-                                 String[] from,
-                                 int[] to){
+                                 HashMap<String, Object> dataMap){
                 mContext = context;
                 mDataMap = dataMap;
-                mFrom = from;
-                mTo = to;
                 mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             }
 
@@ -330,20 +340,23 @@ public class SearchView extends RelativeLayout {
                 ViewGroup itemView = (ViewGroup) mInflater.inflate(SEARCH_ITEM_DETAIL_LAYOUT_RES_ID, null);
                 ArrayList<String> enSentences, ceSentences;
                 viewPager = new ViewPager(mContext);
+
                 if(mDataMap == null)
- 	               return;
+                    return;
+                if(mContainer.getChildCount() != 0)
+                    mContainer.removeAllViews();
 
                 ((TextView) itemView
-                       .findViewById(mTo[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_SPELL_DETAIL.getValue()]))
-                       .setText((String) mDataMap.get(mFrom[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_SPELL_DETAIL.getValue()]));
+                       .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SPELL_DETAIL.getResTo()))
+                       .setText((String) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SPELL_DETAIL.getResFrom()));
                 ((TextView) itemView
-                       .findViewById(mTo[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_TRANSLATION_DETAIL.getValue()]))
-                       .setText((String) mDataMap.get(mFrom[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_TRANSLATION_DETAIL.getValue()]));
+                       .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_TRANSLATION_DETAIL.getResTo()))
+                       .setText((String) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_TRANSLATION_DETAIL.getResFrom()));
                 ((TextView) itemView
-                        .findViewById(mTo[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_KK_DETAIL.getValue()]))
-                        .setText((String) mDataMap.get(mFrom[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_KK_DETAIL.getValue()]));
-                enSentences = (ArrayList<String>) mDataMap.get(mFrom[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_SENTENCE_DETAIL.getValue()]);
-                ceSentences = (ArrayList<String>) mDataMap.get(mFrom[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_SENTENCE_TRANSLATION_DETAIL.getValue()]);
+                        .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_KK_DETAIL.getResTo()))
+                        .setText((String) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_KK_DETAIL.getResFrom()));
+                enSentences = (ArrayList<String>) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_DETAIL.getResFrom());
+                ceSentences = (ArrayList<String>) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_TRANSLATION_DETAIL.getResFrom());
 
                 pageCount = enSentences.size();
                 pagerIndexView = new PagerIndexView(context, pageCount);
@@ -365,10 +378,10 @@ public class SearchView extends RelativeLayout {
                                     .inflate(SEARCH_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID, null);
 
                     ((TextView) currentItemDetailsView
-                            .findViewById(mTo[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_SENTENCE_DETAIL.getValue()]))
+                            .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_DETAIL.getResTo()))
                             .setText(en_sentenceList.get(i));
                     ((TextView) currentItemDetailsView
-                                .findViewById(mTo[SEARCH_ITEM_DETAIL_CONTENT_ID_s.VOC_SENTENCE_TRANSLATION_DETAIL.getValue()]))
+                                .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_TRANSLATION_DETAIL.getResTo()))
                                 .setText(cn_sentenceList.get(i));
 
                     mItemPagesList.add(currentItemDetailsView);

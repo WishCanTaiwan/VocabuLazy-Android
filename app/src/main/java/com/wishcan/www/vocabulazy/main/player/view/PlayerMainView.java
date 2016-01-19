@@ -134,7 +134,7 @@ public class PlayerMainView extends Infinite3View {
                 R.id.player_voc_sentence_translation_detail
         };
 
-        public static enum PLAYER_ITEM_CONTENT_ID_s {
+        public enum PLAYER_ITEM_CONTENT_ID_s {
             VOC_SPELL_DETAIL(0),
             VOC_TRANSLATION_DETAIL(1),
             VOC_KK_DETAIL(2),

@@ -21,6 +21,7 @@ public class SearchFragment extends Fragment {
     private Database mDatabase;
     private SearchView mSearchView;
     private SearchModel mSearchModel;
+    private ArrayList<Vocabulary> mSuggestedVocabularies;
 
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
@@ -55,13 +56,17 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onListItemClick(int position) {
-
+                mSearchView.refreshSearchDetail(
+                        mSearchModel.createSearchResultDetailMap(mSuggestedVocabularies.get(position)));
+                mSearchView.showSearchDetail();
             }
         });
         return mSearchView;
     }
 
     public void refreshSearchResult(ArrayList<Vocabulary> vocabularies) {
-        mSearchView.refreshSearchResult(mSearchModel.createSearchResultMap(vocabularies));
+        mSuggestedVocabularies = vocabularies;
+        mSearchView.refreshSearchResult(
+                mSearchModel.createSearchResultMap(vocabularies));
     }
 }

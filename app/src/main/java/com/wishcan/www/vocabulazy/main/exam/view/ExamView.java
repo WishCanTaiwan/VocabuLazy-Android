@@ -78,7 +78,6 @@ public class ExamView extends LinearLayout {
         PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofFloat("scaleY", 0f, 1f);
         PropertyValuesHolder pvhScaleX2 = PropertyValuesHolder.ofFloat("scaleX", 1f, 0f);
         PropertyValuesHolder pvhScaleY2 = PropertyValuesHolder.ofFloat("scaleY", 1f, 0f);
-        List<Animator> animatorList = new ArrayList<>();
 
         View v = mView.findViewById(EXAM_PARENT_VIEW_RES_IDs[0]);
 
