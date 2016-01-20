@@ -21,19 +21,15 @@ import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
 public class SearchActivity extends FragmentActivity {
 
+    public static final int VIEW_CONTAINER_RES_ID = R.id.activity_search_container;
+
     private static final int VIEW_ACTIVITY_RES_ID = R.layout.view_search_activity;
-    private static final int VIEW_CONTAINER_RES_ID = R.id.activity_search_container;
     private static final int DEFAULT_MENU_RES_ID = R.menu.menu_search;
     private static final int DEFAULT_SEARCH_ITEM_RES_ID = R.id.action_search;
 
     private SearchFragment mSearchFragment;
-    private SearchView mSearchView;
-    private FragmentManager mFragmentManager;
-    private MenuItem mSearchItem;
-    private Menu mMenu;
     private ActionBar mActionBar;
-    private Database mDatabase;
-
+    private static Database mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +37,10 @@ public class SearchActivity extends FragmentActivity {
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
             mSearchFragment = new SearchFragment();
-            mFragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-            fragmentTransaction.add(VIEW_CONTAINER_RES_ID, mSearchFragment, "SearchFragment");
-            fragmentTransaction.commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(VIEW_CONTAINER_RES_ID, mSearchFragment, "SearchFragment")
+                    .commit();
         }
         mDatabase = new Database(this);
         mActionBar = getActionBar();
@@ -69,13 +65,12 @@ public class SearchActivity extends FragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(DEFAULT_MENU_RES_ID, menu);
-        mMenu = menu;
 
-        mSearchItem = menu.findItem(DEFAULT_SEARCH_ITEM_RES_ID);
-        mSearchView = (SearchView) mSearchItem.getActionView();
+        MenuItem searchItem = menu.findItem(DEFAULT_SEARCH_ITEM_RES_ID);
+        SearchView searchView = (SearchView) searchItem.getActionView();
 
-        mSearchView.onActionViewExpanded();          // Important, make ActionView expand initially
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.onActionViewExpanded();          // Important, make ActionView expand initially
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -95,7 +90,7 @@ public class SearchActivity extends FragmentActivity {
             }
         });
 
-        mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 //                if (mNewNoteDialogView != null)
@@ -142,5 +137,9 @@ public class SearchActivity extends FragmentActivity {
     public boolean onNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    public Database getDatabase() {
+        return mDatabase;
     }
 }

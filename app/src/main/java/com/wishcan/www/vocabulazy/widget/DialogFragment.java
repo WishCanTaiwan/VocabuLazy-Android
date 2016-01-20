@@ -54,19 +54,19 @@ abstract public class DialogFragment<WishCan> extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mDialogView = getDialogView();
-        mDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickListener() {
-            @Override
-            public void onYesClicked() {
-                OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(mCallerTag);
-                fragment.onDialogFinish(mDialogView.getDialogOutput());
-                getActivity().onBackPressed();
-            }
-
-            @Override
-            public void onNoClicked() {
-                getActivity().onBackPressed();
-            }
-        });
+//        mDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickListener() {
+//            @Override
+//            public void onYesClicked() {
+//                OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(mCallerTag);
+//                fragment.onDialogFinish(mDialogView.getDialogOutput());
+//                getActivity().onBackPressed();
+//            }
+//
+//            @Override
+//            public void onNoClicked() {
+//                getActivity().onBackPressed();
+//            }
+//        });
         return mDialogView;
     }
 

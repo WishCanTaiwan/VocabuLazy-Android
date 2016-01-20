@@ -29,8 +29,28 @@ public class UsrNoteDialogFragment extends DialogFragment<String> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UsrNoteDialogView.DIALOG_RES_ID_s resId = (UsrNoteDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_STR);
-        mUsrNoteDialogView = new UsrNoteDialogView(getContext(), null, resId);
+        if(getArguments() != null) {
+            UsrNoteDialogView.DIALOG_RES_ID_s resId = (UsrNoteDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_STR);
+            mUsrNoteDialogView = new UsrNoteDialogView(getContext(), null, resId);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mUsrNoteDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickListener() {
+            @Override
+            public void onYesClicked() {
+                OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(UsrNoteFragment.M_TAG);
+                fragment.onDialogFinish(mUsrNoteDialogView.getDialogOutput());
+                getActivity().onBackPressed();
+            }
+
+            @Override
+            public void onNoClicked() {
+                getActivity().onBackPressed();
+            }
+        });
     }
 
     @Override

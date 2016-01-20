@@ -11,15 +11,14 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_height="match_parent"
         android:background="#30000000"
         android:clipToPadding="false">
 
         <ListView
             android:id="@+id/search_dialog_list_view"
             android:layout_width="208dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:divider="#ffb3b3b5" />
     </RelativeLayout>
 

@@ -26,6 +26,7 @@ abstract public class DialogView<WishCan> extends LinearLayout {
         void onNoClicked();
     }
 
+    abstract public void setDialogOutput(WishCan output);
     abstract public WishCan getDialogOutput();
     abstract public LayoutTransition getDialogTransition();
 

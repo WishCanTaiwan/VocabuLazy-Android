@@ -34,9 +34,16 @@ public class UsrNoteDialogView extends DialogView<String> {
         }
     }
 
+    public String mResultString;
+
+    @Override
+    public void setDialogOutput(String outputStr) {
+        mResultString = outputStr;
+    }
+
     @Override
     public String getDialogOutput() {
-        return "123";
+        return mResultString;
     }
 
     @Override
