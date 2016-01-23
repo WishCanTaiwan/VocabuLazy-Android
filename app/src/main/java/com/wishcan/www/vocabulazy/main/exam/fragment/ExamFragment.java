@@ -2,12 +2,13 @@ package com.wishcan.www.vocabulazy.main.exam.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.main.MainActivity;
-import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamView;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -24,19 +25,13 @@ import java.util.HashMap;
 public class ExamFragment extends Fragment {
 
     private static final String ARG_BOOK_INDEX = "bookIndex";
-
     private static final String ARG_LESSON_INDEX = "lessonIndex";
 
     private ExamView mExamView;
-
     private ExamModel mPuzzleSetter;
-
     private Database mDatabase;
-
     private ArrayList<Vocabulary> mVocabularies;
-
     private int mCurrentBookIndex, mCurrentLessonIndex;
-
     private Runnable mRefreshAnimTask;
 
     public static ExamFragment newInstance(int bookIndex, int lessonIndex) {
@@ -157,12 +152,20 @@ public class ExamFragment extends Fragment {
         mExamView.findViewById(ExamView.VIEW_NEXT_RES_ID).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
-//                    ((MainActivity) getActivity()).goExamResultFragment(
-//                            (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum(),
-//                            mPuzzleSetter.getCorrectCount());
-//                    return;
-//                }
+                if(mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    ExamResultFragment examResultFragment = ExamResultFragment.newInstance(
+                            (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum(),
+                            mPuzzleSetter.getCorrectCount());
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.
+                            setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+                                    MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+                    fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examResultFragment, "ExamResultFragment");
+                    fragmentTransaction.addToBackStack("ExamFragment");
+                    fragmentTransaction.commit();
+                    return;
+                }
                 registerOnOptionClickEvent();
                 mExamView.startVanish();
                 mRefreshAnimTask.run();

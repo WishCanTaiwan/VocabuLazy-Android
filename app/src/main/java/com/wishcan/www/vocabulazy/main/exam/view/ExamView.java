@@ -1,6 +1,5 @@
 package com.wishcan.www.vocabulazy.main.exam.view;
 
-import android.animation.Animator;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -18,7 +17,6 @@ import com.wishcan.www.vocabulazy.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ExamView extends LinearLayout {
 
@@ -54,6 +52,7 @@ public class ExamView extends LinearLayout {
 	public ExamView(Context context, AttributeSet attr) {
 		super(context, attr);
         mView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_RES_ID, null);
+        mView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         addView(mView);
         mSequentialCounter = 0;
@@ -94,14 +93,18 @@ public class ExamView extends LinearLayout {
         layoutTransition.setAnimator(LayoutTransition.APPEARING, popOutAnimator);
         layoutTransition.addTransitionListener(new LayoutTransition.TransitionListener() {
             @Override
-            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) { mAnimLocker = true; }
+            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                mAnimLocker = true;
+            }
 
             @Override
-            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) { mAnimLocker = false; }
+            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                mAnimLocker = false;
+            }
         });
 
         ((ViewGroup) v).setLayoutTransition(layoutTransition);
-        for(int i = 1; i < EXAM_PARENT_VIEW_RES_IDs.length; i++)
+        for(int i = 0; i < EXAM_PARENT_VIEW_RES_IDs.length; i++)
             mView.findViewById(EXAM_PARENT_VIEW_RES_IDs[i]).setVisibility(View.GONE);
 
 	}

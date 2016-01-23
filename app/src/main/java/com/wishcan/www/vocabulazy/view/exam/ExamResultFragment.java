@@ -77,7 +77,7 @@ public class ExamResultFragment extends Fragment {
         final ExamResultFragment fragment = this;   // This is used for removing the fragment self
 
         // Inflate the layout for this fragment
-        mFragmentView = inflater.inflate(R.layout.fragment_exam_result, container, false);
+        mFragmentView = inflater.inflate(R.layout.view_exam_result, container, false);
 
         mCorrectCountTextView = (TextView) mFragmentView.findViewById(CORRECT_COUNT_VIEW_RES_ID);
 
