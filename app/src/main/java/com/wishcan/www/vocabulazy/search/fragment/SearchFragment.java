@@ -4,6 +4,7 @@ package com.wishcan.www.vocabulazy.search.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,12 @@ import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
 import com.wishcan.www.vocabulazy.search.view.SearchView;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
+import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
 import java.util.ArrayList;
 
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements DialogFragment.OnDialogFinishListener<Integer> {
 
     public static String M_TAG;
 
@@ -26,6 +28,7 @@ public class SearchFragment extends Fragment {
     private SearchView mSearchView;
     private SearchModel mSearchModel;
     private ArrayList<Vocabulary> mSuggestedVocabularies;
+    private int mSelectVocId;
 
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
@@ -59,15 +62,17 @@ public class SearchFragment extends Fragment {
                 SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.LIST);
                 getFragmentManager()
                         .beginTransaction()
-                        .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment")
+                        .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment_List")
                         .addToBackStack("SearchFragment")
                         .commit();
             }
 
             @Override
             public void onListItemClick(int position) {
+                Vocabulary voc = mSuggestedVocabularies.get(position);
+                mSelectVocId = voc.getID();
                 mSearchView.refreshSearchDetail(
-                        mSearchModel.createSearchResultDetailMap(mSuggestedVocabularies.get(position)));
+                        mSearchModel.createSearchResultDetailMap(voc));
                 mSearchView.showSearchDetail();
             }
         });
@@ -78,5 +83,13 @@ public class SearchFragment extends Fragment {
         mSuggestedVocabularies = vocabularies;
         mSearchView.refreshSearchResult(
                 mSearchModel.createSearchResultMap(vocabularies));
+    }
+
+
+    @Override
+    public void onDialogFinish(Integer obj) {
+        Log.d("SearchActivity", "Before addVocToNote" +obj);
+        mDatabase.addVocToNote(mSelectVocId, obj);
+        Log.d("SearchActivity", "After addVocToNote" +obj);
     }
 }

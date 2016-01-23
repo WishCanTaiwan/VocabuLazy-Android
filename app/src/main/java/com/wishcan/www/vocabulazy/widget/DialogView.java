@@ -140,20 +140,23 @@ abstract public class DialogView<WishCan> extends LinearLayout {
 
     public void setYesOrNoViewId(int yesId, int noId) {
         mYesView = mDialogView.findViewById(yesId);
-        mYesView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onYesClicked();
-            }
-        });
-
         mNoView = mDialogView.findViewById(noId);
-        mNoView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onNoClicked();
-            }
-        });
+        if(mYesView != null) {
+            mYesView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onYesClicked();
+                }
+            });
+        }
+        if(mNoView != null) {
+            mNoView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onNoClicked();
+                }
+            });
+        }
     }
 
     public void stopYesFunction() {

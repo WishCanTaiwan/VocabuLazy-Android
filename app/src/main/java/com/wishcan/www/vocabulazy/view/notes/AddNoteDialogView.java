@@ -21,7 +21,7 @@ public class AddNoteDialogView extends DialogView {
 
     private static final int DEFAULT_DIALOG_CONFIRM_VIEW_ID = R.id.action_note_confirm;
 
-    private static final int DEFAULT_DIALOG_ADDING_NOTE_VIEW_ID = R.id.input_adding_note_name;
+    private static final int DEFAULT_DIALOG_ADDING_NOTE_VIEW_ID = R.id.dialog_input;
 
     private EditText mAddingNoteNameTextView;
 

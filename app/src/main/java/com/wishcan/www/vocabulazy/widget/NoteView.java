@@ -39,6 +39,7 @@ abstract public class NoteView extends SlideBackViewPager{
     public static final int ICON_DEL = 3;
     public static final int ICON_RENAME = 4;
     public static final int ICON_COMBINE = 5;
+    public static final int ICON_NEW = 6;
 
     private NoteListView mNoteListView;
 
@@ -50,7 +51,7 @@ abstract public class NoteView extends SlideBackViewPager{
         super(context, attrs);
     }
 
-    public void refreshView(int count, LinkedList<String> linkedList){
+    public void refreshView(int count, LinkedList<String> linkedList) {
         mNoteListView.refreshView(count, linkedList);
     }
 
@@ -58,8 +59,12 @@ abstract public class NoteView extends SlideBackViewPager{
         mNoteListView.setOnListIconClickListener(listener);
     }
 
-    public void setEnableEtcFunction(boolean bool){
+    public void setEnableEtcFunction(boolean bool) {
         mNoteListView.setEnableEtcFunction(bool);
+    }
+
+    public void setEnableNewFunction(boolean bool) {
+
     }
 
     @Override
@@ -67,8 +72,6 @@ abstract public class NoteView extends SlideBackViewPager{
         mNoteListView = new NoteListView(getContext());
         return mNoteListView;
     }
-
-
 
     public class NoteListView extends ListView implements AdapterView<String>{
 
@@ -157,7 +160,6 @@ abstract public class NoteView extends SlideBackViewPager{
             }
 
             private View createViewFromResource(int position, View convertView, ViewGroup parent, int resource){
-
                 View v;
                 v = mInflater.inflate(resource, parent, false);
 

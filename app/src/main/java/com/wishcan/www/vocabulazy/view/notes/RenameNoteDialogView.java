@@ -18,7 +18,7 @@ public class RenameNoteDialogView extends DialogView {
 
     private static final int DEFAULT_DIALOG_VIEW_RES_ID = R.layout.dialog_rename_note;
 
-    private static final int DEFAULT_DIALOG_RENAME_VIEW_RES_ID = R.id.input_rename_note_name;
+    private static final int DEFAULT_DIALOG_RENAME_VIEW_RES_ID = R.id.dialog_input;
 
     private static final int DEFAULT_DIALOG_CANCEL_VIEW_ID = R.id.action_note_cancel;
 

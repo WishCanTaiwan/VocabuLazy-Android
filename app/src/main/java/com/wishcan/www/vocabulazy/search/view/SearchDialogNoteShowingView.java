@@ -2,9 +2,11 @@ package com.wishcan.www.vocabulazy.search.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -20,14 +22,19 @@ import java.util.List;
  */
 public class SearchDialogNoteShowingView extends LinearLayout {
 
+    public interface OnListItemClickListener {
+        void onListItemClick(int position);
+        void onAddItemClick();
+    }
+
     private static final int VIEW_LIST_HEADER_RES_ID = R.layout.dialog_add_to_note_title;
-    private static final int VIEW_RES_ID = R.layout.dialog_search_add_to_note;
     private static final int DIMEN_VIEW_WIDTH = R.dimen.search_result_add_to_note_dialog_width;
     private static final int DIMEN_VIEW_HEIGHT = R.dimen.search_result_add_to_note_dialog_height;
 
     private View mHeaderView;
     private SearchDialogListView mListView;
     private LayoutParams mLayoutParams;
+    private OnListItemClickListener mOnListItemClickListener;
 
     public SearchDialogNoteShowingView(Context context) {
         this(context, null);
@@ -44,15 +51,29 @@ public class SearchDialogNoteShowingView extends LinearLayout {
         mHeaderView = ((LayoutInflater)context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_LIST_HEADER_RES_ID, null);
         mListView = new SearchDialogListView(context);
-
-//        addView(((LayoutInflater)context.getSystemService
-//                (Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_LIST_HEADER_RES_ID, null));
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(mOnListItemClickListener == null)
+                    return;
+                int itemCount = mListView.getCount();
+                Log.d("SearchDialog", "position = " +position+ " itemCount = " +itemCount);
+                if(position == itemCount - 1)
+                    mOnListItemClickListener.onAddItemClick();
+                else
+                    mOnListItemClickListener.onListItemClick(position);
+            }
+        });
         addView(mHeaderView);
         addView(mListView);
     }
 
     public void refreshDataList(LinkedList<String> linkedList) {
         mListView.refreshDataList(linkedList);
+    }
+
+    public void setOnListItemClickListener(OnListItemClickListener listener) {
+        mOnListItemClickListener = listener;
     }
 
     public LayoutParams getLayoutParams() {

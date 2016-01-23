@@ -15,7 +15,7 @@ public class DeleteNoteDialogView extends DialogView {
 
     private static final int DEFAULT_DIALOG_VIEW_RES_ID = R.layout.dialog_delete_note;
 
-    private static final int DEFAULT_DIALOG_DELETING_NOTE_TEXT_VIEW_RES_ID = R.id.input_deleting_note_name;
+    private static final int DEFAULT_DIALOG_DELETING_NOTE_TEXT_VIEW_RES_ID = R.id.dialog_input;
 
     private static final int DEFAULT_DIALOG_CANCEL_VIEW_ID = R.id.action_note_cancel;
 

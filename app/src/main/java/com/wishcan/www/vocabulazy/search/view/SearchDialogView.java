@@ -3,11 +3,11 @@ package com.wishcan.www.vocabulazy.search.view;
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.EditText;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.widget.DialogFragment;
 import com.wishcan.www.vocabulazy.widget.DialogView;
 
 import java.io.Serializable;
@@ -18,8 +18,14 @@ import java.util.LinkedList;
  */
 public class SearchDialogView extends DialogView{
 
+    public interface OnDialogItemClickListener {
+        void onListItemClick(int position);
+        void onAddItemClick();
+    }
+
     private static final int YES_ID = R.id.action_note_confirm;
     private static final int NO_ID = R.id.action_note_cancel;
+    private static final int INPUT_ID = R.id.dialog_input;
 
     public enum DIALOG_RES_ID_s implements Serializable {
         NEW(R.layout.dialog_new_note),
@@ -35,7 +41,9 @@ public class SearchDialogView extends DialogView{
         }
     }
 
+    private OnDialogItemClickListener mOnDialogItemClickListener;
     private SearchDialogNoteShowingView mSearchDialogNoteShowingView;
+    public String mResultString;
 
     public SearchDialogView(Context context) {
         this(context, null);
@@ -50,21 +58,6 @@ public class SearchDialogView extends DialogView{
         setNoteDialog(dialogRes);
     }
 
-    @Override
-    public void setDialogOutput(Object output) {
-
-    }
-
-    @Override
-    public Object getDialogOutput() {
-        return null;
-    }
-
-    @Override
-    public LayoutTransition getDialogTransition() {
-        return null;
-    }
-
     private void setNoteDialog(DIALOG_RES_ID_s dialogRes) {
         int resId;
         switch(dialogRes){
@@ -74,9 +67,21 @@ public class SearchDialogView extends DialogView{
                 setYesOrNoViewId(YES_ID, NO_ID);
                 break;
             case LIST:
-                resId = DIALOG_RES_ID_s.LIST.getResId();
                 mSearchDialogNoteShowingView = new SearchDialogNoteShowingView(getContext());
-                setDialog(mSearchDialogNoteShowingView/*, mSearchDialogNoteShowingView.getLayoutParams()*/);
+                mSearchDialogNoteShowingView.setOnListItemClickListener(new SearchDialogNoteShowingView.OnListItemClickListener() {
+                    @Override
+                    public void onListItemClick(int position) {
+                        if(mOnDialogItemClickListener != null)
+                            mOnDialogItemClickListener.onListItemClick(position);
+                    }
+
+                    @Override
+                    public void onAddItemClick() {
+                        if(mOnDialogItemClickListener != null)
+                            mOnDialogItemClickListener.onAddItemClick();
+                    }
+                });
+                setDialog(mSearchDialogNoteShowingView);
                 break;
         }
     }
@@ -84,5 +89,30 @@ public class SearchDialogView extends DialogView{
     public void refreshNoteList(LinkedList<String> linkedList) {
         if(mSearchDialogNoteShowingView != null)
             mSearchDialogNoteShowingView.refreshDataList(linkedList);
+    }
+
+    public void setOnDialogItemClickListener(OnDialogItemClickListener listener) {
+        mOnDialogItemClickListener = listener;
+    }
+
+    @Override
+    public void setDialogOutput(Object output) {
+        if(output instanceof String)
+            mResultString = (String) output;
+    }
+
+    @Override
+    public Object getDialogOutput() {
+        View v = findViewById(INPUT_ID);
+        if(v != null && v instanceof EditText) {
+            mResultString = ((EditText) v).getText().toString();
+            return mResultString;
+        }
+        return null;
+    }
+
+    @Override
+    public LayoutTransition getDialogTransition() {
+        return null;
     }
 }

@@ -20,7 +20,7 @@
         />
 
     <TextView
-        android:id="@+id/input_deleting_note_name"
+        android:id="@+id/dialog_input"
         android:layout_width="@dimen/dialog_new_note_input_text_width"
         android:layout_height="wrap_content"
         android:gravity="center"

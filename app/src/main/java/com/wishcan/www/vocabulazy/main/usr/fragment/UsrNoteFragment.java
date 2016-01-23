@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +32,11 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
 
     public static final String TAG = UsrNoteFragment.class.getSimpleName();
     public static String M_TAG;
-    private Database mDatabase;
-    private String mResultString;
 
+    private UsrNoteView mUsrNoteView;
+    private Database mDatabase;
+    private int mIconId;        // used for identify either Add or Delete action should be executed
+    private int mPressedPosition;
 
     public static UsrNoteFragment newInstance() {
         UsrNoteFragment fragment = new UsrNoteFragment();
@@ -66,21 +67,22 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        UsrNoteView usrNoteView = new UsrNoteView(getActivity());
-        ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
+        mUsrNoteView = new UsrNoteView(getActivity());
+        final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
 
         if(notes == null)
             return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
 
-        for(int i = 0; i < notes.size(); i++){
+        for(int i = 0; i < notes.size(); i++)
             dataList.add(notes.get(i).getName());
-        }
 
-        usrNoteView.refreshView(notes.size(), dataList);
-        usrNoteView.setOnListIconClickListener(new NoteView.OnListIconClickListener() {
+        mUsrNoteView.refreshView(notes.size(), dataList);
+        mUsrNoteView.setOnListIconClickListener(new NoteView.OnListIconClickListener() {
             @Override
             public void onListIconClick(int iconId, int position, View v) {
+                mIconId = iconId;
+                mPressedPosition = position;
                 UsrNoteDialogFragment dialogFragment = null;
                 switch (iconId) {
                     case NoteView.ICON_PLAY:
@@ -91,13 +93,16 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
                     case NoteView.ICON_ETC_CLOSE:
                         break;
                     case NoteView.ICON_DEL:
-                        dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.DELETE);
+                        dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.DELETE, notes.get(position).getName());
                         break;
                     case NoteView.ICON_RENAME:
                         dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.RENAME);
                         break;
                     case NoteView.ICON_COMBINE:
                         dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.COMBINE);
+                        break;
+                    case NoteView.ICON_NEW:
+                        dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.NEW);
                         break;
                     default:
                         break;
@@ -110,13 +115,26 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
                 }
             }
         });
-        return usrNoteView;
+        return mUsrNoteView;
     }
 
     @Override
     public void onDialogFinish(String str) {
-        mResultString = str;
-        Log.d(TAG, mResultString);
+        LinkedList<String> dataList = new LinkedList<>();
+        ArrayList<Lesson> notes;
+        if(mIconId == NoteView.ICON_DEL)
+            mDatabase.deleteNoteAt(mPressedPosition);
+        else if(mIconId == NoteView.ICON_RENAME && str != null)
+            mDatabase.renameNoteAt(mPressedPosition, str);
+        else if(mIconId == NoteView.ICON_NEW && str != null)
+            mDatabase.createNewNote(str);
+        else
+            return;
+
+        notes = mDatabase.getLessonsByBook(-1);
+        for(int i = 0; i < notes.size(); i++)
+            dataList.add(notes.get(i).getName());
+        mUsrNoteView.refreshView(notes.size(), dataList);
     }
 
     private void goPlayerFragment(int bookIndex, int lessonIndex){

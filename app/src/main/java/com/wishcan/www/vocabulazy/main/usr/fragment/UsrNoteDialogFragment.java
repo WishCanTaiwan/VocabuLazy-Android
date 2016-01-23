@@ -11,13 +11,20 @@ import com.wishcan.www.vocabulazy.widget.DialogView;
  */
 public class UsrNoteDialogFragment extends DialogFragment<String> {
 
-    private static final String DIALOG_BUNDLE_STR = "dialog_bundle_str";
+    private static final String DIALOG_BUNDLE_RES_ID_STR = "dialog_bundle_res_id_str";
+    private static final String DIALOG_BUNDLE_STR_STR = "dialog_bundle_str_str";
     private UsrNoteDialogView mUsrNoteDialogView;
 
     public static UsrNoteDialogFragment newInstance(UsrNoteDialogView.DIALOG_RES_ID_s resId) {
+        return newInstance(resId, null);
+    }
+
+    public static UsrNoteDialogFragment newInstance(UsrNoteDialogView.DIALOG_RES_ID_s resId, String str) {
         UsrNoteDialogFragment fragment = new UsrNoteDialogFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(DIALOG_BUNDLE_STR, resId);
+        bundle.putSerializable(DIALOG_BUNDLE_RES_ID_STR, resId);
+        if(str != null && !str.equals(""))
+            bundle.putString(DIALOG_BUNDLE_STR_STR, str);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -30,8 +37,9 @@ public class UsrNoteDialogFragment extends DialogFragment<String> {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null) {
-            UsrNoteDialogView.DIALOG_RES_ID_s resId = (UsrNoteDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_STR);
-            mUsrNoteDialogView = new UsrNoteDialogView(getContext(), null, resId);
+            UsrNoteDialogView.DIALOG_RES_ID_s resId = (UsrNoteDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_RES_ID_STR);
+            String inputStr = getArguments().getString(DIALOG_BUNDLE_STR_STR);
+            mUsrNoteDialogView = new UsrNoteDialogView(getContext(), null, resId, inputStr);
         }
     }
 
