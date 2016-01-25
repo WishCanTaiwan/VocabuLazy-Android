@@ -6,21 +6,16 @@ import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import android.os.PowerManager;
 import android.util.Log;
 
-import org.json.JSONException;
-
-import com.wishcan.www.vocabulazy.MainActivity;
+import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Option;
-import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Random;
 
 /**

@@ -7,7 +7,7 @@
 
     >
 
-    <include layout="@layout/dialog_add_to_note_title" />
+    <include layout="@layout/view_search_dialog_add_to_note_title" />
 
     <RelativeLayout
         android:layout_width="wrap_content"

@@ -17,6 +17,7 @@ import com.wishcan.www.vocabulazy.storage.Database;
 
 public class MainActivity extends FragmentActivity {
 
+    public static MainActivity mMainActivity;
     public static final int VIEW_MAIN_RES_ID = R.id.activity_main_container;
     public static final int ANIM_ENTER_RES_ID = R.anim.translation_from_right_to_center;
     public static final int ANIM_EXIT_RES_ID = R.anim.translation_from_center_to_right;
@@ -45,6 +46,7 @@ public class MainActivity extends FragmentActivity {
         } else {
             Log.d("MainActivity", "database already exist.");
         }
+        mMainActivity = this;
     }
 
     @Override

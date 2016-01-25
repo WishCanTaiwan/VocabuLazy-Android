@@ -58,7 +58,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/white_cross"
+                android:src="@drawable/widget_note_white_cross"
                 android:paddingEnd="@dimen/dialog_circle_cross_padding"/>
 
             <TextView
@@ -86,7 +86,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/white_circle"
+                android:src="@drawable/widget_note_white_circle"
                 android:paddingEnd="@dimen/dialog_circle_cross_padding"/>
 
             <TextView

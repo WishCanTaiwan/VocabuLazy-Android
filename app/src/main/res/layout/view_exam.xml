@@ -76,7 +76,7 @@
             android:id="@+id/exam_question_title_parent"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/rect_exam_green">
+            android:background="@drawable/exam_rect_green">
 
             <TextView
                 android:id="@+id/exam_question_text"
@@ -94,7 +94,7 @@
                 android:layout_alignParentRight="true"
                 android:paddingRight="20dp"
                 android:paddingBottom="10dp"
-                android:src="@drawable/icon_exam_speak"/>
+                android:src="@drawable/exam_speak"/>
 
         </RelativeLayout>
 
@@ -142,7 +142,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:background="@drawable/rect_exam_oval_gray"
+                android:background="@drawable/exam_rect_oval_gray"
                 >
 
                 <TextView

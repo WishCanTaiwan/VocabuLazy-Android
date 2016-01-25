@@ -50,7 +50,7 @@
         android:id = "@id/note_name_parent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/note_list_item_height"
-        android:background="@drawable/background_white_ripple"
+        android:background="@drawable/widget_note_background_white_ripple"
         android:gravity="center_vertical"
         >
 
@@ -81,8 +81,8 @@
                 android:layout_alignParentEnd="true"
                 android:paddingEnd="@dimen/note_list_item_image_padding"
                 android:paddingStart="@dimen/note_list_item_image_padding"
-                android:background="@drawable/background_white_ripple"
-                android:src="@drawable/arrow_list"/>
+                android:background="@drawable/widget_note_background_white_ripple"
+                android:src="@drawable/widget_note_arrow"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -91,7 +91,7 @@
         android:id="@id/note_add_function"
         android:layout_width="match_parent"
         android:layout_height="@dimen/note_list_item_height"
-        android:background="@drawable/background_yellow_ripple"
+        android:background="@drawable/widget_note_background_yellow_ripple"
         android:visibility="gone"
         >
 

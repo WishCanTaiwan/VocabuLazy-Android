@@ -51,7 +51,7 @@ public class PlayerOptionView extends LinearLayout {
 
     private static final int DEFAULT_TRAPEZOID_LONG_HEIGHT = R.dimen.player_option_trapezoid_long_height;
     private static final int DEFAULT_TRAPEZOID_SHORT_HEIGHT = R.dimen.player_option_trapezoid_short_height;
-    private static final int DEFAULT_PLAYER_OPTION_VIEW_RES_ID = R.layout.option_tab_content;
+    private static final int DEFAULT_PLAYER_OPTION_VIEW_RES_ID = R.layout.view_player_option_content;
     private static final int COLOR_TAB_0_RES_ID = R.color.player_option_tab0;
     private static final int COLOR_TAB_1_RES_ID = R.color.player_option_tab1;
     private static final int COLOR_TAB_2_RES_ID = R.color.player_option_tab2;
