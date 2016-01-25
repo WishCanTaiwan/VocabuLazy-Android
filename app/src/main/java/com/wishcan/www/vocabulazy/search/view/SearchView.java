@@ -35,8 +35,8 @@ public class SearchView extends RelativeLayout {
 		void onListItemClick(int position);
 	}
 
-	private static final int SEARCH_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.search_layout_details;
-	private static final int SEARCH_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID = R.layout.search_layout_details_sentence;
+	private static final int SEARCH_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.view_search_details;
+	private static final int SEARCH_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID = R.layout.view_search_details_sentence;
     private static final int SEARCH_ITEM_DETAIL_PAGER_PARENT_LAYOUT_RES_ID = R.id.pager_parent;
     private static final int SEARCH_ITEM_DETAIL_PAGER_INDEX_PARENT_LAYOUT_RES_ID = R.id.pager_index_parent;
 
@@ -148,9 +148,9 @@ public class SearchView extends RelativeLayout {
                 R.id.search_result_eng_text_view, R.id.search_result_cn_text_view, R.id.search_result_category_text_view
         };
 
-		private static final int DIVIDER_COLOR = R.color.divider_color_gray;
-        private static final int DIVIDER_HEIGHT = R.dimen.divider_height;
-        private static final int SEARCH_LIST_ITEM_RES_ID = R.layout.search_list_layout;
+		private static final int DIVIDER_COLOR = R.color.search_divider;
+        private static final int DIVIDER_HEIGHT = R.dimen.search_divider_height;
+        private static final int SEARCH_LIST_ITEM_RES_ID = R.layout.view_search_list;
         private static final int ICON_ADD_RES_ID = R.id.search_result_adding_to_note_adding_icon;
 
         private LinkedList<HashMap<String, ?>> mDataList;

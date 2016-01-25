@@ -15,7 +15,7 @@ import com.wishcan.www.vocabulazy.view.customview.DialogView;
  */
 public class AddNoteDialogView extends DialogView {
 
-    private static final int DEFAULT_DIALOG_VIEW_RES_ID = R.layout.dialog_new_note;
+    private static final int DEFAULT_DIALOG_VIEW_RES_ID = R.layout.widget_note_dialog_new_note;
 
     private static final int DEFAULT_DIALOG_CANCEL_VIEW_ID = R.id.action_note_cancel;
 

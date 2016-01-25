@@ -74,15 +74,14 @@ public class LessonView extends SlideBackViewPager {
             refresh();
         }
 
-        private final int LESSON_COUNT                          = 47;
-        private final int LIST_ITEM_RES_ID                      = R.layout.lesson_list_view;
-        private final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID   = R.drawable.circle_lesson_green_ripple;
-        private final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID  = R.drawable.circle_lesson_yellow_ripple;
-        private final int CIRCLE_YELLOW_DRAWABLE_RES_ID         = R.drawable.circle_lesson_yellow_shadow;
-        private final int CIRCLE_GREEN_DRAWABLE_RES_ID          = R.drawable.circle_lesson_green_shadow;
-        private final int DEFAULT_BACKGROUND_COLOR              = R.color.default_color_white;
-        private final int DIVIDER_COLOR                         = R.color.divider_color_gray;
-        private final int DIVIDER_HEIGHT                        = R.dimen.divider_height;
+        private final int LIST_ITEM_RES_ID                      = R.layout.widget_lesson_list;
+        private final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID   = R.drawable.widget_lesson_circle_green_ripple;
+        private final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID  = R.drawable.widget_lesson_circle_yellow_ripple;
+        private final int CIRCLE_YELLOW_DRAWABLE_RES_ID         = R.drawable.widget_lesson_circle_yellow_shadow;
+        private final int CIRCLE_GREEN_DRAWABLE_RES_ID          = R.drawable.widget_lesson_circle_green_shadow;
+        private final int DEFAULT_BACKGROUND_COLOR              = R.color.widget_lesson_background;
+        private final int DIVIDER_COLOR                         = R.color.widget_lesson_divider;
+        private final int DIVIDER_HEIGHT                        = R.dimen.widget_lesson_divider_height;
         private final String[] FROM                             = {"line_item_0", "line_item_1", "line_item_2", "line_item_3", "line_item_4"};
         private final int[] TO                                  = {R.id.lesson_circle_0, R.id.lesson_circle_1, R.id.lesson_circle_2, R.id.lesson_circle_3, R.id.lesson_circle_4};
 

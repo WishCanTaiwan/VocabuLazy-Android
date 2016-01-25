@@ -27,13 +27,13 @@ public class TabLayout extends TabHost {
 
     private Context mContext;
 
-    private static final int BOOK_ICON_RES_ID = R.drawable.bar_book_off;
+    private static final int BOOK_ICON_RES_ID = R.drawable.main_book;
 
-    private static final int NOTE_ICON_RES_ID = R.drawable.bar_list_off;
+    private static final int NOTE_ICON_RES_ID = R.drawable.main_note;
 
-    private static final int TEST_ICON_RES_ID = R.drawable.bar_test_off;
+    private static final int TEST_ICON_RES_ID = R.drawable.main_exam;
 
-    private static final int INFO_ICON_RES_ID = R.drawable.bar_i_off;
+    private static final int INFO_ICON_RES_ID = R.drawable.main_info;
 
     private static final int TAB_WIDGET_COLOR = R.color.main_tab_layout_widget_color;
 

@@ -7,7 +7,7 @@ import android.graphics.Path;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.PathShape;
 import android.os.Build;
-import android.os.Parcelable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -52,16 +52,16 @@ public class PlayerOptionView extends LinearLayout {
     private static final int DEFAULT_TRAPEZOID_LONG_HEIGHT = R.dimen.player_option_trapezoid_long_height;
     private static final int DEFAULT_TRAPEZOID_SHORT_HEIGHT = R.dimen.player_option_trapezoid_short_height;
     private static final int DEFAULT_PLAYER_OPTION_VIEW_RES_ID = R.layout.option_tab_content;
-    private static final int COLOR_TAB_0_RES_ID = R.color.player_option_tab0_image_color;
-    private static final int COLOR_TAB_1_RES_ID = R.color.player_option_tab1_image_color;
-    private static final int COLOR_TAB_2_RES_ID = R.color.player_option_tab2_image_color;
-    private static final int COLOR_TAB_TEXT_0_RES_ID = R.color.player_option_tab0_text_color;
-    private static final int COLOR_TAB_TEXT_1_RES_ID = R.color.player_option_tab1_text_color;
-    private static final int COLOR_TAB_TEXT_2_RES_ID = R.color.player_option_tab2_text_color;
-    private static final int DEFAULT_TAB_TEXT_SIZE_RES_ID = R.dimen.player_option_tab_text_size;
-    private static final int STR_TAB_0_RES_ID = R.string.player_option_tab_0_str;
-    private static final int STR_TAB_1_RES_ID = R.string.player_option_tab_1_str;
-    private static final int STR_TAB_2_RES_ID = R.string.player_option_tab_2_str;
+    private static final int COLOR_TAB_0_RES_ID = R.color.player_option_tab0;
+    private static final int COLOR_TAB_1_RES_ID = R.color.player_option_tab1;
+    private static final int COLOR_TAB_2_RES_ID = R.color.player_option_tab2;
+    private static final int COLOR_TAB_TEXT_0_RES_ID = R.color.player_option_tab0_text;
+    private static final int COLOR_TAB_TEXT_1_RES_ID = R.color.player_option_tab1_text;
+    private static final int COLOR_TAB_TEXT_2_RES_ID = R.color.player_option_tab2_text;
+    private static final int DEFAULT_TAB_TEXT_SIZE_RES_ID = R.dimen.player_option_tab_text;
+    private static final int STR_TAB_0_RES_ID = R.string.player_option_tab_0;
+    private static final int STR_TAB_1_RES_ID = R.string.player_option_tab_1;
+    private static final int STR_TAB_2_RES_ID = R.string.player_option_tab_2;
 
     private final int[] mOptionResIDs = {
             PLAYER_OPTION_RANDOM_VIEW_RES_ID,
@@ -135,35 +135,35 @@ public class PlayerOptionView extends LinearLayout {
         // This part is our customized part, we can call this function outside and add to this view.
         // Just like use other view.
         mTabView0 = new PlayerOptionTabView(mContext);
-        mTabView0.setColor(getResources().getColor(COLOR_TAB_0_RES_ID));
-        mTabView0.setTextColor(getResources().getColor(COLOR_TAB_TEXT_0_RES_ID));
+        mTabView0.setColor(ContextCompat.getColor(mContext, COLOR_TAB_0_RES_ID));
+        mTabView0.setTextColor(ContextCompat.getColor(mContext, COLOR_TAB_TEXT_0_RES_ID));
         mTabView0.setTextStr(getResources().getString(STR_TAB_0_RES_ID));
         mTabView0.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(DEFAULT_TAB_TEXT_SIZE_RES_ID));
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             mTabView0.setElevation(50);
         mTabContent0 = (LinearLayout)((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(DEFAULT_PLAYER_OPTION_VIEW_RES_ID, null);
         mTabContent0.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        mTabContent0.setBackgroundColor(getResources().getColor(COLOR_TAB_0_RES_ID));
+        mTabContent0.setBackgroundColor(ContextCompat.getColor(mContext, COLOR_TAB_0_RES_ID));
 
         mTabView1 = new PlayerOptionTabView(mContext);
-        mTabView1.setColor(getResources().getColor(COLOR_TAB_1_RES_ID));
-        mTabView1.setTextColor(getResources().getColor(COLOR_TAB_TEXT_1_RES_ID));
+        mTabView1.setColor(ContextCompat.getColor(mContext, COLOR_TAB_1_RES_ID));
+        mTabView1.setTextColor(ContextCompat.getColor(mContext, COLOR_TAB_TEXT_1_RES_ID));
         mTabView1.setTextStr(getResources().getString(STR_TAB_1_RES_ID));
         mTabView1.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(DEFAULT_TAB_TEXT_SIZE_RES_ID));
         mTabContent1 = (LinearLayout)((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(DEFAULT_PLAYER_OPTION_VIEW_RES_ID, null);
         mTabContent1.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        mTabContent1.setBackgroundColor(getResources().getColor(COLOR_TAB_1_RES_ID));
+        mTabContent1.setBackgroundColor(ContextCompat.getColor(mContext, COLOR_TAB_1_RES_ID));
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             mTabView1.setElevation(20);
 
         mTabView2 = new PlayerOptionTabView(mContext);
-        mTabView2.setColor(getResources().getColor(COLOR_TAB_2_RES_ID));
-        mTabView2.setTextColor(getResources().getColor(COLOR_TAB_TEXT_2_RES_ID));
+        mTabView2.setColor(ContextCompat.getColor(mContext, COLOR_TAB_2_RES_ID));
+        mTabView2.setTextColor(ContextCompat.getColor(mContext, COLOR_TAB_TEXT_2_RES_ID));
         mTabView2.setTextStr(getResources().getString(STR_TAB_2_RES_ID));
         mTabView2.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(DEFAULT_TAB_TEXT_SIZE_RES_ID));
         mTabContent2 = (LinearLayout)((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(DEFAULT_PLAYER_OPTION_VIEW_RES_ID, null);
         mTabContent2.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        mTabContent2.setBackgroundColor(getResources().getColor(COLOR_TAB_2_RES_ID));
+        mTabContent2.setBackgroundColor(ContextCompat.getColor(mContext, COLOR_TAB_2_RES_ID));
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             mTabView2.setElevation(10);
 

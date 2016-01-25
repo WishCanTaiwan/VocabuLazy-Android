@@ -30,7 +30,7 @@ abstract public class DialogView<WishCan> extends LinearLayout {
     abstract public WishCan getDialogOutput();
     abstract public LayoutTransition getDialogTransition();
 
-    private static final int DEFAULT_DIALOG_BACKGROUND_COLOR = R.color.default_dialog_background_color;
+    private static final int DEFAULT_DIALOG_BACKGROUND_COLOR = R.color.widget_dialog_background;
 
     private LayoutParams mDefaultLayoutParams;
     private LayoutParams mDefaultDialogLayoutParams;

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,15 +33,15 @@ public class LessonsListView extends ListView {
 
     private static final int LESSON_COUNT = 47;
 
-    private static final int LIST_ITEM_RES_ID = R.layout.lesson_list_view;
+    private static final int LIST_ITEM_RES_ID = R.layout.widget_lesson_list;
 
-    protected static final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_lesson_green_ripple;
+    protected static final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID = R.drawable.widget_lesson_circle_green_ripple;
 
-    protected static final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_lesson_yellow_ripple;
+    protected static final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID = R.drawable.widget_lesson_circle_yellow_ripple;
 
-    protected static final int CIRCLE_YELLOW_DRAWABLE_RES_ID = R.drawable.circle_lesson_yellow_shadow;
+    protected static final int CIRCLE_YELLOW_DRAWABLE_RES_ID = R.drawable.widget_lesson_circle_yellow_shadow;
 
-    protected static final int CIRCLE_GREEN_DRAWABLE_RES_ID = R.drawable.circle_lesson_green_shadow;
+    protected static final int CIRCLE_GREEN_DRAWABLE_RES_ID = R.drawable.widget_lesson_circle_green_shadow;
 
     protected static final int DEFAULT_BACKGROUND_COLOR = R.color.default_color_white;
 

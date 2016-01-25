@@ -11,7 +11,6 @@ import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
@@ -68,7 +67,7 @@ public class PlayerScrollView extends RelativeLayout {
 
     private OnItemPreparedListener mOnItemPreparedListener;
 
-    public static final int DEFAULT_PLAYER_LIST_ITEM_VIEW_RES_ID = R.layout.player_layout;
+    public static final int DEFAULT_PLAYER_LIST_ITEM_VIEW_RES_ID = R.layout.view_player_item;
 
     public static final int DEFAULT_PLAYER_LIST_ITEM0_RES_ID = R.id.player_voc_spell;
 
@@ -94,11 +93,11 @@ public class PlayerScrollView extends RelativeLayout {
 
     private static final int DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW = 6;
 
-    private static final int DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID = R.color.player_list_item_focused_color;
+    private static final int DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID = R.color.widget_pop_list_item_focused;
 
-    private static final int DEFAULT_LIST_ITEM0_COLOR_RES_ID = R.color.player_list_item0_border_bottom_color;
+    private static final int DEFAULT_LIST_ITEM0_COLOR_RES_ID = R.color.widget_pop_list_item0_border_bottom_color;
 
-    private static final int DEFAULT_DETAILS_COLOR_RES_ID = R.color.player_details_color;
+    private static final int DEFAULT_DETAILS_COLOR_RES_ID = R.color.widget_pop_details_color;
 
     private Context mContext;
 
@@ -308,9 +307,9 @@ public class PlayerScrollView extends RelativeLayout {
         mTopGradientMaskLayoutParams.addRule(ALIGN_PARENT_TOP | CENTER_HORIZONTAL);
         mTopGradientMask.setLayoutParams(mTopGradientMaskLayoutParams);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            mTopGradientMask.setBackground(getResources().getDrawable(R.drawable.top_gradient_filter, null));
+            mTopGradientMask.setBackground(getResources().getDrawable(R.drawable.widget_pop_top_gradient_filter, null));
         else
-            mTopGradientMask.setBackground(getResources().getDrawable(R.drawable.top_gradient_filter));
+            mTopGradientMask.setBackground(getResources().getDrawable(R.drawable.widget_pop_top_gradient_filter));
 
         mBottomGradientMask = new LinearLayout(mContext);
         RelativeLayout.LayoutParams mBottomGradientMaskLayoutParams = new RelativeLayout.LayoutParams(mChildViewWidth, mChildViewHeight /2);
@@ -318,9 +317,9 @@ public class PlayerScrollView extends RelativeLayout {
         mBottomGradientMaskLayoutParams.addRule(CENTER_HORIZONTAL);
         mBottomGradientMask.setLayoutParams(mBottomGradientMaskLayoutParams);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            mBottomGradientMask.setBackground(getResources().getDrawable(R.drawable.bottom_gradient_filter, null));
+            mBottomGradientMask.setBackground(getResources().getDrawable(R.drawable.widget_pop_bottom_gradient_filter, null));
         else
-            mBottomGradientMask.setBackground(getResources().getDrawable(R.drawable.bottom_gradient_filter));
+            mBottomGradientMask.setBackground(getResources().getDrawable(R.drawable.widget_pop_bottom_gradient_filter));
     }
 
     private void initFocusedPosition() {
@@ -421,7 +420,7 @@ public class PlayerScrollView extends RelativeLayout {
             newFocusedViewColorAnim.start();
         }
         else{
-            newFocusedView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.player_item0));
+            newFocusedView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.widget_pop_item0));
         }
 
         if(previousFocusedPosition < 0)
@@ -450,7 +449,7 @@ public class PlayerScrollView extends RelativeLayout {
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    previousFocusedView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.player_item1));
+                    previousFocusedView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.widget_pop_item1));
 //                previousFocusedView.setBackground(mContext.getResources().getDrawable(R.drawable.player_item1, null));
                 }
 
@@ -464,7 +463,7 @@ public class PlayerScrollView extends RelativeLayout {
             });
         }
         else
-            previousFocusedView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.player_item1));
+            previousFocusedView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.widget_pop_item1));
     }
 
     /**
@@ -703,7 +702,7 @@ public class PlayerScrollView extends RelativeLayout {
             setOrientation(VERTICAL);
             ViewGroup itemView = (ViewGroup)((LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                    .inflate(R.layout.player_layout_details, null);
+                    .inflate(R.layout.view_player_details, null);
             viewPager = new ViewPager(context);
             HashMap map = mDataList.get(index);
             for(int i = 2; i < DEFAULT_PLAYER_LIST_DETAIL_ITEM_COUNT; i++) {
@@ -741,7 +740,7 @@ public class PlayerScrollView extends RelativeLayout {
                 ViewGroup currentItemDetailsView =
                         (ViewGroup)((LayoutInflater) getContext()
                                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                                .inflate(R.layout.player_layout_details_sentence, null);
+                                .inflate(R.layout.view_player_details_sentence, null);
 
                 ((TextView) currentItemDetailsView.findViewById(R.id.player_voc_sentence_detail))
                         .setText(en_sentenceList.get(i));

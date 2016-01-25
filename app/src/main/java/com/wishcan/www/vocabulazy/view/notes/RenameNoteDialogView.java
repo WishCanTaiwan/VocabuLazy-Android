@@ -16,7 +16,7 @@ import com.wishcan.www.vocabulazy.view.customview.DialogView;
  */
 public class RenameNoteDialogView extends DialogView {
 
-    private static final int DEFAULT_DIALOG_VIEW_RES_ID = R.layout.dialog_rename_note;
+    private static final int DEFAULT_DIALOG_VIEW_RES_ID = R.layout.widget_note_dialog_rename_note;
 
     private static final int DEFAULT_DIALOG_RENAME_VIEW_RES_ID = R.id.dialog_input;
 

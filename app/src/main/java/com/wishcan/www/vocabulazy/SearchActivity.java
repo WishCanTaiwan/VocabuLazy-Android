@@ -27,7 +27,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -38,7 +37,7 @@ import com.wishcan.www.vocabulazy.view.search.SearchDialogView;
 import com.wishcan.www.vocabulazy.view.search.SearchListView;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 import com.wishcan.www.vocabulazy.view.customview.DialogView;
-import com.wishcan.www.vocabulazy.vocabulary.WordObject;
+//import com.wishcan.www.vocabulazy.vocabulary.WordObject;
 
 public class SearchActivity extends Activity {
 
@@ -76,7 +75,7 @@ public class SearchActivity extends Activity {
 
     private SearchListView mSearchListView;
 
-    private LinkedList<WordObject> mSearchResultList;
+//    private LinkedList<WordObject> mSearchResultList;
 
     private LinkedList<String> mNoteList;
 
@@ -401,7 +400,7 @@ public class SearchActivity extends Activity {
             setOrientation(VERTICAL);
             ViewGroup itemView = (ViewGroup)((LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                    .inflate(R.layout.search_layout_details, null);
+                    .inflate(R.layout.view_search_details, null);
             viewPager = new ViewPager(context);
 
             ((TextView) itemView.findViewById(mTo[0])).setText(vocabulary.getSpell());
@@ -434,7 +433,7 @@ public class SearchActivity extends Activity {
                 ViewGroup currentItemDetailsView =
                         (ViewGroup)((LayoutInflater) getContext()
                                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                                .inflate(R.layout.search_layout_details_sentence, null);
+                                .inflate(R.layout.view_search_details_sentence, null);
 
                 ((TextView) currentItemDetailsView.findViewById(R.id.search_voc_sentence_detail))
                         .setText(en_sentenceList.get(i));

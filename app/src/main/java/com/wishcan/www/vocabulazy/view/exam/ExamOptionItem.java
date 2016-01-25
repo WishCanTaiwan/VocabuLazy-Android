@@ -1,11 +1,9 @@
 package com.wishcan.www.vocabulazy.view.exam;
 
 import android.animation.Animator;
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -13,7 +11,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,14 +24,14 @@ import com.wishcan.www.vocabulazy.R;
 public class ExamOptionItem extends LinearLayout {
 
     private static final int IMG_RES_IDs[] = {
-            R.drawable.icon_exam_correct, R.drawable.icon_exam_incorrect };
+            R.drawable.exam_correct_icon, R.drawable.exam_incorrect_icon};
 
     private static final int PADDING_RES_IDs[] = {
             R.dimen.exam_padding_horizontal, R.dimen.exam_padding_vertical,
             R.dimen.exam_padding_horizontal, R.dimen.exam_padding_vertical };
 
     private static final int BACKGROUND_RES_IDs[] = {
-            R.drawable.rect_exam_gray, R.drawable.rect_exam_deepgray, R.drawable.rect_exam_yellow};
+            R.drawable.exam_rect_gray, R.drawable.exam_rect_deepgray, R.drawable.exam_rect_yellow};
 
     private static final int TEXT_SIZE_RES_IDs = R.dimen.exam_text_size;
 

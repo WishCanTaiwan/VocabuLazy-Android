@@ -4,12 +4,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -33,21 +31,21 @@ public class BooksGridView extends GridView {
 
     private static final String TAG = BooksGridView.class.getSimpleName();
 
-    private static final int DEFAULT_ACTIONBAR_TITLE_RES_ID = R.string.book_title;
+    private static final int DEFAULT_ACTIONBAR_TITLE_RES_ID = R.string.main_book_title;
 
     private static final int DEFAULT_NUM_COLUMNS = 2;
 
-    private static final int DEFAULT_BOOKS_GRID_VERTICAL_SPACING_RES_ID = R.dimen.books_grid_vertical_spacing_dimension;
+    private static final int DEFAULT_BOOKS_GRID_VERTICAL_SPACING_RES_ID = R.dimen.widget_book_vertical_sapcing;
 
-    private static final int CIRCLE_BOOK_LAYOUT_RES_ID = R.layout.circle_book_layout;
+    private static final int CIRCLE_BOOK_LAYOUT_RES_ID = R.layout.widget_book_circle;
 
-    private static final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_book_green_ripple;
+    private static final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID = R.drawable.widget_book_circle_green_ripple;
 
-    private static final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_book_yellow_ripple;
+    private static final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID = R.drawable.widget_book_circle_yellow_ripple;
 
-    private static final int CIRCLE_GREEN_DRAWABLE_RES_ID = R.drawable.circle_book_green_shadow;
+    private static final int CIRCLE_GREEN_DRAWABLE_RES_ID = R.drawable.widget_book_circle_green_shadow;
 
-    private static final int CIRCLE_YELLOW_DRAWABLE_RES_ID = R.drawable.circle_book_yellow_shadow;
+    private static final int CIRCLE_YELLOW_DRAWABLE_RES_ID = R.drawable.widget_book_circle_yellow_shadow;
 
     ImageAdapter mAdapter;
 

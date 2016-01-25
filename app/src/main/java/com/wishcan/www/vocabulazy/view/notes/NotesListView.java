@@ -44,7 +44,7 @@ public class NotesListView extends ListView {
     public static final int ICON_COMBINE = 5;
     public static final int ICON_NEW_NOTE = 6;
 
-    private static final int DEFAULT_ACTION_BAR_TITLE_RES_ID = R.string.list_title;
+    private static final int DEFAULT_ACTION_BAR_TITLE_RES_ID = R.string.main_note_title;
 
     private static final int DIVIDER_COLOR = R.color.divider_color_gray;
 

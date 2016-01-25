@@ -1,17 +1,14 @@
 package com.wishcan.www.vocabulazy.view.main;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.wishcan.www.vocabulazy.MainActivity;
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.main.voc.fragment.VocBookFragment;
 import com.wishcan.www.vocabulazy.view.books.BooksGridView;
 import com.wishcan.www.vocabulazy.view.notes.NotesListAddButtonView;
 import com.wishcan.www.vocabulazy.view.reading.ReadingBooksGridView;
@@ -24,25 +21,25 @@ public class MainTabView extends TabView {
 
     private static final int DEFAULT_TAB_STRIPE_COLOR_RES_ID = R.color.main_tab_view_tab_stripe_color;
 
-    private static final int DEFAULT_TAB_ITEM_0_DRAWABLE_RES_ID = R.drawable.bar_book_off;
+    private static final int DEFAULT_TAB_ITEM_0_DRAWABLE_RES_ID = R.drawable.main_book;
 
-    private static final int DEFAULT_TAB_ITEM_1_DRAWABLE_RES_ID = R.drawable.bar_list_off;
+    private static final int DEFAULT_TAB_ITEM_1_DRAWABLE_RES_ID = R.drawable.main_note;
 
-    private static final int DEFAULT_TAB_ITEM_2_DRAWABLE_RES_ID = R.drawable.bar_test_off;
+    private static final int DEFAULT_TAB_ITEM_2_DRAWABLE_RES_ID = R.drawable.main_exam;
 
-    private static final int DEFAULT_TAB_ITEM_3_DRAWABLE_RES_ID = R.drawable.bar_i_off;
+    private static final int DEFAULT_TAB_ITEM_3_DRAWABLE_RES_ID = R.drawable.main_info;
 
-    private static final int DEFAULT_TAB_ITEM_4_DRAWABLE_RES_ID = R.drawable.bar_i_off;
+    private static final int DEFAULT_TAB_ITEM_4_DRAWABLE_RES_ID = R.drawable.main_info;
 
-    private static final int DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID = R.string.book_title;
+    private static final int DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID = R.string.main_book_title;
 
-    private static final int DEFAULT_TAB_ITEM_1_TAG_STR_RES_ID = R.string.list_title;
+    private static final int DEFAULT_TAB_ITEM_1_TAG_STR_RES_ID = R.string.main_note_title;
 
-    private static final int DEFAULT_TAB_ITEM_2_TAG_STR_RES_ID = R.string.test_title;
+    private static final int DEFAULT_TAB_ITEM_2_TAG_STR_RES_ID = R.string.main_exam_title;
 
     private static final int DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID = R.string.reading_book_title;
 
-    private static final int DEFAULT_TAB_ITEM_4_TAG_STR_RES_ID = R.string.info_title;
+    private static final int DEFAULT_TAB_ITEM_4_TAG_STR_RES_ID = R.string.main_info_title;
 
     private static final int DEFAULT_TAB_ITEM_2__LAYOUT_RES_ID = R.layout.exam_home_view;
 

@@ -8,8 +8,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +16,6 @@ import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.player.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.view.exam.ExamBooksFragment;
 import com.wishcan.www.vocabulazy.view.exam.ExamFragment;
 import com.wishcan.www.vocabulazy.view.exam.ExamNoteFragment;
@@ -27,8 +24,6 @@ import com.wishcan.www.vocabulazy.view.lessons.LessonsFragment;
 import com.wishcan.www.vocabulazy.view.main.MainFragment;
 import com.wishcan.www.vocabulazy.view.player.PlayerFragment;
 import com.wishcan.www.vocabulazy.view.reading.ReadingMainFragment;
-
-import java.util.ArrayList;
 
 public class MainActivity extends Activity implements PlayerFragment.OptionOnClickListener {
 
@@ -151,7 +146,7 @@ public class MainActivity extends Activity implements PlayerFragment.OptionOnCli
     protected void onStart() {
         super.onStart();
         mActionBar = getActionBar();
-        switchActionBarTitle(getResources().getString(R.string.book_title));
+        switchActionBarTitle(getResources().getString(R.string.main_book_title));
 
         if (mActionBarTitleWhenStop != null)
             switchActionBarTitle(mActionBarTitleWhenStop);

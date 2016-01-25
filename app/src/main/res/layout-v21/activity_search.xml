@@ -21,7 +21,7 @@
         android:visibility="gone"
         >
 
-        <include layout="@layout/search_layout_details"
+        <include layout="@layout/view_search_details"
             android:id="@+id/search_detail_view"
             android:layout_width="900px"
             android:layout_height="600px"

@@ -31,42 +31,27 @@ public class NumeralPicker extends LinearLayout {
     }
 
     private static final int DEFAULT_MAXIMUM = 9;
-
     private static final int DEFAULT_MINIMUM = 0;
-
-    private static final int DEFAULT_ARROW_IMAGE_PADDING_RES_ID = R.dimen.picker_arrow_image_padding;
-
-    private static final int DEFAULT_TEXT_PADDING_RES_ID = R.dimen.picker_text_padding;
-
-    private static final int DEFAULT_PICKER_TEXT_SIZE_RES_ID = R.dimen.picker_text_size;
-
-    private static final int DEFAULT_LEFT_ARROW_RES_ID = R.drawable.arrow_yellow_left;
-
-    private static final int DEFAULT_RIGHT_ARROW_RES_ID = R.drawable.arrow_yellow_right;
-    private static final int DEFAULT_PICKER_TEXT_COLOR = R.color.picker_text_color;
-    private static final int DEFAULT_PICKER_BACKGROUND_COLOR = R.color.picker_background_color;
-    private static final int DEFAULT_PICKER_BACKGROUND_DRAWABLE = R.drawable.background_picker;
+    private static final int DEFAULT_ARROW_IMAGE_PADDING_RES_ID = R.dimen.widget_picker_arrow_image_padding;
+    private static final int DEFAULT_TEXT_PADDING_RES_ID = R.dimen.widget_picker_text_padding;
+    private static final int DEFAULT_PICKER_TEXT_SIZE_RES_ID = R.dimen.widget_picker_text_size;
+    private static final int DEFAULT_LEFT_ARROW_RES_ID = R.drawable.widget_picker_arrow_yellow_left;
+    private static final int DEFAULT_RIGHT_ARROW_RES_ID = R.drawable.widget_picker_arrow_yellow_right;
+    private static final int DEFAULT_PICKER_TEXT_COLOR = R.color.widget_picker_text;
+    private static final int DEFAULT_PICKER_BACKGROUND_COLOR = R.color.widget_picker_background;
+    private static final int DEFAULT_PICKER_BACKGROUND_DRAWABLE = R.drawable.widget_picker_background;
     /**
      * There are mainly four views in this
      * */
     private TextView mNumberTextView;
-
     private ImageView mLeftArrowImageView;
-
     private ImageView mRightArrowImageView;
-
     private int mMaximumNumber;
-
     private int mMinimumNumber;
-
     private int mPickerRange;
-
     private int mPickerBackgroundColor;
-
     private int mPickerTextColor;
-
     private Context mContext;
-
     private OnPickerClickedListener mListener;
 
     public NumeralPicker(Context context) {
@@ -79,8 +64,8 @@ public class NumeralPicker extends LinearLayout {
         try {
             mMaximumNumber = ta.getInteger(R.styleable.NumeralPicker_setPickerMaximumNumber, DEFAULT_MAXIMUM);
             mMinimumNumber = ta.getInteger(R.styleable.NumeralPicker_setPickerMinimumNumber, DEFAULT_MINIMUM);
-            mPickerTextColor = ta.getColor(R.styleable.NumeralPicker_setPickerNumberTextColor, getResources().getColor(DEFAULT_PICKER_TEXT_COLOR));
-            mPickerBackgroundColor = ta.getColor(R.styleable.NumeralPicker_setPickerBackgroundColor, getResources().getColor(DEFAULT_PICKER_BACKGROUND_COLOR));
+            mPickerTextColor = ta.getColor(R.styleable.NumeralPicker_setPickerNumberTextColor, ContextCompat.getColor(context, DEFAULT_PICKER_TEXT_COLOR));
+            mPickerBackgroundColor = ta.getColor(R.styleable.NumeralPicker_setPickerBackgroundColor, ContextCompat.getColor(context, DEFAULT_PICKER_BACKGROUND_COLOR));
         } finally {
 
         }

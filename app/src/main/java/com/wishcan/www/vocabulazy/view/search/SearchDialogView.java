@@ -29,7 +29,7 @@ public class SearchDialogView extends DialogView {
         void onAddItemClicked(int position);
     }
 
-    private static final int DEFAULT_DIALOG_VIEW_RES_ID = R.layout.dialog_search_add_to_note;
+    private static final int DEFAULT_DIALOG_VIEW_RES_ID = R.layout.widget_dialog_search_add_to_note;
 
     private static final int DEFAULT_NOTE_LIST_ITEM_RES_ID = R.layout.search_result_add_to_note_list_item_view;
 

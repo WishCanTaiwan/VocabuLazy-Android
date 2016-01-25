@@ -63,13 +63,13 @@ abstract public class PopScrollView extends RelativeLayout {
 
     private static final float ZOOM_IN_FACTORY = 1.05f;
     private static final int DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW = 5;
-    private static final int DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID = R.color.player_list_item_focused_color;
-    private static final int DEFAULT_LIST_ITEM0_COLOR_RES_ID = R.color.player_list_item0_border_bottom_color;
-    private static final int DEFAULT_DETAILS_COLOR_RES_ID = R.color.player_details_color;
-    private static final int DEFAULT_TOP_GRADIENT_DRAWABLE_RES_ID = R.drawable.top_gradient_filter;
-    private static final int DEFAULT_BOT_GRADIENT_DRAWABLE_RES_ID = R.drawable.bottom_gradient_filter;
-    private static final int DEFAULT_FOCUSED_ITEM_DRAWABLE_RES_ID = R.drawable.player_item0;
-    private static final int DEFAULT_ITEM_DRAWABLE_RES_ID = R.drawable.player_item1;
+    private static final int DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID = R.color.widget_pop_list_item_focused;
+    private static final int DEFAULT_LIST_ITEM0_COLOR_RES_ID = R.color.widget_pop_list_item0_border_bottom_color;
+    private static final int DEFAULT_DETAILS_COLOR_RES_ID = R.color.widget_pop_details_color;
+    private static final int DEFAULT_TOP_GRADIENT_DRAWABLE_RES_ID = R.drawable.widget_pop_top_gradient_filter;
+    private static final int DEFAULT_BOT_GRADIENT_DRAWABLE_RES_ID = R.drawable.widget_pop_bottom_gradient_filter;
+    private static final int DEFAULT_FOCUSED_ITEM_DRAWABLE_RES_ID = R.drawable.widget_pop_item0;
+    private static final int DEFAULT_ITEM_DRAWABLE_RES_ID = R.drawable.widget_pop_item1;
 
     public static final int STATE_ITEM_DETAIL_SHOW = 1;
     public static final int STATE_ITEM_DETAIL_CHANGING = 0;
@@ -109,7 +109,6 @@ abstract public class PopScrollView extends RelativeLayout {
     private boolean mFinalItemCheckFlag;
     private final Runnable checkFinalItemStateTask;
     private final Runnable checkInitialItemStateTask;
-    private HashMap<String, Object> mItemDetailData;
 
     public PopScrollView(Context context) {
         this(context, null);

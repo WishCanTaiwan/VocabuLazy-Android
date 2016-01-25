@@ -63,25 +63,25 @@ public class PlayerOptionView extends LinearLayout {
 
     private static final int DEFAULT_PLAYER_OPTION_VIEW_RES_ID = R.layout.option_tab_content;
 
-    private static final int COLOR_TAB_0_RES_ID = R.color.player_option_tab0_image_color;
+    private static final int COLOR_TAB_0_RES_ID = R.color.player_option_tab0;
 
-    private static final int COLOR_TAB_1_RES_ID = R.color.player_option_tab1_image_color;
+    private static final int COLOR_TAB_1_RES_ID = R.color.player_option_tab1;
 
-    private static final int COLOR_TAB_2_RES_ID = R.color.player_option_tab2_image_color;
+    private static final int COLOR_TAB_2_RES_ID = R.color.player_option_tab2;
 
-    private static final int COLOR_TAB_TEXT_0_RES_ID = R.color.player_option_tab0_text_color;
+    private static final int COLOR_TAB_TEXT_0_RES_ID = R.color.player_option_tab0_text;
 
-    private static final int COLOR_TAB_TEXT_1_RES_ID = R.color.player_option_tab1_text_color;
+    private static final int COLOR_TAB_TEXT_1_RES_ID = R.color.player_option_tab1_text;
 
-    private static final int COLOR_TAB_TEXT_2_RES_ID = R.color.player_option_tab2_text_color;
+    private static final int COLOR_TAB_TEXT_2_RES_ID = R.color.player_option_tab2_text;
 
-    private static final int DEFAULT_TAB_TEXT_SIZE_RES_ID = R.dimen.player_option_tab_text_size;
+    private static final int DEFAULT_TAB_TEXT_SIZE_RES_ID = R.dimen.player_option_tab_text;
 
-    private static final int STR_TAB_0_RES_ID = R.string.player_option_tab_0_str;
+    private static final int STR_TAB_0_RES_ID = R.string.player_option_tab_0;
 
-    private static final int STR_TAB_1_RES_ID = R.string.player_option_tab_1_str;
+    private static final int STR_TAB_1_RES_ID = R.string.player_option_tab_1;
 
-    private static final int STR_TAB_2_RES_ID = R.string.player_option_tab_2_str;
+    private static final int STR_TAB_2_RES_ID = R.string.player_option_tab_2;
 
     private final int[] mOptionResIDs = {
             PLAYER_OPTION_RANDOM_VIEW_RES_ID,

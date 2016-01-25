@@ -19,7 +19,6 @@ import java.util.Map;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.SearchActivity;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
-import com.wishcan.www.vocabulazy.vocabulary.WordObject;
 
 /**
  * Created by swallow on 2015/8/10.
@@ -66,14 +65,14 @@ public class SearchListView extends ListView {
         mSuggestedVocabularies = new ArrayList<>();
         mSuggestedVocabularySpells = new ArrayList<>();
         mDataList = new LinkedList<>();
-        mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, R.layout.search_list_layout, mFrom, mTo);
+        mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, R.layout.view_search_list, mFrom, mTo);
         setAdapter(mAdapter);
     }
 
     public void refresh(ArrayList<Vocabulary> vocabularies) {
         mSuggestedVocabularies = vocabularies;
         createDataList();
-        mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, R.layout.search_list_layout, mFrom, mTo);
+        mAdapter = new CustomizedSimpleAdapter(mContext, mDataList, R.layout.view_search_list, mFrom, mTo);
         setAdapter(mAdapter);
     }
 
@@ -89,14 +88,14 @@ public class SearchListView extends ListView {
         }
     }
 
-    private void loadVocList(LinkedList<WordObject> wordObjLL){
-        Iterator<WordObject> ii = wordObjLL.iterator();
-        mVocStrList = new ArrayList<>();
-//        while(ii.hasNext()){
-//            WordObject wObj = ii.next();
-//            mVocStrList.add(wObj.getSpellStr());
-//        }
-    }
+//    private void loadVocList(LinkedList<WordObject> wordObjLL){
+//        Iterator<WordObject> ii = wordObjLL.iterator();
+//        mVocStrList = new ArrayList<>();
+////        while(ii.hasNext()){
+////            WordObject wObj = ii.next();
+////            mVocStrList.add(wObj.getSpellStr());
+////        }
+//    }
 
     private void createDataList(){
         Iterator<Vocabulary> ii;
