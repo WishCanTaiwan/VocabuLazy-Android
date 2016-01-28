@@ -20,6 +20,8 @@ public class Option implements Parcelable {
     public int mSpeed;
     public int mPlayTime;
 
+    private boolean[] bools = new boolean[2];
+
     public Option(int mode, boolean isRandom, int listLoop, boolean sentence, int stopPeriod, int itemLoop, int speed, int playTime) {
         mMode = mode;
         mIsRandom = isRandom;
@@ -33,6 +35,9 @@ public class Option implements Parcelable {
 
     protected Option(Parcel in) {
         mMode = in.readInt();
+        in.readBooleanArray(bools);
+        mIsRandom = bools[0];
+        mSentence = bools[1];
         mListLoop = in.readInt();
         mStopPeriod = in.readInt();
         mItemLoop = in.readInt();
@@ -125,6 +130,9 @@ public class Option implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mMode);
+        bools[0] = mIsRandom;
+        bools[1] = mSentence;
+        dest.writeBooleanArray(bools);
         dest.writeInt(mListLoop);
         dest.writeInt(mStopPeriod);
         dest.writeInt(mItemLoop);

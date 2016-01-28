@@ -217,7 +217,7 @@ Log.d(TAG, "top");
                         setOptionInTabContent(mode, optionID, option.getSpeed());
                         break;
                     case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
-                        Log.d("option.PlayTime()", " "+option.getPlayTime());
+//                        Log.d("option.PlayTime()", " "+option.getPlayTime());
                         setOptionInTabContent(mode, optionID, option.getPlayTime());
                         break;
                     default:

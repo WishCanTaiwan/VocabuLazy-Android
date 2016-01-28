@@ -37,13 +37,13 @@ public class WCTextToSpeech extends UtteranceProgressListener implements TextToS
 
     void speak(String text) {
         if (ttsEngineInit) {
-            Log.d(TAG, "speak");
+//            Log.d(TAG, "speak: " + text);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Log.d(TAG, "sdk >= 21");
+//                Log.d(TAG, "sdk >= 21");
                 wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, UTTERANCE_ID);
             } else {
-                Log.d(TAG, "sdk < 21");
+//                Log.d(TAG, "sdk < 21");
                 wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, utteranceParams);
             }
         }
@@ -78,7 +78,7 @@ public class WCTextToSpeech extends UtteranceProgressListener implements TextToS
 
     @Override
     public void onInit(int status) {
-        Log.d(TAG, "onInit");
+//        Log.d(TAG, "onInit");
         if(status == TextToSpeech.SUCCESS) {
             ttsEngineInit = true;
             Toast.makeText(mContext, "engine initialized", Toast.LENGTH_SHORT).show();
@@ -87,23 +87,23 @@ public class WCTextToSpeech extends UtteranceProgressListener implements TextToS
 
     @Override
     public void onStart(String utteranceId) {
-        Log.d(TAG, "onStart: " + utteranceId);
+//        Log.d(TAG, "onStart: " + utteranceId);
     }
 
     @Override
     public void onDone(String utteranceId) {
-        Log.d(TAG, "onDone: " + utteranceId);
+//        Log.d(TAG, "onDone: " + utteranceId);
         wOnUtteranceStatusListener.onUtteranceCompleted();
     }
 
     @Override
     public void onError(String utteranceId) {
-        Log.d(TAG, "onError: " + utteranceId);
+//        Log.d(TAG, "onError: " + utteranceId);
     }
 
     @Override
     public void onUtteranceCompleted(String utteranceId) {
-        Log.d(TAG, "onUtteranceCompleted: " + utteranceId);
+//        Log.d(TAG, "onUtteranceCompleted: " + utteranceId);
         wOnUtteranceStatusListener.onUtteranceCompleted();
     }
 

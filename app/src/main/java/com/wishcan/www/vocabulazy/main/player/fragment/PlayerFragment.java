@@ -65,8 +65,6 @@ public class PlayerFragment extends Fragment {
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         mLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
         mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-
-
     }
 
     @Override
@@ -133,11 +131,12 @@ public class PlayerFragment extends Fragment {
         mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
             @Override
             public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+//                Log.d(TAG, "option changed: random => " + optionLL.get(currentMode).mIsRandom + ", sentence => " + optionLL.get(currentMode).mSentence + ".");
                 mPlayerModel.setOptionAndMode(optionLL, currentMode);
                 optionSettingChanged(optionLL.get(currentMode));
             }
         });
-        mPlayerOptionView.setOptionsInTabContent(mPlayerModel.getDefaultOption());
+
 
         mPlayerMainView.postDelayed(new Runnable() {
             @Override
@@ -159,6 +158,12 @@ public class PlayerFragment extends Fragment {
          */
         setContent(mVocabularies);
         startPlayingAt(0);
+
+        /**
+         * when database is ready
+         */
+        mPlayerOptionView.setOptionsInTabContent(mPlayerModel.getDefaultOption());
+
     }
 
     @Override
@@ -192,8 +197,10 @@ public class PlayerFragment extends Fragment {
     }
 
     void optionSettingChanged(Option option) {
+        Log.d(TAG, "option changed: random => " + option.mIsRandom + ", sentence => " + option.mSentence + ".");
         Intent intent = new Intent(getActivity(), AudioService.class);
-        intent.setAction(AudioService.ACTION_PLAY_BUTTON_CLICKED);
+        intent.setAction(AudioService.ACTION_OPTION_SETTING_CHANGED);
+        intent.putExtra(AudioService.KEY_OPTION_SETTING, option);
         getActivity().startService(intent);
     }
 }

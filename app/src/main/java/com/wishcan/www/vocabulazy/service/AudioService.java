@@ -169,6 +169,7 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
 
             case ACTION_OPTION_SETTING_CHANGED:
                 wOptionSetting = intent.getParcelableExtra(KEY_OPTION_SETTING);
+                Log.d(TAG, "update option setting: random: " + wOptionSetting.mIsRandom + ", sentence: " + wOptionSetting.mSentence);
                 updateOptionSetting(wOptionSetting);
                 break;
 
