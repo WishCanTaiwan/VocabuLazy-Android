@@ -119,6 +119,8 @@ public class PlayerFragment extends Fragment {
             }
         });
 
+        mPlayerOptionView.setOptionsInTabContent(null);
+
         mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
             @Override
             public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {

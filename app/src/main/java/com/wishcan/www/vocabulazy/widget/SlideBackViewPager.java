@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.view.adapter.LinkedListPagerAdapter;
 
 import java.util.LinkedList;
 

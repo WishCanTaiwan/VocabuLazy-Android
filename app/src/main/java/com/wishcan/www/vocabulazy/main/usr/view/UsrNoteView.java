@@ -21,5 +21,6 @@ public class UsrNoteView extends NoteView {
     public UsrNoteView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setEnableEtcFunction(true);
+        setEnableNewFunction(true);
     }
 }
