@@ -95,7 +95,7 @@
         android:visibility="gone"
         >
 
-        <com.wishcan.www.vocabulazy.view.customview.CrossView
+        <com.wishcan.www.vocabulazy.widget.CrossView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

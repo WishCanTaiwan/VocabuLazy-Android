@@ -1,7 +1,9 @@
 package com.wishcan.www.vocabulazy.widget;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
@@ -12,8 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
@@ -41,7 +46,9 @@ abstract public class NoteView extends SlideBackViewPager{
     public static final int ICON_COMBINE = 5;
     public static final int ICON_NEW = 6;
 
+    private RelativeLayout mContainer;
     private NoteListView mNoteListView;
+    private NoteNewButton mNoteNewButton;
 
     public NoteView(Context context) {
         this(context, null);
@@ -49,6 +56,25 @@ abstract public class NoteView extends SlideBackViewPager{
 
     public NoteView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mNoteListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if(scrollState == SCROLL_STATE_FLING) {
+
+                }
+                else if(scrollState == SCROLL_STATE_TOUCH_SCROLL) {
+                    mNoteNewButton.hideButton();
+                }
+                else if(scrollState == SCROLL_STATE_IDLE) {
+                    mNoteNewButton.showButton();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
     }
 
     public void refreshView(int count, LinkedList<String> linkedList) {
@@ -64,16 +90,28 @@ abstract public class NoteView extends SlideBackViewPager{
     }
 
     public void setEnableNewFunction(boolean bool) {
-
+        if(!bool)
+            mNoteNewButton.setVisibility(GONE);
+        else
+            mNoteNewButton.setVisibility(VISIBLE);
     }
 
     @Override
     public ViewGroup getMainPage() {
+        mContainer = new RelativeLayout(getContext());
         mNoteListView = new NoteListView(getContext());
-        return mNoteListView;
+        mNoteListView.setLayoutParams(new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        mNoteNewButton = new NoteNewButton(getContext());
+        mNoteNewButton.setVisibility(GONE);
+
+        mContainer.addView(mNoteListView);
+        mContainer.addView(mNoteNewButton);
+        return mContainer;
     }
 
-    public class NoteListView extends ListView implements AdapterView<String>{
+    private class NoteListView extends ListView implements AdapterView<String>{
 
         @Override
         public void refreshView(int count, LinkedList<String> linkedList) {
@@ -289,6 +327,44 @@ abstract public class NoteView extends SlideBackViewPager{
                 set.setInterpolator(new AccelerateDecelerateInterpolator());
                 set.start();
             }
+        }
+    }
+
+    private class NoteNewButton extends RelativeLayout {
+
+        private static final int BACKGROUND_RES_ID = R.drawable.circle_add_button_yellow;
+        private Animator mShowingAnimator, mHidingAnimator;
+
+        public NoteNewButton(Context context) {
+            this(context, null);
+        }
+
+        public NoteNewButton(Context context, AttributeSet attrs) {
+            super(context, attrs);
+            setBackgroundResource(BACKGROUND_RES_ID);
+            CrossView crossView = new CrossView(context);
+            crossView.setCrossSize(20);
+            LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            layoutParams.addRule(CENTER_IN_PARENT);
+            crossView.setLayoutParams(layoutParams);
+            addView(crossView);
+
+            mShowingAnimator = ObjectAnimator.ofFloat(this, "translationY", 960f, 0f);
+            mShowingAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+            mShowingAnimator.setDuration(200);
+            mShowingAnimator.setStartDelay(150);
+
+            mHidingAnimator = ObjectAnimator.ofFloat(this, "translationY", 0f, 960f);
+            mHidingAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+            mHidingAnimator.setDuration(200);
+        }
+
+        public void showButton() {
+            mShowingAnimator.start();
+        }
+
+        public void hideButton() {
+            mHidingAnimator.start();
         }
     }
 }

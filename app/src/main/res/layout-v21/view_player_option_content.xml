@@ -85,7 +85,7 @@
                     />
             </LinearLayout>
 
-            <com.wishcan.www.vocabulazy.view.picker.NumeralPicker
+            <com.wishcan.www.vocabulazy.widget.NumeralPicker
                 android:id="@+id/action_picker_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                     />
             </LinearLayout>
 
-            <com.wishcan.www.vocabulazy.view.picker.NumeralPicker
+            <com.wishcan.www.vocabulazy.widget.NumeralPicker
                 android:id="@+id/action_picker_frequency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                     />
             </LinearLayout>
 
-            <com.wishcan.www.vocabulazy.view.picker.NumeralPicker
+            <com.wishcan.www.vocabulazy.widget.NumeralPicker
                 android:id="@+id/action_picker_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
                     />
             </LinearLayout>
 
-            <com.wishcan.www.vocabulazy.view.picker.NumeralPicker
+            <com.wishcan.www.vocabulazy.widget.NumeralPicker
                 android:id="@+id/action_picker_play_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

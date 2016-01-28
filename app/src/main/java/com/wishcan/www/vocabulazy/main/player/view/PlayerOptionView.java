@@ -185,7 +185,7 @@ public class PlayerOptionView extends LinearLayout {
 Log.d(TAG, "top");
         if(optionLL == null) {
             mOptionLL = new ArrayList<>();
-            for(int i = 0; i < 3; i++)
+            for(int i = 1; i <= 3; i++)
                 mOptionLL.add(new Option(i, true, 1, true, i, 0, 1, 2));
         }
         else
