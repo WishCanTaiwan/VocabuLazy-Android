@@ -169,7 +169,7 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
 
             case ACTION_OPTION_SETTING_CHANGED:
                 wOptionSetting = intent.getParcelableExtra(KEY_OPTION_SETTING);
-                Log.d(TAG, "update option setting: random: " + wOptionSetting.mIsRandom + ", sentence: " + wOptionSetting.mSentence);
+//                Log.d(TAG, "update option setting: random: " + wOptionSetting.mIsRandom + ", sentence: " + wOptionSetting.mSentence);
                 updateOptionSetting(wOptionSetting);
                 break;
 
@@ -242,19 +242,19 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestory");
+//        Log.d(TAG, "onDestory");
         if (wcTextToSpeech != null)
             wcTextToSpeech.shutdown();
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        Log.d(TAG, "onCompletion");
+//        Log.d(TAG, "onCompletion");
     }
 
     @Override
     public void onUtteranceCompleted() {
-        Log.d(TAG, "onUtteranceCompleted");
+//        Log.d(TAG, "onUtteranceCompleted");
 
         if (!wStatus.equals(STATUS_PLAYING)) return;
 
