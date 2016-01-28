@@ -90,10 +90,10 @@ abstract public class NoteView extends SlideBackViewPager{
             refresh();
         }
 
-        private static final int DIVIDER_COLOR = R.color.divider_color_gray;
-        private static final int DIVIDER_HEIGHT = R.dimen.divider_height;
+        private static final int DIVIDER_COLOR = R.color.widget_note_divider;
+        private static final int DIVIDER_HEIGHT = R.dimen.widget_note_divider_height;
         private static final int LIST_ITEM_RES_ID = R.layout.widget_note_view_list_item;
-        private static final int LIST_ITEM_ANIMATE_MOVE_OFFSET = R.dimen.note_list_item_move_offset;
+        private static final int LIST_ITEM_ANIMATE_MOVE_OFFSET = R.dimen.widget_note_list_anim_offset;
 
         private final String[] FROM = {"NOTE_NAME"};
         private final int[] TO = {R.id.note_name};

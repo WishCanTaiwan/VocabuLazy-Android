@@ -25,9 +25,9 @@ public class UsrNoteDialogView extends DialogView<String> {
     private String mInputStr;
 
     public enum DIALOG_RES_ID_s implements Serializable{
-        NEW(R.layout.dialog_new_note),
-        DELETE(R.layout.dialog_delete_note),
-        RENAME(R.layout.dialog_rename_note),
+        NEW(R.layout.widget_note_dialog_new_note),
+        DELETE(R.layout.widget_note_dialog_delete_note),
+        RENAME(R.layout.widget_note_dialog_rename_note),
         COMBINE(-1);
 
         private int resId;

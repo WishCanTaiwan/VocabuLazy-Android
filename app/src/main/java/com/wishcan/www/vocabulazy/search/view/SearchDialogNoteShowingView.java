@@ -27,7 +27,7 @@ public class SearchDialogNoteShowingView extends LinearLayout {
         void onAddItemClick();
     }
 
-    private static final int VIEW_LIST_HEADER_RES_ID = R.layout.dialog_add_to_note_title;
+    private static final int VIEW_LIST_HEADER_RES_ID = R.layout.view_search_dialog_add_to_note_title;
     private static final int DIMEN_VIEW_WIDTH = R.dimen.search_result_add_to_note_dialog_width;
     private static final int DIMEN_VIEW_HEIGHT = R.dimen.search_result_add_to_note_dialog_height;
 
@@ -82,7 +82,7 @@ public class SearchDialogNoteShowingView extends LinearLayout {
 
     private class SearchDialogListView extends ListView {
 
-        private static final int VIEW_LIST_ITEM_RES_ID = R.layout.search_result_add_to_note_list_item_view;
+        private static final int VIEW_LIST_ITEM_RES_ID = R.layout.view_search_result_add_to_note_list_item;
         private static final int VIEW_NOTE_TEXT_RES_ID = R.id.note_list_name;
         private static final int VIEW_ADD_NEW_NOTE_RES_ID = R.id.search_result_adding_to_note_adding_function;
 

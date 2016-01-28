@@ -98,7 +98,7 @@
                 android:paddingLeft="@dimen/note_list_item_image_padding"
                 android:paddingStart="@dimen/note_list_item_image_padding"
                 android:background="@color/default_color_white"
-                android:src="@drawable/arrow_list"/>
+                android:src="@drawable/widget_note_arrow"/>
         </RelativeLayout>
 
     </LinearLayout>

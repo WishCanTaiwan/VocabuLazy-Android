@@ -106,9 +106,9 @@ public class PlayerMainView extends Infinite3View {
 
     public static class PlayerScrollView extends PopScrollView {
 
-        private static final int PLAYER_ITEM_LAYOUT_RES_ID = R.layout.player_layout;
-        private static final int PLAYER_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.player_layout_details;
-        private static final int PLAYER_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID = R.layout.player_layout_details_sentence;
+        private static final int PLAYER_ITEM_LAYOUT_RES_ID = R.layout.view_player_item;
+        private static final int PLAYER_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.view_player_details;
+        private static final int PLAYER_ITEM_DETAIL_SENTENCE_LAYOUT_RES_ID = R.layout.view_player_details_sentence;
         private static final int PLAYER_ITEM_DETAIL_PAGER_PARENT_LAYOUT_RES_ID = R.id.pager_parent;
         private static final int PLAYER_ITEM_DETAIL_PAGER_INDEX_PARENT_LAYOUT_RES_ID = R.id.pager_index_parent;
         
@@ -306,8 +306,8 @@ public class PlayerMainView extends Infinite3View {
 
         private static class PagerIndexView extends LinearLayout{
 
-            public static final int PAGER_INDEX_SELECTED_COLOR = R.color.player_pager_index_selected;
-            public static final int PAGER_INDEX_COLOR = R.color.player_pager_index_color;
+            private static final int PAGER_INDEX_SELECTED_COLOR = R.color.player_pager_index_selected;
+            private static final int PAGER_INDEX_COLOR = R.color.player_pager_index_color;
 
             private Context context;
             private int pagerCount;
@@ -329,9 +329,9 @@ public class PlayerMainView extends Infinite3View {
                     ImageView imageView = new ImageView(context);
                     imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.circle_pager_index));
                     if(i == 0)
-                        ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, R.color.player_pager_index_selected));
+                        ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, PAGER_INDEX_SELECTED_COLOR));
                     else
-                        ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, R.color.player_pager_index_color));
+                        ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, PAGER_INDEX_COLOR));
                     imageView.setPadding(5, 5, 5, 5);
                     addView(imageView);
                 }

@@ -62,12 +62,12 @@ abstract public class BookView extends SlideBackViewPager{
 
         private static final int DEFAULT_NUM_COLUMNS = 2;
         private static final int DEFAULT_NUM_BOOKS = 1;
-        private static final int DEFAULT_BOOKS_GRID_VERTICAL_SPACING_RES_ID = R.dimen.books_grid_vertical_spacing_dimension;
-        private static final int CIRCLE_BOOK_LAYOUT_RES_ID = R.layout.circle_book_layout;
-        private static final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_book_green_ripple;
-        private static final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID = R.drawable.circle_book_yellow_ripple;
-        private static final int CIRCLE_GREEN_DRAWABLE_RES_ID = R.drawable.circle_book_green_shadow;
-        private static final int CIRCLE_YELLOW_DRAWABLE_RES_ID = R.drawable.circle_book_yellow_shadow;
+        private static final int DEFAULT_BOOKS_GRID_VERTICAL_SPACING_RES_ID = R.dimen.widget_book_vertical_sapcing;
+        private static final int CIRCLE_BOOK_LAYOUT_RES_ID = R.layout.widget_book_circle;
+        private static final int CIRCLE_GREEN_RIPPLE_DRAWABLE_RES_ID = R.drawable.widget_book_circle_green_ripple;
+        private static final int CIRCLE_YELLOW_RIPPLE_DRAWABLE_RES_ID = R.drawable.widget_book_circle_yellow_ripple;
+        private static final int CIRCLE_GREEN_DRAWABLE_RES_ID = R.drawable.widget_book_circle_green_shadow;
+        private static final int CIRCLE_YELLOW_DRAWABLE_RES_ID = R.drawable.widget_book_circle_yellow_shadow;
 
         ImageAdapter mAdapter;
         ViewGroup.LayoutParams layoutParams;

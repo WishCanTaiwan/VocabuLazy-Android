@@ -36,8 +36,6 @@ public class Infinite3View extends RelativeLayout {
         void onPageChanged(int direction);
     }
 
-    private static final String TAG = Infinite3View.class.getSimpleName();
-
     public static final int LEFT_VIEW_INDEX = 0;
     public static final int CENTER_VIEW_INDEX = 1;
     public static final int RIGHT_VIEW_INDEX = 2;
@@ -55,7 +53,6 @@ public class Infinite3View extends RelativeLayout {
     private OnPageChangedListener mOnPageChangedListener;
     private float mOnInitialTouch;
     private float mOnTouchX;
-    private float mOnTouchY;
     private int mMinimumVelocity;
     private int mMaximumVelocity;
     private VelocityTracker mVelocityTracker;

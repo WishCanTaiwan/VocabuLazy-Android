@@ -31,12 +31,8 @@
             android:name=".search.SearchActivity"
             android:icon="@android:color/transparent"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/MyThemeForSearchActivity" >
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
         </activity>
     </application>
 

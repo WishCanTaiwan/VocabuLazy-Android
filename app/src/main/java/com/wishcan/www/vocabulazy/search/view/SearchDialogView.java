@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.widget.DialogFragment;
 import com.wishcan.www.vocabulazy.widget.DialogView;
 
 import java.io.Serializable;
@@ -28,8 +27,8 @@ public class SearchDialogView extends DialogView{
     private static final int INPUT_ID = R.id.dialog_input;
 
     public enum DIALOG_RES_ID_s implements Serializable {
-        NEW(R.layout.dialog_new_note),
-        LIST(R.layout.dialog_search_add_to_note);
+        NEW(R.layout.widget_note_dialog_new_note),
+        LIST(R.layout.widget_dialog_search_add_to_note);
 
         private int resId;
         DIALOG_RES_ID_s(int resId) {

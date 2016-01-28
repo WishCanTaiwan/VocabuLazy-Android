@@ -24,25 +24,18 @@ import com.wishcan.www.vocabulazy.R;
 public class ExamOptionItem extends LinearLayout {
 
     private static final int IMG_RES_IDs[] = {
-            R.drawable.icon_exam_correct, R.drawable.icon_exam_incorrect };
-
+            R.drawable.exam_correct_icon, R.drawable.exam_incorrect_icon};
     private static final int PADDING_RES_IDs[] = {
             R.dimen.exam_padding_horizontal, R.dimen.exam_padding_vertical,
             R.dimen.exam_padding_horizontal, R.dimen.exam_padding_vertical };
-
     private static final int BACKGROUND_RES_IDs[] = {
-            R.drawable.rect_exam_gray, R.drawable.rect_exam_deepgray, R.drawable.rect_exam_yellow};
+            R.drawable.exam_rect_gray, R.drawable.exam_rect_deepgray, R.drawable.exam_rect_yellow};
 
     private static final int TEXT_SIZE_RES_IDs = R.dimen.exam_text_size;
-
     private Context mContext;
-
     private Animator mAnimatorDown, mAnimatorUp;
-
     private ImageView mCorrectImage0, mCorrectImage1;
-
     private TextView mEnglishTextView, mTranslationTextView;
-
     private Rect mBoundRect;
 
     public ExamOptionItem(Context context) {
@@ -196,7 +189,6 @@ public class ExamOptionItem extends LinearLayout {
 
         if(ev.getAction() == MotionEvent.ACTION_DOWN) {
             mBoundRect = new Rect(getLeft(), getTop(), getRight(), getBottom());
-            Log.d("ExamOptionItem", "ACTION_DOWN "+ mBoundRect.left +" "+ mBoundRect.right);
             performActionDownAnimation();
             return false;
         }
@@ -208,7 +200,6 @@ public class ExamOptionItem extends LinearLayout {
     public boolean onTouchEvent(MotionEvent ev) {
         switch(ev.getAction()){
             case MotionEvent.ACTION_UP:
-                Log.d("ExamOptionItem", "ACTION_UP");
                 if(mBoundRect.contains(getLeft() + (int) ev.getX(), getTop() + (int) ev.getY())) {
                     mAnimatorUp.addListener(new Animator.AnimatorListener() {
                         @Override

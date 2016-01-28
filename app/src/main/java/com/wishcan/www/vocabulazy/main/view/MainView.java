@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 
-import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamIndexFragment;
 import com.wishcan.www.vocabulazy.main.info.fragment.InfoFragment;
@@ -17,25 +16,15 @@ import com.wishcan.www.vocabulazy.widget.TabView;
  */
 public class MainView extends TabView {
 
-    private static final int DEFAULT_TAB_STRIPE_COLOR_RES_ID = R.color.main_tab_view_tab_stripe_color;
-
-    private static final int DEFAULT_TAB_ITEM_0_DRAWABLE_RES_ID = R.drawable.bar_book_off;
-
-    private static final int DEFAULT_TAB_ITEM_1_DRAWABLE_RES_ID = R.drawable.bar_list_off;
-
-    private static final int DEFAULT_TAB_ITEM_2_DRAWABLE_RES_ID = R.drawable.bar_test_off;
-
-    private static final int DEFAULT_TAB_ITEM_3_DRAWABLE_RES_ID = R.drawable.bar_i_off;
-
-    private static final int DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID = R.string.book_title;
-
-    private static final int DEFAULT_TAB_ITEM_1_TAG_STR_RES_ID = R.string.list_title;
-
-    private static final int DEFAULT_TAB_ITEM_2_TAG_STR_RES_ID = R.string.test_title;
-
-    private static final int DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID = R.string.info_title;
-
-    private static final int DEFAULT_TAB_ITEM_2__LAYOUT_RES_ID = R.layout.exam_home_view;
+    private static final int DEFAULT_TAB_STRIPE_COLOR_RES_ID = R.color.main_tab_stripe;
+    private static final int DEFAULT_TAB_ITEM_0_DRAWABLE_RES_ID = R.drawable.main_book;
+    private static final int DEFAULT_TAB_ITEM_1_DRAWABLE_RES_ID = R.drawable.main_note;
+    private static final int DEFAULT_TAB_ITEM_2_DRAWABLE_RES_ID = R.drawable.main_exam;
+    private static final int DEFAULT_TAB_ITEM_3_DRAWABLE_RES_ID = R.drawable.main_info;
+    private static final int DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID = R.string.main_book_title;
+    private static final int DEFAULT_TAB_ITEM_1_TAG_STR_RES_ID = R.string.main_note_title;
+    private static final int DEFAULT_TAB_ITEM_2_TAG_STR_RES_ID = R.string.main_exam_title;
+    private static final int DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID = R.string.main_info_title;
 
     private static final int[] TAGIDs = {DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID,
             DEFAULT_TAB_ITEM_1_TAG_STR_RES_ID,
@@ -62,11 +51,6 @@ public class MainView extends TabView {
         TabItem mTabItem1;
         TabItem mTabItem2;
         TabItem mTabItem3;
-
-        VocBookFragment mVocBookFragment;
-        UsrNoteFragment mUsrNoteFragment;
-        ExamIndexFragment mExamIndexFragment;
-        InfoFragment mInfoFragment;
 
         mTabItem0 = new TabItem(context);
         mTabItem0.setDrawableIcon(ContextCompat.getDrawable(context, DEFAULT_TAB_ITEM_0_DRAWABLE_RES_ID));

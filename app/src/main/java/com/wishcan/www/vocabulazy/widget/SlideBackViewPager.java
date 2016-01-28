@@ -21,7 +21,7 @@ abstract public class SlideBackViewPager extends ViewPager {
     abstract public ViewGroup getMainPage();
     abstract public boolean enableSlideBack();
 
-    private static final int DEFAULT_BACKGROUND_COLOR = R.color.default_transparent_background;
+    private static final int DEFAULT_BACKGROUND_COLOR = R.color.widget_slide_back_view_pager_background;
 
     public SlideBackViewPager(Context context) {
         this(context, null);

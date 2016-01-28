@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
@@ -166,27 +167,19 @@ abstract public class TabView extends LinearLayout {
      */
     private class TabStripe extends RelativeLayout {
 
-        private static final int DEFAULT_HEIGHT_RES_ID = R.dimen.tab_view_tab_stripe;
-
-        private static final int DEFAULT_MASK_COLOR_RES_ID = R.color.main_tab_view_tab_mask;
+        private static final int DEFAULT_HEIGHT_RES_ID = R.dimen.widget_tab_height;
+        private static final int DEFAULT_MASK_COLOR_RES_ID = R.color.widget_tab_view_mask;
 
         private LinearLayout mTabStripe;
-
         private View mTabMask;
-
         private LinearLayout.LayoutParams defaultViewGroupLayoutParams;
-
         private LinearLayout.LayoutParams defaultItemLayoutParams;
-
         private int mCurrentTabIndex;
-
         private int mDefaultTabStripeHeight;
 
         public TabStripe(Context context) {
             super(context);
-
             initDefaultTabStripe();
-
         }
 
 
@@ -209,7 +202,7 @@ abstract public class TabView extends LinearLayout {
             // setting TabMask for marking which TabItem is the mCurrentTabItem
             mTabMask = new View(getContext());
             mTabMask.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, mDefaultTabStripeHeight));
-            mTabMask.setBackgroundColor(getResources().getColor(DEFAULT_MASK_COLOR_RES_ID));
+            mTabMask.setBackgroundColor(ContextCompat.getColor(getContext(), DEFAULT_MASK_COLOR_RES_ID));
             addView(mTabMask);
 
             mCurrentTabIndex = -1;
@@ -294,20 +287,14 @@ abstract public class TabView extends LinearLayout {
         private static final String DEFAULT_TAG_STR = "tagItem";
 
         private String mTag;
-
         private Context mContext;
-
         private ImageView imageView;
-
         private TextView textView;
-
         private LayoutParams defaultLayoutParams;
 
         public TabItem(Context context) {
             super(context);
-
             mContext = context;
-
             initDefaultTabItem();
         }
 
@@ -373,7 +360,6 @@ abstract public class TabView extends LinearLayout {
         @Override
         public void onPageSelected(int position) {
             mTabStripe.moveTabMask(position);
-//            getCurrentTabContent().requestFocus();
             initWhenTabIsSelected(position);
         }
 
