@@ -3,6 +3,7 @@ package com.wishcan.www.vocabulazy.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,9 +14,12 @@ import android.view.MenuItem;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
+import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 
 public class MainActivity extends FragmentActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     public static final int VIEW_MAIN_RES_ID = R.id.activity_main_container;
     public static final int ANIM_ENTER_RES_ID = R.anim.translation_from_right_to_center;
@@ -45,11 +49,19 @@ public class MainActivity extends FragmentActivity {
         } else {
             Log.d("MainActivity", "database already exist.");
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startAudioService();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        stopAudioService();
         mDatabase.writeToFile(this);
     }
 
@@ -82,5 +94,15 @@ public class MainActivity extends FragmentActivity {
         return mDatabase;
     }
 
+    private void startAudioService() {
+        Intent intent = new Intent(this, AudioService.class);
+        intent.setAction(AudioService.ACTION_START_SERVICE);
+        startService(intent);
+    }
 
+    private void stopAudioService() {
+        Intent intent = new Intent(this, AudioService.class);
+        intent.setAction(AudioService.ACTION_STOP_SERVICE);
+        startService(intent);
+    }
 }

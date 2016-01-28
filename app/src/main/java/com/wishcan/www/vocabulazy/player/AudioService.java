@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Binder;
@@ -34,6 +35,8 @@ public class AudioService extends IntentService {
     private static final String TAG = AudioService.class.getSimpleName();
 
     public static final String ACTION_START_SERVICE = "startService";
+
+    public static final String ACTION_STOP_SERVICE = "stopService";
 
     public static final String ACTION_INIT_PLAYER = "init";
 
@@ -105,19 +108,11 @@ public class AudioService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-
         switch (intent.getAction()) {
 
             case ACTION_START_SERVICE:
                 Log.d(TAG, ACTION_START_SERVICE);
                 mMainActivity = MainActivity.mMainActivity;
-
-                setUpNotification();
 
                 if (mDatabase == null) {
                     mDatabase = mMainActivity.getDatabase();
@@ -137,6 +132,9 @@ public class AudioService extends IntentService {
                         }
                     };
                 }
+                break;
+
+            case ACTION_STOP_SERVICE:
                 break;
 
             case ACTION_INIT_PLAYER:
@@ -213,18 +211,6 @@ public class AudioService extends IntentService {
             default:
                 break;
         }
-
-        return START_STICKY;
-    }
-
-    private void setUpNotification() {
-//        NotificationCompat.Builder builder =
-//                new NotificationCompat.Builder(mMainActivity)
-//                        .setContentTitle("VocabuaLazy")
-//                        .setContentText("James Bond")
-//                        .setSmallIcon(R.drawable.ic_launcher);
-//
-//        startForeground(1, builder.build());
     }
 
     private void initAudioPlayer() {

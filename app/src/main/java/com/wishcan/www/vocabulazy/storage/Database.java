@@ -253,7 +253,7 @@ public class Database implements Parcelable {
                 if (ids.get(index).equals(vocabulary.getID())) {
 //                    Log.d(TAG, "id: " + vocabulary.getID());
                     vocabularies.add(vocabulary);
-                    Log.d(TAG, "getVocabulariesByIDs - " + vocabulary.getSpell());
+//                    Log.d(TAG, "getVocabulariesByIDs - " + vocabulary.getSpell());
                 }
             }
         }

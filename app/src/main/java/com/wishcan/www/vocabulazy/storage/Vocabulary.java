@@ -77,7 +77,7 @@ public class Vocabulary implements Parcelable {
 
     public String getTranslationInOneString() {
         StringBuilder builder = new StringBuilder();
-        Log.d(TAG, mTranslate.toString());
+//        Log.d(TAG, mTranslate.toString());
         for (int index = 0; index < mTranslate.size(); index++) {
 //            Log.d(TAG, mTranslate.get(index).toString());
             builder.append(mTranslate.get(index).toString());

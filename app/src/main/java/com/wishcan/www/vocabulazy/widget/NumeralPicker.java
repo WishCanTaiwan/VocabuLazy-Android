@@ -10,6 +10,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -25,6 +26,8 @@ import com.wishcan.www.vocabulazy.R;
  * two TextViews, mNumberTextView and mTitleTextView;
  */
 public class NumeralPicker extends LinearLayout {
+
+    public static final String TAG = NumeralPicker.class.getSimpleName();
 
     public interface OnPickerClickedListener {
         void onPickerClicked(String valueStr);
@@ -168,6 +171,7 @@ public class NumeralPicker extends LinearLayout {
     }
 
     public void calculatePickerRange() {
+        Log.d(TAG, "calculatePickerRange: Max " + mMaximumNumber + ",  Min " + mMinimumNumber);
         mPickerRange = mMaximumNumber - mMinimumNumber + 1;
     }
 

@@ -37,6 +37,8 @@ import java.util.LinkedList;
  */
 public class PlayerOptionView extends LinearLayout {
 
+    public static final String TAG = PlayerOptionView.class.getSimpleName();
+
     public interface OnOptionChangedListener{
         void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode);
     }
@@ -180,7 +182,7 @@ public class PlayerOptionView extends LinearLayout {
     }
 
     public void setOptionsInTabContent(ArrayList<Option> optionLL){
-
+Log.d(TAG, "top");
         if(optionLL == null) {
             mOptionLL = new ArrayList<>();
             for(int i = 0; i < 3; i++)
