@@ -16,7 +16,8 @@ public class Vocabulary implements Parcelable {
 
     public String mSpell;
     public String mKK;
-    public String mCategory;
+//    public String mCategory;
+    public ArrayList<String> mCategory;
     public ArrayList<String> mTranslate;
     public String mAudio;
 
@@ -25,7 +26,7 @@ public class Vocabulary implements Parcelable {
     public ArrayList<String> mSentence_Audio;
 
     public Vocabulary(int id, String spell, String kk,
-                      String category, ArrayList<String> translate, String audio,
+                      /*String category*/ ArrayList<String> category, ArrayList<String> translate, String audio,
                       ArrayList<String> en_sentence, ArrayList<String> cn_sentence,
                       ArrayList<String> sentence_audio) {
         mID = id;
@@ -46,7 +47,8 @@ public class Vocabulary implements Parcelable {
 
         mSpell = in.readString();
         mKK = in.readString();
-        mCategory = in.readString();
+//        mCategory = in.readString();
+        mCategory = in.readArrayList(String.class.getClassLoader());
         mTranslate = in.readArrayList(String.class.getClassLoader());
         mAudio = in.readString();
 
@@ -67,7 +69,7 @@ public class Vocabulary implements Parcelable {
         return mKK;
     }
 
-    public String getCategory() {
+    public /*String*/ ArrayList<String> getCategory() {
         return mCategory;
     }
 
@@ -128,7 +130,8 @@ public class Vocabulary implements Parcelable {
 
         dest.writeString(mSpell);
         dest.writeString(mKK);
-        dest.writeString(mCategory);
+//        dest.writeString(mCategory);
+        dest.writeList(mCategory);
         dest.writeList(mTranslate);
         dest.writeString(mAudio);
 

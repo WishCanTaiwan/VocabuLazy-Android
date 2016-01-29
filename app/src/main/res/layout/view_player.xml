@@ -11,8 +11,8 @@
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
         />
 
     <com.wishcan.www.vocabulazy.main.player.view.PlayerMainView
@@ -28,7 +28,6 @@
         android:layout_height="match_parent"
         android:background="@color/default_dialog_background_color"
         android:visibility="invisible"
-        android:onClick="onOptionClicked"
         >
 
 

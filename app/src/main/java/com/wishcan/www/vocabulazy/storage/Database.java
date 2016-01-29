@@ -469,7 +469,8 @@ public class Database implements Parcelable {
 
                 String spell = object.getString("spell");
                 String kk = object.getString("kk");
-                String category = object.getString("category");
+                ArrayList<String> category = toArrayList(object.getJSONArray("category"), new ArrayList<String>());
+//                String category = object.getString("category");
 //                String translation = object.getString("translation");
 //                ArrayList<String> category = toArrayList(object.getJSONArray("category"), new ArrayList<String>());
                 ArrayList<String> translation = toArrayList(object.getJSONArray("translation"), new ArrayList<String>());
