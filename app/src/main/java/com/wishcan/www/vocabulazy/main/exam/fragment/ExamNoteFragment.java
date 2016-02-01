@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamNoteView;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
+import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 import com.wishcan.www.vocabulazy.widget.NoteView;
 
 import java.util.ArrayList;
@@ -21,8 +23,9 @@ import java.util.LinkedList;
 /**
  * Created by swallow on 2016/1/14.
  */
-public class ExamNoteFragment extends Fragment {
+public class ExamNoteFragment extends Fragment implements FragmentWithActionBarTitle{
 
+    private static final int TITLE_RES_ID = R.string.fragment_exam_note_title;
     private Database mDatabase;
 
     public static ExamNoteFragment newInstance() {
@@ -86,5 +89,10 @@ public class ExamNoteFragment extends Fragment {
         fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examFragment, "ExamFragment");
         fragmentTransaction.addToBackStack("ExamLessonFragment");
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public String getActionBarTitle() {
+        return getResources().getString(TITLE_RES_ID);
     }
 }

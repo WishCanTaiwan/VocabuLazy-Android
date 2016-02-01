@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!--Fragment Name-->
+    <string name="fragment_main_title">主頁面</string>
+    <string name="fragment_exam_book_title">單元測驗</string>
+    <string name="fragment_exam_note_title">清單測驗</string>
     <!-- widget -->
     <!-- main -->
     <string name="main_book_title">學習單元</string>

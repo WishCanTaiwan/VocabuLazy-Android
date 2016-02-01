@@ -9,15 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.view.MainView;
+import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements FragmentWithActionBarTitle{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final int VIEW_RES_ID = R.layout.view_main;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -61,8 +65,20 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.view_main, container, false);
+        MainView mainView = (MainView) inflater.inflate(VIEW_RES_ID, container, false);
+        ((MainActivity)getActivity()).setActionBarTitle(getResources().getString(MainView.TAGIDs[0]));
+        mainView.setOnTabChangeListener(new MainView.OnTabChangeListener() {
+            @Override
+            public void onTabChange(int position) {
+                ((MainActivity)getActivity()).setActionBarTitle(getResources().getString(MainView.TAGIDs[position]));
+            }
+        });
+        return mainView;
     }
 
 
+    @Override
+    public String getActionBarTitle() {
+        return getResources().getString(MainView.TAGIDs[0]);
+    }
 }

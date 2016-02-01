@@ -20,6 +20,7 @@ import com.wishcan.www.vocabulazy.storage.Book;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.widget.BookView;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
+import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -29,7 +30,9 @@ import java.util.LinkedList;
  * Use the {@link ExamBookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamBookFragment extends Fragment {
+public class ExamBookFragment extends Fragment implements FragmentWithActionBarTitle{
+
+    private static final int TITLE_RES_ID = R.string.fragment_exam_book_title;
 
     private Database mDatabase;
 
@@ -96,4 +99,8 @@ public class ExamBookFragment extends Fragment {
     }
 
 
+    @Override
+    public String getActionBarTitle() {
+        return getResources().getString(TITLE_RES_ID);
+    }
 }

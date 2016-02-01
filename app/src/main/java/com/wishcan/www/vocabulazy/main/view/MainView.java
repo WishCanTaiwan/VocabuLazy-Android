@@ -16,6 +16,10 @@ import com.wishcan.www.vocabulazy.widget.TabView;
  */
 public class MainView extends TabView {
 
+    public interface OnTabChangeListener {
+        void onTabChange(int position);
+    }
+
     private static final int DEFAULT_TAB_STRIPE_COLOR_RES_ID = R.color.main_tab_stripe;
     private static final int DEFAULT_TAB_ITEM_0_DRAWABLE_RES_ID = R.drawable.main_book;
     private static final int DEFAULT_TAB_ITEM_1_DRAWABLE_RES_ID = R.drawable.main_note;
@@ -26,10 +30,13 @@ public class MainView extends TabView {
     private static final int DEFAULT_TAB_ITEM_2_TAG_STR_RES_ID = R.string.main_exam_title;
     private static final int DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID = R.string.main_info_title;
 
-    private static final int[] TAGIDs = {DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID,
+    public static final int[] TAGIDs = {DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID,
             DEFAULT_TAB_ITEM_1_TAG_STR_RES_ID,
             DEFAULT_TAB_ITEM_2_TAG_STR_RES_ID,
-            DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID,};
+            DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID
+    };
+
+    private OnTabChangeListener mListener;
 
     public MainView(Context context) {
         this(context, null);
@@ -74,8 +81,14 @@ public class MainView extends TabView {
 
     }
 
+    public void setOnTabChangeListener(OnTabChangeListener listener) {
+        mListener = listener;
+    }
+
     @Override
     public void initWhenTabIsSelected(int position) {
 //        ((MainActivity) getContext()).switchActionBarTitle(getContext().getString(TAGIDs[position]));
+        if(mListener != null)
+            mListener.onTabChange(position);
     }
 }
