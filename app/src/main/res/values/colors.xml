@@ -4,7 +4,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
     <!-- widget -->
     <color name="widget_tab_view_mask">#20000000</color>
     <color name="widget_lesson_background">#ffffffff</color>
@@ -26,6 +25,8 @@
     <!-- player -->
     <color name="player_list_item1_border_bottom_color">#ffb3eddf</color>
     <color name="player_list_item2_border_bottom_color">#ffddf5ef</color>
+    <color name="player_list_item_font">#ff000000</color>
+    <color name="player_list_item_font1">#FF9FA0A0</color>
     <color name="player_pager_index_color">#ffa09e9c</color>
     <color name="player_pager_index_selected">#ffd3ac49</color>
     <color name="player_option_tab0">#ff48cfae</color>

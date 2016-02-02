@@ -1,34 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/widget_pop_item1"
-        >
-        <LinearLayout
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/widget_pop_item1"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/player_voc_spell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-            <TextView
-                android:id="@id/player_voc_spell"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text=""
-                android:textSize="@dimen/player_list_item_text0_size"
-                android:textColor="#939494"/>
+            android:layout_gravity="center"
+            android:text="effect"
+            android:gravity="center"
+            android:textSize="@dimen/player_list_item_text0_size"
+            android:maxLines="2"
+            android:textColor="@color/player_list_item_font1" />
 
-            <TextView
-                android:id="@id/player_voc_translation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text=""
-                android:textSize="@dimen/player_list_item_text1_size"
-                android:textColor="#939494" />
-        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/player_voc_translation"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="(n.)結果、效果"
+            android:maxLines="1"
+            android:textSize="@dimen/player_list_item_text1_size"
+            android:textColor="@color/player_list_item_font1" />
+        <TextView
+            android:id="@+id/player_voc_translation2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="(vt.)造成；產生"
+            android:visibility="gone"
+            android:maxLines="1"
+            android:textSize="@dimen/player_list_item_text1_size"
+            android:textColor="@color/player_list_item_font1" />
+    </LinearLayout>
 
 
-    </RelativeLayout>
-
+</LinearLayout>

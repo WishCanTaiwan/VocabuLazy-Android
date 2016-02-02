@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,7 @@ abstract public class NoteView extends SlideBackViewPager{
 
     public void setOnListIconClickListener(OnListIconClickListener listener) {
         mNoteListView.setOnListIconClickListener(listener);
+        mNoteNewButton.setOnListIconClickListener(listener);
     }
 
     public void setEnableEtcFunction(boolean bool) {
@@ -105,6 +107,13 @@ abstract public class NoteView extends SlideBackViewPager{
 
         mNoteNewButton = new NoteNewButton(getContext());
         mNoteNewButton.setVisibility(GONE);
+        int layoutMargin = (int)getResources().getDisplayMetrics().density * 10;
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        layoutParams.setMargins(0, 0, layoutMargin, layoutMargin);
+        mNoteNewButton.setLayoutParams(layoutParams);
 
         mContainer.addView(mNoteListView);
         mContainer.addView(mNoteNewButton);
@@ -334,6 +343,7 @@ abstract public class NoteView extends SlideBackViewPager{
 
         private static final int BACKGROUND_RES_ID = R.drawable.circle_add_button_yellow;
         private Animator mShowingAnimator, mHidingAnimator;
+        private OnListIconClickListener mListener;
 
         public NoteNewButton(Context context) {
             this(context, null);
@@ -343,7 +353,7 @@ abstract public class NoteView extends SlideBackViewPager{
             super(context, attrs);
             setBackgroundResource(BACKGROUND_RES_ID);
             CrossView crossView = new CrossView(context);
-            crossView.setCrossSize(20);
+            crossView.setCrossSize((int)getResources().getDisplayMetrics().density * 20);
             LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             layoutParams.addRule(CENTER_IN_PARENT);
             crossView.setLayoutParams(layoutParams);
@@ -357,6 +367,14 @@ abstract public class NoteView extends SlideBackViewPager{
             mHidingAnimator = ObjectAnimator.ofFloat(this, "translationY", 0f, 960f);
             mHidingAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
             mHidingAnimator.setDuration(200);
+
+            setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null)
+                        mListener.onListIconClick(ICON_NEW, -1, v);
+                }
+            });
         }
 
         public void showButton() {
@@ -365,6 +383,10 @@ abstract public class NoteView extends SlideBackViewPager{
 
         public void hideButton() {
             mHidingAnimator.start();
+        }
+
+        public void setOnListIconClickListener(OnListIconClickListener listener) {
+            mListener = listener;
         }
     }
 }

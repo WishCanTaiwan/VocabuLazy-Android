@@ -116,6 +116,9 @@ public class PlayerFragment extends Fragment {
             public void onPlayerHorizontalScrollStop(int direction) {
                 mLessonIndex += 1;
                 mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+                int numOfLesson = mDatabase.getNumOfLesson(mBookIndex);
+                mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
+                mVocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIDs(mBookIndex, mLessonIndex));
                 mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
                 mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
 

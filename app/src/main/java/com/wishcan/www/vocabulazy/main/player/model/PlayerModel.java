@@ -38,7 +38,14 @@ public class PlayerModel {
 		for(Vocabulary voc : vocArrayList) {
             HashMap<String, String> hm = new HashMap<>();
             hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
-            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], voc.getTranslationInOneString());
+            ArrayList<String> transList = voc.getTranslate();
+            ArrayList<String> cateList = voc.getCategory();
+            for(int i = 0; i < transList.size() && i < cateList.size() && i < 2; i++) {
+                String newStr = "(" +cateList.get(i)+ ")" + transList.get(i);
+                hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1+i], newStr);
+            }
+//            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], voc.getTranslationInOneString());
+
             playerDataContent.add(hm);
         }
         return playerDataContent;

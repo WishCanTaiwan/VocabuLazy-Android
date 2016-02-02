@@ -113,10 +113,10 @@ public class PlayerMainView extends Infinite3View {
         private static final int PLAYER_ITEM_DETAIL_PAGER_INDEX_PARENT_LAYOUT_RES_ID = R.id.pager_index_parent;
         
         public static final String[] PLAYER_ITEM_CONTENT_FROM = {
-                "voc_spell", "voc_translation"
+                "voc_spell", "voc_translation", "voc_translation2"
         };
         public static final int[] PLAYER_ITEM_CONTENT_TO = {
-               R.id.player_voc_spell, R.id.player_voc_translation
+               R.id.player_voc_spell, R.id.player_voc_translation, R.id.player_voc_translation2
         };
 
         public static final String[] PLAYER_ITEM_DETAIL_CONTENT_FROM ={

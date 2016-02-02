@@ -26,7 +26,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.utility.Utility;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -59,7 +61,7 @@ abstract public class PopScrollView extends RelativeLayout {
     private OnPopScrollStoppedListener mOnPopScrollStoppedListener;
     private OnItemPreparedListener mOnItemPreparedListener;
 
-    public static final int DEFAULT_PLAYER_LIST_ITEM_COUNT = 2;
+    public static final int DEFAULT_PLAYER_LIST_ITEM_COUNT = 3;
 
     private static final float ZOOM_IN_FACTORY = 1.05f;
     private static final int DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW = 5;
@@ -268,7 +270,7 @@ abstract public class PopScrollView extends RelativeLayout {
 
         int focused_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID);
         int item0_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM0_COLOR_RES_ID);
-        View newFocusedView = getCurrentFocusedView();
+        final View newFocusedView = getCurrentFocusedView();
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             newFocusedView.setElevation(30);
@@ -277,6 +279,23 @@ abstract public class PopScrollView extends RelativeLayout {
         newFocusedViewAnim.setDuration(100);
         newFocusedViewAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         newFocusedViewAnim.start();
+        newFocusedViewAnim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {}
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if(newFocusedView instanceof ViewGroup){
+                    ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup)newFocusedView, TextView.class);
+                    for(View v : arrayList) {
+                        ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font));
+                    }
+                }
+            }
+            @Override
+            public void onAnimationCancel(Animator animation) {}
+            @Override
+            public void onAnimationRepeat(Animator animation) {}
+        });
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ValueAnimator newFocusedViewColorAnim = ObjectAnimator.ofArgb(newFocusedView, "BackgroundColor", item0_color, focused_color);
@@ -301,6 +320,29 @@ abstract public class PopScrollView extends RelativeLayout {
         previousFocusedViewAnim.setDuration(100);
         previousFocusedViewAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         previousFocusedViewAnim.start();
+        previousFocusedViewAnim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (previousFocusedView instanceof ViewGroup) {
+                    ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup) previousFocusedView, TextView.class);
+                    for (View v : arrayList) {
+                        ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font1));
+                    }
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ValueAnimator previousFocusedViewColorAnim = ObjectAnimator.ofArgb(previousFocusedView, "BackgroundColor", focused_color, item0_color);
@@ -320,8 +362,17 @@ abstract public class PopScrollView extends RelativeLayout {
                 public void onAnimationRepeat(Animator animation) {}
             });
         }
-        else
+        else {
             previousFocusedView.setBackground(ContextCompat.getDrawable(mContext, DEFAULT_ITEM_DRAWABLE_RES_ID));
+            if(previousFocusedView instanceof ViewGroup){
+                ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup)previousFocusedView, TextView.class);
+                for(View v : arrayList) {
+                    ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font1));
+                }
+            }
+        }
+
+
     }
 
     /**
@@ -421,7 +472,7 @@ abstract public class PopScrollView extends RelativeLayout {
 
     private void setChildSize(){
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        mPopItemHeight = (int) Math.floor(displayMetrics.heightPixels* ((1 - 0.25) / DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW));
+        mPopItemHeight = (int) Math.floor(displayMetrics.heightPixels* ((1 - 0.15) / DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW));
         mPopItemWidth = (int) Math.floor(displayMetrics.widthPixels*0.90);
     }
 
@@ -505,7 +556,7 @@ abstract public class PopScrollView extends RelativeLayout {
             while(ii.hasNext()){
                 index++;
 
-                final RelativeLayout v = (RelativeLayout) mInflater.inflate(mResource, mParent, false);
+                final ViewGroup v = (ViewGroup) mInflater.inflate(mResource, mParent, false);
 
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(mPopItemWidth, mPopItemHeight);
                 if(index == 0)
@@ -525,20 +576,21 @@ abstract public class PopScrollView extends RelativeLayout {
                             if (mShowingDetails == STATE_ITEM_DETAIL_SHOW)
                                 hideItemDetails();
                         } else {
-                            if(mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
+                            if (mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
                                 showItemDetails();
                         }
-
-
                     }
                 });
 
-                for(int i = itemFilledStartIndex; i < itemFilledEndIndex; i++){
+                for(int i = itemFilledStartIndex; i < itemFilledEndIndex && i < dataMap.size(); i++){
                     /**
                      * here only contains spell and translation.
                      */
                     TextView textView = (TextView) v.findViewById(mTo[i]);
-                    textView.setText(dataMap.get(mFrom[i]).toString());
+                    if(textView != null) {
+                        textView.setText(dataMap.get(mFrom[i]).toString());
+                        textView.setVisibility(VISIBLE);
+                    }
                 }
 
                 mParent.postDelayed(new Runnable() {
@@ -561,6 +613,7 @@ abstract public class PopScrollView extends RelativeLayout {
         public MyScrollView(Context context) {
             super(context);
 
+            setVerticalScrollBarEnabled(false);
             onScrollStoppedListener = new OnScrollStoppedListener();
             scrollerTask = new Runnable() {
                 @Override
