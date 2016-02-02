@@ -70,7 +70,11 @@ public class PlayerModel {
         return mVocabularies;
     }
 
-    public ArrayList<Option> getDefaultOption() {
+    public Option getCurrentOption() {
+        return mDatabase.getCurrentOption();
+    }
+
+    public ArrayList<Option> getDefaultOptions() {
         return mDatabase.getOptions();
     }
 

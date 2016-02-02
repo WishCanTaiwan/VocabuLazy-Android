@@ -15,7 +15,8 @@ import java.util.Random;
 /**
  * Created by allencheng07 on 2016/1/26.
  */
-public class AudioService extends IntentService implements AudioPlayer.OnEventListener, WCTextToSpeech.OnUtteranceStatusListener {
+public class AudioService extends IntentService
+        implements AudioPlayer.OnEventListener, WCTextToSpeech.OnUtteranceStatusListener {
 
     /**
      * tag for debugging
@@ -31,6 +32,7 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
     public static final String ACTION_START_PLAYING = "start-playing";
     public static final String ACTION_PAUSE_PLAYING = "pause-playing";
     public static final String ACTION_RESUME_PLAYING = "resume-playing";
+    public static final String ACTION_STOP_PLAYING = "stop-playing";
     public static final String ACTION_PLAY_BUTTON_CLICKED = "play-button-clicked";
     public static final String ACTION_OPTION_SETTING_CHANGED = "option-setting-changed";
 
@@ -42,6 +44,7 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
     public static final String KEY_START_SENTENCE_INDEX = "start-sentence-index";
     public static final String KEY_PLAYING_FIELD = "playing-field";
     public static final String KEY_OPTION_SETTING = "option-setting";
+    public static final String KEY_STOP_AT_ITEM_INDEX = "stop-at-item-index";
 
     /**
      * strings for identifying the status of the player
@@ -61,6 +64,7 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
     public static final String PLAYING_CnSENTENCE = "playing-cnsentence";
 
     private AudioPlayer wAudioPlayer;
+    private ServiceBroadcaster wServiceBroadcaster;
     private ArrayList<Vocabulary> wVoabularies;
     private Option wOptionSetting;
     private WCTextToSpeech wcTextToSpeech;
@@ -121,6 +125,7 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
 
             case ACTION_START_SERVICE:
                 wAudioPlayer = new AudioPlayer(this);
+                wServiceBroadcaster = new ServiceBroadcaster(this);
                 wcTextToSpeech = new WCTextToSpeech(getApplicationContext(), this);
                 break;
 
@@ -131,7 +136,9 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
 
             case ACTION_SET_CONTENT:
                 wVoabularies = intent.getParcelableArrayListExtra(KEY_PLAYER_CONTENT);
+                wOptionSetting = intent.getParcelableExtra(KEY_OPTION_SETTING);
                 wCurrentItemAmount = wVoabularies.size();
+                updateOptionSetting(wOptionSetting);
 //                Log.d(TAG, voabularies.size() + " vocabulary objects received from controller");
                 break;
 
@@ -149,21 +156,30 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
                 break;
 
             case ACTION_PAUSE_PLAYING:
+                wStatus = STATUS_PAUSE;
                 wcTextToSpeech.pause();
                 break;
 
             case ACTION_RESUME_PLAYING:
+                wStatus = STATUS_PLAYING;
                 startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+                break;
+
+            case ACTION_STOP_PLAYING:
+                wStatus = STATUS_STOPPED;
+                wcTextToSpeech.stop();
+
+                wCurrentItemIndex = intent.getIntExtra(KEY_STOP_AT_ITEM_INDEX, -1);
+
                 break;
 
             case ACTION_PLAY_BUTTON_CLICKED:
                 if (wStatus.equals(STATUS_PLAYING)) {
-                    wcTextToSpeech.pause();
                     wStatus = STATUS_PAUSE;
-                }
-                else {
-                    startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+                    wcTextToSpeech.pause();
+                } else {
                     wStatus = STATUS_PLAYING;
+                    startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
                 }
                 break;
 
@@ -254,9 +270,28 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
 
     @Override
     public void onUtteranceCompleted() {
-//        Log.d(TAG, "onUtteranceCompleted");
+
+        if (wStatus.equals(STATUS_STOPPED)) {
+            Log.d(TAG, "status is stopped");
+            if (wCurrentItemIndex >= 0) {
+                wCurrentSentenceIndex = -1;
+                wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                wPlaying = PLAYING_SPELL;
+                wStatus = STATUS_PLAYING;
+                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+            } else {
+                wCurrentItemIndex = 0;
+                wCurrentSentenceAmount = wVoabularies.get(0).getEn_Sentence().size();
+                wPlaying = PLAYING_SPELL;
+                wStatus = STATUS_PLAYING;
+                startPlayingItemAt(0, -1);
+            }
+            return;
+        }
 
         if (!wStatus.equals(STATUS_PLAYING)) return;
+
+        Log.d(TAG, "onUtteranceCompleted");
 
         switch (wPlaying) {
 
@@ -276,6 +311,7 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
                     wCurrentSentenceIndex = -1;
                     wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                     wPlaying = PLAYING_SPELL;
+                    wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
                 }
                 break;
 
@@ -293,6 +329,7 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
                     wCurrentSentenceIndex = -1;
                     wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                     wPlaying = PLAYING_SPELL;
+                    wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
                 }
 
                 break;
@@ -311,6 +348,8 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
                     wCurrentSentenceIndex = -1;
                     wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                     wPlaying = PLAYING_SPELL;
+                    wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+
                 }
 
                 break;
@@ -322,4 +361,6 @@ public class AudioService extends IntentService implements AudioPlayer.OnEventLi
 
         startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
     }
+
+
 }

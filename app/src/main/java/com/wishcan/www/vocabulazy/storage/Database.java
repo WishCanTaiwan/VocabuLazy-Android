@@ -49,7 +49,7 @@ public class Database implements Parcelable {
         mContext = context;
 
         mCurrentContentInPlayer = new ArrayList<>();
-        mCurrentOptionMode = -1;
+        mCurrentOptionMode = 0;
         mCurrentPlayingBook = -1;
         mCurrentPlayingList = -1;
 
@@ -371,6 +371,10 @@ public class Database implements Parcelable {
 
     public void setCurrentOptions(ArrayList<Option> options) {
         mOptions = options;
+    }
+
+    public Option getCurrentOption() {
+        return mOptions.get(mCurrentOptionMode);
     }
 
     public int getCurrentOptionMode() {
