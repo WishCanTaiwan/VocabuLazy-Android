@@ -19,6 +19,7 @@ import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
 import com.wishcan.www.vocabulazy.widget.LessonView;
+import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -28,9 +29,10 @@ import java.util.LinkedList;
  * Use the {@link VocLessonFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VocLessonFragment extends Fragment {
+public class VocLessonFragment extends Fragment implements FragmentWithActionBarTitle{
 
-    private static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
+    public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
+    
     private Database mDatabase;
     private int mBookIndex;
     private int mLessonIndex;
@@ -51,7 +53,7 @@ public class VocLessonFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDatabase = ((MainActivity) getActivity()).getDatabase();
-        mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
+        mBookIndex = getArguments() == null ? -1 : getArguments().getInt(BOOK_INDEX_STR);
         mLessonIndex = 0;
     }
 
@@ -95,5 +97,13 @@ public class VocLessonFragment extends Fragment {
         fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, playerFragment, "PlayerFragment");
         fragmentTransaction.addToBackStack("VocLessonFragment");
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public String getActionBarTitle() {
+        String titleStr = "Book ";
+        if(mBookIndex != -1)
+            titleStr += mBookIndex;
+        return titleStr;
     }
 }

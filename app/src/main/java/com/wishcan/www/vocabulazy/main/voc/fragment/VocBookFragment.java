@@ -84,6 +84,10 @@ public class VocBookFragment extends Fragment {
     }
 
     private void goVocLessonFragment(int bookIndex){
+        Bundle args = new Bundle();
+        args.putInt(VocLessonFragment.BOOK_INDEX_STR, bookIndex);
+        ((MainActivity) getActivity()).goFragment(VocLessonFragment.class, args, "VocLessonFragment", "MainFragment");
+        /*
         FragmentManager fragmentManager = getFragmentManager();
         VocLessonFragment lessonsFragment = VocLessonFragment.newInstance(bookIndex);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -91,8 +95,9 @@ public class VocBookFragment extends Fragment {
                 setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
                         MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
         fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, lessonsFragment, "VocLessonFragment");
-        fragmentTransaction.addToBackStack("VocBookFragment");
+        fragmentTransaction.addToBackStack("MainFragment");
         fragmentTransaction.commit();
+        */
     }
 
 
