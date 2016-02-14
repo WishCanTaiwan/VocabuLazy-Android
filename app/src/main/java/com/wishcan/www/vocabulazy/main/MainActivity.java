@@ -40,6 +40,7 @@ public class MainActivity extends FragmentActivity {
     private ActionBar mActionBar;
     private TextView mActionBarTitleTextView;
     private static Database mDatabase;
+    private int mBackStackCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +54,17 @@ public class MainActivity extends FragmentActivity {
                 public void onBackStackChanged() {
                     int backStackCount;
                     if((backStackCount = mFragmentManager.getBackStackEntryCount()) > 0) {
-                        Fragment f = mFragmentManager.findFragmentById(mFragmentManager.getBackStackEntryAt(backStackCount - 1).getId());
-                        if(f != null)
-                            Log.d("MainActivity", f.getClass().getName());
-                        else
-                            Log.d("MainActivity", "f is NULL");
-                        if (f instanceof FragmentWithActionBarTitle)
-                            setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
+                        if(backStackCount < mBackStackCount) {  // Back button is pressed
+                            int id = mFragmentManager.getBackStackEntryAt(backStackCount - 1).getId();
+                            String str = mFragmentManager.getBackStackEntryAt(backStackCount - 1).getName();
+                            Fragment f = mFragmentManager.findFragmentByTag(str);
+                            if (f != null && f instanceof FragmentWithActionBarTitle)
+                                setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
+                        }
                     }
                     else
                         Log.d("MainActivity BackStack", ""+MainFragment.class.getName());
+                    mBackStackCount = backStackCount;
                 }
             });
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
@@ -75,8 +77,10 @@ public class MainActivity extends FragmentActivity {
         } else {
             Log.d("MainActivity", "database already exist.");
         }
+
         mMainActivity = this;
 
+        mBackStackCount = 0;
     }
 
     @Override
@@ -95,7 +99,10 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-       setCustomActionBar();
+        setCustomActionBar();
+        Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");
+        if(f != null && f instanceof FragmentWithActionBarTitle)
+            setActionBarTitle(((FragmentWithActionBarTitle)f).getActionBarTitle());
     }
 
     @Override
@@ -125,6 +132,23 @@ public class MainActivity extends FragmentActivity {
 
     public Database getDatabase() {
         return mDatabase;
+    }
+
+    public void goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
+        Fragment f = Fragment.instantiate(this, cls.getName(), bundle);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.
+                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        if(newTag == null || newTag.equals(""))
+            newTag = "newTag";
+        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, f, newTag);
+        if(backStackTag != null && !backStackTag.equals(""))
+            fragmentTransaction.addToBackStack(backStackTag);
+        fragmentTransaction.commit();
+        if(f instanceof FragmentWithActionBarTitle)
+            setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
     }
 
     private void startAudioService() {

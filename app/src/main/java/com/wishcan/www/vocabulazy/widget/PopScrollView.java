@@ -211,7 +211,7 @@ abstract public class PopScrollView extends RelativeLayout {
         mPopViewWidth = mPopItemZoomInWidth;
         mPopViewTopMargin = (int)(mPopItemHeight * (((float)DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW - 1) / 2));
         mPopViewBottomMargin = mPopViewTopMargin;
-        mPopItemDetailHeight = (int) (getContext().getResources().getDisplayMetrics().heightPixels * 0.28);
+        mPopItemDetailHeight = (int) (getContext().getResources().getDisplayMetrics().heightPixels * 0.4);
         mPopItemDetailWidth = mPopViewWidth;
 
         ViewGroup.LayoutParams viewGroupLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);

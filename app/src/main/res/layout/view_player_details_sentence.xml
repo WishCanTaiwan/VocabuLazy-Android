@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
-    android:padding="5dp"
+    android:padding="8dp"
     android:background="#ffffffff">
 
     <TextView
@@ -14,6 +14,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="John's appearance in the doorway was welcomed with shouts."
+        android:textSize="@dimen/player_list_item_text2_size"
         android:textColor="#ff000000"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="約翰出現在門口的時候，大家高喊著歡迎他。"
+        android:textSize="@dimen/player_list_item_text2_size"
         android:textColor="#ff000000"/>
 
 </LinearLayout>
