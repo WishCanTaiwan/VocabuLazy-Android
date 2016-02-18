@@ -182,7 +182,7 @@ public class PlayerOptionView extends LinearLayout {
     }
 
     public void setOptionsInTabContent(ArrayList<Option> optionLL){
-Log.d(TAG, "top");
+
         if(optionLL == null) {
             mOptionLL = new ArrayList<>();
             for(int i = 1; i <= 3; i++)

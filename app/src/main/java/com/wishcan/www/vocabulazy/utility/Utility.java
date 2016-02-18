@@ -11,12 +11,14 @@ import java.util.ArrayList;
  */
 public class Utility {
 
+    public static final String TAG = Utility.class.getSimpleName();
+
     public static ArrayList<View> findViewRecursive(ViewGroup viewGroup, Class targetClass) {
         int index = 0;
         int count;
         ArrayList<View> ansList = new ArrayList<>();
 
-        Log.d("findViewRecursive", "Searching");
+//        Log.d(TAG, "findViewRecursive Searching");
         while((count = viewGroup.getChildCount()) > 0){
             View v = viewGroup.getChildAt(index);
             if(v instanceof ViewGroup) {
@@ -25,7 +27,7 @@ public class Utility {
                     ansList.add(view);
             }
             else if(targetClass.isInstance(v)) {
-                Log.d("findViewRecursive", "Found");
+//                Log.d(TAG, "findViewRecursive Found");
                 ansList.add(v);
             }
             if(++index >= count)

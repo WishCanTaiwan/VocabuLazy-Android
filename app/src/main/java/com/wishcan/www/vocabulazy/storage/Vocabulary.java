@@ -57,6 +57,13 @@ public class Vocabulary implements Parcelable {
         mSentence_Audio = in.readArrayList(String.class.getClassLoader());
     }
 
+    public String toVocabularyString() {
+        return "spell: " + mSpell +
+                ", translation: " + mTranslate +
+                ", EnSentence: [" + mEn_Sentence.get(0) +
+                "], CnSentence: [" + mCn_Sentence + "]";
+    }
+
     public int getID() {
         return mID;
     }

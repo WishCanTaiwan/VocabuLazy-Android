@@ -25,6 +25,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
     private OnUtteranceStatusListener wOnUtteranceStatusListener;
 
     private boolean ttsEngineInit;
+    private String currentUtterance;
     private HashMap<String, String> utteranceParams;
 
     public WCTextToSpeech (Context context, OnUtteranceStatusListener listener) {
@@ -34,21 +35,28 @@ public class WCTextToSpeech extends UtteranceProgressListener
         ttsEngineInit = false;
         setTTSListener();
         setTTSIDParams(UTTERANCE_ID);
+        currentUtterance = "";
     }
 
     void speak(String text) {
-        if (ttsEngineInit) {
-            Log.d(TAG, "speak: " + text);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                Log.d(TAG, "sdk >= 21");
-                wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, text);
-            } else {
-//                Log.d(TAG, "sdk < 21");
-                setTTSIDParams(text);
-                wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, utteranceParams);
-            }
+        if (!ttsEngineInit)
+            return;
+
+//        if (!currentUtterance.equals(""))
+//            return;
+
+        Log.d(TAG, "speak: " + text);
+        currentUtterance = text;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//          Log.d(TAG, "sdk >= 21");
+            wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, text);
+        } else {
+//          Log.d(TAG, "sdk < 21");
+            setTTSIDParams(text);
+            wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, utteranceParams);
         }
+
     }
 
     void pause() {
@@ -100,7 +108,13 @@ public class WCTextToSpeech extends UtteranceProgressListener
     @Override
     public void onDone(String utteranceId) {
         Log.d(TAG, "onDone: " + utteranceId);
-        wOnUtteranceStatusListener.onUtteranceCompleted();
+        if (utteranceId.equals(currentUtterance)) {
+            Log.d(TAG, "utterances match");
+            currentUtterance = "";
+            wOnUtteranceStatusListener.onUtteranceCompleted();
+        } else {
+            Log.d(TAG, "error: utterance dosent match!");
+        }
     }
 
     @Override
@@ -111,13 +125,18 @@ public class WCTextToSpeech extends UtteranceProgressListener
     @Override
     public void onStop(String utteranceId, boolean interrupted) {
         super.onStop(utteranceId, interrupted);
-//        Log.d(TAG, "onStop, interrupted: " + interrupted);
+        Log.d(TAG, "onStop, interrupted: " + utteranceId);
     }
 
     @Override
     public void onUtteranceCompleted(String utteranceId) {
 //        Log.d(TAG, "onUtteranceCompleted: " + utteranceId);
-        wOnUtteranceStatusListener.onUtteranceCompleted();
+        if (utteranceId.equals(currentUtterance)) {
+            currentUtterance = "";
+            wOnUtteranceStatusListener.onUtteranceCompleted();
+        } else {
+            Log.d(TAG, "error: utterance dosent match!");
+        }
     }
 
     protected interface OnUtteranceStatusListener {

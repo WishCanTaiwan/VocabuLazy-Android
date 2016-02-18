@@ -26,6 +26,7 @@ import com.wishcan.www.vocabulazy.storage.Option;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
 import java.util.ArrayList;
+import java.util.ServiceConfigurationError;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -113,12 +114,16 @@ public class PlayerFragment extends Fragment {
             }
 
             @Override
+            public void onPlayerVerticalScrolling() {
+                playerviewScrolling();
+            }
+
+            @Override
             public void onPlayerHorizontalScrollStop(int direction) {
-                mLessonIndex += 1;
-                mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-                int numOfLesson = mDatabase.getNumOfLesson(mBookIndex);
+                int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
                 mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
-                mVocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIDs(mBookIndex, mLessonIndex));
+                mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+                mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
                 mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
                 mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
 
@@ -127,6 +132,18 @@ public class PlayerFragment extends Fragment {
 
             @Override
             public void onPlayerHorizontalScrolling() {
+                playerviewScrolling();
+            }
+
+            @Override
+            public void onDetailScrollStop(int index) {
+                Log.d(TAG, "onDetailScrollStop: " + index);
+                newSentenceFocused(index);
+            }
+
+            @Override
+            public void onDetailScrolling() {
+
             }
         });
 
@@ -254,19 +271,28 @@ public class PlayerFragment extends Fragment {
 
     void newItemFocused(int newItemIndex) {
         Log.d(TAG, "newItemFocused: " + newItemIndex);
-        stopPlaying(newItemIndex);
+        startPlayingAt(newItemIndex, 0, AudioService.PLAYING_SPELL);
     }
 
     void newListFocused(ArrayList<Vocabulary> vocabularies) {
-        newItemFocused(-1);
-
-        Option option = mPlayerModel.getCurrentOption();
-        setContent(vocabularies, option);
-
-//        startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
-
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.ACTION_NEW_LIST);
+        intent.putParcelableArrayListExtra(AudioService.KEY_NEW_CONTENT, vocabularies);
+        getActivity().startService(intent);
     }
 
+    void newSentenceFocused(int index) {
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.ACTION_NEW_SENTENCE_FOCUSED);
+        intent.putExtra(AudioService.KEY_NEW_SENTENCE_INDEX, index);
+        getActivity().startService(intent);
+    }
+
+    void playerviewScrolling() {
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.ACTION_PLAYERVIEW_SCROLLING);
+        getActivity().startService(intent);
+    }
 
     /**
      * messages received from service
@@ -281,6 +307,26 @@ public class PlayerFragment extends Fragment {
             switch (action) {
 
                 case ServiceBroadcaster.ACTION_ITEM_COMPLETE:
+                    int newItemIndex = intent.getIntExtra(ServiceBroadcaster.KEY_NEXT_ITEM_INDEX, -1);
+                    mPlayerMainView.moveToPosition(newItemIndex);
+                    mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex)));
+                    break;
+
+                case ServiceBroadcaster.ACTION_LIST_COMPLETE:
+                    mPlayerMainView.setCurrentItem(1);
+                    break;
+
+                case ServiceBroadcaster.ACTION_SHOW_DETAIL:
+                    mPlayerMainView.showDetail();
+                    break;
+
+                case ServiceBroadcaster.ACTION_HIDE_DETAIL:
+                    mPlayerMainView.hideDetail();
+                    break;
+
+                case ServiceBroadcaster.ACTION_PLAY_SENTENCE:
+                    int sentenceIndex = intent.getIntExtra(ServiceBroadcaster.KEY_PLAY_SENTENCE_INDEX, -1);
+                    mPlayerMainView.moveToDetailPage(sentenceIndex);
                     break;
 
                 default:

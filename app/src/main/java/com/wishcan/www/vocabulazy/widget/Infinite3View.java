@@ -12,6 +12,7 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.VelocityTrackerCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -30,6 +31,8 @@ import java.util.LinkedList;
  * Created by swallow on 2015/9/22.
  */
 public class Infinite3View extends RelativeLayout {
+
+    public static final String TAG = Infinite3View.class.getSimpleName();
 
     public interface OnPageChangedListener {
         void onPageScrolled();

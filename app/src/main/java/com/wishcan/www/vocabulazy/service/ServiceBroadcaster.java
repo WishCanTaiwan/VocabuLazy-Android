@@ -24,24 +24,51 @@ public class ServiceBroadcaster {
      */
     public static final String KEY_ACTION = "key-action";
     public static final String KEY_NEXT_ITEM_INDEX = "key-next-item-index";
+    public static final String KEY_PLAY_SENTENCE_INDEX = "key-play-sentence-index";
 
     /**
      * strings for identifying the action.
      */
     public static final String ACTION_ITEM_COMPLETE = "action-item-complete";
+    public static final String ACTION_LIST_COMPLETE = "action-list-complete";
+    public static final String ACTION_SHOW_DETAIL = "action-show-detail";
+    public static final String ACTION_HIDE_DETAIL = "action-hide-detail";
+    public static final String ACTION_PLAY_SENTENCE = "action-play-sentence";
 
     private Context wContext;
     private LocalBroadcastManager wBroadcastManager;
+    private Intent wIntent;
 
     public ServiceBroadcaster(Context context) {
         wContext = context;
         wBroadcastManager = LocalBroadcastManager.getInstance(context);
+        wIntent = new Intent(BROADCAST_INTENT);
     }
 
     public void onItemComplete(int nextItemIndex) {
-        Intent intent = new Intent(BROADCAST_INTENT);
-        intent.putExtra(KEY_ACTION, ACTION_ITEM_COMPLETE);
-        intent.putExtra(KEY_NEXT_ITEM_INDEX, nextItemIndex);
-        wBroadcastManager.sendBroadcast(intent);
+        wIntent.putExtra(KEY_ACTION, ACTION_ITEM_COMPLETE);
+        wIntent.putExtra(KEY_NEXT_ITEM_INDEX, nextItemIndex);
+        wBroadcastManager.sendBroadcast(wIntent);
+    }
+
+    public void onListComplete() {
+        wIntent.putExtra(KEY_ACTION, ACTION_LIST_COMPLETE);
+        wBroadcastManager.sendBroadcast(wIntent);
+    }
+
+    public void onShowDetail() {
+        wIntent.putExtra(KEY_ACTION, ACTION_SHOW_DETAIL);
+        wBroadcastManager.sendBroadcast(wIntent);
+    }
+
+    public void onHideDetail() {
+        wIntent.putExtra(KEY_ACTION, ACTION_HIDE_DETAIL);
+        wBroadcastManager.sendBroadcast(wIntent);
+    }
+
+    public void onPlaySentence(int sentenceIndex) {
+        wIntent.putExtra(KEY_ACTION, ACTION_PLAY_SENTENCE);
+        wIntent.putExtra(KEY_PLAY_SENTENCE_INDEX, sentenceIndex);
+        wBroadcastManager.sendBroadcast(wIntent);
     }
 }

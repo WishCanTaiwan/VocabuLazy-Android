@@ -47,10 +47,13 @@ import java.util.LinkedList;
  */
 abstract public class PopScrollView extends RelativeLayout {
 
+    public static final String TAG = PopScrollView.class.getSimpleName();
+
     protected abstract View getItemDetailView();
 
     public interface OnPopScrollStoppedListener{
         void onPopScrollStopped(int index);
+        void onPopScrolling();
     }
 
     public interface OnItemPreparedListener{
@@ -644,7 +647,11 @@ abstract public class PopScrollView extends RelativeLayout {
         public boolean onTouchEvent(MotionEvent ev) {
             if(!mInitialItemCheckFlag)
                 return super.onTouchEvent(ev);
+
             switch (ev.getAction()) {
+                case MotionEvent.ACTION_MOVE:
+                    mOnPopScrollStoppedListener.onPopScrolling();
+                    break;
                 case MotionEvent.ACTION_UP:
                     startScrollerTask();
                     break;

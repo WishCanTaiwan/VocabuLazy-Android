@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.player.AudioService;
@@ -52,7 +53,8 @@ public class PlayerModel {
 	}
 
 	public HashMap<String, Object> createPlayerDetailContent(Vocabulary voc) {
-		HashMap<String, Object> playerDetailDataContent = new HashMap<>();
+//        Log.d(TAG, voc.toVocabularyString());
+        HashMap<String, Object> playerDetailDataContent = new HashMap<>();
 		playerDetailDataContent
                 .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[0],
                         voc.getSpell());
@@ -75,6 +77,10 @@ public class PlayerModel {
         ArrayList<Integer> contentIDs = mDatabase.getContentIDs(bookIndex, lessonIndex);
         mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
         return mVocabularies;
+    }
+
+    public int getNumOfLessons(int bookIndex) {
+        return mDatabase.getNumOfLesson(bookIndex);
     }
 
     public Option getCurrentOption() {

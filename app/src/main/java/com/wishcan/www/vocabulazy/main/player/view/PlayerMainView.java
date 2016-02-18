@@ -5,6 +5,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,10 +28,15 @@ import java.util.LinkedList;
  */
 public class PlayerMainView extends Infinite3View {
 
+    public static final String TAG = PlayerMainView.class.getSimpleName();
+
     public interface OnPlayerScrollListener {
         void onPlayerVerticalScrollStop(int index);
+        void onPlayerVerticalScrolling();
         void onPlayerHorizontalScrollStop(int direction);
         void onPlayerHorizontalScrolling();
+        void onDetailScrollStop(int index);
+        void onDetailScrolling();
     }
 
     private Context mContext;
@@ -80,11 +86,30 @@ public class PlayerMainView extends Infinite3View {
     }
 
     public void refreshPlayerDetail(HashMap<String, Object> dataMap){
+        Log.d(TAG, dataMap.toString());
         mPlayerDetailDataMap = dataMap;
+        if (mPlayerScrollView != null)
+            mPlayerScrollView.refreshPlayerDetail();
     }
 
     public void setOnPlayerScrollStopListener(OnPlayerScrollListener listener){
         mOnPlayerScrollListener = listener;
+    }
+
+    public void showDetail() {
+        mPlayerScrollView.showItemDetails();
+    }
+
+    public void hideDetail() {
+        mPlayerScrollView.hideItemDetails();
+    }
+
+    public void moveToPosition(int position) {
+        mPlayerScrollView.moveToPosition(position);
+    }
+
+    public void moveToDetailPage(int index) {
+        mPlayerScrollView.setDetailPage(index);
     }
 
     @Override
@@ -105,6 +130,8 @@ public class PlayerMainView extends Infinite3View {
     }
 
     public static class PlayerScrollView extends PopScrollView {
+
+        private static final String TAG = PlayerScrollView.class.getSimpleName();
 
         private static final int PLAYER_ITEM_LAYOUT_RES_ID = R.layout.view_player_item;
         private static final int PLAYER_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.view_player_details;
@@ -169,7 +196,31 @@ public class PlayerMainView extends Infinite3View {
                             mPlayerDetailView.getAdapter(
                                     getContext(), mPlayerDetailDataMap, PLAYER_ITEM_DETAIL_CONTENT_FROM, PLAYER_ITEM_DETAIL_LAYOUT_CONTENT_TO));
                 }
+
+                @Override
+                public void onPopScrolling() {
+                    if (mOnPlayerScrollListener != null)
+                        mOnPlayerScrollListener.onPlayerVerticalScrolling();
+                }
             });
+        }
+
+        /**
+         * added by allen
+         */
+        public void refreshPlayerDetail() {
+            mPlayerDetailView = new PlayerDetailView(getContext());
+            mPlayerDetailView.setAdapter(
+                    mPlayerDetailView.getAdapter(
+                            getContext(), mPlayerDetailDataMap, PLAYER_ITEM_DETAIL_CONTENT_FROM, PLAYER_ITEM_DETAIL_LAYOUT_CONTENT_TO));
+        }
+
+        /**
+         * added by allen
+         * @param index represents the page to be selected.
+         */
+        public void setDetailPage(int index) {
+            mPlayerDetailView.setCurrentPage(index);
         }
 
         @Override
@@ -290,6 +341,7 @@ public class PlayerMainView extends Infinite3View {
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
                 @Override
                 public void onPageSelected(int position) {
+                    Log.d(TAG, "onPageSelected: " + position);
                     for(int i = 0; i < pageCount; i++) {
                         if(i == position)
                             ((GradientDrawable)((ImageView) pagerIndexView.getChildAt(i)).getDrawable())
@@ -298,6 +350,12 @@ public class PlayerMainView extends Infinite3View {
                             ((GradientDrawable)((ImageView) pagerIndexView.getChildAt(i)).getDrawable())
                                     .setColor(ContextCompat.getColor(context, PagerIndexView.PAGER_INDEX_COLOR));
                     }
+
+                    /**
+                     * added by allen
+                     */
+                    if (mOnPlayerScrollListener != null)
+                        mOnPlayerScrollListener.onDetailScrollStop(position);
                 }
                 @Override
                 public void onPageScrollStateChanged(int state) {}
@@ -338,6 +396,4 @@ public class PlayerMainView extends Infinite3View {
             }
         }
     }
-
-
 }

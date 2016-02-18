@@ -35,6 +35,9 @@ public class AudioService extends IntentService
     public static final String ACTION_STOP_PLAYING = "stop-playing";
     public static final String ACTION_PLAY_BUTTON_CLICKED = "play-button-clicked";
     public static final String ACTION_OPTION_SETTING_CHANGED = "option-setting-changed";
+    public static final String ACTION_NEW_LIST = "new-list";
+    public static final String ACTION_PLAYERVIEW_SCROLLING = "playerview-scrolling";
+    public static final String ACTION_NEW_SENTENCE_FOCUSED = "new-sentence-focused";
 
     /**
      * keys for bundle identification
@@ -45,6 +48,8 @@ public class AudioService extends IntentService
     public static final String KEY_PLAYING_FIELD = "playing-field";
     public static final String KEY_OPTION_SETTING = "option-setting";
     public static final String KEY_STOP_AT_ITEM_INDEX = "stop-at-item-index";
+    public static final String KEY_NEW_CONTENT = "new-content";
+    public static final String KEY_NEW_SENTENCE_INDEX = "new-sentence-index";
 
     /**
      * strings for identifying the status of the player
@@ -53,6 +58,7 @@ public class AudioService extends IntentService
     public static final String STATUS_PLAYING = "status-playing";
     public static final String STATUS_PAUSE = "status-pause";
     public static final String STATUS_STOPPED = "status-stopped";
+    public static final String STATUS_SCROLLING = "statuc-scrolling";
 
     /**
      * strings for identifying what field of the vocabulary is being played
@@ -77,8 +83,17 @@ public class AudioService extends IntentService
     private String wPlaying = PLAYING_DEFAULT;
 
     private boolean wIsRandom = false;
+    private int wListLoop;
     private boolean wEnSentenceEnabled = true;
     private boolean wCnSentenceEnabled = false;
+
+    private int wSecond;
+    private int wItemLoop;
+    private int wSpeed;
+    private int wPlayTime;
+
+    private int itemloopCountDown;
+    private int listloopCountDown;
 
     public AudioService() {
         super(null);
@@ -189,6 +204,33 @@ public class AudioService extends IntentService
                 updateOptionSetting(wOptionSetting);
                 break;
 
+            case ACTION_NEW_LIST:
+                wVoabularies = intent.getParcelableArrayListExtra(KEY_NEW_CONTENT);
+                wCurrentItemAmount = wVoabularies.size();
+
+                listloopCountDown = wListLoop;
+                wCurrentItemIndex = 0;
+                wCurrentSentenceIndex = 0;
+                wStatus = STATUS_PLAYING;
+                wPlaying = PLAYING_SPELL;
+                wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+                break;
+
+            case ACTION_PLAYERVIEW_SCROLLING:
+                if (!wStatus.equals(STATUS_SCROLLING)) {
+                    Log.d(TAG, "scrollllllllllllllllllllll");
+                    wStatus = STATUS_SCROLLING;
+                    wcTextToSpeech.stop();
+                }
+                break;
+
+            case ACTION_NEW_SENTENCE_FOCUSED:
+                wCurrentSentenceIndex = intent.getIntExtra(KEY_NEW_SENTENCE_INDEX, -1) - 1;
+                wPlaying = PLAYING_EnSENTENCE;
+                wcTextToSpeech.stop();
+                break;
+
             default:
                 Log.d(TAG, "undefined case in onHandleIntent");
                 break;
@@ -244,6 +286,7 @@ public class AudioService extends IntentService
             return nextItem;
         } else {
             currentIndex++;
+            Log.d(TAG, "pickNextItem: " + currentIndex + ", itemAmount: " + wCurrentItemAmount);
             if (currentIndex < wCurrentItemAmount) return currentIndex;
         }
         return nextItem;
@@ -251,8 +294,17 @@ public class AudioService extends IntentService
 
     void updateOptionSetting(Option optionSetting) {
         wIsRandom = optionSetting.mIsRandom;
+        wListLoop = optionSetting.mListLoop;
         wEnSentenceEnabled = optionSetting.mSentence;
         wCnSentenceEnabled = optionSetting.mSentence;
+
+        wSecond = optionSetting.mStopPeriod;
+        wItemLoop = optionSetting.mItemLoop;
+        wSpeed = optionSetting.mSpeed;
+        wPlayTime = optionSetting.mPlayTime;
+
+        itemloopCountDown = wItemLoop;
+        listloopCountDown = wListLoop;
     }
 
     @Override
@@ -271,6 +323,15 @@ public class AudioService extends IntentService
     @Override
     public void onUtteranceCompleted() {
 
+        /**
+         * if the status is SCOLLING, then do nothing.
+         */
+        if (wStatus.equals(STATUS_SCROLLING)) return;
+
+        /**
+         * if the status is STOPPED, which means the player is forced stopped and has jumped out of
+         * the looping mechanism, start playing the desired item to enter the playback looping again.
+         */
         if (wStatus.equals(STATUS_STOPPED)) {
             Log.d(TAG, "status is stopped");
             if (wCurrentItemIndex >= 0) {
@@ -282,6 +343,7 @@ public class AudioService extends IntentService
             } else {
                 wCurrentItemIndex = 0;
                 wCurrentSentenceAmount = wVoabularies.get(0).getEn_Sentence().size();
+                Log.d(TAG, wVoabularies.get(0).getSpell());
                 wPlaying = PLAYING_SPELL;
                 wStatus = STATUS_PLAYING;
                 startPlayingItemAt(0, -1);
@@ -289,32 +351,78 @@ public class AudioService extends IntentService
             return;
         }
 
+        /**
+         * if the status is playing, do nothing, preventing the playback from any interruption
+         */
         if (!wStatus.equals(STATUS_PLAYING)) return;
 
-        Log.d(TAG, "onUtteranceCompleted");
-
+        /**
+         * switch-case block for deciding the next item or field to be played.
+         */
         switch (wPlaying) {
-
+            /**
+             * if the utterance just played was SPELL.
+             */
             case PLAYING_SPELL:
                 wPlaying = PLAYING_TRANSLATION;
                 break;
 
+            /**
+             * if the utterance just played was TRANSLATION
+             */
             case PLAYING_TRANSLATION:
                 if (wEnSentenceEnabled) {
                     wCurrentSentenceIndex = 0;
                     wPlaying = PLAYING_EnSENTENCE;
+                    wServiceBroadcaster.onShowDetail();
                 } else if (wCnSentenceEnabled) {
                     wCurrentSentenceIndex = 0;
                     wPlaying = PLAYING_CnSENTENCE;
+                    wServiceBroadcaster.onShowDetail();
                 } else {
+
+                    itemloopCountDown--;
+                    if (itemloopCountDown > 0) {
+                        wPlaying = PLAYING_SPELL;
+                        break;
+                    }
+
+                    itemloopCountDown = wItemLoop;
                     wCurrentItemIndex = pickNextItem(wCurrentItemIndex);
                     wCurrentSentenceIndex = -1;
-                    wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
-                    wPlaying = PLAYING_SPELL;
-                    wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                    if (wCurrentItemIndex >= 0) {
+                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                        wPlaying = PLAYING_SPELL;
+                        wServiceBroadcaster.onHideDetail();
+                        wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                    } else {
+
+                        listloopCountDown--;
+                        if (listloopCountDown > 0) {
+                            wPlaying = PLAYING_SPELL;
+                            wCurrentItemIndex = 0;
+                            wCurrentSentenceIndex = 0;
+                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                            wServiceBroadcaster.onHideDetail();
+                            wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                            return;
+//                            break;
+                        }
+
+//                        wCurrentItemIndex = 0;
+//                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+//                        wPlaying = PLAYING_SPELL;
+                        listloopCountDown = wListLoop;
+                        wServiceBroadcaster.onListComplete();
+                        return;
+                    }
+
                 }
                 break;
 
+            /**
+             * if the utterance just played was EnSentence
+             */
             case PLAYING_EnSENTENCE:
                 if (wCnSentenceEnabled) {
                     wPlaying = PLAYING_CnSENTENCE;
@@ -324,18 +432,51 @@ public class AudioService extends IntentService
                 wCurrentSentenceIndex++;
                 if (wCurrentSentenceIndex < wCurrentSentenceAmount) {
                     wPlaying = PLAYING_EnSENTENCE;
+                    wServiceBroadcaster.onPlaySentence(wCurrentSentenceIndex);
                 } else if (wCurrentSentenceIndex == wCurrentSentenceAmount) {
+
+                    itemloopCountDown--;
+                    if (itemloopCountDown > 0) {
+                        wPlaying = PLAYING_SPELL;
+                        wCurrentSentenceIndex = 0;
+                        break;
+                    }
+
+                    itemloopCountDown = wItemLoop;
                     wCurrentItemIndex = pickNextItem(wCurrentItemIndex);
                     wCurrentSentenceIndex = -1;
-                    wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
-                    wPlaying = PLAYING_SPELL;
-                    wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                    if (wCurrentItemIndex >= 0) {
+                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                        wPlaying = PLAYING_SPELL;
+                        wServiceBroadcaster.onHideDetail();
+                        wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                    } else {
+
+                        listloopCountDown--;
+                        if (listloopCountDown > 0) {
+                            wPlaying = PLAYING_SPELL;
+                            wCurrentItemIndex = 0;
+                            wCurrentSentenceIndex = 0;
+                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                            wServiceBroadcaster.onHideDetail();
+                            wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                            return;
+//                            break;
+                        }
+
+                        // load new vocabularies
+                        listloopCountDown = wListLoop;
+                        wServiceBroadcaster.onListComplete();
+                        return;
+                    }
                 }
 
                 break;
 
+            /**
+             * if the utterance just played was CnSENTENCE
+             */
             case PLAYING_CnSENTENCE:
-
                 wCurrentSentenceIndex++;
                 if (wCurrentSentenceIndex < wCurrentSentenceAmount) {
                     if (wEnSentenceEnabled) {
@@ -343,22 +484,54 @@ public class AudioService extends IntentService
                     } else if (wCnSentenceEnabled) {
                         wPlaying = PLAYING_CnSENTENCE;
                     }
+                    wServiceBroadcaster.onPlaySentence(wCurrentSentenceIndex);
                 } else if (wCurrentSentenceIndex == wCurrentSentenceAmount) {
+
+                    itemloopCountDown--;
+                    if (itemloopCountDown > 0) {
+                        wPlaying = PLAYING_SPELL;
+                        wCurrentSentenceIndex = 0;
+                        break;
+                    }
+
+                    itemloopCountDown = wItemLoop;
                     wCurrentItemIndex = pickNextItem(wCurrentItemIndex);
                     wCurrentSentenceIndex = -1;
-                    wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
-                    wPlaying = PLAYING_SPELL;
-                    wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                    if (wCurrentItemIndex >= 0) {
+                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                        wPlaying = PLAYING_SPELL;
+                        wServiceBroadcaster.onHideDetail();
+                        wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                    } else {
 
+                        listloopCountDown--;
+                        if (listloopCountDown > 0) {
+                            wPlaying = PLAYING_SPELL;
+                            wCurrentItemIndex = 0;
+                            wCurrentSentenceIndex = 0;
+                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                            wServiceBroadcaster.onHideDetail();
+                            wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
+                            return;
+//                            break;
+                        }
+
+                        // load new vocabularies
+                        listloopCountDown = wListLoop;
+                        wServiceBroadcaster.onListComplete();
+                        return;
+                    }
                 }
 
                 break;
 
+            /**
+             * default case, should be called anyway
+             */
             default:
-
+                Log.d(TAG, "unexpected case happened in onUtteranceCompleted");
                 break;
         }
-
         startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
     }
 
