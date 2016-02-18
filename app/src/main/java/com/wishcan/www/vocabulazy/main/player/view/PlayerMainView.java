@@ -86,7 +86,7 @@ public class PlayerMainView extends Infinite3View {
     }
 
     public void refreshPlayerDetail(HashMap<String, Object> dataMap){
-        Log.d(TAG, dataMap.toString());
+//        Log.d(TAG, dataMap.toString());
         mPlayerDetailDataMap = dataMap;
         if (mPlayerScrollView != null)
             mPlayerScrollView.refreshPlayerDetail();
@@ -341,7 +341,7 @@ public class PlayerMainView extends Infinite3View {
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
                 @Override
                 public void onPageSelected(int position) {
-                    Log.d(TAG, "onPageSelected: " + position);
+//                    Log.d(TAG, "onPageSelected: " + position);
                     for(int i = 0; i < pageCount; i++) {
                         if(i == position)
                             ((GradientDrawable)((ImageView) pagerIndexView.getChildAt(i)).getDrawable())

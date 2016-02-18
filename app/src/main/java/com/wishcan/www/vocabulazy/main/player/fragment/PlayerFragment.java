@@ -137,7 +137,7 @@ public class PlayerFragment extends Fragment {
 
             @Override
             public void onDetailScrollStop(int index) {
-                Log.d(TAG, "onDetailScrollStop: " + index);
+//                Log.d(TAG, "onDetailScrollStop: " + index);
                 newSentenceFocused(index);
             }
 
@@ -255,7 +255,7 @@ public class PlayerFragment extends Fragment {
     }
 
     void optionSettingChanged(Option option) {
-        Log.d(TAG, "option changed: random => " + option.mIsRandom + ", sentence => " + option.mSentence + ".");
+//        Log.d(TAG, "option changed: random => " + option.mIsRandom + ", sentence => " + option.mSentence + ".");
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_OPTION_SETTING_CHANGED);
         intent.putExtra(AudioService.KEY_OPTION_SETTING, option);
@@ -270,7 +270,7 @@ public class PlayerFragment extends Fragment {
     }
 
     void newItemFocused(int newItemIndex) {
-        Log.d(TAG, "newItemFocused: " + newItemIndex);
+//        Log.d(TAG, "newItemFocused: " + newItemIndex);
         startPlayingAt(newItemIndex, 0, AudioService.PLAYING_SPELL);
     }
 

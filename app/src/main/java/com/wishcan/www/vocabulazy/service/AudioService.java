@@ -131,7 +131,7 @@ public class AudioService extends IntentService
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         String action = intent.getAction();
-        Log.d(TAG, action);
+//        Log.d(TAG, action);
 
         /**
          * switch-case block for deciding the corresponding tasks for each action
@@ -219,7 +219,7 @@ public class AudioService extends IntentService
 
             case ACTION_PLAYERVIEW_SCROLLING:
                 if (!wStatus.equals(STATUS_SCROLLING)) {
-                    Log.d(TAG, "scrollllllllllllllllllllll");
+//                    Log.d(TAG, "scrollllllllllllllllllllll");
                     wStatus = STATUS_SCROLLING;
                     wcTextToSpeech.stop();
                 }
@@ -286,7 +286,7 @@ public class AudioService extends IntentService
             return nextItem;
         } else {
             currentIndex++;
-            Log.d(TAG, "pickNextItem: " + currentIndex + ", itemAmount: " + wCurrentItemAmount);
+//            Log.d(TAG, "pickNextItem: " + currentIndex + ", itemAmount: " + wCurrentItemAmount);
             if (currentIndex < wCurrentItemAmount) return currentIndex;
         }
         return nextItem;
@@ -333,7 +333,7 @@ public class AudioService extends IntentService
          * the looping mechanism, start playing the desired item to enter the playback looping again.
          */
         if (wStatus.equals(STATUS_STOPPED)) {
-            Log.d(TAG, "status is stopped");
+//            Log.d(TAG, "status is stopped");
             if (wCurrentItemIndex >= 0) {
                 wCurrentSentenceIndex = -1;
                 wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
@@ -343,7 +343,7 @@ public class AudioService extends IntentService
             } else {
                 wCurrentItemIndex = 0;
                 wCurrentSentenceAmount = wVoabularies.get(0).getEn_Sentence().size();
-                Log.d(TAG, wVoabularies.get(0).getSpell());
+//                Log.d(TAG, wVoabularies.get(0).getSpell());
                 wPlaying = PLAYING_SPELL;
                 wStatus = STATUS_PLAYING;
                 startPlayingItemAt(0, -1);

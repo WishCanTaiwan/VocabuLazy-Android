@@ -3,6 +3,7 @@ package com.wishcan.www.vocabulazy.service;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 /**
  * Created by allencheng07 on 2016/2/1.
@@ -46,6 +47,7 @@ public class ServiceBroadcaster {
     }
 
     public void onItemComplete(int nextItemIndex) {
+        Log.d(TAG, "onItemComplete: " + nextItemIndex);
         wIntent.putExtra(KEY_ACTION, ACTION_ITEM_COMPLETE);
         wIntent.putExtra(KEY_NEXT_ITEM_INDEX, nextItemIndex);
         wBroadcastManager.sendBroadcast(wIntent);

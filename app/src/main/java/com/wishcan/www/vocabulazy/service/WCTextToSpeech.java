@@ -46,7 +46,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 //        if (!currentUtterance.equals(""))
 //            return;
 
-        Log.d(TAG, "speak: " + text);
+//        Log.d(TAG, "speak: " + text);
         currentUtterance = text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //          Log.d(TAG, "sdk >= 21");
@@ -95,7 +95,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 //        Log.d(TAG, "onInit");
         if(status == TextToSpeech.SUCCESS) {
             ttsEngineInit = true;
-            Log.d(TAG, "engine initialized");
+//            Log.d(TAG, "engine initialized");
 //            Toast.makeText(mContext, "engine initialized", Toast.LENGTH_SHORT).show();
         }
     }
@@ -107,13 +107,13 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onDone(String utteranceId) {
-        Log.d(TAG, "onDone: " + utteranceId);
+//        Log.d(TAG, "onDone: " + utteranceId);
         if (utteranceId.equals(currentUtterance)) {
-            Log.d(TAG, "utterances match");
+//            Log.d(TAG, "utterances match");
             currentUtterance = "";
             wOnUtteranceStatusListener.onUtteranceCompleted();
         } else {
-            Log.d(TAG, "error: utterance dosent match!");
+//            Log.d(TAG, "error: utterance dosent match!");
         }
     }
 
@@ -125,7 +125,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
     @Override
     public void onStop(String utteranceId, boolean interrupted) {
         super.onStop(utteranceId, interrupted);
-        Log.d(TAG, "onStop, interrupted: " + utteranceId);
+//        Log.d(TAG, "onStop, interrupted: " + utteranceId);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
             currentUtterance = "";
             wOnUtteranceStatusListener.onUtteranceCompleted();
         } else {
-            Log.d(TAG, "error: utterance dosent match!");
+//            Log.d(TAG, "error: utterance dosent match!");
         }
     }
 
