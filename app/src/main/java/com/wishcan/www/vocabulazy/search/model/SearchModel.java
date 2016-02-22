@@ -27,7 +27,7 @@ public class SearchModel {
 
             hm.put(from[SearchView.SearchListView.LIST_ITEM_CONTENT_ID_s.VOC_SPELL.getValue()], voc.getSpell());
             hm.put(from[SearchView.SearchListView.LIST_ITEM_CONTENT_ID_s.VOC_TRANSLATION.getValue()], voc.getTranslationInOneString());
-            hm.put(from[SearchView.SearchListView.LIST_ITEM_CONTENT_ID_s.VOC_CATEGORY.getValue()], voc.getCategory());
+            hm.put(from[SearchView.SearchListView.LIST_ITEM_CONTENT_ID_s.VOC_CATEGORY.getValue()], voc.getCategory().get(0));
             dataMap.add(hm);
         }
         return dataMap;

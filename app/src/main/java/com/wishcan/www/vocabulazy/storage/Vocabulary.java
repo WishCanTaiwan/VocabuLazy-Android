@@ -89,7 +89,7 @@ public class Vocabulary implements Parcelable {
 //        Log.d(TAG, mTranslate.toString());
         for (int index = 0; index < mTranslate.size(); index++) {
 //            Log.d(TAG, mTranslate.get(index).toString());
-            builder.append(mTranslate.get(index).toString());
+            builder.append(mTranslate.get(index));
             if (index != mTranslate.size() - 1) {
                 builder.append("；");
             }
