@@ -45,6 +45,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
+
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
             mMainFragment = new MainFragment();
@@ -78,6 +80,8 @@ public class MainActivity extends FragmentActivity {
             Log.d("MainActivity", "database already exist.");
         }
 
+//        Log.d(TAG, "" + mDatabase);
+
         mMainActivity = this;
 
         mBackStackCount = 0;
@@ -86,23 +90,33 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart");
+        mDatabase = new Database(this);
         startAudioService();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop");
         stopAudioService();
-        mDatabase.writeToFile(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume");
         setCustomActionBar();
         Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");
         if(f != null && f instanceof FragmentWithActionBarTitle)
             setActionBarTitle(((FragmentWithActionBarTitle)f).getActionBarTitle());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+        mDatabase.writeToFile(this);
     }
 
     @Override

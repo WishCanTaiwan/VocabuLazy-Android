@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         M_TAG = getTag();
     }
@@ -60,13 +62,34 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public void onResume() {
         super.onResume();
-        if(mDatabase == null)
+        Log.d(TAG, "onResume");
+        if(mDatabase == null) {
             mDatabase = ((MainActivity) getActivity()).getDatabase();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         mUsrNoteView = new UsrNoteView(getActivity());
         final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
@@ -149,6 +172,20 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         fragmentTransaction.commit();
     }
 
+    private void reload() {
+//        Log.d(TAG, "reload");
+        final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
+        LinkedList<String> dataList = new LinkedList<>();
 
+        if(notes == null) {
+            new ErrorView(getActivity()).setErrorMsg("DataBase not found");
+            return;
+        }
+
+        for(int i = 0; i < notes.size(); i++)
+            dataList.add(notes.get(i).getName());
+
+        mUsrNoteView.refreshView(notes.size(), dataList);
+    }
 
 }

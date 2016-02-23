@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
 public class SearchActivity extends FragmentActivity {
 
+    public static final String TAG = SearchActivity.class.getSimpleName();
+
     public static final int VIEW_CONTAINER_RES_ID = R.id.activity_search_container;
 
     private static final int VIEW_ACTIVITY_RES_ID = R.layout.view_search_activity;
@@ -34,6 +37,7 @@ public class SearchActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
             mSearchFragment = new SearchFragment();
@@ -43,6 +47,7 @@ public class SearchActivity extends FragmentActivity {
                     .commit();
         }
         mDatabase = new Database(this);
+        Log.d(TAG, "" + mDatabase);
         mActionBar = getActionBar();
         if(mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
@@ -52,13 +57,27 @@ public class SearchActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume");
         mDatabase = new Database(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause");
         mDatabase.writeToFile(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
     }
 
     @Override
