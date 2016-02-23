@@ -24,6 +24,7 @@ import com.wishcan.www.vocabulazy.service.ServiceBroadcaster;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Option;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
+import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
 import java.util.ServiceConfigurationError;
@@ -33,11 +34,11 @@ import java.util.ServiceConfigurationError;
  * Use the {@link PlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment {
+public class PlayerFragment extends Fragment implements FragmentWithActionBarTitle{
 
     private static final String TAG = PlayerFragment.class.getSimpleName();
-    private static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
-    private static final String LESSON_INDEX_STR = "LESSON_INDEX_STR";
+    public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
+    public static final String LESSON_INDEX_STR = "LESSON_INDEX_STR";
 
     /**
      * broadcast manager
@@ -92,7 +93,6 @@ public class PlayerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
         final PlayerView playerView = new PlayerView(getActivity());
         mPlayerMainView = playerView.getPlayerMainView();
         mPlayerPanelView = playerView.getPlayerPanelView();
@@ -190,6 +190,14 @@ public class PlayerFragment extends Fragment {
         }, 600);
 
         return playerView;
+    }
+
+    @Override
+    public String getActionBarTitle() {
+        String titleStr = "Book ";
+        if(mBookIndex != -1 && mLessonIndex != -1)
+            titleStr += mBookIndex + " Lesson " + mLessonIndex;
+        return titleStr;
     }
 
     @Override

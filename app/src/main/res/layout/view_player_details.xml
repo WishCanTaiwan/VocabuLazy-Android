@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp"
-    android:background="#ffd3ac49"
-    android:alpha="1.0">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:background="#ffd3ac49"
+                android:alpha="1.0">
     <LinearLayout
         android:id="@+id/voc_parent"
         android:layout_width="match_parent"
@@ -22,6 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="appearance"
+                android:textSize="@dimen/player_list_item_text1_size"
                 android:textColor="#ffffffff"
                 android:paddingRight="3dp"/>
 
@@ -30,19 +31,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="[KK音標]"
+                android:textSize="@dimen/player_list_item_text1_size"
                 android:textColor="#ffffffff"/>
         </LinearLayout>
-        
+
         <TextView
             android:id="@+id/player_voc_translation_detail"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:text="出現，顯現"
+            android:textSize="@dimen/player_list_item_text1_size"
             android:textColor="#ffffffff"/>
-        
+
     </LinearLayout>
 
     <LinearLayout

@@ -9,6 +9,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -591,6 +592,8 @@ abstract public class PopScrollView extends RelativeLayout {
                      */
                     TextView textView = (TextView) v.findViewById(mTo[i]);
                     if(textView != null) {
+                        Typeface kkTypeFace = Typeface.createFromAsset(mContext.getAssets(), "fonts/tt0142m_.ttf");
+                        textView.setTypeface(kkTypeFace);
                         textView.setText(dataMap.get(mFrom[i]).toString());
                         textView.setVisibility(VISIBLE);
                     }

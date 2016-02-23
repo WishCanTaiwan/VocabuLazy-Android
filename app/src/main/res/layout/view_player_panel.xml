@@ -6,7 +6,6 @@
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:paddingTop="15dp"
         android:paddingBottom="15dp">
 
         <ImageView

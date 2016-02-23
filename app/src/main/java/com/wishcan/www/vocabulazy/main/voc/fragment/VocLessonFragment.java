@@ -88,15 +88,20 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
     }
 
     private void goPlayerFragment(int bookIndex, int lessonIndex){
-        FragmentManager fragmentManager = getFragmentManager();
-        PlayerFragment playerFragment = PlayerFragment.newInstance(bookIndex, lessonIndex);
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.
-                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, playerFragment, "PlayerFragment");
-        fragmentTransaction.addToBackStack("VocLessonFragment");
-        fragmentTransaction.commit();
+        Bundle args = new Bundle();
+        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
+        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
+        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "VocLessonFragment");
+
+        // FragmentManager fragmentManager = getFragmentManager();
+        // PlayerFragment playerFragment = PlayerFragment.newInstance(bookIndex, lessonIndex);
+        // FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        // fragmentTransaction.
+        //         setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+        //                 MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        // fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, playerFragment, "PlayerFragment");
+        // fragmentTransaction.addToBackStack("VocLessonFragment");
+        // fragmentTransaction.commit();
     }
 
     @Override
