@@ -25,7 +25,7 @@
     <!-- player -->
     <color name="player_list_item1_border_bottom_color">#ffb3eddf</color>
     <color name="player_list_item2_border_bottom_color">#ffddf5ef</color>
-    <color name="player_list_item_font">#ff000000</color>
+    <color name="player_list_item_font">#FF656B76</color>
     <color name="player_list_item_font1">#FF9FA0A0</color>
     <color name="player_pager_index_color">#ffa09e9c</color>
     <color name="player_pager_index_selected">#ffd3ac49</color>

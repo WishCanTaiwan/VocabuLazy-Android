@@ -1,10 +1,8 @@
 package com.wishcan.www.vocabulazy.main.player.model;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;

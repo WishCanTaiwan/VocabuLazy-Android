@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="360dp"
+    android:layout_height="326.4px"
+    android:paddingTop="5dp"
     android:orientation="vertical"
     android:background="@drawable/widget_pop_item1"
     >
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -29,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -49,9 +52,10 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="(vt.)造成；產生"
-            android:visibility="gone"
+            android:text="(vt.)gone"
+            android:visibility="visible"
             android:maxLines="1"
+            android:paddingTop="0dp"
             android:textSize="@dimen/player_list_item_text1_size"
             android:textColor="@color/player_list_item_font1" />
     </LinearLayout>
