@@ -53,7 +53,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="(vt.)gone"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:maxLines="1"
             android:paddingTop="0dp"
             android:textSize="@dimen/player_list_item_text1_size"
