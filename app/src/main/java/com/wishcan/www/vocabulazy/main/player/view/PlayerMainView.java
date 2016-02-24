@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.main.player.view;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -299,6 +300,10 @@ public class PlayerMainView extends Infinite3View {
                     ((TextView) itemView
                             .findViewById(mTo[PLAYER_ITEM_CONTENT_ID_s.VOC_KK_DETAIL.getValue()]))
                             .setText((String) mDataMap.get(mFrom[PLAYER_ITEM_CONTENT_ID_s.VOC_KK_DETAIL.getValue()]));
+                    ((TextView) itemView
+                            .findViewById(mTo[PLAYER_ITEM_CONTENT_ID_s.VOC_KK_DETAIL.getValue()]))
+                            .setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fonts/kk.TTE"));
+
                     enSentences = (ArrayList<String>) mDataMap.get(mFrom[PLAYER_ITEM_CONTENT_ID_s.VOC_SENTENCE_DETAIL.getValue()]);
                     ceSentences = (ArrayList<String>) mDataMap.get(mFrom[PLAYER_ITEM_CONTENT_ID_s.VOC_SENTENCE_TRANSLATION_DETAIL.getValue()]);
 
