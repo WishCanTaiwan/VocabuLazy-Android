@@ -98,7 +98,7 @@ public class PlayerMainView extends Infinite3View {
             mPlayerScrollView.refreshPlayerDetail();
     }
 
-    public void setOnPlayerScrollStopListener(OnPlayerScrollListener listener){
+    public void setOnPlayerScrollStopListener(OnPlayerScrollListener listener) {
         mOnPlayerScrollListener = listener;
     }
 

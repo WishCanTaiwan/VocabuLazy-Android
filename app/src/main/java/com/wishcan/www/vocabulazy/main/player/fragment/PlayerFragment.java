@@ -102,7 +102,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mPlayerOptionView = playerView.getPlayerOptionView();
 
         /**Initialize and  Refresh PlayerView */
-        mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(null));
+        mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
 
         /** set Scroll Listener, update Player's detail content every time the scroll stopped */
         mPlayerMainView.setOnPlayerScrollStopListener(new PlayerMainView.OnPlayerScrollListener() {
@@ -126,7 +126,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
                 int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
                 mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
                 mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-                mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(null));
+                mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
                 mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
                 mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
 
