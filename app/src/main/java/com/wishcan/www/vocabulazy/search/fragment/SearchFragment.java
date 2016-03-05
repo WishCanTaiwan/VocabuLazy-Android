@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class SearchFragment extends Fragment implements DialogFragment.OnDialogFinishListener<Integer> {
 
+    public static final String TAG = SearchFragment.class.getSimpleName();
+
     public static String M_TAG;
 
     private Database mDatabase;
@@ -48,7 +50,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
 
         }
         M_TAG = getTag();
-        mDatabase = new Database(getActivity());
+        mDatabase = ((SearchActivity) getActivity()).getDatabase();
         mSearchModel = new SearchModel();
     }
 
@@ -59,6 +61,8 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
         mSearchView.setOnItemClickListener(new SearchView.OnItemClickListener() {
             @Override
             public void onAddIconClick(int position) {
+                Log.d(TAG, "onAddIconClick");
+                mSelectVocId = mSuggestedVocabularies.get(position).getID();
                 SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.LIST);
                 getFragmentManager()
                         .beginTransaction()
@@ -69,6 +73,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
 
             @Override
             public void onListItemClick(int position) {
+                Log.d(TAG, "onListItemClick");
                 Vocabulary voc = mSuggestedVocabularies.get(position);
                 mSelectVocId = voc.getID();
                 mSearchView.refreshSearchDetail(
@@ -88,8 +93,8 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
 
     @Override
     public void onDialogFinish(Integer obj) {
-        Log.d("SearchActivity", "Before addVocToNote" +obj);
+        Log.d(TAG, "Before addVocToNote" +obj);
         mDatabase.addVocToNote(mSelectVocId, obj);
-        Log.d("SearchActivity", "After addVocToNote" +obj);
+        Log.d(TAG, "After addVocToNote" +obj);
     }
 }

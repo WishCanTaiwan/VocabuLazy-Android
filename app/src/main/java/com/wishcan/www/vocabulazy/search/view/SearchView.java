@@ -264,7 +264,7 @@ public class SearchView extends RelativeLayout {
 	            for (int i = 0; i < len; i++) {
 	                TextView textView = (TextView) v.findViewById(mTo[i]);
                     textView.setText((String) dataMap.get(mFrom[i]));
-                    Log.d(TAG, "mFrom[" + i + "]: " + mFrom[i] + ", dataMap.get(mFrom[" + i + "]): " + dataMap.get(mFrom[i]));
+//                    Log.d(TAG, "mFrom[" + i + "]: " + mFrom[i] + ", dataMap.get(mFrom[" + i + "]): " + dataMap.get(mFrom[i]));
                     if (i == 0)
 	                    textView.setTypeface(engTf);
 	                else

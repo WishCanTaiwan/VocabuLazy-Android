@@ -53,21 +53,23 @@ public class PlayerModel {
 	public HashMap<String, Object> createPlayerDetailContent(Vocabulary voc) {
 //        Log.d(TAG, voc.toVocabularyString());
         HashMap<String, Object> playerDetailDataContent = new HashMap<>();
-		playerDetailDataContent
-                .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[0],
-                        voc.getSpell());
-        playerDetailDataContent
-                .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[1],
-                        voc.getTranslationInOneString());
-        playerDetailDataContent
-                .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[2],
-                        voc.getKK());
-        playerDetailDataContent
-                .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[3],
-                        voc.getEn_Sentence());
-        playerDetailDataContent
-                .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[4],
-                        voc.getCn_Sentence());
+        if (voc != null) {
+            playerDetailDataContent
+                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[0],
+                            voc.getSpell());
+            playerDetailDataContent
+                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[1],
+                            voc.getTranslationInOneString());
+            playerDetailDataContent
+                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[2],
+                            voc.getKK());
+            playerDetailDataContent
+                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[3],
+                            voc.getEn_Sentence());
+            playerDetailDataContent
+                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[4],
+                            voc.getCn_Sentence());
+        }
         return playerDetailDataContent;
 	}
 

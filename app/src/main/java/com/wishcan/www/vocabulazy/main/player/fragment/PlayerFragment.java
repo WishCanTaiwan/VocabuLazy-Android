@@ -82,6 +82,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
         mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
 
+        Log.d(TAG, "BookIndex: " + mBookIndex + ", LessonIndex: " + mLessonIndex);
+
         /**
          * register the broadcast receiver
          */
@@ -100,17 +102,18 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mPlayerOptionView = playerView.getPlayerOptionView();
 
         /**Initialize and  Refresh PlayerView */
-        mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
+        mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(null));
 
         /** set Scroll Listener, update Player's detail content every time the scroll stopped */
         mPlayerMainView.setOnPlayerScrollStopListener(new PlayerMainView.OnPlayerScrollListener() {
             @Override
-            public void onPlayerVerticalScrollStop(int currentPosition) {
+            public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
                 mPlayerMainView.refreshPlayerDetail(
                         mPlayerModel.createPlayerDetailContent(
                                 mVocabularies.get(currentPosition)));
 
-                newItemFocused(currentPosition);
+                if (isViewTouchedDown)
+                    newItemFocused(currentPosition);
             }
 
             @Override
@@ -119,15 +122,16 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             }
 
             @Override
-            public void onPlayerHorizontalScrollStop(int direction) {
+            public void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown) {
                 int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
                 mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
                 mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-                mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
+                mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(null));
                 mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
                 mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
 
-                newListFocused(mVocabularies);
+                if (isViewTouchedDown)
+                    newListFocused(mVocabularies);
             }
 
             @Override
@@ -136,13 +140,19 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             }
 
             @Override
-            public void onDetailScrollStop(int index) {
+            public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
 //                Log.d(TAG, "onDetailScrollStop: " + index);
-                newSentenceFocused(index);
+                if (isViewTouchedDown)
+                    newSentenceFocused(index);
             }
 
             @Override
             public void onDetailScrolling() {
+                playerviewScrolling();
+            }
+
+            @Override
+            public void onViewTouchDown() {
 
             }
         });
@@ -211,7 +221,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         ArrayList<Vocabulary> vocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
         Option option = mPlayerModel.getCurrentOption();
         setContent(vocabularies, option);
-        startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
+        if (vocabularies.size() > 0)
+            startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
 
         /**
          * when database is ready
@@ -278,11 +289,12 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     void newItemFocused(int newItemIndex) {
-//        Log.d(TAG, "newItemFocused: " + newItemIndex);
+        Log.d(TAG, "newItemFocused: " + newItemIndex);
         startPlayingAt(newItemIndex, 0, AudioService.PLAYING_SPELL);
     }
 
     void newListFocused(ArrayList<Vocabulary> vocabularies) {
+        Log.d(TAG, "newListFocused");
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_NEW_LIST);
         intent.putParcelableArrayListExtra(AudioService.KEY_NEW_CONTENT, vocabularies);
@@ -290,6 +302,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     void newSentenceFocused(int index) {
+        Log.d(TAG, "newSentenceFocused: " + index);
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_NEW_SENTENCE_FOCUSED);
         intent.putExtra(AudioService.KEY_NEW_SENTENCE_INDEX, index);

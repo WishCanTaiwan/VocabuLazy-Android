@@ -39,6 +39,8 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mDatabase = ((SearchActivity) getActivity()).getDatabase();
+
         if(getArguments() != null) {
             SearchDialogView.DIALOG_RES_ID_s resId = (SearchDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_STR);
             mSearchDialogView = new SearchDialogView(getContext(), null, resId);

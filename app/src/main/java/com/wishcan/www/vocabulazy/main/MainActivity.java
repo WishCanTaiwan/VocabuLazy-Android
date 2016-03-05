@@ -91,7 +91,11 @@ public class MainActivity extends FragmentActivity {
     protected void onStart() {
         super.onStart();
         Log.d(TAG, "onStart");
-        mDatabase = new Database(this);
+//        mDatabase = new Database(this);
+        if (mDatabase != null) {
+            Log.d(TAG, "load note");
+            mDatabase.loadNotes();
+        }
         startAudioService();
     }
 

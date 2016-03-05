@@ -43,20 +43,18 @@ public class WCTextToSpeech extends UtteranceProgressListener
         if (!ttsEngineInit)
             return;
 
-//        if (!currentUtterance.equals(""))
-//            return;
-
-//        Log.d(TAG, "speak: " + text);
         currentUtterance = text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//          Log.d(TAG, "sdk >= 21");
             wTextToSpeech.setSpeechRate(0.8f);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, text);
+
+            Log.d(TAG, "speak: " + text);
         } else {
-//          Log.d(TAG, "sdk < 21");
             setTTSIDParams(text);
             wTextToSpeech.setSpeechRate(0.8f);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, utteranceParams);
+
+            Log.d(TAG, "speak: " + text);
         }
 
     }
@@ -109,13 +107,13 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onDone(String utteranceId) {
-//        Log.d(TAG, "onDone: " + utteranceId);
+        Log.d(TAG, "onDone: " + utteranceId);
         if (utteranceId.equals(currentUtterance)) {
 //            Log.d(TAG, "utterances match");
             currentUtterance = "";
             wOnUtteranceStatusListener.onUtteranceCompleted();
         } else {
-//            Log.d(TAG, "error: utterance dosent match!");
+            Log.d(TAG, "error: utterance dosent match!");
         }
     }
 
@@ -132,7 +130,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onUtteranceCompleted(String utteranceId) {
-//        Log.d(TAG, "onUtteranceCompleted: " + utteranceId);
+        Log.d(TAG, "onUtteranceCompleted: " + utteranceId);
         if (utteranceId.equals(currentUtterance)) {
             currentUtterance = "";
             wOnUtteranceStatusListener.onUtteranceCompleted();

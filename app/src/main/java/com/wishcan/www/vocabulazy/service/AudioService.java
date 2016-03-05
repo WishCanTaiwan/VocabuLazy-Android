@@ -226,9 +226,10 @@ public class AudioService extends IntentService
                 break;
 
             case ACTION_NEW_SENTENCE_FOCUSED:
-                wCurrentSentenceIndex = intent.getIntExtra(KEY_NEW_SENTENCE_INDEX, -1) - 1;
+                wCurrentSentenceIndex = intent.getIntExtra(KEY_NEW_SENTENCE_INDEX, -1);
                 wPlaying = PLAYING_EnSENTENCE;
-                wcTextToSpeech.stop();
+                wStatus = STATUS_PLAYING;
+                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
                 break;
 
             default:
@@ -479,11 +480,15 @@ public class AudioService extends IntentService
             case PLAYING_CnSENTENCE:
                 wCurrentSentenceIndex++;
                 if (wCurrentSentenceIndex < wCurrentSentenceAmount) {
+                    Log.d(TAG, "1");
                     if (wEnSentenceEnabled) {
+                        Log.d(TAG, "correct");
                         wPlaying = PLAYING_EnSENTENCE;
                     } else if (wCnSentenceEnabled) {
+                        Log.d(TAG, "wrong");
                         wPlaying = PLAYING_CnSENTENCE;
                     }
+                    // TODO: bug No.33 happens here
                     wServiceBroadcaster.onPlaySentence(wCurrentSentenceIndex);
                 } else if (wCurrentSentenceIndex == wCurrentSentenceAmount) {
 

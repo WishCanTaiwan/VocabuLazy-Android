@@ -63,8 +63,10 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        if(mDatabase == null) {
+        if (mDatabase == null) {
             mDatabase = ((MainActivity) getActivity()).getDatabase();
+        } else {
+            reload();
         }
     }
 
@@ -173,8 +175,10 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     }
 
     private void reload() {
-//        Log.d(TAG, "reload");
+        Log.d(TAG, "reload");
+        mDatabase = ((MainActivity) getActivity()).getDatabase();
         final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
+
         LinkedList<String> dataList = new LinkedList<>();
 
         if(notes == null) {
@@ -182,8 +186,10 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
             return;
         }
 
-        for(int i = 0; i < notes.size(); i++)
+        for(int i = 0; i < notes.size(); i++) {
             dataList.add(notes.get(i).getName());
+            Log.d(TAG, notes.get(i).getName() + ", " + notes.get(i).getContent().size());
+        }
 
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
