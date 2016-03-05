@@ -27,6 +27,7 @@ import com.wishcan.www.vocabulazy.storage.Vocabulary;
 import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ServiceConfigurationError;
 
 /**
@@ -83,6 +84,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
 
         Log.d(TAG, "BookIndex: " + mBookIndex + ", LessonIndex: " + mLessonIndex);
+        setLanguage(mBookIndex);
 
         /**
          * register the broadcast receiver
@@ -250,6 +252,13 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     /**
      * messages sent to service
      */
+    void setLanguage(int bookIndex) {
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.ACTION_SET_LANGUAGE);
+        intent.putExtra(AudioService.KEY_LANGUAGE, bookIndex);
+        getActivity().startService(intent);
+    }
+
     void setContent(ArrayList<Vocabulary> vocabularies, Option option) {
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_SET_CONTENT);
