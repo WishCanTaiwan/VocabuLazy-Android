@@ -48,13 +48,13 @@ public class WCTextToSpeech extends UtteranceProgressListener
             wTextToSpeech.setSpeechRate(0.8f);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, text);
 
-            Log.d(TAG, "speak: " + text);
+//            Log.d(TAG, "speak: " + text);
         } else {
             setTTSIDParams(text);
             wTextToSpeech.setSpeechRate(0.8f);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, utteranceParams);
 
-            Log.d(TAG, "speak: " + text);
+//            Log.d(TAG, "speak: " + text);
         }
 
     }
@@ -107,7 +107,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onDone(String utteranceId) {
-        Log.d(TAG, "onDone: " + utteranceId);
+//        Log.d(TAG, "onDone: " + utteranceId);
         if (utteranceId.equals(currentUtterance)) {
 //            Log.d(TAG, "utterances match");
             currentUtterance = "";
@@ -130,7 +130,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onUtteranceCompleted(String utteranceId) {
-        Log.d(TAG, "onUtteranceCompleted: " + utteranceId);
+//        Log.d(TAG, "onUtteranceCompleted: " + utteranceId);
         if (utteranceId.equals(currentUtterance)) {
             currentUtterance = "";
             wOnUtteranceStatusListener.onUtteranceCompleted();

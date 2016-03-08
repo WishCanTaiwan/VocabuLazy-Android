@@ -177,6 +177,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     private void reload() {
         Log.d(TAG, "reload");
         mDatabase = ((MainActivity) getActivity()).getDatabase();
+        Log.d(TAG, mDatabase.toString());
         final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
 
         LinkedList<String> dataList = new LinkedList<>();

@@ -83,7 +83,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
         mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
 
-        Log.d(TAG, "BookIndex: " + mBookIndex + ", LessonIndex: " + mLessonIndex);
+//        Log.d(TAG, "BookIndex: " + mBookIndex + ", LessonIndex: " + mLessonIndex);
         setLanguage(mBookIndex);
 
         /**
@@ -332,7 +332,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getStringExtra(ServiceBroadcaster.KEY_ACTION);
-            Log.d(TAG, action);
+//            Log.d(TAG, action);
 
             switch (action) {
 

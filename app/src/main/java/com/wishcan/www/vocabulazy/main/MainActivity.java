@@ -19,7 +19,10 @@ import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
+
+import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity {
 
@@ -93,8 +96,13 @@ public class MainActivity extends FragmentActivity {
         Log.d(TAG, "onStart");
 //        mDatabase = new Database(this);
         if (mDatabase != null) {
+            Log.d(TAG, mDatabase.toString());
             Log.d(TAG, "load note");
             mDatabase.loadNotes();
+            ArrayList<Lesson> notes = mDatabase.getLessonsByBook(-1);
+            for(int i = 0; i < notes.size(); i++) {
+                Log.d(TAG, notes.get(i).getName() + ", " + notes.get(i).getContent().size());
+            }
         }
         startAudioService();
     }

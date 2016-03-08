@@ -58,7 +58,7 @@ public class SearchActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        mDatabase = new Database(this);
+//        mDatabase = new Database(this);
     }
 
     @Override

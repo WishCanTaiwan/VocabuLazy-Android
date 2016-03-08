@@ -90,11 +90,9 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
                 mSearchModel.createSearchResultMap(vocabularies));
     }
 
-
     @Override
     public void onDialogFinish(Integer obj) {
-        Log.d(TAG, "Before addVocToNote" +obj);
+        Log.d(TAG, mDatabase.toString());
         mDatabase.addVocToNote(mSelectVocId, obj);
-        Log.d(TAG, "After addVocToNote" +obj);
     }
 }
