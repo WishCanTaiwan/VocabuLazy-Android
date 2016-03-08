@@ -48,7 +48,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
+//        Log.d(TAG, "onCreate");
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
@@ -88,36 +88,30 @@ public class MainActivity extends FragmentActivity {
         mMainActivity = this;
 
         mBackStackCount = 0;
+
+        startAudioService();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
-//        mDatabase = new Database(this);
         if (mDatabase != null) {
-            Log.d(TAG, mDatabase.toString());
-            Log.d(TAG, "load note");
             mDatabase.loadNotes();
             ArrayList<Lesson> notes = mDatabase.getLessonsByBook(-1);
-            for(int i = 0; i < notes.size(); i++) {
-                Log.d(TAG, notes.get(i).getName() + ", " + notes.get(i).getContent().size());
-            }
         }
-        startAudioService();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
+//        Log.d(TAG, "onStop");
         stopAudioService();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume");
+//        Log.d(TAG, "onResume");
         setCustomActionBar();
         Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");
         if(f != null && f instanceof FragmentWithActionBarTitle)
@@ -127,7 +121,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause");
+//        Log.d(TAG, "onPause");
         mDatabase.writeToFile(this);
     }
 

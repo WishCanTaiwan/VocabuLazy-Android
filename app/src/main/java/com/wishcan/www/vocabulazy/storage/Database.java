@@ -329,7 +329,7 @@ public class Database implements Parcelable {
 
         for (int index = 0; index < mNotes.size(); index++) {
             note = mNotes.get(index);
-            Log.d(TAG, "noteID: " + note.getID());
+//            Log.d(TAG, "noteID: " + note.getID());
             if (id == note.getID()) {
                 return note;
             }
@@ -389,16 +389,16 @@ public class Database implements Parcelable {
 
     public void addVocToNote(int vocID, int noteID) {
 
-        Log.d(TAG, "addVocToNote: " + vocID + ", " + noteID);
+//        Log.d(TAG, "addVocToNote: " + vocID + ", " + noteID);
 
         Lesson note = getNoteByID(noteID);
 
-        Log.d(TAG, "note name: " + note.getName());
+//        Log.d(TAG, "note name: " + note.getName());
 
 
         ArrayList<Integer> content = note.getContent();
 
-        Log.d(TAG, "size before adding: " + content.size());
+//        Log.d(TAG, "size before adding: " + content.size());
 
         for (int index = 0; index < content.size(); index++) {
             int id = content.get(index);
@@ -409,12 +409,12 @@ public class Database implements Parcelable {
         content.add(vocID);
 
 
-        Log.d(TAG, "size after adding: " + content.size());
+//        Log.d(TAG, "size after adding: " + content.size());
     }
 
     public void createNewNote(String name) {
         int index = mNotes.size();
-        Log.d(TAG, "create " + name + " at " + index);
+//        Log.d(TAG, "create " + name + " at " + index);
         mNotes.add(index, new Lesson(index, name, new ArrayList<Integer>(), null));
     }
 
@@ -437,7 +437,7 @@ public class Database implements Parcelable {
         for (int index = 0; index < mNotes.size(); index++) {
             Lesson note = mNotes.get(index);
             if (id == note.getID()) {
-                Log.d(TAG, "delete: " + note.getName());
+//                Log.d(TAG, "delete: " + note.getName());
                 mNotes.remove(note);
                 break;
             }
@@ -639,7 +639,7 @@ public class Database implements Parcelable {
 
     private void writeNote() {
 
-        Log.d(TAG, "writeNote");
+//        Log.d(TAG, "writeNote");
 
         JSONArray jsonArray = new JSONArray();
 
@@ -670,7 +670,7 @@ public class Database implements Parcelable {
 
     private void writeOption() {
 
-        Log.d(TAG, "writeOption");
+//        Log.d(TAG, "writeOption");
 
         JSONArray jsonArray = new JSONArray();
 

@@ -61,7 +61,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
         mSearchView.setOnItemClickListener(new SearchView.OnItemClickListener() {
             @Override
             public void onAddIconClick(int position) {
-                Log.d(TAG, "onAddIconClick");
+//                Log.d(TAG, "onAddIconClick");
                 mSelectVocId = mSuggestedVocabularies.get(position).getID();
                 SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.LIST);
                 getFragmentManager()
@@ -73,7 +73,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
 
             @Override
             public void onListItemClick(int position) {
-                Log.d(TAG, "onListItemClick");
+//                Log.d(TAG, "onListItemClick");
                 Vocabulary voc = mSuggestedVocabularies.get(position);
                 mSelectVocId = voc.getID();
                 mSearchView.refreshSearchDetail(
@@ -92,7 +92,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
 
     @Override
     public void onDialogFinish(Integer obj) {
-        Log.d(TAG, mDatabase.toString());
+//        Log.d(TAG, mDatabase.toString());
         mDatabase.addVocToNote(mSelectVocId, obj);
     }
 }

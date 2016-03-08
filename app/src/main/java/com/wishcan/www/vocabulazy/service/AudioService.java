@@ -491,12 +491,9 @@ public class AudioService extends IntentService
             case PLAYING_CnSENTENCE:
                 wCurrentSentenceIndex++;
                 if (wCurrentSentenceIndex < wCurrentSentenceAmount) {
-                    Log.d(TAG, "1");
                     if (wEnSentenceEnabled) {
-                        Log.d(TAG, "correct");
                         wPlaying = PLAYING_EnSENTENCE;
                     } else if (wCnSentenceEnabled) {
-                        Log.d(TAG, "wrong");
                         wPlaying = PLAYING_CnSENTENCE;
                     }
                     // TODO: bug No.33 happens here

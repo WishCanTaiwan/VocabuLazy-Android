@@ -93,7 +93,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
 
     @Override
     public void onDialogFinish(String obj) {
-        Log.d(TAG, mDatabase.toString());
+//        Log.d(TAG, mDatabase.toString());
         mDatabase.createNewNote(obj);
     }
 
@@ -108,8 +108,8 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     }
 
     private void refreshNoteList() {
-        Log.d(TAG, mDatabase.toString());
-        Log.d(TAG, "refreshNotekList");
+//        Log.d(TAG, mDatabase.toString());
+//        Log.d(TAG, "refreshNotekList");
         mDatabase = ((SearchActivity) getActivity()).getDatabase();
         ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();

@@ -54,7 +54,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
+//        Log.d(TAG, "onCreate");
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         M_TAG = getTag();
     }
@@ -62,7 +62,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume");
+//        Log.d(TAG, "onResume");
         if (mDatabase == null) {
             mDatabase = ((MainActivity) getActivity()).getDatabase();
         } else {
@@ -73,25 +73,25 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause");
+//        Log.d(TAG, "onPause");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
+//        Log.d(TAG, "onStart");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
+//        Log.d(TAG, "onStop");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
+//        Log.d(TAG, "onCreateView");
         mUsrNoteView = new UsrNoteView(getActivity());
         final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
@@ -175,9 +175,9 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     }
 
     private void reload() {
-        Log.d(TAG, "reload");
+//        Log.d(TAG, "reload");
         mDatabase = ((MainActivity) getActivity()).getDatabase();
-        Log.d(TAG, mDatabase.toString());
+//        Log.d(TAG, mDatabase.toString());
         final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
 
         LinkedList<String> dataList = new LinkedList<>();
@@ -187,10 +187,10 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
             return;
         }
 
-        for(int i = 0; i < notes.size(); i++) {
-            dataList.add(notes.get(i).getName());
-            Log.d(TAG, notes.get(i).getName() + ", " + notes.get(i).getContent().size());
-        }
+//        for(int i = 0; i < notes.size(); i++) {
+//            dataList.add(notes.get(i).getName());
+//            Log.d(TAG, notes.get(i).getName() + ", " + notes.get(i).getContent().size());
+//        }
 
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
