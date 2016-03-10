@@ -98,19 +98,23 @@ public class PlayerMainView extends Infinite3View {
     }
 
     public void showDetail() {
-        mPlayerScrollView.showItemDetails();
+        if(mPlayerScrollView != null)
+            mPlayerScrollView.showItemDetails();
     }
 
     public void hideDetail() {
-        mPlayerScrollView.hideItemDetails();
+        if(mPlayerScrollView != null)
+            mPlayerScrollView.hideItemDetails();
     }
 
     public void moveToPosition(int position) {
-        mPlayerScrollView.moveToPosition(position);
+        if(mPlayerScrollView != null)
+            mPlayerScrollView.moveToPosition(position);
     }
 
     public void moveToDetailPage(int index) {
-        mPlayerScrollView.setDetailPage(index);
+        if(mPlayerScrollView != null)
+            mPlayerScrollView.setDetailPage(index);
     }
 
     @Override

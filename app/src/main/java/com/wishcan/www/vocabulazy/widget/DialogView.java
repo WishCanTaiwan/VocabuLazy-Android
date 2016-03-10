@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -52,7 +53,7 @@ abstract public class DialogView<WishCan> extends LinearLayout {
         mDefaultLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         setGravity(Gravity.CENTER);
         setVisibility(INVISIBLE);
-        setBackgroundColor(DEFAULT_DIALOG_BACKGROUND_COLOR);
+        setBackgroundColor(ContextCompat.getColor(context, DEFAULT_DIALOG_BACKGROUND_COLOR));
         setLayoutParams(mDefaultLayoutParams);
 
         mDefaultDialogLayoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);

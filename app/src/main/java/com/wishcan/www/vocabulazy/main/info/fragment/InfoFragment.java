@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.main.info.view.InfoView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +18,7 @@ import com.wishcan.www.vocabulazy.R;
  * create an instance of this fragment.
  */
 public class InfoFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,6 +28,7 @@ public class InfoFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private InfoView mInfoView;
 
     /**
      * Use this factory method to create a new instance of
@@ -61,9 +64,10 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+
+        mInfoView = new InfoView(getActivity());
+
+        return mInfoView;
     }
 
 

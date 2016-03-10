@@ -400,7 +400,7 @@ abstract public class PopScrollView extends RelativeLayout {
         mItemDetailsLinearLayout.setBackgroundColor(ContextCompat.getColor(mContext, DEFAULT_DETAILS_COLOR_RES_ID));
 
         PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mPopItemZoomInHeight) / mPopItemDetailHeight, 1f);
-        PropertyValuesHolder elevateVH = PropertyValuesHolder.ofFloat("Elevation", 0, 40);
+        PropertyValuesHolder elevateVH = PropertyValuesHolder.ofInt("Elevation", 0, 40);
         Animator animator = ObjectAnimator.ofPropertyValuesHolder(mItemDetailsLinearLayout, stretchVH, elevateVH);
         animator.setDuration(500);
         LayoutTransition layoutTransition = new LayoutTransition();
@@ -435,7 +435,7 @@ abstract public class PopScrollView extends RelativeLayout {
         ValueAnimator detailDisappearAnim = ObjectAnimator.ofFloat(detailContentView, "alpha", 1.0f, 0f);
         detailDisappearAnim.setDuration(300);
 
-        ValueAnimator detailZoomOutAnim = ObjectAnimator.ofFloat(mItemDetailsLinearLayout, "ScaleY", 1.0f, ((float) mPopItemZoomInHeight) / 500);
+        ValueAnimator detailZoomOutAnim = ObjectAnimator.ofFloat(mItemDetailsLinearLayout, "ScaleY", 1.0f, ((float) mPopItemZoomInHeight) / mPopItemDetailHeight);
         detailDisappearAnim.setDuration(500);
 
         animatorSet.play(detailDisappearAnim).before(detailZoomOutAnim);

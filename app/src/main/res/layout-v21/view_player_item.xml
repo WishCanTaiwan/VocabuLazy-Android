@@ -17,13 +17,16 @@
 
         <TextView
             android:id="@+id/player_voc_spell"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="effect"
+            android:text="make the use of makea"
+            android:scrollHorizontally="false"
+            android:ellipsize="none"
             android:gravity="center"
             android:textSize="@dimen/player_list_item_text0_size"
-            android:maxLines="2"
+            android:singleLine="true"
+            android:maxLines="1"
             android:textColor="@color/player_list_item_font1" />
 
     </LinearLayout>
