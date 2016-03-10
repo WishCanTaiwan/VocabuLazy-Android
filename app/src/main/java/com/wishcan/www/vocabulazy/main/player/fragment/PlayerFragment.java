@@ -42,6 +42,13 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     public static final String LESSON_INDEX_STR = "LESSON_INDEX_STR";
 
     /**
+     * KEYs for instance state bundle
+     */
+    private static final String KEY_BOOK_INDEX = "book-index";
+    private static final String KEY_LESSON_INDEX = "lesson-index";
+    private static final String KEY_ITEM_INDEX = "item-index";
+
+    /**
      * broadcast manager
      */
     private LocalBroadcastManager wBroadcastManager;
@@ -50,6 +57,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     private PlayerModel mPlayerModel;
     private int mBookIndex;
     private int mLessonIndex;
+    private int mItemIndex;
     private ArrayList<Vocabulary> mVocabularies;
     private PlayerMainView mPlayerMainView;
     private PlayerPanelView mPlayerPanelView;
@@ -62,6 +70,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     private ServiceBroadcastReceiver wServiceBroadcastReceiver;
 
     public static PlayerFragment newInstance(int bookIndex, int lessonIndex) {
+        Log.d(TAG, "newInstance");
         PlayerFragment fragment = new PlayerFragment();
         Bundle args = new Bundle();
         args.putInt(BOOK_INDEX_STR, bookIndex);
@@ -77,13 +86,15 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d(TAG, "onCreate");
+
         mPlayerModel = new PlayerModel((MainActivity) getActivity());
-//        mDatabase = ((MainActivity) getActivity()).getDatabase();
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         mLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
         mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
 
-//        Log.d(TAG, "BookIndex: " + mBookIndex + ", LessonIndex: " + mLessonIndex);
+        Log.d(TAG, "BookIndex: " + mBookIndex + ", LessonIndex: " + mLessonIndex);
         setLanguage(mBookIndex);
 
         /**
@@ -92,6 +103,15 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         wBroadcastManager = LocalBroadcastManager.getInstance(getContext());
         wServiceBroadcastReceiver = new ServiceBroadcastReceiver();
         wBroadcastManager.registerReceiver(wServiceBroadcastReceiver, new IntentFilter(ServiceBroadcaster.BROADCAST_INTENT));
+
+        /**
+         * start audioservice
+         */
+        ArrayList<Vocabulary> vocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+        Option option = mPlayerModel.getCurrentOption();
+        setContent(vocabularies, option);
+        if (vocabularies.size() > 0)
+            startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
     }
 
     @Override
@@ -213,18 +233,41 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "onActivityCreated: " + savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated: " + savedInstanceState);
+    }
+
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        Log.d(TAG, "onViewStateRestored: " + savedInstanceState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         Log.d(TAG, "onStart");
 
-        /**
-         * start audioservice
-         */
-        ArrayList<Vocabulary> vocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-        Option option = mPlayerModel.getCurrentOption();
-        setContent(vocabularies, option);
-        if (vocabularies.size() > 0)
-            startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
+
 
         /**
          * when database is ready
@@ -237,6 +280,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     public void onStop() {
         super.onStop();
         Log.d(TAG, "onStop");
+        // TODO: recording the book, lesson and item index for future recreating.
+
     }
 
     @Override
@@ -247,6 +292,15 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
          * unregister when destoryed
          */
         wBroadcastManager.unregisterReceiver(wServiceBroadcastReceiver);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSavedInstanceState");
+        outState.putInt(KEY_BOOK_INDEX, mBookIndex);
+        outState.putInt(KEY_LESSON_INDEX, mLessonIndex);
+        outState.putInt(KEY_ITEM_INDEX, mItemIndex);
+        super.onSaveInstanceState(outState);
     }
 
     /**
@@ -268,6 +322,9 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     void startPlayingAt(int itemIndex, int sentenceIndex, String playingField) {
+
+        mItemIndex = itemIndex;
+
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_START_PLAYING);
         intent.putExtra(AudioService.KEY_START_ITEM_INDEX, itemIndex);
@@ -304,6 +361,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
     void newListFocused(ArrayList<Vocabulary> vocabularies) {
         Log.d(TAG, "newListFocused");
+        mItemIndex = 0;
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_NEW_LIST);
         intent.putParcelableArrayListExtra(AudioService.KEY_NEW_CONTENT, vocabularies);

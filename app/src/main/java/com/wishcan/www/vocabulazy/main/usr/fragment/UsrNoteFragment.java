@@ -144,6 +144,12 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onDialogFinish(String str) {
         LinkedList<String> dataList = new LinkedList<>();
         ArrayList<Lesson> notes;
@@ -163,6 +169,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     }
 
     private void goPlayerFragment(int bookIndex, int lessonIndex){
+        Log.d(TAG, "goPlayerFragment");
         FragmentManager fragmentManager = getFragmentManager();
         PlayerFragment playerFragment = PlayerFragment.newInstance(bookIndex, lessonIndex);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

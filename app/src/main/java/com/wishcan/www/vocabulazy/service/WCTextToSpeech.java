@@ -92,7 +92,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onInit(int status) {
-//        Log.d(TAG, "onInit");
+        Log.d(TAG, "onInit");
         if(status == TextToSpeech.SUCCESS) {
             ttsEngineInit = true;
 //            Log.d(TAG, "engine initialized");

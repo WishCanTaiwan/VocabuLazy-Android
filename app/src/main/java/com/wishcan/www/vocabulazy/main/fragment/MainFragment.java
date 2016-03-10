@@ -4,6 +4,7 @@ package com.wishcan.www.vocabulazy.main.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,10 @@ import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment implements FragmentWithActionBarTitle{
+public class MainFragment extends Fragment implements FragmentWithActionBarTitle {
+
+    public static final String TAG = MainFragment.class.getSimpleName();
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final int VIEW_RES_ID = R.layout.view_main;
@@ -76,6 +80,11 @@ public class MainFragment extends Fragment implements FragmentWithActionBarTitle
         return mainView;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     public String getActionBarTitle() {

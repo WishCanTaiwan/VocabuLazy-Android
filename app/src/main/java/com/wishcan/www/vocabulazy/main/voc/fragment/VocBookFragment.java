@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import java.util.LinkedList;
  */
 public class VocBookFragment extends Fragment {
 
+    public static final String TAG = VocBookFragment.class.getSimpleName();
 
     private Database mDatabase;
 
@@ -52,6 +54,12 @@ public class VocBookFragment extends Fragment {
         super.onResume();
         if(mDatabase == null)
             mDatabase = ((MainActivity) getActivity()).getDatabase();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState");
+        super.onSaveInstanceState(outState);
     }
 
     @Override
