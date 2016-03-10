@@ -43,20 +43,18 @@ public class WCTextToSpeech extends UtteranceProgressListener
         if (!ttsEngineInit)
             return;
 
-//        if (!currentUtterance.equals(""))
-//            return;
-
-//        Log.d(TAG, "speak: " + text);
         currentUtterance = text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//          Log.d(TAG, "sdk >= 21");
             wTextToSpeech.setSpeechRate(0.8f);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, text);
+
+//            Log.d(TAG, "speak: " + text);
         } else {
-//          Log.d(TAG, "sdk < 21");
             setTTSIDParams(text);
             wTextToSpeech.setSpeechRate(0.8f);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, utteranceParams);
+
+//            Log.d(TAG, "speak: " + text);
         }
 
     }
@@ -94,7 +92,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onInit(int status) {
-//        Log.d(TAG, "onInit");
+        Log.d(TAG, "onInit");
         if(status == TextToSpeech.SUCCESS) {
             ttsEngineInit = true;
 //            Log.d(TAG, "engine initialized");
@@ -115,7 +113,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
             currentUtterance = "";
             wOnUtteranceStatusListener.onUtteranceCompleted();
         } else {
-//            Log.d(TAG, "error: utterance dosent match!");
+            Log.d(TAG, "error: utterance dosent match!");
         }
     }
 

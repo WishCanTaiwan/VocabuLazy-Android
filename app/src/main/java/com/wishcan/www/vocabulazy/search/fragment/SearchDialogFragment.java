@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.search.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
@@ -16,6 +17,8 @@ import java.util.LinkedList;
  * Created by swallow on 2016/1/20.
  */
 public class SearchDialogFragment extends DialogFragment implements DialogFragment.OnDialogFinishListener<String> {
+
+    public static final String TAG = SearchDialogFragment.class.getSimpleName();
 
     public static String M_TAG;
 
@@ -38,6 +41,8 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mDatabase = ((SearchActivity) getActivity()).getDatabase();
 
         if(getArguments() != null) {
             SearchDialogView.DIALOG_RES_ID_s resId = (SearchDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_STR);
@@ -88,6 +93,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
 
     @Override
     public void onDialogFinish(String obj) {
+//        Log.d(TAG, mDatabase.toString());
         mDatabase.createNewNote(obj);
     }
 
@@ -102,7 +108,9 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     }
 
     private void refreshNoteList() {
-        mDatabase = ((SearchActivity)getActivity()).getDatabase();
+//        Log.d(TAG, mDatabase.toString());
+//        Log.d(TAG, "refreshNotekList");
+        mDatabase = ((SearchActivity) getActivity()).getDatabase();
         ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
         if(notes != null)

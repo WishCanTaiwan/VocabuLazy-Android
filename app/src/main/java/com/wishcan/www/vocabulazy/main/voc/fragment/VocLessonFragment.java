@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ import java.util.LinkedList;
  * create an instance of this fragment.
  */
 public class VocLessonFragment extends Fragment implements FragmentWithActionBarTitle{
+
+    public static final String TAG = VocLessonFragment.class.getSimpleName();
 
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
     
@@ -87,7 +90,14 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
         return vocLessonView;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+    }
+
     private void goPlayerFragment(int bookIndex, int lessonIndex){
+        Log.d(TAG, "goPlayerFragment");
         Bundle args = new Bundle();
         args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
         args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);

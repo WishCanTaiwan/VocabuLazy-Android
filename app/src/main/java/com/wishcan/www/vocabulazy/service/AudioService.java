@@ -38,6 +38,7 @@ public class AudioService extends IntentService
     public static final String ACTION_NEW_LIST = "new-list";
     public static final String ACTION_PLAYERVIEW_SCROLLING = "playerview-scrolling";
     public static final String ACTION_NEW_SENTENCE_FOCUSED = "new-sentence-focused";
+    public static final String ACTION_SET_LANGUAGE = "set-language";
 
     /**
      * keys for bundle identification
@@ -50,6 +51,7 @@ public class AudioService extends IntentService
     public static final String KEY_STOP_AT_ITEM_INDEX = "stop-at-item-index";
     public static final String KEY_NEW_CONTENT = "new-content";
     public static final String KEY_NEW_SENTENCE_INDEX = "new-sentence-index";
+    public static final String KEY_LANGUAGE = "language";
 
     /**
      * strings for identifying the status of the player
@@ -94,6 +96,9 @@ public class AudioService extends IntentService
 
     private int itemloopCountDown;
     private int listloopCountDown;
+
+    private Locale wSpellLanguage;
+    private Locale wTranslationLanguage;
 
     public AudioService() {
         super(null);
@@ -147,6 +152,12 @@ public class AudioService extends IntentService
             case ACTION_STOP_SERVICE:
                 wAudioPlayer.releasePlayer();
                 wcTextToSpeech.shutdown();
+                break;
+
+            case ACTION_SET_LANGUAGE:
+                int bookIndex = intent.getIntExtra(KEY_LANGUAGE, -1);
+                wSpellLanguage = (bookIndex == 3) ? Locale.JAPAN : Locale.ENGLISH;
+                wTranslationLanguage = Locale.TAIWAN;
                 break;
 
             case ACTION_SET_CONTENT:
@@ -226,9 +237,10 @@ public class AudioService extends IntentService
                 break;
 
             case ACTION_NEW_SENTENCE_FOCUSED:
-                wCurrentSentenceIndex = intent.getIntExtra(KEY_NEW_SENTENCE_INDEX, -1) - 1;
+                wCurrentSentenceIndex = intent.getIntExtra(KEY_NEW_SENTENCE_INDEX, -1);
                 wPlaying = PLAYING_EnSENTENCE;
-                wcTextToSpeech.stop();
+                wStatus = STATUS_PLAYING;
+                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
                 break;
 
             default:
@@ -247,25 +259,25 @@ public class AudioService extends IntentService
 
             case PLAYING_SPELL:
                 string = wVoabularies.get(itemIndex).getSpell();
-                wcTextToSpeech.setLanguage(Locale.ENGLISH);
+                wcTextToSpeech.setLanguage(wSpellLanguage);
                 wcTextToSpeech.speak(string);
                 break;
 
             case PLAYING_TRANSLATION:
                 string = wVoabularies.get(itemIndex).getTranslationInOneString();
-                wcTextToSpeech.setLanguage(Locale.TAIWAN);
+                wcTextToSpeech.setLanguage(wTranslationLanguage);
                 wcTextToSpeech.speak(string);
                 break;
 
             case PLAYING_EnSENTENCE:
                 string = wVoabularies.get(itemIndex).getEn_Sentence().get(sentenceIndex);
-                wcTextToSpeech.setLanguage(Locale.ENGLISH);
+                wcTextToSpeech.setLanguage(wSpellLanguage);
                 wcTextToSpeech.speak(string);
                 break;
 
             case PLAYING_CnSENTENCE:
                 string = wVoabularies.get(itemIndex).getCn_Sentence().get(sentenceIndex);
-                wcTextToSpeech.setLanguage(Locale.TAIWAN);
+                wcTextToSpeech.setLanguage(wTranslationLanguage);
                 wcTextToSpeech.speak(string);
                 break;
 
@@ -484,6 +496,7 @@ public class AudioService extends IntentService
                     } else if (wCnSentenceEnabled) {
                         wPlaying = PLAYING_CnSENTENCE;
                     }
+                    // TODO: bug No.33 happens here
                     wServiceBroadcaster.onPlaySentence(wCurrentSentenceIndex);
                 } else if (wCurrentSentenceIndex == wCurrentSentenceAmount) {
 

@@ -52,7 +52,7 @@ abstract public class PopScrollView extends RelativeLayout {
 
     protected abstract View getItemDetailView();
 
-    public interface OnPopScrollStoppedListener{
+    public interface OnPopScrollStoppedListener {
         void onPopScrollStopped(int index);
         void onPopScrolling();
     }

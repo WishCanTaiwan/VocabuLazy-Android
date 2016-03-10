@@ -32,12 +32,13 @@ public class PlayerMainView extends Infinite3View {
     public static final String TAG = PlayerMainView.class.getSimpleName();
 
     public interface OnPlayerScrollListener {
-        void onPlayerVerticalScrollStop(int index);
+        void onPlayerVerticalScrollStop(int index, boolean isViewTouchedDown);
         void onPlayerVerticalScrolling();
-        void onPlayerHorizontalScrollStop(int direction);
+        void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown);
         void onPlayerHorizontalScrolling();
-        void onDetailScrollStop(int index);
+        void onDetailScrollStop(int index, boolean isViewTouchedDown);
         void onDetailScrolling();
+        void onViewTouchDown();
     }
 
     private Context mContext;
@@ -45,6 +46,8 @@ public class PlayerMainView extends Infinite3View {
     private LinkedList<HashMap> mPlayerDataList;
     private static HashMap<String, Object> mPlayerDetailDataMap;
     private static OnPlayerScrollListener mOnPlayerScrollListener;
+
+    private static boolean isViewTouchedDown = false;
 
     public PlayerMainView(Context context) {
         this(context, null);
@@ -63,8 +66,10 @@ public class PlayerMainView extends Infinite3View {
 
             @Override
             public void onPageChanged(int direction) {
-                if (mOnPlayerScrollListener != null)
-                    mOnPlayerScrollListener.onPlayerHorizontalScrollStop(direction);
+                if (mOnPlayerScrollListener != null) {
+                    mOnPlayerScrollListener.onPlayerHorizontalScrollStop(direction, isViewTouchedDown);
+                    isViewTouchedDown = false;
+                }
             }
         });
     }
@@ -93,7 +98,7 @@ public class PlayerMainView extends Infinite3View {
             mPlayerScrollView.refreshPlayerDetail();
     }
 
-    public void setOnPlayerScrollStopListener(OnPlayerScrollListener listener){
+    public void setOnPlayerScrollStopListener(OnPlayerScrollListener listener) {
         mOnPlayerScrollListener = listener;
     }
 
@@ -121,6 +126,7 @@ public class PlayerMainView extends Infinite3View {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                isViewTouchedDown = true;
                 break;
             case MotionEvent.ACTION_MOVE:
                 if(getCurrentItem() != null)
@@ -136,7 +142,7 @@ public class PlayerMainView extends Infinite3View {
 
     public static class PlayerScrollView extends PopScrollView {
 
-        private static final String TAG = PlayerScrollView.class.getSimpleName();
+//        private static final String TAG = PlayerScrollView.class.getSimpleName();
 
         private static final int PLAYER_ITEM_LAYOUT_RES_ID = R.layout.view_player_item;
         private static final int PLAYER_ITEM_DETAIL_LAYOUT_RES_ID = R.layout.view_player_details;
@@ -194,8 +200,10 @@ public class PlayerMainView extends Infinite3View {
             setOnPopScrollStoppedListener(new OnPopScrollStoppedListener() {
                 @Override
                 public void onPopScrollStopped(int index) {
-                    if (mOnPlayerScrollListener != null)
-                        mOnPlayerScrollListener.onPlayerVerticalScrollStop(index);
+                    if (mOnPlayerScrollListener != null) {
+                        mOnPlayerScrollListener.onPlayerVerticalScrollStop(index, isViewTouchedDown);
+                        isViewTouchedDown = false;
+                    }
                     mPlayerDetailView = new PlayerDetailView(getContext());
                     mPlayerDetailView.setAdapter(
                             mPlayerDetailView.getAdapter(
@@ -204,10 +212,19 @@ public class PlayerMainView extends Infinite3View {
 
                 @Override
                 public void onPopScrolling() {
-                    if (mOnPlayerScrollListener != null)
+                    if (mOnPlayerScrollListener != null) {
                         mOnPlayerScrollListener.onPlayerVerticalScrolling();
+                    }
                 }
             });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent ev) {
+            if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+                isViewTouchedDown = true;
+            }
+            return super.onInterceptTouchEvent(ev);
         }
 
         /**
@@ -292,7 +309,7 @@ public class PlayerMainView extends Infinite3View {
                     ArrayList<String> enSentences, ceSentences;
                     viewPager = new ViewPager(mContext);
 
-                    if(mDataMap == null)
+                    if (mDataMap == null || mDataMap.size() == 0)
                         return;
 
                     ((TextView) itemView
@@ -347,7 +364,9 @@ public class PlayerMainView extends Infinite3View {
 
             private class OnPageChangeListener implements ViewPager.OnPageChangeListener {
                 @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
                 @Override
                 public void onPageSelected(int position) {
 //                    Log.d(TAG, "onPageSelected: " + position);
@@ -363,11 +382,29 @@ public class PlayerMainView extends Infinite3View {
                     /**
                      * added by allen
                      */
-                    if (mOnPlayerScrollListener != null)
-                        mOnPlayerScrollListener.onDetailScrollStop(position);
+                    if (mOnPlayerScrollListener != null) {
+                        mOnPlayerScrollListener.onDetailScrollStop(position, isViewTouchedDown);
+                        isViewTouchedDown = false;
+                    }
                 }
                 @Override
                 public void onPageScrollStateChanged(int state) {}
+            }
+
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent ev) {
+                if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+//                    Log.d("PlayerMainView", ev.toString());
+                    mOnPlayerScrollListener.onViewTouchDown();
+                    isViewTouchedDown = true;
+                }
+                return super.onInterceptTouchEvent(ev);
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent event) {
+
+                return super.onTouchEvent(event);
             }
         }
 

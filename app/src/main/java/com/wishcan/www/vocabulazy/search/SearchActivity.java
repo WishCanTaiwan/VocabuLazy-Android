@@ -37,7 +37,7 @@ public class SearchActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
+//        Log.d(TAG, "onCreate");
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
             mSearchFragment = new SearchFragment();
@@ -47,7 +47,7 @@ public class SearchActivity extends FragmentActivity {
                     .commit();
         }
         mDatabase = new Database(this);
-        Log.d(TAG, "" + mDatabase);
+//        Log.d(TAG, "" + mDatabase);
         mActionBar = getActionBar();
         if(mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
@@ -57,27 +57,27 @@ public class SearchActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume");
-        mDatabase = new Database(this);
+//        Log.d(TAG, "onResume");
+//        mDatabase = new Database(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause");
+//        Log.d(TAG, "onPause");
         mDatabase.writeToFile(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
+//        Log.d(TAG, "onStart");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
+//        Log.d(TAG, "onStop");
     }
 
     @Override

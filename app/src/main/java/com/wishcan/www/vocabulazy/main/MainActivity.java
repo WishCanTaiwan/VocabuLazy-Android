@@ -19,7 +19,10 @@ import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
+
+import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity {
 
@@ -45,7 +48,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
+//        Log.d(TAG, "onCreate");
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
@@ -85,27 +88,30 @@ public class MainActivity extends FragmentActivity {
         mMainActivity = this;
 
         mBackStackCount = 0;
+
+        startAudioService();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
-        mDatabase = new Database(this);
-        startAudioService();
+        if (mDatabase != null) {
+            mDatabase.loadNotes();
+            ArrayList<Lesson> notes = mDatabase.getLessonsByBook(-1);
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
+//        Log.d(TAG, "onStop");
         stopAudioService();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume");
+//        Log.d(TAG, "onResume");
         setCustomActionBar();
         Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");
         if(f != null && f instanceof FragmentWithActionBarTitle)
@@ -115,8 +121,14 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause");
+//        Log.d(TAG, "onPause");
         mDatabase.writeToFile(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState");
+        super.onSaveInstanceState(outState);
     }
 
     @Override
