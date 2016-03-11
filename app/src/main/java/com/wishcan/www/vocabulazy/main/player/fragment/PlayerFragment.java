@@ -311,12 +311,12 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     @Override
     public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
         mPlayerMainView.addNewPlayer(playerDataContent);
-        mPlayerMainView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mPlayerMainView.addNewPlayer(playerDataContent);
-            }
-        }, 600);
+//        mPlayerMainView.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mPlayerMainView.addNewPlayer(playerDataContent);
+//            }
+//        }, 600);
     }
 
     @Override
