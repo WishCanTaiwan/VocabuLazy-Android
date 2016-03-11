@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -21,7 +20,6 @@ import com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerView;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.service.ServiceBroadcaster;
-import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Option;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
@@ -29,15 +27,13 @@ import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Locale;
-import java.util.ServiceConfigurationError;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment implements FragmentWithActionBarTitle, PlayerModel.PlayerModelDataProccesseListener{
+public class PlayerFragment extends Fragment implements FragmentWithActionBarTitle, PlayerModel.PlayerModelDataProcessListener {
 
     private static final String TAG = PlayerFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
@@ -310,13 +306,12 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
     @Override
     public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
-        mPlayerMainView.addNewPlayer(playerDataContent);
-//        mPlayerMainView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mPlayerMainView.addNewPlayer(playerDataContent);
-//            }
-//        }, 600);
+        mPlayerMainView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPlayerMainView.addNewPlayer(playerDataContent);
+            }
+        }, 600);
     }
 
     @Override

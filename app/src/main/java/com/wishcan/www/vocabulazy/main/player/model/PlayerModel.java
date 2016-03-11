@@ -29,13 +29,11 @@ public class PlayerModel {
     private ArrayList<Vocabulary> mVocabularies;
 
     private PlayerModelAsyncTask wAsyncTask;
-    private PlayerModelDataProccesseListener wDataProcessListener;
+    private PlayerModelDataProcessListener wDataProcessListener;
 
 	public PlayerModel(MainActivity mainActivity) {
         mMainActivity = mainActivity;
         mDatabase = mainActivity.getDatabase();
-
-//        wAsyncTask = new PlayerModelAsyncTask();
 	}
 
 //	public LinkedList<HashMap> createPlayerContent(ArrayList<Vocabulary> vocArrayList) {
@@ -125,7 +123,7 @@ public class PlayerModel {
         activity.startService(intent);
     }
 
-    public void setDataProcessListener(PlayerModelDataProccesseListener listener) {
+    public void setDataProcessListener(PlayerModelDataProcessListener listener) {
         wDataProcessListener = listener;
     }
 
@@ -214,9 +212,10 @@ public class PlayerModel {
         }
     }
 
-    public interface PlayerModelDataProccesseListener {
+    public interface PlayerModelDataProcessListener {
         void onPlayerContentCreated(LinkedList<HashMap> playerDataContent);
         void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent);
         void onVocabulariesGet(ArrayList<Vocabulary> vocabularies);
     }
+
 }
