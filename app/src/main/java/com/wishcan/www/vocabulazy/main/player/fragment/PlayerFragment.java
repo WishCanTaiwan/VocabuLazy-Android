@@ -27,6 +27,8 @@ import com.wishcan.www.vocabulazy.storage.Vocabulary;
 import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.ServiceConfigurationError;
 
@@ -35,7 +37,7 @@ import java.util.ServiceConfigurationError;
  * Use the {@link PlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment implements FragmentWithActionBarTitle{
+public class PlayerFragment extends Fragment implements FragmentWithActionBarTitle, PlayerModel.PlayerModelDataProccesseListener{
 
     private static final String TAG = PlayerFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
@@ -90,9 +92,11 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         Log.d(TAG, "onCreate");
 
         mPlayerModel = new PlayerModel((MainActivity) getActivity());
+        mPlayerModel.setDataProcessListener(this);
+
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         mLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
-        mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+        mVocabularies = null;
 
         Log.d(TAG, "BookIndex: " + mBookIndex + ", LessonIndex: " + mLessonIndex);
         setLanguage(mBookIndex);
@@ -107,11 +111,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         /**
          * start audioservice
          */
-        ArrayList<Vocabulary> vocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-        Option option = mPlayerModel.getCurrentOption();
-        setContent(vocabularies, option);
-        if (vocabularies.size() > 0)
-            startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
+//        startAudio();
     }
 
     @Override
@@ -123,19 +123,25 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mPlayerOptionGrayBack = playerView.getPlayerOptionGrayBack();
         mPlayerOptionView = playerView.getPlayerOptionView();
 
+        mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+
         /**Initialize and  Refresh PlayerView */
-        mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
+//        mPlayerModel.createPlayerDetailContent(mVocabularies.get(0));
+//        mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
 
         /** set Scroll Listener, update Player's detail content every time the scroll stopped */
         mPlayerMainView.setOnPlayerScrollStopListener(new PlayerMainView.OnPlayerScrollListener() {
             @Override
             public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
-                mPlayerMainView.refreshPlayerDetail(
-                        mPlayerModel.createPlayerDetailContent(
-                                mVocabularies.get(currentPosition)));
+//                mPlayerModel.createPlayerDetailContent(mVocabularies.get(currentPosition));
+//                mPlayerMainView.refreshPlayerDetail(
+//                        mPlayerModel.createPlayerDetailContent(
+//                                mVocabularies.get(currentPosition)));
 
-                if (isViewTouchedDown)
+                if (isViewTouchedDown) {
                     newItemFocused(currentPosition);
+                    mPlayerModel.createPlayerDetailContent(mVocabularies.get(currentPosition));
+                }
             }
 
             @Override
@@ -147,9 +153,10 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             public void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown) {
                 int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
                 mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
-                mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-                mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
-                mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
+                mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+//                mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+//                mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
+//                mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
                 mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
 
                 if (isViewTouchedDown)
@@ -214,12 +221,12 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             }
         });
 
-        mPlayerMainView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
-            }
-        }, 600);
+//        mPlayerMainView.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
+//            }
+//        }, 600);
 
         return playerView;
     }
@@ -267,8 +274,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         super.onStart();
         Log.d(TAG, "onStart");
 
-
-
         /**
          * when database is ready
          */
@@ -301,6 +306,48 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         outState.putInt(KEY_LESSON_INDEX, mLessonIndex);
         outState.putInt(KEY_ITEM_INDEX, mItemIndex);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
+        mPlayerMainView.addNewPlayer(playerDataContent);
+        mPlayerMainView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPlayerMainView.addNewPlayer(playerDataContent);
+            }
+        }, 600);
+    }
+
+    @Override
+    public void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent) {
+        mPlayerMainView.refreshPlayerDetail(playerDetailDataContent);
+    }
+
+    @Override
+    public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
+        mVocabularies = vocabularies;
+        mPlayerModel.createPlayerContent(mVocabularies);
+        mPlayerModel.createPlayerDetailContent(mVocabularies.get(0));
+
+        Option option = mPlayerModel.getCurrentOption();
+        setContent(mVocabularies, option);
+        if (mVocabularies.size() > 0)
+            startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
+    }
+
+    private void startAudio() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (mVocabularies != null) {
+                    Option option = mPlayerModel.getCurrentOption();
+                    setContent(mVocabularies, option);
+                    if (mVocabularies.size() > 0)
+                        startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
+                }
+            }
+        }).start();
     }
 
     /**
@@ -382,6 +429,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         getActivity().startService(intent);
     }
 
+
+
     /**
      * messages received from service
      */
@@ -390,14 +439,16 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getStringExtra(ServiceBroadcaster.KEY_ACTION);
-//            Log.d(TAG, action);
+            Log.d(TAG, action + ", " + context.toString());
 
             switch (action) {
 
                 case ServiceBroadcaster.ACTION_ITEM_COMPLETE:
+//                    Log.d(TAG, action);
                     int newItemIndex = intent.getIntExtra(ServiceBroadcaster.KEY_NEXT_ITEM_INDEX, -1);
                     mPlayerMainView.moveToPosition(newItemIndex);
-                    mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex)));
+                    mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
+//                    mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex)));
                     break;
 
                 case ServiceBroadcaster.ACTION_LIST_COMPLETE:

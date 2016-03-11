@@ -2,7 +2,9 @@ package com.wishcan.www.vocabulazy.main.player.model;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;
@@ -15,7 +17,6 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class PlayerModel {
 
     private static final String TAG = PlayerModel.class.getSimpleName();
@@ -27,56 +28,74 @@ public class PlayerModel {
     private AudioService mAudioService;
     private ArrayList<Vocabulary> mVocabularies;
 
+    private PlayerModelAsyncTask wAsyncTask;
+    private PlayerModelDataProccesseListener wDataProcessListener;
+
 	public PlayerModel(MainActivity mainActivity) {
         mMainActivity = mainActivity;
         mDatabase = mainActivity.getDatabase();
+
+//        wAsyncTask = new PlayerModelAsyncTask();
 	}
 
-	public LinkedList<HashMap> createPlayerContent(ArrayList<Vocabulary> vocArrayList) {
-		LinkedList<HashMap> playerDataContent = new LinkedList<>();
-		for(Vocabulary voc : vocArrayList) {
-            HashMap<String, String> hm = new HashMap<>();
-            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
-            ArrayList<String> transList = voc.getTranslate();
-            ArrayList<String> cateList = voc.getCategory();
-            for(int i = 0; i < transList.size() && i < cateList.size() && i < 2; i++) {
-                String newStr = "(" +cateList.get(i)+ ")" + transList.get(i);
-                hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1+i], newStr);
-            }
-//            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], voc.getTranslationInOneString());
+//	public LinkedList<HashMap> createPlayerContent(ArrayList<Vocabulary> vocArrayList) {
+//		LinkedList<HashMap> playerDataContent = new LinkedList<>();
+//		for(Vocabulary voc : vocArrayList) {
+//            HashMap<String, String> hm = new HashMap<>();
+//            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
+//            ArrayList<String> transList = voc.getTranslate();
+//            ArrayList<String> cateList = voc.getCategory();
+//            for(int i = 0; i < transList.size() && i < cateList.size() && i < 2; i++) {
+//                String newStr = "(" +cateList.get(i)+ ")" + transList.get(i);
+//                hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1+i], newStr);
+//            }
+////            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], voc.getTranslationInOneString());
+//
+//            playerDataContent.add(hm);
+//        }
+//        return playerDataContent;
+//	}
 
-            playerDataContent.add(hm);
-        }
-        return playerDataContent;
-	}
+//	public HashMap<String, Object> createPlayerDetailContent(Vocabulary voc) {
+////        Log.d(TAG, voc.toVocabularyString());
+//        HashMap<String, Object> playerDetailDataContent = new HashMap<>();
+//        if (voc != null) {
+//            playerDetailDataContent
+//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[0],
+//                            voc.getSpell());
+//            playerDetailDataContent
+//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[1],
+//                            voc.getTranslationInOneString());
+//            playerDetailDataContent
+//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[2],
+//                            voc.getKK());
+//            playerDetailDataContent
+//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[3],
+//                            voc.getEn_Sentence());
+//            playerDetailDataContent
+//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[4],
+//                            voc.getCn_Sentence());
+//        }
+//        return playerDetailDataContent;
+//	}
 
-	public HashMap<String, Object> createPlayerDetailContent(Vocabulary voc) {
-//        Log.d(TAG, voc.toVocabularyString());
-        HashMap<String, Object> playerDetailDataContent = new HashMap<>();
-        if (voc != null) {
-            playerDetailDataContent
-                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[0],
-                            voc.getSpell());
-            playerDetailDataContent
-                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[1],
-                            voc.getTranslationInOneString());
-            playerDetailDataContent
-                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[2],
-                            voc.getKK());
-            playerDetailDataContent
-                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[3],
-                            voc.getEn_Sentence());
-            playerDetailDataContent
-                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[4],
-                            voc.getCn_Sentence());
-        }
-        return playerDetailDataContent;
-	}
+//    public ArrayList<Vocabulary> getVocabulariesIn(int bookIndex, int lessonIndex) {
+//        ArrayList<Integer> contentIDs = mDatabase.getContentIDs(bookIndex, lessonIndex);
+//        mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
+//        return mVocabularies;
+//    }
 
-    public ArrayList<Vocabulary> getVocabulariesIn(int bookIndex, int lessonIndex) {
-        ArrayList<Integer> contentIDs = mDatabase.getContentIDs(bookIndex, lessonIndex);
-        mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
-        return mVocabularies;
+
+    public void createPlayerContent(ArrayList<Vocabulary> vocabularyArrayList) {
+        new PlayerModelAsyncTask().execute(vocabularyArrayList);
+    }
+
+    public void createPlayerDetailContent(Vocabulary vocabulary) {
+        new PlayerModelAsyncTask().execute(vocabulary);
+    }
+
+    public void getVocabulariesIn(int bookIndex, int lessonIndex) {
+        new PlayerModelAsyncTask().execute(bookIndex, lessonIndex);
     }
 
     public int getNumOfLessons(int bookIndex) {
@@ -104,5 +123,100 @@ public class PlayerModel {
         intent.setAction(AudioService.ACTION_SET_CONTENT);
         intent.putExtra(KEY_CONTENT_BUNDLE, bundle);
         activity.startService(intent);
+    }
+
+    public void setDataProcessListener(PlayerModelDataProccesseListener listener) {
+        wDataProcessListener = listener;
+    }
+
+    private class PlayerModelAsyncTask extends AsyncTask<Object, Void, Object> {
+        @Override
+        protected Object doInBackground(Object... params) {
+
+            if (params[0] instanceof ArrayList) {
+                ArrayList<Vocabulary> vocArrayList = (ArrayList<Vocabulary>) params[0];
+                LinkedList<HashMap> playerDataContent = new LinkedList<>();
+                for(Vocabulary voc : vocArrayList) {
+                    HashMap<String, String> hm = new HashMap<>();
+                    hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
+                    ArrayList<String> transList = voc.getTranslate();
+                    ArrayList<String> cateList = voc.getCategory();
+                    for(int i = 0; i < transList.size() && i < cateList.size() && i < 2; i++) {
+                        String newStr = "(" +cateList.get(i)+ ")" + transList.get(i);
+                        hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1+i], newStr);
+                    }
+//            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], voc.getTranslationInOneString());
+
+                    playerDataContent.add(hm);
+                }
+                return playerDataContent;
+            }
+
+            if (params[0] instanceof Vocabulary) {
+                Vocabulary voc = (Vocabulary) params[0];
+                HashMap<String, Object> playerDetailDataContent = new HashMap<>();
+                if (voc != null) {
+                    playerDetailDataContent
+                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[0],
+                                    voc.getSpell());
+                    playerDetailDataContent
+                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[1],
+                                    voc.getTranslationInOneString());
+                    playerDetailDataContent
+                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[2],
+                                    voc.getKK());
+                    playerDetailDataContent
+                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[3],
+                                    voc.getEn_Sentence());
+                    playerDetailDataContent
+                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[4],
+                                    voc.getCn_Sentence());
+                }
+                return playerDetailDataContent;
+            }
+
+            if (params[0] instanceof Integer) {
+                int bookIndex = (Integer) params[0];
+                int lessonIndex = (Integer) params[1];
+                ArrayList<Integer> contentIDs = mDatabase.getContentIDs(bookIndex, lessonIndex);
+                mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
+                return mVocabularies;
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            super.onPostExecute(result);
+
+            if (result instanceof LinkedList) {
+                Log.d(TAG, "player content created");
+                LinkedList<HashMap> playerDataContent = (LinkedList<HashMap>) result;
+                wDataProcessListener.onPlayerContentCreated(playerDataContent);
+                return;
+            }
+
+            if (result instanceof HashMap) {
+                Log.d(TAG, "detail content created");
+                HashMap<String, Object> playerDetailDataContent = (HashMap<String, Object>) result;
+                wDataProcessListener.onDetailPlayerContentCreated(playerDetailDataContent);
+                return;
+            }
+
+            if (result instanceof ArrayList) {
+                Log.d(TAG, "vocabularies loaded");
+                ArrayList<Vocabulary> vocabularies = (ArrayList<Vocabulary>) result;
+                wDataProcessListener.onVocabulariesGet(vocabularies);
+                return;
+            }
+
+        }
+    }
+
+    public interface PlayerModelDataProccesseListener {
+        void onPlayerContentCreated(LinkedList<HashMap> playerDataContent);
+        void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent);
+        void onVocabulariesGet(ArrayList<Vocabulary> vocabularies);
     }
 }

@@ -45,13 +45,13 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
         currentUtterance = text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            wTextToSpeech.setSpeechRate(0.8f);
+            wTextToSpeech.setSpeechRate(0.7f);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, text);
 
 //            Log.d(TAG, "speak: " + text);
         } else {
             setTTSIDParams(text);
-            wTextToSpeech.setSpeechRate(0.8f);
+            wTextToSpeech.setSpeechRate(0.7f);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, utteranceParams);
 
 //            Log.d(TAG, "speak: " + text);

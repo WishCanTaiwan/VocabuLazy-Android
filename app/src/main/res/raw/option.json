@@ -3,7 +3,7 @@
     "mode": 1,
     "random": false,
     "listloop": 0,
-    "sentence": true,
+    "sentence": false,
     "stopperiod": 0,
     "itemloop": 1,
     "speed": 1,
