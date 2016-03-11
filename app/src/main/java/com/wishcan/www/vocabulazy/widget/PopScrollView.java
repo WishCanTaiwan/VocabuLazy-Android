@@ -285,20 +285,26 @@ abstract public class PopScrollView extends RelativeLayout {
         newFocusedViewAnim.start();
         newFocusedViewAnim.addListener(new Animator.AnimatorListener() {
             @Override
-            public void onAnimationStart(Animator animation) {}
+            public void onAnimationStart(Animator animation) {
+            }
+
             @Override
             public void onAnimationEnd(Animator animation) {
-                if(newFocusedView instanceof ViewGroup){
-                    ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup)newFocusedView, TextView.class);
-                    for(View v : arrayList) {
+                if (newFocusedView instanceof ViewGroup) {
+                    ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup) newFocusedView, TextView.class);
+                    for (View v : arrayList) {
                         ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font));
                     }
                 }
             }
+
             @Override
-            public void onAnimationCancel(Animator animation) {}
+            public void onAnimationCancel(Animator animation) {
+            }
+
             @Override
-            public void onAnimationRepeat(Animator animation) {}
+            public void onAnimationRepeat(Animator animation) {
+            }
         });
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -400,9 +406,16 @@ abstract public class PopScrollView extends RelativeLayout {
         mItemDetailsLinearLayout.setBackgroundColor(ContextCompat.getColor(mContext, DEFAULT_DETAILS_COLOR_RES_ID));
 
         PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mPopItemZoomInHeight) / mPopItemDetailHeight, 1f);
-        PropertyValuesHolder elevateVH = PropertyValuesHolder.ofInt("Elevation", 0, 40);
-        Animator animator = ObjectAnimator.ofPropertyValuesHolder(mItemDetailsLinearLayout, stretchVH, elevateVH);
-        animator.setDuration(500);
+        PropertyValuesHolder elevateVH;
+        Animator animator;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            elevateVH = PropertyValuesHolder.ofInt("Elevation", 0, 40);
+            animator = ObjectAnimator.ofPropertyValuesHolder(mItemDetailsLinearLayout, stretchVH, elevateVH);
+        } else {
+            animator = ObjectAnimator.ofPropertyValuesHolder(mItemDetailsLinearLayout, stretchVH);
+        }
+
+        animator.setDuration(300);
         LayoutTransition layoutTransition = new LayoutTransition();
         layoutTransition.setAnimator(LayoutTransition.APPEARING, animator);
         setLayoutTransition(layoutTransition);
@@ -410,11 +423,12 @@ abstract public class PopScrollView extends RelativeLayout {
         // step 2
         addView(mItemDetailsLinearLayout);
         View detailContentView = mItemDetailsLinearLayout.getChildAt(0);
-        ValueAnimator detailAppearAnim = ObjectAnimator.ofFloat(detailContentView, "alpha", 0f, 1f);
-        detailAppearAnim.setStartDelay(500);
-        detailAppearAnim.setDuration(300).start();
-
-        mShowingDetails = STATE_ITEM_DETAIL_SHOW;
+        if(detailContentView != null) {
+            ValueAnimator detailAppearAnim = ObjectAnimator.ofFloat(detailContentView, "alpha", 0f, 1f);
+            detailAppearAnim.setStartDelay(300);
+            detailAppearAnim.setDuration(300).start();
+            mShowingDetails = STATE_ITEM_DETAIL_SHOW;
+        }
     }
 
     /**
@@ -429,16 +443,18 @@ abstract public class PopScrollView extends RelativeLayout {
         if(mItemDetailsLinearLayout == null)
             return;
 
-        AnimatorSet animatorSet = new AnimatorSet();
-
         View detailContentView = mItemDetailsLinearLayout.getChildAt(0);
+        if(detailContentView == null)
+            return;
+
+        AnimatorSet animatorSet = new AnimatorSet();
         ValueAnimator detailDisappearAnim = ObjectAnimator.ofFloat(detailContentView, "alpha", 1.0f, 0f);
         detailDisappearAnim.setDuration(300);
 
         ValueAnimator detailZoomOutAnim = ObjectAnimator.ofFloat(mItemDetailsLinearLayout, "ScaleY", 1.0f, ((float) mPopItemZoomInHeight) / mPopItemDetailHeight);
-        detailDisappearAnim.setDuration(500);
+        detailDisappearAnim.setDuration(300);
 
-        animatorSet.play(detailDisappearAnim).before(detailZoomOutAnim);
+        animatorSet.play(detailDisappearAnim).with(detailZoomOutAnim);
         animatorSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
