@@ -57,18 +57,31 @@ public class MainActivity extends FragmentActivity {
             mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
+                    Log.d("MainActivity BackStack", "Stack Change");
                     int backStackCount;
-                    if((backStackCount = mFragmentManager.getBackStackEntryCount()) > 0) {
+                    if((backStackCount = mFragmentManager.getBackStackEntryCount()) > 0) {      //Not in MainFragment
                         if(backStackCount < mBackStackCount) {  // Back button is pressed
-                            int id = mFragmentManager.getBackStackEntryAt(backStackCount - 1).getId();
+                            Log.d("MainActivity BackStack", "Fragment out BackStack");
                             String str = mFragmentManager.getBackStackEntryAt(backStackCount - 1).getName();
                             Fragment f = mFragmentManager.findFragmentByTag(str);
                             if (f != null && f instanceof FragmentWithActionBarTitle)
                                 setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
                         }
+                        else {
+                            Log.d("MainActivity BackStack", "Fragment into BackStack");
+                            mActionBar = getActionBar();
+                            if(mActionBar != null) {
+                                mActionBar.setDisplayHomeAsUpEnabled(true);
+                            }
+                        }
                     }
-                    else
-                        Log.d("MainActivity BackStack", ""+MainFragment.class.getName());
+                    else {    //Back to MainFragment
+                        Log.d("MainActivity BackStack", "" + MainFragment.class.getName());
+                        mActionBar = getActionBar();
+                        if(mActionBar != null) {
+                            mActionBar.setDisplayHomeAsUpEnabled(false);
+                        }
+                    }
                     mBackStackCount = backStackCount;
                 }
             });
@@ -97,21 +110,18 @@ public class MainActivity extends FragmentActivity {
         super.onStart();
         if (mDatabase != null) {
             mDatabase.loadNotes();
-            ArrayList<Lesson> notes = mDatabase.getLessonsByBook(-1);
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-//        Log.d(TAG, "onStop");
         stopAudioService();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        Log.d(TAG, "onResume");
         setCustomActionBar();
         Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");
         if(f != null && f instanceof FragmentWithActionBarTitle)
@@ -121,7 +131,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-//        Log.d(TAG, "onPause");
         mDatabase.writeToFile(this);
     }
 
@@ -156,6 +165,12 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onNavigateUp() {
+        onBackPressed();
+        return super.onNavigateUp();
+    }
+
     public Database getDatabase() {
         return mDatabase;
     }
@@ -185,7 +200,7 @@ public class MainActivity extends FragmentActivity {
     private void setCustomActionBar(){
         mActionBar = getActionBar();
         if(mActionBar != null) {
-            mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_HOME_AS_UP);
+            mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM /*| ActionBar.DISPLAY_HOME_AS_UP*/);
             mActionBar.setCustomView(DEFAULT_CUSTOM_ACTION_BAR_RES_ID);
 
             mActionBarTitleTextView = (TextView) mActionBar.getCustomView().findViewById(TITLE_RES_ID);

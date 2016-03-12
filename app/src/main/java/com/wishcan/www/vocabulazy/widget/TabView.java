@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -65,6 +66,7 @@ abstract public class TabView extends LinearLayout {
         LayoutParams mDefaultViewPagerLayoutParams;
 
         setOrientation(VERTICAL);
+        setBackgroundColor(Color.WHITE);
 
         mDefaultViewPagerLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, 0, 1);
 

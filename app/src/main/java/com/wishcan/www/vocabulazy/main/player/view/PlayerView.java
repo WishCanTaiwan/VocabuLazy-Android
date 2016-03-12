@@ -37,6 +37,7 @@ public class PlayerView extends LinearLayout {
 		super(context, attr);
 		ViewGroup childView;
         childView = (ViewGroup) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_RES_ID, null);
+		childView.setOnClickListener(new OnClickListener() {@Override public void onClick(View v) {}});
         mPlayerMainView = (PlayerMainView) childView.findViewById(VIEW_PLAYER_MAIN_RES_ID);
 		mPlayerPanelView = (PlayerPanelView) childView.findViewById(VIEW_PLAYER_PANEL_RES_ID);
         mPlayerOptionView = (PlayerOptionView) childView.findViewById(VIEW_PLAYER_OPTION_RES_ID);

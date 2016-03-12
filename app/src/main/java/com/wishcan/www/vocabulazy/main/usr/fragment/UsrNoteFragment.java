@@ -91,7 +91,6 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        Log.d(TAG, "onCreateView");
         mUsrNoteView = new UsrNoteView(getActivity());
         final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
@@ -99,8 +98,10 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         if(notes == null)
             return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
 
-        for(int i = 0; i < notes.size(); i++)
+        for(int i = 0; i < notes.size(); i++) {
+            Log.d("UsrNote", notes.get(i).getName());
             dataList.add(notes.get(i).getName());
+        }
 
         mUsrNoteView.refreshView(notes.size(), dataList);
         mUsrNoteView.setOnListIconClickListener(new NoteView.OnListIconClickListener() {

@@ -3,6 +3,7 @@
     android:id="@+id/activity_search_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffffff"
     tools:context="com.wishcan.www.vocabulazy.search.SearchActivity">
 
 </RelativeLayout>
