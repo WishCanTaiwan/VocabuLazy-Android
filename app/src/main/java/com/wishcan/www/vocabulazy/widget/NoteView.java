@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,8 @@ import java.util.Map;
  */
 
 abstract public class NoteView extends SlideBackViewPager{
+
+    public static final String TAG = NoteView.class.getSimpleName();
 
     public interface OnListIconClickListener {
         void onListIconClick(int iconId, int position, View v);
@@ -79,6 +82,7 @@ abstract public class NoteView extends SlideBackViewPager{
     }
 
     public void refreshView(int count, LinkedList<String> linkedList) {
+        Log.d(TAG, "refreshView");
         mNoteListView.refreshView(count, linkedList);
     }
 
@@ -128,6 +132,7 @@ abstract public class NoteView extends SlideBackViewPager{
             if(linkedList == null)
                 return;
 
+            Log.d("NoteListView", "refreshView");
             mDataList.clear();
             for(String ii:linkedList){
                 HashMap<String, Object> hm = new HashMap<>();

@@ -144,11 +144,11 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         return mUsrNoteView;
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState");
-        super.onSaveInstanceState(outState);
-    }
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        Log.d(TAG, "onSaveInstanceState");
+//        super.onSaveInstanceState(outState);
+//    }
 
     @Override
     public void onDialogFinish(String str) {
@@ -183,7 +183,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     }
 
     private void reload() {
-//        Log.d(TAG, "reload");
+        Log.d(TAG, "reload");
         mDatabase = ((MainActivity) getActivity()).getDatabase();
 //        Log.d(TAG, mDatabase.toString());
         final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
@@ -195,10 +195,10 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
             return;
         }
 
-//        for(int i = 0; i < notes.size(); i++) {
-//            dataList.add(notes.get(i).getName());
+        for(int i = 0; i < notes.size(); i++) {
+            dataList.add(notes.get(i).getName());
 //            Log.d(TAG, notes.get(i).getName() + ", " + notes.get(i).getContent().size());
-//        }
+        }
 
         mUsrNoteView.refreshView(notes.size(), dataList);
     }

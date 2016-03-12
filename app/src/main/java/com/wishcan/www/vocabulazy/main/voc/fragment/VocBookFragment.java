@@ -56,11 +56,11 @@ public class VocBookFragment extends Fragment {
             mDatabase = ((MainActivity) getActivity()).getDatabase();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState");
-        super.onSaveInstanceState(outState);
-    }
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        Log.d(TAG, "onSaveInstanceState");
+//        super.onSaveInstanceState(outState);
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -90,11 +90,11 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
         return vocLessonView;
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState");
-        super.onSaveInstanceState(outState);
-    }
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        Log.d(TAG, "onSaveInstanceState");
+//        super.onSaveInstanceState(outState);
+//    }
 
     private void goPlayerFragment(int bookIndex, int lessonIndex){
         Log.d(TAG, "goPlayerFragment");
