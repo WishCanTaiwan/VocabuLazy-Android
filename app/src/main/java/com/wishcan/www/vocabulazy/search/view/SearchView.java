@@ -79,6 +79,7 @@ public class SearchView extends RelativeLayout {
     public SearchView(Context context, AttributeSet attrs) {
     	super(context, attrs);
         mContext = context;
+        setBackgroundColor(Color.WHITE);
     	mSearchListView = new SearchListView(context);
     	mSearchDetailView = new SearchDetailView(context);
         mSearchDetailParentView = new RelativeLayout(context);
