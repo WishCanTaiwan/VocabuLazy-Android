@@ -30,11 +30,9 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     public WCTextToSpeech (Context context, OnUtteranceStatusListener listener) {
         mContext = context;
-        wTextToSpeech = new TextToSpeech(context, this);
+//        initializeTTSEngine(context);
         wOnUtteranceStatusListener = listener;
         ttsEngineInit = false;
-        setTTSListener();
-        setTTSIDParams(UTTERANCE_ID);
         currentUtterance = "";
     }
 
@@ -57,6 +55,12 @@ public class WCTextToSpeech extends UtteranceProgressListener
 //            Log.d(TAG, "speak: " + text);
         }
 
+    }
+
+    void initializeTTSEngine(Context context) {
+        wTextToSpeech = new TextToSpeech(context, this);
+        setTTSListener();
+        setTTSIDParams(UTTERANCE_ID);
     }
 
     void pause() {

@@ -26,6 +26,7 @@ public class AudioService extends IntentService
     /**
      * strings for intent action identification
      */
+    public static final String ACTION_INIT_TTS_ENGINE = "init-tts-engine";
     public static final String ACTION_START_SERVICE = "start-service";
     public static final String ACTION_STOP_SERVICE = "stop-service";
     public static final String ACTION_SET_CONTENT = "set-content";
@@ -142,6 +143,10 @@ public class AudioService extends IntentService
          * switch-case block for deciding the corresponding tasks for each action
          */
         switch (action) {
+
+            case ACTION_INIT_TTS_ENGINE:
+                wcTextToSpeech.initializeTTSEngine(getApplicationContext());
+                break;
 
             case ACTION_START_SERVICE:
                 wAudioPlayer = new AudioPlayer(this);

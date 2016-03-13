@@ -255,7 +255,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
          * when database is ready
          */
         mPlayerOptionView.setOptionsInTabContent(mPlayerModel.getDefaultOptions());
-
+        initTTSEngine();
     }
 
     @Override
@@ -329,6 +329,12 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     /**
      * messages sent to service
      */
+    void initTTSEngine() {
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.ACTION_INIT_TTS_ENGINE);
+        getActivity().startService(intent);
+    }
+
     void setLanguage(int bookIndex) {
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_SET_LANGUAGE);
