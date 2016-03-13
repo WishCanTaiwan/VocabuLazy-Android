@@ -82,7 +82,6 @@ abstract public class NoteView extends SlideBackViewPager{
     }
 
     public void refreshView(int count, LinkedList<String> linkedList) {
-        Log.d(TAG, "refreshView");
         mNoteListView.refreshView(count, linkedList);
     }
 
@@ -302,7 +301,6 @@ abstract public class NoteView extends SlideBackViewPager{
                                 mOpenIndex = -1;
                             else
                                 mOpenIndex = position;
-                            Log.d("NoteView", "mOpenIndex "+mOpenIndex);
                         }
                     });
 
@@ -321,7 +319,6 @@ abstract public class NoteView extends SlideBackViewPager{
                                 @Override
                                 public void onAnimationEnd(Animator animation) {
                                     mEtcParentView.setVisibility(GONE);
-                                    Log.d("NoteView", "Anim End");
                                 }
                                 @Override
                                 public void onAnimationStart(Animator animation) {}
@@ -380,7 +377,6 @@ abstract public class NoteView extends SlideBackViewPager{
                 set.setInterpolator(new AccelerateDecelerateInterpolator());
                 if(listener != null){
                     set.addListener(listener);
-                    Log.d("NoteView", "There's listener");
                 }
                 set.start();
             }
