@@ -80,4 +80,8 @@
     <string name="numeral_picker_main_indicator_string_default">主要標題</string>
     <string name="numeral_picker_second_indicator_string_default">次要標題</string>
     <string name="title_activity_main">MainActivity</string>
+    <string
+        name="title_activity_cover">
+        CoverActivity
+    </string>
 </resources>
