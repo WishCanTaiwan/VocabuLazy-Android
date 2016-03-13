@@ -62,7 +62,6 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public void onResume() {
         super.onResume();
-//        Log.d(TAG, "onResume");
         if (mDatabase == null) {
             mDatabase = ((MainActivity) getActivity()).getDatabase();
         } else {
@@ -73,19 +72,16 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public void onPause() {
         super.onPause();
-//        Log.d(TAG, "onPause");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-//        Log.d(TAG, "onStart");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-//        Log.d(TAG, "onStop");
     }
 
     @Override
@@ -143,12 +139,6 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         });
         return mUsrNoteView;
     }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        Log.d(TAG, "onSaveInstanceState");
-//        super.onSaveInstanceState(outState);
-//    }
 
     @Override
     public void onDialogFinish(String str) {

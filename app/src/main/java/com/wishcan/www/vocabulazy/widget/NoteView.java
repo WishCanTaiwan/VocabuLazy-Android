@@ -132,7 +132,6 @@ abstract public class NoteView extends SlideBackViewPager{
             if(linkedList == null)
                 return;
 
-            Log.d("NoteListView", "refreshView");
             mDataList.clear();
             for(String ii:linkedList){
                 HashMap<String, Object> hm = new HashMap<>();
@@ -154,6 +153,8 @@ abstract public class NoteView extends SlideBackViewPager{
         private OnListIconClickListener mOnListIconClickListener;
         private boolean mEnableEtcFunction;
 
+        private NoteListView mSelfNoteListView;
+
         public NoteListView(Context context) {
             this(context, null);
         }
@@ -170,19 +171,31 @@ abstract public class NoteView extends SlideBackViewPager{
             mDataList = new LinkedList<>();
             mAdapter = new CustomizedSimpleAdapter(context, mDataList, LIST_ITEM_RES_ID, FROM, TO);
             setAdapter(mAdapter);
-
+            mSelfNoteListView = this;
         }
 
         public void setOnListIconClickListener(OnListIconClickListener listener) {
             mOnListIconClickListener = listener;
         }
 
-        private void refresh(){
-            mAdapter.notifyDataSetChanged();
-        }
-
         public void setEnableEtcFunction(boolean bool){
             mEnableEtcFunction = bool;
+        }
+
+        public void onEtcCloseIconClick(int position){
+
+            View parentView = mSelfNoteListView.getChildAt(position);
+            View iconView;
+            if(parentView != null){
+                iconView = parentView.findViewById(R.id.action_note_etc_close);
+                if(iconView != null) {
+                    iconView.performClick();
+                }
+            }
+        }
+
+        private void refresh(){
+            mAdapter.notifyDataSetChanged();
         }
 
         private class CustomizedSimpleAdapter extends ArrayAdapter {
@@ -194,6 +207,7 @@ abstract public class NoteView extends SlideBackViewPager{
             private int[] mTo;
 
             private LayoutInflater mInflater;
+            private int mOpenIndex;
 
             public CustomizedSimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
                 super(context, resource);
@@ -204,6 +218,7 @@ abstract public class NoteView extends SlideBackViewPager{
                 mTo = to;
 
                 mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                mOpenIndex = -1;
             }
 
             @Override
@@ -228,6 +243,7 @@ abstract public class NoteView extends SlideBackViewPager{
                 View view;
                 final View mNoteNameTextView = v.findViewById(mTo[0]);
                 final View mParentView = v.findViewById(R.id.note_name_parent);
+                final View mEtcParentView = v.findViewById(R.id.note_etc_parent);
                 final View mNoteEtcFunctionView = v.findViewById(R.id.action_note_etc);
                 final View mNoteEtcParentView = v.findViewById(R.id.action_note_parent);
                 final View mNoteEtcCloseFunctionView = v.findViewById(R.id.action_note_etc_close);
@@ -267,9 +283,9 @@ abstract public class NoteView extends SlideBackViewPager{
 
                 if(mEnableEtcFunction && mOnListIconClickListener != null) {
                     mNoteEtcParentView.setOnClickListener(new OnClickListener() {
-
                         @Override
                         public void onClick(View iconView) {
+                            mEtcParentView.setVisibility(VISIBLE);
                             float startX = mParentView.getX();
                             float endX;
                             if (startX >= 0)
@@ -278,6 +294,15 @@ abstract public class NoteView extends SlideBackViewPager{
                                 endX = startX + animateMoveOffset;
                             handleListSlidingAnimation(mParentView, mNoteEtcFunctionView, startX, endX);
                             mOnListIconClickListener.onListIconClick(ICON_ETC, position, v);
+                            if(mOpenIndex >= 0 && mOpenIndex != position) {
+                                mSelfNoteListView.onEtcCloseIconClick (mOpenIndex);
+                                mOpenIndex = position;
+                            }
+                            else if(mOpenIndex >= 0 && mOpenIndex == position)
+                                mOpenIndex = -1;
+                            else
+                                mOpenIndex = position;
+                            Log.d("NoteView", "mOpenIndex "+mOpenIndex);
                         }
                     });
 
@@ -285,7 +310,7 @@ abstract public class NoteView extends SlideBackViewPager{
                     mNoteEtcCloseFunctionView.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View iconView) {
-                            View mParentView = v.findViewById(R.id.note_name_parent);
+                            mEtcParentView.setVisibility(GONE);
                             float startX = mParentView.getX();
                             float endX;
                             if (startX >= 0)
@@ -295,6 +320,7 @@ abstract public class NoteView extends SlideBackViewPager{
 
                             handleListSlidingAnimation(mParentView, mNoteEtcFunctionView, startX, endX);
                             mOnListIconClickListener.onListIconClick(ICON_ETC_CLOSE, position, v);
+                            mOpenIndex = -1;
                         }
                     });
 

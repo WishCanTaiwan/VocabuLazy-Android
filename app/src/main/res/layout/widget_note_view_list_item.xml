@@ -6,10 +6,12 @@
 
 
     <RelativeLayout
+        android:id="@+id/note_etc_parent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/note_list_item_height"
         android:background="@color/theme_color_green"
         android:gravity="center_vertical"
+        android:visibility="gone"
         >
         <ImageView
             android:id="@+id/action_note_combine"

@@ -121,19 +121,10 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
         mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
 
-        /**Initialize and  Refresh PlayerView */
-//        mPlayerModel.createPlayerDetailContent(mVocabularies.get(0));
-//        mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
-
         /** set Scroll Listener, update Player's detail content every time the scroll stopped */
         mPlayerMainView.setOnPlayerScrollStopListener(new PlayerMainView.OnPlayerScrollListener() {
             @Override
             public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
-//                mPlayerModel.createPlayerDetailContent(mVocabularies.get(currentPosition));
-//                mPlayerMainView.refreshPlayerDetail(
-//                        mPlayerModel.createPlayerDetailContent(
-//                                mVocabularies.get(currentPosition)));
-
                 if (isViewTouchedDown) {
                     newItemFocused(currentPosition);
                     mPlayerModel.createPlayerDetailContent(mVocabularies.get(currentPosition));
@@ -150,9 +141,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
                 int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
                 mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
                 mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-//                mVocabularies = mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-//                mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(0)));
-//                mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
                 mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
 
                 if (isViewTouchedDown)
@@ -217,13 +205,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             }
         });
 
-//        mPlayerMainView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mPlayerMainView.addNewPlayer(mPlayerModel.createPlayerContent(mVocabularies));
-//            }
-//        }, 600);
-
         return playerView;
     }
 
@@ -278,7 +259,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     @Override
-    public void onStop() {
+    public void  onStop() {
         super.onStop();
         Log.d(TAG, "onStop");
         // TODO: recording the book, lesson and item index for future recreating.
