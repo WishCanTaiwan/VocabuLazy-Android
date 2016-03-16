@@ -22,6 +22,8 @@ public class PlayerModel {
     private static final String TAG = PlayerModel.class.getSimpleName();
 
     private static final String KEY_CONTENT_BUNDLE = "content-bundle";
+    private static final String KEY_DATABASE_BOOK_INDEX = "book-index";
+    private static final String KEY_DATABASE_LESSON_INDEX = "lesson-index";
 
     private MainActivity mMainActivity;
     private Database mDatabase;
@@ -111,6 +113,22 @@ public class PlayerModel {
     public void setOptionAndMode(ArrayList<Option> optionArrayList, int optionMode) {
         mDatabase.setCurrentOptions(optionArrayList);
         mDatabase.setCurrentOptionMode(optionMode);
+    }
+
+    public void savePlayerInfo(Bundle bundle) {
+//        Bundle bundle = new Bundle();
+//        bundle.putInt(KEY_DATABASE_BOOK_INDEX, bookIndex);
+//        bundle.putInt(KEY_DATABASE_LESSON_INDEX, lessonIndex);
+        mDatabase.savePlayerInfo(bundle);
+    }
+
+    public Bundle loadPlayerInfo() {
+//        Bundle bundle = mDatabase.loadPlayerInfo();
+//        if (bundle != null) {
+//            int bookIndex = bundle.getInt(KEY_DATABASE_BOOK_INDEX);
+//            int lessonIndex = bundle.getInt(KEY_DATABASE_LESSON_INDEX);
+//        }
+        return mDatabase.loadPlayerInfo();
     }
 
     private void setContentToPlayer(Activity activity, ArrayList<Vocabulary> vocabularies) {

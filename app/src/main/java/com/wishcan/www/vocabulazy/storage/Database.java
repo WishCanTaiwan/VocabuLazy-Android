@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.storage;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.transition.Explode;
@@ -46,6 +47,8 @@ public class Database implements Parcelable {
     private int mCurrentPlayingList;
     private int mCurrentPlayingItem;
 
+    private Bundle wPlayerInfoBundle;
+
     public Database(Context context) {
         mContext = context;
 
@@ -53,6 +56,8 @@ public class Database implements Parcelable {
         mCurrentOptionMode = 0;
         mCurrentPlayingBook = -1;
         mCurrentPlayingList = -1;
+
+        wPlayerInfoBundle = null;
 
         loadDatabaseFiles();
     }
@@ -111,6 +116,14 @@ public class Database implements Parcelable {
         mContext = context;
         writeNote();
         writeOption();
+    }
+
+    public void savePlayerInfo(Bundle bundle) {
+        wPlayerInfoBundle = bundle;
+    }
+
+    public Bundle loadPlayerInfo() {
+        return wPlayerInfoBundle;
     }
 
     public int getCurrentPlayingBook() {

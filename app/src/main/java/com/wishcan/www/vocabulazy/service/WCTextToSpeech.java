@@ -38,8 +38,10 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     void speak(String text) {
 
-        if (!ttsEngineInit)
+        if (!ttsEngineInit) {
+            currentUtterance = text;
             return;
+        }
 
         currentUtterance = text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -99,6 +101,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
         Log.d(TAG, "onInit");
         if(status == TextToSpeech.SUCCESS) {
             ttsEngineInit = true;
+            speak(currentUtterance);
 //            Log.d(TAG, "engine initialized");
 //            Toast.makeText(mContext, "engine initialized", Toast.LENGTH_SHORT).show();
         }

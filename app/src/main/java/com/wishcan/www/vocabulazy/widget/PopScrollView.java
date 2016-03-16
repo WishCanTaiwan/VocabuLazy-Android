@@ -56,7 +56,7 @@ abstract public class PopScrollView extends RelativeLayout {
         void onPopScrolling();
     }
 
-    public interface OnItemPreparedListener{
+    public interface OnItemPreparedListener {
         void onInitialItemPrepared();
         void onFinalItemPrepared();
     }

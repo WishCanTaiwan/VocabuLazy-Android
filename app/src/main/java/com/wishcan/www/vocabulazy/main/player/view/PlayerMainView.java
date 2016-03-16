@@ -31,6 +31,8 @@ public class PlayerMainView extends Infinite3View {
 
     public static final String TAG = PlayerMainView.class.getSimpleName();
 
+
+
     public interface OnPlayerScrollListener {
         void onPlayerVerticalScrollStop(int index, boolean isViewTouchedDown);
         void onPlayerVerticalScrolling();
@@ -41,11 +43,17 @@ public class PlayerMainView extends Infinite3View {
         void onViewTouchDown();
     }
 
+    public interface OnPlayerItemPreparedListener {
+        void onInitialItemPrepared();
+        void onFinalItemPrepared();
+    }
+
     private Context mContext;
     private PlayerScrollView mPlayerScrollView;
     private LinkedList<HashMap> mPlayerDataList;
     private static HashMap<String, Object> mPlayerDetailDataMap;
     private static OnPlayerScrollListener mOnPlayerScrollListener;
+    private static OnPlayerItemPreparedListener mOnPlayerItemPreparedListener;
 
     private static boolean isViewTouchedDown = false;
 
@@ -106,6 +114,10 @@ public class PlayerMainView extends Infinite3View {
         mOnPlayerScrollListener = listener;
     }
 
+    public void setOnPlayerItemPreparedListener(OnPlayerItemPreparedListener listener) {
+        mOnPlayerItemPreparedListener = listener;
+    }
+
     public void showDetail() {
         if(mPlayerScrollView != null)
             mPlayerScrollView.showItemDetails();
@@ -117,8 +129,11 @@ public class PlayerMainView extends Infinite3View {
     }
 
     public void moveToPosition(int position) {
-        if(mPlayerScrollView != null)
+        if(mPlayerScrollView != null) {
+            Log.d(TAG, "moveToPosition " + position);
             mPlayerScrollView.moveToPosition(position);
+        }
+
     }
 
     public void moveToDetailPage(int index) {
@@ -144,7 +159,7 @@ public class PlayerMainView extends Infinite3View {
         return super.onInterceptTouchEvent(ev);
     }
 
-    public static class PlayerScrollView extends PopScrollView {
+    public static class PlayerScrollView extends PopScrollView implements PopScrollView.OnItemPreparedListener {
 
 //        private static final String TAG = PlayerScrollView.class.getSimpleName();
 
@@ -221,6 +236,8 @@ public class PlayerMainView extends Infinite3View {
                     }
                 }
             });
+
+            setOnItemPreparedListener(this);
         }
 
         @Override
@@ -229,6 +246,16 @@ public class PlayerMainView extends Infinite3View {
                 isViewTouchedDown = true;
             }
             return super.onInterceptTouchEvent(ev);
+        }
+
+        @Override
+        public void onInitialItemPrepared() {
+            mOnPlayerItemPreparedListener.onInitialItemPrepared();
+        }
+
+        @Override
+        public void onFinalItemPrepared() {
+            mOnPlayerItemPreparedListener.onFinalItemPrepared();
         }
 
         /**
