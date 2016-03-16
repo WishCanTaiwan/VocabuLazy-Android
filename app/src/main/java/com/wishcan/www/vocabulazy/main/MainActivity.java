@@ -57,18 +57,15 @@ public class MainActivity extends FragmentActivity {
             mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
-                    Log.d("MainActivity BackStack", "Stack Change");
                     int backStackCount;
                     if((backStackCount = mFragmentManager.getBackStackEntryCount()) > 0) {      //Not in MainFragment
                         if(backStackCount < mBackStackCount) {  // Back button is pressed
-                            Log.d("MainActivity BackStack", "Fragment out BackStack");
                             String str = mFragmentManager.getBackStackEntryAt(backStackCount - 1).getName();
                             Fragment f = mFragmentManager.findFragmentByTag(str);
                             if (f != null && f instanceof FragmentWithActionBarTitle)
                                 setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
                         }
                         else {
-                            Log.d("MainActivity BackStack", "Fragment into BackStack");
                             mActionBar = getActionBar();
                             if(mActionBar != null) {
                                 mActionBar.setDisplayHomeAsUpEnabled(true);
@@ -76,7 +73,6 @@ public class MainActivity extends FragmentActivity {
                         }
                     }
                     else {    //Back to MainFragment
-                        Log.d("MainActivity BackStack", "" + MainFragment.class.getName());
                         mActionBar = getActionBar();
                         if(mActionBar != null) {
                             mActionBar.setDisplayHomeAsUpEnabled(false);
@@ -95,8 +91,6 @@ public class MainActivity extends FragmentActivity {
         } else {
             Log.d("MainActivity", "database already exist.");
         }
-
-//        Log.d(TAG, "" + mDatabase);
 
         mMainActivity = this;
 

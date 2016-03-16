@@ -135,7 +135,7 @@ public class AudioService extends IntentService
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        String action = intent.getAction();
+        String action = (intent != null) ? intent.getAction() : "";
 //        Log.d(TAG, action);
 
         /**
@@ -245,7 +245,8 @@ public class AudioService extends IntentService
 
             default:
                 Log.d(TAG, "undefined case in onHandleIntent");
-                break;
+                return START_REDELIVER_INTENT;
+//                break;
         }
 
         return START_STICKY;

@@ -74,15 +74,19 @@ public class PlayerMainView extends Infinite3View {
         });
     }
 
-    public void addNewPlayer(LinkedList<HashMap> playerDataList){
+    public void addNewPlayer(LinkedList<HashMap> playerDataList, int initPosition){
         mPlayerDataList = playerDataList;
         mPlayerScrollView = new PlayerScrollView(mContext);
         mPlayerScrollView.setPopItemAdapter(
                 mPlayerScrollView.getPopItemAdapter(mContext,
                         PlayerScrollView.PLAYER_ITEM_LAYOUT_RES_ID, mPlayerDataList,
                         PlayerScrollView.PLAYER_ITEM_CONTENT_FROM,
-                        PlayerScrollView.PLAYER_ITEM_CONTENT_TO));
+                        PlayerScrollView.PLAYER_ITEM_CONTENT_TO), initPosition);
         refreshItem(CENTER_VIEW_INDEX, mPlayerScrollView);
+    }
+
+    public void addNewPlayer(LinkedList<HashMap> playerDataList) {
+        addNewPlayer(playerDataList, 0);
     }
 
     public void removeOldPlayer(int position){
