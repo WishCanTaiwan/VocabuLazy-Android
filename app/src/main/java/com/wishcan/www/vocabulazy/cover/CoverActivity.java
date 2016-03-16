@@ -22,6 +22,7 @@ public class CoverActivity extends FragmentActivity {
             @Override
             public void run() {
                 startActivity(intent);
+                finish();
             }
         }, 2000);
     }

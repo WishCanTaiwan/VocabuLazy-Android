@@ -31,7 +31,6 @@ import com.wishcan.www.vocabulazy.utility.Utility;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -77,9 +76,16 @@ abstract public class PopScrollView extends RelativeLayout {
     private static final int DEFAULT_FOCUSED_ITEM_DRAWABLE_RES_ID = R.drawable.widget_pop_item0;
     private static final int DEFAULT_ITEM_DRAWABLE_RES_ID = R.drawable.widget_pop_item1;
 
+    private static final boolean DRAW_UP = true;
+    private static final boolean DRAW_DOWN = false;
+
+    private static final boolean MAIN_THREAD_STATE_BUSY = true;
+    private static final boolean MAIN_THREAD_STATE_IDLE = false;
+
     public static final int STATE_ITEM_DETAIL_SHOW = 1;
     public static final int STATE_ITEM_DETAIL_CHANGING = 0;
     public static final int STATE_ITEM_DETAIL_NOT_SHOW = -1;
+
 
     /** Remember to write where's the default layout come from*/
 
@@ -111,10 +117,23 @@ abstract public class PopScrollView extends RelativeLayout {
     private int mCurrentFocusedPopItemPosition;
     private int mPopItemCount;
     private int mShowingDetails;
+    private int mInitialFocusedPosition;
+    private int mStartUpPosition;
+    private int mStartDownPosition;
     private boolean mInitialItemCheckFlag;
     private boolean mFinalItemCheckFlag;
+    private boolean mDrawUpOrDownFlag;      /** The flag is used to indicate draw previous or next item */
+    private boolean mMoveToInitPositionFlag;
+    private boolean mFirstItemPopOutFlag;
+    private boolean mMainThreadBusyState;
     private final Runnable checkFinalItemStateTask;
     private final Runnable checkInitialItemStateTask;
+    /**
+     * The task is mainly used for PopItemAdapter to determined add item this moment or not.
+     */
+    private final Runnable checkMainThreadStateTask;
+
+    private PopItemAdapter mPopItemAdapter;
 
     public PopScrollView(Context context) {
         this(context, null);
@@ -124,16 +143,29 @@ abstract public class PopScrollView extends RelativeLayout {
         super(context, attrs);
 
         mContext = context;
+        mPopItemAdapter = null;
+        mInitialFocusedPosition = -1;
+        mDrawUpOrDownFlag = DRAW_UP;
+        mMoveToInitPositionFlag = false;
+        mFirstItemPopOutFlag = false;
+        mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
+
         checkFinalItemStateTask = new Runnable() {
             @Override
             public void run() {
-                if(getChildView(mPopItemCount - 1) != null) {
+                if(getChildView(mPopItemCount - 1) != null && getChildView(0) != null) {
                     mFinalItemCheckFlag = true;
                     if(mOnItemPreparedListener != null)
                         mOnItemPreparedListener.onFinalItemPrepared();
+                    if(checkMainThreadStateTask != null) {
+                        mStartUpPosition = mInitialFocusedPosition;
+                        mStartDownPosition = mStartUpPosition + 1;
+                        checkMainThreadStateTask.run();
+                    }
                 }
                 else
                     PopScrollView.this.postDelayed(checkFinalItemStateTask, 100);
+
             }
         };
 
@@ -144,10 +176,41 @@ abstract public class PopScrollView extends RelativeLayout {
                     mInitialItemCheckFlag = true;
                     if(mOnItemPreparedListener != null)
                         mOnItemPreparedListener.onInitialItemPrepared();
-                    initFocusedPosition();
+
                 }
                 else
                     PopScrollView.this.postDelayed(checkInitialItemStateTask, 100);
+            }
+        };
+
+        checkMainThreadStateTask = new Runnable() {
+            @Override
+            public void run() {
+                if(mPopItemAdapter != null && mMainThreadBusyState == MAIN_THREAD_STATE_IDLE) {
+                    if(mDrawUpOrDownFlag == DRAW_UP) {
+                        mPopItemAdapter.setContentViewToChild(mStartUpPosition);
+                        mStartUpPosition--;
+                        if(mStartDownPosition < mPopItemCount)
+                            mDrawUpOrDownFlag = DRAW_DOWN;
+                    }
+                    else {    //mDrawUpOrDownFlag == DRAW_DOWN
+                        mPopItemAdapter.setContentViewToChild(mStartDownPosition);
+                        mStartDownPosition++;
+                        if(mStartUpPosition > 0)
+                            mDrawUpOrDownFlag = DRAW_UP;
+                    }
+                }
+
+                if(mScrollView.getMeasuredHeight() != 0 && mMoveToInitPositionFlag == false) {
+                    moveToPosition(mInitialFocusedPosition);
+                    mMoveToInitPositionFlag = true;
+                }
+
+                if(mInitialFocusedPosition != -1 && mFirstItemPopOutFlag == false)
+                    mFirstItemPopOutFlag = initFocusedPosition(mInitialFocusedPosition);
+
+                if(mStartUpPosition > 0 || mStartDownPosition < mPopItemCount)
+                    PopScrollView.this.postDelayed(checkMainThreadStateTask, 100);
             }
         };
 
@@ -201,16 +264,32 @@ abstract public class PopScrollView extends RelativeLayout {
         mBottomGradientMask.setBackground(ContextCompat.getDrawable(mContext, DEFAULT_BOT_GRADIENT_DRAWABLE_RES_ID));
     }
 
-    private void initFocusedPosition() {
-        setCurrentFocusedPosition(0);
+    /**
+     * TODO: initFocusedPosition() should be modified to initFocusedPosition(int initialPosition);
+     */
+    private boolean initFocusedPosition(int initPosition) {
+        if(initPosition < 0 || initPosition > mPopItemCount)
+            return false;
+
+        if(getCurrentFocusedView() == null)
+            return false;
         if(getCurrentFocusedView().getBackground() instanceof ColorDrawable)
             ((ColorDrawable) getCurrentFocusedView().getBackground()).setColor(ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID));
         else
             ((GradientDrawable) getCurrentFocusedView().getBackground()).setColor(ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID));
         getCurrentFocusedView().setScaleX(ZOOM_IN_FACTORY);
+        return true;
     }
 
+    /**
+     * make PopView, i.e., ScrollView, height and width equal to
+     * height : mPopItemHeight * DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW
+     * width : mPopItemZoomInWidth
+     * TopMargin = BottomMargin = (mPopItemHeight * (((float)DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW - 1) / 2));
+     */
     private void setPopViewWithDefaultSize(){
+        mScrollView = new MyScrollView(mContext);
+
         mPopViewHeight = mPopItemHeight * DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW;
         mPopViewWidth = mPopItemZoomInWidth;
         mPopViewTopMargin = (int)(mPopItemHeight * (((float)DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW - 1) / 2));
@@ -224,7 +303,6 @@ abstract public class PopScrollView extends RelativeLayout {
         LayoutParams layoutParams = new LayoutParams(mPopViewWidth, mPopViewHeight);
 
         layoutParams.addRule(CENTER_HORIZONTAL);
-        mScrollView = new MyScrollView(mContext);
         mScrollView.setLayoutParams(layoutParams);
     }
 
@@ -276,6 +354,9 @@ abstract public class PopScrollView extends RelativeLayout {
         int item0_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM0_COLOR_RES_ID);
         final View newFocusedView = getCurrentFocusedView();
 
+        if(newFocusedView == null)
+            return;
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             newFocusedView.setElevation(30);
 
@@ -286,6 +367,7 @@ abstract public class PopScrollView extends RelativeLayout {
         newFocusedViewAnim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
+                mMainThreadBusyState = MAIN_THREAD_STATE_BUSY;
             }
 
             @Override
@@ -296,6 +378,7 @@ abstract public class PopScrollView extends RelativeLayout {
                         ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font));
                     }
                 }
+                mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
             }
 
             @Override
@@ -333,6 +416,7 @@ abstract public class PopScrollView extends RelativeLayout {
         previousFocusedViewAnim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
+                mMainThreadBusyState = MAIN_THREAD_STATE_BUSY;
             }
 
             @Override
@@ -343,6 +427,7 @@ abstract public class PopScrollView extends RelativeLayout {
                         ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font1));
                     }
                 }
+                mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
             }
 
             @Override
@@ -418,6 +503,17 @@ abstract public class PopScrollView extends RelativeLayout {
         animator.setDuration(300);
         LayoutTransition layoutTransition = new LayoutTransition();
         layoutTransition.setAnimator(LayoutTransition.APPEARING, animator);
+        layoutTransition.addTransitionListener(new LayoutTransition.TransitionListener() {
+            @Override
+            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                mMainThreadBusyState = MAIN_THREAD_STATE_BUSY;
+            }
+
+            @Override
+            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
+            }
+        });
         setLayoutTransition(layoutTransition);
 
         // step 2
@@ -459,12 +555,14 @@ abstract public class PopScrollView extends RelativeLayout {
             @Override
             public void onAnimationStart(Animator animation) {
                 mShowingDetails = STATE_ITEM_DETAIL_CHANGING;
+                mMainThreadBusyState = MAIN_THREAD_STATE_BUSY;
             }
             @Override
             public void onAnimationEnd(Animator animation) {
                 mItemDetailsLinearLayout.removeAllViews();
                 removeView(mItemDetailsLinearLayout);
                 mShowingDetails = STATE_ITEM_DETAIL_NOT_SHOW;
+                mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
             }
             @Override
             public void onAnimationCancel(Animator animation) {}
@@ -480,14 +578,16 @@ abstract public class PopScrollView extends RelativeLayout {
 
     }
 
-    public void setPopItemAdapter(PopItemAdapter adapter){
+    public void setPopItemAdapter(PopItemAdapter adapter, int initialFocusedPosition){
+        mPopItemAdapter = adapter;
         mScrollView.removeAllViews();
         mScrollView.addView(mLinearLayout);
-        adapter.setChildViewToGroup();
+        mPopItemAdapter.setChildViewToGroup();
         mCurrentFocusedPopItemPosition = -1;
-
+        mInitialFocusedPosition = initialFocusedPosition;
         checkInitialItemStateTask.run();
         checkFinalItemStateTask.run();
+
     }
 
     private void setChildSize(){
@@ -545,6 +645,16 @@ abstract public class PopScrollView extends RelativeLayout {
         return mShowingDetails;
     }
 
+    /**
+     * TODO: 3 STEPs and 1 TASK
+     * STEPs
+     * 1. Add childViewCount empty and invisible item first.
+     *    (Make the parent size fixed, not change during adding procedure)
+     * 2. Move to the focusIndex position, using moveToPosition(focusIndex). (NOT SMOOTHLY),
+     * 3. Draw item content into empty item (from focusIndex position) and set it visible.
+     * TASK
+     * 1. Need a supervisor task to check whether "main thread" is busy now. Need a addtional flag.
+     */
     private class PopItemAdapter {
 
         private ViewGroup mParent;
@@ -563,65 +673,64 @@ abstract public class PopScrollView extends RelativeLayout {
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
+        /**
+         * TODO: This is the place need to be modified.
+         * Just add empty item into Layout
+         */
         public void setChildViewToGroup(){
-
+            int childViewCount = mDataList.size();
             mParent.removeAllViews();
-
-            Iterator<HashMap> ii = mDataList.iterator();
-            int dataCount = mDataList.size();
-            int itemFilledStartIndex = 0;
-            int itemFilledEndIndex = DEFAULT_PLAYER_LIST_ITEM_COUNT;
-
-            int index = -1;
-            while(ii.hasNext()){
-                index++;
-
-                final ViewGroup v = (ViewGroup) mInflater.inflate(mResource, mParent, false);
-
+            for(int i = 0; i < childViewCount; i++) {
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(mPopItemWidth, mPopItemHeight);
-                if(index == 0)
+                ViewGroup v = (ViewGroup) mInflater.inflate(mResource, mParent, false);
+                if(i == 0)
                     layoutParams.setMargins(0, mPopViewTopMargin, 0, 0);
-                else if(index == dataCount - 1)
+                else if(i == childViewCount - 1)
                     layoutParams.setMargins(0, 0, 0, mPopViewBottomMargin);
                 else
                     layoutParams.setMargins(0, 0, 0, 0);
-
-                final HashMap<String, Object> dataMap = ii.next();
                 v.setLayoutParams(layoutParams);
-                v.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int position = mParent.indexOfChild(v);
-                        if (position != mCurrentFocusedPopItemPosition) {
-                            if (mShowingDetails == STATE_ITEM_DETAIL_SHOW)
-                                hideItemDetails();
-                        } else {
-                            if (mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
-                                showItemDetails();
-                        }
-                    }
-                });
+                v.setVisibility(INVISIBLE);
+                mParent.addView(v);
+            }
+        }
 
-                for(int i = itemFilledStartIndex; i < itemFilledEndIndex && i < dataMap.size(); i++){
-                    /**
-                     * here only contains spell and translation.
-                     */
-                    TextView textView = (TextView) v.findViewById(mTo[i]);
-                    if(textView != null) {
-                        Typeface kkTypeFace = Typeface.createFromAsset(mContext.getAssets(), "fonts/tt0142m_.ttf");
-                        textView.setTypeface(kkTypeFace);
-                        textView.setText(dataMap.get(mFrom[i]).toString());
-                        textView.setVisibility(VISIBLE);
+        private boolean setContentViewToChild(int position) {
+            if(position < 0 || position > mDataList.size())
+                return false;
+            View v = mParent.getChildAt(position);
+            if(v == null)
+                return false;
+            int itemFilledStartIndex = 0;
+            int itemFilledEndIndex = DEFAULT_PLAYER_LIST_ITEM_COUNT;
+            final HashMap<String, Object> dataMap = mDataList.get(position);
+            for(int i = itemFilledStartIndex; i < itemFilledEndIndex && i < dataMap.size(); i++){
+                /**
+                 * here only contains spell and translation.
+                 */
+                TextView textView = (TextView) v.findViewById(mTo[i]);
+                if(textView != null) {
+                    Typeface kkTypeFace = Typeface.createFromAsset(mContext.getAssets(), "fonts/tt0142m_.ttf");
+                    textView.setTypeface(kkTypeFace);
+                    textView.setText(dataMap.get(mFrom[i]).toString());
+                    textView.setVisibility(VISIBLE);
+                }
+            }
+            v.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = mParent.indexOfChild(v);
+                    if (position != mCurrentFocusedPopItemPosition) {
+                        if (mShowingDetails == STATE_ITEM_DETAIL_SHOW)
+                            hideItemDetails();
+                    } else {
+                        if (mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
+                            showItemDetails();
                     }
                 }
-
-                mParent.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mParent.addView(v);
-                    }
-                }, index * 100);
-            }
+            });
+            v.setVisibility(VISIBLE);
+            return true;
         }
     }
 
@@ -694,7 +803,7 @@ abstract public class PopScrollView extends RelativeLayout {
             return super.onInterceptTouchEvent(ev);
         }
 
-        public void startScrollerTask(){
+        private void startScrollerTask(){
 
             initialPosition = getScrollY();
             MyScrollView.this.postDelayed(scrollerTask, newCheck);
@@ -739,7 +848,6 @@ abstract public class PopScrollView extends RelativeLayout {
             }
             else {
                 addView(new ErrorView(context).setErrorMsg("ERROR"));
-                Log.d("PopScrollView", "ItemDetailView Error");
             }
         }
 

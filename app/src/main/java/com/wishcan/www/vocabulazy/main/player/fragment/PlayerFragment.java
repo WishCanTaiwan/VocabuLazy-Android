@@ -154,7 +154,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
             @Override
             public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
-//                Log.d(TAG, "onDetailScrollStop: " + index);
                 if (isViewTouchedDown)
                     newSentenceFocused(index);
             }
@@ -199,7 +198,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
             @Override
             public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
-//                Log.d(TAG, "option changed: random => " + optionLL.get(currentMode).mIsRandom + ", sentence => " + optionLL.get(currentMode).mSentence + ".");
                 mPlayerModel.setOptionAndMode(optionLL, currentMode);
                 optionSettingChanged(optionLL.get(currentMode));
             }
