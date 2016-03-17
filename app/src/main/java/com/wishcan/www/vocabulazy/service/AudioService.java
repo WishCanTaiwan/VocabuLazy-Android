@@ -155,8 +155,10 @@ public class AudioService extends IntentService
                 break;
 
             case ACTION_STOP_SERVICE:
-                wAudioPlayer.releasePlayer();
-                wcTextToSpeech.shutdown();
+                if (wAudioPlayer != null)
+                    wAudioPlayer.releasePlayer();
+                if (wcTextToSpeech != null)
+                    wcTextToSpeech.shutdown();
                 break;
 
             case ACTION_SET_LANGUAGE:
@@ -328,7 +330,7 @@ public class AudioService extends IntentService
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        Log.d(TAG, "onDestory");
+        Log.d(TAG, "onDestory");
         if (wcTextToSpeech != null)
             wcTextToSpeech.shutdown();
     }

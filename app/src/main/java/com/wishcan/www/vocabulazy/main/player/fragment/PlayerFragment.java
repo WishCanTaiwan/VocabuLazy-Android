@@ -94,29 +94,22 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mPlayerModel = new PlayerModel((MainActivity) getActivity());
         mPlayerModel.setDataProcessListener(this);
 
-        // TODO: after loaded the preference, check whether the numbers match.
-
         int restoredBookIndex = 1359;
         int restoredLessonIndex = 1359;
+        int restoredItemIndex = -1;
+        int restoredSentenceIndex = -1;
         Bundle bundle = loadPreferences();
         if (bundle != null) {
             restoredBookIndex = bundle.getInt(KEY_BOOK_INDEX);
             restoredLessonIndex = bundle.getInt(KEY_LESSON_INDEX);
-            mItemIndex = bundle.getInt(KEY_ITEM_INDEX);
-            mSentenceIndex = bundle.getInt(KEY_SENTENCE_INDEX);
+            restoredItemIndex = bundle.getInt(KEY_ITEM_INDEX);
+            restoredSentenceIndex = bundle.getInt(KEY_SENTENCE_INDEX);
         }
 
-        mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
-        mLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
-//        mVocabularies = null;
-
-        Log.d(TAG, "mBookIndex: " + mBookIndex + ", mLessonIndex: " + mLessonIndex);
-        Log.d(TAG, "restoredBookIndex: " + restoredBookIndex + ", restoredLessonIndex: " + restoredLessonIndex);
-        wIndicesMatch = false;
-        if (mBookIndex == restoredBookIndex && mLessonIndex == restoredLessonIndex) {
-            Log.d(TAG, "index match");
-            wIndicesMatch = true;
-        }
+        int argBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
+        int argLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
+        wIndicesMatch = (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
+        updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
 
         setLanguage(mBookIndex);
 
@@ -149,8 +142,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mPlayerMainView.setOnPlayerScrollStopListener(new PlayerMainView.OnPlayerScrollListener() {
             @Override
             public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
-                mItemIndex = currentPosition;
-                mSentenceIndex = 0;
+                updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
                 if (isViewTouchedDown) {
                     newItemFocused(currentPosition);
                     mPlayerModel.createPlayerDetailContent(mVocabularies.get(currentPosition));
@@ -166,11 +158,9 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             public void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown) {
                 int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
                 mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
-                mItemIndex = 0;
-                mSentenceIndex = 0;
+                updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
                 mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
                 mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
-
                 if (isViewTouchedDown)
                     newListFocused(mVocabularies);
             }
@@ -183,8 +173,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             @Override
             public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
 //                Log.d(TAG, "onDetailScrollStop: " + index);
-
-                mSentenceIndex = index;
+                updateIndices(mBookIndex, mLessonIndex, mItemIndex, index);
                 if (isViewTouchedDown)
                     newSentenceFocused(index);
             }
@@ -232,6 +221,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             @Override
             public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
                 mPlayerModel.setOptionAndMode(optionLL, currentMode);
+                updateIndices(mBookIndex, mLessonIndex, mItemIndex, (optionLL.get(0).mSentence ? 0 : -1));
                 optionSettingChanged(optionLL.get(currentMode));
             }
         });
@@ -255,7 +245,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         /**
          * when database is ready
          */
-        mPlayerOptionView.setOptionsInTabContent(mPlayerModel.getDefaultOptions());
+        setupOptions();
         initTTSEngine();
     }
 
@@ -311,9 +301,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         Option option = mPlayerModel.getCurrentOption();
         setContent(mVocabularies, option);
         if (mVocabularies.size() > 0 && !wIndicesMatch) {
-            Log.d(TAG, "YOLO");
-            mItemIndex = 0;
-            mSentenceIndex = 0;
+            updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
             startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
         }
     }
@@ -325,8 +313,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
     @Override
     public void onFinalItemPrepared() {
-//        Log.d(TAG, "onFinalItemPrepared: move to index " + mItemIndex);
-//        mPlayerMainView.moveToPosition(mItemIndex);
+
     }
 
     private void savePreferences() {
@@ -340,6 +327,20 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
     private Bundle loadPreferences() {
         return mPlayerModel.loadPlayerInfo();
+    }
+
+    private void setupOptions() {
+        ArrayList<Option> options = mPlayerModel.getDefaultOptions();
+        mPlayerOptionView.setOptionsInTabContent(options);
+        updateIndices(mBookIndex, mLessonIndex, mItemIndex, (options.get(0).mSentence ? 0 : -1));
+    }
+
+    private void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
+        mBookIndex = bookIndex;
+        mLessonIndex = lessonIndex;
+        mItemIndex = itemIndex;
+        mSentenceIndex = sentenceIndex;
+        Log.d(TAG, "book " + bookIndex + ", lesson " + lessonIndex + ", item " + itemIndex + ", sentence " + sentenceIndex);
     }
 
     /**
@@ -382,7 +383,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     void optionSettingChanged(Option option) {
-//        Log.d(TAG, "option changed: random => " + option.mIsRandom + ", sentence => " + option.mSentence + ".");
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_OPTION_SETTING_CHANGED);
         intent.putExtra(AudioService.KEY_OPTION_SETTING, option);
@@ -397,12 +397,12 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     void newItemFocused(int newItemIndex) {
-        Log.d(TAG, "newItemFocused: " + newItemIndex);
+//        Log.d(TAG, "newItemFocused: " + newItemIndex);
         startPlayingAt(newItemIndex, 0, AudioService.PLAYING_SPELL);
     }
 
     void newListFocused(ArrayList<Vocabulary> vocabularies) {
-        Log.d(TAG, "newListFocused");
+//        Log.d(TAG, "newListFocused");
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_NEW_LIST);
         intent.putParcelableArrayListExtra(AudioService.KEY_NEW_CONTENT, vocabularies);
@@ -410,7 +410,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     void newSentenceFocused(int index) {
-        Log.d(TAG, "newSentenceFocused: " + index);
+//        Log.d(TAG, "newSentenceFocused: " + index);
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_NEW_SENTENCE_FOCUSED);
         intent.putExtra(AudioService.KEY_NEW_SENTENCE_INDEX, index);
@@ -431,25 +431,20 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getStringExtra(ServiceBroadcaster.KEY_ACTION);
-            Log.d(TAG, action + ", " + context.toString());
+//            Log.d(TAG, action + ", " + context.toString());
 
             switch (action) {
 
                 case ServiceBroadcaster.ACTION_ITEM_COMPLETE:
-//                    Log.d(TAG, action);
                     int newItemIndex = intent.getIntExtra(ServiceBroadcaster.KEY_NEXT_ITEM_INDEX, -1);
-                    mItemIndex = newItemIndex;
-                    mSentenceIndex = 0;
+                    updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
                     mPlayerMainView.moveToPosition(newItemIndex);
                     mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
-//                    mPlayerMainView.refreshPlayerDetail(mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex)));
                     break;
 
                 case ServiceBroadcaster.ACTION_LIST_COMPLETE:
                     mPlayerMainView.setCurrentItem(1);
-                    mLessonIndex = mLessonIndex++ % 10;
-                    mItemIndex = 0;
-                    mSentenceIndex = 0;
+                    updateIndices(mBookIndex, mLessonIndex++%10, 0, (mSentenceIndex < 0 ? -1 : 0));
                     break;
 
                 case ServiceBroadcaster.ACTION_SHOW_DETAIL:
@@ -462,7 +457,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
                 case ServiceBroadcaster.ACTION_PLAY_SENTENCE:
                     int sentenceIndex = intent.getIntExtra(ServiceBroadcaster.KEY_PLAY_SENTENCE_INDEX, -1);
-                    mSentenceIndex = sentenceIndex;
+                    updateIndices(mBookIndex, mLessonIndex, mItemIndex, sentenceIndex);
                     mPlayerMainView.moveToDetailPage(sentenceIndex);
                     break;
 

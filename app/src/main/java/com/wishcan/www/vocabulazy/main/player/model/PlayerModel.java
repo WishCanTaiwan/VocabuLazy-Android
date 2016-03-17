@@ -207,21 +207,21 @@ public class PlayerModel {
             super.onPostExecute(result);
 
             if (result instanceof LinkedList) {
-                Log.d(TAG, "player content created");
+//                Log.d(TAG, "player content created");
                 LinkedList<HashMap> playerDataContent = (LinkedList<HashMap>) result;
                 wDataProcessListener.onPlayerContentCreated(playerDataContent);
                 return;
             }
 
             if (result instanceof HashMap) {
-                Log.d(TAG, "detail content created");
+//                Log.d(TAG, "detail content created");
                 HashMap<String, Object> playerDetailDataContent = (HashMap<String, Object>) result;
                 wDataProcessListener.onDetailPlayerContentCreated(playerDetailDataContent);
                 return;
             }
 
             if (result instanceof ArrayList) {
-                Log.d(TAG, "vocabularies loaded");
+//                Log.d(TAG, "vocabularies loaded");
                 ArrayList<Vocabulary> vocabularies = (ArrayList<Vocabulary>) result;
                 wDataProcessListener.onVocabulariesGet(vocabularies);
                 return;

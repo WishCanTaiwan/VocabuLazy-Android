@@ -110,7 +110,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        stopAudioService();
     }
 
     @Override
@@ -126,6 +125,12 @@ public class MainActivity extends FragmentActivity {
     protected void onPause() {
         super.onPause();
         mDatabase.writeToFile(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopAudioService();
     }
 
     @Override

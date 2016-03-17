@@ -130,7 +130,6 @@ public class PlayerMainView extends Infinite3View {
 
     public void moveToPosition(int position) {
         if(mPlayerScrollView != null) {
-            Log.d(TAG, "moveToPosition " + position);
             mPlayerScrollView.moveToPosition(position);
         }
 

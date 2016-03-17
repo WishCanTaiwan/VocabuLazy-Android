@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.service;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * Created by allencheng07 on 2016/1/27.
@@ -30,7 +32,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     public WCTextToSpeech (Context context, OnUtteranceStatusListener listener) {
         mContext = context;
-//        initializeTTSEngine(context);
+        initializeTTSEngine(context);
         wOnUtteranceStatusListener = listener;
         ttsEngineInit = false;
         currentUtterance = "";
@@ -45,8 +47,9 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
         currentUtterance = text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Bundle bundle = new Bundle();
             wTextToSpeech.setSpeechRate(0.7f);
-            wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, text);
+            wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, text);
 
 //            Log.d(TAG, "speak: " + text);
         } else {
@@ -60,9 +63,21 @@ public class WCTextToSpeech extends UtteranceProgressListener
     }
 
     void initializeTTSEngine(Context context) {
-        wTextToSpeech = new TextToSpeech(context, this);
+        if (wTextToSpeech == null) {
+            wTextToSpeech = new TextToSpeech(context, this);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                Set<Locale> languages = wTextToSpeech.getAvailableLanguages();
+//                for (Locale locale : languages) {
+//                    Log.d(TAG, locale.toString());
+//                }
+            } else {
+
+            }
+
+        }
         setTTSListener();
         setTTSIDParams(UTTERANCE_ID);
+
     }
 
     void pause() {
