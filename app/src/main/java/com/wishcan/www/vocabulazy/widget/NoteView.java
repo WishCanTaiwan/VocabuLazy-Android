@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -402,6 +403,8 @@ abstract public class NoteView extends SlideBackViewPager{
             layoutParams.addRule(CENTER_IN_PARENT);
             crossView.setLayoutParams(layoutParams);
             addView(crossView);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                setElevation(30);
 
             mShowingAnimator = ObjectAnimator.ofFloat(this, "translationY", 960f, 0f);
             mShowingAnimator.setInterpolator(new AccelerateDecelerateInterpolator());

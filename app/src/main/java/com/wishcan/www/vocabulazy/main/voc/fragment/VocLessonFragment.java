@@ -4,6 +4,7 @@ package com.wishcan.www.vocabulazy.main.voc.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -33,7 +34,6 @@ import java.util.LinkedList;
 public class VocLessonFragment extends Fragment implements FragmentWithActionBarTitle{
 
     public static final String TAG = VocLessonFragment.class.getSimpleName();
-
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
     
     private Database mDatabase;
@@ -57,7 +57,12 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
         super.onCreate(savedInstanceState);
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         mBookIndex = getArguments() == null ? -1 : getArguments().getInt(BOOK_INDEX_STR);
+        Log.d(TAG, " bookIndex " + mBookIndex);
         mLessonIndex = 0;
+        FragmentActivity activity = getActivity();
+        if(activity != null && activity instanceof MainActivity){
+            ((MainActivity) activity).setActionBarTitle(this);
+        }
     }
 
     @Override
@@ -90,33 +95,18 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
         return vocLessonView;
     }
 
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        Log.d(TAG, "onSaveInstanceState");
-//        super.onSaveInstanceState(outState);
-//    }
-
     private void goPlayerFragment(int bookIndex, int lessonIndex){
         Log.d(TAG, "goPlayerFragment");
         Bundle args = new Bundle();
         args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
         args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
         ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "VocLessonFragment");
-
-        // FragmentManager fragmentManager = getFragmentManager();
-        // PlayerFragment playerFragment = PlayerFragment.newInstance(bookIndex, lessonIndex);
-        // FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        // fragmentTransaction.
-        //         setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-        //                 MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        // fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, playerFragment, "PlayerFragment");
-        // fragmentTransaction.addToBackStack("VocLessonFragment");
-        // fragmentTransaction.commit();
     }
 
     @Override
     public String getActionBarTitle() {
         String titleStr = "Book ";
+        Log.d(TAG, "getActionBarTitle" + mBookIndex);
         if(mBookIndex != -1)
             titleStr += mBookIndex;
         return titleStr;

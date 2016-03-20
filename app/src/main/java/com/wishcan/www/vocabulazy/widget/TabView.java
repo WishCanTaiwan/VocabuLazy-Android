@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -160,6 +161,13 @@ abstract public class TabView extends LinearLayout {
         mViewPager.setCurrentItem(index, true);
     }
 
+    public int getTabCount() {
+        if(mTabStripe != null)
+            return mTabStripe.getChildCount();
+        else
+            return 0;
+    }
+
     /**
      * TabStripe is a RelativeLayout because the view have a special capability, mask.
      * The view is used for containing the following objects
@@ -246,6 +254,7 @@ abstract public class TabView extends LinearLayout {
          */
         private void moveTabMask(int position) {
             int tabStripeWidth = mTabStripe.getMeasuredWidth();
+            Log.d("TabView", "tabStripeWidth = " +tabStripeWidth);
             float offset = position * tabStripeWidth * (1f / mTabStripe.getChildCount());
             mTabMask.setTranslationX(offset);
         }

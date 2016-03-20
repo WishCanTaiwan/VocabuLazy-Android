@@ -28,11 +28,15 @@ public class MainFragment extends Fragment implements FragmentWithActionBarTitle
     private static final int VIEW_RES_ID = R.layout.view_main;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_TAB_INDEX = "tab_index";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
+    private MainView mMainView;
+
+    private int mCurrentTabIndex;
 
     /**
      * Use this factory method to create a new instance of
@@ -68,26 +72,42 @@ public class MainFragment extends Fragment implements FragmentWithActionBarTitle
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        MainView mainView = (MainView) inflater.inflate(VIEW_RES_ID, container, false);
-        ((MainActivity)getActivity()).setActionBarTitle(getResources().getString(MainView.TAGIDs[0]));
-        mainView.setOnTabChangeListener(new MainView.OnTabChangeListener() {
+        mMainView = (MainView) inflater.inflate(VIEW_RES_ID, container, false);
+        if(savedInstanceState != null){
+            mCurrentTabIndex = savedInstanceState.getInt(ARG_TAB_INDEX);
+        } else {
+            mCurrentTabIndex = 0;
+        }
+        ((MainActivity)getActivity()).setActionBarTitle(getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
+        //TODO: check whether this area is executed again after rotate
+        mMainView.post(new Runnable() {
+            @Override
+            public void run() {
+                mMainView.setCurrentTab(mCurrentTabIndex);
+            }
+        });
+        mMainView.setOnTabChangeListener(new MainView.OnTabChangeListener() {
             @Override
             public void onTabChange(int position) {
                 ((MainActivity)getActivity()).setActionBarTitle(getResources().getString(MainView.TAGIDs[position]));
+                mCurrentTabIndex = position;
             }
         });
-        return mainView;
+        return mMainView;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         Log.d(TAG, "onSaveInstanceState");
+        outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     public String getActionBarTitle() {
-        return getResources().getString(MainView.TAGIDs[0]);
+        if(mCurrentTabIndex > 0 && mCurrentTabIndex < mMainView.getTabCount())
+            return getResources().getString(MainView.TAGIDs[mCurrentTabIndex]);
+        else
+            return getResources().getString(MainView.TAGIDs[0]);
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +24,6 @@ import com.wishcan.www.vocabulazy.service.ServiceBroadcaster;
 import com.wishcan.www.vocabulazy.storage.Option;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
-import com.wishcan.www.vocabulazy.widget.PopScrollView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -125,6 +125,11 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
          */
 //        startAudio();
 
+        FragmentActivity activity = getActivity();
+        if(activity != null && activity instanceof MainActivity){
+            ((MainActivity) activity).setActionBarTitle(this);
+        }
+
     }
 
     @Override
@@ -151,7 +156,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
             @Override
             public void onPlayerVerticalScrolling() {
-                playerviewScrolling();
+                playerViewScrolling();
             }
 
             @Override
@@ -167,7 +172,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
             @Override
             public void onPlayerHorizontalScrolling() {
-                playerviewScrolling();
+                playerViewScrolling();
             }
 
             @Override
@@ -180,7 +185,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
             @Override
             public void onDetailScrolling() {
-                playerviewScrolling();
+                playerViewScrolling();
             }
 
             @Override
@@ -306,11 +311,17 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         }
     }
 
+    /**
+     * Implement PlayerMainView.OnPlayerItemPreparedListener
+     * */
     @Override
     public void onInitialItemPrepared() {
 
     }
 
+    /**
+     * Implement PlayerMainView.OnPlayerItemPreparedListener
+     * */
     @Override
     public void onFinalItemPrepared() {
 
@@ -340,7 +351,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mLessonIndex = lessonIndex;
         mItemIndex = itemIndex;
         mSentenceIndex = sentenceIndex;
-        Log.d(TAG, "book " + bookIndex + ", lesson " + lessonIndex + ", item " + itemIndex + ", sentence " + sentenceIndex);
+//        Log.d(TAG, "book " + bookIndex + ", lesson " + lessonIndex + ", item " + itemIndex + ", sentence " + sentenceIndex);
     }
 
     /**
@@ -417,7 +428,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         getActivity().startService(intent);
     }
 
-    void playerviewScrolling() {
+    void playerViewScrolling() {
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_PLAYERVIEW_SCROLLING);
         getActivity().startService(intent);

@@ -45,6 +45,7 @@ public class CrossView extends View {
 
     public void setCrossSize(int newCrossSize) {
         mCrossSize = newCrossSize;
+        invalidate();
     }
 
     @Override

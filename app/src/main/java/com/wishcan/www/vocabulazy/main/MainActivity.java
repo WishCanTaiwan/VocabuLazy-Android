@@ -23,8 +23,13 @@ import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.Semaphore;
 
 public class MainActivity extends FragmentActivity {
+
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -44,6 +49,7 @@ public class MainActivity extends FragmentActivity {
     private TextView mActionBarTitleTextView;
     private static Database mDatabase;
     private int mBackStackCount;
+    private String mBackStackTopFragmentName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +60,27 @@ public class MainActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             mMainFragment = new MainFragment();
             mFragmentManager = getSupportFragmentManager();
+            mBackStackTopFragmentName = "";
+            if(getActionBar() != null)
+                getActionBar().setDisplayHomeAsUpEnabled(true);
             mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
                     int backStackCount;
                     if((backStackCount = mFragmentManager.getBackStackEntryCount()) > 0) {      //Not in MainFragment
+                        Log.d(TAG, "Not im MainFragment : " + backStackCount);
                         if(backStackCount < mBackStackCount) {  // Back button is pressed
-                            String str = mFragmentManager.getBackStackEntryAt(backStackCount - 1).getName();
-                            Fragment f = mFragmentManager.findFragmentByTag(str);
-                            if (f != null && f instanceof FragmentWithActionBarTitle)
+                            Log.d(TAG, "Back Button");
+                            Log.d(TAG, "f name = " +mBackStackTopFragmentName);
+                            Fragment f = null;
+                            if(!mBackStackTopFragmentName.equals(""))
+                                f = mFragmentManager.findFragmentByTag(mBackStackTopFragmentName);
+                            if (f != null && f instanceof FragmentWithActionBarTitle) {
+                                Log.d(TAG, "Implement Title Interface");
                                 setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
+                            } else {
+                                Log.d(TAG, "May Not Implement");
+                            }
                         }
                         else {
                             mActionBar = getActionBar();
@@ -73,6 +90,10 @@ public class MainActivity extends FragmentActivity {
                         }
                     }
                     else {    //Back to MainFragment
+                        Log.d(TAG, "In MainFragment");
+                        Fragment f = mFragmentManager.findFragmentByTag("MainFragment");
+                        if(f != null && f instanceof FragmentWithActionBarTitle)
+                            setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
                         mActionBar = getActionBar();
                         if(mActionBar != null) {
                             mActionBar.setDisplayHomeAsUpEnabled(false);
@@ -159,6 +180,18 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        if(mFragmentManager == null)
+            mFragmentManager = getSupportFragmentManager();
+        int backStackEntryCount = mFragmentManager.getBackStackEntryCount();
+        if(backStackEntryCount > 0)
+            mBackStackTopFragmentName = mFragmentManager.getBackStackEntryAt(backStackEntryCount - 1).getName();
+        else
+            mBackStackTopFragmentName = "";
+        super.onBackPressed();
+    }
+
+    @Override
     public boolean onNavigateUp() {
         onBackPressed();
         return super.onNavigateUp();
@@ -200,6 +233,10 @@ public class MainActivity extends FragmentActivity {
             Typeface tf = Typeface.createFromAsset(getAssets(), FONT_RES_STR);
             mActionBarTitleTextView.setTypeface(tf);
         }
+    }
+
+    public void setActionBarTitle(FragmentWithActionBarTitle f) {
+        setActionBarTitle(f.getActionBarTitle());
     }
 
     public void setActionBarTitle(String titleStr) {

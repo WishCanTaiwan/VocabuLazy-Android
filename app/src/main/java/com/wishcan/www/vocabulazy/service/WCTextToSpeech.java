@@ -89,7 +89,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
     }
 
     void shutdown() {
-        if (!wTextToSpeech.isSpeaking())
+        if (wTextToSpeech != null && !wTextToSpeech.isSpeaking())
             wTextToSpeech.shutdown();
     }
 

@@ -93,6 +93,7 @@ public class VocBookFragment extends Fragment {
 
     private void goVocLessonFragment(int bookIndex){
         Bundle args = new Bundle();
+        Log.d(TAG, " bookIndex " +bookIndex);
         args.putInt(VocLessonFragment.BOOK_INDEX_STR, bookIndex);
         ((MainActivity) getActivity()).goFragment(VocLessonFragment.class, args, "VocLessonFragment", "MainFragment");
     }

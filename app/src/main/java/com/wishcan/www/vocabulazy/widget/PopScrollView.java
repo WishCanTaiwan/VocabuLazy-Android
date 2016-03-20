@@ -7,14 +7,11 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -172,13 +169,13 @@ abstract public class PopScrollView extends RelativeLayout {
         checkInitialItemStateTask = new Runnable() {
             @Override
             public void run() {
-                if(getChildView(0) != null) {
+                if(initFocusedPosition(mInitialFocusedPosition)) {  // true
                     mInitialItemCheckFlag = true;
                     if(mOnItemPreparedListener != null)
                         mOnItemPreparedListener.onInitialItemPrepared();
 
                 }
-                else
+                else                                                // false
                     PopScrollView.this.postDelayed(checkInitialItemStateTask, 100);
             }
         };
@@ -205,9 +202,6 @@ abstract public class PopScrollView extends RelativeLayout {
                     moveToPosition(mInitialFocusedPosition);
                     mMoveToInitPositionFlag = true;
                 }
-
-                if(mInitialFocusedPosition != -1 && mFirstItemPopOutFlag == false)
-                    mFirstItemPopOutFlag = initFocusedPosition(mInitialFocusedPosition);
 
                 if(mStartUpPosition > 0 || mStartDownPosition < mPopItemCount)
                     PopScrollView.this.postDelayed(checkMainThreadStateTask, 100);
@@ -264,20 +258,15 @@ abstract public class PopScrollView extends RelativeLayout {
         mBottomGradientMask.setBackground(ContextCompat.getDrawable(mContext, DEFAULT_BOT_GRADIENT_DRAWABLE_RES_ID));
     }
 
-    /**
-     * TODO: initFocusedPosition() should be modified to initFocusedPosition(int initialPosition);
-     */
     private boolean initFocusedPosition(int initPosition) {
-        if(initPosition < 0 || initPosition > mPopItemCount)
+        if(initPosition < 0 || initPosition > mPopItemCount) {
             return false;
+        }
 
-        if(getCurrentFocusedView() == null)
+        if((getCurrentFocusedView()) == null) {
             return false;
-        if(getCurrentFocusedView().getBackground() instanceof ColorDrawable)
-            ((ColorDrawable) getCurrentFocusedView().getBackground()).setColor(ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID));
-        else
-            ((GradientDrawable) getCurrentFocusedView().getBackground()).setColor(ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID));
-        getCurrentFocusedView().setScaleX(ZOOM_IN_FACTORY);
+        }
+        performItemAppearanceChanged(-1);
         return true;
     }
 
@@ -457,6 +446,7 @@ abstract public class PopScrollView extends RelativeLayout {
                 public void onAnimationRepeat(Animator animation) {}
             });
         }
+
         else {
             previousFocusedView.setBackground(ContextCompat.getDrawable(mContext, DEFAULT_ITEM_DRAWABLE_RES_ID));
             if(previousFocusedView instanceof ViewGroup){
@@ -583,8 +573,8 @@ abstract public class PopScrollView extends RelativeLayout {
         mScrollView.removeAllViews();
         mScrollView.addView(mLinearLayout);
         mPopItemAdapter.setChildViewToGroup();
-        mCurrentFocusedPopItemPosition = -1;
-        mInitialFocusedPosition = initialFocusedPosition;
+        mCurrentFocusedPopItemPosition = mInitialFocusedPosition = initialFocusedPosition;
+//        mCurrentFocusedPopItemPosition = -1;
         checkInitialItemStateTask.run();
         checkFinalItemStateTask.run();
 
