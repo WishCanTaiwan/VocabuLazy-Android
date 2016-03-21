@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -228,6 +229,7 @@ public class MainActivity extends FragmentActivity {
         if(mActionBar != null) {
             mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM /*| ActionBar.DISPLAY_HOME_AS_UP*/);
             mActionBar.setCustomView(DEFAULT_CUSTOM_ACTION_BAR_RES_ID);
+//            mActionBar.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.widget_action_bar_white_bottom_border));
 
             mActionBarTitleTextView = (TextView) mActionBar.getCustomView().findViewById(TITLE_RES_ID);
             Typeface tf = Typeface.createFromAsset(getAssets(), FONT_RES_STR);
