@@ -3,16 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ff00ff">
 
-    <!--
-    <com.wishcan.www.vocabulazy.widget.AutoResizeTextView
-        android:id="@+id/info_auto_resize_text_view"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#ffff00"
-        />
-    -->
+        android:gravity="center"
+        >
+        <com.wishcan.www.vocabulazy.widget.AutoResizeTextView
+            android:id="@+id/info_auto_resize_text_view"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="AutoResizesss"
+            android:textColor="#ff000000"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:maxLines="2"
+            />
+    </LinearLayout>
+
+
 
     <EditText
         android:id="@+id/info_edit_text"
@@ -20,5 +33,24 @@
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/button_size_up"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="size up"
+            />
+        <Button
+            android:id="@+id/button_size_down"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="size down"
+            />
+    </LinearLayout>
+
 
 </LinearLayout>

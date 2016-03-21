@@ -15,18 +15,15 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <com.wishcan.www.vocabulazy.widget.AutoResizeTextView
             android:id="@+id/player_voc_spell"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="make the use of makea"
-            android:scrollHorizontally="false"
-            android:ellipsize="none"
             android:gravity="center"
             android:textSize="@dimen/player_list_item_text0_size"
-            android:singleLine="true"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textColor="@color/player_list_item_font1" />
 
     </LinearLayout>
