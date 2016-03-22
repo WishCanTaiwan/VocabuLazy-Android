@@ -24,6 +24,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
     public static final String TAG = WCTextToSpeech.class.getSimpleName();
 
     public static final String UTTERANCE_ID = "utterance-id";
+    public static final String UTTERANCE_SLIENCE = "slience";
 
     private Context mContext;
     private TextToSpeech wTextToSpeech;
@@ -34,6 +35,8 @@ public class WCTextToSpeech extends UtteranceProgressListener
     private HashMap<String, String> utteranceParams;
 
     private String buffUtterence;
+    private int wStopPeriod;
+    private int wSpeed;
 
     public WCTextToSpeech (Context context, OnUtteranceStatusListener listener) {
         mContext = context;
@@ -43,68 +46,58 @@ public class WCTextToSpeech extends UtteranceProgressListener
         currentUtterance = "default";
     }
 
-    void speak(String text) {
-
-//        Log.d(TAG, text);
-
+    public void speak(String text) {
         if (!ttsEngineInit) {
             currentUtterance = text;
             return;
         }
-
         currentUtterance = text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            Bundle bundle = new Bundle();
-            wTextToSpeech.setSpeechRate(0.7f);
-//            Log.d(TAG, "YOLO3");
-//            Log.d(TAG, wTextToSpeech.getDefaultVoice() + "");
+            wTextToSpeech.setSpeechRate(0.7f * wSpeed);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, text);
-            wTextToSpeech.playSilentUtterance(0, TextToSpeech.QUEUE_ADD, "play-silence");
-
-//            Log.d(TAG, "speak: " + text);
+            wTextToSpeech.playSilentUtterance(wStopPeriod, TextToSpeech.QUEUE_ADD, UTTERANCE_SLIENCE);
         } else {
-            setTTSIDParams(text);
-            wTextToSpeech.setSpeechRate(0.7f);
-            wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, utteranceParams);
-
-//            Log.d(TAG, "speak: " + text);
+//            setTTSIDParams(text);
+            wTextToSpeech.setSpeechRate(0.7f * wSpeed);
+            wTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, createParams(text));
+            wTextToSpeech.playSilence(wStopPeriod, TextToSpeech.QUEUE_ADD, createParams(UTTERANCE_SLIENCE));
         }
-
     }
 
-    void initializeTTSEngine(Context context) {
+    public void initializeTTSEngine(Context context) {
         if (wTextToSpeech == null) {
             wTextToSpeech = new TextToSpeech(context, this);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            } else {
-            }
-
         }
         setTTSListener();
-        setTTSIDParams(UTTERANCE_ID);
-
     }
 
-    void pause() {
+    public void pause() {
         stop();
     }
 
-    void stop() {
+    public void stop() {
         wTextToSpeech.stop();
     }
 
-    void shutdown() {
+    public void shutdown() {
         if (wTextToSpeech != null && !wTextToSpeech.isSpeaking())
             wTextToSpeech.shutdown();
     }
 
-    void setLanguage(Locale locale) {
+    public void setLanguage(Locale locale) {
         if (ttsEngineInit)
             wTextToSpeech.setLanguage(locale);
     }
 
-    void setTTSListener() {
+    public void setStopPeriod(int stopPeriod) {
+        wStopPeriod = stopPeriod * 1000;
+    }
+
+    public void setSpeed(int speed) {
+        wSpeed = speed;
+    }
+
+    private void setTTSListener() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             wTextToSpeech.setOnUtteranceProgressListener(this);
         } else {
@@ -112,9 +105,10 @@ public class WCTextToSpeech extends UtteranceProgressListener
         }
     }
 
-    void setTTSIDParams(String utteranceid) {
-        utteranceParams = new HashMap<>();
-        utteranceParams.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, utteranceid);
+    private HashMap<String, String> createParams(String utteranceid) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, utteranceid);
+        return params;
     }
 
     @Override
@@ -137,7 +131,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
     public void onDone(String utteranceId) {
         Log.d(TAG, "onDone: " + utteranceId);
 
-        if (!utteranceId.equals("play-silence")) {
+        if (!utteranceId.equals(UTTERANCE_SLIENCE)) {
             buffUtterence = utteranceId;
             return;
         }

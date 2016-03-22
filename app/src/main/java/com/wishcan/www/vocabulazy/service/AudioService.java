@@ -90,7 +90,7 @@ public class AudioService extends IntentService
     private boolean wEnSentenceEnabled = true;
     private boolean wCnSentenceEnabled = false;
 
-    private int wSecond;
+    private int wStopPeriod;
     private int wItemLoop;
     private int wSpeed;
     private int wPlayTime;
@@ -317,17 +317,17 @@ public class AudioService extends IntentService
 
     void updateOptionSetting(Option optionSetting) {
         wIsRandom = optionSetting.mIsRandom;
-        wListLoop = optionSetting.mListLoop;
         wEnSentenceEnabled = optionSetting.mSentence;
         wCnSentenceEnabled = optionSetting.mSentence;
-
-        wSecond = optionSetting.mStopPeriod;
-        wItemLoop = optionSetting.mItemLoop;
-        wSpeed = optionSetting.mSpeed;
         wPlayTime = optionSetting.mPlayTime;
 
+        wListLoop = optionSetting.mListLoop;
+        wItemLoop = optionSetting.mItemLoop;
         itemloopCountDown = wItemLoop;
         listloopCountDown = wListLoop;
+
+        wcTextToSpeech.setStopPeriod(optionSetting.mStopPeriod);
+        wcTextToSpeech.setSpeed(optionSetting.mSpeed);
     }
 
     @Override
