@@ -47,11 +47,11 @@ public class ServiceBroadcaster {
     }
 
     public void onItemComplete(int nextItemIndex) {
-        Log.d(TAG, "onItemComplete: " + nextItemIndex);
+//        Log.d(TAG, "onItemComplete: " + nextItemIndex);
         wIntent.putExtra(KEY_ACTION, ACTION_ITEM_COMPLETE);
         wIntent.putExtra(KEY_NEXT_ITEM_INDEX, nextItemIndex);
         wBroadcastManager.sendBroadcast(wIntent);
-        Log.d(TAG, wBroadcastManager.toString());
+//        Log.d(TAG, wBroadcastManager.toString());
     }
 
     public void onListComplete() {
@@ -65,7 +65,7 @@ public class ServiceBroadcaster {
     }
 
     public void onHideDetail() {
-        Log.d(TAG, "onHideDetail");
+//        Log.d(TAG, "onHideDetail");
         wIntent.putExtra(KEY_ACTION, ACTION_HIDE_DETAIL);
         wBroadcastManager.sendBroadcast(wIntent);
     }

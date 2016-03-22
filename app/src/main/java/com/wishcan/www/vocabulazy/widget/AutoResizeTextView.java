@@ -30,7 +30,7 @@ public class AutoResizeTextView extends TextView {
                     while(getLineCount() > 1) {
                         float textSize = getTextSize();
                         float density = getContext().getResources().getDisplayMetrics().density;
-                        Log.d("InfoFragment", "textSize = " + textSize);
+//                        Log.d("InfoFragment", "textSize = " + textSize);
                         setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize - 1.0f*density);
                     }
                 }
@@ -50,7 +50,7 @@ public class AutoResizeTextView extends TextView {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        Log.d("AutoResizeTextView", "onLayout" + left + " " + top + " " + right + " " + bottom + " " + getLineCount());
+//        Log.d("AutoResizeTextView", "onLayout" + left + " " + top + " " + right + " " + bottom + " " + getLineCount());
 
         super.onLayout(changed, left, top, right, bottom);
     }

@@ -5,8 +5,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.speech.tts.Voice;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -30,15 +33,19 @@ public class WCTextToSpeech extends UtteranceProgressListener
     private String currentUtterance;
     private HashMap<String, String> utteranceParams;
 
+    private String buffUtterence;
+
     public WCTextToSpeech (Context context, OnUtteranceStatusListener listener) {
         mContext = context;
         initializeTTSEngine(context);
         wOnUtteranceStatusListener = listener;
         ttsEngineInit = false;
-        currentUtterance = "";
+        currentUtterance = "default";
     }
 
     void speak(String text) {
+
+//        Log.d(TAG, text);
 
         if (!ttsEngineInit) {
             currentUtterance = text;
@@ -47,9 +54,12 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
         currentUtterance = text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Bundle bundle = new Bundle();
+//            Bundle bundle = new Bundle();
             wTextToSpeech.setSpeechRate(0.7f);
-            wTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, text);
+//            Log.d(TAG, "YOLO3");
+//            Log.d(TAG, wTextToSpeech.getDefaultVoice() + "");
+            wTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, text);
+            wTextToSpeech.playSilentUtterance(0, TextToSpeech.QUEUE_ADD, "play-silence");
 
 //            Log.d(TAG, "speak: " + text);
         } else {
@@ -65,13 +75,9 @@ public class WCTextToSpeech extends UtteranceProgressListener
     void initializeTTSEngine(Context context) {
         if (wTextToSpeech == null) {
             wTextToSpeech = new TextToSpeech(context, this);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                Set<Locale> languages = wTextToSpeech.getAvailableLanguages();
-//                for (Locale locale : languages) {
-//                    Log.d(TAG, locale.toString());
-//                }
-            } else {
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            } else {
             }
 
         }
@@ -116,7 +122,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
         Log.d(TAG, "onInit");
         if(status == TextToSpeech.SUCCESS) {
             ttsEngineInit = true;
-            speak(currentUtterance);
+//            speak(currentUtterance);
 //            Log.d(TAG, "engine initialized");
 //            Toast.makeText(mContext, "engine initialized", Toast.LENGTH_SHORT).show();
         }
@@ -129,9 +135,15 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onDone(String utteranceId) {
-//        Log.d(TAG, "onDone: " + utteranceId);
-        if (utteranceId.equals(currentUtterance)) {
-//            Log.d(TAG, "utterances match");
+        Log.d(TAG, "onDone: " + utteranceId);
+
+        if (!utteranceId.equals("play-silence")) {
+            buffUtterence = utteranceId;
+            return;
+        }
+
+        if (buffUtterence.equals(currentUtterance)) {
+            Log.d(TAG, "utterances match");
             currentUtterance = "";
             wOnUtteranceStatusListener.onUtteranceCompleted();
         } else {

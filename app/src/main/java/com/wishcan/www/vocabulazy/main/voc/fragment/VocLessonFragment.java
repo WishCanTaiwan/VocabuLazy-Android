@@ -96,7 +96,7 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
     }
 
     private void goPlayerFragment(int bookIndex, int lessonIndex){
-        Log.d(TAG, "goPlayerFragment");
+//        Log.d(TAG, "goPlayerFragment");
         Bundle args = new Bundle();
         args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
         args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);

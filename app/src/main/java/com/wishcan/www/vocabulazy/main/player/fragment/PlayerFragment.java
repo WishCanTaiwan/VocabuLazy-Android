@@ -72,7 +72,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     private ServiceBroadcastReceiver wServiceBroadcastReceiver;
 
     public static PlayerFragment newInstance(int bookIndex, int lessonIndex) {
-        Log.d(TAG, "newInstance");
         PlayerFragment fragment = new PlayerFragment();
         Bundle args = new Bundle();
         args.putInt(BOOK_INDEX_STR, bookIndex);
@@ -88,8 +87,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.d(TAG, "onCreate");
 
         mPlayerModel = new PlayerModel((MainActivity) getActivity());
         mPlayerModel.setDataProcessListener(this);
@@ -166,8 +163,10 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
                 updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
                 mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
                 mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
-                if (isViewTouchedDown)
-                    newListFocused(mVocabularies);
+//                if (isViewTouchedDown) {
+//                    Log.d(TAG, "YOLOOOOOOOOOO");
+//                    newListFocused(mVocabularies);
+//                }
             }
 
             @Override
@@ -245,7 +244,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
 
         /**
          * when database is ready
@@ -257,15 +255,12 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     @Override
     public void  onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
-        // TODO: recording the book, lesson and item index for future recreating.
         savePreferences();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy");
         /**
          * unregister when destoryed
          */
@@ -274,7 +269,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSavedInstanceState");
         outState.putInt(KEY_BOOK_INDEX, mBookIndex);
         outState.putInt(KEY_LESSON_INDEX, mLessonIndex);
         outState.putInt(KEY_ITEM_INDEX, mItemIndex);

@@ -173,6 +173,7 @@ public class AudioService extends IntentService
                 wCurrentItemAmount = wVoabularies.size();
                 updateOptionSetting(wOptionSetting);
 //                Log.d(TAG, voabularies.size() + " vocabulary objects received from controller");
+                Log.d(TAG, "content set");
                 break;
 
             case ACTION_START_PLAYING:
@@ -272,7 +273,9 @@ public class AudioService extends IntentService
                 break;
 
             case PLAYING_TRANSLATION:
-                string = wVoabularies.get(itemIndex).getTranslationInOneString();
+                Log.d(TAG, "YOLO2");
+//                string = wVoabularies.get(itemIndex).getTranslationInOneString();
+                string = wVoabularies.get(itemIndex).getTranslate().get(0);
                 wcTextToSpeech.setLanguage(wTranslationLanguage);
                 wcTextToSpeech.speak(string);
                 break;
@@ -425,8 +428,8 @@ public class AudioService extends IntentService
                             wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                             wServiceBroadcaster.onHideDetail();
                             wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
-                            return;
-//                            break;
+//                            return;
+                            break;
                         }
 
 //                        wCurrentItemIndex = 0;
@@ -480,8 +483,8 @@ public class AudioService extends IntentService
                             wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                             wServiceBroadcaster.onHideDetail();
                             wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
-                            return;
-//                            break;
+//                            return;
+                            break;
                         }
 
                         // load new vocabularies
@@ -533,8 +536,8 @@ public class AudioService extends IntentService
                             wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                             wServiceBroadcaster.onHideDetail();
                             wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
-                            return;
-//                            break;
+//                            return;
+                            break;
                         }
 
                         // load new vocabularies
@@ -553,6 +556,7 @@ public class AudioService extends IntentService
                 Log.d(TAG, "unexpected case happened in onUtteranceCompleted");
                 break;
         }
+        Log.d(TAG, "YOLO");
         startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
     }
 
