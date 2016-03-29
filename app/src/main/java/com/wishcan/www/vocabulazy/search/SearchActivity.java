@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.search;
 
 import android.app.ActionBar;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +19,8 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.search.fragment.SearchFragment;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
+
+//import io.uxtesting.UXTesting;
 
 
 public class SearchActivity extends FragmentActivity {
@@ -79,6 +82,18 @@ public class SearchActivity extends FragmentActivity {
         super.onStop();
 //        Log.d(TAG, "onStop");
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        UXTesting.onActivityResult(requestCode, resultCode, data);
+//    }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        UXTesting.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

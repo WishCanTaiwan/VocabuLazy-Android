@@ -29,6 +29,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
+//import io.uxtesting.UXTesting;
+
 public class MainActivity extends FragmentActivity {
 
 
@@ -154,6 +156,18 @@ public class MainActivity extends FragmentActivity {
         super.onDestroy();
         stopAudioService();
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        UXTesting.onActivityResult(requestCode, resultCode, data);
+//    }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        UXTesting.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

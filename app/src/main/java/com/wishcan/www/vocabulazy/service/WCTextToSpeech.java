@@ -57,7 +57,6 @@ public class WCTextToSpeech extends UtteranceProgressListener
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, text);
             wTextToSpeech.playSilentUtterance(wStopPeriod, TextToSpeech.QUEUE_ADD, UTTERANCE_SLIENCE);
         } else {
-//            setTTSIDParams(text);
             wTextToSpeech.setSpeechRate(0.7f * wSpeed);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, createParams(text));
             wTextToSpeech.playSilence(wStopPeriod, TextToSpeech.QUEUE_ADD, createParams(UTTERANCE_SLIENCE));

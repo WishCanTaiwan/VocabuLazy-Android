@@ -9,6 +9,8 @@ import android.view.View;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 
+//import io.uxtesting.UXTesting;
+
 public class CoverActivity extends FragmentActivity {
 
     @Override
@@ -26,5 +28,17 @@ public class CoverActivity extends FragmentActivity {
             }
         }, 2000);
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        UXTesting.onActivityResult(requestCode, resultCode, data);
+//    }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        UXTesting.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    }
 
 }

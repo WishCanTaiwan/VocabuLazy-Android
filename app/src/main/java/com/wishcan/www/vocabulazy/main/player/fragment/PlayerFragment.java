@@ -93,7 +93,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
         int restoredBookIndex = 1359;
         int restoredLessonIndex = 1359;
-        int restoredItemIndex = -1;
+        int restoredItemIndex = 0;
         int restoredSentenceIndex = -1;
         Bundle bundle = loadPreferences();
         if (bundle != null) {
@@ -295,7 +295,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
         mVocabularies = vocabularies;
         mPlayerModel.createPlayerContent(mVocabularies);
-        mPlayerModel.createPlayerDetailContent(mVocabularies.get(0));
+        mPlayerModel.createPlayerDetailContent(mVocabularies.get(mItemIndex));
 
         Option option = mPlayerModel.getCurrentOption();
         setContent(mVocabularies, option);
@@ -444,7 +444,9 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
                     int newItemIndex = intent.getIntExtra(ServiceBroadcaster.KEY_NEXT_ITEM_INDEX, -1);
                     updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
                     mPlayerMainView.moveToPosition(newItemIndex);
-                    mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
+                    if (mVocabularies != null) {
+                        mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
+                    }
                     break;
 
                 case ServiceBroadcaster.ACTION_LIST_COMPLETE:
