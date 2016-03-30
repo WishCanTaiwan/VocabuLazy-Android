@@ -47,6 +47,10 @@ public class WCTextToSpeech extends UtteranceProgressListener
     }
 
     public void speak(String text) {
+        speak(text, false);
+    }
+
+    public void speak(String text, boolean isItemFinished) {
         if (!ttsEngineInit) {
             currentUtterance = text;
             return;
@@ -55,11 +59,17 @@ public class WCTextToSpeech extends UtteranceProgressListener
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             wTextToSpeech.setSpeechRate(0.7f * wSpeed);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, text);
-            wTextToSpeech.playSilentUtterance(wStopPeriod, TextToSpeech.QUEUE_ADD, UTTERANCE_SLIENCE);
+            if (isItemFinished)
+                wTextToSpeech.playSilentUtterance(300+wStopPeriod, TextToSpeech.QUEUE_ADD, UTTERANCE_SLIENCE);
+            else
+                wTextToSpeech.playSilentUtterance(300, TextToSpeech.QUEUE_ADD, UTTERANCE_SLIENCE);
         } else {
             wTextToSpeech.setSpeechRate(0.7f * wSpeed);
             wTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, createParams(text));
-            wTextToSpeech.playSilence(wStopPeriod, TextToSpeech.QUEUE_ADD, createParams(UTTERANCE_SLIENCE));
+            if (isItemFinished)
+                wTextToSpeech.playSilence(300+wStopPeriod, TextToSpeech.QUEUE_ADD, createParams(UTTERANCE_SLIENCE));
+            else
+                wTextToSpeech.playSilence(300, TextToSpeech.QUEUE_ADD, createParams(UTTERANCE_SLIENCE));
         }
     }
 

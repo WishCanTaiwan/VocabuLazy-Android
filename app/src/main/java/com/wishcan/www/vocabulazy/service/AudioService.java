@@ -186,7 +186,7 @@ public class AudioService extends IntentService
                 wStatus = STATUS_PLAYING;
                 wPlaying = playing;
                 wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
-                startPlayingItemAt(itemIndex, sentenceIndex);
+                startPlayingItemAt(itemIndex, sentenceIndex, checkIsItemFinishing());
                 break;
 
             case ACTION_PAUSE_PLAYING:
@@ -195,8 +195,8 @@ public class AudioService extends IntentService
                 break;
 
             case ACTION_RESUME_PLAYING:
-                wStatus = STATUS_PLAYING;
-                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+//                wStatus = STATUS_PLAYING;
+//                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 break;
 
             case ACTION_STOP_PLAYING:
@@ -213,7 +213,7 @@ public class AudioService extends IntentService
                     wcTextToSpeech.pause();
                 } else {
                     wStatus = STATUS_PLAYING;
-                    startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+                    startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 }
                 break;
 
@@ -233,7 +233,7 @@ public class AudioService extends IntentService
                 wStatus = STATUS_PLAYING;
                 wPlaying = PLAYING_SPELL;
                 wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
-                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 break;
 
             case ACTION_PLAYERVIEW_SCROLLING:
@@ -248,7 +248,7 @@ public class AudioService extends IntentService
                 wCurrentSentenceIndex = intent.getIntExtra(KEY_NEW_SENTENCE_INDEX, -1);
                 wPlaying = PLAYING_EnSENTENCE;
                 wStatus = STATUS_PLAYING;
-                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 break;
 
             default:
@@ -260,7 +260,7 @@ public class AudioService extends IntentService
         return START_STICKY;
     }
 
-    void startPlayingItemAt(int itemIndex, int sentenceIndex) {
+    void startPlayingItemAt(int itemIndex, int sentenceIndex, boolean isItemFinished) {
 
         String string;
 
@@ -269,7 +269,7 @@ public class AudioService extends IntentService
             case PLAYING_SPELL:
                 string = wVoabularies.get(itemIndex).getSpell();
                 wcTextToSpeech.setLanguage(wSpellLanguage);
-                wcTextToSpeech.speak(string);
+                wcTextToSpeech.speak(string, isItemFinished);
                 break;
 
             case PLAYING_TRANSLATION:
@@ -277,19 +277,19 @@ public class AudioService extends IntentService
 //                string = wVoabularies.get(itemIndex).getTranslationInOneString();
                 string = wVoabularies.get(itemIndex).getTranslate().get(0);
                 wcTextToSpeech.setLanguage(wTranslationLanguage);
-                wcTextToSpeech.speak(string);
+                wcTextToSpeech.speak(string, isItemFinished);
                 break;
 
             case PLAYING_EnSENTENCE:
                 string = wVoabularies.get(itemIndex).getEn_Sentence().get(sentenceIndex);
                 wcTextToSpeech.setLanguage(wSpellLanguage);
-                wcTextToSpeech.speak(string);
+                wcTextToSpeech.speak(string, isItemFinished);
                 break;
 
             case PLAYING_CnSENTENCE:
                 string = wVoabularies.get(itemIndex).getCn_Sentence().get(sentenceIndex);
                 wcTextToSpeech.setLanguage(wTranslationLanguage);
-                wcTextToSpeech.speak(string);
+                wcTextToSpeech.speak(string, isItemFinished);
                 break;
 
             default:
@@ -330,6 +330,12 @@ public class AudioService extends IntentService
         wcTextToSpeech.setSpeed(optionSetting.mSpeed);
     }
 
+    boolean checkIsItemFinishing() {
+        if (wPlaying.equals(PLAYING_CnSENTENCE) && wCurrentSentenceIndex == wCurrentSentenceAmount-1) return true;
+        if (wPlaying.equals(PLAYING_TRANSLATION) && !wOptionSetting.mSentence) return true;
+        return false;
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -362,14 +368,14 @@ public class AudioService extends IntentService
                 wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                 wPlaying = PLAYING_SPELL;
                 wStatus = STATUS_PLAYING;
-                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
             } else {
                 wCurrentItemIndex = 0;
                 wCurrentSentenceAmount = wVoabularies.get(0).getEn_Sentence().size();
 //                Log.d(TAG, wVoabularies.get(0).getSpell());
                 wPlaying = PLAYING_SPELL;
                 wStatus = STATUS_PLAYING;
-                startPlayingItemAt(0, -1);
+                startPlayingItemAt(0, -1, checkIsItemFinishing());
             }
             return;
         }
@@ -557,7 +563,7 @@ public class AudioService extends IntentService
                 break;
         }
         Log.d(TAG, "YOLO");
-        startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex);
+        startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
     }
 
 

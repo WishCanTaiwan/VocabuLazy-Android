@@ -102,7 +102,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             restoredItemIndex = bundle.getInt(KEY_ITEM_INDEX);
             restoredSentenceIndex = bundle.getInt(KEY_SENTENCE_INDEX);
         }
-
+//        Log.d(TAG, "restored item index " + restoredItemIndex);
         int argBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         int argLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
         wIndicesMatch = (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
@@ -345,7 +345,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mLessonIndex = lessonIndex;
         mItemIndex = itemIndex;
         mSentenceIndex = sentenceIndex;
-//        Log.d(TAG, "book " + bookIndex + ", lesson " + lessonIndex + ", item " + itemIndex + ", sentence " + sentenceIndex);
+        Log.d(TAG, "book " + bookIndex + ", lesson " + lessonIndex + ", item " + itemIndex + ", sentence " + sentenceIndex);
     }
 
     /**
