@@ -138,7 +138,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     @Override
     public void onDone(String utteranceId) {
-        Log.d(TAG, "onDone: " + utteranceId);
+//        Log.d(TAG, "onDone: " + utteranceId);
 
         if (!utteranceId.equals(UTTERANCE_SLIENCE)) {
             buffUtterence = utteranceId;
@@ -146,7 +146,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
         }
 
         if (buffUtterence.equals(currentUtterance)) {
-            Log.d(TAG, "utterances match");
+//            Log.d(TAG, "utterances match");
             currentUtterance = "";
             wOnUtteranceStatusListener.onUtteranceCompleted();
         } else {

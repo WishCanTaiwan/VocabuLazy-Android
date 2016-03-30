@@ -42,7 +42,7 @@ public class AutoResizeTextView extends TextView {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        Log.d("AutoResizeTextView", "onSizeChanged");
+//        Log.d("AutoResizeTextView", "onSizeChanged");
         super.onSizeChanged(w, h, oldw, oldh);
         if(getLineCount() <= 1)
             setVisibility(VISIBLE);

@@ -89,7 +89,7 @@ public class InfoFragment extends Fragment {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    Log.d("InfoFragment", "" + s.toString());
+//                    Log.d("InfoFragment", "" + s.toString());
                     if(textView != null) {
                         textView.setText(s);
                     }
@@ -107,7 +107,7 @@ public class InfoFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     float textSize = textView.getTextSize();
-                    Log.d("InfoFragment", "textSize = " +textSize);
+//                    Log.d("InfoFragment", "textSize = " +textSize);
                     textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize + 1.0f);
                 }
             });
@@ -118,7 +118,7 @@ public class InfoFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     float textSize = textView.getTextSize();
-                    Log.d("InfoFragment", "textSize = " +textSize);
+//                    Log.d("InfoFragment", "textSize = " +textSize);
                     textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize - 1.0f);
                 }
             });

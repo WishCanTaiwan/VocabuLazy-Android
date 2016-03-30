@@ -1,7 +1,9 @@
 package com.wishcan.www.vocabulazy.service;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.util.Log;
 
@@ -16,7 +18,7 @@ import java.util.Random;
  * Created by allencheng07 on 2016/1/26.
  */
 public class AudioService extends IntentService
-        implements AudioPlayer.OnEventListener, WCTextToSpeech.OnUtteranceStatusListener {
+        implements AudioPlayer.OnEventListener, WCTextToSpeech.OnUtteranceStatusListener, AudioManager.OnAudioFocusChangeListener {
 
     /**
      * tag for debugging
@@ -73,6 +75,7 @@ public class AudioService extends IntentService
     public static final String PLAYING_CnSENTENCE = "playing-cnsentence";
 
     private AudioPlayer wAudioPlayer;
+    private AudioManager wAudioManager;
     private ServiceBroadcaster wServiceBroadcaster;
     private ArrayList<Vocabulary> wVoabularies;
     private Option wOptionSetting;
@@ -159,6 +162,7 @@ public class AudioService extends IntentService
                     wAudioPlayer.releasePlayer();
                 if (wcTextToSpeech != null)
                     wcTextToSpeech.shutdown();
+                abandonAudioFocus();
                 break;
 
             case ACTION_SET_LANGUAGE:
@@ -173,10 +177,12 @@ public class AudioService extends IntentService
                 wCurrentItemAmount = wVoabularies.size();
                 updateOptionSetting(wOptionSetting);
 //                Log.d(TAG, voabularies.size() + " vocabulary objects received from controller");
-                Log.d(TAG, "content set");
+//                Log.d(TAG, "content set");
                 break;
 
             case ACTION_START_PLAYING:
+                getAudioFocus();
+
                 int itemIndex = intent.getIntExtra(KEY_START_ITEM_INDEX, -1);
                 int sentenceIndex = intent.getIntExtra(KEY_START_SENTENCE_INDEX, -1);
                 String playing = intent.getStringExtra(KEY_PLAYING_FIELD);
@@ -192,6 +198,7 @@ public class AudioService extends IntentService
             case ACTION_PAUSE_PLAYING:
                 wStatus = STATUS_PAUSE;
                 wcTextToSpeech.pause();
+//                abandonAudioFocus();
                 break;
 
             case ACTION_RESUME_PLAYING:
@@ -202,7 +209,7 @@ public class AudioService extends IntentService
             case ACTION_STOP_PLAYING:
                 wStatus = STATUS_STOPPED;
                 wcTextToSpeech.stop();
-
+                abandonAudioFocus();
                 wCurrentItemIndex = intent.getIntExtra(KEY_STOP_AT_ITEM_INDEX, -1);
 
                 break;
@@ -211,7 +218,9 @@ public class AudioService extends IntentService
                 if (wStatus.equals(STATUS_PLAYING)) {
                     wStatus = STATUS_PAUSE;
                     wcTextToSpeech.pause();
+//                    abandonAudioFocus();
                 } else {
+                    getAudioFocus();
                     wStatus = STATUS_PLAYING;
                     startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 }
@@ -260,6 +269,18 @@ public class AudioService extends IntentService
         return START_STICKY;
     }
 
+    void getAudioFocus() {
+        wAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        int result = wAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        Log.d(TAG, "get audio focus, result " + result);
+    }
+
+    void abandonAudioFocus() {
+        Log.d(TAG, "abandon audio focus");
+        if (wAudioManager != null)
+            wAudioManager.abandonAudioFocus(this);
+    }
+
     void startPlayingItemAt(int itemIndex, int sentenceIndex, boolean isItemFinished) {
 
         String string;
@@ -273,7 +294,7 @@ public class AudioService extends IntentService
                 break;
 
             case PLAYING_TRANSLATION:
-                Log.d(TAG, "YOLO2");
+//                Log.d(TAG, "YOLO2");
 //                string = wVoabularies.get(itemIndex).getTranslationInOneString();
                 string = wVoabularies.get(itemIndex).getTranslate().get(0);
                 wcTextToSpeech.setLanguage(wTranslationLanguage);
@@ -342,6 +363,7 @@ public class AudioService extends IntentService
         Log.d(TAG, "onDestory");
         if (wcTextToSpeech != null)
             wcTextToSpeech.shutdown();
+        abandonAudioFocus();
     }
 
     @Override
@@ -562,9 +584,18 @@ public class AudioService extends IntentService
                 Log.d(TAG, "unexpected case happened in onUtteranceCompleted");
                 break;
         }
-        Log.d(TAG, "YOLO");
+//        Log.d(TAG, "YOLO");
         startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
     }
 
 
+    @Override
+    public void onAudioFocusChange(int focusChange) {
+        Log.d(TAG, "onAudioFocusChange " + focusChange);
+        if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+            wStatus = STATUS_PAUSE;
+            wcTextToSpeech.pause();
+//            abandonAudioFocus();
+        }
+    }
 }

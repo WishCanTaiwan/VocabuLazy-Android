@@ -345,7 +345,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         mLessonIndex = lessonIndex;
         mItemIndex = itemIndex;
         mSentenceIndex = sentenceIndex;
-        Log.d(TAG, "book " + bookIndex + ", lesson " + lessonIndex + ", item " + itemIndex + ", sentence " + sentenceIndex);
+//        Log.d(TAG, "book " + bookIndex + ", lesson " + lessonIndex + ", item " + itemIndex + ", sentence " + sentenceIndex);
     }
 
     /**

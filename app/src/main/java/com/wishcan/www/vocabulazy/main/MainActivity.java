@@ -71,15 +71,15 @@ public class MainActivity extends FragmentActivity {
                 public void onBackStackChanged() {
                     int backStackCount;
                     if((backStackCount = mFragmentManager.getBackStackEntryCount()) > 0) {      //Not in MainFragment
-                        Log.d(TAG, "Not im MainFragment : " + backStackCount);
+//                        Log.d(TAG, "Not im MainFragment : " + backStackCount);
                         if(backStackCount < mBackStackCount) {  // Back button is pressed
-                            Log.d(TAG, "Back Button");
-                            Log.d(TAG, "f name = " +mBackStackTopFragmentName);
+//                            Log.d(TAG, "Back Button");
+//                            Log.d(TAG, "f name = " +mBackStackTopFragmentName);
                             Fragment f = null;
                             if(!mBackStackTopFragmentName.equals(""))
                                 f = mFragmentManager.findFragmentByTag(mBackStackTopFragmentName);
                             if (f != null && f instanceof FragmentWithActionBarTitle) {
-                                Log.d(TAG, "Implement Title Interface");
+//                                Log.d(TAG, "Implement Title Interface");
                                 setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
                             } else {
                                 Log.d(TAG, "May Not Implement");
@@ -93,7 +93,7 @@ public class MainActivity extends FragmentActivity {
                         }
                     }
                     else {    //Back to MainFragment
-                        Log.d(TAG, "In MainFragment");
+//                        Log.d(TAG, "In MainFragment");
                         Fragment f = mFragmentManager.findFragmentByTag("MainFragment");
                         if(f != null && f instanceof FragmentWithActionBarTitle)
                             setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());

@@ -57,7 +57,7 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
         super.onCreate(savedInstanceState);
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         mBookIndex = getArguments() == null ? -1 : getArguments().getInt(BOOK_INDEX_STR);
-        Log.d(TAG, " bookIndex " + mBookIndex);
+//        Log.d(TAG, " bookIndex " + mBookIndex);
         mLessonIndex = 0;
         FragmentActivity activity = getActivity();
         if(activity != null && activity instanceof MainActivity){
@@ -106,7 +106,7 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
     @Override
     public String getActionBarTitle() {
         String titleStr = "Book ";
-        Log.d(TAG, "getActionBarTitle" + mBookIndex);
+//        Log.d(TAG, "getActionBarTitle " + mBookIndex);
         if(mBookIndex != -1)
             titleStr += mBookIndex;
         return titleStr;
