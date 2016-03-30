@@ -28,6 +28,7 @@ public class AudioService extends IntentService
     /**
      * strings for intent action identification
      */
+    public static final String ACTION_REQUEST_AUDIO_FOCUS = "request-audio-focus";
     public static final String ACTION_INIT_TTS_ENGINE = "init-tts-engine";
     public static final String ACTION_START_SERVICE = "start-service";
     public static final String ACTION_STOP_SERVICE = "stop-service";
@@ -62,6 +63,7 @@ public class AudioService extends IntentService
     public static final String STATUS_IDLE = "status-idle";
     public static final String STATUS_PLAYING = "status-playing";
     public static final String STATUS_PAUSE = "status-pause";
+    public static final String STATUS_PAUSE_FOR_FOCUS_LOSS = "status-pause-for-focus-loss";
     public static final String STATUS_STOPPED = "status-stopped";
     public static final String STATUS_SCROLLING = "statuc-scrolling";
 
@@ -80,6 +82,7 @@ public class AudioService extends IntentService
     private ArrayList<Vocabulary> wVoabularies;
     private Option wOptionSetting;
     private WCTextToSpeech wcTextToSpeech;
+    private boolean isAudioFocused;
 
     private int wCurrentItemIndex = -1;
     private int wCurrentItemAmount = 0;
@@ -147,6 +150,10 @@ public class AudioService extends IntentService
          */
         switch (action) {
 
+            case ACTION_REQUEST_AUDIO_FOCUS:
+                getAudioFocus();
+                break;
+
             case ACTION_INIT_TTS_ENGINE:
                 wcTextToSpeech.initializeTTSEngine(getApplicationContext());
                 break;
@@ -181,7 +188,6 @@ public class AudioService extends IntentService
                 break;
 
             case ACTION_START_PLAYING:
-                getAudioFocus();
 
                 int itemIndex = intent.getIntExtra(KEY_START_ITEM_INDEX, -1);
                 int sentenceIndex = intent.getIntExtra(KEY_START_SENTENCE_INDEX, -1);
@@ -220,7 +226,7 @@ public class AudioService extends IntentService
                     wcTextToSpeech.pause();
 //                    abandonAudioFocus();
                 } else {
-                    getAudioFocus();
+                    if (!isAudioFocused) getAudioFocus();
                     wStatus = STATUS_PLAYING;
                     startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 }
@@ -271,8 +277,9 @@ public class AudioService extends IntentService
 
     void getAudioFocus() {
         wAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-        int result = wAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        int result = wAudioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         Log.d(TAG, "get audio focus, result " + result);
+        isAudioFocused = (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
     }
 
     void abandonAudioFocus() {
@@ -593,9 +600,25 @@ public class AudioService extends IntentService
     public void onAudioFocusChange(int focusChange) {
         Log.d(TAG, "onAudioFocusChange " + focusChange);
         if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-            wStatus = STATUS_PAUSE;
-            wcTextToSpeech.pause();
 //            abandonAudioFocus();
+        }
+
+        switch (focusChange) {
+            case AudioManager.AUDIOFOCUS_GAIN:
+                // resume playing
+                if (wStatus.equals(STATUS_PAUSE_FOR_FOCUS_LOSS)) {
+                    wStatus = STATUS_PLAYING;
+                    startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
+                }
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS:
+                isAudioFocused = false;
+                // pause playing
+                if (wStatus.equals(STATUS_PLAYING)) {
+                    wStatus = STATUS_PAUSE_FOR_FOCUS_LOSS;
+                    wcTextToSpeech.pause();
+                }
+                break;
         }
     }
 }

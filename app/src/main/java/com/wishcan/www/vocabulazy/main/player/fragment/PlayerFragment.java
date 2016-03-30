@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
@@ -87,6 +88,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestAudioFocus();
 
         mPlayerModel = new PlayerModel((MainActivity) getActivity());
         mPlayerModel.setDataProcessListener(this);
@@ -351,6 +354,12 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     /**
      * messages sent to service
      */
+    void requestAudioFocus() {
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.ACTION_REQUEST_AUDIO_FOCUS);
+        getActivity().startService(intent);
+    }
+
     void initTTSEngine() {
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_INIT_TTS_ENGINE);
