@@ -595,30 +595,28 @@ public class AudioService extends IntentService
         startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
     }
 
-
     @Override
     public void onAudioFocusChange(int focusChange) {
         Log.d(TAG, "onAudioFocusChange " + focusChange);
-        if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-//            abandonAudioFocus();
+
+        if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+            // resume playing
+            if (wStatus.equals(STATUS_PAUSE_FOR_FOCUS_LOSS)) {
+                wStatus = STATUS_PLAYING;
+                startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
+            }
         }
 
-        switch (focusChange) {
-            case AudioManager.AUDIOFOCUS_GAIN:
-                // resume playing
-                if (wStatus.equals(STATUS_PAUSE_FOR_FOCUS_LOSS)) {
-                    wStatus = STATUS_PLAYING;
-                    startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
-                }
-                break;
-            case AudioManager.AUDIOFOCUS_LOSS:
-                isAudioFocused = false;
-                // pause playing
-                if (wStatus.equals(STATUS_PLAYING)) {
-                    wStatus = STATUS_PAUSE_FOR_FOCUS_LOSS;
-                    wcTextToSpeech.pause();
-                }
-                break;
+        if (focusChange == AudioManager.AUDIOFOCUS_LOSS ||
+                focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+            isAudioFocused = false;
+            // pause playing
+            if (wStatus.equals(STATUS_PLAYING)) {
+                wStatus = STATUS_PAUSE_FOR_FOCUS_LOSS;
+                wcTextToSpeech.pause();
+            }
         }
+
     }
 }
