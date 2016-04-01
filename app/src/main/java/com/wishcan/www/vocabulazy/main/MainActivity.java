@@ -34,7 +34,7 @@ import java.util.concurrent.Semaphore;
 public class MainActivity extends FragmentActivity {
 
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName(); 
 
     public static MainActivity mMainActivity;
     public static final int VIEW_MAIN_RES_ID = R.id.activity_main_container;
