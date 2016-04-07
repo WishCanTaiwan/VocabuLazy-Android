@@ -148,9 +148,9 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        Log.d(TAG, "Setting screen name: " + TAG);
-        wTracker.setScreenName(TAG);
-        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
+//        Log.d(TAG, "Setting screen name: " + TAG);
+//        wTracker.setScreenName(TAG);
+//        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         setCustomActionBar();
         Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");

@@ -69,9 +69,9 @@ public class SearchActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        Log.d(TAG, "Setting screen name: " + TAG);
-//        wTracker.setScreenName(TAG);
-//        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        Log.d(TAG, "Setting screen name: " + TAG);
+        wTracker.setScreenName(TAG);
+        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
 //        Log.d(TAG, "onResume");
 //        mDatabase = new Database(this);
     }
