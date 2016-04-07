@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.voc.view.VocBookView;
 import com.wishcan.www.vocabulazy.storage.Book;
@@ -29,6 +32,7 @@ import java.util.LinkedList;
 public class VocBookFragment extends Fragment {
 
     public static final String TAG = VocBookFragment.class.getSimpleName();
+    private Tracker wTracker;
 
     private Database mDatabase;
 
@@ -46,12 +50,17 @@ public class VocBookFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VLApplication application = (VLApplication) getActivity().getApplication();
+        wTracker = application.getDefaultTracker();
         mDatabase = ((MainActivity) getActivity()).getDatabase();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG, "Setting screen name: " + TAG);
+        wTracker.setScreenName(TAG);
+        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
         if(mDatabase == null)
             mDatabase = ((MainActivity) getActivity()).getDatabase();
     }

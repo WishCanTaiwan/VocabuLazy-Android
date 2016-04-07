@@ -15,7 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.info.view.InfoView;
 
 /**
@@ -24,6 +27,8 @@ import com.wishcan.www.vocabulazy.main.info.view.InfoView;
  * create an instance of this fragment.
  */
 public class InfoFragment extends Fragment {
+
+    public static final String TAG = InfoFragment.class.getSimpleName();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +40,7 @@ public class InfoFragment extends Fragment {
     private String mParam2;
 
     private InfoView mInfoView;
+    private Tracker wTracker;
 
     /**
      * Use this factory method to create a new instance of
@@ -61,6 +67,10 @@ public class InfoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        VLApplication application = (VLApplication) getActivity().getApplication();
+        wTracker = application.getDefaultTracker();
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -126,5 +136,11 @@ public class InfoFragment extends Fragment {
         return mInfoView;
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "Setting screen name: " + TAG);
+        wTracker.setScreenName(TAG);
+        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
 }

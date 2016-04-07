@@ -14,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
@@ -72,6 +75,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
      */
     private ServiceBroadcastReceiver wServiceBroadcastReceiver;
 
+    private Tracker wTracker;
+
     public static PlayerFragment newInstance(int bookIndex, int lessonIndex) {
         PlayerFragment fragment = new PlayerFragment();
         Bundle args = new Bundle();
@@ -88,6 +93,9 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        VLApplication application = (VLApplication) getActivity().getApplication();
+        wTracker = application.getDefaultTracker();
 
         requestAudioFocus();
 
@@ -253,6 +261,14 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
          */
         setupOptions();
         initTTSEngine();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "Setting screen name: " + TAG + " book " + mBookIndex + " unit " + mLessonIndex);
+        wTracker.setScreenName(TAG + " book " + mBookIndex + " unit " + mLessonIndex);
+        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

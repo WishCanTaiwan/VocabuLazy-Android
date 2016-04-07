@@ -13,7 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.voc.view.VocLessonView;
@@ -35,7 +38,9 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
 
     public static final String TAG = VocLessonFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
-    
+
+    private Tracker wTracker;
+
     private Database mDatabase;
     private int mBookIndex;
     private int mLessonIndex;
@@ -55,6 +60,10 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        VLApplication application = (VLApplication) getActivity().getApplication();
+        wTracker = application.getDefaultTracker();
+
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         mBookIndex = getArguments() == null ? -1 : getArguments().getInt(BOOK_INDEX_STR);
 //        Log.d(TAG, " bookIndex " + mBookIndex);
@@ -68,6 +77,11 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
     @Override
     public void onResume() {
         super.onResume();
+
+        Log.d(TAG, "Setting screen name: " + TAG + " book " + mBookIndex);
+        wTracker.setScreenName(TAG + " book " + mBookIndex);
+        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         if(mDatabase == null)
             mDatabase = ((MainActivity) getActivity()).getDatabase();
     }

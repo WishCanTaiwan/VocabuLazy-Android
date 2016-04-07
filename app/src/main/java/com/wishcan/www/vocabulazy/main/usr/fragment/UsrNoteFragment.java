@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.usr.view.UsrNoteDialogView;
@@ -34,6 +37,8 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     public static final String TAG = UsrNoteFragment.class.getSimpleName();
     public static String M_TAG;
 
+    private Tracker wTracker;
+
     private UsrNoteView mUsrNoteView;
     private Database mDatabase;
     private int mIconId;        // used for identify either Add or Delete action should be executed
@@ -55,6 +60,10 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        Log.d(TAG, "onCreate");
+
+        VLApplication application = (VLApplication) getActivity().getApplication();
+        wTracker = application.getDefaultTracker();
+
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         M_TAG = getTag();
     }
@@ -62,6 +71,11 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     @Override
     public void onResume() {
         super.onResume();
+
+        Log.d(TAG, "Setting screen name: " + TAG);
+        wTracker.setScreenName(TAG);
+        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         if (mDatabase == null) {
             mDatabase = ((MainActivity) getActivity()).getDatabase();
         } else {

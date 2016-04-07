@@ -1,7 +1,11 @@
 package com.wishcan.www.vocabulazy.main.usr.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.usr.view.UsrNoteDialogView;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 import com.wishcan.www.vocabulazy.widget.DialogView;
@@ -11,9 +15,13 @@ import com.wishcan.www.vocabulazy.widget.DialogView;
  */
 public class UsrNoteDialogFragment extends DialogFragment<String> {
 
+    public static final String TAG = UsrNoteDialogFragment.class.getSimpleName();
+
     private static final String DIALOG_BUNDLE_RES_ID_STR = "dialog_bundle_res_id_str";
     private static final String DIALOG_BUNDLE_STR_STR = "dialog_bundle_str_str";
     private UsrNoteDialogView mUsrNoteDialogView;
+
+    private Tracker wTracker;
 
     public static UsrNoteDialogFragment newInstance(UsrNoteDialogView.DIALOG_RES_ID_s resId) {
         return newInstance(resId, null);
@@ -36,6 +44,10 @@ public class UsrNoteDialogFragment extends DialogFragment<String> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        VLApplication application = (VLApplication) getActivity().getApplication();
+        wTracker = application.getDefaultTracker();
+
         if(getArguments() != null) {
             UsrNoteDialogView.DIALOG_RES_ID_s resId = (UsrNoteDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_RES_ID_STR);
             String inputStr = getArguments().getString(DIALOG_BUNDLE_STR_STR);
@@ -46,6 +58,11 @@ public class UsrNoteDialogFragment extends DialogFragment<String> {
     @Override
     public void onResume() {
         super.onResume();
+
+        Log.d(TAG, "Setting screen name: " + TAG);
+        wTracker.setScreenName(TAG);
+        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         mUsrNoteDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickListener() {
             @Override
             public void onYesClicked() {

@@ -93,6 +93,7 @@ public class MainFragment extends Fragment implements FragmentWithActionBarTitle
                 mCurrentTabIndex = position;
             }
         });
+
         return mMainView;
     }
 

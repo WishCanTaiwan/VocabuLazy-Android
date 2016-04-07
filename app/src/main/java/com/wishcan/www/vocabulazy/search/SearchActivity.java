@@ -15,7 +15,10 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.fragment.SearchFragment;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
@@ -37,10 +40,16 @@ public class SearchActivity extends FragmentActivity {
     private ActionBar mActionBar;
     private static Database mDatabase;
 
+    private Tracker wTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        Log.d(TAG, "onCreate");
+
+        VLApplication application = (VLApplication) getApplication();
+        wTracker = application.getDefaultTracker();
+
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
             mSearchFragment = new SearchFragment();
@@ -60,6 +69,9 @@ public class SearchActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+//        Log.d(TAG, "Setting screen name: " + TAG);
+//        wTracker.setScreenName(TAG);
+//        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
 //        Log.d(TAG, "onResume");
 //        mDatabase = new Database(this);
     }

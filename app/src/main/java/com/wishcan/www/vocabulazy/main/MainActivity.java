@@ -15,7 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.service.AudioService;
@@ -54,10 +57,15 @@ public class MainActivity extends FragmentActivity {
     private int mBackStackCount;
     private String mBackStackTopFragmentName;
 
+    private Tracker wTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        Log.d(TAG, "onCreate");
+
+        VLApplication application = (VLApplication) getApplication();
+        wTracker = application.getDefaultTracker();
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
@@ -139,6 +147,11 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        Log.d(TAG, "Setting screen name: " + TAG);
+        wTracker.setScreenName(TAG);
+        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         setCustomActionBar();
         Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");
         if(f != null && f instanceof FragmentWithActionBarTitle)
