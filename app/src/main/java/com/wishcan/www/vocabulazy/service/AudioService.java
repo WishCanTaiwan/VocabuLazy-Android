@@ -101,6 +101,7 @@ public class AudioService extends IntentService
     private int wSpeed;
     private int wPlayTime;
 
+    private int spellCountDown;
     private int itemloopCountDown;
     private int listloopCountDown;
 
@@ -193,6 +194,7 @@ public class AudioService extends IntentService
                 int sentenceIndex = intent.getIntExtra(KEY_START_SENTENCE_INDEX, -1);
                 String playing = intent.getStringExtra(KEY_PLAYING_FIELD);
 
+                spellCountDown = 3;
                 wCurrentItemIndex = itemIndex;
                 wCurrentSentenceIndex = sentenceIndex;
                 wStatus = STATUS_PLAYING;
@@ -242,6 +244,7 @@ public class AudioService extends IntentService
                 wVoabularies = intent.getParcelableArrayListExtra(KEY_NEW_CONTENT);
                 wCurrentItemAmount = wVoabularies.size();
 
+                spellCountDown = 3;
                 listloopCountDown = wListLoop;
                 wCurrentItemIndex = 0;
                 wCurrentSentenceIndex = 0;
@@ -422,13 +425,15 @@ public class AudioService extends IntentService
              * if the utterance just played was SPELL.
              */
             case PLAYING_SPELL:
-                wPlaying = PLAYING_TRANSLATION;
+                spellCountDown--;
+                wPlaying = (spellCountDown > 0 ? PLAYING_SPELL : PLAYING_TRANSLATION);
                 break;
 
             /**
              * if the utterance just played was TRANSLATION
              */
             case PLAYING_TRANSLATION:
+                spellCountDown = 3;
                 if (wEnSentenceEnabled) {
                     wCurrentSentenceIndex = 0;
                     wPlaying = PLAYING_EnSENTENCE;
