@@ -79,7 +79,6 @@ public class MainFragment extends Fragment implements FragmentWithActionBarTitle
             mCurrentTabIndex = 0;
         }
         ((MainActivity)getActivity()).setActionBarTitle(getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
-        //TODO: check whether this area is executed again after rotate
         mMainView.post(new Runnable() {
             @Override
             public void run() {

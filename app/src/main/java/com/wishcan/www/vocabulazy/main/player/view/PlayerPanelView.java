@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,16 @@ public class PlayerPanelView extends LinearLayout {
 	private static final int VIEW_ICON_PLAY = R.id.action_player_play;
 	private static final int VIEW_ICON_OPTION = R.id.action_player_option;
 
+    private static final int ICON_PLAY_RES_ID[] = {
+            R.drawable.player_stop,
+            R.drawable.player_play
+    };
+
 	private OnPanelItemClickListener mOnPanelItemClickListener;
     private ViewGroup mChildView;
-    LevelListDrawable mDrawable = new LevelListDrawable();
+    private LevelListDrawable mDrawable;
+    private int mCurrentIconState;
+
     public PlayerPanelView(Context context) {
         this(context, null);
     }
@@ -39,8 +47,7 @@ public class PlayerPanelView extends LinearLayout {
     public PlayerPanelView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mDrawable.addLevel(0, 0, ContextCompat.getDrawable(context, R.drawable.player_stop));
-        mDrawable.addLevel(0, 1, ContextCompat.getDrawable(context, R.drawable.player_play));
+        mCurrentIconState = -1;
 
         mChildView = (ViewGroup) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_RES_ID, null);
         mChildView.findViewById(VIEW_ICON_FAVORITE).setOnClickListener(new OnClickListener(){
@@ -53,11 +60,11 @@ public class PlayerPanelView extends LinearLayout {
         mChildView.findViewById(VIEW_ICON_PLAY).setOnClickListener(new OnClickListener(){
         	@Override
             public void onClick(View v) {
-                if(mDrawable.getLevel() == 0)
-                    mDrawable.setLevel(1);
+                if(mCurrentIconState == 0)
+                    mCurrentIconState = 1;
                 else
-                    mDrawable.setLevel(0);
-                ((ImageView) v).setImageDrawable(mDrawable);
+                    mCurrentIconState = 0;
+                ((ImageView) v).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
                 if(mOnPanelItemClickListener != null)
                     mOnPanelItemClickListener.onOptionPlayClick();
             }
@@ -78,11 +85,13 @@ public class PlayerPanelView extends LinearLayout {
 
     public void setIconInitState(boolean favorite, boolean play, boolean option){
         if(play) {
-            mDrawable.setLevel(0);
-            ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageDrawable(mDrawable);
+            mCurrentIconState = 0;
+            ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
+            Log.d("PlayerPanelView", mCurrentIconState + " TRUE");
         } else {
-            mDrawable.setLevel(1);
-            ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageDrawable(mDrawable);
+            mCurrentIconState = 1;
+            ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
+            Log.d("PlayerPanelView", "FALSE");
         }
     }
 }
