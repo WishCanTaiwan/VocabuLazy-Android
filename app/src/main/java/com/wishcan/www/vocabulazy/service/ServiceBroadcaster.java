@@ -26,6 +26,7 @@ public class ServiceBroadcaster {
     public static final String KEY_ACTION = "key-action";
     public static final String KEY_NEXT_ITEM_INDEX = "key-next-item-index";
     public static final String KEY_PLAY_SENTENCE_INDEX = "key-play-sentence-index";
+    public static final String KEY_PLAYER_STATUS = "key-player-status";
 
     /**
      * strings for identifying the action.
@@ -35,6 +36,7 @@ public class ServiceBroadcaster {
     public static final String ACTION_SHOW_DETAIL = "action-show-detail";
     public static final String ACTION_HIDE_DETAIL = "action-hide-detail";
     public static final String ACTION_PLAY_SENTENCE = "action-play-sentence";
+    public static final String ACTION_UPDATE_PLAYER_STATUS = "action-update-player-stauts";
 
     private Context wContext;
     private LocalBroadcastManager wBroadcastManager;
@@ -73,6 +75,12 @@ public class ServiceBroadcaster {
     public void onPlaySentence(int sentenceIndex) {
         wIntent.putExtra(KEY_ACTION, ACTION_PLAY_SENTENCE);
         wIntent.putExtra(KEY_PLAY_SENTENCE_INDEX, sentenceIndex);
+        wBroadcastManager.sendBroadcast(wIntent);
+    }
+
+    public void updatePlayerStatus(String status) {
+        wIntent.putExtra(KEY_ACTION, ACTION_UPDATE_PLAYER_STATUS);
+        wIntent.putExtra(KEY_PLAYER_STATUS, status);
         wBroadcastManager.sendBroadcast(wIntent);
     }
 }

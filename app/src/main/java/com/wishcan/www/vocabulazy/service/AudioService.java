@@ -198,6 +198,7 @@ public class AudioService extends IntentService
                 wCurrentItemIndex = itemIndex;
                 wCurrentSentenceIndex = sentenceIndex;
                 wStatus = STATUS_PLAYING;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 wPlaying = playing;
                 wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                 startPlayingItemAt(itemIndex, sentenceIndex, checkIsItemFinishing());
@@ -205,6 +206,7 @@ public class AudioService extends IntentService
 
             case ACTION_PAUSE_PLAYING:
                 wStatus = STATUS_PAUSE;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 wcTextToSpeech.pause();
 //                abandonAudioFocus();
                 break;
@@ -216,6 +218,7 @@ public class AudioService extends IntentService
 
             case ACTION_STOP_PLAYING:
                 wStatus = STATUS_STOPPED;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 wcTextToSpeech.stop();
                 abandonAudioFocus();
                 wCurrentItemIndex = intent.getIntExtra(KEY_STOP_AT_ITEM_INDEX, -1);
@@ -225,11 +228,13 @@ public class AudioService extends IntentService
             case ACTION_PLAY_BUTTON_CLICKED:
                 if (wStatus.equals(STATUS_PLAYING)) {
                     wStatus = STATUS_PAUSE;
+                    wServiceBroadcaster.updatePlayerStatus(wStatus);
                     wcTextToSpeech.pause();
 //                    abandonAudioFocus();
                 } else {
                     if (!isAudioFocused) getAudioFocus();
                     wStatus = STATUS_PLAYING;
+                    wServiceBroadcaster.updatePlayerStatus(wStatus);
                     startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 }
                 break;
@@ -249,6 +254,7 @@ public class AudioService extends IntentService
                 wCurrentItemIndex = 0;
                 wCurrentSentenceIndex = 0;
                 wStatus = STATUS_PLAYING;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 wPlaying = PLAYING_SPELL;
                 wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                 startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
@@ -258,6 +264,7 @@ public class AudioService extends IntentService
                 if (!wStatus.equals(STATUS_SCROLLING)) {
 //                    Log.d(TAG, "scrollllllllllllllllllllll");
                     wStatus = STATUS_SCROLLING;
+                    wServiceBroadcaster.updatePlayerStatus(wStatus);
                     wcTextToSpeech.stop();
                 }
                 break;
@@ -266,6 +273,7 @@ public class AudioService extends IntentService
                 wCurrentSentenceIndex = intent.getIntExtra(KEY_NEW_SENTENCE_INDEX, -1);
                 wPlaying = PLAYING_EnSENTENCE;
                 wStatus = STATUS_PLAYING;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 break;
 
@@ -400,6 +408,7 @@ public class AudioService extends IntentService
                 wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
                 wPlaying = PLAYING_SPELL;
                 wStatus = STATUS_PLAYING;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
             } else {
                 wCurrentItemIndex = 0;
@@ -407,6 +416,7 @@ public class AudioService extends IntentService
 //                Log.d(TAG, wVoabularies.get(0).getSpell());
                 wPlaying = PLAYING_SPELL;
                 wStatus = STATUS_PLAYING;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 startPlayingItemAt(0, -1, checkIsItemFinishing());
             }
             return;
@@ -609,6 +619,7 @@ public class AudioService extends IntentService
             // resume playing
             if (wStatus.equals(STATUS_PAUSE_FOR_FOCUS_LOSS)) {
                 wStatus = STATUS_PLAYING;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
             }
         }
@@ -620,6 +631,7 @@ public class AudioService extends IntentService
             // pause playing
             if (wStatus.equals(STATUS_PLAYING)) {
                 wStatus = STATUS_PAUSE_FOR_FOCUS_LOSS;
+                wServiceBroadcaster.updatePlayerStatus(wStatus);
                 wcTextToSpeech.pause();
             }
         }

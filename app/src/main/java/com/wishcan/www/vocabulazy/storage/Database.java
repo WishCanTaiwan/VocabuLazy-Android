@@ -22,6 +22,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.service.AudioService;
 
 /**
  * Created by allencheng07 on 2015/9/1.
@@ -48,6 +49,7 @@ public class Database implements Parcelable {
     private int mCurrentPlayingItem;
 
     private Bundle wPlayerInfoBundle;
+    private String wPlayerStatus;
 
     public Database(Context context) {
         mContext = context;
@@ -58,6 +60,7 @@ public class Database implements Parcelable {
         mCurrentPlayingList = -1;
 
         wPlayerInfoBundle = null;
+        wPlayerStatus = AudioService.STATUS_IDLE;
 
         loadDatabaseFiles();
     }
@@ -124,6 +127,14 @@ public class Database implements Parcelable {
 
     public Bundle loadPlayerInfo() {
         return wPlayerInfoBundle;
+    }
+
+    public void updatePlayerStatus(String status) {
+        wPlayerStatus = status;
+    }
+
+    public boolean isPlayerPlaying() {
+        return (wPlayerStatus.equals(AudioService.STATUS_PLAYING));
     }
 
     public int getCurrentPlayingBook() {

@@ -132,6 +132,14 @@ public class PlayerModel {
         return mDatabase.loadPlayerInfo();
     }
 
+    public void updatePlayerStatus(String status) {
+        mDatabase.updatePlayerStatus(status);
+    }
+
+    public boolean isPlayerPlaying() {
+        return mDatabase.isPlayerPlaying();
+    }
+
     private void setContentToPlayer(Activity activity, ArrayList<Vocabulary> vocabularies) {
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(KEY_CONTENT_BUNDLE, vocabularies);

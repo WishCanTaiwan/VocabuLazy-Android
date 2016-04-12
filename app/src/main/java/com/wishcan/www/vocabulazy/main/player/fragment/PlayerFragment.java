@@ -211,7 +211,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
          * TODO: beibei please fill in the correct value based on currently playing state (false, ???, false);
          * The secondary parameter is the init state of play item, if playing, fill in true, or false otherwise.
          */
-        mPlayerPanelView.setIconInitState(false, false, false);
+        Log.d(TAG, "is player playing? " + mPlayerModel.isPlayerPlaying());
+        mPlayerPanelView.setIconInitState(false, mPlayerModel.isPlayerPlaying(), false);
         mPlayerPanelView.setOnPanelItemClickListener(new PlayerPanelView.OnPanelItemClickListener() {
             @Override
             public void onOptionFavoriteClick() {
@@ -498,6 +499,11 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
                     int sentenceIndex = intent.getIntExtra(ServiceBroadcaster.KEY_PLAY_SENTENCE_INDEX, -1);
                     updateIndices(mBookIndex, mLessonIndex, mItemIndex, sentenceIndex);
                     mPlayerMainView.moveToDetailPage(sentenceIndex);
+                    break;
+
+                case ServiceBroadcaster.ACTION_UPDATE_PLAYER_STATUS:
+                    String status = intent.getStringExtra(ServiceBroadcaster.KEY_PLAYER_STATUS);
+                    mPlayerModel.updatePlayerStatus(status);
                     break;
 
                 default:
