@@ -202,6 +202,8 @@ public class MainActivity extends FragmentActivity {
             // the number "1" is to identify the action
             startActivityForResult(intent, 1);
             return true;
+        } else if (id == R.id.action_goto_player) {
+            //TODO: Add the code to go to PlayerFragment
         }
 
         return super.onOptionsItemSelected(item);

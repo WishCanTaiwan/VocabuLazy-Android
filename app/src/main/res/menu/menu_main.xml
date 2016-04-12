@@ -5,4 +5,8 @@
         android:title="@string/action_settings"
         android:icon="@drawable/search"
         android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_goto_player"
+        android:title="goto_player"
+        android:icon="@drawable/search"
+        android:showAsAction="ifRoom" />
 </menu>
