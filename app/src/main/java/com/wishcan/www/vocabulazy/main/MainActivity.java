@@ -2,9 +2,12 @@ package com.wishcan.www.vocabulazy.main;
 
 
 import android.app.ActionBar;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -128,6 +131,8 @@ public class MainActivity extends FragmentActivity {
         mMainActivity = this;
 
         mBackStackCount = 0;
+
+//        downloadTTSFiles();
 
         startAudioService();
     }
@@ -261,11 +266,34 @@ public class MainActivity extends FragmentActivity {
             setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
     }
 
+    private void downloadTTSFiles() {
+
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.tts")));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.tts")));
+        }
+
+//        Intent intent = new Intent(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+//        startActivityForResult(intent, -1);
+
+//        Intent intent = new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.setPackage("com.google.android.tts");
+//        try {
+//            Log.d(TAG, "Installing voice data: " + intent.toUri(0));
+//            startActivity(intent);
+//        } catch (ActivityNotFoundException ex) {
+//            Log.d(TAG, "Failed to install TTS data, no acitivty found for " + intent + ")");
+//        }
+    }
+
     private void startAudioService() {
         Intent intent = new Intent(this, AudioService.class);
         intent.setAction(AudioService.ACTION_START_SERVICE);
         startService(intent);
     }
+
     private void setCustomActionBar(){
         mActionBar = getActionBar();
         if(mActionBar != null) {
