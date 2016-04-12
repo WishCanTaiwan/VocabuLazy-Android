@@ -324,7 +324,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         if (mVocabularies.size() > 0 && !wIndicesMatch) {
             updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
             startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
-            mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
+//            mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
         }
     }
 
@@ -434,7 +434,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     void newItemFocused(int newItemIndex) {
 //        Log.d(TAG, "newItemFocused: " + newItemIndex);
         startPlayingAt(newItemIndex, 0, AudioService.PLAYING_SPELL);
-        mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
+//        mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
     }
 
     void newListFocused(ArrayList<Vocabulary> vocabularies) {
@@ -457,7 +457,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_PLAYERVIEW_SCROLLING);
         getActivity().startService(intent);
-        mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
+//        mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
     }
 
     /**
@@ -503,6 +503,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
                 case ServiceBroadcaster.ACTION_UPDATE_PLAYER_STATUS:
                     String status = intent.getStringExtra(ServiceBroadcaster.KEY_PLAYER_STATUS);
                     mPlayerModel.updatePlayerStatus(status);
+                    mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
                     break;
 
                 default:
