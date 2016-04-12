@@ -207,6 +207,11 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
         mPlayerMainView.setOnPlayerItemPreparedListener(this);
 
+        /*
+         * TODO: beibei please fill in the correct value based on currently playing state (false, ???, false);
+         * The secondary parameter is the init state of play item, if playing, fill in true, or false otherwise.
+         */
+        mPlayerPanelView.setIconInitState(false, false, false);
         mPlayerPanelView.setOnPanelItemClickListener(new PlayerPanelView.OnPanelItemClickListener() {
             @Override
             public void onOptionFavoriteClick() {

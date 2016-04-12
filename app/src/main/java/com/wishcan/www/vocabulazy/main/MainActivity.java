@@ -213,7 +213,6 @@ public class MainActivity extends FragmentActivity {
             Log.d(TAG, "retrive bookIndex " + bookIndex + " lessonIndex " + lessonIndex);
             Log.d(TAG, mDatabase.toString());
 
-            //TODO: Add the code to go to PlayerFragment, beibei please fill in bookIndex && lessonIndex
             Bundle args = new Bundle();
             args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
             args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
