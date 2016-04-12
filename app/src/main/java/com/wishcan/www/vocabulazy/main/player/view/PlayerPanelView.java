@@ -83,7 +83,7 @@ public class PlayerPanelView extends LinearLayout {
     	mOnPanelItemClickListener = listener;
     }
 
-    public void setIconInitState(boolean favorite, boolean play, boolean option){
+    public void setIconState(boolean favorite, boolean play, boolean option){
         if(play) {
             mCurrentIconState = 0;
             ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);

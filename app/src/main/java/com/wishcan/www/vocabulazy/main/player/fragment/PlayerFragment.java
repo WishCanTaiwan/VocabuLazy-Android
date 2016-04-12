@@ -207,12 +207,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
 
         mPlayerMainView.setOnPlayerItemPreparedListener(this);
 
-        /*
-         * TODO: beibei please fill in the correct value based on currently playing state (false, ???, false);
-         * The secondary parameter is the init state of play item, if playing, fill in true, or false otherwise.
-         */
         Log.d(TAG, "is player playing? " + mPlayerModel.isPlayerPlaying());
-        mPlayerPanelView.setIconInitState(false, mPlayerModel.isPlayerPlaying(), false);
+        mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
         mPlayerPanelView.setOnPanelItemClickListener(new PlayerPanelView.OnPanelItemClickListener() {
             @Override
             public void onOptionFavoriteClick() {
@@ -328,6 +324,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         if (mVocabularies.size() > 0 && !wIndicesMatch) {
             updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
             startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
+            mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
         }
     }
 
@@ -437,6 +434,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     void newItemFocused(int newItemIndex) {
 //        Log.d(TAG, "newItemFocused: " + newItemIndex);
         startPlayingAt(newItemIndex, 0, AudioService.PLAYING_SPELL);
+        mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
     }
 
     void newListFocused(ArrayList<Vocabulary> vocabularies) {
@@ -459,6 +457,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.ACTION_PLAYERVIEW_SCROLLING);
         getActivity().startService(intent);
+        mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
     }
 
     /**
