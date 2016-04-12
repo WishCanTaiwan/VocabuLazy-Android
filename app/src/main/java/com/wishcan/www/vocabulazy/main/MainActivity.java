@@ -19,6 +19,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.service.AudioService;
@@ -203,7 +204,11 @@ public class MainActivity extends FragmentActivity {
             startActivityForResult(intent, 1);
             return true;
         } else if (id == R.id.action_goto_player) {
-            //TODO: Add the code to go to PlayerFragment
+            //TODO: Add the code to go to PlayerFragment, beibei please fill in bookIndex && lessonIndex
+            Bundle args = new Bundle();
+            args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
+            args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
+            goFragment(PlayerFragment.class, args, "PlayerFragment", "MainFragment");
         }
 
         return super.onOptionsItemSelected(item);
