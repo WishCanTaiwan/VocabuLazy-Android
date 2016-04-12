@@ -8,7 +8,7 @@ repositories {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "com.wishcan.www.vocabulazy"
         minSdkVersion 16
@@ -34,5 +34,4 @@ dependencies {
     compile 'com.google.android.gms:play-services-analytics:8.4.0'
 //    compile (name:'uxtesting_sdk_1.1.5', ext:'aar')
 }
-
 apply plugin: 'com.google.gms.google-services'

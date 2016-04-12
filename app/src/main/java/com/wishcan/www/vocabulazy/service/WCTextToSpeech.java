@@ -75,7 +75,7 @@ public class WCTextToSpeech extends UtteranceProgressListener
 
     public void initializeTTSEngine(Context context) {
         if (wTextToSpeech == null) {
-            wTextToSpeech = new TextToSpeech(context, this);
+            wTextToSpeech = new TextToSpeech(context, this, "com.google.android.tts");
         }
         setTTSListener();
     }

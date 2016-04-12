@@ -427,6 +427,7 @@ public class AudioService extends IntentService
             case PLAYING_SPELL:
                 spellCountDown--;
                 wPlaying = (spellCountDown > 0 ? PLAYING_SPELL : PLAYING_TRANSLATION);
+//                wPlaying = PLAYING_TRANSLATION;
                 break;
 
             /**
