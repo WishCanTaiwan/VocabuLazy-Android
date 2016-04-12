@@ -119,6 +119,7 @@ public class PlayerModel {
 //        Bundle bundle = new Bundle();
 //        bundle.putInt(KEY_DATABASE_BOOK_INDEX, bookIndex);
 //        bundle.putInt(KEY_DATABASE_LESSON_INDEX, lessonIndex);
+        Log.d(TAG, mDatabase.toString());
         mDatabase.savePlayerInfo(bundle);
     }
 

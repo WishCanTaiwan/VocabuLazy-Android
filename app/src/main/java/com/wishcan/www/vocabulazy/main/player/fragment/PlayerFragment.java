@@ -47,10 +47,10 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     /**
      * KEYs for instance state bundle
      */
-    private static final String KEY_BOOK_INDEX = "book-index";
-    private static final String KEY_LESSON_INDEX = "lesson-index";
-    private static final String KEY_ITEM_INDEX = "item-index";
-    private static final String KEY_SENTENCE_INDEX = "sentence-index";
+    public static final String KEY_BOOK_INDEX = "book-index";
+    public static final String KEY_LESSON_INDEX = "lesson-index";
+    public static final String KEY_ITEM_INDEX = "item-index";
+    public static final String KEY_SENTENCE_INDEX = "sentence-index";
 
     /**
      * broadcast manager
@@ -117,6 +117,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         int argBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         int argLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
         wIndicesMatch = (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
+        Log.d(TAG, "index match " + wIndicesMatch);
         updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
 
         setLanguage(mBookIndex);
@@ -341,6 +342,7 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
     }
 
     private void savePreferences() {
+        Log.d(TAG, "save indices book " + mBookIndex + " lesson " + mLessonIndex);
         Bundle bundle = new Bundle();
         bundle.putInt(KEY_BOOK_INDEX, mBookIndex);
         bundle.putInt(KEY_LESSON_INDEX, mLessonIndex);

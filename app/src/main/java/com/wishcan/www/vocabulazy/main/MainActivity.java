@@ -204,6 +204,15 @@ public class MainActivity extends FragmentActivity {
             startActivityForResult(intent, 1);
             return true;
         } else if (id == R.id.action_goto_player) {
+
+            // fetching player information from database.
+            Bundle playerInfo = mDatabase.loadPlayerInfo();
+            int bookIndex = playerInfo.getInt(PlayerFragment.KEY_BOOK_INDEX, 1359);
+            int lessonIndex = playerInfo.getInt(PlayerFragment.KEY_LESSON_INDEX, 1359);
+
+            Log.d(TAG, "retrive bookIndex " + bookIndex + " lessonIndex " + lessonIndex);
+            Log.d(TAG, mDatabase.toString());
+
             //TODO: Add the code to go to PlayerFragment, beibei please fill in bookIndex && lessonIndex
             Bundle args = new Bundle();
             args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
