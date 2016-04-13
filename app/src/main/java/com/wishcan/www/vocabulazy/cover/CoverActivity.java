@@ -24,6 +24,9 @@ public class CoverActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /**
+         * Retrieve the Google Analytics tracker from VLApplication
+         */
         VLApplication application = (VLApplication) getApplication();
         wTracker = application.getDefaultTracker();
 

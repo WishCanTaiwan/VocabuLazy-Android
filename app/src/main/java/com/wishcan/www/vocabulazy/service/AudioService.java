@@ -558,7 +558,6 @@ public class AudioService extends IntentService
                     } else if (wCnSentenceEnabled) {
                         wPlaying = PLAYING_CnSENTENCE;
                     }
-                    // TODO: bug No.33 happens here
                     wServiceBroadcaster.onPlaySentence(wCurrentSentenceIndex);
                 } else if (wCurrentSentenceIndex == wCurrentSentenceAmount) {
 
