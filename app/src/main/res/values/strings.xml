@@ -17,7 +17,7 @@
     <!-- player -->
     <!-- search -->
     <!-- cover -->
-    <string name="dialog_cover">請到values/string/dialog_cover修改這個字串</string>
+    <string name="dialog_cover">為提供最佳體驗，請至Google Play下載並安裝「Google 文字轉語音引擎」。\n點擊確定前往。</string>
 
 
     <string name="app_name">VocabuLazy</string>
