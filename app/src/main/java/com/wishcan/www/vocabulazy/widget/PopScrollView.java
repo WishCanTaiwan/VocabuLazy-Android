@@ -83,22 +83,10 @@ abstract public class PopScrollView extends RelativeLayout {
     public static final int STATE_ITEM_DETAIL_CHANGING = 0;
     public static final int STATE_ITEM_DETAIL_NOT_SHOW = -1;
 
-
-    /** Remember to write where's the default layout come from*/
-
     private Context mContext;
     private MyScrollView mScrollView;
-
-    /**
-     * A ViewGroup LinearLayout will be the only child added to the PopView
-     * */
-    private LinearLayout mLinearLayout;
-
-    /**
-     * mItemDetailsLinearLayout will be added in the center of PopScrollView for showing the
-     * details of the mCurrentFocusedPopItemPosition
-     * */
-    private ItemDetailLinearLayout mItemDetailsLinearLayout;
+    private LinearLayout mLinearLayout; /** A ViewGroup LinearLayout will be the only child added to the PopView */
+    private ItemDetailLinearLayout mItemDetailsLinearLayout; /** The layout in the center of PopScrollView, showing detail */
     private LinearLayout mTopGradientMask;
     private LinearLayout mBottomGradientMask;
     private int mPopViewHeight;
@@ -121,7 +109,6 @@ abstract public class PopScrollView extends RelativeLayout {
     private boolean mFinalItemCheckFlag;
     private boolean mDrawUpOrDownFlag;      /** The flag is used to indicate draw previous or next item */
     private boolean mMoveToInitPositionFlag;
-    private boolean mFirstItemPopOutFlag;
     private boolean mMainThreadBusyState;
     private final Runnable checkFinalItemStateTask;
     private final Runnable checkInitialItemStateTask;
@@ -136,6 +123,14 @@ abstract public class PopScrollView extends RelativeLayout {
         this(context, null);
     }
 
+    /***********************************************************************************************
+     * Initialize parameters. Three Task will be initialize as well.
+     * 1. checkFinalItemStateTask   : Which will be used for check whether all player item is prepared.
+     * 2. checkInitialItemStateTask : Which will be used for check whether first item is ready.
+     * 3. checkMainThreadStateTask : Which will be used for check main thread is busy or not.
+     * @param context
+     * @param attrs
+     **********************************************************************************************/
     public PopScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -144,7 +139,6 @@ abstract public class PopScrollView extends RelativeLayout {
         mInitialFocusedPosition = -1;
         mDrawUpOrDownFlag = DRAW_UP;
         mMoveToInitPositionFlag = false;
-        mFirstItemPopOutFlag = false;
         mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
 
         checkFinalItemStateTask = new Runnable() {
@@ -193,7 +187,7 @@ abstract public class PopScrollView extends RelativeLayout {
                     else {    //mDrawUpOrDownFlag == DRAW_DOWN
                         mPopItemAdapter.setContentViewToChild(mStartDownPosition);
                         mStartDownPosition++;
-                        if(mStartUpPosition > 0)
+                        if(mStartUpPosition >= 0)
                             mDrawUpOrDownFlag = DRAW_UP;
                     }
                 }
@@ -215,10 +209,10 @@ abstract public class PopScrollView extends RelativeLayout {
         addView(mBottomGradientMask);
 
     }
-    /**
+    /***********************************************************************************************
      * Initialize the PopView, make the view size is about 0.9 & 0.7 screen resolution.
      * Initialize the child size, make it equal to 1/CHILD_COUNT of its parent size
-     * */
+     **********************************************************************************************/
     private void initPopView(){
 
         setChildSize();
@@ -257,7 +251,9 @@ abstract public class PopScrollView extends RelativeLayout {
         mBottomGradientMask.setLayoutParams(mBottomGradientMaskLayoutParams);
         mBottomGradientMask.setBackground(ContextCompat.getDrawable(mContext, DEFAULT_BOT_GRADIENT_DRAWABLE_RES_ID));
     }
-
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     private boolean initFocusedPosition(int initPosition) {
         if(initPosition < 0 || initPosition > mPopItemCount) {
             return false;
@@ -270,12 +266,12 @@ abstract public class PopScrollView extends RelativeLayout {
         return true;
     }
 
-    /**
+    /***********************************************************************************************
      * make PopView, i.e., ScrollView, height and width equal to
      * height : mPopItemHeight * DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW
      * width : mPopItemZoomInWidth
      * TopMargin = BottomMargin = (mPopItemHeight * (((float)DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW - 1) / 2));
-     */
+     **********************************************************************************************/
     private void setPopViewWithDefaultSize(){
         mScrollView = new MyScrollView(mContext);
 
@@ -295,11 +291,11 @@ abstract public class PopScrollView extends RelativeLayout {
         mScrollView.setLayoutParams(layoutParams);
     }
 
-    /**
+    /***********************************************************************************************
      * Use the getScrollY() to find out which position should be the focused. If we successfully
      * find this position out, the corresponding getCurrentFocusedView should be the view located
      * in the center of ScrollView
-     * */
+     **********************************************************************************************/
     private int findCurrentPosition(int coordinateY){
         /**
          * This parameter is used to find our currently center coordinateY. Because of the marginTop
@@ -319,10 +315,10 @@ abstract public class PopScrollView extends RelativeLayout {
         mScrollView.smoothScrollTo(mScrollView.getScrollX(), position * mPopItemHeight);
     }
 
-    /**
+    /***********************************************************************************************
      * The method is used for setting current focused position based on scrollbar's position.
      * Normally, the item in the middle should be focused and the color will be orange.
-     * */
+     **********************************************************************************************/
     public void setCurrentFocusedPosition(int newPosition){
         int previousFocusedPosition;
 
@@ -337,6 +333,9 @@ abstract public class PopScrollView extends RelativeLayout {
 
     }
 
+    /***********************************************************************************************
+     *
+     * ********************************************************************************************/
     private void performItemAppearanceChanged(int previousFocusedPosition){
 
         int focused_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID);
@@ -460,13 +459,13 @@ abstract public class PopScrollView extends RelativeLayout {
 
     }
 
-    /**
+    /***********************************************************************************************
      * showItemDetails shows the detail of each item
      * it will do the following thing
      * 1. Add a new faked layout (fakedLinearLayout) which size is the same with ZoomIn item (Immediately)
      * and make the faked layout stretch to the larger size slowly (0.5s)
      * 2. Show the detail content of word (0.3s)
-     * */
+     **********************************************************************************************/
     public void showItemDetails(){
         if(mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
             mItemDetailsLinearLayout = new ItemDetailLinearLayout(mContext, getCurrentFocusedPosition());
@@ -517,13 +516,13 @@ abstract public class PopScrollView extends RelativeLayout {
         }
     }
 
-    /**
+    /***********************************************************************************************
      * hideItemDetails shows the detail of each item
      * it will do the following thing
      * 1. Make the detail's content disappear slowly (0.3s)
      * 2. Make faked layout (fakedLinearLayout) ZoomOut and disappear (0.5s)
      * 3. Change Color and show the detail content of word (0.3s)
-     * */
+     **********************************************************************************************/
     public void hideItemDetails(){
 
         if(mItemDetailsLinearLayout == null)
@@ -562,12 +561,17 @@ abstract public class PopScrollView extends RelativeLayout {
         animatorSet.start();
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public PopItemAdapter getPopItemAdapter(Context context,int resource, LinkedList<HashMap> dataList, String[] from, int[] to){
         mPopItemCount = dataList.size();
         return new PopItemAdapter(context, resource, dataList, from, to);
 
     }
-
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public void setPopItemAdapter(PopItemAdapter adapter, int initialFocusedPosition){
         mPopItemAdapter = adapter;
         mScrollView.removeAllViews();
@@ -580,71 +584,103 @@ abstract public class PopScrollView extends RelativeLayout {
 
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     private void setChildSize(){
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         mPopItemHeight = (int) Math.floor(displayMetrics.heightPixels* ((1 - 0.15) / DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW));
         mPopItemWidth = (int) Math.floor(displayMetrics.widthPixels*0.90);
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     private void setChildZoomInSize(){
         mPopItemZoomInHeight = mPopItemHeight;
         mPopItemZoomInWidth = (int) Math.floor(mPopItemWidth *ZOOM_IN_FACTORY);
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public void setOnPopScrollStoppedListener(OnPopScrollStoppedListener listener){
         mOnPopScrollStoppedListener = listener;
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public void setOnItemPreparedListener(OnItemPreparedListener listener){
         mOnItemPreparedListener = listener;
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public View getChildView(int index){
         return mLinearLayout.getChildAt(index);
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public View getCurrentFocusedView(){
         return mLinearLayout.getChildAt(mCurrentFocusedPopItemPosition);
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public boolean getInitialItemCheck(){
         return mInitialItemCheckFlag;
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public boolean getFinalItemCheck(){
         return mFinalItemCheckFlag;
     }
 
-    /**
+    /***********************************************************************************************
      * The method used for returning the currently being focused view's position, typically means
      * the view's index in the scrollView center
-     */
+     **********************************************************************************************/
     public int getCurrentFocusedPosition(){
         return mCurrentFocusedPopItemPosition;
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public int getCurrentFocusedPositionCoordinateY(){
         return mCurrentFocusedPopItemPosition * mPopItemHeight;
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public int getCoordinateYByPosition(int position){
         return position* mPopItemHeight;
     }
 
+    /***********************************************************************************************
+     *
+     **********************************************************************************************/
     public int isShowingDetails(){
         return mShowingDetails;
     }
 
-    /**
-     * TODO: 3 STEPs and 1 TASK
+    /***********************************************************************************************
      * STEPs
      * 1. Add childViewCount empty and invisible item first.
      *    (Make the parent size fixed, not change during adding procedure)
      * 2. Move to the focusIndex position, using moveToPosition(focusIndex). (NOT SMOOTHLY),
      * 3. Draw item content into empty item (from focusIndex position) and set it visible.
      * TASK
-     * 1. Need a supervisor task to check whether "main thread" is busy now. Need a addtional flag.
-     */
+     * 1. Need a supervisor task to check whether "main thread" is busy now. Need a additional flag.
+     **********************************************************************************************/
     private class PopItemAdapter {
 
         private ViewGroup mParent;
