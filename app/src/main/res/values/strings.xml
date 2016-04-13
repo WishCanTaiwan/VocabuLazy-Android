@@ -16,6 +16,8 @@
     <!-- info -->
     <!-- player -->
     <!-- search -->
+    <!-- cover -->
+    <string name="dialog_cover">請到values/string/dialog_cover修改這個字串</string>
 
 
     <string name="app_name">VocabuLazy</string>
@@ -49,7 +51,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string-array name= "time_count_option">
+    <string-array name="time_count_option">
         <item>2</item>
         <item>5</item>
         <item>10</item>
@@ -80,8 +82,7 @@
     <string name="numeral_picker_main_indicator_string_default">主要標題</string>
     <string name="numeral_picker_second_indicator_string_default">次要標題</string>
     <string name="title_activity_main">MainActivity</string>
-    <string
-        name="title_activity_cover">
+    <string name="title_activity_cover">
         CoverActivity
     </string>
 </resources>

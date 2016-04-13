@@ -1,21 +1,22 @@
 package com.wishcan.www.vocabulazy.cover;
 
-import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.cover.fragment.CoverFragment;
 
 //import io.uxtesting.UXTesting;
 
 public class CoverActivity extends FragmentActivity {
+
+    public static final int VIEW_MAIN_RES_ID = R.id.activity_cover_container;
 
     private static final String TAG = CoverActivity.class.getSimpleName();
     private Tracker wTracker;
@@ -27,17 +28,12 @@ public class CoverActivity extends FragmentActivity {
         VLApplication application = (VLApplication) getApplication();
         wTracker = application.getDefaultTracker();
 
-        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.activity_cover, null);
-        setContentView(view);
-        final Intent intent = new Intent(this, MainActivity.class);
-        view.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(intent);
-                finish();
-            }
-        }, 2000);
+        setContentView(R.layout.activity_cover);
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        CoverFragment mCoverFragment = new CoverFragment();
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.add(VIEW_MAIN_RES_ID, mCoverFragment, "CoverFragment");
+        fragmentTransaction.commit();
     }
 
     @Override
