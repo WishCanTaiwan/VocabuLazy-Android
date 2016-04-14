@@ -96,9 +96,13 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-//        Log.d(TAG, "onSaveInstanceState");
         Log.d(TAG, "onSaveInstanceState");
         outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

@@ -114,6 +114,7 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         setCustomActionBar();
+        setActionBarTitle(mActionBarLL.getFirst());
     }
 
     @Override
@@ -186,10 +187,6 @@ public class MainActivity extends FragmentActivity {
         onBackPressed();
         return super.onNavigateUp();
     }
-
-//    public Database getDatabase() {
-//        return wDatabase;
-//    }
 
     public void goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
         Fragment f = Fragment.instantiate(this, cls.getName(), bundle);

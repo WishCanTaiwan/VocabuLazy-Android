@@ -122,6 +122,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
                 mPressedPosition = position;
                 switch (iconId) {
                     case NoteView.ICON_PLAY:
+                        //TODO: Beibei please help me. If there's no vocabulary in note, DO NOT execute goPlayerFragment.
                         goPlayerFragment(-1, position);
                         break;
                     case NoteView.ICON_ETC:
