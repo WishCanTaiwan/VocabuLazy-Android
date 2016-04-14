@@ -120,7 +120,6 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
             public void onListIconClick(int iconId, int position, View v) {
                 mIconId = iconId;
                 mPressedPosition = position;
-                UsrNoteDialogFragment dialogFragment = null;
                 switch (iconId) {
                     case NoteView.ICON_PLAY:
                         goPlayerFragment(-1, position);
@@ -130,25 +129,19 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
                     case NoteView.ICON_ETC_CLOSE:
                         break;
                     case NoteView.ICON_DEL:
-                        dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.DELETE, notes.get(position).getName());
+                        goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.DELETE, notes.get(position).getName());
                         break;
                     case NoteView.ICON_RENAME:
-                        dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.RENAME);
+                        goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.RENAME, null);
                         break;
                     case NoteView.ICON_COMBINE:
-                        dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.COMBINE);
+                        goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.COMBINE, null);
                         break;
                     case NoteView.ICON_NEW:
-                        dialogFragment = UsrNoteDialogFragment.newInstance(UsrNoteDialogView.DIALOG_RES_ID_s.NEW);
+                        goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.NEW, null);
                         break;
                     default:
                         break;
-                }
-                if(dialogFragment != null) {
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, dialogFragment, "UsrNoteDialogFragment");
-                    fragmentTransaction.addToBackStack("UsrNoteFragment");
-                    fragmentTransaction.commit();
                 }
             }
         });
@@ -181,10 +174,15 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "UsrNoteFragment");
     }
 
+    private void goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s resId, String inputStr) {
+        Bundle args = new Bundle();
+        args.putSerializable(UsrNoteDialogFragment.DIALOG_BUNDLE_RES_ID_STR, resId);
+        args.putSerializable(UsrNoteDialogFragment.DIALOG_BUNDLE_STR_STR, inputStr);
+        ((MainActivity) getActivity()).goFragment(UsrNoteDialogFragment.class, args, "UsrNoteDialogFragment", "UsrNoteFragment");
+    }
+
     private void reload() {
         Log.d(TAG, "reload");
-//        wDatabase = ((MainActivity) getActivity()).getDatabase();
-//        Log.d(TAG, wDatabase.toString());
         final ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
 
         LinkedList<String> dataList = new LinkedList<>();
@@ -196,7 +194,6 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
 
         for(int i = 0; i < notes.size(); i++) {
             dataList.add(notes.get(i).getName());
-//            Log.d(TAG, notes.get(i).getName() + ", " + notes.get(i).getContent().size());
         }
 
         mUsrNoteView.refreshView(notes.size(), dataList);

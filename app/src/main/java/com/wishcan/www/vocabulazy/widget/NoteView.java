@@ -3,7 +3,6 @@ package com.wishcan.www.vocabulazy.widget;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
@@ -12,14 +11,12 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,7 +24,6 @@ import android.widget.TextView;
 import com.wishcan.www.vocabulazy.R;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -149,7 +145,7 @@ abstract public class NoteView extends SlideBackViewPager{
         private final String[] FROM = {"NOTE_NAME"};
         private final int[] TO = {R.id.note_name};
         private LinkedList<HashMap<String, Object>> mDataList;
-        private ArrayAdapter mAdapter;
+        private CustomizedSimpleAdapter mAdapter;
         private OnListIconClickListener mOnListIconClickListener;
         private boolean mEnableEtcFunction;
 
@@ -182,7 +178,7 @@ abstract public class NoteView extends SlideBackViewPager{
             mEnableEtcFunction = bool;
         }
 
-        public void onEtcCloseIconClick(int position){
+        private void onEtcCloseIconClick(int position){
 
             View parentView = mSelfNoteListView.getChildAt(position);
             View iconView;
@@ -195,6 +191,7 @@ abstract public class NoteView extends SlideBackViewPager{
         }
 
         private void refresh(){
+            mAdapter.resetState();
             mAdapter.notifyDataSetChanged();
         }
 
@@ -285,6 +282,7 @@ abstract public class NoteView extends SlideBackViewPager{
                     mNoteEtcParentView.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View iconView) {
+                            Log.d(TAG, "onEtcClick");
                             mEtcParentView.setVisibility(VISIBLE);
                             float startX = mParentView.getX();
                             float endX;
@@ -295,7 +293,7 @@ abstract public class NoteView extends SlideBackViewPager{
                             handleListSlidingAnimation(mParentView, mNoteEtcFunctionView, startX, endX, null);
                             mOnListIconClickListener.onListIconClick(ICON_ETC, position, v);
                             if(mOpenIndex >= 0 && mOpenIndex != position) {
-                                mSelfNoteListView.onEtcCloseIconClick (mOpenIndex);
+                                mSelfNoteListView.onEtcCloseIconClick(mOpenIndex);
                                 mOpenIndex = position;
                             }
                             else if(mOpenIndex >= 0 && mOpenIndex == position)
@@ -309,7 +307,7 @@ abstract public class NoteView extends SlideBackViewPager{
                     mNoteEtcCloseFunctionView.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View iconView) {
-
+                            Log.d(TAG, "onCloseClick");
                             float startX = mParentView.getX();
                             float endX;
                             if (startX >= 0)
@@ -363,6 +361,10 @@ abstract public class NoteView extends SlideBackViewPager{
                 if(mData == null)
                     return 0;
                 return mData.size();
+            }
+
+            public void resetState() {
+                mOpenIndex = -1;
             }
 
             private void handleListSlidingAnimation(View v, View iconView, float startX, float endX, Animator.AnimatorListener listener) {

@@ -217,8 +217,8 @@ public class MainActivity extends FragmentActivity {
                 setActionBarTitle(mActionBarLL.getFirst());
                 break;
             case BACK:
-                mActionBarLL.removeFirst();
-                if(mActionBarLL.size() > 0) {
+                if(mActionBarLL.size() > 1) {
+                    mActionBarLL.removeFirst();
                     setActionBarTitle(mActionBarLL.getFirst());
                 }
                 break;

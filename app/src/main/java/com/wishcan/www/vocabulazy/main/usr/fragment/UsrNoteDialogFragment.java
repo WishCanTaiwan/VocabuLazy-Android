@@ -17,8 +17,8 @@ public class UsrNoteDialogFragment extends DialogFragment<String> {
 
     public static final String TAG = UsrNoteDialogFragment.class.getSimpleName();
 
-    private static final String DIALOG_BUNDLE_RES_ID_STR = "dialog_bundle_res_id_str";
-    private static final String DIALOG_BUNDLE_STR_STR = "dialog_bundle_str_str";
+    public static final String DIALOG_BUNDLE_RES_ID_STR = "dialog_bundle_res_id_str";
+    public static final String DIALOG_BUNDLE_STR_STR = "dialog_bundle_str_str";
     private UsrNoteDialogView mUsrNoteDialogView;
 
     private Tracker wTracker;

@@ -125,6 +125,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         int argLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
         wIndicesMatch = (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
         Log.d(TAG, "index match " + wIndicesMatch);
+        Log.d(TAG, "restoredItemIndex " + restoredItemIndex);
         updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
 
         setLanguage(mBookIndex);
