@@ -100,9 +100,4 @@ public class MainFragment extends Fragment {
         outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
         super.onSaveInstanceState(outState);
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 }

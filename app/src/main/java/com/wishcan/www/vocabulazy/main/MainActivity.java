@@ -33,7 +33,6 @@ public class MainActivity extends FragmentActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    public static MainActivity mMainActivity;
     public static final int VIEW_MAIN_RES_ID = R.id.activity_main_container;
     public static final int ANIM_ENTER_RES_ID = R.anim.translation_from_right_to_center;
     public static final int ANIM_EXIT_RES_ID = R.anim.translation_from_center_to_right;
@@ -89,8 +88,6 @@ public class MainActivity extends FragmentActivity {
             fragmentTransaction.add(VIEW_MAIN_RES_ID, mMainFragment, "MainFragment");
             fragmentTransaction.commit();
         }
-
-        mMainActivity = this;
 
 //        downloadTTSFiles();
 

@@ -186,6 +186,10 @@ public class Database implements Parcelable {
             return mNotes.size();
     }
 
+    public int getNoteSize(int noteIndex) {
+        return mNotes.get(noteIndex).getContent().size();
+    }
+
     public ArrayList<Integer> getContentIDs(int bookIndex, int lessonIndex) {
         ArrayList<Integer> content = new ArrayList<>();
 
