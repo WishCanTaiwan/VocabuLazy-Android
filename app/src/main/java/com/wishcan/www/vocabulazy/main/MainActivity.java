@@ -40,7 +40,6 @@ import java.util.concurrent.Semaphore;
 
 public class MainActivity extends FragmentActivity {
 
-
     private static final String TAG = MainActivity.class.getSimpleName();
 
     public static MainActivity mMainActivity;
@@ -58,15 +57,12 @@ public class MainActivity extends FragmentActivity {
     private ActionBar mActionBar;
     private TextView mActionBarTitleTextView;
     private static Database mDatabase;
-    private int mBackStackCount;
-    private String mBackStackTopFragmentName;
 
     private Tracker wTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Log.d(TAG, "onCreate");
 
         VLApplication application = (VLApplication) getApplication();
         wTracker = application.getDefaultTracker();
@@ -75,46 +71,16 @@ public class MainActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             mMainFragment = new MainFragment();
             mFragmentManager = getSupportFragmentManager();
-            mBackStackTopFragmentName = "";
             if(getActionBar() != null)
                 getActionBar().setDisplayHomeAsUpEnabled(true);
             mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
-                    int backStackCount;
-                    if((backStackCount = mFragmentManager.getBackStackEntryCount()) > 0) {      //Not in MainFragment
-//                        Log.d(TAG, "Not im MainFragment : " + backStackCount);
-                        if(backStackCount < mBackStackCount) {  // Back button is pressed
-//                            Log.d(TAG, "Back Button");
-//                            Log.d(TAG, "f name = " +mBackStackTopFragmentName);
-                            Fragment f = null;
-                            if(!mBackStackTopFragmentName.equals(""))
-                                f = mFragmentManager.findFragmentByTag(mBackStackTopFragmentName);
-                            if (f != null && f instanceof FragmentWithActionBarTitle) {
-//                                Log.d(TAG, "Implement Title Interface");
-                                setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
-                            } else {
-                                Log.d(TAG, "May Not Implement");
-                            }
-                        }
-                        else {
-                            mActionBar = getActionBar();
-                            if(mActionBar != null) {
-                                mActionBar.setDisplayHomeAsUpEnabled(true);
-                            }
-                        }
+                    if(mFragmentManager.getBackStackEntryCount() <= 0) {
+                        getActionBar().setDisplayHomeAsUpEnabled(false);
+                    } else {
+                        getActionBar().setDisplayHomeAsUpEnabled(true);
                     }
-                    else {    //Back to MainFragment
-//                        Log.d(TAG, "In MainFragment");
-                        Fragment f = mFragmentManager.findFragmentByTag("MainFragment");
-                        if(f != null && f instanceof FragmentWithActionBarTitle)
-                            setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
-                        mActionBar = getActionBar();
-                        if(mActionBar != null) {
-                            mActionBar.setDisplayHomeAsUpEnabled(false);
-                        }
-                    }
-                    mBackStackCount = backStackCount;
                 }
             });
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
@@ -129,8 +95,6 @@ public class MainActivity extends FragmentActivity {
         }
 
         mMainActivity = this;
-
-        mBackStackCount = 0;
 
 //        downloadTTSFiles();
 
@@ -153,10 +117,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-//        Log.d(TAG, "Setting screen name: " + TAG);
-//        wTracker.setScreenName(TAG);
-//        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         setCustomActionBar();
         Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");
@@ -190,38 +150,34 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SearchActivity.class);
-            // the number "1" is to identify the action
             startActivityForResult(intent, 1);
             return true;
         } else if (id == R.id.action_goto_player) {
 
             // fetching player information from database.
             Bundle playerInfo = mDatabase.loadPlayerInfo();
-            int bookIndex = playerInfo.getInt(PlayerFragment.KEY_BOOK_INDEX, 1359);
-            int lessonIndex = playerInfo.getInt(PlayerFragment.KEY_LESSON_INDEX, 1359);
+            if(playerInfo != null) {
+                int bookIndex = playerInfo.getInt(PlayerFragment.KEY_BOOK_INDEX, 1359);
+                int lessonIndex = playerInfo.getInt(PlayerFragment.KEY_LESSON_INDEX, 1359);
 
-            Log.d(TAG, "retrive bookIndex " + bookIndex + " lessonIndex " + lessonIndex);
-            Log.d(TAG, mDatabase.toString());
+                Log.d(TAG, "retrive bookIndex " + bookIndex + " lessonIndex " + lessonIndex);
+                Log.d(TAG, mDatabase.toString());
 
-            Bundle args = new Bundle();
-            args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
-            args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
-            goFragment(PlayerFragment.class, args, "PlayerFragment", "MainFragment");
+                Bundle args = new Bundle();
+                args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
+                args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
+                goFragment(PlayerFragment.class, args, "PlayerFragment", "MainFragment");
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -229,14 +185,8 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(mFragmentManager == null)
-            mFragmentManager = getSupportFragmentManager();
-        int backStackEntryCount = mFragmentManager.getBackStackEntryCount();
-        if(backStackEntryCount > 0)
-            mBackStackTopFragmentName = mFragmentManager.getBackStackEntryAt(backStackEntryCount - 1).getName();
-        else
-            mBackStackTopFragmentName = "";
         super.onBackPressed();
+        notifyFragmentChange();
     }
 
     @Override
@@ -264,6 +214,12 @@ public class MainActivity extends FragmentActivity {
         fragmentTransaction.commit();
         if(f instanceof FragmentWithActionBarTitle)
             setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
+
+        notifyFragmentChange();
+    }
+
+    private void notifyFragmentChange() {
+        Log.d(TAG, "notifyFragmentChange()");
     }
 
     private void downloadTTSFiles() {
@@ -299,8 +255,6 @@ public class MainActivity extends FragmentActivity {
         if(mActionBar != null) {
             mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM /*| ActionBar.DISPLAY_HOME_AS_UP*/);
             mActionBar.setCustomView(DEFAULT_CUSTOM_ACTION_BAR_RES_ID);
-//            mActionBar.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.widget_action_bar_white_bottom_border));
-
             mActionBarTitleTextView = (TextView) mActionBar.getCustomView().findViewById(TITLE_RES_ID);
             Typeface tf = Typeface.createFromAsset(getAssets(), FONT_RES_STR);
             mActionBarTitleTextView.setTypeface(tf);

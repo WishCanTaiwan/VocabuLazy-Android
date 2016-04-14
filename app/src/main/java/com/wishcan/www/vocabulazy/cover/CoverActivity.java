@@ -19,6 +19,7 @@ public class CoverActivity extends FragmentActivity {
     public static final int VIEW_MAIN_RES_ID = R.id.activity_cover_container;
 
     private static final String TAG = CoverActivity.class.getSimpleName();
+    private static final int VIEW_ACTIVITY_RES_ID = R.layout.activity_cover;
     private Tracker wTracker;
 
     @Override
@@ -31,7 +32,7 @@ public class CoverActivity extends FragmentActivity {
         VLApplication application = (VLApplication) getApplication();
         wTracker = application.getDefaultTracker();
 
-        setContentView(R.layout.activity_cover);
+        setContentView(VIEW_ACTIVITY_RES_ID);
         FragmentManager mFragmentManager = getSupportFragmentManager();
         CoverFragment mCoverFragment = new CoverFragment();
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();

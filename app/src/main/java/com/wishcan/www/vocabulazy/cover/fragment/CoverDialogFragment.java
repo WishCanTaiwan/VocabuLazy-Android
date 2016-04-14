@@ -1,9 +1,7 @@
 package com.wishcan.www.vocabulazy.cover.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 
 import com.wishcan.www.vocabulazy.cover.view.CoverDialogView;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
@@ -44,6 +42,7 @@ public class CoverDialogFragment extends DialogFragment {
                 @Override
                 public void onNoClicked() {
                     OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(CoverFragment.M_TAG);
+                    Log.d("CoverDialogFragment", "");
                     fragment.onDialogFinish(NO_CLICKED);
                     getActivity().onBackPressed();
                 }

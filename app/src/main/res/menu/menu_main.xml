@@ -7,6 +7,6 @@
         android:showAsAction="ifRoom" />
     <item android:id="@+id/action_goto_player"
         android:title="goto_player"
-        android:icon="@drawable/search"
+        android:icon="@drawable/ic_audiotrack"
         android:showAsAction="ifRoom" />
 </menu>
