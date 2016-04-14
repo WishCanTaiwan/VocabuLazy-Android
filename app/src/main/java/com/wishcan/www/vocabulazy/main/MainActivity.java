@@ -52,6 +52,7 @@ public class MainActivity extends FragmentActivity {
     private TextView mActionBarTitleTextView;
     private static Database mDatabase;
     private LinkedList<String> mActionBarLL;
+    private Menu mOptionMenu;
 
     private Tracker wTracker;
 
@@ -143,6 +144,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        mOptionMenu = menu;
         return true;
     }
 
@@ -155,7 +157,6 @@ public class MainActivity extends FragmentActivity {
             startActivityForResult(intent, 1);
             return true;
         } else if (id == R.id.action_goto_player) {
-
             // fetching player information from database.
             Bundle playerInfo = mDatabase.loadPlayerInfo();
             if(playerInfo != null) {
@@ -234,6 +235,17 @@ public class MainActivity extends FragmentActivity {
         Log.d(TAG, "switchActionBarStr " +mActionBarLL.size());
         if(mActionBarLL.size() > 0)
             Log.d(TAG, "switchActionBarStr " +mActionBarLL.getFirst());
+    }
+
+    public void enableExpressWay(boolean enable) {
+        MenuItem item = mOptionMenu.findItem(R.id.action_goto_player);
+        if(item == null)
+            return;
+        if(enable) {
+            item.setVisible(true);
+        } else {
+            item.setVisible(false);
+        }
     }
 
     private void downloadTTSFiles() {

@@ -120,7 +120,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         setLanguage(mBookIndex);
 
         ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " +mBookIndex+ " Lesson " +mLessonIndex);
-
+        ((MainActivity)getActivity()).enableExpressWay(false);
         /**
          * register the broadcast receiver
          */
@@ -263,6 +263,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     public void  onStop() {
         super.onStop();
         savePreferences();
+        ((MainActivity) getActivity()).enableExpressWay(true);
     }
 
     @Override
