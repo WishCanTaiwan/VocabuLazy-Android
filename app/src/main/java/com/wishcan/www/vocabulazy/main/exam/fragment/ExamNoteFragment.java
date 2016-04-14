@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamNoteView;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -25,7 +26,7 @@ import java.util.LinkedList;
 public class ExamNoteFragment extends Fragment {
 
     private static final int TITLE_RES_ID = R.string.fragment_exam_note_title;
-    private Database mDatabase;
+    private Database wDatabase;
 
     public static ExamNoteFragment newInstance() {
         ExamNoteFragment fragment = new ExamNoteFragment();
@@ -37,7 +38,8 @@ public class ExamNoteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wDatabase = vlApplication.getDatabase();
 
         ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "清單測驗");
     }
@@ -45,15 +47,17 @@ public class ExamNoteFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(mDatabase == null)
-            mDatabase = ((MainActivity) getActivity()).getDatabase();
+        if (wDatabase == null) {
+            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+            wDatabase = vlApplication.getDatabase();
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ExamNoteView examNoteView = new ExamNoteView(getActivity());
-        ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
+        ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
 
         if(notes == null)

@@ -38,7 +38,7 @@ public class SearchActivity extends FragmentActivity {
 
     private SearchFragment mSearchFragment;
     private ActionBar mActionBar;
-    private static Database mDatabase;
+    private Database wDatabase;
 
     private Tracker wTracker;
 
@@ -49,6 +49,7 @@ public class SearchActivity extends FragmentActivity {
 
         VLApplication application = (VLApplication) getApplication();
         wTracker = application.getDefaultTracker();
+        wDatabase = application.getDatabase();
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
@@ -58,7 +59,6 @@ public class SearchActivity extends FragmentActivity {
                     .add(VIEW_CONTAINER_RES_ID, mSearchFragment, "SearchFragment")
                     .commit();
         }
-        mDatabase = new Database(this);
 //        Log.d(TAG, "" + mDatabase);
         mActionBar = getActionBar();
         if(mActionBar != null) {
@@ -80,7 +80,7 @@ public class SearchActivity extends FragmentActivity {
     protected void onPause() {
         super.onPause();
 //        Log.d(TAG, "onPause");
-        mDatabase.writeToFile(this);
+//        mDatabase.writeToFile(this);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class SearchActivity extends FragmentActivity {
                 if (newText.equals("")) {
                     searchResultsList = new ArrayList<>();
                 } else {
-                    searchResultsList = mDatabase.readSuggestVocabularyBySpell(newText);
+                    searchResultsList = wDatabase.readSuggestVocabularyBySpell(newText);
                 }
                 mSearchFragment.refreshSearchResult(searchResultsList);
 //                refreshSearchResult(mSearchResultsList);
@@ -185,7 +185,7 @@ public class SearchActivity extends FragmentActivity {
         return true;
     }
 
-    public Database getDatabase() {
-        return mDatabase;
-    }
+//    public Database getDatabase() {
+//        return wDatabase;
+//    }
 }

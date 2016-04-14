@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
@@ -26,7 +27,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
 
     public static String M_TAG;
 
-    private Database mDatabase;
+    private Database wDatabase;
     private SearchView mSearchView;
     private SearchModel mSearchModel;
     private ArrayList<Vocabulary> mSuggestedVocabularies;
@@ -50,7 +51,9 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
 
         }
         M_TAG = getTag();
-        mDatabase = ((SearchActivity) getActivity()).getDatabase();
+
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wDatabase = vlApplication.getDatabase();
         mSearchModel = new SearchModel();
     }
 
@@ -93,6 +96,6 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
     @Override
     public void onDialogFinish(Integer obj) {
 //        Log.d(TAG, mDatabase.toString());
-        mDatabase.addVocToNote(mSelectVocId, obj);
+        wDatabase.addVocToNote(mSelectVocId, obj);
     }
 }

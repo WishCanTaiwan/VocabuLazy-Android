@@ -34,7 +34,7 @@ public class VocBookFragment extends Fragment {
     public static final String TAG = VocBookFragment.class.getSimpleName();
     private Tracker wTracker;
 
-    private Database mDatabase;
+    private Database wDatabase;
 
     public static VocBookFragment newInstance() {
         VocBookFragment fragment = new VocBookFragment();
@@ -50,9 +50,9 @@ public class VocBookFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VLApplication application = (VLApplication) getActivity().getApplication();
-        wTracker = application.getDefaultTracker();
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wTracker = vlApplication.getDefaultTracker();
+        wDatabase = vlApplication.getDatabase();
     }
 
     @Override
@@ -61,8 +61,10 @@ public class VocBookFragment extends Fragment {
         Log.d(TAG, "Setting screen name: " + TAG);
         wTracker.setScreenName(TAG);
         wTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        if(mDatabase == null)
-            mDatabase = ((MainActivity) getActivity()).getDatabase();
+        if (wDatabase == null) {
+            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+            wDatabase = vlApplication.getDatabase();
+        }
     }
 
 //    @Override
@@ -75,7 +77,7 @@ public class VocBookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         VocBookView vocBookView = new VocBookView(getActivity());
-        ArrayList<Book> books = (mDatabase == null) ? null : mDatabase.getBooks();
+        ArrayList<Book> books = (wDatabase == null) ? null : wDatabase.getBooks();
         LinkedList<String> bookNames = new LinkedList<>();
         vocBookView.setOnBookItemClickListener(new BookView.OnBookItemClickListener() {
             @Override

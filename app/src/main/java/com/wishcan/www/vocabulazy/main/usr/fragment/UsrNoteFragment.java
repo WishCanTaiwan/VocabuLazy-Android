@@ -40,7 +40,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     private Tracker wTracker;
 
     private UsrNoteView mUsrNoteView;
-    private Database mDatabase;
+    private Database wDatabase;
     private int mIconId;        // used for identify either Add or Delete action should be executed
     private int mPressedPosition;
 
@@ -61,10 +61,10 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         super.onCreate(savedInstanceState);
 //        Log.d(TAG, "onCreate");
 
-        VLApplication application = (VLApplication) getActivity().getApplication();
-        wTracker = application.getDefaultTracker();
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wTracker = vlApplication.getDefaultTracker();
+        wDatabase = vlApplication.getDatabase();
 
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
         M_TAG = getTag();
     }
 
@@ -76,8 +76,9 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         wTracker.setScreenName(TAG);
         wTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
-        if (mDatabase == null) {
-            mDatabase = ((MainActivity) getActivity()).getDatabase();
+        if (wDatabase == null) {
+            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+            wDatabase = vlApplication.getDatabase();
         } else {
             reload();
         }
@@ -102,7 +103,7 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mUsrNoteView = new UsrNoteView(getActivity());
-        final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
+        final ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
 
         if(notes == null)
@@ -159,15 +160,15 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         LinkedList<String> dataList = new LinkedList<>();
         ArrayList<Lesson> notes;
         if(mIconId == NoteView.ICON_DEL)
-            mDatabase.deleteNoteAt(mPressedPosition);
+            wDatabase.deleteNoteAt(mPressedPosition);
         else if(mIconId == NoteView.ICON_RENAME && str != null)
-            mDatabase.renameNoteAt(mPressedPosition, str);
+            wDatabase.renameNoteAt(mPressedPosition, str);
         else if(mIconId == NoteView.ICON_NEW && str != null)
-            mDatabase.createNewNote(str);
+            wDatabase.createNewNote(str);
         else
             return;
 
-        notes = mDatabase.getLessonsByBook(-1);
+        notes = wDatabase.getLessonsByBook(-1);
         for(int i = 0; i < notes.size(); i++)
             dataList.add(notes.get(i).getName());
         mUsrNoteView.refreshView(notes.size(), dataList);
@@ -182,9 +183,9 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
 
     private void reload() {
         Log.d(TAG, "reload");
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
-//        Log.d(TAG, mDatabase.toString());
-        final ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
+//        wDatabase = ((MainActivity) getActivity()).getDatabase();
+//        Log.d(TAG, wDatabase.toString());
+        final ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
 
         LinkedList<String> dataList = new LinkedList<>();
 

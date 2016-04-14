@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamView;
@@ -29,7 +30,7 @@ public class ExamFragment extends Fragment {
 
     private ExamView mExamView;
     private ExamModel mPuzzleSetter;
-    private Database mDatabase;
+    private Database wDatabase;
     private ArrayList<Vocabulary> mVocabularies;
     private int mCurrentBookIndex, mCurrentLessonIndex;
     private Runnable mRefreshAnimTask;
@@ -63,10 +64,11 @@ public class ExamFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         mExamView = new ExamView(getActivity());
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wDatabase = vlApplication.getDatabase();
         mVocabularies =
-                mDatabase.getVocabulariesByIDs(
-                        mDatabase.getContentIDs(mCurrentBookIndex, mCurrentLessonIndex));
+                wDatabase.getVocabulariesByIDs(
+                        wDatabase.getContentIDs(mCurrentBookIndex, mCurrentLessonIndex));
         mPuzzleSetter = new ExamModel(mVocabularies);
 
         // set the click event, 0 is question, should not be pressed

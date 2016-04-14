@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamLessonView;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -24,7 +25,7 @@ import java.util.LinkedList;
 public class ExamLessonFragment extends Fragment {
 
     private static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
-    private Database mDatabase;
+    private Database wDatabase;
     private int mBookIndex;
 
     public static ExamLessonFragment newInstance(int bookIndex) {
@@ -42,7 +43,8 @@ public class ExamLessonFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wDatabase = vlApplication.getDatabase();
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
 
         ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " + mBookIndex);
@@ -51,15 +53,17 @@ public class ExamLessonFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(mDatabase == null)
-            mDatabase = ((MainActivity) getActivity()).getDatabase();
+        if(wDatabase == null) {
+            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+            wDatabase = vlApplication.getDatabase();
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ExamLessonView examLessonView = new ExamLessonView(getActivity());
-        ArrayList<Lesson> lessons = (mDatabase == null) ? null : mDatabase.getLessonsByBook(mBookIndex);
+        ArrayList<Lesson> lessons = (wDatabase == null) ? null : wDatabase.getLessonsByBook(mBookIndex);
         LinkedList<Integer> lessonIntegers = new LinkedList<>();
         examLessonView.setOnLessonClickListener(new LessonView.OnLessonClickListener() {
             @Override

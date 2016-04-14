@@ -33,8 +33,6 @@ public class PlayerModel {
     private Database wDatabase;
     private Preferences wPreferences;
     private ArrayList<Vocabulary> mVocabularies;
-
-    private PlayerModelAsyncTask wAsyncTask;
     private PlayerModelDataProcessListener wDataProcessListener;
 
 	public PlayerModel(VLApplication application) {

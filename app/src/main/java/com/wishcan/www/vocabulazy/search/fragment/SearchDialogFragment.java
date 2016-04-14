@@ -3,6 +3,7 @@ package com.wishcan.www.vocabulazy.search.fragment;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -24,7 +25,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
 
     private static final String DIALOG_BUNDLE_STR = "dialog_bundle_str";
     private SearchDialogView mSearchDialogView;
-    private Database mDatabase;
+    private Database wDatabase;
 
     public static SearchDialogFragment newInstance(SearchDialogView.DIALOG_RES_ID_s resId) {
         SearchDialogFragment fragment = new SearchDialogFragment();
@@ -42,7 +43,8 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDatabase = ((SearchActivity) getActivity()).getDatabase();
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wDatabase = vlApplication.getDatabase();
 
         if(getArguments() != null) {
             SearchDialogView.DIALOG_RES_ID_s resId = (SearchDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_STR);
@@ -94,7 +96,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     @Override
     public void onDialogFinish(String obj) {
 //        Log.d(TAG, mDatabase.toString());
-        mDatabase.createNewNote(obj);
+        wDatabase.createNewNote(obj);
     }
 
     @Override
@@ -110,8 +112,9 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     private void refreshNoteList() {
 //        Log.d(TAG, mDatabase.toString());
 //        Log.d(TAG, "refreshNotekList");
-        mDatabase = ((SearchActivity) getActivity()).getDatabase();
-        ArrayList<Lesson> notes = (mDatabase == null) ? null : mDatabase.getLessonsByBook(-1);
+//        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+//        wDatabase = vlApplication.getDatabase();
+        ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
         if(notes != null)
             for(Lesson note : notes)

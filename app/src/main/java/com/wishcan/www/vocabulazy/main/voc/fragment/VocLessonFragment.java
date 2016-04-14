@@ -36,7 +36,7 @@ public class VocLessonFragment extends Fragment {
 
     private Tracker wTracker;
 
-    private Database mDatabase;
+    private Database wDatabase;
     private int mBookIndex;
     private int mLessonIndex;
 
@@ -56,10 +56,9 @@ public class VocLessonFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        VLApplication application = (VLApplication) getActivity().getApplication();
-        wTracker = application.getDefaultTracker();
-
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wTracker = vlApplication.getDefaultTracker();
+        wDatabase = vlApplication.getDatabase();
         mBookIndex = getArguments() == null ? -1 : getArguments().getInt(BOOK_INDEX_STR);
         mLessonIndex = 0;
 
@@ -74,15 +73,17 @@ public class VocLessonFragment extends Fragment {
         wTracker.setScreenName(TAG + " book " + mBookIndex);
         wTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
-        if(mDatabase == null)
-            mDatabase = ((MainActivity) getActivity()).getDatabase();
+        if (wDatabase == null) {
+            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+            wDatabase = vlApplication.getDatabase();
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         VocLessonView vocLessonView = new VocLessonView(getActivity());
-        ArrayList<Lesson> lessons = (mDatabase == null) ? null : mDatabase.getLessonsByBook(mBookIndex);
+        ArrayList<Lesson> lessons = (wDatabase == null) ? null : wDatabase.getLessonsByBook(mBookIndex);
         LinkedList<Integer> lessonIntegers = new LinkedList<>();
         vocLessonView.setOnLessonClickListener(new LessonView.OnLessonClickListener() {
             @Override

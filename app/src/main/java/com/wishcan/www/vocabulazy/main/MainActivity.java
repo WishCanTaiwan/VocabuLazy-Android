@@ -100,9 +100,9 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (wDatabase != null) {
-            wDatabase.loadNotes();
-        }
+//        if (wDatabase != null) {
+//            wDatabase.loadNotes();
+//        }
     }
 
     @Override
@@ -119,13 +119,15 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        wDatabase.writeToFile(this);
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "write to file");
         stopAudioService();
+        wDatabase.writeToFile(this);
     }
 
 //    @Override
@@ -185,9 +187,9 @@ public class MainActivity extends FragmentActivity {
         return super.onNavigateUp();
     }
 
-    public Database getDatabase() {
-        return wDatabase;
-    }
+//    public Database getDatabase() {
+//        return wDatabase;
+//    }
 
     public void goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
         Fragment f = Fragment.instantiate(this, cls.getName(), bundle);

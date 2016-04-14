@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamBookView;
 import com.wishcan.www.vocabulazy.storage.Book;
@@ -30,7 +31,7 @@ public class ExamBookFragment extends Fragment {
 
     private static final int TITLE_RES_ID = R.string.fragment_exam_book_title;
 
-    private Database mDatabase;
+    private Database wDatabase;
 
     public static ExamBookFragment newInstance() {
         ExamBookFragment fragment = new ExamBookFragment();
@@ -42,7 +43,8 @@ public class ExamBookFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDatabase = ((MainActivity) getActivity()).getDatabase();
+        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+        wDatabase = vlApplication.getDatabase();
 
         ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "單元測驗");
     }
@@ -50,15 +52,17 @@ public class ExamBookFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(mDatabase == null)
-            mDatabase = ((MainActivity) getActivity()).getDatabase();
+        if (wDatabase == null) {
+            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
+            wDatabase = vlApplication.getDatabase();
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ExamBookView examBookView = new ExamBookView(getActivity());
-        ArrayList<Book> books = (mDatabase == null) ? null : mDatabase.getBooks();
+        ArrayList<Book> books = (wDatabase == null) ? null : wDatabase.getBooks();
         LinkedList<String> bookNames = new LinkedList<>();
         examBookView.setOnBookItemClickListener(new BookView.OnBookItemClickListener() {
             @Override
