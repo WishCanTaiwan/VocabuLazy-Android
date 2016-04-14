@@ -5,17 +5,13 @@ import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
@@ -24,7 +20,6 @@ import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
 import com.wishcan.www.vocabulazy.widget.LessonView;
-import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -34,7 +29,7 @@ import java.util.LinkedList;
  * Use the {@link VocLessonFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VocLessonFragment extends Fragment implements FragmentWithActionBarTitle{
+public class VocLessonFragment extends Fragment {
 
     public static final String TAG = VocLessonFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
@@ -66,12 +61,9 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
 
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         mBookIndex = getArguments() == null ? -1 : getArguments().getInt(BOOK_INDEX_STR);
-//        Log.d(TAG, " bookIndex " + mBookIndex);
         mLessonIndex = 0;
-        FragmentActivity activity = getActivity();
-        if(activity != null && activity instanceof MainActivity){
-            ((MainActivity) activity).setActionBarTitle(this);
-        }
+
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " + mBookIndex);
     }
 
     @Override
@@ -110,19 +102,9 @@ public class VocLessonFragment extends Fragment implements FragmentWithActionBar
     }
 
     private void goPlayerFragment(int bookIndex, int lessonIndex){
-//        Log.d(TAG, "goPlayerFragment");
         Bundle args = new Bundle();
         args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
         args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
         ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "VocLessonFragment");
-    }
-
-    @Override
-    public String getActionBarTitle() {
-        String titleStr = "Book ";
-//        Log.d(TAG, "getActionBarTitle " + mBookIndex);
-        if(mBookIndex != -1)
-            titleStr += mBookIndex;
-        return titleStr;
     }
 }

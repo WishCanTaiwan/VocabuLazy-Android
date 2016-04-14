@@ -87,7 +87,6 @@ public class MainView extends TabView {
 
     @Override
     public void initWhenTabIsSelected(int position) {
-//        ((MainActivity) getContext()).switchActionBarTitle(getContext().getString(TAGIDs[position]));
         if(mListener != null)
             mListener.onTabChange(position);
     }

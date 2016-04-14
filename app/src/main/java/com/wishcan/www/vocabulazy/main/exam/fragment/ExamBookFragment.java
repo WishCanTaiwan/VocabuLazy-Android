@@ -9,18 +9,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamBookView;
-import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
-import com.wishcan.www.vocabulazy.main.voc.view.VocBookView;
 import com.wishcan.www.vocabulazy.storage.Book;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.widget.BookView;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
-import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -30,7 +26,7 @@ import java.util.LinkedList;
  * Use the {@link ExamBookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamBookFragment extends Fragment implements FragmentWithActionBarTitle{
+public class ExamBookFragment extends Fragment {
 
     private static final int TITLE_RES_ID = R.string.fragment_exam_book_title;
 
@@ -47,6 +43,8 @@ public class ExamBookFragment extends Fragment implements FragmentWithActionBarT
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDatabase = ((MainActivity) getActivity()).getDatabase();
+
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "單元測驗");
     }
 
     @Override
@@ -99,8 +97,4 @@ public class ExamBookFragment extends Fragment implements FragmentWithActionBarT
     }
 
 
-    @Override
-    public String getActionBarTitle() {
-        return getResources().getString(TITLE_RES_ID);
-    }
 }

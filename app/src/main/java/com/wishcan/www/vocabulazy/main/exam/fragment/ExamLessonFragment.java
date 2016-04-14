@@ -45,6 +45,7 @@ public class ExamLessonFragment extends Fragment {
         mDatabase = ((MainActivity) getActivity()).getDatabase();
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
 
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " + mBookIndex);
     }
 
     @Override

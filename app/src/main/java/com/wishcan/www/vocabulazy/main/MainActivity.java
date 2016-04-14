@@ -2,23 +2,19 @@ package com.wishcan.www.vocabulazy.main;
 
 
 import android.app.ActionBar;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
@@ -27,14 +23,8 @@ import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Lesson;
-import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.Semaphore;
 
 //import io.uxtesting.UXTesting;
 
@@ -52,11 +42,16 @@ public class MainActivity extends FragmentActivity {
     private static final int TITLE_RES_ID = R.id.custom_bar_title;
     private static final String FONT_RES_STR = "fonts/DFHeiStd-W5.otf";
 
+    public enum FRAGMENT_FLOW {
+        GO, BACK, SAME
+    };
+
     private MainFragment mMainFragment;
     private FragmentManager mFragmentManager;
     private ActionBar mActionBar;
     private TextView mActionBarTitleTextView;
     private static Database mDatabase;
+    private LinkedList<String> mActionBarLL;
 
     private Tracker wTracker;
 
@@ -66,6 +61,7 @@ public class MainActivity extends FragmentActivity {
 
         VLApplication application = (VLApplication) getApplication();
         wTracker = application.getDefaultTracker();
+        mActionBarLL = new LinkedList<>();
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
@@ -117,11 +113,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         setCustomActionBar();
-        Fragment f = getSupportFragmentManager().findFragmentByTag("MainFragment");
-        if(f != null && f instanceof FragmentWithActionBarTitle)
-            setActionBarTitle(((FragmentWithActionBarTitle)f).getActionBarTitle());
     }
 
     @Override
@@ -186,7 +178,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        notifyFragmentChange();
+        switchActionBarStr(FRAGMENT_FLOW.BACK, null);
     }
 
     @Override
@@ -212,14 +204,36 @@ public class MainActivity extends FragmentActivity {
         if(backStackTag != null && !backStackTag.equals(""))
             fragmentTransaction.addToBackStack(backStackTag);
         fragmentTransaction.commit();
-        if(f instanceof FragmentWithActionBarTitle)
-            setActionBarTitle(((FragmentWithActionBarTitle) f).getActionBarTitle());
-
-        notifyFragmentChange();
     }
 
-    private void notifyFragmentChange() {
+    public void switchActionBarStr(FRAGMENT_FLOW flow, String newActionBarStr) {
         Log.d(TAG, "notifyFragmentChange()");
+        if(newActionBarStr == null) {
+            newActionBarStr = "";
+        }
+        switch (flow) {
+            case GO:
+                mActionBarLL.addFirst(newActionBarStr);
+                setActionBarTitle(mActionBarLL.getFirst());
+                break;
+            case BACK:
+                mActionBarLL.removeFirst();
+                if(mActionBarLL.size() > 0) {
+                    setActionBarTitle(mActionBarLL.getFirst());
+                }
+                break;
+            case SAME:
+                Log.d(TAG, "switchActionBar SAME");
+                mActionBarLL.removeFirst();
+                mActionBarLL.addFirst(newActionBarStr);
+                setActionBarTitle(mActionBarLL.getFirst());
+                break;
+            default:
+                break;
+        }
+        Log.d(TAG, "switchActionBarStr " +mActionBarLL.size());
+        if(mActionBarLL.size() > 0)
+            Log.d(TAG, "switchActionBarStr " +mActionBarLL.getFirst());
     }
 
     private void downloadTTSFiles() {
@@ -261,11 +275,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    public void setActionBarTitle(FragmentWithActionBarTitle f) {
-        setActionBarTitle(f.getActionBarTitle());
-    }
-
-    public void setActionBarTitle(String titleStr) {
+    private void setActionBarTitle(String titleStr) {
         if(mActionBarTitleTextView == null) {
             mActionBar = getActionBar();
             if(mActionBar != null && mActionBar.getCustomView() != null)

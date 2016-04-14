@@ -12,14 +12,13 @@ import android.view.ViewGroup;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.view.MainView;
-import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment implements FragmentWithActionBarTitle {
+public class MainFragment extends Fragment {
 
     public static final String TAG = MainFragment.class.getSimpleName();
 
@@ -78,7 +77,7 @@ public class MainFragment extends Fragment implements FragmentWithActionBarTitle
         } else {
             mCurrentTabIndex = 0;
         }
-        ((MainActivity)getActivity()).setActionBarTitle(getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
         mMainView.post(new Runnable() {
             @Override
             public void run() {
@@ -88,11 +87,10 @@ public class MainFragment extends Fragment implements FragmentWithActionBarTitle
         mMainView.setOnTabChangeListener(new MainView.OnTabChangeListener() {
             @Override
             public void onTabChange(int position) {
-                ((MainActivity)getActivity()).setActionBarTitle(getResources().getString(MainView.TAGIDs[position]));
+                ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, getResources().getString(MainView.TAGIDs[position]));
                 mCurrentTabIndex = position;
             }
         });
-
         return mMainView;
     }
 
@@ -102,13 +100,5 @@ public class MainFragment extends Fragment implements FragmentWithActionBarTitle
         Log.d(TAG, "onSaveInstanceState");
         outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
         super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public String getActionBarTitle() {
-        if(mCurrentTabIndex > 0 && mCurrentTabIndex < mMainView.getTabCount())
-            return getResources().getString(MainView.TAGIDs[mCurrentTabIndex]);
-        else
-            return getResources().getString(MainView.TAGIDs[0]);
     }
 }

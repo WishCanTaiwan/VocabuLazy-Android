@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
@@ -27,7 +26,6 @@ import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.service.ServiceBroadcaster;
 import com.wishcan.www.vocabulazy.storage.Option;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
-import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +36,7 @@ import java.util.LinkedList;
  * Use the {@link PlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment implements FragmentWithActionBarTitle, PlayerModel.PlayerModelDataProcessListener, PlayerMainView.OnPlayerItemPreparedListener {
+public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelDataProcessListener, PlayerMainView.OnPlayerItemPreparedListener {
 
     private static final String TAG = PlayerFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
@@ -113,7 +111,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
             restoredItemIndex = bundle.getInt(KEY_ITEM_INDEX);
             restoredSentenceIndex = bundle.getInt(KEY_SENTENCE_INDEX);
         }
-//        Log.d(TAG, "restored item index " + restoredItemIndex);
         int argBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         int argLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
         wIndicesMatch = (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
@@ -121,6 +118,8 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
 
         setLanguage(mBookIndex);
+
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " +mBookIndex+ " Lesson " +mLessonIndex);
 
         /**
          * register the broadcast receiver
@@ -133,12 +132,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
          * start audioservice
          */
 //        startAudio();
-
-        FragmentActivity activity = getActivity();
-        if(activity != null && activity instanceof MainActivity){
-            ((MainActivity) activity).setActionBarTitle(this);
-        }
-
     }
 
     @Override
@@ -245,14 +238,6 @@ public class PlayerFragment extends Fragment implements FragmentWithActionBarTit
         });
 
         return playerView;
-    }
-
-    @Override
-    public String getActionBarTitle() {
-        String titleStr = "Book ";
-        if(mBookIndex != -1 && mLessonIndex != -1)
-            titleStr += mBookIndex + " Lesson " + mLessonIndex;
-        return titleStr;
     }
 
     @Override

@@ -54,6 +54,8 @@ public class ExamFragment extends Fragment {
             mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
             mCurrentLessonIndex = getArguments().getInt(ARG_LESSON_INDEX);
         }
+
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " + mCurrentBookIndex + " Lesson " + mCurrentLessonIndex);
     }
 
     @Override

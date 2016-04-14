@@ -57,27 +57,13 @@ public class ExamIndexFragment extends Fragment {
     }
 
     private void goExamBookFragment(){
-        FragmentManager fragmentManager = getFragmentManager();
-        ExamBookFragment examBookFragment = ExamBookFragment.newInstance();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.
-                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examBookFragment, "ExamBookFragment");
-        fragmentTransaction.addToBackStack("ExamIndexFragment");
-        fragmentTransaction.commit();
+        Bundle args = new Bundle();
+        ((MainActivity) getActivity()).goFragment(ExamBookFragment.class, args, "ExamBookFragment", "ExamIndexFragment");
     }
 
     private void goExamNoteFragment(){
-        FragmentManager fragmentManager = getFragmentManager();
-        ExamNoteFragment examNoteFragment = ExamNoteFragment.newInstance();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.
-                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examNoteFragment, "ExamNoteFragment");
-        fragmentTransaction.addToBackStack("ExamIndexFragment");
-        fragmentTransaction.commit();
+        Bundle args = new Bundle();
+        ((MainActivity) getActivity()).goFragment(ExamNoteFragment.class, args, "ExamNoteFragment", "ExamIndexFragment");
     }
 
 }

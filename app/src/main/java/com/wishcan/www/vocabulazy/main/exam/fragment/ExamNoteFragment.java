@@ -14,7 +14,6 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamNoteView;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Lesson;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
-import com.wishcan.www.vocabulazy.widget.FragmentWithActionBarTitle;
 import com.wishcan.www.vocabulazy.widget.NoteView;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.LinkedList;
 /**
  * Created by swallow on 2016/1/14.
  */
-public class ExamNoteFragment extends Fragment implements FragmentWithActionBarTitle{
+public class ExamNoteFragment extends Fragment {
 
     private static final int TITLE_RES_ID = R.string.fragment_exam_note_title;
     private Database mDatabase;
@@ -39,6 +38,8 @@ public class ExamNoteFragment extends Fragment implements FragmentWithActionBarT
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDatabase = ((MainActivity) getActivity()).getDatabase();
+
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "清單測驗");
     }
 
     @Override
@@ -91,8 +92,4 @@ public class ExamNoteFragment extends Fragment implements FragmentWithActionBarT
         fragmentTransaction.commit();
     }
 
-    @Override
-    public String getActionBarTitle() {
-        return getResources().getString(TITLE_RES_ID);
-    }
 }
