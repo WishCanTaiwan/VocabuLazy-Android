@@ -23,6 +23,7 @@ import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.storage.Preferences;
 
 import java.util.LinkedList;
 
@@ -50,11 +51,12 @@ public class MainActivity extends FragmentActivity {
     private FragmentManager mFragmentManager;
     private ActionBar mActionBar;
     private TextView mActionBarTitleTextView;
-    private static Database mDatabase;
     private LinkedList<String> mActionBarLL;
     private Menu mOptionMenu;
 
     private Tracker wTracker;
+    private Database wDatabase;
+    private Preferences wPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,9 @@ public class MainActivity extends FragmentActivity {
 
         VLApplication application = (VLApplication) getApplication();
         wTracker = application.getDefaultTracker();
+        wDatabase = application.getDatabase();
+        wPreferences = application.getPreferences();
+
         mActionBarLL = new LinkedList<>();
 
         setContentView(VIEW_ACTIVITY_RES_ID);
@@ -85,12 +90,6 @@ public class MainActivity extends FragmentActivity {
             fragmentTransaction.commit();
         }
 
-        if (mDatabase == null) {
-            mDatabase = new Database(this);
-        } else {
-            Log.d("MainActivity", "database already exist.");
-        }
-
         mMainActivity = this;
 
 //        downloadTTSFiles();
@@ -101,8 +100,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (mDatabase != null) {
-            mDatabase.loadNotes();
+        if (wDatabase != null) {
+            wDatabase.loadNotes();
         }
     }
 
@@ -120,7 +119,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mDatabase.writeToFile(this);
+        wDatabase.writeToFile(this);
     }
 
     @Override
@@ -158,13 +157,11 @@ public class MainActivity extends FragmentActivity {
             return true;
         } else if (id == R.id.action_goto_player) {
             // fetching player information from database.
-            Bundle playerInfo = mDatabase.loadPlayerInfo();
-            if(playerInfo != null) {
-                int bookIndex = playerInfo.getInt(PlayerFragment.KEY_BOOK_INDEX, 1359);
-                int lessonIndex = playerInfo.getInt(PlayerFragment.KEY_LESSON_INDEX, 1359);
-
+            int bookIndex = wPreferences.wBookIndex;
+            int lessonIndex = wPreferences.wLessonIndex;
+            if(bookIndex != 1359 && lessonIndex != 1359) {
                 Log.d(TAG, "retrive bookIndex " + bookIndex + " lessonIndex " + lessonIndex);
-                Log.d(TAG, mDatabase.toString());
+                Log.d(TAG, wDatabase.toString());
 
                 Bundle args = new Bundle();
                 args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
@@ -189,7 +186,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public Database getDatabase() {
-        return mDatabase;
+        return wDatabase;
     }
 
     public void goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {

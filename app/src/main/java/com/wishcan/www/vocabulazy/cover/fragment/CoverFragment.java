@@ -33,7 +33,6 @@ public class CoverFragment extends Fragment implements DialogFragment.OnDialogFi
     private static final String PACKAGE_NAME_GOOGLE_TTS = "com.google.android.tts";
 
     private View mView;
-    private boolean mShowDialog;
 
     public CoverFragment() {
         // Required empty public constructor
@@ -52,29 +51,12 @@ public class CoverFragment extends Fragment implements DialogFragment.OnDialogFi
         if (getArguments() != null) {
         }
         M_TAG = getTag();
-        //TODO: BeiBei please add your condition here to change mShowDialog, TRUE will show the dialog
-        mShowDialog = true;
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView =  inflater.inflate(VIEW_RES_ID, container, false);
-//        final CoverDialogFragment dialogFragment = new CoverDialogFragment();
-//        if (mShowDialog) {
-//            mView.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    if(dialogFragment != null) {
-//                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                        fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
-//                        fragmentTransaction.addToBackStack("CoverFragment");
-//                        fragmentTransaction.commit();
-//                    }
-//                }
-//            }, 1000);
-//        }
         return mView;
     }
 
@@ -94,21 +76,10 @@ public class CoverFragment extends Fragment implements DialogFragment.OnDialogFi
             fragmentTransaction.addToBackStack("CoverFragment");
             fragmentTransaction.commit();
         }
-
-//        if (mShowDialog) {
-//
-//            if(dialogFragment != null) {
-//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
-//                fragmentTransaction.addToBackStack("CoverFragment");
-//                fragmentTransaction.commit();
-//            }
-//        }
     }
 
     @Override
     public void onDialogFinish(Boolean ifYesClicked) {
-        //TODO: BeiBei please put the code here to execute what you want to do after click YES or NO
         if (ifYesClicked) {
             Log.d(TAG, "YES");
             directToGooglePlay(PACKAGE_NAME_GOOGLE_TTS);

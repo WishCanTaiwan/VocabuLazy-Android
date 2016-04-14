@@ -7,7 +7,9 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.util.Log;
 
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.storage.Option;
+import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
 import java.util.ArrayList;
@@ -75,6 +77,11 @@ public class AudioService extends IntentService
     public static final String PLAYING_TRANSLATION = "playing-translation";
     public static final String PLAYING_EnSENTENCE = "playing-ensentence";
     public static final String PLAYING_CnSENTENCE = "playing-cnsentence";
+
+    /**
+     * The preferences of the entire application.
+     */
+    private Preferences wPreference;
 
     private AudioPlayer wAudioPlayer;
     private AudioManager wAudioManager;
@@ -160,6 +167,9 @@ public class AudioService extends IntentService
                 break;
 
             case ACTION_START_SERVICE:
+                VLApplication vlApplication = (VLApplication) getApplication();
+                wPreference = vlApplication.getPreferences();
+
                 wAudioPlayer = new AudioPlayer(this);
                 wServiceBroadcaster = new ServiceBroadcaster(this);
                 wcTextToSpeech = new WCTextToSpeech(getApplicationContext(), this);
@@ -336,6 +346,8 @@ public class AudioService extends IntentService
                         "playing " + wPlaying + ", sentence # " + sentenceIndex);
                 break;
         }
+
+        updateIndices(itemIndex, sentenceIndex);
     }
 
     int pickNextItem(int currentIndex) {
@@ -373,6 +385,11 @@ public class AudioService extends IntentService
         if (wPlaying.equals(PLAYING_CnSENTENCE) && wCurrentSentenceIndex == wCurrentSentenceAmount-1) return true;
         if (wPlaying.equals(PLAYING_TRANSLATION) && !wOptionSetting.mSentence) return true;
         return false;
+    }
+
+    void updateIndices(int itemIndex, int sentenceIndex) {
+        wPreference.wItemIndex = itemIndex;
+        wPreference.wSentenceIndex = sentenceIndex;
     }
 
     @Override

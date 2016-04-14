@@ -25,6 +25,7 @@ import com.wishcan.www.vocabulazy.main.player.view.PlayerView;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.service.ServiceBroadcaster;
 import com.wishcan.www.vocabulazy.storage.Option;
+import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 
 import java.util.ArrayList;
@@ -73,7 +74,15 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
      */
     private ServiceBroadcastReceiver wServiceBroadcastReceiver;
 
+    /**
+     * The tracker used to track the app's behaviors and send to Google Analytics.
+     */
     private Tracker wTracker;
+
+    /**
+     * The preferences object to store volatile arguments and parameters.
+     */
+    private Preferences wPreference;
 
     public static PlayerFragment newInstance(int bookIndex, int lessonIndex) {
         PlayerFragment fragment = new PlayerFragment();
@@ -94,22 +103,23 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
 
         VLApplication application = (VLApplication) getActivity().getApplication();
         wTracker = application.getDefaultTracker();
+        wPreference = application.getPreferences();
 
         requestAudioFocus();
 
-        mPlayerModel = new PlayerModel((MainActivity) getActivity());
+        mPlayerModel = new PlayerModel(application);
         mPlayerModel.setDataProcessListener(this);
 
         int restoredBookIndex = 1359;
         int restoredLessonIndex = 1359;
         int restoredItemIndex = 0;
         int restoredSentenceIndex = -1;
-        Bundle bundle = loadPreferences();
-        if (bundle != null) {
-            restoredBookIndex = bundle.getInt(KEY_BOOK_INDEX);
-            restoredLessonIndex = bundle.getInt(KEY_LESSON_INDEX);
-            restoredItemIndex = bundle.getInt(KEY_ITEM_INDEX);
-            restoredSentenceIndex = bundle.getInt(KEY_SENTENCE_INDEX);
+        int[] indices = loadPreferences();
+        if (indices.length > 0) {
+            restoredBookIndex = indices[0];
+            restoredLessonIndex = indices[1];
+            restoredItemIndex = indices[2];
+            restoredSentenceIndex = indices[3];
         }
         int argBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         int argLessonIndex = getArguments() == null ? 0 : getArguments().getInt(LESSON_INDEX_STR);
@@ -289,6 +299,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         mPlayerMainView.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.d(TAG, "addNewPlayer at item " + mItemIndex);
                 mPlayerMainView.addNewPlayer(playerDataContent, mItemIndex);
             }
         }, 600);
@@ -332,16 +343,11 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
 
     private void savePreferences() {
         Log.d(TAG, "save indices book " + mBookIndex + " lesson " + mLessonIndex);
-        Bundle bundle = new Bundle();
-        bundle.putInt(KEY_BOOK_INDEX, mBookIndex);
-        bundle.putInt(KEY_LESSON_INDEX, mLessonIndex);
-        bundle.putInt(KEY_ITEM_INDEX, mItemIndex);
-        bundle.putInt(KEY_SENTENCE_INDEX, mSentenceIndex);
-        mPlayerModel.savePlayerInfo(bundle);
+        mPlayerModel.saveIndicesPreferences(new int[]{mBookIndex, mLessonIndex, mItemIndex, mSentenceIndex});
     }
 
-    private Bundle loadPreferences() {
-        return mPlayerModel.loadPlayerInfo();
+    private int[] loadPreferences() {
+        return mPlayerModel.loadIndicesPreferences();
     }
 
     private void setupOptions() {
@@ -462,6 +468,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
                     int newItemIndex = intent.getIntExtra(ServiceBroadcaster.KEY_NEXT_ITEM_INDEX, -1);
                     updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
                     mPlayerMainView.moveToPosition(newItemIndex);
+                    Log.d(TAG, "new item index " + newItemIndex);
                     if (mVocabularies != null) {
                         mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
                     }

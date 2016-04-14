@@ -6,10 +6,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Option;
+import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.Vocabulary;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
 
@@ -19,72 +21,26 @@ import java.util.HashMap;
 
 public class PlayerModel {
 
-    private static final String TAG = PlayerModel.class.getSimpleName();
+    /**
+     * The TAG string for debugging.
+     */
+    public static final String TAG = PlayerModel.class.getSimpleName();
 
     private static final String KEY_CONTENT_BUNDLE = "content-bundle";
     private static final String KEY_DATABASE_BOOK_INDEX = "book-index";
     private static final String KEY_DATABASE_LESSON_INDEX = "lesson-index";
 
-    private MainActivity mMainActivity;
-    private Database mDatabase;
-    private AudioService mAudioService;
+    private Database wDatabase;
+    private Preferences wPreferences;
     private ArrayList<Vocabulary> mVocabularies;
 
     private PlayerModelAsyncTask wAsyncTask;
     private PlayerModelDataProcessListener wDataProcessListener;
 
-	public PlayerModel(MainActivity mainActivity) {
-        mMainActivity = mainActivity;
-        mDatabase = mainActivity.getDatabase();
+	public PlayerModel(VLApplication application) {
+        wDatabase = application.getDatabase();
+        wPreferences = application.getPreferences();
 	}
-
-//	public LinkedList<HashMap> createPlayerContent(ArrayList<Vocabulary> vocArrayList) {
-//		LinkedList<HashMap> playerDataContent = new LinkedList<>();
-//		for(Vocabulary voc : vocArrayList) {
-//            HashMap<String, String> hm = new HashMap<>();
-//            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
-//            ArrayList<String> transList = voc.getTranslate();
-//            ArrayList<String> cateList = voc.getCategory();
-//            for(int i = 0; i < transList.size() && i < cateList.size() && i < 2; i++) {
-//                String newStr = "(" +cateList.get(i)+ ")" + transList.get(i);
-//                hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1+i], newStr);
-//            }
-////            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], voc.getTranslationInOneString());
-//
-//            playerDataContent.add(hm);
-//        }
-//        return playerDataContent;
-//	}
-
-//	public HashMap<String, Object> createPlayerDetailContent(Vocabulary voc) {
-////        Log.d(TAG, voc.toVocabularyString());
-//        HashMap<String, Object> playerDetailDataContent = new HashMap<>();
-//        if (voc != null) {
-//            playerDetailDataContent
-//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[0],
-//                            voc.getSpell());
-//            playerDetailDataContent
-//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[1],
-//                            voc.getTranslationInOneString());
-//            playerDetailDataContent
-//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[2],
-//                            voc.getKK());
-//            playerDetailDataContent
-//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[3],
-//                            voc.getEn_Sentence());
-//            playerDetailDataContent
-//                    .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[4],
-//                            voc.getCn_Sentence());
-//        }
-//        return playerDetailDataContent;
-//	}
-
-//    public ArrayList<Vocabulary> getVocabulariesIn(int bookIndex, int lessonIndex) {
-//        ArrayList<Integer> contentIDs = mDatabase.getContentIDs(bookIndex, lessonIndex);
-//        mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
-//        return mVocabularies;
-//    }
-
 
     public void createPlayerContent(ArrayList<Vocabulary> vocabularyArrayList) {
         new PlayerModelAsyncTask().execute(vocabularyArrayList);
@@ -99,45 +55,69 @@ public class PlayerModel {
     }
 
     public int getNumOfLessons(int bookIndex) {
-        return mDatabase.getNumOfLesson(bookIndex);
+        return wDatabase.getNumOfLesson(bookIndex);
     }
 
     public Option getCurrentOption() {
-        return mDatabase.getCurrentOption();
+        return wDatabase.getCurrentOption();
     }
 
     public ArrayList<Option> getDefaultOptions() {
-        return mDatabase.getOptions();
+        return wDatabase.getOptions();
     }
 
     public void setOptionAndMode(ArrayList<Option> optionArrayList, int optionMode) {
-        mDatabase.setCurrentOptions(optionArrayList);
-        mDatabase.setCurrentOptionMode(optionMode);
+        wDatabase.setCurrentOptions(optionArrayList);
+        wDatabase.setCurrentOptionMode(optionMode);
     }
 
-    public void savePlayerInfo(Bundle bundle) {
-//        Bundle bundle = new Bundle();
-//        bundle.putInt(KEY_DATABASE_BOOK_INDEX, bookIndex);
-//        bundle.putInt(KEY_DATABASE_LESSON_INDEX, lessonIndex);
-        Log.d(TAG, mDatabase.toString());
-        mDatabase.savePlayerInfo(bundle);
+    /**
+     * Call saveIndicesPreferences(int[]) to store/update the indices of player.
+     * int[0] is book index.
+     * int[1] is lesson index.
+     * int[2] is item index.
+     * int[3] is sentence index.
+     * @param indices an array of int consists of four indices {book, lesson, item, sentence}
+     */
+    public void saveIndicesPreferences(int[] indices) {
+        wPreferences.wBookIndex = indices[0];
+        wPreferences.wLessonIndex = indices[1];
+        wPreferences.wItemIndex = indices[2];
+        wPreferences.wSentenceIndex = indices[3];
     }
 
-    public Bundle loadPlayerInfo() {
-//        Bundle bundle = mDatabase.loadPlayerInfo();
-//        if (bundle != null) {
-//            int bookIndex = bundle.getInt(KEY_DATABASE_BOOK_INDEX);
-//            int lessonIndex = bundle.getInt(KEY_DATABASE_LESSON_INDEX);
-//        }
-        return mDatabase.loadPlayerInfo();
+    /**
+     * Call loadIndicesPreferences to retrieve an array containing four indices of the player.
+     * int[0] is book index.
+     * int[1] is lesson index.
+     * int[2] is item index.
+     * int[3] is sentence index.
+     * @return indices
+     */
+    public int[] loadIndicesPreferences() {
+        int[] indices = new int[4];
+        indices[0] = wPreferences.wBookIndex;
+        indices[1] = wPreferences.wLessonIndex;
+        indices[2] = wPreferences.wItemIndex;
+        indices[3] = wPreferences.wSentenceIndex;
+        return indices;
     }
 
+    /**
+     * Method for updating the status of player.
+     * @param status the string representing the player's status.
+     */
     public void updatePlayerStatus(String status) {
-        mDatabase.updatePlayerStatus(status);
+        wPreferences.wPlayerStatus = status;
     }
 
+    /**
+     * Call this method to check whether the player is playing.
+     * @return the bool value of whether player status equals to STATUS_PLAYING
+     */
     public boolean isPlayerPlaying() {
-        return mDatabase.isPlayerPlaying();
+        String playerStatus = wPreferences.wPlayerStatus;
+        return (playerStatus.equals(AudioService.STATUS_PLAYING));
     }
 
     private void setContentToPlayer(Activity activity, ArrayList<Vocabulary> vocabularies) {
@@ -203,8 +183,8 @@ public class PlayerModel {
             if (params[0] instanceof Integer) {
                 int bookIndex = (Integer) params[0];
                 int lessonIndex = (Integer) params[1];
-                ArrayList<Integer> contentIDs = mDatabase.getContentIDs(bookIndex, lessonIndex);
-                mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
+                ArrayList<Integer> contentIDs = wDatabase.getContentIDs(bookIndex, lessonIndex);
+                mVocabularies = wDatabase.getVocabulariesByIDs(contentIDs);
                 return mVocabularies;
             }
 
