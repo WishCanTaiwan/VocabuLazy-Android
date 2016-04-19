@@ -10,12 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamLessonView;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Lesson;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
 import com.wishcan.www.vocabulazy.widget.LessonView;
 

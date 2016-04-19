@@ -4,8 +4,6 @@ package com.wishcan.www.vocabulazy.main.usr.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +17,7 @@ import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.usr.view.UsrNoteDialogView;
 import com.wishcan.www.vocabulazy.main.usr.view.UsrNoteView;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Lesson;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 import com.wishcan.www.vocabulazy.widget.ErrorView;
 import com.wishcan.www.vocabulazy.widget.NoteView;
@@ -108,6 +106,8 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
 
         if(notes == null)
             return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
+
+        Log.d(TAG, notes.size() + " notes");
 
         for(int i = 0; i < notes.size(); i++) {
             Log.d("UsrNote", notes.get(i).getName());

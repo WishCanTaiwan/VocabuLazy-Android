@@ -7,12 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
 import com.wishcan.www.vocabulazy.storage.Preferences;
-import com.wishcan.www.vocabulazy.storage.Vocabulary;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
 
 import java.util.LinkedList;
@@ -119,12 +118,9 @@ public class PlayerModel {
     }
 
     private void setContentToPlayer(Activity activity, ArrayList<Vocabulary> vocabularies) {
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(KEY_CONTENT_BUNDLE, vocabularies);
-
         Intent intent = new Intent(activity, AudioService.class);
         intent.setAction(AudioService.ACTION_SET_CONTENT);
-        intent.putExtra(KEY_CONTENT_BUNDLE, bundle);
+        wPreferences.wCurrentContentInPlayer = vocabularies;
         activity.startService(intent);
     }
 
@@ -142,7 +138,7 @@ public class PlayerModel {
                 for(Vocabulary voc : vocArrayList) {
                     HashMap<String, String> hm = new HashMap<>();
                     hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
-                    ArrayList<String> transList = voc.getTranslate();
+                    ArrayList<String> transList = voc.getTranslation();
                     ArrayList<String> cateList = voc.getCategory();
                     for(int i = 0; i < transList.size() && i < cateList.size() && i < 2; i++) {
                         String newStr = "(" +cateList.get(i)+ ")" + transList.get(i);
@@ -167,13 +163,13 @@ public class PlayerModel {
                                     voc.getTranslationInOneString());
                     playerDetailDataContent
                             .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[2],
-                                    voc.getKK());
+                                    voc.getKk());
                     playerDetailDataContent
                             .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[3],
-                                    voc.getEn_Sentence());
+                                    voc.getEn_sentence());
                     playerDetailDataContent
                             .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[4],
-                                    voc.getCn_Sentence());
+                                    voc.getCn_sentence());
                 }
                 return playerDetailDataContent;
             }
@@ -194,26 +190,21 @@ public class PlayerModel {
             super.onPostExecute(result);
 
             if (result instanceof LinkedList) {
-//                Log.d(TAG, "player content created");
                 LinkedList<HashMap> playerDataContent = (LinkedList<HashMap>) result;
                 wDataProcessListener.onPlayerContentCreated(playerDataContent);
                 return;
             }
 
             if (result instanceof HashMap) {
-//                Log.d(TAG, "detail content created");
                 HashMap<String, Object> playerDetailDataContent = (HashMap<String, Object>) result;
                 wDataProcessListener.onDetailPlayerContentCreated(playerDetailDataContent);
                 return;
             }
 
             if (result instanceof ArrayList) {
-//                Log.d(TAG, "vocabularies loaded");
                 ArrayList<Vocabulary> vocabularies = (ArrayList<Vocabulary>) result;
                 wDataProcessListener.onVocabulariesGet(vocabularies);
-                return;
             }
-
         }
     }
 

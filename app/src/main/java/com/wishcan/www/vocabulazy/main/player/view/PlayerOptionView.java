@@ -11,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.storage.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
 import com.wishcan.www.vocabulazy.widget.LinkedListPagerAdapter;
 import com.wishcan.www.vocabulazy.widget.NumeralPicker;
 
@@ -199,26 +198,25 @@ public class PlayerOptionView extends LinearLayout {
                 int mode = option.getMode() - 1;
                 switch (optionID){
                     case PLAYER_OPTION_RANDOM_VIEW_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.isIsRandom());
+                        setOptionInTabContent(mode, optionID, option.isRandom());
                         break;
                     case PLAYER_OPTION_REPEAT_VIEW_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.getListLoop());
+                        setOptionInTabContent(mode, optionID, option.getListloop());
                         break;
                     case PLAYER_OPTION_SENTENCE_VIEW_RES_ID:
                         setOptionInTabContent(mode, optionID, option.isSentence());
                         break;
                     case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.getStopPeriod());
+                        setOptionInTabContent(mode, optionID, option.getStopperiod());
                         break;
                     case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.getItemLoop());
+                        setOptionInTabContent(mode, optionID, option.getItemloop());
                         break;
                     case PLAYER_OPTION_SPEED_PICKER_RES_ID:
                         setOptionInTabContent(mode, optionID, option.getSpeed());
                         break;
                     case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
-//                        Log.d("option.PlayTime()", " "+option.getPlayTime());
-                        setOptionInTabContent(mode, optionID, option.getPlayTime());
+                        setOptionInTabContent(mode, optionID, option.getPlaytime());
                         break;
                     default:
                         break;
@@ -346,12 +344,12 @@ public class PlayerOptionView extends LinearLayout {
                             Option option = mOptionLL.get(mCurrentTabIndex);
                             switch (v.getId()){
                                 case PLAYER_OPTION_RANDOM_VIEW_RES_ID:
-                                    option.setIsRandom(!option.isIsRandom());
-                                    ((ImageView) v).setImageLevel(option.isIsRandom() ? 1 : 0);
+                                    option.setRandom(!option.isRandom());
+                                    ((ImageView) v).setImageLevel(option.isRandom() ? 1 : 0);
                                     break;
                                 case PLAYER_OPTION_REPEAT_VIEW_RES_ID:
-                                    option.setListLoop((option.getListLoop() + 1) % 4);
-                                    ((ImageView) v).setImageLevel(option.getListLoop());
+                                    option.setListloop((option.getListloop() + 1) % 4);
+                                    ((ImageView) v).setImageLevel(option.getListloop());
                                     break;
                                 case PLAYER_OPTION_SENTENCE_VIEW_RES_ID:
                                     option.setSentence(!option.isSentence());
@@ -372,16 +370,16 @@ public class PlayerOptionView extends LinearLayout {
                             Option option = mOptionLL.get(mCurrentTabIndex);
                             switch (v.getId()){
                                 case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                                    option.setStopPeriod(Integer.valueOf(valueStr));
+                                    option.setStopperiod(Integer.valueOf(valueStr));
                                     break;
                                 case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
-                                    option.setItemLoop(Integer.valueOf(valueStr));
+                                    option.setItemloop(Integer.valueOf(valueStr));
                                     break;
                                 case PLAYER_OPTION_SPEED_PICKER_RES_ID:
                                     option.setSpeed(Integer.valueOf(valueStr));
                                     break;
                                 case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
-                                    option.setPlayTime(Integer.valueOf(valueStr));
+                                    option.setPlaytime(Integer.valueOf(valueStr));
                                     break;
                                 default:
                                     break;

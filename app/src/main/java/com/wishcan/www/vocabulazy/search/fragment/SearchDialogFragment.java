@@ -1,13 +1,12 @@
 package com.wishcan.www.vocabulazy.search.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Lesson;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 import com.wishcan.www.vocabulazy.widget.DialogView;
 

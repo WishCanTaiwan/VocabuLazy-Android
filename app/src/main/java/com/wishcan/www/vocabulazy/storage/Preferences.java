@@ -1,6 +1,10 @@
 package com.wishcan.www.vocabulazy.storage;
 
 import com.wishcan.www.vocabulazy.service.AudioService;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
+
+import java.util.ArrayList;
 
 /**
  * Created by allencheng07 on 2016/4/14.
@@ -15,4 +19,8 @@ public class Preferences {
     public int wSentenceIndex = -1;
 
     public String wPlayerStatus = AudioService.STATUS_IDLE;
+
+    public ArrayList<Vocabulary> wCurrentContentInPlayer;
+    public Option wCurrentOptionSettings;
+
 }

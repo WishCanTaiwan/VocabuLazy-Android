@@ -4,8 +4,6 @@ package com.wishcan.www.vocabulazy.main.voc.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.voc.view.VocBookView;
-import com.wishcan.www.vocabulazy.storage.Book;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.widget.BookView;
 import com.wishcan.www.vocabulazy.widget.ErrorView;

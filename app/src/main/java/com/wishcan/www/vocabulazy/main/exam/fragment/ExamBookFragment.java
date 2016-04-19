@@ -14,7 +14,7 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamBookView;
-import com.wishcan.www.vocabulazy.storage.Book;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.widget.BookView;
 import com.wishcan.www.vocabulazy.widget.ErrorView;

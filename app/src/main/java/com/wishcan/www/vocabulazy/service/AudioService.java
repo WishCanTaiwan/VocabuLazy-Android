@@ -8,9 +8,9 @@ import android.media.MediaPlayer;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.storage.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
 import com.wishcan.www.vocabulazy.storage.Preferences;
-import com.wishcan.www.vocabulazy.storage.Vocabulary;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -190,8 +190,12 @@ public class AudioService extends IntentService
                 break;
 
             case ACTION_SET_CONTENT:
-                wVoabularies = intent.getParcelableArrayListExtra(KEY_PLAYER_CONTENT);
-                wOptionSetting = intent.getParcelableExtra(KEY_OPTION_SETTING);
+                Log.d(TAG, "set content");
+                wVoabularies = wPreference.wCurrentContentInPlayer;
+                Log.d(TAG, wVoabularies.size() + " vocabularies");
+//                wVoabularies = intent.getParcelableArrayListExtra(KEY_PLAYER_CONTENT);
+                wOptionSetting = wPreference.wCurrentOptionSettings;
+//                wOptionSetting = intent.getParcelableExtra(KEY_OPTION_SETTING);
                 wCurrentItemAmount = wVoabularies.size();
                 updateOptionSetting(wOptionSetting);
 //                Log.d(TAG, voabularies.size() + " vocabulary objects received from controller");
@@ -210,7 +214,7 @@ public class AudioService extends IntentService
                 wStatus = STATUS_PLAYING;
                 wServiceBroadcaster.updatePlayerStatus(wStatus);
                 wPlaying = playing;
-                wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                 startPlayingItemAt(itemIndex, sentenceIndex, checkIsItemFinishing());
                 break;
 
@@ -250,13 +254,15 @@ public class AudioService extends IntentService
                 break;
 
             case ACTION_OPTION_SETTING_CHANGED:
-                wOptionSetting = intent.getParcelableExtra(KEY_OPTION_SETTING);
+                wOptionSetting = wPreference.wCurrentOptionSettings;
+//                wOptionSetting = intent.getParcelableExtra(KEY_OPTION_SETTING);
 //                Log.d(TAG, "update option setting: random: " + wOptionSetting.mIsRandom + ", sentence: " + wOptionSetting.mSentence);
                 updateOptionSetting(wOptionSetting);
                 break;
 
             case ACTION_NEW_LIST:
-                wVoabularies = intent.getParcelableArrayListExtra(KEY_NEW_CONTENT);
+                wVoabularies = wPreference.wCurrentContentInPlayer;
+//                wVoabularies = intent.getParcelableArrayListExtra(KEY_NEW_CONTENT);
                 wCurrentItemAmount = wVoabularies.size();
 
                 spellCountDown = 3;
@@ -266,7 +272,7 @@ public class AudioService extends IntentService
                 wStatus = STATUS_PLAYING;
                 wServiceBroadcaster.updatePlayerStatus(wStatus);
                 wPlaying = PLAYING_SPELL;
-                wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                 startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
                 break;
 
@@ -324,19 +330,19 @@ public class AudioService extends IntentService
             case PLAYING_TRANSLATION:
 //                Log.d(TAG, "YOLO2");
 //                string = wVoabularies.get(itemIndex).getTranslationInOneString();
-                string = wVoabularies.get(itemIndex).getTranslate().get(0);
+                string = wVoabularies.get(itemIndex).getTranslation().get(0);
                 wcTextToSpeech.setLanguage(wTranslationLanguage);
                 wcTextToSpeech.speak(string, isItemFinished);
                 break;
 
             case PLAYING_EnSENTENCE:
-                string = wVoabularies.get(itemIndex).getEn_Sentence().get(sentenceIndex);
+                string = wVoabularies.get(itemIndex).getEn_sentence().get(sentenceIndex);
                 wcTextToSpeech.setLanguage(wSpellLanguage);
                 wcTextToSpeech.speak(string, isItemFinished);
                 break;
 
             case PLAYING_CnSENTENCE:
-                string = wVoabularies.get(itemIndex).getCn_Sentence().get(sentenceIndex);
+                string = wVoabularies.get(itemIndex).getCn_sentence().get(sentenceIndex);
                 wcTextToSpeech.setLanguage(wTranslationLanguage);
                 wcTextToSpeech.speak(string, isItemFinished);
                 break;
@@ -367,23 +373,23 @@ public class AudioService extends IntentService
     }
 
     void updateOptionSetting(Option optionSetting) {
-        wIsRandom = optionSetting.mIsRandom;
-        wEnSentenceEnabled = optionSetting.mSentence;
-        wCnSentenceEnabled = optionSetting.mSentence;
-        wPlayTime = optionSetting.mPlayTime;
+        wIsRandom = optionSetting.isRandom();
+        wEnSentenceEnabled = optionSetting.isSentence();
+        wCnSentenceEnabled = optionSetting.isSentence();
+        wPlayTime = optionSetting.getPlaytime();
 
-        wListLoop = optionSetting.mListLoop;
-        wItemLoop = optionSetting.mItemLoop;
+        wListLoop = optionSetting.getListloop();
+        wItemLoop = optionSetting.getItemloop();
         itemloopCountDown = wItemLoop;
         listloopCountDown = wListLoop;
 
-        wcTextToSpeech.setStopPeriod(optionSetting.mStopPeriod);
-        wcTextToSpeech.setSpeed(optionSetting.mSpeed);
+        wcTextToSpeech.setStopPeriod(optionSetting.getStopperiod());
+        wcTextToSpeech.setSpeed(optionSetting.getSpeed());
     }
 
     boolean checkIsItemFinishing() {
         if (wPlaying.equals(PLAYING_CnSENTENCE) && wCurrentSentenceIndex == wCurrentSentenceAmount-1) return true;
-        if (wPlaying.equals(PLAYING_TRANSLATION) && !wOptionSetting.mSentence) return true;
+        if (wPlaying.equals(PLAYING_TRANSLATION) && !wOptionSetting.isSentence()) return true;
         return false;
     }
 
@@ -422,14 +428,14 @@ public class AudioService extends IntentService
 //            Log.d(TAG, "status is stopped");
             if (wCurrentItemIndex >= 0) {
                 wCurrentSentenceIndex = -1;
-                wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                 wPlaying = PLAYING_SPELL;
                 wStatus = STATUS_PLAYING;
                 wServiceBroadcaster.updatePlayerStatus(wStatus);
                 startPlayingItemAt(wCurrentItemIndex, wCurrentSentenceIndex, checkIsItemFinishing());
             } else {
                 wCurrentItemIndex = 0;
-                wCurrentSentenceAmount = wVoabularies.get(0).getEn_Sentence().size();
+                wCurrentSentenceAmount = wVoabularies.get(0).getEn_sentence().size();
 //                Log.d(TAG, wVoabularies.get(0).getSpell());
                 wPlaying = PLAYING_SPELL;
                 wStatus = STATUS_PLAYING;
@@ -482,7 +488,7 @@ public class AudioService extends IntentService
                     wCurrentItemIndex = pickNextItem(wCurrentItemIndex);
                     wCurrentSentenceIndex = -1;
                     if (wCurrentItemIndex >= 0) {
-                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                         wPlaying = PLAYING_SPELL;
                         wServiceBroadcaster.onHideDetail();
                         wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
@@ -493,7 +499,7 @@ public class AudioService extends IntentService
                             wPlaying = PLAYING_SPELL;
                             wCurrentItemIndex = 0;
                             wCurrentSentenceIndex = 0;
-                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                             wServiceBroadcaster.onHideDetail();
                             wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
 //                            return;
@@ -537,7 +543,7 @@ public class AudioService extends IntentService
                     wCurrentItemIndex = pickNextItem(wCurrentItemIndex);
                     wCurrentSentenceIndex = -1;
                     if (wCurrentItemIndex >= 0) {
-                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                         wPlaying = PLAYING_SPELL;
                         wServiceBroadcaster.onHideDetail();
                         wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
@@ -548,7 +554,7 @@ public class AudioService extends IntentService
                             wPlaying = PLAYING_SPELL;
                             wCurrentItemIndex = 0;
                             wCurrentSentenceIndex = 0;
-                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                             wServiceBroadcaster.onHideDetail();
                             wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
 //                            return;
@@ -589,7 +595,7 @@ public class AudioService extends IntentService
                     wCurrentItemIndex = pickNextItem(wCurrentItemIndex);
                     wCurrentSentenceIndex = -1;
                     if (wCurrentItemIndex >= 0) {
-                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                        wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                         wPlaying = PLAYING_SPELL;
                         wServiceBroadcaster.onHideDetail();
                         wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
@@ -600,7 +606,7 @@ public class AudioService extends IntentService
                             wPlaying = PLAYING_SPELL;
                             wCurrentItemIndex = 0;
                             wCurrentSentenceIndex = 0;
-                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_Sentence().size();
+                            wCurrentSentenceAmount = wVoabularies.get(wCurrentItemIndex).getEn_sentence().size();
                             wServiceBroadcaster.onHideDetail();
                             wServiceBroadcaster.onItemComplete(wCurrentItemIndex);
 //                            return;

@@ -4,7 +4,6 @@ package com.wishcan.www.vocabulazy.search.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
 import com.wishcan.www.vocabulazy.search.view.SearchView;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Vocabulary;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
 import java.util.ArrayList;
@@ -65,7 +64,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
             @Override
             public void onAddIconClick(int position) {
 //                Log.d(TAG, "onAddIconClick");
-                mSelectVocId = mSuggestedVocabularies.get(position).getID();
+                mSelectVocId = mSuggestedVocabularies.get(position).getId();
                 SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.LIST);
                 getFragmentManager()
                         .beginTransaction()
@@ -78,7 +77,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
             public void onListItemClick(int position) {
 //                Log.d(TAG, "onListItemClick");
                 Vocabulary voc = mSuggestedVocabularies.get(position);
-                mSelectVocId = voc.getID();
+                mSelectVocId = voc.getId();
                 mSearchView.refreshSearchDetail(
                         mSearchModel.createSearchResultDetailMap(voc));
                 mSearchView.showSearchDetail();

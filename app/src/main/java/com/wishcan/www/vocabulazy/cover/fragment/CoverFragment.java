@@ -31,6 +31,7 @@ public class CoverFragment extends Fragment implements DialogFragment.OnDialogFi
 
     private static final int VIEW_RES_ID = R.layout.view_cover;
     private static final String PACKAGE_NAME_GOOGLE_TTS = "com.google.android.tts";
+    private static final String PACKAGE_NAME_TESTING_APP = "cc.forestapp";
 
     private View mView;
 

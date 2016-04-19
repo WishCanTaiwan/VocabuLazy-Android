@@ -1,7 +1,6 @@
 package com.wishcan.www.vocabulazy.main.exam.model;
 
-import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Vocabulary;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
 import java.util.HashMap;

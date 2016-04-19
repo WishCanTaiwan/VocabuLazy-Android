@@ -88,18 +88,12 @@ public class MainActivity extends FragmentActivity {
             fragmentTransaction.add(VIEW_MAIN_RES_ID, mMainFragment, "MainFragment");
             fragmentTransaction.commit();
         }
-
-//        downloadTTSFiles();
-
         startAudioService();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-//        if (wDatabase != null) {
-//            wDatabase.loadNotes();
-//        }
     }
 
     @Override
@@ -125,7 +119,7 @@ public class MainActivity extends FragmentActivity {
         super.onDestroy();
         Log.d(TAG, "write to file");
         stopAudioService();
-        wDatabase.writeToFile(this);
+        wDatabase.writeToFile();
     }
 
 //    @Override
@@ -239,28 +233,6 @@ public class MainActivity extends FragmentActivity {
         } else {
             item.setVisible(false);
         }
-    }
-
-    private void downloadTTSFiles() {
-
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.tts")));
-        } catch (android.content.ActivityNotFoundException anfe) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.tts")));
-        }
-
-//        Intent intent = new Intent(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-//        startActivityForResult(intent, -1);
-
-//        Intent intent = new Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        intent.setPackage("com.google.android.tts");
-//        try {
-//            Log.d(TAG, "Installing voice data: " + intent.toUri(0));
-//            startActivity(intent);
-//        } catch (ActivityNotFoundException ex) {
-//            Log.d(TAG, "Failed to install TTS data, no acitivty found for " + intent + ")");
-//        }
     }
 
     private void startAudioService() {
