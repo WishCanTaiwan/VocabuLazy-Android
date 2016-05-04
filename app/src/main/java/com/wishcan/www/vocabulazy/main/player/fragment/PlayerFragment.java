@@ -36,7 +36,9 @@ import java.util.LinkedList;
  * Use the {@link PlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelDataProcessListener, PlayerMainView.OnPlayerItemPreparedListener {
+public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelDataProcessListener,
+                                                        PlayerMainView.OnPlayerItemPreparedListener,
+                                                        PlayerMainView.OnPlayerScrollListener {
 
     private static final String TAG = PlayerFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
@@ -55,7 +57,6 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
      */
     private LocalBroadcastManager wBroadcastManager;
 
-//    private Database mDatabase;
     private PlayerModel mPlayerModel;
     private int mBookIndex;
     private int mLessonIndex;
@@ -151,52 +152,8 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
 
         /** set Scroll Listener, update Player's detail content every time the scroll stopped */
-        mPlayerMainView.setOnPlayerScrollStopListener(new PlayerMainView.OnPlayerScrollListener() {
-            @Override
-            public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
-                updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
-                if (isViewTouchedDown) {
-                    newItemFocused(currentPosition);
-                    mPlayerModel.createPlayerDetailContent(mVocabularies.get(currentPosition));
-                }
-            }
-
-            @Override
-            public void onPlayerVerticalScrolling() {
-                playerViewScrolling();
-            }
-
-            @Override
-            public void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown) {
-                int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
-                mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
-                updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
-                mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-                mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
-            }
-
-            @Override
-            public void onPlayerHorizontalScrolling() {
-                playerViewScrolling();
-            }
-
-            @Override
-            public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
-                updateIndices(mBookIndex, mLessonIndex, mItemIndex, index);
-                if (isViewTouchedDown)
-                    newSentenceFocused(index);
-            }
-
-            @Override
-            public void onDetailScrolling() {
-                playerViewScrolling();
-            }
-
-            @Override
-            public void onViewTouchDown() {
-
-            }
-        });
+        /** move listener setting into onCreate() */
+        mPlayerMainView.setOnPlayerScrollStopListener(this);
 
         mPlayerMainView.setOnPlayerItemPreparedListener(this);
 
@@ -283,51 +240,6 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
-        mPlayerMainView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mPlayerMainView.addNewPlayer(playerDataContent, mItemIndex);
-            }
-        }, 600);
-    }
-
-    @Override
-    public void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent) {
-        mPlayerMainView.refreshPlayerDetail(playerDetailDataContent);
-    }
-
-    @Override
-    public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
-        mVocabularies = vocabularies;
-        mPlayerModel.createPlayerContent(mVocabularies);
-        mPlayerModel.createPlayerDetailContent(mVocabularies.get((wIndicesMatch ? mItemIndex : 0)));
-
-        Option option = mPlayerModel.getCurrentOption();
-        setContent(mVocabularies, option);
-        if (mVocabularies.size() > 0 && !wIndicesMatch) {
-            updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
-            startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
-        }
-    }
-
-    /**
-     * Implement PlayerMainView.OnPlayerItemPreparedListener
-     * */
-    @Override
-    public void onInitialItemPrepared() {
-
-    }
-
-    /**
-     * Implement PlayerMainView.OnPlayerItemPreparedListener
-     * */
-    @Override
-    public void onFinalItemPrepared() {
-
-    }
-
     private void savePreferences() {
         mPlayerModel.saveIndicesPreferences(new int[]{mBookIndex, mLessonIndex, mItemIndex, mSentenceIndex});
     }
@@ -349,6 +261,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         mSentenceIndex = sentenceIndex;
     }
 
+    /**------------------------------ message sent to service -----------------------------------**/
     /**
      * messages sent to service
      */
@@ -432,6 +345,97 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         getActivity().startService(intent);
     }
 
+    /**------------------Implement PlayerModel.PlayerModelDataProcessListener--------------------**/
+    /**
+     * Implement from PlayerModel
+     * */
+    @Override
+    public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
+        mPlayerMainView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPlayerMainView.addNewPlayer(playerDataContent, mItemIndex);
+            }
+        }, 600);
+    }
+
+    @Override
+    public void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent) {
+        mPlayerMainView.refreshPlayerDetail(playerDetailDataContent);
+    }
+
+    @Override
+    public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
+        mVocabularies = vocabularies;
+        mPlayerModel.createPlayerContent(mVocabularies);
+        mPlayerModel.createPlayerDetailContent(mVocabularies.get((wIndicesMatch ? mItemIndex : 0)));
+
+        Option option = mPlayerModel.getCurrentOption();
+        setContent(mVocabularies, option);
+        if (mVocabularies.size() > 0 && !wIndicesMatch) {
+            updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
+            startPlayingAt(0, -1, AudioService.PLAYING_SPELL);
+        }
+    }
+
+    /**------------------ Implement PlayerMainView.OnPlayerItemPreparedListener -----------------**/
+    @Override
+    public void onInitialItemPrepared() {
+
+    }
+
+    @Override
+    public void onFinalItemPrepared() {
+
+    }
+
+    /**----------------- Implement PlayerMainView.OnPlayerScrollListener-------------------------**/
+    @Override
+    public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
+        updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
+        if (isViewTouchedDown) {
+            newItemFocused(currentPosition);
+            mPlayerModel.createPlayerDetailContent(mVocabularies.get(currentPosition));
+        }
+    }
+
+    @Override
+    public void onPlayerVerticalScrolling() {
+        playerViewScrolling();
+    }
+
+    @Override
+    public void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown) {
+        int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
+        mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
+        updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
+        mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+        mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
+    }
+
+    @Override
+    public void onPlayerHorizontalScrolling() {
+        playerViewScrolling();
+    }
+
+    @Override
+    public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
+        updateIndices(mBookIndex, mLessonIndex, mItemIndex, index);
+        if (isViewTouchedDown)
+            newSentenceFocused(index);
+    }
+
+    @Override
+    public void onDetailScrolling() {
+        playerViewScrolling();
+    }
+
+    @Override
+    public void onViewTouchDown() {
+
+    }
+
+    /**----------------------------- ServiceBroadcastReceiver -----------------------------------**/
     /**
      * messages received from service
      */
