@@ -23,7 +23,7 @@ import java.util.HashMap;
  * Use the {@link ExamFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamFragment extends Fragment {
+public class ExamFragment extends Fragment implements ExamView.ExamButtonClickListener {
 
     private static final String ARG_BOOK_INDEX = "bookIndex";
     private static final String ARG_LESSON_INDEX = "lessonIndex";
@@ -71,10 +71,12 @@ public class ExamFragment extends Fragment {
                         wDatabase.getContentIDs(mCurrentBookIndex, mCurrentLessonIndex));
         mPuzzleSetter = new ExamModel(mVocabularies);
 
+        // set ExamView listener
+        mExamView.setExamButtonClickListener(this);
         // set the click event, 0 is question, should not be pressed
-        registerOnOptionClickEvent();
+//        registerOnOptionClickEvent();
         // set the NEXT click event
-        registerOnNextClickEvent();
+//        registerOnNextClickEvent();
 
         // fill in the question and option, which are from PuzzleSetter
         HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();      // should call first to refresh question index
@@ -113,6 +115,7 @@ public class ExamFragment extends Fragment {
     }
 
     private void registerOnOptionClickEvent(){
+        mExamView.setButtonsEnable(ExamView.BUTTON_OPTIONS);
         for(int i = 2; i < ExamView.EXAM_PARENT_VIEW_RES_IDs.length -1; i++){   // NEXT icon should not be handle here
             final int checkIndex = i - 1;
             mExamView.findViewById(ExamView.EXAM_PARENT_VIEW_RES_IDs[i]).setOnClickListener(new View.OnClickListener() {
@@ -128,18 +131,72 @@ public class ExamFragment extends Fragment {
     }
 
     private void unregisterOnOptionClickEvent(){
-        for(int i = 2; i < ExamView.EXAM_PARENT_VIEW_RES_IDs.length -1; i++) {   // NEXT icon should not be handle here
-            mExamView.findViewById(ExamView.EXAM_PARENT_VIEW_RES_IDs[i]).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-        }
+        mExamView.setButtonsDisable(ExamView.BUTTON_OPTIONS);
+//        for(int i = 2; i < ExamView.EXAM_PARENT_VIEW_RES_IDs.length -1; i++) {   // NEXT icon should not be handle here
+//            mExamView.findViewById(ExamView.EXAM_PARENT_VIEW_RES_IDs[i]).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+//        }
     }
 
     private void registerOnNextClickEvent(){
+            mExamView.setButtonsEnable(ExamView.BUTTON_NEXT);
+//        mRefreshAnimTask = new Runnable() {
+//            @Override
+//            public void run() {
+//                if(mExamView.getAnimLocker())
+//                    mExamView.postDelayed(mRefreshAnimTask, 100);
+//                else {
+//                    HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();
+//                    mExamView.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
+//                    mExamView.startPopOut();
+//                }
+//            }
+//        };
+//
+//        mExamView.findViewById(ExamView.VIEW_NEXT_RES_ID).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
+//                    FragmentManager fragmentManager = getFragmentManager();
+//                    ExamResultFragment examResultFragment = ExamResultFragment.newInstance(
+//                            (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum(),
+//                            mPuzzleSetter.getCorrectCount());
+//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.
+//                            setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+//                                    MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+//                    fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examResultFragment, "ExamResultFragment");
+//                    fragmentTransaction.addToBackStack("ExamFragment");
+//                    fragmentTransaction.commit();
+//                    return;
+//                }
+//                registerOnOptionClickEvent();
+//                mExamView.startVanish();
+//                mRefreshAnimTask.run();
+//            }
+//        });
+    }
 
+    private void unregisterOnNextClickEvent() {
+        mExamView.setButtonsDisable(ExamView.BUTTON_NEXT);
+    }
+
+    /**----------------------- ExamView.ExamButtonClickListener ---------------------------------**/
+    @Override
+    public void onExamOptionClick(int clickedIndex) {
+        int correctIndex = mPuzzleSetter.checkAnswer(clickedIndex);
+        mExamView.showAnswer(correctIndex, clickedIndex);
+        mExamView.popOutNextIcon();
+        unregisterOnOptionClickEvent();
+    }
+
+    @Override
+    public void onExamNextClick() {
+        unregisterOnNextClickEvent();
         mRefreshAnimTask = new Runnable() {
             @Override
             public void run() {
@@ -149,34 +206,32 @@ public class ExamFragment extends Fragment {
                     HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();
                     mExamView.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
                     mExamView.startPopOut();
+                    registerOnNextClickEvent();
                 }
             }
         };
 
-        mExamView.findViewById(ExamView.VIEW_NEXT_RES_ID).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
-                    FragmentManager fragmentManager = getFragmentManager();
-                    ExamResultFragment examResultFragment = ExamResultFragment.newInstance(
-                            (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum(),
-                            mPuzzleSetter.getCorrectCount());
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.
-                            setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-                                    MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-                    fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examResultFragment, "ExamResultFragment");
-                    fragmentTransaction.addToBackStack("ExamFragment");
-                    fragmentTransaction.commit();
-                    return;
-                }
-                registerOnOptionClickEvent();
-                mExamView.startVanish();
-                mRefreshAnimTask.run();
-            }
-        });
+        if(mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
+            FragmentManager fragmentManager = getFragmentManager();
+            ExamResultFragment examResultFragment = ExamResultFragment.newInstance(
+                    (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum(),
+                    mPuzzleSetter.getCorrectCount());
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.
+                    setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
+                            MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+            fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examResultFragment, "ExamResultFragment");
+            fragmentTransaction.addToBackStack("ExamFragment");
+            fragmentTransaction.commit();
+            return;
+        }
+        registerOnOptionClickEvent();
+        mExamView.startVanish();
+        mRefreshAnimTask.run();
     }
 
-
-
+    @Override
+    public void onPlayerClick(String str) {
+        // TODO: Beibei please add your function here. Params str is the string for TTS
+    }
 }
