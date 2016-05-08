@@ -78,7 +78,7 @@
             android:layout_height="150dp"
             android:background="@drawable/exam_rect_green">
 
-            <TextView
+            <com.wishcan.www.vocabulazy.widget.AutoResizeTextView
                 android:id="@+id/exam_question_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

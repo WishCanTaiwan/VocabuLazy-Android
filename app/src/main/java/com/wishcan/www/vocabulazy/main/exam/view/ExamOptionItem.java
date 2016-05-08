@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.widget.AutoResizeTextView;
 
 /**
  * Created by swallow on 2015/12/26.
@@ -35,7 +36,7 @@ public class ExamOptionItem extends LinearLayout {
     private Context mContext;
     private Animator mAnimatorDown, mAnimatorUp;
     private ImageView mCorrectImage0, mCorrectImage1;
-    private TextView mEnglishTextView, mTranslationTextView;
+    private AutoResizeTextView mEnglishTextView, mTranslationTextView;
     private Rect mBoundRect;
 
     public ExamOptionItem(Context context) {
@@ -78,7 +79,7 @@ public class ExamOptionItem extends LinearLayout {
         linearLayout.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1));
         linearLayout.setGravity(Gravity.CENTER);
 
-        mEnglishTextView = new TextView(mContext);
+        mEnglishTextView = new AutoResizeTextView(mContext);
         mEnglishTextView.setLayoutParams(layoutParams);
         mEnglishTextView.setTextColor(Color.BLACK);
         mEnglishTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
@@ -90,7 +91,7 @@ public class ExamOptionItem extends LinearLayout {
         mEnglishTextView.setSingleLine();
         mEnglishTextView.setVisibility(GONE);
 
-        mTranslationTextView = new TextView(mContext);
+        mTranslationTextView = new AutoResizeTextView(mContext);
         mTranslationTextView.setLayoutParams(layoutParams);
         mTranslationTextView.setTextColor(Color.BLACK);
         mTranslationTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,

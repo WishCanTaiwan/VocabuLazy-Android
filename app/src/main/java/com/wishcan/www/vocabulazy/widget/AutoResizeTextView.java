@@ -15,6 +15,8 @@ import android.widget.TextView;
  */
 public class AutoResizeTextView extends TextView {
 
+    private float mInitTextSize;
+
     public AutoResizeTextView(Context context) {
         this(context, null);
     }
@@ -22,6 +24,7 @@ public class AutoResizeTextView extends TextView {
     public AutoResizeTextView(Context context, AttributeSet attr) {
         super(context, attr);
         setVisibility(INVISIBLE);
+        mInitTextSize = getTextSize();
         ViewTreeObserver viewTreeObserver = getViewTreeObserver();
         if(viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -30,7 +33,6 @@ public class AutoResizeTextView extends TextView {
                     while(getLineCount() > 1) {
                         float textSize = getTextSize();
                         float density = getContext().getResources().getDisplayMetrics().density;
-//                        Log.d("InfoFragment", "textSize = " + textSize);
                         setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize - 1.0f*density);
                     }
                 }
@@ -58,5 +60,9 @@ public class AutoResizeTextView extends TextView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    public void resetTextSize() {
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, mInitTextSize);
     }
 }

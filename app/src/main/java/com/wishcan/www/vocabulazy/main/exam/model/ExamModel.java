@@ -2,6 +2,8 @@ package com.wishcan.www.vocabulazy.main.exam.model;
 
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -30,8 +32,11 @@ public class ExamModel {
          *     VALUE is english and translation
          */
 
-        if(mTotalQuestionNum < 5)
+        if(mTotalQuestionNum < 5) {
+            Log.d("ExamFragment", "mVocabularies = " + mTotalQuestionNum);
             return null;
+        }
+            
 
         mCurrentQuestionIndex++;
 
@@ -43,7 +48,6 @@ public class ExamModel {
         } while(mAnswerOptionIndex == 0);
 
         for(int i = 0; i < 5; i++){
-
             int pickIndex;      // It's used to pick up option from vocabularies
             ArrayList<String> strArr = new ArrayList<>();   //save option and answer string
             if(i == 0) {          // 0 is for question, only spell is needed

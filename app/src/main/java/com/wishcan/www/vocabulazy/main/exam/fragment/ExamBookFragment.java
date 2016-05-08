@@ -88,16 +88,9 @@ public class ExamBookFragment extends Fragment {
     }
 
     private void goExamLessonFragment(int bookIndex){
-
-        FragmentManager fragmentManager = getFragmentManager();
-        ExamLessonFragment lessonsFragment = ExamLessonFragment.newInstance(bookIndex);
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.
-                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, lessonsFragment, "ExamLessonFragment");
-        fragmentTransaction.addToBackStack("ExamBookFragment");
-        fragmentTransaction.commit();
+        Bundle args = new Bundle();
+        args.putInt(ExamLessonFragment.BOOK_INDEX_STR, bookIndex);
+        ((MainActivity) getActivity()).goFragment(ExamLessonFragment.class, args, "ExamLessonFragment", "ExamBookFragment");
     }
 
 

@@ -16,10 +16,10 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamResultView;
  * Use the {@link ExamResultFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamResultFragment extends Fragment {
+public class ExamResultFragment extends Fragment implements ExamResultView.OnTryItemClickListener{
 
-    private static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
-    private static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
+    public static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
+    public static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
 
     private float mRatio;
     private int mCorrectCount;
@@ -49,33 +49,32 @@ public class ExamResultFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final ExamResultFragment fragment = this;   // This is used for removing the fragment self
         ExamResultView fragmentView;
 
         // Inflate the layout for this fragment
         fragmentView = new ExamResultView(getActivity(), null, mCorrectCount, mRatio);
-        fragmentView.setOnTryItemClickListener(new ExamResultView.OnTryItemClickListener() {
-            @Override
-            public void onTryAgainClick() {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-                transaction.remove(fragment);
-                transaction.commit();
-                getActivity().onBackPressed();
-            }
-
-            @Override
-            public void onTryOtherClick() {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-                transaction.remove(fragment);
-                transaction.commit();
-                ((ExamFragment) getFragmentManager().findFragmentByTag("ExamFragment")).restartExam();
-            }
-        });
+        fragmentView.setOnTryItemClickListener(this);
 
         return fragmentView;
     }
 
+    /**--------------- Implements ExamView.OnTryItemClickListener ---------------------**/
+    @Override
+    public void onTryOtherClick() {
+        ExamResultFragment fragment = this;   // This is used for removing the fragment self
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        getActivity().onBackPressed();
+        getActivity().onBackPressed();
+    }
+
+    @Override
+    public void onTryAgainClick() {
+        ExamResultFragment fragment = this;   // This is used for removing the fragment self
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        transaction.remove(fragment);
+        transaction.commit();
+        ((ExamFragment) getFragmentManager().findFragmentByTag("ExamFragment")).restartExam();
+    }
 
 }

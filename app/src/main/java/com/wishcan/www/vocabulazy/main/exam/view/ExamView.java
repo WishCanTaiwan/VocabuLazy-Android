@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.widget.AutoResizeTextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -163,7 +164,8 @@ public class ExamView extends LinearLayout {
 
         // 0 is question
         ArrayList<String> questionArr = map.get(0);
-        ((TextView) mView.findViewById(QUESTION_OPTION_TEXT_VIEW_IDs[0])).setText(questionArr.get(0));
+        ((AutoResizeTextView) mView.findViewById(QUESTION_OPTION_TEXT_VIEW_IDs[0])).resetTextSize();
+        ((AutoResizeTextView) mView.findViewById(QUESTION_OPTION_TEXT_VIEW_IDs[0])).setText(questionArr.get(0));
         // 1, 2 is current_question_index and question_count individually
         ((TextView) mView.findViewById(QUESTION_OPTION_TEXT_VIEW_IDs[1])).setText(String.valueOf(qIndex));
         ((TextView) mView.findViewById(QUESTION_OPTION_TEXT_VIEW_IDs[2])).setText(String.valueOf(qCount));

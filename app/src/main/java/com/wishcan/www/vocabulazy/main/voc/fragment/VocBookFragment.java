@@ -65,12 +65,6 @@ public class VocBookFragment extends Fragment {
         }
     }
 
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        Log.d(TAG, "onSaveInstanceState");
-//        super.onSaveInstanceState(outState);
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

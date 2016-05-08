@@ -29,13 +29,14 @@ public class ExamResultView extends LinearLayout {
 
     private View mView;
     private OnTryItemClickListener mOnTryItemClickListener;
+    
     public ExamResultView(Context context) {
         this(context, null, 0, 0.0f);
     }
 
-
     public ExamResultView(Context context, AttributeSet attrs, int correctCount, float correctRatio) {
         super(context, attrs);
+        setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         mView = ((LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_RES_ID, null);
         mView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         addView(mView);

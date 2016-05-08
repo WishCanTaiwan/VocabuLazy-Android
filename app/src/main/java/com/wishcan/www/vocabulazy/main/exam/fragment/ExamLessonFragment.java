@@ -23,17 +23,9 @@ import java.util.LinkedList;
 
 public class ExamLessonFragment extends Fragment {
 
-    private static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
+    public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
     private Database wDatabase;
     private int mBookIndex;
-
-    public static ExamLessonFragment newInstance(int bookIndex) {
-        ExamLessonFragment fragment = new ExamLessonFragment();
-        Bundle args = new Bundle();
-        args.putInt(BOOK_INDEX_STR, bookIndex);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public ExamLessonFragment() {
         // Required empty public constructor
@@ -81,15 +73,9 @@ public class ExamLessonFragment extends Fragment {
     }
 
     private void goExamFragment(int lessonIndex){
-
-        FragmentManager fragmentManager = getFragmentManager();
-        ExamFragment examFragment = ExamFragment.newInstance(mBookIndex, lessonIndex);
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.
-                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examFragment, "ExamFragment");
-        fragmentTransaction.addToBackStack("ExamLessonFragment");
-        fragmentTransaction.commit();
+        Bundle args = new Bundle();
+        args.putInt(ExamFragment.ARG_BOOK_INDEX, mBookIndex);
+        args.putInt(ExamFragment.ARG_LESSON_INDEX, lessonIndex);
+        ((MainActivity) getActivity()).goFragment(ExamFragment.class, args, "ExamFragment", "ExamLessonFragment");
     }
 }
