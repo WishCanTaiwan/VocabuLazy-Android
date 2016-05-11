@@ -15,6 +15,9 @@ import com.wishcan.www.vocabulazy.R;
  * Created by swallow on 2016/1/17.
  */
 public class PlayerView extends LinearLayout {
+	public interface OnGrayBackClickListener {
+		void onGrayBackClick();
+	}
 
 	private static final int VIEW_RES_ID = R.layout.view_player;
 	private static final int VIEW_PLAYER_MAIN_RES_ID = R.id.player_main_view;
@@ -29,6 +32,8 @@ public class PlayerView extends LinearLayout {
 	private PlayerOptionView mPlayerOptionView;
 	private ViewGroup mPlayerOptionGrayBack;
 
+	private OnGrayBackClickListener mOnGrayBackClickListener;
+
     public PlayerView(Context context){
 		this(context, null);
 	}
@@ -42,6 +47,16 @@ public class PlayerView extends LinearLayout {
 		mPlayerPanelView = (PlayerPanelView) childView.findViewById(VIEW_PLAYER_PANEL_RES_ID);
         mPlayerOptionView = (PlayerOptionView) childView.findViewById(VIEW_PLAYER_OPTION_RES_ID);
         mPlayerOptionGrayBack = (ViewGroup) childView.findViewById(VIEW_PLAYER_OPTION_PARENT_RES_ID);
+		mPlayerOptionGrayBack.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mOnGrayBackClickListener != null) {
+					mOnGrayBackClickListener.onGrayBackClick();
+				}
+				exitOptionView();
+			}
+
+		});
 		addView(childView);
 	}
 
@@ -91,5 +106,9 @@ public class PlayerView extends LinearLayout {
 			@Override
 			public void onAnimationRepeat(Animation animation) {}
 		});
+	}
+
+	public void setOnGrayBackClickListener(OnGrayBackClickListener listener) {
+		mOnGrayBackClickListener = listener;
 	}
 }

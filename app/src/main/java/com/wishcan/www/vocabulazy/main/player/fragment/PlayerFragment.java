@@ -40,7 +40,10 @@ import java.util.LinkedList;
  */
 public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelDataProcessListener,
                                                         PlayerMainView.OnPlayerItemPreparedListener,
-                                                        PlayerMainView.OnPlayerScrollListener {
+                                                        PlayerMainView.OnPlayerScrollListener,
+                                                        PlayerPanelView.OnPanelItemClickListener,
+                                                        PlayerOptionView.OnOptionChangedListener,
+                                                        PlayerView.OnGrayBackClickListener {
 
     private static final String TAG = PlayerFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
@@ -66,6 +69,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     private int mSentenceIndex;
     private boolean wIndicesMatch;
     private ArrayList<Vocabulary> mVocabularies;
+    private PlayerView mPlayerView;
     private PlayerMainView mPlayerMainView;
     private PlayerPanelView mPlayerPanelView;
     private PlayerOptionView mPlayerOptionView;
@@ -145,57 +149,25 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final PlayerView playerView = new PlayerView(getActivity());
-        mPlayerMainView = playerView.getPlayerMainView();
-        mPlayerPanelView = playerView.getPlayerPanelView();
-        mPlayerOptionGrayBack = playerView.getPlayerOptionGrayBack();
-        mPlayerOptionView = playerView.getPlayerOptionView();
+        mPlayerView = new PlayerView(getActivity());
+        mPlayerMainView = mPlayerView.getPlayerMainView();
+        mPlayerPanelView = mPlayerView.getPlayerPanelView();
+        mPlayerOptionGrayBack = mPlayerView.getPlayerOptionGrayBack();
+        mPlayerOptionView = mPlayerView.getPlayerOptionView();
 
         mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
 
         /** set Scroll Listener, update Player's detail content every time the scroll stopped */
         /** move listener setting into onCreate() */
         mPlayerMainView.setOnPlayerScrollStopListener(this);
-
         mPlayerMainView.setOnPlayerItemPreparedListener(this);
-
         mPlayerPanelView.setIconState(false, mPlayerModel.isPlayerPlaying(), false);
-        mPlayerPanelView.setOnPanelItemClickListener(new PlayerPanelView.OnPanelItemClickListener() {
-            @Override
-            public void onOptionFavoriteClick() {
-
-            }
-
-            @Override
-            public void onOptionPlayClick() {
-                optionPlayClicked();
-            }
-
-            @Override
-            public void onOptionOptionClick() {
-                playerView.showPlayerOptionView();
-            }
-        });
-
-        mPlayerOptionGrayBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playerView.exitOptionView();
-            }
-        });
-
+        mPlayerPanelView.setOnPanelItemClickListener(this);
+        mPlayerView.setOnGrayBackClickListener(this);
         mPlayerOptionView.setOptionsInTabContent(null);
+        mPlayerOptionView.setOnOptionChangedListener(this);
 
-        mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener() {
-            @Override
-            public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
-                mPlayerModel.setOptionAndMode(optionLL, currentMode);
-                updateIndices(mBookIndex, mLessonIndex, mItemIndex, (optionLL.get(0).isSentence() ? 0 : -1));
-                optionSettingChanged(optionLL.get(currentMode));
-            }
-        });
-
-        return playerView;
+        return mPlayerView;
     }
 
     @Override
@@ -347,7 +319,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         getActivity().startService(intent);
     }
 
-    /**------------------Implement PlayerModel.PlayerModelDataProcessListener--------------------**/
+    /**----------------- Implement PlayerModel.PlayerModelDataProcessListener -------------------**/
     /**
      * Implement from PlayerModel
      * */
@@ -391,7 +363,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
 
     }
 
-    /**----------------- Implement PlayerMainView.OnPlayerScrollListener-------------------------**/
+    /**----------------- Implement PlayerMainView.OnPlayerScrollListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
         updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
@@ -423,8 +395,9 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     @Override
     public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
         updateIndices(mBookIndex, mLessonIndex, mItemIndex, index);
-        if (isViewTouchedDown)
+        if (isViewTouchedDown) {
             newSentenceFocused(index);
+        }
     }
 
     @Override
@@ -434,6 +407,42 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
 
     @Override
     public void onViewTouchDown() {
+
+    }
+
+    /**----------------- Implement PlayerPanelView.OnPanelItemClickListener ---------------------**/
+    @Override
+    public void onOptionFavoriteClick() {
+
+    }
+
+    @Override
+    public void onOptionPlayClick() {
+        optionPlayClicked();
+    }
+
+    @Override
+    public void onOptionOptionClick() {
+        if (mPlayerView == null) {
+            return;
+        }
+        mPlayerView.showPlayerOptionView();
+    }
+
+    /**----------------- Implement PlayerOptionView.OnOptionChangedListener ---------------------**/
+    @Override
+    public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+        if (mPlayerModel == null) {
+            return;
+        }
+        mPlayerModel.setOptionAndMode(optionLL, currentMode);
+        updateIndices(mBookIndex, mLessonIndex, mItemIndex, (optionLL.get(0).isSentence() ? 0 : -1));
+        optionSettingChanged(optionLL.get(currentMode));
+    }
+
+    /**-------------------- Implement PlayerView.OnGrayBackClickListener ------------------------**/
+    @Override
+    public void onGrayBackClick() {
 
     }
 
