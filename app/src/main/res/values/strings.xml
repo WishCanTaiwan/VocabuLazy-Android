@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Fragment Name-->
+    <string name="fragment_main_title">主頁面</string>
+    <string name="fragment_exam_book_title">單元測驗</string>
+    <string name="fragment_exam_note_title">清單測驗</string>
+    <!-- widget -->
+    <!-- main -->
+    <string name="main_book_title">學習單元</string>
+    <string name="main_note_title">我的清單</string>
+    <string name="main_exam_title">測驗模式</string>
+    <string name="main_info_title">關於我們</string>
+    <!-- voc -->
+    <!-- usr -->
+    <!-- exam -->
+    <!-- info -->
+    <!-- player -->
+    <!-- search -->
+    <!-- cover -->
+    <string name="dialog_cover">為提供最佳體驗，請至Google Play下載並安裝「Google 文字轉語音引擎」。\n點擊確定前往。</string>
+
 
     <string name="app_name">VocabuLazy</string>
     <string name="EnterSpell">Search</string>
@@ -32,25 +51,23 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string-array name= "time_count_option">
+    <string-array name="time_count_option">
         <item>2</item>
         <item>5</item>
         <item>10</item>
     </string-array>
 
-    <string name="book_title">學習單元</string>
-    <string name="list_title">我的清單</string>
-    <string name="test_title">測驗模式</string>
-    <string name="info_title">關於我們</string>
+
+    <string name="reading_book_title">課文閱讀</string>
     <string name="title_activity_search">SearchActivity</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_player">PlayerActivity</string>
 
     <!--player_option_view_str-->
-    <string name="player_option_tab_0_str">自訂模式</string>
-    <string name="player_option_tab_1_str">睡眠模式</string>
-    <string name="player_option_tab_2_str">通勤模式</string>
+    <string name="player_option_tab_0">自訂模式</string>
+    <string name="player_option_tab_1">睡眠模式</string>
+    <string name="player_option_tab_2">通勤模式</string>
     <string name="player_option_second_chinese">間隔秒數</string>
     <string name="player_option_second">second</string>
     <string name="player_option_frequency_chinese">播放次數</string>
@@ -64,4 +81,8 @@
     <!--NumeralPicker_view_str-->
     <string name="numeral_picker_main_indicator_string_default">主要標題</string>
     <string name="numeral_picker_second_indicator_string_default">次要標題</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_cover">
+        CoverActivity
+    </string>
 </resources>

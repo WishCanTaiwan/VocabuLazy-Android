@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_view_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wishcan.www.vocabulazy.search.view.SearchListView
+        android:id="@+id/search_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:visibility="visible"
+        />
+
+    <RelativeLayout
+        android:id="@+id/search_detail_parent_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

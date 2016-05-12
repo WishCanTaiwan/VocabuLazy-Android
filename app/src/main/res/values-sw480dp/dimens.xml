@@ -16,9 +16,9 @@
     <dimen name="divider_height">2dp</dimen>
 
     <!-- SwallowBBAppo NumberalPicker Dimension-->
-    <dimen name="picker_arrow_image_padding">10dp</dimen>
-    <dimen name="picker_text_padding">25dp</dimen>
-    <dimen name="picker_text_size">34sp</dimen>
+    <dimen name="widget_picker_arrow_image_padding">10dp</dimen>
+    <dimen name="widget_picker_text_padding">25dp</dimen>
+    <dimen name="widget_picker_text_size">34sp</dimen>
 
     <!-- SwallowBBAppo Note_list_item Dimension-->
     <dimen name="note_list_item_height">73dp</dimen>

@@ -1,0 +1,38 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/player_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="15dp">
+
+        <ImageView
+            android:id="@+id/action_player_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/player_favorite"
+            android:background="@color/default_color_white"
+            android:onClick="onOptionClicked"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp" />
+        <ImageView
+            android:id="@+id/action_player_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/player_play"
+            android:background="@color/default_color_white"
+            android:onClick="onOptionClicked"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp" />
+        <ImageView
+            android:id="@+id/action_player_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/player_option"
+            android:background="@color/default_color_white"
+            android:onClick="onOptionClicked"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp" />
+</LinearLayout>

@@ -1,0 +1,10 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cover_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_color_green"
+    tools:context="com.wishcan.www.vocabulazy.cover.CoverActivity">
+
+</RelativeLayout>

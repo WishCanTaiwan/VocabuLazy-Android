@@ -1,0 +1,78 @@
+{
+  "project_info": {
+    "project_id": "vocabulazy-test",
+    "project_number": "949565134911",
+    "name": "vocabulazy-test"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949565134911:android:6c6db0a182e3a8b7",
+        "client_id": "android:com.wishcan.www",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.wishcan.www",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949565134911:android:5787b9841c215f56",
+        "client_id": "android:com.wishcan.www.vocabulazy",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.wishcan.www.vocabulazy",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-75807783-3"
+          }
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

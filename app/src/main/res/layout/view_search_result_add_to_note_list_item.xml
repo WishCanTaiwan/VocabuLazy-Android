@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/search_result_add_to_note_view_item_width"
+    android:layout_height="@dimen/search_result_add_to_note_view_item_height"
+    android:orientation="horizontal"
+    android:background="@drawable/search_white_bottom_border"
+    >
+
+    <TextView
+        android:id="@+id/note_list_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textColor="@color/note_list_item_text_color"
+        android:text="@string/hello_world"
+        android:textSize="15sp"
+        android:layout_centerVertical="true"
+        />
+
+    <RelativeLayout
+        android:id="@+id/search_result_adding_to_note_adding_function"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/search_result_add_to_note_view_adding_icon_color"
+        android:visibility="gone">
+
+        <com.wishcan.www.vocabulazy.widget.CrossView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            custom:setCrossSize="@dimen/search_dialog_cross" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

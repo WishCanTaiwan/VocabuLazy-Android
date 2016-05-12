@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360dp"
+    android:layout_height="326.4px"
+    android:paddingTop="5dp"
+    android:orientation="vertical"
+    android:background="@drawable/widget_pop_item1"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.wishcan.www.vocabulazy.widget.AutoResizeTextView
+            android:id="@+id/player_voc_spell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="effect"
+            android:gravity="center"
+            android:textSize="@dimen/player_list_item_text0_size"
+            android:maxLines="2"
+            android:textColor="@color/player_list_item_font1" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/player_voc_translation"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="(n.)結果、效果"
+            android:maxLines="1"
+            android:textSize="@dimen/player_list_item_text1_size"
+            android:textColor="@color/player_list_item_font1" />
+        <TextView
+            android:id="@+id/player_voc_translation2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="(vt.)gone"
+            android:visibility="invisible"
+            android:maxLines="1"
+            android:paddingTop="0dp"
+            android:textSize="@dimen/player_list_item_text1_size"
+            android:textColor="@color/player_list_item_font1" />
+    </LinearLayout>
+
+
+</LinearLayout>

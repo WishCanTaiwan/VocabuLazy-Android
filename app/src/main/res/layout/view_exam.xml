@@ -1,0 +1,163 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:background="@color/default_color_white"
+    android:layout_gravity="center_horizontal"
+    android:clickable="true">
+
+
+    <!-- The question number bar-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="1"
+            android:background="#ff1abc9c"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/exam_question_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="#ff000000"
+                    android:text="00"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="#ff000000"
+                    android:text="/"/>
+
+                <TextView
+                    android:id="@+id/exam_question_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="#ff000000"
+                    android:text="00"/>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="1"
+            android:background="#ff1abc9c"/>
+
+    </LinearLayout>
+
+    <!-- The question and answer options -->
+    <LinearLayout
+        android:id="@+id/exam_question_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <!-- Question area -->
+        <RelativeLayout
+            android:id="@+id/exam_question_title_parent"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/exam_rect_green">
+
+            <com.wishcan.www.vocabulazy.widget.AutoResizeTextView
+                android:id="@+id/exam_question_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Appearance"
+                android:textColor="@color/default_color_white"
+                android:textSize="35sp" />
+
+            <ImageView
+                android:id="@+id/exam_question_player"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:src="@drawable/exam_speak"/>
+
+        </RelativeLayout>
+
+        <!-- Option1 -->
+        <com.wishcan.www.vocabulazy.main.exam.view.ExamOptionItem
+            android:id="@+id/exam_option1_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Option2 -->
+        <com.wishcan.www.vocabulazy.main.exam.view.ExamOptionItem
+            android:id="@+id/exam_option2_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Option3 -->
+        <com.wishcan.www.vocabulazy.main.exam.view.ExamOptionItem
+            android:id="@+id/exam_option3_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Option4 -->
+        <com.wishcan.www.vocabulazy.main.exam.view.ExamOptionItem
+            android:id="@+id/exam_option4_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"/>
+
+
+
+        <!-- next icon-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp">
+
+            <LinearLayout
+                android:id="@+id/exam_next_parent"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:background="@drawable/exam_rect_oval_gray"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NEXT>"
+                    android:textSize="20sp"
+                    android:textColor="#ff000000"
+                    android:singleLine="true"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

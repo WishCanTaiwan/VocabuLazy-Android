@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/note_etc_parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/note_list_item_height"
+        android:background="@color/theme_color_green"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/action_note_combine"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_modify_note"
+            android:paddingEnd="@dimen/note_list_item_image_padding"
+            android:paddingStart="0dp"
+            android:layout_alignParentEnd="true" />
+        <ImageView
+            android:id="@+id/action_note_rename"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_rename"
+            android:paddingEnd="@dimen/note_list_item_image_padding"
+            android:paddingStart="0dp"
+            android:layout_toStartOf="@id/action_note_combine" />
+        <ImageView
+            android:id="@+id/action_note_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_delete"
+            android:paddingEnd="@dimen/note_list_item_image_padding"
+            android:paddingStart="0dp"
+            android:layout_toStartOf="@id/action_note_rename" />
+        <ImageView
+            android:id="@+id/action_note_etc_close"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_more_white"
+            android:paddingEnd="@dimen/note_list_item_image_padding"
+            android:paddingStart="@dimen/note_list_item_image_padding"
+            android:layout_toStartOf="@id/action_note_delete" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id = "@id/note_name_parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/note_list_item_height"
+        android:background="@drawable/widget_note_background_white_ripple"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@id/note_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:text="@string/search_hint"
+            android:textColor = "@color/note_list_item_text_color"
+            android:textSize ="@dimen/note_list_item_text_size"
+            android:singleLine="true"
+            android:paddingStart ="@dimen/note_list_item_text_padding"
+            android:paddingEnd = "0dp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/action_note_parent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/action_note_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:paddingEnd="@dimen/note_list_item_image_padding"
+                android:paddingStart="@dimen/note_list_item_image_padding"
+                android:background="@drawable/widget_note_background_white_ripple"
+                android:src="@drawable/widget_note_arrow"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@id/note_add_function"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/note_list_item_height"
+        android:background="@drawable/widget_note_background_yellow_ripple"
+        android:visibility="gone"
+        >
+
+        <com.wishcan.www.vocabulazy.widget.CrossView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
