@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.ga.GAPlayerFragment;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
@@ -38,12 +39,7 @@ import java.util.LinkedList;
  * Use the {@link PlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelDataProcessListener,
-                                                        PlayerMainView.OnPlayerItemPreparedListener,
-                                                        PlayerMainView.OnPlayerScrollListener,
-                                                        PlayerPanelView.OnPanelItemClickListener,
-                                                        PlayerOptionView.OnOptionChangedListener,
-                                                        PlayerView.OnGrayBackClickListener {
+public class PlayerFragment extends GAPlayerFragment {
 
     private static final String TAG = PlayerFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
@@ -73,7 +69,6 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     private PlayerMainView mPlayerMainView;
     private PlayerPanelView mPlayerPanelView;
     private PlayerOptionView mPlayerOptionView;
-    private ViewGroup mPlayerOptionGrayBack;
 
     /**
      * receiver to get broadcasts from AudioService
@@ -152,7 +147,6 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         mPlayerView = new PlayerView(getActivity());
         mPlayerMainView = mPlayerView.getPlayerMainView();
         mPlayerPanelView = mPlayerView.getPlayerPanelView();
-        mPlayerOptionGrayBack = mPlayerView.getPlayerOptionGrayBack();
         mPlayerOptionView = mPlayerView.getPlayerOptionView();
 
         mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
@@ -173,10 +167,6 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     @Override
     public void onStart() {
         super.onStart();
-
-        /**
-         * when database is ready
-         */
         setupOptions();
         initTTSEngine();
     }
@@ -222,17 +212,17 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
         return mPlayerModel.loadIndicesPreferences();
     }
 
-    private void setupOptions() {
-        ArrayList<Option> options = mPlayerModel.getDefaultOptions();
-        mPlayerOptionView.setOptionsInTabContent(options);
-        updateIndices(mBookIndex, mLessonIndex, mItemIndex, (options.get(0).isSentence() ? 0 : -1));
-    }
-
     private void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
         mBookIndex = bookIndex;
         mLessonIndex = lessonIndex;
         mItemIndex = itemIndex;
         mSentenceIndex = sentenceIndex;
+    }
+
+    private void setupOptions() {
+        ArrayList<Option> options = mPlayerModel.getDefaultOptions();
+        mPlayerOptionView.setOptionsInTabContent(options);
+        updateIndices(mBookIndex, mLessonIndex, mItemIndex, (options.get(0).isSentence() ? 0 : -1));
     }
 
     /**------------------------------ message sent to service -----------------------------------**/
@@ -325,6 +315,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
      * */
     @Override
     public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
+        super.onPlayerContentCreated(playerDataContent);
         mPlayerMainView.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -335,11 +326,13 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
 
     @Override
     public void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent) {
+        super.onDetailPlayerContentCreated(playerDetailDataContent);
         mPlayerMainView.refreshPlayerDetail(playerDetailDataContent);
     }
 
     @Override
     public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
+        super.onVocabulariesGet(vocabularies);
         mVocabularies = vocabularies;
         mPlayerModel.createPlayerContent(mVocabularies);
         mPlayerModel.createPlayerDetailContent(mVocabularies.get((wIndicesMatch ? mItemIndex : 0)));
@@ -355,17 +348,18 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     /**------------------ Implement PlayerMainView.OnPlayerItemPreparedListener -----------------**/
     @Override
     public void onInitialItemPrepared() {
-
+        super.onInitialItemPrepared();
     }
 
     @Override
     public void onFinalItemPrepared() {
-
+        super.onFinalItemPrepared();
     }
 
     /**----------------- Implement PlayerMainView.OnPlayerScrollListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
+        super.onPlayerVerticalScrollStop(currentPosition, isViewTouchedDown);
         updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
         if (isViewTouchedDown) {
             newItemFocused(currentPosition);
@@ -375,11 +369,13 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
 
     @Override
     public void onPlayerVerticalScrolling() {
+        super.onPlayerVerticalScrolling();
         playerViewScrolling();
     }
 
     @Override
     public void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown) {
+        super.onPlayerHorizontalScrollStop(direction, isViewTouchedDown);
         int numOfLesson = mPlayerModel.getNumOfLessons(mBookIndex);
         mLessonIndex = (mLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
         updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
@@ -389,11 +385,13 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
 
     @Override
     public void onPlayerHorizontalScrolling() {
+        super.onPlayerHorizontalScrolling();
         playerViewScrolling();
     }
 
     @Override
     public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
+        super.onDetailScrollStop(index, isViewTouchedDown);
         updateIndices(mBookIndex, mLessonIndex, mItemIndex, index);
         if (isViewTouchedDown) {
             newSentenceFocused(index);
@@ -402,27 +400,30 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
 
     @Override
     public void onDetailScrolling() {
+        super.onDetailScrolling();
         playerViewScrolling();
     }
 
     @Override
     public void onViewTouchDown() {
-
+        super.onViewTouchDown();
     }
 
     /**----------------- Implement PlayerPanelView.OnPanelItemClickListener ---------------------**/
     @Override
     public void onOptionFavoriteClick() {
-
+        super.onOptionFavoriteClick();
     }
 
     @Override
     public void onOptionPlayClick() {
+        super.onOptionPlayClick();
         optionPlayClicked();
     }
 
     @Override
     public void onOptionOptionClick() {
+        super.onOptionOptionClick();
         if (mPlayerView == null) {
             return;
         }
@@ -432,6 +433,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     /**----------------- Implement PlayerOptionView.OnOptionChangedListener ---------------------**/
     @Override
     public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+        super.onOptionChanged(v, optionLL, currentMode);
         if (mPlayerModel == null) {
             return;
         }
@@ -443,7 +445,7 @@ public class PlayerFragment extends Fragment implements PlayerModel.PlayerModelD
     /**-------------------- Implement PlayerView.OnGrayBackClickListener ------------------------**/
     @Override
     public void onGrayBackClick() {
-
+        super.onGrayBackClick();
     }
 
     /**----------------------------- ServiceBroadcastReceiver -----------------------------------**/
