@@ -36,6 +36,7 @@ abstract public class DialogFragment<WishCan> extends Fragment {
 
     private String mCallerTag;
     private DialogView<WishCan> mDialogView;
+    private OnDialogFinishListener<WishCan> mOnDialogFinishListener;
 
     public DialogFragment() {
         // Required empty public constructor
@@ -62,5 +63,13 @@ abstract public class DialogFragment<WishCan> extends Fragment {
         super.onResume();
         mDialogView.showDialog();
 
+    }
+
+    public void setOnDialogFinishListener(OnDialogFinishListener listener) {
+        mOnDialogFinishListener = listener;
+    }
+
+    public OnDialogFinishListener<WishCan> getOnDialogFinishListener() {
+        return mOnDialogFinishListener;
     }
 }

@@ -21,11 +21,12 @@ import com.wishcan.www.vocabulazy.widget.LessonView;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class ExamLessonFragment extends Fragment {
+public class ExamLessonFragment extends Fragment implements LessonView.OnLessonClickListener {
 
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
     private Database wDatabase;
     private int mBookIndex;
+    private int mLessonIndex;
 
     public ExamLessonFragment() {
         // Required empty public constructor
@@ -37,7 +38,7 @@ public class ExamLessonFragment extends Fragment {
         VLApplication vlApplication = (VLApplication) getActivity().getApplication();
         wDatabase = vlApplication.getDatabase();
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
-
+        mLessonIndex = -1;
         ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " + mBookIndex);
     }
 
@@ -56,12 +57,7 @@ public class ExamLessonFragment extends Fragment {
         ExamLessonView examLessonView = new ExamLessonView(getActivity());
         ArrayList<Lesson> lessons = (wDatabase == null) ? null : wDatabase.getLessonsByBook(mBookIndex);
         LinkedList<Integer> lessonIntegers = new LinkedList<>();
-        examLessonView.setOnLessonClickListener(new LessonView.OnLessonClickListener() {
-            @Override
-            public void onLessonClick(int lesson) {
-                goExamFragment(lesson);
-            }
-        });
+        examLessonView.setOnLessonClickListener(this);
         if(lessons != null)
             for(int i = 0; i < lessons.size(); i++)
                 lessonIntegers.add(i + 1);
@@ -77,5 +73,17 @@ public class ExamLessonFragment extends Fragment {
         args.putInt(ExamFragment.ARG_BOOK_INDEX, mBookIndex);
         args.putInt(ExamFragment.ARG_LESSON_INDEX, lessonIndex);
         ((MainActivity) getActivity()).goFragment(ExamFragment.class, args, "ExamFragment", "ExamLessonFragment");
+    }
+
+    @Override
+    public void onLessonClick(int lesson) {
+        ArrayList<Integer> contentIDs;
+
+        mLessonIndex = lesson;
+        contentIDs = wDatabase.getContentIDs(mBookIndex, mLessonIndex);
+        if (contentIDs.size() >= 4) {
+            goExamFragment(lesson);
+        }
+
     }
 }

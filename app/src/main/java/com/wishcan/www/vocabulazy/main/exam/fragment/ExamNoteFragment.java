@@ -26,6 +26,7 @@ import java.util.LinkedList;
 public class ExamNoteFragment extends Fragment implements ExamNoteView.OnListIconClickListener {
 
     private Database wDatabase;
+    private int mNoteIndex;
 
     public static ExamNoteFragment newInstance() {
         ExamNoteFragment fragment = new ExamNoteFragment();
@@ -39,6 +40,7 @@ public class ExamNoteFragment extends Fragment implements ExamNoteView.OnListIco
         super.onCreate(savedInstanceState);
         VLApplication vlApplication = (VLApplication) getActivity().getApplication();
         wDatabase = vlApplication.getDatabase();
+        mNoteIndex = -1;
 
         ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "清單測驗");
     }
@@ -80,9 +82,16 @@ public class ExamNoteFragment extends Fragment implements ExamNoteView.OnListIco
 
     @Override
     public void onListIconClick(int iconId, int position, View v) {
+        ArrayList<Integer> contentIDs;
+
         switch(iconId) {
             case NoteView.ICON_PLAY:
-                goExamFragment(position);
+                mNoteIndex = position;
+                /** -1 will get note contents*/
+                contentIDs = wDatabase.getContentIDs(-1, mNoteIndex);
+                if (contentIDs.size() >= 4) {
+                    goExamFragment(mNoteIndex);
+                }
                 break;
             default:
                 break;

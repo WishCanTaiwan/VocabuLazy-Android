@@ -179,7 +179,7 @@ public class MainActivity extends FragmentActivity {
         return super.onNavigateUp();
     }
 
-    public void goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
+    public Fragment goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
         Fragment f = Fragment.instantiate(this, cls.getName(), bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -192,6 +192,7 @@ public class MainActivity extends FragmentActivity {
         if(backStackTag != null && !backStackTag.equals(""))
             fragmentTransaction.addToBackStack(backStackTag);
         fragmentTransaction.commit();
+        return f;
     }
 
     public void switchActionBarStr(FRAGMENT_FLOW flow, String newActionBarStr) {

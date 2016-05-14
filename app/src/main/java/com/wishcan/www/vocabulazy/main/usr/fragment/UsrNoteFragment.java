@@ -27,10 +27,9 @@ import java.util.LinkedList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link UsrNoteFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
-public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialogFinishListener<String>{
+public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconClickListener,
+                                                         DialogFragment.OnDialogFinishListener<String>{
 
     public static final String TAG = UsrNoteFragment.class.getSimpleName();
     public static String M_TAG;
@@ -41,13 +40,6 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     private Database wDatabase;
     private int mIconId;        // used for identify either Add or Delete action should be executed
     private int mPressedPosition;
-
-    public static UsrNoteFragment newInstance() {
-        UsrNoteFragment fragment = new UsrNoteFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public UsrNoteFragment() {
         // Required empty public constructor
@@ -101,52 +93,59 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mUsrNoteView = new UsrNoteView(getActivity());
-        final ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
+        ArrayList<Lesson> notes = wDatabase.getLessonsByBook(-1);
 
         if(notes == null)
             return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
 
-        Log.d(TAG, notes.size() + " notes");
-
         for(int i = 0; i < notes.size(); i++) {
-            Log.d("UsrNote", notes.get(i).getName());
             dataList.add(notes.get(i).getName());
         }
 
         mUsrNoteView.refreshView(notes.size(), dataList);
-        mUsrNoteView.setOnListIconClickListener(new NoteView.OnListIconClickListener() {
-            @Override
-            public void onListIconClick(int iconId, int position, View v) {
-                mIconId = iconId;
-                mPressedPosition = position;
-                switch (iconId) {
-                    case NoteView.ICON_PLAY:
-                        int noteSize = wDatabase.getNoteSize(position);
-                        if (noteSize > 0) goPlayerFragment(-1, position);
-                        break;
-                    case NoteView.ICON_ETC:
-                        break;
-                    case NoteView.ICON_ETC_CLOSE:
-                        break;
-                    case NoteView.ICON_DEL:
-                        goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.DELETE, notes.get(position).getName());
-                        break;
-                    case NoteView.ICON_RENAME:
-                        goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.RENAME, null);
-                        break;
-                    case NoteView.ICON_COMBINE:
-                        goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.COMBINE, null);
-                        break;
-                    case NoteView.ICON_NEW:
-                        goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.NEW, null);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+        mUsrNoteView.setOnListIconClickListener(this);
         return mUsrNoteView;
+    }
+
+    @Override
+    public void onListIconClick(int iconId, int position, View v) {
+        DialogFragment f = null;
+        ArrayList<Lesson> notes = wDatabase.getLessonsByBook(-1);
+
+        mIconId = iconId;
+        mPressedPosition = position;
+
+        switch (iconId) {
+            case NoteView.ICON_PLAY:
+                Log.d(TAG, "wDatabase.getNote @" + position);
+                int noteSize = wDatabase.getNoteSize(position);
+                if (noteSize > 0) {
+                    goPlayerFragment(-1, position);
+                }
+                break;
+            case NoteView.ICON_ETC:
+                break;
+            case NoteView.ICON_ETC_CLOSE:
+                break;
+            case NoteView.ICON_DEL:
+                f = goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.DELETE, notes.get(position).getName());
+                break;
+            case NoteView.ICON_RENAME:
+                f = goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.RENAME, null);
+                break;
+            case NoteView.ICON_COMBINE:
+                f = goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.COMBINE, null);
+                break;
+            case NoteView.ICON_NEW:
+                f = goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.NEW, null);
+                break;
+            default:
+                break;
+        }
+        if (f != null) {
+            f.setOnDialogFinishListener(this);
+        }
     }
 
     @Override
@@ -168,20 +167,6 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
 
-    private void goPlayerFragment(int bookIndex, int lessonIndex){
-        Bundle args = new Bundle();
-        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
-        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
-        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "UsrNoteFragment");
-    }
-
-    private void goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s resId, String inputStr) {
-        Bundle args = new Bundle();
-        args.putSerializable(UsrNoteDialogFragment.DIALOG_BUNDLE_RES_ID_STR, resId);
-        args.putSerializable(UsrNoteDialogFragment.DIALOG_BUNDLE_STR_STR, inputStr);
-        ((MainActivity) getActivity()).goFragment(UsrNoteDialogFragment.class, args, "UsrNoteDialogFragment", "UsrNoteFragment");
-    }
-
     private void reload() {
         Log.d(TAG, "reload");
         final ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
@@ -200,4 +185,17 @@ public class UsrNoteFragment extends Fragment implements DialogFragment.OnDialog
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
 
+    private void goPlayerFragment(int bookIndex, int lessonIndex){
+        Bundle args = new Bundle();
+        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
+        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
+        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "UsrNoteFragment");
+    }
+
+    private UsrNoteDialogFragment goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s resId, String inputStr) {
+        Bundle args = new Bundle();
+        args.putSerializable(UsrNoteDialogFragment.DIALOG_BUNDLE_RES_ID_STR, resId);
+        args.putSerializable(UsrNoteDialogFragment.DIALOG_BUNDLE_STR_STR, inputStr);
+        return (UsrNoteDialogFragment) ((MainActivity) getActivity()).goFragment(UsrNoteDialogFragment.class, args, "UsrNoteDialogFragment", "UsrNoteFragment");
+    }
 }

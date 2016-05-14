@@ -28,7 +28,7 @@ import java.util.LinkedList;
  * Use the {@link VocLessonFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VocLessonFragment extends Fragment {
+public class VocLessonFragment extends Fragment implements VocLessonView.OnLessonClickListener {
 
     public static final String TAG = VocLessonFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
@@ -84,13 +84,7 @@ public class VocLessonFragment extends Fragment {
         VocLessonView vocLessonView = new VocLessonView(getActivity());
         ArrayList<Lesson> lessons = (wDatabase == null) ? null : wDatabase.getLessonsByBook(mBookIndex);
         LinkedList<Integer> lessonIntegers = new LinkedList<>();
-        vocLessonView.setOnLessonClickListener(new LessonView.OnLessonClickListener() {
-            @Override
-            public void onLessonClick(int lesson) {
-                mLessonIndex = lesson;
-                goPlayerFragment(mBookIndex, mLessonIndex);
-            }
-        });
+        vocLessonView.setOnLessonClickListener(this);
         if(lessons != null)
             for(int i = 0; i < lessons.size(); i++)
                 lessonIntegers.add(i + 1);
@@ -106,5 +100,16 @@ public class VocLessonFragment extends Fragment {
         args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
         args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
         ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "VocLessonFragment");
+    }
+
+    @Override
+    public void onLessonClick(int lesson) {
+        ArrayList<Integer> contentIDs;
+
+        mLessonIndex = lesson;
+        contentIDs = wDatabase.getContentIDs(mBookIndex, mLessonIndex);
+        if (contentIDs.size() >= 4) {
+            goPlayerFragment(mBookIndex, mLessonIndex);
+        }
     }
 }

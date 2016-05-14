@@ -13,7 +13,7 @@ import com.wishcan.www.vocabulazy.widget.DialogView;
 /**
  * Created by swallow on 2016/1/19.
  */
-public class UsrNoteDialogFragment extends DialogFragment<String> {
+public class UsrNoteDialogFragment extends DialogFragment<String> implements UsrNoteDialogView.OnYesOrNoClickListener {
 
     public static final String TAG = UsrNoteDialogFragment.class.getSimpleName();
 
@@ -63,19 +63,7 @@ public class UsrNoteDialogFragment extends DialogFragment<String> {
         wTracker.setScreenName(TAG);
         wTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
-        mUsrNoteDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickListener() {
-            @Override
-            public void onYesClicked() {
-                OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(UsrNoteFragment.M_TAG);
-                fragment.onDialogFinish(mUsrNoteDialogView.getDialogOutput());
-                getActivity().onBackPressed();
-            }
-
-            @Override
-            public void onNoClicked() {
-                getActivity().onBackPressed();
-            }
-        });
+        mUsrNoteDialogView.setOnYesOrNoClickedListener(this);
     }
 
     @Override
@@ -86,5 +74,19 @@ public class UsrNoteDialogFragment extends DialogFragment<String> {
     @Override
     protected String getCallerTag() {
         return UsrNoteFragment.M_TAG;
+    }
+
+    @Override
+    public void onYesClicked() {
+        OnDialogFinishListener<String> listener = getOnDialogFinishListener();
+        if (listener != null) {
+            listener.onDialogFinish(mUsrNoteDialogView.getDialogOutput());
+            getActivity().onBackPressed();
+        }
+    }
+
+    @Override
+    public void onNoClicked() {
+        getActivity().onBackPressed();
     }
 }
