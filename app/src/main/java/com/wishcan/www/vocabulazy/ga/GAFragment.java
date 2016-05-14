@@ -12,7 +12,9 @@ import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.VLApplication;
 
 /**
- * Created by swallow on 2016/5/11.
+ * GAFragment is an abstract class used for sending Lifecycle event to Google Analysis.
+ * All fragments extends the GAFragment will automatically sending their Lifecycle event as long as
+ * they implement {@link GAFragment#getNameAsGaLabel()}
  */
 public abstract class GAFragment extends Fragment {
 
@@ -105,5 +107,11 @@ public abstract class GAFragment extends Fragment {
             .setValue(value)
             .build());
     }
+
+    /**
+     * The abstract function should be implement to specified which Fragment is being running their
+     * life cycle.
+     * @return The String return will be used as Label for Google Analysis used
+     * */
     abstract String getNameAsGaLabel();
 }

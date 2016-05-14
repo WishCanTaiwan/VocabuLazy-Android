@@ -23,9 +23,8 @@ import java.util.LinkedList;
 /**
  * Created by swallow on 2016/1/14.
  */
-public class ExamNoteFragment extends Fragment {
+public class ExamNoteFragment extends Fragment implements ExamNoteView.OnListIconClickListener {
 
-    private static final int TITLE_RES_ID = R.string.fragment_exam_note_title;
     private Database wDatabase;
 
     public static ExamNoteFragment newInstance() {
@@ -68,32 +67,25 @@ public class ExamNoteFragment extends Fragment {
         }
 
         examNoteView.refreshView(notes.size(), dataList);
-        examNoteView.setOnListIconClickListener(new NoteView.OnListIconClickListener() {
-            @Override
-            public void onListIconClick(int iconId, int position, View v) {
-                switch(iconId) {
-                    case NoteView.ICON_PLAY:
-                        goExamFragment(position);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+        examNoteView.setOnListIconClickListener(this);
         return examNoteView;
     }
 
     private void goExamFragment(int noteIndex){
-
-        FragmentManager fragmentManager = getFragmentManager();
-        ExamFragment examFragment = ExamFragment.newInstance(-1, noteIndex);
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.
-                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, examFragment, "ExamFragment");
-        fragmentTransaction.addToBackStack("ExamLessonFragment");
-        fragmentTransaction.commit();
+        Bundle args = new Bundle();
+        args.putInt(ExamFragment.ARG_BOOK_INDEX, -1);
+        args.putInt(ExamFragment.ARG_LESSON_INDEX, noteIndex);
+        ((MainActivity) getActivity()).goFragment(ExamFragment.class, args, "ExamFragment", "ExamLessonFragment");
     }
 
+    @Override
+    public void onListIconClick(int iconId, int position, View v) {
+        switch(iconId) {
+            case NoteView.ICON_PLAY:
+                goExamFragment(position);
+                break;
+            default:
+                break;
+        }
+    }
 }

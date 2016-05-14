@@ -61,8 +61,6 @@ public class ExamResultFragment extends Fragment implements ExamResultView.OnTry
     /**--------------- Implements ExamView.OnTryItemClickListener ---------------------**/
     @Override
     public void onTryOtherClick() {
-        ExamResultFragment fragment = this;   // This is used for removing the fragment self
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         getActivity().onBackPressed();
         getActivity().onBackPressed();
     }

@@ -1,15 +1,12 @@
 package com.wishcan.www.vocabulazy.main.exam.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.ga.GAExamFragment;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamView;
@@ -19,7 +16,7 @@ import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ExamFragment extends Fragment implements ExamView.ExamButtonClickListener {
+public class ExamFragment extends GAExamFragment {
 
     public static final String ARG_BOOK_INDEX = "bookIndex";
     public static final String ARG_LESSON_INDEX = "lessonIndex";
@@ -30,15 +27,6 @@ public class ExamFragment extends Fragment implements ExamView.ExamButtonClickLi
     private ArrayList<Vocabulary> mVocabularies;
     private int mCurrentBookIndex, mCurrentLessonIndex;
     private Runnable mRefreshAnimTask;
-
-    public static ExamFragment newInstance(int bookIndex, int lessonIndex) {
-        ExamFragment fragment = new ExamFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_BOOK_INDEX, bookIndex);
-        args.putInt(ARG_LESSON_INDEX, lessonIndex);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public ExamFragment() {
         // Required empty public constructor
@@ -56,9 +44,7 @@ public class ExamFragment extends Fragment implements ExamView.ExamButtonClickLi
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mExamView = new ExamView(getActivity());
         VLApplication vlApplication = (VLApplication) getActivity().getApplication();
         wDatabase = vlApplication.getDatabase();
@@ -72,10 +58,10 @@ public class ExamFragment extends Fragment implements ExamView.ExamButtonClickLi
 
         // fill in the question and option, which are from PuzzleSetter
         HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();      // should call first to refresh question index
-        if(map != null)
+        if(map != null) {
             mExamView.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
+        }
 
-        // Inflate the layout for this fragment
         return mExamView;
     }
 
