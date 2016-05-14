@@ -196,6 +196,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
         Bundle args = new Bundle();
         args.putSerializable(UsrNoteDialogFragment.DIALOG_BUNDLE_RES_ID_STR, resId);
         args.putSerializable(UsrNoteDialogFragment.DIALOG_BUNDLE_STR_STR, inputStr);
-        return (UsrNoteDialogFragment) ((MainActivity) getActivity()).goFragment(UsrNoteDialogFragment.class, args, "UsrNoteDialogFragment", "UsrNoteFragment");
+        return (UsrNoteDialogFragment) ((MainActivity) getActivity())
+                .goFragment(UsrNoteDialogFragment.class, args, "UsrNoteDialogFragment", "UsrNoteFragment", MainActivity.FRAGMENT_ANIM.NONE, MainActivity.FRAGMENT_ANIM.NONE);
     }
 }

@@ -44,7 +44,11 @@ public class MainActivity extends FragmentActivity {
 
     public enum FRAGMENT_FLOW {
         GO, BACK, SAME
-    };
+    }
+
+    public enum FRAGMENT_ANIM {
+        NONE, DEFAULT
+    }
 
     private MainFragment mMainFragment;
     private FragmentManager mFragmentManager;
@@ -179,13 +183,27 @@ public class MainActivity extends FragmentActivity {
         return super.onNavigateUp();
     }
 
-    public Fragment goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
+    public Fragment goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag, FRAGMENT_ANIM animEnterResId, FRAGMENT_ANIM animExitResId) {
+        int enterResId, exitResId;
+
         Fragment f = Fragment.instantiate(this, cls.getName(), bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.
-                setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID,
-                        MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        if (animEnterResId == FRAGMENT_ANIM.DEFAULT) {
+            enterResId = MainActivity.ANIM_ENTER_RES_ID;
+        } else {
+            enterResId = -1;
+        }
+        if (animExitResId == FRAGMENT_ANIM.DEFAULT) {
+            exitResId = MainActivity.ANIM_EXIT_RES_ID;
+        } else {
+            exitResId = -1;
+        }
+        if (enterResId != -1 && exitResId != -1) {
+            fragmentTransaction.
+                    setCustomAnimations(enterResId, exitResId,
+                            enterResId, exitResId);
+        }
         if(newTag == null || newTag.equals(""))
             newTag = "newTag";
         fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, f, newTag);
@@ -193,6 +211,10 @@ public class MainActivity extends FragmentActivity {
             fragmentTransaction.addToBackStack(backStackTag);
         fragmentTransaction.commit();
         return f;
+    }
+
+    public Fragment goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
+        return goFragment(cls, bundle, newTag, backStackTag, FRAGMENT_ANIM.DEFAULT, FRAGMENT_ANIM.DEFAULT);
     }
 
     public void switchActionBarStr(FRAGMENT_FLOW flow, String newActionBarStr) {

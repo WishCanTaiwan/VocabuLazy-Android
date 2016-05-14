@@ -21,7 +21,8 @@ import com.wishcan.www.vocabulazy.widget.DialogFragment;
 import java.util.ArrayList;
 
 
-public class SearchFragment extends Fragment implements DialogFragment.OnDialogFinishListener<Integer> {
+public class SearchFragment extends Fragment implements SearchView.OnItemClickListener,
+                                                        DialogFragment.OnDialogFinishListener<Integer> {
 
     public static final String TAG = SearchFragment.class.getSimpleName();
 
@@ -61,29 +62,7 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mSearchView = new SearchView(getContext());
-        mSearchView.setOnItemClickListener(new SearchView.OnItemClickListener() {
-            @Override
-            public void onAddIconClick(int position) {
-//                Log.d(TAG, "onAddIconClick");
-                mSelectVocId = mSuggestedVocabularies.get(position).getId();
-                SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.LIST);
-                getFragmentManager()
-                        .beginTransaction()
-                        .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment_List")
-                        .addToBackStack("SearchFragment")
-                        .commit();
-            }
-
-            @Override
-            public void onListItemClick(int position) {
-//                Log.d(TAG, "onListItemClick");
-                Vocabulary voc = mSuggestedVocabularies.get(position);
-                mSelectVocId = voc.getId();
-                mSearchView.refreshSearchDetail(
-                        mSearchModel.createSearchResultDetailMap(voc));
-                mSearchView.showSearchDetail();
-            }
-        });
+        mSearchView.setOnItemClickListener(this);
         return mSearchView;
     }
 
@@ -95,8 +74,28 @@ public class SearchFragment extends Fragment implements DialogFragment.OnDialogF
 
     @Override
     public void onDialogFinish(Integer obj) {
-//        Log.d(TAG, mDatabase.toString());
         Log.d(TAG, " select  " +obj.intValue());
         wDatabase.addVocToNote(mSelectVocId, obj);
+    }
+
+    @Override
+    public void onAddIconClick(int position) {
+        mSelectVocId = mSuggestedVocabularies.get(position).getId();
+        SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.LIST);
+        fragment.setOnDialogFinishListener(this);
+        getFragmentManager()
+                .beginTransaction()
+                .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment_List")
+                .addToBackStack("SearchFragment")
+                .commit();
+    }
+
+    @Override
+    public void onListItemClick(int position) {
+        Vocabulary voc = mSuggestedVocabularies.get(position);
+        mSelectVocId = voc.getId();
+        mSearchView.refreshSearchDetail(
+                mSearchModel.createSearchResultDetailMap(voc));
+        mSearchView.showSearchDetail();
     }
 }
