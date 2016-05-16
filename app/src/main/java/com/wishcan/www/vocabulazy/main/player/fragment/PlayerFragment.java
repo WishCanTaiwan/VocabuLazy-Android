@@ -282,7 +282,6 @@ public class PlayerFragment extends GAPlayerFragment {
      * */
     @Override
     public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
-        Log.d(TAG, "onPlayerContentCreated");
         super.onPlayerContentCreated(playerDataContent);
         mPlayerMainView.postDelayed(new Runnable() {
             @Override
