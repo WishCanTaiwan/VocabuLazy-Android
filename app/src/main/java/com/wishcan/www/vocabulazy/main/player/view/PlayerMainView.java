@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.widget.CustomPageChangeListener;
 import com.wishcan.www.vocabulazy.widget.LinkedListPagerAdapter;
 import com.wishcan.www.vocabulazy.widget.Infinite3View;
 import com.wishcan.www.vocabulazy.widget.PopScrollView;
@@ -31,12 +32,10 @@ public class PlayerMainView extends Infinite3View {
 
     public static final String TAG = PlayerMainView.class.getSimpleName();
 
-
-
     public interface OnPlayerScrollListener {
         void onPlayerVerticalScrollStop(int index, boolean isViewTouchedDown);
         void onPlayerVerticalScrolling();
-        void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown);
+        void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown);
         void onPlayerHorizontalScrolling();
         void onDetailScrollStop(int index, boolean isViewTouchedDown);
         void onDetailScrolling();
@@ -73,11 +72,16 @@ public class PlayerMainView extends Infinite3View {
             }
 
             @Override
-            public void onPageChanged(int direction) {
+            public void onPageScrollStop(boolean isOrderChanged, int direction) {
                 if (mOnPlayerScrollListener != null) {
-                    mOnPlayerScrollListener.onPlayerHorizontalScrollStop(direction, isViewTouchedDown);
+                    mOnPlayerScrollListener.onPlayerHorizontalScrollStop(isOrderChanged, direction, isViewTouchedDown);
                     isViewTouchedDown = false;
                 }
+            }
+
+            @Override
+            public void onPageChanged(int direction) {
+
             }
         });
     }
@@ -387,19 +391,20 @@ public class PlayerMainView extends Infinite3View {
                         mItemPagesList.add(currentItemDetailsView);
                     }
                     viewPager.setAdapter(new LinkedListPagerAdapter(mItemPagesList));
-                    viewPager.addOnPageChangeListener(new OnPageChangeListener());
+                    viewPager.addOnPageChangeListener(new OnPageChangeListener(viewPager));
 
                 }
             }
 
-            private class OnPageChangeListener implements ViewPager.OnPageChangeListener {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            private class OnPageChangeListener extends CustomPageChangeListener {
 
+                public OnPageChangeListener(ViewPager viewPager) {
+                    super(viewPager);
                 }
+
                 @Override
                 public void onPageSelected(int position) {
-//                    Log.d(TAG, "onPageSelected: " + position);
+                    super.onPageSelected(position);
                     for(int i = 0; i < pageCount; i++) {
                         if(i == position)
                             ((GradientDrawable)((ImageView) pagerIndexView.getChildAt(i)).getDrawable())
@@ -417,23 +422,32 @@ public class PlayerMainView extends Infinite3View {
                         isViewTouchedDown = false;
                     }
                 }
-                @Override
-                public void onPageScrollStateChanged(int state) {}
             }
 
             @Override
             public boolean onInterceptTouchEvent(MotionEvent ev) {
-                if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-//                    Log.d("PlayerMainView", ev.toString());
-                    mOnPlayerScrollListener.onViewTouchDown();
-                    isViewTouchedDown = true;
+
+                switch (ev.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        if (mOnPlayerScrollListener != null) {
+                            mOnPlayerScrollListener.onViewTouchDown();
+                            isViewTouchedDown = true;
+                        }
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        if (mOnPlayerScrollListener != null) {
+                            mOnPlayerScrollListener.onDetailScrolling();
+                        }
+
+                        break;
+                    default:
+                        break;
                 }
                 return super.onInterceptTouchEvent(ev);
             }
 
             @Override
             public boolean onTouchEvent(MotionEvent event) {
-
                 return super.onTouchEvent(event);
             }
         }

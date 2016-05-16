@@ -1,8 +1,5 @@
 package com.wishcan.www.vocabulazy.storage.databaseObjects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 public class Option {
     private static final String TAG = Option.class.getSimpleName();
 
@@ -16,8 +13,6 @@ public class Option {
     private int itemloop;
     private int speed;
     private int playtime;
-
-    private boolean[] bools = new boolean[2];
 
     public Option(int mode, boolean isRandom, int listLoop, boolean sentence, int stopPeriod, int itemLoop, int speed, int playTime) {
         setMode(mode);
@@ -94,45 +89,4 @@ public class Option {
         this.playtime = playtime;
     }
 
-//    protected Option(Parcel in) {
-//        mode = in.readInt();
-//        in.readBooleanArray(bools);
-//        random = bools[0];
-//        sentence = bools[1];
-//        listloop = in.readInt();
-//        stopperiod = in.readInt();
-//        itemloop = in.readInt();
-//        speed = in.readInt();
-//        playtime = in.readInt();
-//    }
-//
-//    public static final Creator<Option> CREATOR = new Creator<Option>() {
-//        @Override
-//        public Option createFromParcel(Parcel in) {
-//            return new Option(in);
-//        }
-//
-//        @Override
-//        public Option[] newArray(int size) {
-//            return new Option[size];
-//        }
-//    };
-//
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeInt(mode);
-//        bools[0] = random;
-//        bools[1] = sentence;
-//        dest.writeBooleanArray(bools);
-//        dest.writeInt(listloop);
-//        dest.writeInt(stopperiod);
-//        dest.writeInt(itemloop);
-//        dest.writeInt(speed);
-//        dest.writeInt(playtime);
-//    }
 }

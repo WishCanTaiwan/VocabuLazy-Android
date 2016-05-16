@@ -1,8 +1,5 @@
 package com.wishcan.www.vocabulazy.storage.databaseObjects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -49,33 +46,4 @@ public class Lesson {
         name = newName;
     }
 
-//    protected Lesson(Parcel in) {
-//        id = in.readInt();
-//        name = in.readString();
-//        content = in.readArrayList(Integer.class.getClassLoader());
-//    }
-//
-//    public static final Creator<Lesson> CREATOR = new Creator<Lesson>() {
-//        @Override
-//        public Lesson createFromParcel(Parcel in) {
-//            return new Lesson(in);
-//        }
-//
-//        @Override
-//        public Lesson[] newArray(int size) {
-//            return new Lesson[size];
-//        }
-//    };
-//
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeInt(id);
-//        dest.writeString(name);
-//        dest.writeList(content);
-//    }
 }

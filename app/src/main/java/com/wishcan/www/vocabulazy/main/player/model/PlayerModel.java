@@ -1,13 +1,10 @@
 package com.wishcan.www.vocabulazy.main.player.model;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.service.AudioService;
+import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
 import com.wishcan.www.vocabulazy.storage.Preferences;
@@ -68,6 +65,10 @@ public class PlayerModel {
         wDatabase.setCurrentOptionMode(optionMode);
     }
 
+    public boolean isPlaying() {
+        return wPreferences.getPlayerState().equals(AudioPlayer.PLAYING);
+    }
+
     /**
      * Call saveIndicesPreferences(int[]) to store/update the indices of player.
      * int[0] is book index.
@@ -77,10 +78,11 @@ public class PlayerModel {
      * @param indices an array of int consists of four indices {book, lesson, item, sentence}
      */
     public void saveIndicesPreferences(int[] indices) {
-        wPreferences.wBookIndex = indices[0];
-        wPreferences.wLessonIndex = indices[1];
-        wPreferences.wItemIndex = indices[2];
-        wPreferences.wSentenceIndex = indices[3];
+        wPreferences.setBookIndex(indices[0]);
+        wPreferences.setLessonIndex(indices[1]);
+        wPreferences.setItemIndex(indices[2]);
+        wPreferences.setSentenceIndex(indices[3]);
+        Log.d(TAG, "save item index " + indices[2]);
     }
 
     /**
@@ -93,35 +95,12 @@ public class PlayerModel {
      */
     public int[] loadIndicesPreferences() {
         int[] indices = new int[4];
-        indices[0] = wPreferences.wBookIndex;
-        indices[1] = wPreferences.wLessonIndex;
-        indices[2] = wPreferences.wItemIndex;
-        indices[3] = wPreferences.wSentenceIndex;
+        indices[0] = wPreferences.getBookIndex();
+        indices[1] = wPreferences.getLessonIndex();
+        indices[2] = wPreferences.getItemIndex();
+        indices[3] = wPreferences.getSentenceIndex();
+        Log.d(TAG, "load item index " + wPreferences.getItemIndex());
         return indices;
-    }
-
-    /**
-     * Method for updating the status of player.
-     * @param status the string representing the player's status.
-     */
-    public void updatePlayerStatus(String status) {
-        wPreferences.wPlayerStatus = status;
-    }
-
-    /**
-     * Call this method to check whether the player is playing.
-     * @return the bool value of whether player status equals to STATUS_PLAYING
-     */
-    public boolean isPlayerPlaying() {
-        String playerStatus = wPreferences.wPlayerStatus;
-        return (playerStatus.equals(AudioService.STATUS_PLAYING));
-    }
-
-    private void setContentToPlayer(Activity activity, ArrayList<Vocabulary> vocabularies) {
-        Intent intent = new Intent(activity, AudioService.class);
-        intent.setAction(AudioService.ACTION_SET_CONTENT);
-        wPreferences.wCurrentContentInPlayer = vocabularies;
-        activity.startService(intent);
     }
 
     public void setDataProcessListener(PlayerModelDataProcessListener listener) {
