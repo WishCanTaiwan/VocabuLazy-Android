@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -32,6 +33,8 @@ abstract public class DialogView<WishCan> extends LinearLayout {
     abstract public LayoutTransition getDialogTransition();
 
     private static final int DEFAULT_DIALOG_BACKGROUND_COLOR = R.color.widget_dialog_background;
+    private static final int DEFAULT_DIALOG_BUTTON_BACKGROUND_STOP_COLOR = R.color.dialog_new_note_button_background_gray;
+    private static final int DEFAULT_DIALOG_BUTTON_BACKGROUND_START_COLOR = R.color.dialog_new_note_button_background_green;
 
     private LayoutParams mDefaultLayoutParams;
     private LayoutParams mDefaultDialogLayoutParams;
@@ -120,12 +123,10 @@ abstract public class DialogView<WishCan> extends LinearLayout {
     }
 
     public void setDialogTransition(LayoutTransition transition) {
-
         if (transition != null) {
             setLayoutTransition(transition);
             return;
         }
-
 
         ValueAnimator translateAnim = ObjectAnimator.ofFloat(this, "translationY", 1920f, 0f);
         translateAnim.setDuration(500);
@@ -142,6 +143,46 @@ abstract public class DialogView<WishCan> extends LinearLayout {
     public void setYesOrNoViewId(int yesId, int noId) {
         mYesView = mDialogView.findViewById(yesId);
         mNoView = mDialogView.findViewById(noId);
+        setYesOrNoView();
+    }
+
+    public void stopYesFunction() {
+        if (mYesView != null) {
+            mYesView.setOnClickListener(null);
+            mYesView.setBackgroundColor(ContextCompat.getColor(getContext(), DEFAULT_DIALOG_BUTTON_BACKGROUND_STOP_COLOR));
+        }
+    }
+
+    public void stopNoFunction() {
+        if (mNoView != null) {
+            mNoView.setOnClickListener(null);
+        }
+    }
+
+    public void startYesFunction() {
+        if (mYesView != null) {
+            mYesView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onYesClicked();
+                }
+            });
+            mYesView.setBackgroundColor(ContextCompat.getColor(getContext(), DEFAULT_DIALOG_BUTTON_BACKGROUND_START_COLOR));
+        }
+    }
+
+    public void startNoFunction() {
+        if (mNoView != null) {
+            mNoView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onNoClicked();
+                }
+            });
+        }
+    }
+
+    private void setYesOrNoView() {
         if(mYesView != null) {
             mYesView.setOnClickListener(new OnClickListener() {
                 @Override
@@ -158,37 +199,6 @@ abstract public class DialogView<WishCan> extends LinearLayout {
                 }
             });
         }
-    }
-
-    public void stopYesFunction() {
-        if (mYesView != null)
-            mYesView.setOnClickListener(null);
-    }
-
-    public void stopNoFunction() {
-        if (mNoView != null)
-            mNoView.setOnClickListener(null);
-    }
-
-    public void startYesFunction() {
-        if (mYesView != null)
-            mYesView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListener.onYesClicked();
-                }
-            });
-
-    }
-
-    public void startNoFunction() {
-        if (mNoView != null)
-            mNoView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListener.onNoClicked();
-                }
-            });
     }
 
 }

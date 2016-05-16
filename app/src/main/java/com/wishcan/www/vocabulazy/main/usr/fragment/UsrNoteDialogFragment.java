@@ -58,11 +58,8 @@ public class UsrNoteDialogFragment extends DialogFragment<String> implements Usr
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.d(TAG, "Setting screen name: " + TAG);
         wTracker.setScreenName(TAG);
         wTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
         mUsrNoteDialogView.setOnYesOrNoClickedListener(this);
     }
 

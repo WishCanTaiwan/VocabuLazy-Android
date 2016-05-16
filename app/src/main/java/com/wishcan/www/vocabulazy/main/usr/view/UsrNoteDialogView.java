@@ -2,6 +2,8 @@ package com.wishcan.www.vocabulazy.main.usr.view;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +63,7 @@ public class UsrNoteDialogView extends DialogView<String> {
     }
 
     private void setNoteDialog(DIALOG_RES_ID_s dialogRes) {
+        View inputView;
         int resId = -1;
         switch(dialogRes){
             case NEW:
@@ -84,6 +87,24 @@ public class UsrNoteDialogView extends DialogView<String> {
         if(resId != -1) {
             setDialog(resId);
             setYesOrNoViewId(YES_ID, NO_ID);
+        }
+        if ((inputView = findViewById(INPUT_ID)) != null) {
+            if (inputView instanceof EditText) {
+                ((EditText) inputView).addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (count > 0) {
+                            startYesFunction();
+                        } else {
+                            stopYesFunction();
+                        }
+                    }
+                    @Override
+                    public void afterTextChanged(Editable s) {}
+                });
+            }
         }
     }
 
