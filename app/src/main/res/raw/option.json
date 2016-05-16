@@ -2,11 +2,11 @@
   {
     "mode": 1,
     "random": false,
-    "listloop": 0,
+    "listloop": 1,
     "sentence": false,
     "stopperiod": 0,
     "itemloop": 1,
-    "speed": 1,
+    "speed": 2,
     "playtime": 10
   },
   {

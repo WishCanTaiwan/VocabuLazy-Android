@@ -43,7 +43,7 @@ public class Database {
     public static final String FILENAME_NOTE = "note.json";
     public static final String FILENAME_OPTION = "option.json";
 
-    private Context mContext;
+    private Context wContext;
 
     private ArrayList<Vocabulary> wVocabularies;
     private ArrayList<Book> wBooks;
@@ -53,31 +53,27 @@ public class Database {
 
     private static final int MAXIMUM_LIST_SIZE = 50;
 
-    private int mCurrentOptionMode;
+    private int wCurrentOptionMode;
 
     public Database(Context context) {
-        mContext = context;
-        mCurrentOptionMode = 0;
-        loadFiles();
+        wContext = context;
+        wCurrentOptionMode = 0;
     }
 
     public void loadFiles() {
         try {
-            wVocabularies = load(Vocabulary[].class, mContext.getResources().openRawResource(R.raw.vocabulary));
-            wBooks = load(Book[].class, mContext.getResources().openRawResource(R.raw.book));
-            wLessons = load(Lesson[].class, mContext.getResources().openRawResource(R.raw.lesson));
-            wNotes = load(Lesson[].class, mContext.openFileInput(FILENAME_NOTE));
-            wOptionSettings = load(Option[].class, mContext.openFileInput(FILENAME_OPTION));
-
-            Log.d(TAG, "not the first time entering the app");
+            wVocabularies = load(Vocabulary[].class, wContext.getResources().openRawResource(R.raw.vocabulary));
+            wBooks = load(Book[].class, wContext.getResources().openRawResource(R.raw.book));
+            wLessons = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.lesson));
+            wNotes = load(Lesson[].class, wContext.openFileInput(FILENAME_NOTE));
+            wOptionSettings = load(Option[].class, wContext.openFileInput(FILENAME_OPTION));
         } catch (FileNotFoundException fnfe) {
-            Log.d(TAG, "first time enter app");
-            wNotes = load(Lesson[].class, mContext.getResources().openRawResource(R.raw.note));
-            wOptionSettings = load(Option[].class, mContext.getResources().openRawResource(R.raw.option));
+            wNotes = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.note));
+            wOptionSettings = load(Option[].class, wContext.getResources().openRawResource(R.raw.option));
         }
     }
 
-    public <T> ArrayList<T> load(Class<T[]> classOfT, InputStream inputStream) {
+    private <T> ArrayList<T> load(Class<T[]> classOfT, InputStream inputStream) {
 
         BufferedReader bfdReader = null;
         try {
@@ -117,7 +113,7 @@ public class Database {
     private <T> void write(String filename, T[] array) {
         FileOutputStream fos;
         try {
-            fos = mContext.openFileOutput(filename, Context.MODE_PRIVATE);
+            fos = wContext.openFileOutput(filename, Context.MODE_PRIVATE);
             fos.write(new Gson().toJson(array).getBytes());
             fos.close();
         } catch (IOException e) {
@@ -183,10 +179,6 @@ public class Database {
 
     public ArrayList<Vocabulary> getVocabulariesByIDs(ArrayList<Integer> vocIDs) {
         ArrayList<Vocabulary> vocabularies = new ArrayList<>();
-
-        Log.d(TAG, wVocabularies.size() + " vocabularies in total");
-        Log.d(TAG, vocIDs.size() + " vocabularies to be matched");
-
         for (int index = 0; index < vocIDs.size(); index++) {
             for (int index2 = 0; index2 < wVocabularies.size(); index2++) {
                 Vocabulary vocabulary = wVocabularies.get(index2);
@@ -195,7 +187,6 @@ public class Database {
                 }
             }
         }
-
         return vocabularies;
     }
 
@@ -227,11 +218,11 @@ public class Database {
     }
 
     public Option getCurrentOption() {
-        return wOptionSettings.get(mCurrentOptionMode);
+        return wOptionSettings.get(wCurrentOptionMode);
     }
 
     public void setCurrentOptionMode(int mode) {
-        mCurrentOptionMode = mode;
+        wCurrentOptionMode = mode;
     }
 
     public void createNewNote(String name) {

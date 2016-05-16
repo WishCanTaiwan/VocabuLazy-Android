@@ -4,7 +4,6 @@ package com.wishcan.www.vocabulazy.main;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -74,6 +73,7 @@ public class MainActivity extends FragmentActivity {
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
+//            Log.d(TAG, "YOLO");
             mMainFragment = new MainFragment();
             mFragmentManager = getSupportFragmentManager();
             if(getActionBar() != null)
@@ -92,6 +92,7 @@ public class MainActivity extends FragmentActivity {
             fragmentTransaction.add(VIEW_MAIN_RES_ID, mMainFragment, "MainFragment");
             fragmentTransaction.commit();
         }
+//        Log.d(TAG, "onCreate");
         startAudioService();
     }
 
@@ -121,7 +122,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "write to file");
         stopAudioService();
         wDatabase.writeToFile();
     }
@@ -155,8 +155,8 @@ public class MainActivity extends FragmentActivity {
             return true;
         } else if (id == R.id.action_goto_player) {
             // fetching player information from database.
-            int bookIndex = wPreferences.wBookIndex;
-            int lessonIndex = wPreferences.wLessonIndex;
+            int bookIndex = wPreferences.getBookIndex();
+            int lessonIndex = wPreferences.getLessonIndex();
             if(bookIndex != 1359 && lessonIndex != 1359) {
                 Log.d(TAG, "retrive bookIndex " + bookIndex + " lessonIndex " + lessonIndex);
                 Log.d(TAG, wDatabase.toString());
@@ -259,8 +259,9 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void startAudioService() {
+        Log.d(TAG, "start service");
         Intent intent = new Intent(this, AudioService.class);
-        intent.setAction(AudioService.ACTION_START_SERVICE);
+        intent.setAction(AudioService.START_SERVICE);
         startService(intent);
     }
 
@@ -287,7 +288,7 @@ public class MainActivity extends FragmentActivity {
 
     private void stopAudioService() {
         Intent intent = new Intent(this, AudioService.class);
-        intent.setAction(AudioService.ACTION_STOP_SERVICE);
+        intent.setAction(AudioService.STOP_SERVICE);
         startService(intent);
     }
 }

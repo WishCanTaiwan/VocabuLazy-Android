@@ -4,13 +4,11 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.cover.fragment.CoverFragment;
+import com.wishcan.www.vocabulazy.log.LogHelper;
 
 //import io.uxtesting.UXTesting;
 
@@ -20,17 +18,18 @@ public class CoverActivity extends FragmentActivity {
 
     private static final String TAG = CoverActivity.class.getSimpleName();
     private static final int VIEW_ACTIVITY_RES_ID = R.layout.activity_cover;
-    private Tracker wTracker;
+
+    private LogHelper wLogHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         /**
          * Retrieve the Google Analytics tracker from VLApplication
          */
         VLApplication application = (VLApplication) getApplication();
-        wTracker = application.getDefaultTracker();
+        wLogHelper = application.getLogHelper();
+        application.loadDatabase();
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         FragmentManager mFragmentManager = getSupportFragmentManager();
@@ -43,9 +42,7 @@ public class CoverActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "Setting screen name: " + TAG);
-        wTracker.setScreenName(TAG);
-        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        wLogHelper.sendScreenViewEvent(TAG);
     }
 
     //    @Override
@@ -59,5 +56,4 @@ public class CoverActivity extends FragmentActivity {
 //        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 //        UXTesting.onRequestPermissionsResult(requestCode, permissions, grantResults);
 //    }
-
 }

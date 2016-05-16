@@ -36,6 +36,7 @@ public class Infinite3View extends RelativeLayout {
 
     public interface OnPageChangedListener {
         void onPageScrolled();
+        void onPageScrollStop(boolean isOrderChanged, int direction);
         void onPageChanged(int direction);
     }
 
@@ -108,6 +109,11 @@ public class Infinite3View extends RelativeLayout {
             }
 
             @Override
+            public void onPageScrollStop(boolean isOrderChanged, int direction) {
+
+            }
+
+            @Override
             public void onPageChanged(int direction) {
             }
         });
@@ -170,6 +176,8 @@ public class Infinite3View extends RelativeLayout {
         ViewGroup oriLeft = mThreeViewLL.get(LEFT_VIEW_INDEX);
         ViewGroup oriRight = mThreeViewLL.get(RIGHT_VIEW_INDEX);
 
+        Log.d(TAG, moveToLeftOrRight + "");
+
         if (moveToLeftOrRight == MOVE_TO_RIGHT) {  //right
             mThreeViewLL.removeLast();
             mThreeViewLL.addFirst(oriRight);
@@ -178,8 +186,8 @@ public class Infinite3View extends RelativeLayout {
             mThreeViewLL.addLast(oriLeft);
         }
 
-        if(mOnPageChangedListener != null)
-            mOnPageChangedListener.onPageChanged(moveToLeftOrRight);
+//        if(mOnPageChangedListener != null)
+//            mOnPageChangedListener.onPageChanged(moveToLeftOrRight);
     }
 
     @Override
@@ -299,6 +307,9 @@ public class Infinite3View extends RelativeLayout {
 
         @Override
         public void onAnimationEnd(Animator animation) {
+            if(mOnPageChangedListener != null)
+                mOnPageChangedListener.onPageScrollStop(orderChanged, moveToLeftOrRight);
+
             if (orderChanged) {
                 refreshLinkedListOrder(moveToLeftOrRight);
                 mThreeViewLL.get(LEFT_VIEW_INDEX).setVisibility(VISIBLE);

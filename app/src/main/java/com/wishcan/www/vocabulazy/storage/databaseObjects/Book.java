@@ -1,8 +1,5 @@
 package com.wishcan.www.vocabulazy.storage.databaseObjects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.util.ArrayList;
 
 public class Book {

@@ -1,9 +1,5 @@
 package com.wishcan.www.vocabulazy.storage.databaseObjects;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -124,7 +120,7 @@ public class Vocabulary {
         return builder.toString();
     }
 
-    private <T> ArrayList<T> toArrayList(T[] array) {
-        return new ArrayList<>(Arrays.asList(array));
+    public int getSentenceAmount() {
+        return en_sentence.size();
     }
 }

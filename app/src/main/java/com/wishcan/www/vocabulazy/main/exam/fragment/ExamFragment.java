@@ -1,5 +1,6 @@
 package com.wishcan.www.vocabulazy.main.exam.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.wishcan.www.vocabulazy.ga.GAExamFragment;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamView;
+import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
@@ -157,5 +159,9 @@ public class ExamFragment extends GAExamFragment {
     @Override
     public void onPlayerClick(String str) {
         // TODO: Beibei please add your function here. Params str is the string for TTS
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.START_SINGLE_ITEM);
+        intent.putExtra(AudioService.EXAM_UTTERANCE, str);
+        getActivity().startService(intent);
     }
 }

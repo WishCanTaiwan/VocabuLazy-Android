@@ -66,7 +66,7 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerModel
     }
 
     @Override
-    public void onPlayerHorizontalScrollStop(int direction, boolean isViewTouchedDown) {
+    public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
     }
 
     @Override

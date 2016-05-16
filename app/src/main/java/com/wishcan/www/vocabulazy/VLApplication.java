@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.playlog.internal.LogEvent;
+import com.wishcan.www.vocabulazy.log.LogHelper;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 
@@ -20,11 +22,6 @@ public class VLApplication extends Application {
     private static final String UXTESTING_APP_KEY = "JzskKAJgBGPlmP-NIBxBug";
 
     /**
-     * The Tracker object defined by Google Analytics.
-     */
-    private Tracker wTracker;
-
-    /**
      * The preferences which store all arguments and parameters.
      */
     private Preferences wPreferences;
@@ -33,6 +30,12 @@ public class VLApplication extends Application {
      * The Database object used in the entire application.
      */
     private Database wDatabase;
+
+    /**
+     * The LogHelper is to help application logging messages and errors, also helps send Google
+     * Analytics event messages through Tracker.
+     */
+    private LogHelper wLogHelper;
 
     @Override
     public void onCreate() {
@@ -52,6 +55,11 @@ public class VLApplication extends Application {
 //         * call this method to enable UXTesting.
 //         */
 //        UXTesting.Init(this, UXTESTING_APP_KEY);
+
+        /**
+         * initialize the LogHelper object.
+         */
+        wLogHelper = new LogHelper(getApplicationContext());
     }
 
     /**
@@ -59,12 +67,7 @@ public class VLApplication extends Application {
      * @return wTracker
      */
     synchronized public Tracker getDefaultTracker() {
-        if (wTracker == null) {
-            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
-            wTracker = analytics.newTracker(R.xml.global_tracker);
-        }
-        return wTracker;
+        return wLogHelper.getDefaultTracker(getApplicationContext());
     }
 
     /**
@@ -81,5 +84,13 @@ public class VLApplication extends Application {
      */
     synchronized public Database getDatabase() {
         return wDatabase;
+    }
+
+    public void loadDatabase() {
+        wDatabase.loadFiles();
+    }
+
+    synchronized public LogHelper getLogHelper() {
+        return wLogHelper;
     }
 }
