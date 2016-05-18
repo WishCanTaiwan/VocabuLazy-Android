@@ -448,10 +448,12 @@ public class PlayerFragment extends GAPlayerFragment {
                 case AudioService.TO_ITEM:
                     int newItemIndex = intent.getIntExtra(AudioService.ITEM_INDEX, -1);
                     updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
+                    Log.d(TAG, "moveToPosition Start");
                     mPlayerMainView.moveToPosition(newItemIndex);
                     if (mVocabularies != null) {
                         mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
                     }
+                    Log.d(TAG, "moveToPosition Done");
                     break;
 
                 case AudioService.LIST_COMPLETE:

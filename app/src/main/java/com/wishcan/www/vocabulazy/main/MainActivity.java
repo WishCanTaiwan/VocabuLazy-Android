@@ -73,11 +73,11 @@ public class MainActivity extends FragmentActivity {
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
-//            Log.d(TAG, "YOLO");
             mMainFragment = new MainFragment();
             mFragmentManager = getSupportFragmentManager();
-            if(getActionBar() != null)
+            if(getActionBar() != null) {
                 getActionBar().setDisplayHomeAsUpEnabled(true);
+            }
             mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
@@ -92,7 +92,6 @@ public class MainActivity extends FragmentActivity {
             fragmentTransaction.add(VIEW_MAIN_RES_ID, mMainFragment, "MainFragment");
             fragmentTransaction.commit();
         }
-//        Log.d(TAG, "onCreate");
         startAudioService();
     }
 
@@ -109,8 +108,25 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (mActionBar == null) {
+            mActionBar = getActionBar();
+        }
         setCustomActionBar();
-        setActionBarTitle(mActionBarLL.getFirst());
+        if (mActionBarLL != null) {
+            setActionBarTitle(mActionBarLL.getFirst());
+            if (mFragmentManager == null) {
+                mFragmentManager = getSupportFragmentManager();
+            }
+            if (mFragmentManager.getBackStackEntryCount() <= 0) {
+                if (mActionBar != null) {
+                    mActionBar.setDisplayHomeAsUpEnabled(false);
+                }
+            } else {
+                if (mActionBar != null) {
+                    mActionBar.setDisplayHomeAsUpEnabled(true);
+                }
+            }
+        }
     }
 
     @Override
@@ -125,18 +141,6 @@ public class MainActivity extends FragmentActivity {
         stopAudioService();
         wDatabase.writeToFile();
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        UXTesting.onActivityResult(requestCode, resultCode, data);
-//    }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        UXTesting.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
