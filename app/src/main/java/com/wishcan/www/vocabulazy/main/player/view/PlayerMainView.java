@@ -105,6 +105,7 @@ public class PlayerMainView extends Infinite3View {
         if (position == CENTER_VIEW_INDEX)
             return;
         refreshItem(position, null);
+        Log.d(TAG, "removeOldPlayer " + position);
     }
 
     public void refreshPlayerDetail(HashMap<String, Object> dataMap){
