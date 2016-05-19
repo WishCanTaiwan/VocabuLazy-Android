@@ -1,5 +1,4 @@
 <resources>
-
     <style name="MyThemeForCoverActivity" parent="@android:style/Theme.Material.Light">
         <item name="android:colorPrimary">@color/theme_color_green</item>
         <item name="android:colorPrimaryDark">@color/theme_color_green</item>
@@ -26,7 +25,7 @@
     <style name="MyMainActivityAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/translation_from_right_to_center</item>
         <item name="android:activityOpenExitAnimation">@anim/main_activity_enter_animation</item>
-        <item name="android:activityCloseEnterAnimation">@anim/translation_from_center_to_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/main_activity_enter_animation</item>
         <item name="android:activityCloseExitAnimation">@anim/translation_from_center_to_right</item>
     </style>
 
@@ -41,9 +40,8 @@
     <style name="MySearchActivityAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/translation_from_right_to_center</item>
         <item name="android:activityOpenExitAnimation">@anim/main_activity_enter_animation</item>
-        <item name="android:activityCloseEnterAnimation">@anim/translation_from_center_to_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/main_activity_enter_animation</item>
         <item name="android:activityCloseExitAnimation">@anim/translation_from_center_to_right</item>
     </style>
-
 
 </resources>

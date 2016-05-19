@@ -26,8 +26,6 @@ import com.wishcan.www.vocabulazy.storage.Preferences;
 
 import java.util.LinkedList;
 
-//import io.uxtesting.UXTesting;
-
 public class MainActivity extends FragmentActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -39,6 +37,8 @@ public class MainActivity extends FragmentActivity {
     private static final int VIEW_ACTIVITY_RES_ID = R.layout.view_main_activity;
     private static final int DEFAULT_CUSTOM_ACTION_BAR_RES_ID = R.layout.view_main_activity_action_bar;
     private static final int TITLE_RES_ID = R.id.custom_bar_title;
+    private static final int ITEM_SEARCH_RES_ID = R.id.action_settings;
+    private static final int ITEM_SHORTCUT_RES_ID = R.id.action_goto_player;
     private static final String FONT_RES_STR = "fonts/DFHeiStd-W5.otf";
 
     public enum FRAGMENT_FLOW {
@@ -73,11 +73,11 @@ public class MainActivity extends FragmentActivity {
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
-//            Log.d(TAG, "YOLO");
             mMainFragment = new MainFragment();
             mFragmentManager = getSupportFragmentManager();
-            if(getActionBar() != null)
+            if(getActionBar() != null) {
                 getActionBar().setDisplayHomeAsUpEnabled(true);
+            }
             mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
@@ -92,51 +92,58 @@ public class MainActivity extends FragmentActivity {
             fragmentTransaction.add(VIEW_MAIN_RES_ID, mMainFragment, "MainFragment");
             fragmentTransaction.commit();
         }
-//        Log.d(TAG, "onCreate");
         startAudioService();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        if (mActionBar == null) {
+            mActionBar = getActionBar();
+        }
         setCustomActionBar();
-        setActionBarTitle(mActionBarLL.getFirst());
+        if (mActionBarLL != null) {
+            setActionBarTitle(mActionBarLL.getFirst());
+            if (mFragmentManager == null) {
+                mFragmentManager = getSupportFragmentManager();
+            }
+            if (mFragmentManager.getBackStackEntryCount() <= 0) {
+                if (mActionBar != null) {
+                    mActionBar.setDisplayHomeAsUpEnabled(false);
+                }
+            } else {
+                if (mActionBar != null) {
+                    mActionBar.setDisplayHomeAsUpEnabled(true);
+                }
+            }
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
+        Log.d(TAG, "onPause");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy");
         stopAudioService();
         wDatabase.writeToFile();
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        UXTesting.onActivityResult(requestCode, resultCode, data);
-//    }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        UXTesting.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,11 +156,11 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == ITEM_SEARCH_RES_ID) {
             Intent intent = new Intent(this, SearchActivity.class);
             startActivityForResult(intent, 1);
             return true;
-        } else if (id == R.id.action_goto_player) {
+        } else if (id == ITEM_SHORTCUT_RES_ID) {
             // fetching player information from database.
             int bookIndex = wPreferences.getBookIndex();
             int lessonIndex = wPreferences.getLessonIndex();
@@ -167,7 +174,6 @@ public class MainActivity extends FragmentActivity {
                 goFragment(PlayerFragment.class, args, "PlayerFragment", "MainFragment");
             }
         }
-
         return super.onOptionsItemSelected(item);
     }
 

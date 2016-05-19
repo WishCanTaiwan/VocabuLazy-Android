@@ -3,6 +3,7 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@style/MyCoverActivityAnimation</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
     <style name="MyCoverActivityAnimation" parent="@android:style/Animation.Activity">
@@ -18,12 +19,14 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_action_previous_item</item>
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="MyMainActivityAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/translation_from_right_to_center</item>
         <item name="android:activityOpenExitAnimation">@anim/main_activity_enter_animation</item>
-        <item name="android:activityCloseEnterAnimation">@anim/translation_from_center_to_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/main_activity_enter_animation</item>
         <item name="android:activityCloseExitAnimation">@anim/translation_from_center_to_right</item>
     </style>
 
@@ -32,12 +35,14 @@
         <item name="android:windowAnimationStyle">@style/MySearchActivityAnimation</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_action_previous_item</item>
         <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="MySearchActivityAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/translation_from_right_to_center</item>
         <item name="android:activityOpenExitAnimation">@anim/main_activity_enter_animation</item>
-        <item name="android:activityCloseEnterAnimation">@anim/translation_from_center_to_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/main_activity_enter_animation</item>
         <item name="android:activityCloseExitAnimation">@anim/translation_from_center_to_right</item>
     </style>
 
