@@ -136,7 +136,8 @@ public class SearchActivity extends FragmentActivity {
 
     @Override
     public boolean onNavigateUp() {
-        onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.main_activity_enter_animation, R.anim.translation_from_center_to_right);
         return true;
     }
 }

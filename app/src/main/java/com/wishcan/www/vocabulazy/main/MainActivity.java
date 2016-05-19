@@ -26,8 +26,6 @@ import com.wishcan.www.vocabulazy.storage.Preferences;
 
 import java.util.LinkedList;
 
-//import io.uxtesting.UXTesting;
-
 public class MainActivity extends FragmentActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -39,6 +37,8 @@ public class MainActivity extends FragmentActivity {
     private static final int VIEW_ACTIVITY_RES_ID = R.layout.view_main_activity;
     private static final int DEFAULT_CUSTOM_ACTION_BAR_RES_ID = R.layout.view_main_activity_action_bar;
     private static final int TITLE_RES_ID = R.id.custom_bar_title;
+    private static final int ITEM_SEARCH_RES_ID = R.id.action_settings;
+    private static final int ITEM_SHORTCUT_RES_ID = R.id.action_goto_player;
     private static final String FONT_RES_STR = "fonts/DFHeiStd-W5.otf";
 
     public enum FRAGMENT_FLOW {
@@ -98,11 +98,13 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop");
     }
 
     @Override
@@ -132,12 +134,13 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
+        Log.d(TAG, "onPause");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy");
         stopAudioService();
         wDatabase.writeToFile();
     }
@@ -153,11 +156,11 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == ITEM_SEARCH_RES_ID) {
             Intent intent = new Intent(this, SearchActivity.class);
             startActivityForResult(intent, 1);
             return true;
-        } else if (id == R.id.action_goto_player) {
+        } else if (id == ITEM_SHORTCUT_RES_ID) {
             // fetching player information from database.
             int bookIndex = wPreferences.getBookIndex();
             int lessonIndex = wPreferences.getLessonIndex();
@@ -171,7 +174,6 @@ public class MainActivity extends FragmentActivity {
                 goFragment(PlayerFragment.class, args, "PlayerFragment", "MainFragment");
             }
         }
-
         return super.onOptionsItemSelected(item);
     }
 
