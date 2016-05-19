@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.storage.Preferences;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
@@ -31,6 +31,7 @@ public class AudioService extends IntentService {
     public static final String OPTION_SETTINGS_CHANGED = "option-settings-changed";
     public static final String PLAY_BUTTON_CLICKED = "play-button-clicked";
     public static final String PLAYERVIEW_SCROLLING = "playerview-scrolling";
+    public static final String START_TIMER = "start-timer";
 
     /* Action to be broadcast to activity or fragment */
     public static final String ITEM_COMPLETE = "item-complete";
@@ -124,7 +125,7 @@ public class AudioService extends IntentService {
                 if (mAudioPlayer == null)
                     break;
                 ArrayList<Vocabulary> vocabularies = mPreferences.getCurrentContent();
-                Option optionSetting = mPreferences.getCurrentOptionSettings();
+                OptionSettings optionSetting = mPreferences.getCurrentOptionSettings();
                 mAudioPlayer.setContent(vocabularies);
                 mAudioPlayer.setOptionSettings(optionSetting);
                 break;
@@ -153,6 +154,9 @@ public class AudioService extends IntentService {
                 int sentenceIndex = intent.getIntExtra(SENTENCE_INDEX, -1);
                 String playingField = intent.getStringExtra(PLAYING_FIELD);
                 mAudioPlayer.playItemAt(itemIndex, sentenceIndex, playingField);
+                mAudioPlayer.resetSpellCountDown();
+                mAudioPlayer.resetItemLoop();
+                mAudioPlayer.resetItemLoop();
                 break;
 
             case NEW_LIST_FOCUSED:
@@ -177,8 +181,8 @@ public class AudioService extends IntentService {
                     break;
                 if (mAudioPlayer == null)
                     break;
-                Option option = mPreferences.getCurrentOptionSettings();
-                mAudioPlayer.setOptionSettings(option);
+                OptionSettings optionSettings = mPreferences.getCurrentOptionSettings();
+                mAudioPlayer.updateOptionSettings(optionSettings);
                 break;
 
             case PLAY_BUTTON_CLICKED:
@@ -191,6 +195,12 @@ public class AudioService extends IntentService {
                 if (mAudioPlayer == null)
                     break;
                 mAudioPlayer.haltPlayer();
+                break;
+
+            case START_TIMER:
+                if (mAudioPlayer == null)
+                    break;
+                mAudioPlayer.startTimer();
                 break;
 
             default:

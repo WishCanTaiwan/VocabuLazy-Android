@@ -49,7 +49,7 @@ public class VLApplication extends Application {
          * Every-time entering the application, create a Database object, and throughout entire
          * application, this is the only Database object to be accessed.
          */
-        wDatabase = new Database(getApplicationContext());
+        wDatabase = new Database(this);
 
 //        /**
 //         * call this method to enable UXTesting.
@@ -88,6 +88,7 @@ public class VLApplication extends Application {
 
     public void loadDatabase() {
         wDatabase.loadFiles();
+        wDatabase.initSettings();
     }
 
     synchronized public LogHelper getLogHelper() {

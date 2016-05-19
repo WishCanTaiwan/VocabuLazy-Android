@@ -7,7 +7,7 @@ import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerView;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
@@ -101,7 +101,7 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerModel
 
     /**----------------- Implement PlayerOptionView.OnOptionChangedListener ---------------------**/
     @Override
-    public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
+    public void onOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode) {
     }
 
     /**-------------------- Implement PlayerView.OnGrayBackClickListener ------------------------**/

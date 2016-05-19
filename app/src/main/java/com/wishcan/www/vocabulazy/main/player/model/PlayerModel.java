@@ -6,11 +6,12 @@ import android.util.Log;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
 
+import java.lang.reflect.Array;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,10 +23,6 @@ public class PlayerModel {
      */
     public static final String TAG = PlayerModel.class.getSimpleName();
 
-    private static final String KEY_CONTENT_BUNDLE = "content-bundle";
-    private static final String KEY_DATABASE_BOOK_INDEX = "book-index";
-    private static final String KEY_DATABASE_LESSON_INDEX = "lesson-index";
-
     private Database wDatabase;
     private Preferences wPreferences;
     private ArrayList<Vocabulary> mVocabularies;
@@ -36,34 +33,55 @@ public class PlayerModel {
         wPreferences = application.getPreferences();
 	}
 
-    public void createPlayerContent(ArrayList<Vocabulary> vocabularyArrayList) {
-        new PlayerModelAsyncTask().execute(vocabularyArrayList);
+    public void setDataProcessListener(PlayerModelDataProcessListener listener) {
+        wDataProcessListener = listener;
     }
 
-    public void createPlayerDetailContent(Vocabulary vocabulary) {
-        new PlayerModelAsyncTask().execute(vocabulary);
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public int getBookIndex() {
+        return wPreferences.getBookIndex();
     }
 
-    public void getVocabulariesIn(int bookIndex, int lessonIndex) {
-        new PlayerModelAsyncTask().execute(bookIndex, lessonIndex);
+    public int getLessonIndex() {
+        return wPreferences.getLessonIndex();
     }
 
     public int getNumOfLessons(int bookIndex) {
         return wDatabase.getNumOfLesson(bookIndex);
     }
 
-    public Option getCurrentOption() {
-        return wDatabase.getCurrentOption();
+    public ArrayList<Vocabulary> getCurrentContent() {
+        return wPreferences.getCurrentContent();
     }
 
-    public ArrayList<Option> getDefaultOptions() {
-        return wDatabase.getOptions();
+    public void setCurrentContent(ArrayList<Vocabulary> vocabularies) {
+        wPreferences.setCurrentContent(vocabularies);
     }
 
-    public void setOptionAndMode(ArrayList<Option> optionArrayList, int optionMode) {
-        wDatabase.setCurrentOptions(optionArrayList);
-        wDatabase.setCurrentOptionMode(optionMode);
+    public OptionSettings getCurrentOptionSettings() {
+        return wPreferences.getCurrentOptionSettings();
     }
+
+    public ArrayList<OptionSettings> getOptionSettings() {
+        return wPreferences.getOptionSettings();
+    }
+
+    public void setOptionSettingsAndMode(ArrayList<OptionSettings> optionSettings, int optionMode) {
+        wPreferences.setOptionSettings(optionSettings);
+        wPreferences.setOptionMode(optionMode);
+    }
+
+    public void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
+        wPreferences.setBookIndex(bookIndex);
+        wPreferences.setLessonIndex(lessonIndex);
+        wPreferences.setItemIndex(itemIndex);
+        wPreferences.setSentenceIndex(sentenceIndex);
+    }
+
+
 
     public boolean isPlaying() {
         return wPreferences.getPlayerState().equals(AudioPlayer.PLAYING);
@@ -82,7 +100,6 @@ public class PlayerModel {
         wPreferences.setLessonIndex(indices[1]);
         wPreferences.setItemIndex(indices[2]);
         wPreferences.setSentenceIndex(indices[3]);
-        Log.d(TAG, "save item index " + indices[2]);
     }
 
     /**
@@ -99,12 +116,22 @@ public class PlayerModel {
         indices[1] = wPreferences.getLessonIndex();
         indices[2] = wPreferences.getItemIndex();
         indices[3] = wPreferences.getSentenceIndex();
-        Log.d(TAG, "load item index " + wPreferences.getItemIndex());
         return indices;
     }
 
-    public void setDataProcessListener(PlayerModelDataProcessListener listener) {
-        wDataProcessListener = listener;
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /* AsyncTasks */
+    public void createPlayerContent(ArrayList<Vocabulary> vocabularyArrayList) {
+        new PlayerModelAsyncTask().execute(vocabularyArrayList);
+    }
+
+    public void createPlayerDetailContent(Vocabulary vocabulary) {
+        new PlayerModelAsyncTask().execute(vocabulary);
+    }
+
+    public void getVocabulariesIn(int bookIndex, int lessonIndex) {
+        new PlayerModelAsyncTask().execute(bookIndex, lessonIndex);
     }
 
     private class PlayerModelAsyncTask extends AsyncTask<Object, Void, Object> {
@@ -123,8 +150,6 @@ public class PlayerModel {
                         String newStr = "(" +cateList.get(i)+ ")" + transList.get(i);
                         hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1+i], newStr);
                     }
-//            hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], voc.getTranslationInOneString());
-
                     playerDataContent.add(hm);
                 }
                 return playerDataContent;

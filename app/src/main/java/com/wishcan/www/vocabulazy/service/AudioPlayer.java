@@ -1,17 +1,14 @@
 package com.wishcan.www.vocabulazy.service;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
-import android.provider.MediaStore;
-import android.support.v4.content.LocalBroadcastManager;
+import android.os.Handler;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
@@ -50,9 +47,11 @@ public class AudioPlayer implements AudioPlayerListener {
     private Preferences mPreferences;
     private Database mDatabase;
     private BroadcastTrigger mBroadcastTrigger;
+    private Handler mHandler;
+    private Runnable mTimerRunnable;
 
     private ArrayList<Vocabulary> mVocabularies;
-    private Option mOptionSettings;
+    private OptionSettings mOptionSettings;
 
     private int mItemIndex;
     private int mSentenceIndex;
@@ -63,6 +62,7 @@ public class AudioPlayer implements AudioPlayerListener {
 
     private boolean isTriggeredFromExam = false;
     private boolean isAudioFocused = false;
+    private boolean isTimeOut = false;
 
     private int spellCountDown = 3;
     private int itemLoopCountDown;
@@ -72,6 +72,19 @@ public class AudioPlayer implements AudioPlayerListener {
         mContext = application.getApplicationContext();
         mPreferences = application.getPreferences();
         mDatabase = application.getDatabase();
+        mHandler = new Handler();
+        mTimerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (vlTextToSpeech == null)
+                    return;
+                if (isTimeOut)
+                    return;
+                isTimeOut = true;
+                vlTextToSpeech.pause();
+                updatePlayerInfo(mItemIndex, mSentenceIndex, mPlayingField, PAUSE);
+            }
+        };
     }
 
     public void bondToTTSEngine() {
@@ -110,10 +123,32 @@ public class AudioPlayer implements AudioPlayerListener {
         mVocabularies = vocabularies;
     }
 
-    public void setOptionSettings(Option optionSettings) {
+    public void setOptionSettings(OptionSettings optionSettings) {
         mOptionSettings = optionSettings;
-        itemLoopCountDown = mOptionSettings.getItemloop();
-        listLoopCountDown = mOptionSettings.getListloop();
+        itemLoopCountDown = optionSettings.getItemLoop();
+        listLoopCountDown = optionSettings.getListLoop();
+
+        mPreferences.setItemLoop(optionSettings.getItemLoop());
+        mPreferences.setListLoop(optionSettings.getListLoop());
+        mPreferences.setPlayTime(optionSettings.getPlayTime());
+    }
+
+    public void updateOptionSettings(OptionSettings optionSettings) {
+        int oldItemLoop = mPreferences.getItemLoop();
+        int oldListLoop = mPreferences.getListLoop();
+        int oldPlayTime = mPreferences.getPlayTime();
+
+        int newItemLoop = optionSettings.getItemLoop();
+        int newListLoop = optionSettings.getListLoop();
+        int newPlayTime = optionSettings.getPlayTime();
+
+        mOptionSettings = optionSettings;
+        if (newItemLoop != oldItemLoop)
+            resetItemLoop();
+        if (newListLoop != oldListLoop)
+            resetListLoop();
+        if (newPlayTime != oldPlayTime)
+            resetTimer();
     }
 
     public void play(String utterance) {
@@ -148,7 +183,8 @@ public class AudioPlayer implements AudioPlayerListener {
                 break;
         }
         vlTextToSpeech.speak(string, mOptionSettings.getSpeed());
-        vlTextToSpeech.speakSilence(mOptionSettings.getStopperiod() + isItemFinishing(itemIndex, sentenceIndex, playingField));
+        vlTextToSpeech.speakSilence(mOptionSettings.getStopPeriod() + isItemFinishing(itemIndex, sentenceIndex, playingField));
+        if (isTimeOut) startTimer();
         updatePlayerInfo(itemIndex, sentenceIndex, playingField, PLAYING);
     }
 
@@ -174,16 +210,33 @@ public class AudioPlayer implements AudioPlayerListener {
         updatePlayerInfo(mItemIndex, mSentenceIndex, mPlayingField, HALT_BY_SCROLLING);
     }
 
+    public void startTimer() {
+        int playTime = mOptionSettings.getPlayTime() * 1000 * 60;
+        mHandler.postDelayed(mTimerRunnable, playTime);
+        isTimeOut = false;
+    }
+
+    public void resetTimer() {
+        Log.d(TAG, "reset timer");
+        mPreferences.setPlayTime(mOptionSettings.getPlayTime());
+        mHandler.removeCallbacks(mTimerRunnable);
+        startTimer();
+    }
+
     public void resetSpellCountDown() {
         spellCountDown = 3;
     }
 
     public void resetItemLoop() {
-        itemLoopCountDown = mOptionSettings.getItemloop();
+        int itemLoop = mOptionSettings.getItemLoop();
+        mPreferences.setItemLoop(itemLoop);
+        itemLoopCountDown = itemLoop;
     }
 
     public void resetListLoop() {
-        listLoopCountDown = mOptionSettings.getListloop();
+        int listLoop = mOptionSettings.getListLoop();
+        mPreferences.setListLoop(listLoop);
+        listLoopCountDown = listLoop;
     }
 
     @Override

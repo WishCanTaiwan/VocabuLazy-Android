@@ -1,8 +1,7 @@
 package com.wishcan.www.vocabulazy.storage;
 
 import com.wishcan.www.vocabulazy.service.AudioPlayer;
-import com.wishcan.www.vocabulazy.service.AudioService;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
@@ -23,8 +22,13 @@ public class Preferences {
     private int itemIndex = 0;
     private int sentenceIndex = -1;
 
-    private ArrayList<Vocabulary> mVocabularies;
-    private Option mCurrentOptionSettings;
+    private int itemLoop;
+    private int listLoop;
+    private int playTime;
+
+    private ArrayList<Vocabulary> mVocabulariesInPlayer;
+    private ArrayList<OptionSettings> mOptionSettings;
+    private int mOptionMode;
     private String playerState = AudioPlayer.IDLE;
     private String playingField;
 
@@ -68,19 +72,27 @@ public class Preferences {
     }
 
     public ArrayList<Vocabulary> getCurrentContent() {
-        return mVocabularies;
+        return mVocabulariesInPlayer;
     }
 
     public void setCurrentContent(ArrayList<Vocabulary> vocabularies) {
-        mVocabularies = vocabularies;
+        mVocabulariesInPlayer = vocabularies;
     }
 
-    public Option getCurrentOptionSettings() {
-        return mCurrentOptionSettings;
+    public OptionSettings getCurrentOptionSettings() {
+        return mOptionSettings.get(mOptionMode);
     }
 
-    public void setCurrentOptionSettings(Option optionSettings) {
-        mCurrentOptionSettings = optionSettings;
+    public ArrayList<OptionSettings> getOptionSettings() {
+        return mOptionSettings;
+    }
+
+    public void setOptionSettings(ArrayList<OptionSettings> optionSettings) {
+        mOptionSettings = optionSettings;
+    }
+
+    public void setOptionMode(int optionMode) {
+        mOptionMode = optionMode;
     }
 
     public String getPlayerState() {
@@ -97,5 +109,29 @@ public class Preferences {
 
     public void setPlayingField(String playingField) {
         this.playingField = playingField;
+    }
+
+    public int getItemLoop() {
+        return itemLoop;
+    }
+
+    public void setItemLoop(int itemLoop) {
+        this.itemLoop = itemLoop;
+    }
+
+    public int getListLoop() {
+        return listLoop;
+    }
+
+    public void setListLoop(int listLoop) {
+        this.listLoop = listLoop;
+    }
+
+    public int getPlayTime() {
+        return playTime;
+    }
+
+    public void setPlayTime(int playTime) {
+        this.playTime = playTime;
     }
 }

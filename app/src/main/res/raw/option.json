@@ -2,31 +2,31 @@
   {
     "mode": 1,
     "random": false,
-    "listloop": 1,
+    "listLoop": 1,
     "sentence": false,
-    "stopperiod": 0,
-    "itemloop": 1,
+    "stopPeriod": 0,
+    "itemLoop": 1,
     "speed": 2,
-    "playtime": 10
+    "playTime": 10
   },
   {
     "mode": 2,
     "random": true,
-    "listloop": 2,
+    "listLoop": 2,
     "sentence": false,
-    "stopperiod": 3,
-    "itemloop": 1,
+    "stopPeriod": 3,
+    "itemLoop": 1,
     "speed": 1,
-    "playtime": 10
+    "playTime": 10
   },
   {
     "mode": 3,
     "random": false,
-    "listloop": 3,
+    "listLoop": 3,
     "sentence": true,
-    "stopperiod": 3,
-    "itemloop": 1,
+    "stopPeriod": 3,
+    "itemLoop": 1,
     "speed": 1,
-    "playtime": 10
+    "playTime": 10
   }
 ]

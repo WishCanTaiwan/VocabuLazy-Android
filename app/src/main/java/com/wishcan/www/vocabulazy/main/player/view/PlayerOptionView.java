@@ -22,7 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.widget.LinkedListPagerAdapter;
 import com.wishcan.www.vocabulazy.widget.NumeralPicker;
 
@@ -39,7 +39,7 @@ public class PlayerOptionView extends LinearLayout {
     public static final String TAG = PlayerOptionView.class.getSimpleName();
 
     public interface OnOptionChangedListener{
-        void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode);
+        void onOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode);
     }
 
     public static final int PLAYER_OPTION_RANDOM_VIEW_RES_ID = R.id.action_set_random;
@@ -116,7 +116,7 @@ public class PlayerOptionView extends LinearLayout {
     private View mCurrentTab;
     private int mCurrentTabIndex;
     private LinkedList<ViewGroup> mTabContentList;
-    private ArrayList<Option> mOptionLL;
+    private ArrayList<OptionSettings> mOptionSettingsLL;
     private OnOptionChangedListener mListener;
     private int mTabCount;
 
@@ -180,43 +180,43 @@ public class PlayerOptionView extends LinearLayout {
         registerOptionsListener();
     }
 
-    public void setOptionsInTabContent(ArrayList<Option> optionLL){
+    public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL){
 
-        if(optionLL == null) {
-            mOptionLL = new ArrayList<>();
+        if(optionSettingsLL == null) {
+            mOptionSettingsLL = new ArrayList<>();
             for(int i = 1; i <= 3; i++)
-                mOptionLL.add(new Option(i, true, 1, true, i, 0, 1, 2));
+                mOptionSettingsLL.add(new OptionSettings(i, true, 1, true, i, 0, 1, 2));
         }
         else
-            mOptionLL = optionLL;
+            mOptionSettingsLL = optionSettingsLL;
 
-        Iterator<Option> ii = mOptionLL.iterator();
+        Iterator<OptionSettings> ii = mOptionSettingsLL.iterator();
         while(ii.hasNext()){
-            Option option = ii.next();
+            OptionSettings optionSettings = ii.next();
             for(int i = 0; i < mOptionResIDs.length; i++){
                 int optionID = mOptionResIDs[i];
-                int mode = option.getMode() - 1;
+                int mode = optionSettings.getMode() - 1;
                 switch (optionID){
                     case PLAYER_OPTION_RANDOM_VIEW_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.isRandom());
+                        setOptionInTabContent(mode, optionID, optionSettings.isRandom());
                         break;
                     case PLAYER_OPTION_REPEAT_VIEW_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.getListloop());
+                        setOptionInTabContent(mode, optionID, optionSettings.getListLoop());
                         break;
                     case PLAYER_OPTION_SENTENCE_VIEW_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.isSentence());
+                        setOptionInTabContent(mode, optionID, optionSettings.isSentence());
                         break;
                     case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.getStopperiod());
+                        setOptionInTabContent(mode, optionID, optionSettings.getStopPeriod());
                         break;
                     case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.getItemloop());
+                        setOptionInTabContent(mode, optionID, optionSettings.getItemLoop());
                         break;
                     case PLAYER_OPTION_SPEED_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.getSpeed());
+                        setOptionInTabContent(mode, optionID, optionSettings.getSpeed());
                         break;
                     case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, option.getPlaytime());
+                        setOptionInTabContent(mode, optionID, optionSettings.getPlayTime());
                         break;
                     default:
                         break;
@@ -290,7 +290,7 @@ public class PlayerOptionView extends LinearLayout {
         mCurrentTab = v;
         mCurrentTabIndex = nextTabIndex;
         if(mListener != null)
-            mListener.onOptionChanged(v, mOptionLL, mCurrentTabIndex);
+            mListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
     }
 
     public boolean isListenerNull() {
@@ -341,25 +341,25 @@ public class PlayerOptionView extends LinearLayout {
                     v.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Option option = mOptionLL.get(mCurrentTabIndex);
+                            OptionSettings optionSettings = mOptionSettingsLL.get(mCurrentTabIndex);
                             switch (v.getId()){
                                 case PLAYER_OPTION_RANDOM_VIEW_RES_ID:
-                                    option.setRandom(!option.isRandom());
-                                    ((ImageView) v).setImageLevel(option.isRandom() ? 1 : 0);
+                                    optionSettings.setRandom(!optionSettings.isRandom());
+                                    ((ImageView) v).setImageLevel(optionSettings.isRandom() ? 1 : 0);
                                     break;
                                 case PLAYER_OPTION_REPEAT_VIEW_RES_ID:
-                                    option.setListloop((option.getListloop() + 1) % 4);
-                                    ((ImageView) v).setImageLevel(option.getListloop());
+                                    optionSettings.setListLoop((optionSettings.getListLoop() + 1) % 4);
+                                    ((ImageView) v).setImageLevel(optionSettings.getListLoop());
                                     break;
                                 case PLAYER_OPTION_SENTENCE_VIEW_RES_ID:
-                                    option.setSentence(!option.isSentence());
-                                    ((ImageView) v).setImageLevel(option.isSentence() ? 1 : 0);
+                                    optionSettings.setSentence(!optionSettings.isSentence());
+                                    ((ImageView) v).setImageLevel(optionSettings.isSentence() ? 1 : 0);
                                     break;
                                 default:
                                     break;
                             }
                             if(mListener != null)
-                                mListener.onOptionChanged(v, mOptionLL, mCurrentTabIndex);
+                                mListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
                         }
                     });
                 }
@@ -367,25 +367,25 @@ public class PlayerOptionView extends LinearLayout {
                     ((NumeralPicker) v).setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
                         @Override
                         public void onPickerClicked(String valueStr) {
-                            Option option = mOptionLL.get(mCurrentTabIndex);
+                            OptionSettings optionSettings = mOptionSettingsLL.get(mCurrentTabIndex);
                             switch (v.getId()){
                                 case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                                    option.setStopperiod(Integer.valueOf(valueStr));
+                                    optionSettings.setStopPeriod(Integer.valueOf(valueStr));
                                     break;
                                 case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
-                                    option.setItemloop(Integer.valueOf(valueStr));
+                                    optionSettings.setItemLoop(Integer.valueOf(valueStr));
                                     break;
                                 case PLAYER_OPTION_SPEED_PICKER_RES_ID:
-                                    option.setSpeed(Integer.valueOf(valueStr));
+                                    optionSettings.setSpeed(Integer.valueOf(valueStr));
                                     break;
                                 case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
-                                    option.setPlaytime(Integer.valueOf(valueStr));
+                                    optionSettings.setPlayTime(Integer.valueOf(valueStr));
                                     break;
                                 default:
                                     break;
                             }
                             if(mListener != null)
-                                mListener.onOptionChanged(v, mOptionLL, mCurrentTabIndex);
+                                mListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
                         }
                     });
                 }

@@ -24,7 +24,7 @@ import com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerView;
 import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.service.AudioService;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Option;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
@@ -75,11 +75,6 @@ public class PlayerFragment extends GAPlayerFragment {
      */
     private Tracker wTracker;
 
-    /**
-     * The preferences object to store volatile arguments and parameters.
-     */
-    private Preferences wPreference;
-
     public static PlayerFragment newInstance(int bookIndex, int lessonIndex) {
         PlayerFragment fragment = new PlayerFragment();
         Bundle args = new Bundle();
@@ -96,10 +91,8 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         VLApplication application = (VLApplication) getActivity().getApplication();
         wTracker = application.getDefaultTracker();
-        wPreference = application.getPreferences();
 
         requestAudioFocus();
 
@@ -124,6 +117,11 @@ public class PlayerFragment extends GAPlayerFragment {
 
         ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " +mBookIndex+ " Lesson " +mLessonIndex);
         ((MainActivity)getActivity()).enableExpressWay(false);
+
+        /* register broadcast receiver */
+        IntentFilter intentFilter = new IntentFilter(Preferences.VL_BROADCAST_INTENT);
+        wServiceBroadcastReceiver = new ServiceBroadcastReceiver();
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(wServiceBroadcastReceiver, intentFilter);
     }
 
     @Override
@@ -154,7 +152,6 @@ public class PlayerFragment extends GAPlayerFragment {
     public void onStart() {
         super.onStart();
         setupOptions();
-//        initTTSEngine();
     }
 
     @Override
@@ -164,21 +161,8 @@ public class PlayerFragment extends GAPlayerFragment {
         wTracker.setScreenName(TAG + " book " + mBookIndex + " unit " + mLessonIndex);
         wTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
-        /**
-         * register the broadcast receiver
-         */
-        IntentFilter intentFilter = new IntentFilter(Preferences.VL_BROADCAST_INTENT);
-        wServiceBroadcastReceiver = new ServiceBroadcastReceiver();
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(wServiceBroadcastReceiver, intentFilter);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        /**
-         * unregister when destoryed
-         */
-        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(wServiceBroadcastReceiver);
+        Log.d(TAG, "onResume at item " + mItemIndex);
+        mPlayerMainView.moveToPosition(mItemIndex);
     }
 
     @Override
@@ -186,6 +170,13 @@ public class PlayerFragment extends GAPlayerFragment {
         super.onStop();
         savePreferences();
         ((MainActivity) getActivity()).enableExpressWay(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        /* unregister broadcast receiver */
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(wServiceBroadcastReceiver);
     }
 
     private void savePreferences() {
@@ -196,7 +187,7 @@ public class PlayerFragment extends GAPlayerFragment {
 
     private int[] loadPreferences() {
         if (mPlayerModel == null)
-            return null;
+            return new int[]{1359, 1359, 0, -1};
         return mPlayerModel.loadIndicesPreferences();
     }
 
@@ -205,11 +196,11 @@ public class PlayerFragment extends GAPlayerFragment {
         mLessonIndex = lessonIndex;
         mItemIndex = itemIndex;
         mSentenceIndex = sentenceIndex;
-        wPreference.updateIndices(mBookIndex, mLessonIndex, mItemIndex, mSentenceIndex);
+        mPlayerModel.updateIndices(bookIndex, lessonIndex, itemIndex, sentenceIndex);
     }
 
     private void setupOptions() {
-        ArrayList<Option> options = mPlayerModel.getDefaultOptions();
+        ArrayList<OptionSettings> options = mPlayerModel.getOptionSettings();
         mPlayerOptionView.setOptionsInTabContent(options);
         updateIndices(mBookIndex, mLessonIndex, mItemIndex, (options.get(0).isSentence() ? 0 : -1));
     }
@@ -224,9 +215,9 @@ public class PlayerFragment extends GAPlayerFragment {
         getActivity().startService(intent);
     }
 
-    private void setContent(ArrayList<Vocabulary> vocabularies, Option option) {
-        wPreference.setCurrentContent(vocabularies);
-        wPreference.setCurrentOptionSettings(option);
+    private void setContent(ArrayList<Vocabulary> vocabularies) {
+        if (mPlayerModel == null) return;
+        mPlayerModel.setCurrentContent(vocabularies);
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.SET_CONTENT);
         getActivity().startService(intent);
@@ -247,8 +238,9 @@ public class PlayerFragment extends GAPlayerFragment {
         getActivity().startService(intent);
     }
 
-    private void optionSettingChanged(Option option) {
-        wPreference.setCurrentOptionSettings(option);
+    private void optionSettingChanged(ArrayList<OptionSettings> optionSettings, int optionMode) {
+        if (mPlayerModel == null) return;
+        mPlayerModel.setOptionSettingsAndMode(optionSettings, optionMode);
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.OPTION_SETTINGS_CHANGED);
         getActivity().startService(intent);
@@ -273,6 +265,12 @@ public class PlayerFragment extends GAPlayerFragment {
     private void playerViewScrolling() {
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.PLAYERVIEW_SCROLLING);
+        getActivity().startService(intent);
+    }
+
+    private void startAudioTimer() {
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.START_TIMER);
         getActivity().startService(intent);
     }
 
@@ -301,14 +299,14 @@ public class PlayerFragment extends GAPlayerFragment {
     public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
         super.onVocabulariesGet(vocabularies);
         mVocabularies = vocabularies;
-        mPlayerModel.createPlayerContent(mVocabularies);
-        mPlayerModel.createPlayerDetailContent(mVocabularies.get((wIndicesMatch ? mItemIndex : 0)));
+        mPlayerModel.createPlayerContent(vocabularies);
+        mPlayerModel.createPlayerDetailContent(vocabularies.get((wIndicesMatch ? mItemIndex : 0)));
 
-        if (mVocabularies.size() > 0 && !wIndicesMatch) {
-            Option option = mPlayerModel.getCurrentOption();
-            setContent(mVocabularies, option);
+        if (vocabularies.size() > 0 && !wIndicesMatch) {
+            setContent(vocabularies);
             updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
             startPlayingAt(0, -1, AudioPlayer.SPELL);
+            startAudioTimer();
         }
     }
 
@@ -348,15 +346,15 @@ public class PlayerFragment extends GAPlayerFragment {
         }
 
         if (isViewTouchedDown) {
-            int bookIndex = wPreference.getBookIndex();
+            int bookIndex = mPlayerModel.getBookIndex();
             int numOfLesson = mPlayerModel.getNumOfLessons(bookIndex);
-            int oldLessonIndex = wPreference.getLessonIndex();
+            int oldLessonIndex = mPlayerModel.getLessonIndex();
             int newLessonIndex = (oldLessonIndex + (direction == PlayerMainView.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
             updateIndices(bookIndex, newLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
             mPlayerModel.getVocabulariesIn(bookIndex, newLessonIndex);
             mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
         } else {
-            ArrayList<Vocabulary> vocabularies = wPreference.getCurrentContent();
+            ArrayList<Vocabulary> vocabularies = mPlayerModel.getCurrentContent();
             mPlayerModel.createPlayerContent(vocabularies);
             mPlayerModel.createPlayerDetailContent(vocabularies.get(0));
             mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
@@ -412,14 +410,10 @@ public class PlayerFragment extends GAPlayerFragment {
 
     /**----------------- Implement PlayerOptionView.OnOptionChangedListener ---------------------**/
     @Override
-    public void onOptionChanged(View v, ArrayList<Option> optionLL, int currentMode) {
-        super.onOptionChanged(v, optionLL, currentMode);
-        if (mPlayerModel == null) {
-            return;
-        }
-        mPlayerModel.setOptionAndMode(optionLL, currentMode);
-        updateIndices(mBookIndex, mLessonIndex, mItemIndex, (optionLL.get(0).isSentence() ? 0 : -1));
-        optionSettingChanged(optionLL.get(currentMode));
+    public void onOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode) {
+        super.onOptionChanged(v, optionSettingsLL, currentMode);
+        updateIndices(mBookIndex, mLessonIndex, mItemIndex, (optionSettingsLL.get(currentMode).isSentence() ? 0 : -1));
+        optionSettingChanged(optionSettingsLL, currentMode);
     }
 
     /**-------------------- Implement PlayerView.OnGrayBackClickListener ------------------------**/
@@ -447,6 +441,7 @@ public class PlayerFragment extends GAPlayerFragment {
 
                 case AudioService.TO_ITEM:
                     int newItemIndex = intent.getIntExtra(AudioService.ITEM_INDEX, -1);
+                    Log.d(TAG, "to item " + newItemIndex);
                     updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
                     mPlayerMainView.moveToPosition(newItemIndex);
                     if (mVocabularies != null) {
@@ -459,9 +454,9 @@ public class PlayerFragment extends GAPlayerFragment {
 
                 case AudioService.TO_NEXT_LIST:
                     mPlayerMainView.setCurrentItem(1);
-                    mVocabularies = wPreference.getCurrentContent();
-                    mBookIndex = wPreference.getBookIndex();
-                    mLessonIndex = wPreference.getLessonIndex();
+                    mVocabularies = mPlayerModel.getCurrentContent();
+                    mBookIndex = mPlayerModel.getBookIndex();
+                    mLessonIndex = mPlayerModel.getLessonIndex();
                     break;
 
                 case AudioService.SHOW_DETAIL:
