@@ -27,6 +27,7 @@ import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
+import com.wishcan.www.vocabulazy.widget.Infinite3View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,6 +92,7 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         VLApplication application = (VLApplication) getActivity().getApplication();
         wTracker = application.getDefaultTracker();
 
@@ -127,6 +129,7 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         mPlayerView = new PlayerView(getActivity());
         mPlayerMainView = mPlayerView.getPlayerMainView();
         mPlayerPanelView = mPlayerView.getPlayerPanelView();
@@ -151,12 +154,14 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart");
         setupOptions();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume");
         Log.d(TAG, "Setting screen name: " + TAG + " book " + mBookIndex + " unit " + mLessonIndex);
         wTracker.setScreenName(TAG + " book " + mBookIndex + " unit " + mLessonIndex);
         wTracker.send(new HitBuilders.ScreenViewBuilder().build());
@@ -168,13 +173,15 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop");
         savePreferences();
-        ((MainActivity) getActivity()).enableExpressWay(true);
+//        ((MainActivity) getActivity()).enableExpressWay(false);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy");
         /* unregister broadcast receiver */
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(wServiceBroadcastReceiver);
     }
@@ -340,12 +347,16 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
+        super.onPlayerHorizontalScrollStop(isOrderChanged, direction, isViewTouchedDown);
+        Log.d(TAG, "onPlayerHorizontalScrollStop");
         if (!isOrderChanged) {
+            Log.d(TAG, "onPlayerHorizontalScrollStop !isOrderChanged");
             startPlayingAt(mItemIndex, mSentenceIndex, AudioPlayer.SPELL);
             return;
         }
 
         if (isViewTouchedDown) {
+            Log.d(TAG, "onPlayerHorizontalScrollStop isViewTouchedDown");
             int bookIndex = mPlayerModel.getBookIndex();
             int numOfLesson = mPlayerModel.getNumOfLessons(bookIndex);
             int oldLessonIndex = mPlayerModel.getLessonIndex();
@@ -354,6 +365,7 @@ public class PlayerFragment extends GAPlayerFragment {
             mPlayerModel.getVocabulariesIn(bookIndex, newLessonIndex);
             mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
         } else {
+            Log.d(TAG, "onPlayerHorizontalScrollStop !isViewTouchedDown");
             ArrayList<Vocabulary> vocabularies = mPlayerModel.getCurrentContent();
             mPlayerModel.createPlayerContent(vocabularies);
             mPlayerModel.createPlayerDetailContent(vocabularies.get(0));
@@ -455,7 +467,7 @@ public class PlayerFragment extends GAPlayerFragment {
                     break;
 
                 case AudioService.TO_NEXT_LIST:
-                    mPlayerMainView.setCurrentItem(1);
+                    mPlayerMainView.setCurrentItem(Infinite3View.RIGHT_VIEW_INDEX);
                     mVocabularies = mPlayerModel.getCurrentContent();
                     mBookIndex = mPlayerModel.getBookIndex();
                     mLessonIndex = mPlayerModel.getLessonIndex();

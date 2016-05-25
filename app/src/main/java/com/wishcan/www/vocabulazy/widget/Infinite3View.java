@@ -125,7 +125,7 @@ public class Infinite3View extends RelativeLayout {
     }
 
     public void setCurrentItem(int index) {
-        if (index < 0 || index > 2)
+        if (index != 0 && index != 2)
             return;
         AnimatorSet set = new AnimatorSet();
         ValueAnimator animatorLeft, animatorCenter, animatorRight;
@@ -307,14 +307,14 @@ public class Infinite3View extends RelativeLayout {
 
         @Override
         public void onAnimationEnd(Animator animation) {
-            if(mOnPageChangedListener != null)
-                mOnPageChangedListener.onPageScrollStop(orderChanged, moveToLeftOrRight);
-
             if (orderChanged) {
                 refreshLinkedListOrder(moveToLeftOrRight);
                 mThreeViewLL.get(LEFT_VIEW_INDEX).setVisibility(VISIBLE);
                 mThreeViewLL.get(RIGHT_VIEW_INDEX).setVisibility(VISIBLE);
             }
+
+            if(mOnPageChangedListener != null)
+                mOnPageChangedListener.onPageScrollStop(orderChanged, moveToLeftOrRight);
         }
         @Override
         public void onAnimationCancel(Animator animation) {}
