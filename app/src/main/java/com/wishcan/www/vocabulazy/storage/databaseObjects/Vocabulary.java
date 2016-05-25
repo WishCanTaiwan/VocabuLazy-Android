@@ -10,31 +10,24 @@ public class Vocabulary {
     private int id;
     private String spell;
     private String kk;
+    private String category;
+    private String translation;
 
-    private ArrayList<String> category;
-    private ArrayList<String> translation;
-    private String spell_audio;
-
-    private ArrayList<String> en_sentence;
-    private ArrayList<String> cn_sentence;
-    private ArrayList<String> sentence_audio;
+    private ArrayList<String> enSentences;
+    private ArrayList<String> cnSentences;
 
     public Vocabulary(int id, String spell, String kk,
-                      ArrayList<String> category,
-                      ArrayList<String> translation,
-                      String spell_audio,
-                      ArrayList<String> en_sentence,
-                      ArrayList<String> cn_sentence,
-                      ArrayList<String> sentence_audio) {
+                      String category,
+                      String translation,
+                      ArrayList<String> enSentences,
+                      ArrayList<String> cnSentences) {
         setId(id);
         setSpell(spell);
         setKk(kk);
         setCategory(category);
         setTranslation(translation);
-        setSpell_audio(spell_audio);
-        setEn_sentence(en_sentence);
-        setCn_sentence(cn_sentence);
-        setSentence_audio(sentence_audio);
+        setEnSentences(enSentences);
+        setCnSentences(cnSentences);
     }
 
     public int getId() {
@@ -61,66 +54,39 @@ public class Vocabulary {
         this.kk = kk;
     }
 
-    public ArrayList<String> getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(ArrayList<String> category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    public ArrayList<String> getTranslation() {
+    public String getTranslation() {
         return translation;
     }
 
-    public void setTranslation(ArrayList<String> translation) {
+    public void setTranslation(String translation) {
         this.translation = translation;
     }
 
-    public String getSpell_audio() {
-        return spell_audio;
+    public ArrayList<String> getEnSentences() {
+        return enSentences;
     }
 
-    public void setSpell_audio(String spell_audio) {
-        this.spell_audio = spell_audio;
+    public void setEnSentences(ArrayList<String> enSentences) {
+        this.enSentences = enSentences;
     }
 
-    public ArrayList<String> getEn_sentence() {
-        return en_sentence;
+    public ArrayList<String> getCnSentences() {
+        return cnSentences;
     }
 
-    public void setEn_sentence(ArrayList<String> en_sentence) {
-        this.en_sentence = en_sentence;
-    }
-
-    public ArrayList<String> getCn_sentence() {
-        return cn_sentence;
-    }
-
-    public void setCn_sentence(ArrayList<String> cn_sentence) {
-        this.cn_sentence = cn_sentence;
-    }
-
-    public ArrayList<String> getSentence_audio() {
-        return sentence_audio;
-    }
-
-    public void setSentence_audio(ArrayList<String> sentence_audio) {
-        this.sentence_audio = sentence_audio;
-    }
-
-    public String getTranslationInOneString() {
-        StringBuilder builder = new StringBuilder();
-        for (int index = 0; index < translation.size(); index++) {
-            builder.append(translation.get(index));
-            if (index != translation.size() - 1) {
-                builder.append("；");
-            }
-        }
-        return builder.toString();
+    public void setCnSentences(ArrayList<String> cnSentences) {
+        this.cnSentences = cnSentences;
     }
 
     public int getSentenceAmount() {
-        return en_sentence.size();
+        return enSentences.size();
     }
 }

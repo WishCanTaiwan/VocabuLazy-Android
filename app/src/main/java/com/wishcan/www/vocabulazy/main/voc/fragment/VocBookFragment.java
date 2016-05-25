@@ -85,7 +85,7 @@ public class VocBookFragment extends Fragment {
 
         if(books != null)
             for(int i = 0; i < books.size();i++)
-                bookNames.add(books.get(i).getName());
+                bookNames.add(books.get(i).getTitle());
         else
             return new ErrorView(getActivity()).setErrorMsg("get book failed");
 

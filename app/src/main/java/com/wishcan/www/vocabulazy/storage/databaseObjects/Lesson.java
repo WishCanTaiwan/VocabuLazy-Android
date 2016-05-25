@@ -9,12 +9,12 @@ public class Lesson {
     public static final String TAG = Lesson.class.getSimpleName();
 
     private int id;
-    private String name;
+    private String title;
     private ArrayList<Integer> content;
 
-    public Lesson(int id, String name, ArrayList<Integer> content, JSONObject reading) {
+    public Lesson(int id, String title, ArrayList<Integer> content) {
         setId(id);
-        setName(name);
+        setTitle(title);
         setContent(content);
     }
 
@@ -26,12 +26,12 @@ public class Lesson {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public ArrayList<Integer> getContent() {
@@ -42,8 +42,8 @@ public class Lesson {
         this.content = content;
     }
 
-    public void rename(String newName) {
-        name = newName;
+    public void rename(String newTitle) {
+        title = newTitle;
     }
 
 }

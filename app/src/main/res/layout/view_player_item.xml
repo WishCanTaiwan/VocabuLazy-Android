@@ -35,7 +35,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/player_voc_translation"
+            android:id="@+id/player_voc_category"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -46,7 +46,7 @@
             android:textSize="@dimen/player_list_item_text1_size"
             android:textColor="@color/player_list_item_font1" />
         <TextView
-            android:id="@+id/player_voc_translation2"
+            android:id="@+id/player_voc_translation"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"

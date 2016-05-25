@@ -57,14 +57,14 @@ public class ExamModel {
             else if(i == mAnswerOptionIndex){
                 pickIndex = mCurrentQuestionIndex;
                 strArr.add("");
-                strArr.add(mVocabularies.get(pickIndex).getTranslationInOneString());
+                strArr.add(mVocabularies.get(pickIndex).getTranslation());
             }
             else {
                 do {
                     pickIndex = new Random().nextInt(mTotalQuestionNum);
                 } while(pickIndex == mCurrentQuestionIndex);
                 strArr.add(mVocabularies.get(pickIndex).getSpell());
-                strArr.add(mVocabularies.get(pickIndex).getTranslationInOneString());
+                strArr.add(mVocabularies.get(pickIndex).getTranslation());
             }
             questionMap.put(i, strArr);
         }

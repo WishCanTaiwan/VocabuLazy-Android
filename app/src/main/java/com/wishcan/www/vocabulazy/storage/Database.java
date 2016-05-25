@@ -28,7 +28,7 @@ public class Database {
 
     public static final String TAG = Database.class.getSimpleName();
 
-    public static final String FILENAME_NOTE = "note.json";
+    public static final String FILENAME_NOTE = "vl_database_note.json";
     public static final String FILENAME_OPTION = "option.json";
 
     private Context wContext;
@@ -49,9 +49,9 @@ public class Database {
 
     public void loadFiles() {
         try {
-            wVocabularies = load(Vocabulary[].class, wContext.getResources().openRawResource(R.raw.vocabulary));
-            wBooks = load(Book[].class, wContext.getResources().openRawResource(R.raw.book));
-            wLessons = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.lesson));
+            wVocabularies = load(Vocabulary[].class, wContext.getResources().openRawResource(R.raw.vl_database_vocabulary));
+            wBooks = load(Book[].class, wContext.getResources().openRawResource(R.raw.vl_database_book));
+            wLessons = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.vl_database_lesson));
             wNotes = load(Lesson[].class, wContext.openFileInput(FILENAME_NOTE));
             wOptionSettings = load(OptionSettings[].class, wContext.openFileInput(FILENAME_OPTION));
         } catch (FileNotFoundException fnfe) {
@@ -166,7 +166,7 @@ public class Database {
     /* Note operations */
     public void createNewNote(String name) {
         int index = wNotes.size();
-        wNotes.add(index, new Lesson(index, name, new ArrayList<Integer>(), null));
+        wNotes.add(index, new Lesson(index, name, new ArrayList<Integer>()));
     }
 
     public void addVocToNote(int vocID, int noteIndex) {

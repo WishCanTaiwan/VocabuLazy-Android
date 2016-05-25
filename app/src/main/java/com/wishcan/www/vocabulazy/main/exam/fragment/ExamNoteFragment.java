@@ -65,7 +65,7 @@ public class ExamNoteFragment extends Fragment implements ExamNoteView.OnListIco
             return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
 
         for(int i = 0; i < notes.size(); i++){
-            dataList.add(notes.get(i).getName());
+            dataList.add(notes.get(i).getTitle());
         }
 
         examNoteView.refreshView(notes.size(), dataList);

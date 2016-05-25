@@ -7,12 +7,12 @@ public class Book {
     public static final String TAG = Book.class.getSimpleName();
 
     private int id;
-    private String name;
+    private String title;
     private ArrayList<Integer> content;
 
-    public Book(int id, String name, ArrayList<Integer> content) {
+    public Book(int id, String title, ArrayList<Integer> content) {
         setId(id);
-        setName(name);
+        setTitle(title);
         setContent(content);
     }
 
@@ -24,12 +24,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public ArrayList<Integer> getContent() {

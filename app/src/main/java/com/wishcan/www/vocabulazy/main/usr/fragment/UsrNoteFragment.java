@@ -100,7 +100,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
             return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
 
         for(int i = 0; i < notes.size(); i++) {
-            dataList.add(notes.get(i).getName());
+            dataList.add(notes.get(i).getTitle());
         }
 
         mUsrNoteView.refreshView(notes.size(), dataList);
@@ -129,7 +129,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
             case NoteView.ICON_ETC_CLOSE:
                 break;
             case NoteView.ICON_DEL:
-                f = goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.DELETE, notes.get(position).getName());
+                f = goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.DELETE, notes.get(position).getTitle());
                 break;
             case NoteView.ICON_RENAME:
                 f = goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s.RENAME, null);
@@ -163,7 +163,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
 
         notes = wDatabase.getLessonsByBook(-1);
         for(int i = 0; i < notes.size(); i++)
-            dataList.add(notes.get(i).getName());
+            dataList.add(notes.get(i).getTitle());
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
 
@@ -179,7 +179,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
         }
 
         for(int i = 0; i < notes.size(); i++) {
-            dataList.add(notes.get(i).getName());
+            dataList.add(notes.get(i).getTitle());
         }
 
         mUsrNoteView.refreshView(notes.size(), dataList);
