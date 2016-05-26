@@ -277,7 +277,6 @@ public class SearchView extends RelativeLayout {
                         if(mOnItemClickListener != null) {
                             mOnItemClickListener.onListItemClick(index);
                         }
-	                    //((SearchActivity) mContext).showSearchDetail(mSuggestedVocabularies.get(index));
 	                }
 	            });
 
@@ -288,7 +287,6 @@ public class SearchView extends RelativeLayout {
                         if(mOnItemClickListener != null) {
                             mOnItemClickListener.onAddIconClick(index);
                         }
-	                    //((SearchActivity) mContext).showListDialog(index);
 	                }
 	            });
 	        }
@@ -305,6 +303,9 @@ public class SearchView extends RelativeLayout {
         private PopItemDetailAdapter mAdapter;
         private int pageCount;
 
+        private final Typeface engTf;
+        private final Typeface cnTf;
+
         public SearchDetailView(Context context) {
             super(context);
             this.context = context;
@@ -313,6 +314,8 @@ public class SearchView extends RelativeLayout {
             pageCount = 0;
             setOrientation(VERTICAL);
 
+            engTf = Typeface.createFromAsset(getResources().getAssets(), "fonts/tt0142m_.ttf");
+            cnTf = Typeface.createFromAsset(getResources().getAssets(), "fonts/DFHeiStd-W5.otf");
         }
         public void setAdapter(PopItemDetailAdapter adapter){
             mAdapter = adapter;
@@ -351,6 +354,11 @@ public class SearchView extends RelativeLayout {
                     mContainer.removeAllViews();
 
                 ((TextView) itemView
+                        .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_TRANSLATION_DETAIL.getResTo())).setTypeface(cnTf);
+                ((TextView) itemView
+                        .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_KK_DETAIL.getResTo())).setTypeface(engTf);
+
+                ((TextView) itemView
                        .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SPELL_DETAIL.getResTo()))
                        .setText((String) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SPELL_DETAIL.getResFrom()));
                 ((TextView) itemView
@@ -359,6 +367,7 @@ public class SearchView extends RelativeLayout {
                 ((TextView) itemView
                         .findViewById(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_KK_DETAIL.getResTo()))
                         .setText((String) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_KK_DETAIL.getResFrom()));
+
                 enSentences = (ArrayList<String>) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_DETAIL.getResFrom());
                 ceSentences = (ArrayList<String>) mDataMap.get(LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_TRANSLATION_DETAIL.getResFrom());
 
