@@ -697,7 +697,7 @@
 }, {
 	"id": 87,
 	"spell": "advantage",
-	"translation": "佔便宜；利用；null",
+	"translation": "佔便宜；利用",
 	"category": "v.",
 	"kk": "[ədˈvɑːntɪʤ]",
 	"enSentences": ["default enSentence"],
@@ -1369,7 +1369,7 @@
 }, {
 	"id": 171,
 	"spell": "apparatus",
-	"translation": "儀器；器械；null",
+	"translation": "儀器；器械",
 	"category": "n.",
 	"kk": "[ˌæpəˈreɪtəs]",
 	"enSentences": ["default enSentence"],

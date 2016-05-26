@@ -49,7 +49,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Log.d(TAG, "onCreate");
+//        Logger.d(TAG, "onCreate");
 
         VLApplication vlApplication = (VLApplication) getActivity().getApplication();
         wTracker = vlApplication.getDefaultTracker();

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.log.Logger;
 
 /**
  * GAFragment is an abstract class used for sending Lifecycle event to Google Analysis.
@@ -36,8 +37,6 @@ public abstract class GAFragment extends Fragment {
         "onCreate", "onCreateView", "onViewCreated", "onStart,",
         "onResume", "onPause", "onStop", "onDestroy", "onSaveInstanceState"
     };
-
-    private Tracker mTracker;
 
     /**--------------------------------- Fragment Life Cycle ------------------------------------**/
     @Override
@@ -96,16 +95,7 @@ public abstract class GAFragment extends Fragment {
     }
 
     private void sendGAEvent(String action, long value) {
-        if (mTracker == null) {
-            mTracker = ((VLApplication) getActivity().getApplication()).getDefaultTracker();
-        }
-
-        mTracker.send(new HitBuilders.EventBuilder()
-            .setCategory(CATEGORY_STRING)
-            .setAction(action)
-            .setLabel(getNameAsGaLabel())
-            .setValue(value)
-            .build());
+        Logger.sendEvent(CATEGORY_STRING, action, getNameAsGaLabel(), value);
     }
 
     /**

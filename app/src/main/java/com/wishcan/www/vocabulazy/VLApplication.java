@@ -2,10 +2,8 @@ package com.wishcan.www.vocabulazy;
 
 import android.app.Application;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
-import com.google.android.gms.playlog.internal.LogEvent;
-import com.wishcan.www.vocabulazy.log.LogHelper;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 
@@ -32,10 +30,10 @@ public class VLApplication extends Application {
     private Database wDatabase;
 
     /**
-     * The LogHelper is to help application logging messages and errors, also helps send Google
+     * The Logger is to help application logging messages and errors, also helps send Google
      * Analytics event messages through Tracker.
      */
-    private LogHelper wLogHelper;
+    private Logger wLogger;
 
     @Override
     public void onCreate() {
@@ -57,9 +55,9 @@ public class VLApplication extends Application {
 //        UXTesting.Init(this, UXTESTING_APP_KEY);
 
         /**
-         * initialize the LogHelper object.
+         * initialize the Logger object.
          */
-        wLogHelper = new LogHelper(getApplicationContext());
+        wLogger = new Logger(getApplicationContext());
     }
 
     /**
@@ -67,7 +65,7 @@ public class VLApplication extends Application {
      * @return wTracker
      */
     synchronized public Tracker getDefaultTracker() {
-        return wLogHelper.getDefaultTracker(getApplicationContext());
+        return wLogger.getDefaultTracker(getApplicationContext());
     }
 
     /**
@@ -91,7 +89,7 @@ public class VLApplication extends Application {
         wDatabase.initSettings();
     }
 
-    synchronized public LogHelper getLogHelper() {
-        return wLogHelper;
+    synchronized public Logger getLogHelper() {
+        return wLogger;
     }
 }

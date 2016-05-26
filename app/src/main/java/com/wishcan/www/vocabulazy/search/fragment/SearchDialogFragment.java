@@ -94,7 +94,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
 
     @Override
     public void onDialogFinish(String obj) {
-//        Log.d(TAG, mDatabase.toString());
+//        Logger.d(TAG, mDatabase.toString());
         wDatabase.createNewNote(obj);
     }
 
@@ -109,8 +109,8 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     }
 
     private void refreshNoteList() {
-//        Log.d(TAG, mDatabase.toString());
-//        Log.d(TAG, "refreshNotekList");
+//        Logger.d(TAG, mDatabase.toString());
+//        Logger.d(TAG, "refreshNotekList");
 //        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
 //        wDatabase = vlApplication.getDatabase();
         ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);

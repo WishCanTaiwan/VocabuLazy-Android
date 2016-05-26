@@ -394,11 +394,6 @@ public class PlayerFragment extends GAPlayerFragment {
         playerViewScrolling();
     }
 
-    @Override
-    public void onViewTouchDown() {
-        super.onViewTouchDown();
-    }
-
     /**----------------- Implement PlayerPanelView.OnPanelItemClickListener ---------------------**/
     @Override
     public void onOptionFavoriteClick() {

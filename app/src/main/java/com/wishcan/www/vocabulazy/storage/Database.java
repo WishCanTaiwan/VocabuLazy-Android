@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.storage;
 
 import android.content.Context;
 import android.preference.Preference;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 import com.google.gson.Gson;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
@@ -28,7 +30,7 @@ public class Database {
 
     public static final String TAG = Database.class.getSimpleName();
 
-    public static final String FILENAME_NOTE = "vl_database_note.json";
+    public static final String FILENAME_NOTE = "note.json";
     public static final String FILENAME_OPTION = "option.json";
 
     private Context wContext;
@@ -55,7 +57,7 @@ public class Database {
             wNotes = load(Lesson[].class, wContext.openFileInput(FILENAME_NOTE));
             wOptionSettings = load(OptionSettings[].class, wContext.openFileInput(FILENAME_OPTION));
         } catch (FileNotFoundException fnfe) {
-            wNotes = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.note));
+            wNotes = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.vl_database_note));
             wOptionSettings = load(OptionSettings[].class, wContext.getResources().openRawResource(R.raw.option));
         }
     }
@@ -93,6 +95,7 @@ public class Database {
     }
 
     public ArrayList<Integer> getContentIDs(int bookIndex, int lessonIndex) {
+        Logger.d(TAG, "get content at book " + bookIndex + " lesson " + lessonIndex);
         if (bookIndex < 0) {
             return wNotes.get(lessonIndex).getContent();
         }
