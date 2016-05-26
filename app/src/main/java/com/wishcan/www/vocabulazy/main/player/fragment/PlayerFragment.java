@@ -183,6 +183,7 @@ public class PlayerFragment extends GAPlayerFragment {
              * turn off the screen and back to PlayerFragment causing PlayerList with no move
              */
             Log.d(TAG, "mIsWaitingAddNewPlayer");
+            mPlayerModel.createPlayerContent(mPlayerModel.getCurrentContent());
             mPlayerModel.createPlayerDetailContent(mPlayerModel.getCurrentContent().get(mItemIndex));
             mIsWaitingAddNewPlayer = false;
         }
