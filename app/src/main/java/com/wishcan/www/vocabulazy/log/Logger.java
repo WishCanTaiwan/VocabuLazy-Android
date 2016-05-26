@@ -9,9 +9,13 @@ import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 
+import java.util.ArrayList;
+import java.util.Queue;
+
 public class Logger {
 
     private static Tracker wTracker;
+    private static LogBuffer mLogBuffer;
 
     public Logger(Context context) {
         if (wTracker == null) {
@@ -19,10 +23,15 @@ public class Logger {
             // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
             wTracker = analytics.newTracker(R.xml.global_tracker);
         }
+
+        if (mLogBuffer == null) {
+            mLogBuffer = new LogBuffer();
+        }
     }
 
     public static void d(String TAG, String message) {
         Log.d(TAG, message);
+        mLogBuffer.put(TAG, message);
     }
 
     /**

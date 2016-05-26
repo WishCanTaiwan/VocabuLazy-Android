@@ -27,7 +27,6 @@ import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
  * Created by allencheng07 on 2015/9/1.
  */
 public class Database {
-
     public static final String TAG = Database.class.getSimpleName();
 
     public static final String FILENAME_NOTE = "note.json";
@@ -95,7 +94,6 @@ public class Database {
     }
 
     public ArrayList<Integer> getContentIDs(int bookIndex, int lessonIndex) {
-        Logger.d(TAG, "get content at book " + bookIndex + " lesson " + lessonIndex);
         if (bookIndex < 0) {
             return wNotes.get(lessonIndex).getContent();
         }
