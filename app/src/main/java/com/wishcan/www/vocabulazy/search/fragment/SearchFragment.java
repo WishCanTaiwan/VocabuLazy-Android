@@ -19,6 +19,8 @@ import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class SearchFragment extends Fragment implements SearchView.OnItemClickListener,
@@ -67,9 +69,21 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
     }
 
     public void refreshSearchResult(ArrayList<Vocabulary> vocabularies) {
+        List<Fragment> fragmentLL;
+        int numFragment;
+
         mSuggestedVocabularies = vocabularies;
         mSearchView.refreshSearchResult(
                 mSearchModel.createSearchResultMap(vocabularies));
+        mSearchView.closeSearchDetail();
+        fragmentLL = getFragmentManager().getFragments();
+        if (fragmentLL != null) {
+            if ((numFragment = fragmentLL.size()) > 1) {
+                for (int i = 1; i < numFragment; i++) {
+                    getFragmentManager().beginTransaction().remove(fragmentLL.get(i)).commit();
+                }
+            }
+        }
     }
 
     @Override

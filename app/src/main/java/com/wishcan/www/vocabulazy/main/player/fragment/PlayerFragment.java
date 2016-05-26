@@ -76,6 +76,11 @@ public class PlayerFragment extends GAPlayerFragment {
      */
     private Tracker wTracker;
 
+    /**
+     * The flag for solving changing play list after onStop()
+     * */
+    private boolean mIsWaitingAddNewPlayer;
+
     public static PlayerFragment newInstance(int bookIndex, int lessonIndex) {
         PlayerFragment fragment = new PlayerFragment();
         Bundle args = new Bundle();
@@ -124,6 +129,7 @@ public class PlayerFragment extends GAPlayerFragment {
         IntentFilter intentFilter = new IntentFilter(Preferences.VL_BROADCAST_INTENT);
         wServiceBroadcastReceiver = new ServiceBroadcastReceiver();
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(wServiceBroadcastReceiver, intentFilter);
+        mIsWaitingAddNewPlayer = false;
     }
 
     @Override
@@ -168,6 +174,18 @@ public class PlayerFragment extends GAPlayerFragment {
 
         Log.d(TAG, "onResume at item " + mItemIndex);
         mPlayerMainView.moveToPosition(mItemIndex);
+        ((MainActivity) getActivity()).enableExpressWay(false);
+        if (mIsWaitingAddNewPlayer) {
+            /**
+             * TODO: Please add new player here
+             * AudioService.TO_NEXT_LIST will destroy origin player and do nothing but raising the flag
+             * if flag is raised, we should add new player during onResume(), fix the bug that after
+             * turn off the screen and back to PlayerFragment causing PlayerList with no move
+             */
+            Log.d(TAG, "mIsWaitingAddNewPlayer");
+            mPlayerModel.createPlayerDetailContent(mPlayerModel.getCurrentContent().get(mItemIndex));
+            mIsWaitingAddNewPlayer = false;
+        }
     }
 
     @Override
@@ -175,7 +193,7 @@ public class PlayerFragment extends GAPlayerFragment {
         super.onStop();
         Log.d(TAG, "onStop");
         savePreferences();
-//        ((MainActivity) getActivity()).enableExpressWay(false);
+        ((MainActivity) getActivity()).enableExpressWay(true);
     }
 
     @Override
@@ -467,7 +485,13 @@ public class PlayerFragment extends GAPlayerFragment {
                     break;
 
                 case AudioService.TO_NEXT_LIST:
-                    mPlayerMainView.setCurrentItem(Infinite3View.RIGHT_VIEW_INDEX);
+                    /** To solved the bug that in onStop state addNewPlayer, but PlayerList didn't move. */
+                    if (isResumed()) {
+                        mPlayerMainView.setCurrentItem(Infinite3View.RIGHT_VIEW_INDEX);
+                    } else {
+                        mPlayerMainView.removeOldPlayer(Infinite3View.CENTER_VIEW_INDEX);
+                        mIsWaitingAddNewPlayer = true;
+                    }
                     mVocabularies = mPlayerModel.getCurrentContent();
                     mBookIndex = mPlayerModel.getBookIndex();
                     mLessonIndex = mPlayerModel.getLessonIndex();

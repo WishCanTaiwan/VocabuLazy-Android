@@ -102,8 +102,8 @@ public class PlayerMainView extends Infinite3View {
     }
 
     public void removeOldPlayer(int position){
-        if (position == CENTER_VIEW_INDEX)
-            return;
+//        if (position == CENTER_VIEW_INDEX)
+//            return;
         refreshItem(position, null);
         Log.d(TAG, "removeOldPlayer " + position);
     }
@@ -135,9 +135,11 @@ public class PlayerMainView extends Infinite3View {
 
     public void moveToPosition(int position) {
         if(mPlayerScrollView != null) {
+            Log.d("PlayerFragment", "moveToPosition OK");
             mPlayerScrollView.moveToPosition(position);
+        } else {
+            Log.d("PlayerFragment", "moveToPosition NOT OK");
         }
-
     }
 
     public void moveToDetailPage(int index) {
