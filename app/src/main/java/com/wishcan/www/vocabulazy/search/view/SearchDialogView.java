@@ -15,9 +15,10 @@ import java.util.LinkedList;
 /**
  * Created by swallow on 2016/1/20.
  */
-public class SearchDialogView extends DialogView{
+public class SearchDialogView extends DialogView {
 
     public interface OnDialogItemClickListener {
+        void onCancelItemClick();
         void onListItemClick(int position);
         void onAddItemClick();
     }
@@ -68,6 +69,12 @@ public class SearchDialogView extends DialogView{
             case LIST:
                 mSearchDialogNoteShowingView = new SearchDialogNoteShowingView(getContext());
                 mSearchDialogNoteShowingView.setOnListItemClickListener(new SearchDialogNoteShowingView.OnListItemClickListener() {
+                    @Override
+                    public void onCancelItemClick() {
+                        if (mOnDialogItemClickListener != null) {
+                            mOnDialogItemClickListener.onCancelItemClick();
+                        }
+                    }
                     @Override
                     public void onListItemClick(int position) {
                         if(mOnDialogItemClickListener != null)
