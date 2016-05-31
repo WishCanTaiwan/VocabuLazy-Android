@@ -146,12 +146,6 @@ public class PlayerModel {
                     hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
                     hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], "[" + voc.getCategory() + "] " + voc.getTranslation());
                     hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[2], voc.getKk());
-//                    ArrayList<String> transList = voc.getTranslation();
-//                    ArrayList<String> cateList = voc.getCategory();
-//                    for(int i = 0; i < transList.size() && i < cateList.size() && i < 2; i++) {
-//                        String newStr = "(" +cateList.get(i)+ ")" + transList.get(i);
-//                        hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1+i], newStr);
-//                    }
                     playerDataContent.add(hm);
                 }
                 return playerDataContent;

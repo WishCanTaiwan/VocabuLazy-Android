@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.ga;
 
 import android.view.View;
 
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView;
@@ -23,6 +24,9 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerModel
                                                                      PlayerPanelView.OnPanelItemClickListener,
                                                                      PlayerOptionView.OnOptionChangedListener,
                                                                      PlayerView.OnGrayBackClickListener {
+
+    public static final String USER_TOUCH_EVENT = "user-touch-event";
+
     /**--------------------------- implement GAFragment abstract function -----------------------**/
     @Override
     String getNameAsGaLabel() {
@@ -59,54 +63,62 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerModel
     /**----------------- Implement PlayerMainView.OnPlayerScrollListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
+        if (isViewTouchedDown)
+            Logger.sendEvent(USER_TOUCH_EVENT, "vertical-scroll-stopped", getNameAsGaLabel(), 1);
     }
 
     @Override
     public void onPlayerVerticalScrolling() {
+        Logger.sendEvent(USER_TOUCH_EVENT, "vertical-scrolling", getNameAsGaLabel(), 1);
     }
 
     @Override
     public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
+        if (isViewTouchedDown)
+            Logger.sendEvent(USER_TOUCH_EVENT, "horizontal-scroll-stopped", getNameAsGaLabel(), 1);
     }
 
     @Override
     public void onPlayerHorizontalScrolling() {
+        Logger.sendEvent(USER_TOUCH_EVENT, "horizontal-scrolling", getNameAsGaLabel(), 1);
     }
 
     @Override
     public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
+        if (isViewTouchedDown)
+            Logger.sendEvent(USER_TOUCH_EVENT, "detail-scroll-stopped", getNameAsGaLabel(), 1);
     }
 
     @Override
     public void onDetailScrolling() {
-    }
-
-    @Override
-    public void onViewTouchDown() {
-
+        Logger.sendEvent(USER_TOUCH_EVENT, "detail-scrolling", getNameAsGaLabel(), 1);
     }
 
     /**----------------- Implement PlayerPanelView.OnPanelItemClickListener ---------------------**/
     @Override
     public void onOptionFavoriteClick() {
+        Logger.sendEvent(USER_TOUCH_EVENT, "option-favorite-clicked", getNameAsGaLabel(), 1);
     }
 
     @Override
     public void onOptionPlayClick() {
+        Logger.sendEvent(USER_TOUCH_EVENT, "option-play-clicked", getNameAsGaLabel(), 1);
     }
 
     @Override
     public void onOptionOptionClick() {
+        Logger.sendEvent(USER_TOUCH_EVENT, "option-option-clicked", getNameAsGaLabel(), 1);
     }
 
     /**----------------- Implement PlayerOptionView.OnOptionChangedListener ---------------------**/
     @Override
     public void onOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode) {
+        Logger.sendEvent(USER_TOUCH_EVENT, "option-changed", getNameAsGaLabel(), 1);
     }
 
     /**-------------------- Implement PlayerView.OnGrayBackClickListener ------------------------**/
     @Override
     public void onGrayBackClick() {
-
+        Logger.sendEvent(USER_TOUCH_EVENT, "gray-back-clicked", getNameAsGaLabel(), 1);
     }
 }

@@ -18,7 +18,7 @@ public class Utility {
         int count;
         ArrayList<View> ansList = new ArrayList<>();
 
-//        Log.d(TAG, "findViewRecursive Searching");
+//        Logger.d(TAG, "findViewRecursive Searching");
         while((count = viewGroup.getChildCount()) > 0){
             View v = viewGroup.getChildAt(index);
             if(v instanceof ViewGroup) {
@@ -27,7 +27,7 @@ public class Utility {
                     ansList.add(view);
             }
             else if(targetClass.isInstance(v)) {
-//                Log.d(TAG, "findViewRecursive Found");
+//                Logger.d(TAG, "findViewRecursive Found");
                 ansList.add(v);
             }
             if(++index >= count)

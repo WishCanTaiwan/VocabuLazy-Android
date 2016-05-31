@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.cover.fragment.CoverFragment;
-import com.wishcan.www.vocabulazy.log.LogHelper;
+import com.wishcan.www.vocabulazy.log.Logger;
 
 //import io.uxtesting.UXTesting;
 
@@ -19,7 +19,7 @@ public class CoverActivity extends FragmentActivity {
     private static final String TAG = CoverActivity.class.getSimpleName();
     private static final int VIEW_ACTIVITY_RES_ID = R.layout.activity_cover;
 
-    private LogHelper wLogHelper;
+    private Logger wLogger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class CoverActivity extends FragmentActivity {
          * Retrieve the Google Analytics tracker from VLApplication
          */
         VLApplication application = (VLApplication) getApplication();
-        wLogHelper = application.getLogHelper();
+        wLogger = application.getLogHelper();
         application.loadDatabase();
 
         setContentView(VIEW_ACTIVITY_RES_ID);
@@ -42,6 +42,6 @@ public class CoverActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        wLogHelper.sendScreenViewEvent(TAG);
+        Logger.sendScreenViewEvent(TAG);
     }
 }

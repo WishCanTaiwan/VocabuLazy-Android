@@ -206,14 +206,18 @@ public class PlayerFragment extends GAPlayerFragment {
     }
 
     private void savePreferences() {
-        if (mPlayerModel == null)
+        if (mPlayerModel == null) {
+            sendException(getContext(), new NullPointerException(), true);
             return;
+        }
         mPlayerModel.saveIndicesPreferences(new int[]{mBookIndex, mLessonIndex, mItemIndex, mSentenceIndex});
     }
 
     private int[] loadPreferences() {
-        if (mPlayerModel == null)
+        if (mPlayerModel == null) {
+            sendException(getContext(), new NullPointerException(), true);
             return new int[]{1359, 1359, 0, -1};
+        }
         return mPlayerModel.loadIndicesPreferences();
     }
 
@@ -242,7 +246,10 @@ public class PlayerFragment extends GAPlayerFragment {
     }
 
     private void setContent(ArrayList<Vocabulary> vocabularies) {
-        if (mPlayerModel == null) return;
+        if (mPlayerModel == null) {
+            sendException(getContext(), new NullPointerException(), true);
+            return;
+        }
         mPlayerModel.setCurrentContent(vocabularies);
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.SET_CONTENT);
@@ -265,7 +272,10 @@ public class PlayerFragment extends GAPlayerFragment {
     }
 
     private void optionSettingChanged(ArrayList<OptionSettings> optionSettings, int optionMode) {
-        if (mPlayerModel == null) return;
+        if (mPlayerModel == null) {
+            sendException(getContext(), new NullPointerException(), true);
+            return;
+        }
         mPlayerModel.setOptionSettingsAndMode(optionSettings, optionMode);
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.OPTION_SETTINGS_CHANGED);
@@ -411,11 +421,6 @@ public class PlayerFragment extends GAPlayerFragment {
     public void onDetailScrolling() {
         super.onDetailScrolling();
         playerViewScrolling();
-    }
-
-    @Override
-    public void onViewTouchDown() {
-        super.onViewTouchDown();
     }
 
     /**----------------- Implement PlayerPanelView.OnPanelItemClickListener ---------------------**/

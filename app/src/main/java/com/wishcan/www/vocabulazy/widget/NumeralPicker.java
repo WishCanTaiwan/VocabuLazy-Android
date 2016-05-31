@@ -156,7 +156,7 @@ public class NumeralPicker extends LinearLayout {
     }
 
     public void calculatePickerRange() {
-//        Log.d(TAG, "calculatePickerRange: Max " + mMaximumNumber + ",  Min " + mMinimumNumber);
+//        Logger.d(TAG, "calculatePickerRange: Max " + mMaximumNumber + ",  Min " + mMinimumNumber);
         mPickerRange = mMaximumNumber - mMinimumNumber + 1;
     }
 
