@@ -23,11 +23,13 @@ import java.util.List;
 public class SearchDialogNoteShowingView extends LinearLayout {
 
     public interface OnListItemClickListener {
+        void onCancelItemClick();
         void onListItemClick(int position);
         void onAddItemClick();
     }
 
     private static final int VIEW_LIST_HEADER_RES_ID = R.layout.view_search_dialog_add_to_note_title;
+    private static final int VIEW_CANCEL_RES_ID = R.id.action_dialog_cancel;
     private static final int DIMEN_VIEW_WIDTH = R.dimen.search_result_add_to_note_dialog_width;
     private static final int DIMEN_VIEW_HEIGHT = R.dimen.search_result_add_to_note_dialog_height;
 
@@ -48,14 +50,23 @@ public class SearchDialogNoteShowingView extends LinearLayout {
         setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         setOrientation(VERTICAL);
 
-        mHeaderView = ((LayoutInflater)context.getSystemService
+        mHeaderView = ((LayoutInflater) context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_LIST_HEADER_RES_ID, null);
+        mHeaderView.findViewById(VIEW_CANCEL_RES_ID).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnListItemClickListener != null) {
+                    mOnListItemClickListener.onCancelItemClick();
+                }
+            }
+        });
         mListView = new SearchDialogListView(context);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(mOnListItemClickListener == null)
+                if(mOnListItemClickListener == null) {
                     return;
+                }
                 int itemCount = mListView.getCount();
                 Log.d("SearchDialog", "position = " +position+ " itemCount = " +itemCount);
                 if(position == itemCount - 1)

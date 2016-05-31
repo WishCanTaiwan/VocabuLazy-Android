@@ -23,7 +23,7 @@ import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 //import io.uxtesting.UXTesting;
 
 
-public class SearchActivity extends FragmentActivity {
+public class SearchActivity extends FragmentActivity implements SearchView.OnQueryTextListener {
 
     public static final String TAG = SearchActivity.class.getSimpleName();
 
@@ -92,24 +92,7 @@ public class SearchActivity extends FragmentActivity {
         SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.onActionViewExpanded();          // Important, make ActionView expand initially
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                ArrayList<Vocabulary> searchResultsList;
-                if (newText.equals("")) {
-                    searchResultsList = new ArrayList<>();
-                } else {
-                    searchResultsList = wDatabase.readSuggestVocabularyBySpell(newText);
-                }
-                mSearchFragment.refreshSearchResult(searchResultsList);
-                return true;
-            }
-        });
+        searchView.setOnQueryTextListener(this);
 
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -137,7 +120,24 @@ public class SearchActivity extends FragmentActivity {
     @Override
     public boolean onNavigateUp() {
         finish();
-        overridePendingTransition(R.anim.main_activity_enter_animation, R.anim.translation_from_center_to_right);
+//        overridePendingTransition(R.anim.main_activity_enter_animation, R.anim.translation_from_center_to_right);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        ArrayList<Vocabulary> searchResultsList;
+        if (newText.equals("")) {
+            searchResultsList = new ArrayList<>();
+        } else {
+            searchResultsList = wDatabase.readSuggestVocabularyBySpell(newText);
+        }
+        mSearchFragment.refreshSearchResult(searchResultsList);
         return true;
     }
 }

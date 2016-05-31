@@ -16,7 +16,9 @@ import java.util.LinkedList;
 /**
  * Created by swallow on 2016/1/20.
  */
-public class SearchDialogFragment extends DialogFragment implements DialogFragment.OnDialogFinishListener<String> {
+public class SearchDialogFragment extends DialogFragment implements DialogFragment.OnDialogFinishListener<String>,
+                                                                    DialogView.OnYesOrNoClickListener,
+                                                                    SearchDialogView.OnDialogItemClickListener {
 
     public static final String TAG = SearchDialogFragment.class.getSimpleName();
 
@@ -47,54 +49,29 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
 
         if(getArguments() != null) {
             SearchDialogView.DIALOG_RES_ID_s resId = (SearchDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_STR);
+            if (resId == null)
+                return;
+
             mSearchDialogView = new SearchDialogView(getContext(), null, resId);
             switch (resId) {
                 case NEW:
-                    mSearchDialogView.setOnYesOrNoClickedListener(new DialogView.OnYesOrNoClickListener() {
-                        @Override
-                        public void onYesClicked() {
-                            OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(SearchDialogFragment.M_TAG);
-                            fragment.onDialogFinish(mSearchDialogView.getDialogOutput());
-                            ((SearchDialogFragment) fragment).refreshNoteList();
-                            getActivity().onBackPressed();
-                        }
-
-                        @Override
-                        public void onNoClicked() {
-                            getActivity().onBackPressed();
-                        }
-                    });
+                    mSearchDialogView.setOnYesOrNoClickedListener(this);
                     break;
                 case LIST:
                     M_TAG = getTag();
                     refreshNoteList();
-                    mSearchDialogView.setOnDialogItemClickListener(new SearchDialogView.OnDialogItemClickListener() {
-                        @Override
-                        public void onListItemClick(int position) {
-                            OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(SearchFragment.M_TAG);
-                            fragment.onDialogFinish(position);
-                            getActivity().onBackPressed();
-                        }
-
-                        @Override
-                        public void onAddItemClick() {
-                            SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.NEW);
-                            getFragmentManager()
-                                    .beginTransaction()
-                                    .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment_New")
-                                    .addToBackStack("SearchDialogFragment_List")
-                                    .commit();
-                        }
-                    });
+                    mSearchDialogView.setOnDialogItemClickListener(this);
+                    break;
+                default:
                     break;
 
             }
         }
     }
 
+    /**------------------ Implements DialogFragment.OnDialogFinishListener ----------------------**/
     @Override
     public void onDialogFinish(String obj) {
-//        Logger.d(TAG, mDatabase.toString());
         wDatabase.createNewNote(obj);
     }
 
@@ -108,11 +85,44 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
         return SearchFragment.M_TAG;
     }
 
+    /**-------------------- Implements DialogView.OnYesOrNoClickListener ------------------------**/
+    @Override
+    public void onYesClicked() {
+        OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(SearchDialogFragment.M_TAG);
+        fragment.onDialogFinish(mSearchDialogView.getDialogOutput());
+        ((SearchDialogFragment) fragment).refreshNoteList();
+        getActivity().onBackPressed();
+    }
+
+    @Override
+    public void onNoClicked() {
+        getActivity().onBackPressed();
+    }
+
+    /**---------------- Implements SearchDialogView.OnDialogItemClickListener --------------------**/
+    @Override
+    public void onCancelItemClick() {
+        getActivity().onBackPressed();
+    }
+
+    @Override
+    public void onListItemClick(int position) {
+        OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(SearchFragment.M_TAG);
+        fragment.onDialogFinish(position);
+        getActivity().onBackPressed();
+    }
+
+    @Override
+    public void onAddItemClick() {
+        SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.NEW);
+        getFragmentManager()
+                .beginTransaction()
+                .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment_New")
+                .addToBackStack("SearchDialogFragment_List")
+                .commit();
+    }
+
     private void refreshNoteList() {
-//        Logger.d(TAG, mDatabase.toString());
-//        Logger.d(TAG, "refreshNotekList");
-//        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-//        wDatabase = vlApplication.getDatabase();
         ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
         LinkedList<String> dataList = new LinkedList<>();
         if(notes != null)
