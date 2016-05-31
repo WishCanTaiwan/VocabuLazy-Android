@@ -126,7 +126,6 @@ public class SearchView extends RelativeLayout {
 
     public void closeSearchDetail() {
         mSearchDetailParentView.setVisibility(GONE);
-
     }
 
 	public static class SearchListView extends ListView implements AdapterView<HashMap> {

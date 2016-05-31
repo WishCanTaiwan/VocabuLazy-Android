@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.search.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
@@ -69,13 +71,22 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
     }
 
     public void refreshSearchResult(ArrayList<Vocabulary> vocabularies) {
-        List<Fragment> fragmentLL;
-        int numFragment;
-
         mSuggestedVocabularies = vocabularies;
         mSearchView.refreshSearchResult(
                 mSearchModel.createSearchResultMap(vocabularies));
-        mSearchView.closeSearchDetail();
+        clearSearchDetail();
+        clearFragments();
+    }
+
+    public void clearSearchDetail() {
+        if (mSearchView != null) {
+            mSearchView.closeSearchDetail();
+        }
+    }
+
+    public void clearFragments() {
+        List<Fragment> fragmentLL;
+        int numFragment;
         fragmentLL = getFragmentManager().getFragments();
         if (fragmentLL != null) {
             if ((numFragment = fragmentLL.size()) > 1) {
@@ -102,6 +113,9 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
                 .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment_List")
                 .addToBackStack("SearchFragment")
                 .commit();
+        mSearchView.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(mSearchView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override
@@ -111,5 +125,8 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
         mSearchView.refreshSearchDetail(
                 mSearchModel.createSearchResultDetailMap(voc));
         mSearchView.showSearchDetail();
+        mSearchView.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(mSearchView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 }

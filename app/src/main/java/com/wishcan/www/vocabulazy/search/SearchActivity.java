@@ -34,6 +34,7 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
     private static final int DEFAULT_SEARCH_ITEM_RES_ID = R.id.action_search;
 
     private SearchFragment mSearchFragment;
+    private SearchView mSearchView;
     private ActionBar mActionBar;
     private Database wDatabase;
 
@@ -89,14 +90,21 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
         getMenuInflater().inflate(DEFAULT_MENU_RES_ID, menu);
 
         MenuItem searchItem = menu.findItem(DEFAULT_SEARCH_ITEM_RES_ID);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+        SearchView mSearchView = (SearchView) searchItem.getActionView();
 
-        searchView.onActionViewExpanded();          // Important, make ActionView expand initially
-        searchView.setOnQueryTextListener(this);
+        mSearchView.onActionViewExpanded();          // Important, make ActionView expand initially
+        mSearchView.setOnQueryTextListener(this);
 
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+        mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Log.d(TAG, "searchView has focused");
+                    mSearchFragment.clearSearchDetail();
+                    mSearchFragment.clearFragments();
+                } else {
+                    Log.d(TAG, "searchView has not focus");
+                }
             }
         });
 
@@ -120,7 +128,6 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
     @Override
     public boolean onNavigateUp() {
         finish();
-//        overridePendingTransition(R.anim.main_activity_enter_animation, R.anim.translation_from_center_to_right);
         return true;
     }
 
