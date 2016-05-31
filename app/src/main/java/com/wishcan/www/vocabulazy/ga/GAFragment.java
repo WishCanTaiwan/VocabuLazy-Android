@@ -1,5 +1,6 @@
 package com.wishcan.www.vocabulazy.ga;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -94,8 +95,12 @@ public abstract class GAFragment extends Fragment {
         sendGAEvent(ACTION_STRING_s[GAFragmentLifeCycle.ON_SAVE_INSTANCE_STATE], 1);
     }
 
-    private void sendGAEvent(String action, long value) {
+    protected void sendGAEvent(String action, long value) {
         Logger.sendEvent(CATEGORY_STRING, action, getNameAsGaLabel(), value);
+    }
+
+    protected void sendException(Context context, Exception e, boolean isFatal) {
+        Logger.sendException(context, e, isFatal);
     }
 
     /**

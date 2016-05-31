@@ -1,10 +1,13 @@
 package com.wishcan.www.vocabulazy.log;
 
 import android.content.Context;
+import android.text.style.AlignmentSpan;
 import android.util.Log;
 
+import com.google.android.gms.analytics.ExceptionReporter;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.StandardExceptionParser;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
@@ -43,6 +46,14 @@ public class Logger {
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(context);
             // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
             wTracker = analytics.newTracker(R.xml.global_tracker);
+
+            Thread.UncaughtExceptionHandler handler = new ExceptionReporter(
+                    wTracker,
+                    Thread.getDefaultUncaughtExceptionHandler(),
+                    context);
+
+            // Make handler the new default uncaught exception handler.
+            Thread.setDefaultUncaughtExceptionHandler(handler);
         }
         return wTracker;
     }
@@ -64,6 +75,14 @@ public class Logger {
                 .setAction(action)
                 .setLabel(label)
                 .setValue(value)
+                .build());
+    }
+
+    public static void sendException(Context context, Exception e, boolean isFatal) {
+        d(e.toString(), e.getMessage());
+        wTracker.send(new HitBuilders.ExceptionBuilder()
+                .setDescription(new StandardExceptionParser(context, null).getDescription(Thread.currentThread().getName(), e))
+                .setFatal(isFatal)
                 .build());
     }
 }
