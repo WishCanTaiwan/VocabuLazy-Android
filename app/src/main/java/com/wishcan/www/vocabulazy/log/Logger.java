@@ -79,7 +79,9 @@ public class Logger {
     }
 
     public static void sendException(Context context, Exception e, boolean isFatal) {
+        ArrayList<LogEntry> logs = mLogBuffer.pull();
         d(e.toString(), e.getMessage());
+
         wTracker.send(new HitBuilders.ExceptionBuilder()
                 .setDescription(new StandardExceptionParser(context, null).getDescription(Thread.currentThread().getName(), e))
                 .setFatal(isFatal)
