@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,13 +27,16 @@ import java.util.List;
 
 
 public class SearchFragment extends Fragment implements SearchView.OnItemClickListener,
-                                                        DialogFragment.OnDialogFinishListener<Integer> {
+                                                        DialogFragment.OnDialogFinishListener<Integer>,
+                                                        SearchDialogFragment.OnSecDialogCreateListener {
 
     public static final String TAG = SearchFragment.class.getSimpleName();
 
     public static String M_TAG;
 
     private Database wDatabase;
+    private SearchDialogFragment mSearchListDialogFragment;
+    private DialogFragment mNewNoteDialogFragment;
     private SearchView mSearchView;
     private SearchModel mSearchModel;
     private ArrayList<Vocabulary> mSuggestedVocabularies;
@@ -75,7 +79,7 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
         mSearchView.refreshSearchResult(
                 mSearchModel.createSearchResultMap(vocabularies));
         clearSearchDetail();
-        clearFragments();
+        clearDialogFragments();
     }
 
     public void clearSearchDetail() {
@@ -84,16 +88,17 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
         }
     }
 
-    public void clearFragments() {
-        List<Fragment> fragmentLL;
-        int numFragment;
-        fragmentLL = getFragmentManager().getFragments();
-        if (fragmentLL != null) {
-            if ((numFragment = fragmentLL.size()) > 1) {
-                for (int i = 1; i < numFragment; i++) {
-                    getFragmentManager().beginTransaction().remove(fragmentLL.get(i)).commit();
-                }
-            }
+    public void clearDialogFragments() {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager == null)
+            return;
+
+        if (mNewNoteDialogFragment != null) {
+            fragmentManager.beginTransaction().remove(mNewNoteDialogFragment).commit();
+        }
+
+        if (mSearchListDialogFragment != null) {
+            fragmentManager.beginTransaction().remove(mSearchListDialogFragment).commit();
         }
     }
 
@@ -106,11 +111,12 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
     @Override
     public void onAddIconClick(int position) {
         mSelectVocId = mSuggestedVocabularies.get(position).getId();
-        SearchDialogFragment fragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.LIST);
-        fragment.setOnDialogFinishListener(this);
+        mSearchListDialogFragment = SearchDialogFragment.newInstance(SearchDialogView.DIALOG_RES_ID_s.LIST);
+        mSearchListDialogFragment.setOnDialogFinishListener(this);
+        mSearchListDialogFragment.setSecDialogFinishListener(this);
         getFragmentManager()
                 .beginTransaction()
-                .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment_List")
+                .add(SearchActivity.VIEW_CONTAINER_RES_ID, mSearchListDialogFragment, "SearchDialogFragment_List")
                 .addToBackStack("SearchFragment")
                 .commit();
         mSearchView.requestFocus();
@@ -128,5 +134,10 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
         mSearchView.requestFocus();
         InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mSearchView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    @Override
+    public void secDialogCreate(DialogFragment fragment) {
+        mNewNoteDialogFragment = fragment;
     }
 }

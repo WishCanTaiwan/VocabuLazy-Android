@@ -20,6 +20,10 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
                                                                     DialogView.OnYesOrNoClickListener,
                                                                     SearchDialogView.OnDialogItemClickListener {
 
+    public interface OnSecDialogCreateListener {
+        void secDialogCreate(DialogFragment fragment);
+    }
+
     public static final String TAG = SearchDialogFragment.class.getSimpleName();
 
     public static String M_TAG;
@@ -27,6 +31,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
     private static final String DIALOG_BUNDLE_STR = "dialog_bundle_str";
     private SearchDialogView mSearchDialogView;
     private Database wDatabase;
+    private OnSecDialogCreateListener mSecDialogFinishListener;
 
     public static SearchDialogFragment newInstance(SearchDialogView.DIALOG_RES_ID_s resId) {
         SearchDialogFragment fragment = new SearchDialogFragment();
@@ -67,6 +72,10 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
 
             }
         }
+    }
+
+    public void setSecDialogFinishListener(OnSecDialogCreateListener listener) {
+        mSecDialogFinishListener = listener;
     }
 
     /**------------------ Implements DialogFragment.OnDialogFinishListener ----------------------**/
@@ -120,6 +129,9 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
                 .add(SearchActivity.VIEW_CONTAINER_RES_ID, fragment, "SearchDialogFragment_New")
                 .addToBackStack("SearchDialogFragment_List")
                 .commit();
+        if (mSecDialogFinishListener != null) {
+            mSecDialogFinishListener.secDialogCreate(fragment);
+        }
     }
 
     private void refreshNoteList() {
