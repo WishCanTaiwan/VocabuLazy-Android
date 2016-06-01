@@ -39,7 +39,7 @@
     <dimen name="tab_view_tab_stripe">66dp</dimen>
     <!-- SwallowBBAppo Search Dimension -->
     <dimen name="search_result_add_to_note_dialog_height">290dp</dimen>
-    <dimen name="search_result_add_to_note_dialog_width">233dp</dimen>
+    <dimen name="search_result_add_to_note_dialog_width">236dp</dimen>
     <dimen name="search_result_add_to_note_dialog_title_width">240dp</dimen>
 
     <!-- SwallowBBAppo SearchResultAddToNote-->

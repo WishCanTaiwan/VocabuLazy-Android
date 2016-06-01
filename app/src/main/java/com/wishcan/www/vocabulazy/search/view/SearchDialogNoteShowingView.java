@@ -109,6 +109,7 @@ public class SearchDialogNoteShowingView extends LinearLayout {
             mLinkedList = new LinkedList<>();
             mAdapter = new MyAdapter(context, VIEW_LIST_ITEM_RES_ID, VIEW_NOTE_TEXT_RES_ID, VIEW_ADD_NEW_NOTE_RES_ID, mLinkedList);
             setAdapter(mAdapter);
+            setVerticalScrollBarEnabled(false);
         }
 
         public void refreshDataList(LinkedList<String> linkedList) {

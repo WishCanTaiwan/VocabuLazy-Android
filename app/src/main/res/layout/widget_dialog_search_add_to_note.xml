@@ -19,6 +19,7 @@
             android:id="@+id/search_dialog_list_view"
             android:layout_width="208dp"
             android:layout_height="wrap_content"
+            android:scrollbars="none"
             android:divider="#ffb3b3b5" />
     </RelativeLayout>
 

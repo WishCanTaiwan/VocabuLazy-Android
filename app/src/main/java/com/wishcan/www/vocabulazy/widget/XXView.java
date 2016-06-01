@@ -20,27 +20,17 @@ public class XXView extends View {
     private static int DEFAULT_PAINT_THICK_RES_ID = R.dimen.search_xx_thick;
 
     private static final int DEFAULT_XX_CIRCLE_SIZE_RES_ID = R.dimen.search_xx_circle_size;
-
     private static final int DEFAULT_XX_LENGTH_RES_ID = R.dimen.search_xx_length_size;
-
     private static final int DEFAULT_XX_COLOR_RES_ID = R.color.search_xx_color;
-
     private static final int DEFAULT_XX_BACKGROUND_COLOR_RES_ID = R.color.search_xx_background_color;
 
     private int mViewSize;
-
     private int mCircleSize;
-
     private int mXXLength;
-
     private Paint mPaint;
-
     private int mXXColor;
-
     private int mXXBackgroundColor;
-
     private int mPaintThick;
-
     private boolean mCircleOutline;
 
     public XXView(Context context) {
@@ -76,9 +66,7 @@ public class XXView extends View {
                 }
             });
         }
-
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -108,7 +96,6 @@ public class XXView extends View {
         stopX = (float) 0.35 * mViewSize;
         canvas.drawLine(startX, startY, stopX, stopY, mPaint);
     }
-
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
