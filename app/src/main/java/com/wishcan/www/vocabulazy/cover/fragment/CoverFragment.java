@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.cover.CoverActivity;
 import com.wishcan.www.vocabulazy.cover.view.CoverDialogView;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
@@ -32,6 +33,8 @@ public class CoverFragment extends Fragment implements DialogFragment.OnDialogFi
     private static final int VIEW_RES_ID = R.layout.view_cover;
     private static final String PACKAGE_NAME_GOOGLE_TTS = "com.google.android.tts";
     private static final String PACKAGE_NAME_TESTING_APP = "cc.forestapp";
+
+    private boolean hasUserLeftAppFirst = false;
 
     private View mView;
 
@@ -52,6 +55,7 @@ public class CoverFragment extends Fragment implements DialogFragment.OnDialogFi
         if (getArguments() != null) {
         }
         M_TAG = getTag();
+        hasUserLeftAppFirst = false;
     }
 
     @Override
@@ -77,6 +81,12 @@ public class CoverFragment extends Fragment implements DialogFragment.OnDialogFi
             fragmentTransaction.addToBackStack("CoverFragment");
             fragmentTransaction.commit();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hasUserLeftAppFirst = true;
     }
 
     @Override
@@ -111,8 +121,13 @@ public class CoverFragment extends Fragment implements DialogFragment.OnDialogFi
         mView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(intent);
-                getActivity().finish();
+                if (!hasUserLeftAppFirst) {
+                    Logger.d(TAG, "use hasn't left app");
+                    startActivity(intent);
+                    getActivity().finish();
+                } else {
+                    Logger.d(TAG, "user already left app");
+                }
             }
         }, 2000);
     }
