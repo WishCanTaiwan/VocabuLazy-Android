@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.ga.GAUsrNoteFragment;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
+import com.wishcan.www.vocabulazy.main.usr.model.UsrNoteModel;
 import com.wishcan.www.vocabulazy.main.usr.view.UsrNoteDialogView;
 import com.wishcan.www.vocabulazy.main.usr.view.UsrNoteView;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -28,65 +30,33 @@ import java.util.LinkedList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconClickListener,
+public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.OnListIconClickListener,
                                                          DialogFragment.OnDialogFinishListener<String>{
 
     public static final String TAG = UsrNoteFragment.class.getSimpleName();
     public static String M_TAG;
 
-    private Tracker wTracker;
-
+    private UsrNoteModel mUsrNoteModel;
     private UsrNoteView mUsrNoteView;
-    private Database wDatabase;
     private int mIconId;        // used for identify either Add or Delete action should be executed
     private int mPressedPosition;
 
     public UsrNoteFragment() {
         // Required empty public constructor
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Logger.d(TAG, "onCreate");
-
-        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-        wTracker = vlApplication.getDefaultTracker();
-        wDatabase = vlApplication.getDatabase();
-
+        if (mUsrNoteModel == null)
+            mUsrNoteModel = new UsrNoteModel((VLApplication) getActivity().getApplication());
         M_TAG = getTag();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.d(TAG, "Setting screen name: " + TAG);
-        wTracker.setScreenName(TAG);
-        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-        if (wDatabase == null) {
-            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-            wDatabase = vlApplication.getDatabase();
-        } else {
-            reload();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+        reload();
     }
 
     @Override
@@ -94,7 +64,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
                              Bundle savedInstanceState) {
         mUsrNoteView = new UsrNoteView(getActivity());
         LinkedList<String> dataList = new LinkedList<>();
-        ArrayList<Lesson> notes = wDatabase.getLessonsByBook(-1);
+        ArrayList<Lesson> notes = mUsrNoteModel.getNotes();
 
         if(notes == null)
             return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
@@ -111,7 +81,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
     @Override
     public void onListIconClick(int iconId, int position, View v) {
         DialogFragment f = null;
-        ArrayList<Lesson> notes = wDatabase.getLessonsByBook(-1);
+        ArrayList<Lesson> notes = mUsrNoteModel.getNotes();
 
         mIconId = iconId;
         mPressedPosition = position;
@@ -119,7 +89,7 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
         switch (iconId) {
             case NoteView.ICON_PLAY:
                 Log.d(TAG, "wDatabase.getNote @" + position);
-                int noteSize = wDatabase.getNoteSize(position);
+                int noteSize = mUsrNoteModel.getNoteSize(position);
                 if (noteSize > 0) {
                     goPlayerFragment(-1, position);
                 }
@@ -153,35 +123,30 @@ public class UsrNoteFragment extends Fragment implements UsrNoteView.OnListIconC
         LinkedList<String> dataList = new LinkedList<>();
         ArrayList<Lesson> notes;
         if(mIconId == NoteView.ICON_DEL)
-            wDatabase.deleteNoteAt(mPressedPosition);
+            mUsrNoteModel.deleteNoteAt(mPressedPosition);
         else if(mIconId == NoteView.ICON_RENAME && str != null)
-            wDatabase.renameNoteAt(mPressedPosition, str);
+            mUsrNoteModel.renameNoteAt(mPressedPosition, str);
         else if(mIconId == NoteView.ICON_NEW && str != null)
-            wDatabase.createNewNote(str);
+            mUsrNoteModel.createNewNote(str);
         else
             return;
 
-        notes = wDatabase.getLessonsByBook(-1);
+        notes = mUsrNoteModel.getNotes();
         for(int i = 0; i < notes.size(); i++)
             dataList.add(notes.get(i).getTitle());
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
 
     private void reload() {
-        Log.d(TAG, "reload");
-        final ArrayList<Lesson> notes = (wDatabase == null) ? null : wDatabase.getLessonsByBook(-1);
-
+        final ArrayList<Lesson> notes = mUsrNoteModel.getNotes();
         LinkedList<String> dataList = new LinkedList<>();
-
-        if(notes == null) {
+        if (notes == null) {
             new ErrorView(getActivity()).setErrorMsg("DataBase not found");
             return;
         }
-
         for(int i = 0; i < notes.size(); i++) {
             dataList.add(notes.get(i).getTitle());
         }
-
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
 

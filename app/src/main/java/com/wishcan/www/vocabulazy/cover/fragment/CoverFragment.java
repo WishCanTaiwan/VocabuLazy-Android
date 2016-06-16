@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.cover.CoverActivity;
 import com.wishcan.www.vocabulazy.cover.view.CoverDialogView;
+import com.wishcan.www.vocabulazy.ga.GACoverFragment;
 import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
@@ -24,7 +25,7 @@ import com.wishcan.www.vocabulazy.widget.DialogFragment;
  * Use the {@link CoverFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CoverFragment extends Fragment implements DialogFragment.OnDialogFinishListener<Boolean>{
+public class CoverFragment extends GACoverFragment implements DialogFragment.OnDialogFinishListener<Boolean>{
 
     public static final String TAG = CoverFragment.class.getSimpleName();
 

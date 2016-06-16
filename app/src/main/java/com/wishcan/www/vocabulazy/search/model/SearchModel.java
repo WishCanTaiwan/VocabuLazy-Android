@@ -1,6 +1,8 @@
 package com.wishcan.www.vocabulazy.search.model;
 
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.view.SearchView;
+import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
@@ -12,8 +14,14 @@ import java.util.LinkedList;
  */
 public class SearchModel {
 
-    public SearchModel() {
+    private Database mDatabase;
 
+    public SearchModel(VLApplication vlApplication) {
+        mDatabase = vlApplication.getDatabase();
+    }
+
+    public void addVocToNote(int id, int index) {
+        mDatabase.addVocToNote(id, index);
     }
 
     public LinkedList<HashMap> createSearchResultMap(ArrayList<Vocabulary> vocabularies) {

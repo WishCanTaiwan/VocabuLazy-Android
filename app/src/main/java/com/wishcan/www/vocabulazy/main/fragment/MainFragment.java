@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GAMainFragment;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.view.MainView;
 
@@ -18,7 +19,7 @@ import com.wishcan.www.vocabulazy.main.view.MainView;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends GAMainFragment {
 
     public static final String TAG = MainFragment.class.getSimpleName();
 

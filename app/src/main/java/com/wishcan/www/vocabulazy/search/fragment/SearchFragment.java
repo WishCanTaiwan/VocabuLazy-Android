@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.ga.GASearchFragment;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
@@ -26,7 +27,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class SearchFragment extends Fragment implements SearchView.OnItemClickListener,
+public class SearchFragment extends GASearchFragment implements SearchView.OnItemClickListener,
                                                         DialogFragment.OnDialogFinishListener<Integer>,
                                                         SearchDialogFragment.OnSecDialogCreateListener {
 
@@ -34,7 +35,6 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
 
     public static String M_TAG;
 
-    private Database wDatabase;
     private SearchDialogFragment mSearchListDialogFragment;
     private DialogFragment mNewNoteDialogFragment;
     private SearchView mSearchView;
@@ -60,10 +60,8 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
 
         }
         M_TAG = getTag();
-
-        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-        wDatabase = vlApplication.getDatabase();
-        mSearchModel = new SearchModel();
+        if (mSearchModel == null)
+            mSearchModel = new SearchModel((VLApplication) getActivity().getApplication());
     }
 
     @Override
@@ -105,7 +103,7 @@ public class SearchFragment extends Fragment implements SearchView.OnItemClickLi
     @Override
     public void onDialogFinish(Integer obj) {
         Log.d(TAG, " select  " +obj.intValue());
-        wDatabase.addVocToNote(mSelectVocId, obj);
+        mSearchModel.addVocToNote(mSelectVocId, obj);
     }
 
     @Override

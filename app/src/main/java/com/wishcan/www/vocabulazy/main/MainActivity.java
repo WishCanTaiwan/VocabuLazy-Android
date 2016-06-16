@@ -1,6 +1,5 @@
 package com.wishcan.www.vocabulazy.main;
 
-
 import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;

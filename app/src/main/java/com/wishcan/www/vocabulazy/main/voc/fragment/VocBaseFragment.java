@@ -1,8 +1,5 @@
 package com.wishcan.www.vocabulazy.main.voc.fragment;
 
-import android.app.Fragment;
-
-import com.wishcan.www.vocabulazy.ga.GAFragment;
 import com.wishcan.www.vocabulazy.ga.GAVocFragment;
 import com.wishcan.www.vocabulazy.main.voc.model.VocModel;
 

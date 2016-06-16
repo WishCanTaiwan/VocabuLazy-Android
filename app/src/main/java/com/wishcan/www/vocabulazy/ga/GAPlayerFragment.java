@@ -36,7 +36,7 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerModel
     /**----------------- Implement PlayerModel.PlayerModelDataProcessListener -------------------**/
     /**
      * Implement from PlayerModel
-     * */
+     */
     @Override
     public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
     }
