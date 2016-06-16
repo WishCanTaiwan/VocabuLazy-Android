@@ -183,7 +183,7 @@ public class AudioPlayer implements AudioPlayerListener {
                 break;
         }
         vlTextToSpeech.speak(string, mOptionSettings.getSpeed());
-        vlTextToSpeech.speakSilence(mOptionSettings.getStopPeriod() + isItemFinishing(itemIndex, sentenceIndex, playingField));
+        vlTextToSpeech.speakSilence(isItemFinishing(itemIndex, sentenceIndex, playingField, mOptionSettings.getStopPeriod()));
         if (isTimeOut) startTimer();
         updatePlayerInfo(itemIndex, sentenceIndex, playingField, PLAYING);
     }
@@ -363,12 +363,12 @@ public class AudioPlayer implements AudioPlayerListener {
         }
     }
 
-    private int isItemFinishing(int itemIndex, int sentenceIndex, String playingField) {
-        int lengthOfPause = 0;
+    private int isItemFinishing(int itemIndex, int sentenceIndex, String playingField, int stopPeriod) {
+        int lengthOfPause = 400;
         boolean isSentence = mOptionSettings.isSentence();
         if (isSentence && playingField.equals(CnSENTENCE) && isLastSentence(itemIndex, sentenceIndex)
                 || !isSentence && playingField.equals(TRANSLATION))
-            lengthOfPause = 800;
+            lengthOfPause = 400 + stopPeriod * 1000;
         return lengthOfPause;
     }
 

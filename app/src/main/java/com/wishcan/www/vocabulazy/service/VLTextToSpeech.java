@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
 
+import com.wishcan.www.vocabulazy.log.Logger;
+
 import java.util.HashMap;
 import java.util.Locale;
 
