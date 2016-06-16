@@ -19,7 +19,7 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamIndexView;
  * Use the {@link ExamIndexFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamIndexFragment extends Fragment {
+public class ExamIndexFragment extends ExamBaseFragment {
 
     public static ExamIndexFragment newInstance() {
         ExamIndexFragment fragment = new ExamIndexFragment();

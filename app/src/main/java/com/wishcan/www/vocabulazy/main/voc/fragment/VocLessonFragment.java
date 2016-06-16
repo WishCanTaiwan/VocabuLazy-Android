@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
+import com.wishcan.www.vocabulazy.main.voc.model.VocModel;
 import com.wishcan.www.vocabulazy.main.voc.view.VocLessonView;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
@@ -28,14 +30,11 @@ import java.util.LinkedList;
  * Use the {@link VocLessonFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VocLessonFragment extends Fragment implements VocLessonView.OnLessonClickListener {
+public class VocLessonFragment extends VocBaseFragment implements VocLessonView.OnLessonClickListener {
 
     public static final String TAG = VocLessonFragment.class.getSimpleName();
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
 
-    private Tracker wTracker;
-
-    private Database wDatabase;
     private int mBookIndex;
     private int mLessonIndex;
 
@@ -55,34 +54,26 @@ public class VocLessonFragment extends Fragment implements VocLessonView.OnLesso
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-        wTracker = vlApplication.getDefaultTracker();
-        wDatabase = vlApplication.getDatabase();
+        if (mVocModel == null)
+            mVocModel = new VocModel((VLApplication) getActivity().getApplication());
+
         mBookIndex = getArguments() == null ? -1 : getArguments().getInt(BOOK_INDEX_STR);
         mLessonIndex = 0;
 
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " + mBookIndex);
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, mVocModel.getBookTitle(mBookIndex));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.d(TAG, "Setting screen name: " + TAG + " book " + mBookIndex);
-        wTracker.setScreenName(TAG + " book " + mBookIndex);
-        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-        if (wDatabase == null) {
-            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-            wDatabase = vlApplication.getDatabase();
-        }
+        Logger.sendScreenViewEvent(TAG + " book " + mBookIndex);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         VocLessonView vocLessonView = new VocLessonView(getActivity());
-        ArrayList<Lesson> lessons = (wDatabase == null) ? null : wDatabase.getLessonsByBook(mBookIndex);
+        ArrayList<Lesson> lessons = mVocModel.getLessons(mBookIndex);
         LinkedList<Integer> lessonIntegers = new LinkedList<>();
         vocLessonView.setOnLessonClickListener(this);
         if(lessons != null)
@@ -107,7 +98,7 @@ public class VocLessonFragment extends Fragment implements VocLessonView.OnLesso
         ArrayList<Integer> contentIDs;
 
         mLessonIndex = lesson;
-        contentIDs = wDatabase.getContentIDs(mBookIndex, mLessonIndex);
+        contentIDs = mVocModel.getContent(mBookIndex, mLessonIndex);
         if (contentIDs.size() >= 4) {
             goPlayerFragment(mBookIndex, mLessonIndex);
         }

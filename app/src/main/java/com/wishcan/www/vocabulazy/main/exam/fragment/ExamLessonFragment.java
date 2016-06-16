@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamLessonView;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
@@ -21,10 +22,12 @@ import com.wishcan.www.vocabulazy.widget.LessonView;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class ExamLessonFragment extends Fragment implements LessonView.OnLessonClickListener {
+public class ExamLessonFragment extends ExamBaseFragment implements LessonView.OnLessonClickListener {
 
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
-    private Database wDatabase;
+
+    private ExamModel mExamModel;
+
     private int mBookIndex;
     private int mLessonIndex;
 
@@ -35,27 +38,18 @@ public class ExamLessonFragment extends Fragment implements LessonView.OnLessonC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-        wDatabase = vlApplication.getDatabase();
+        if (mExamModel == null)
+            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
         mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
         mLessonIndex = -1;
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " + mBookIndex);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(wDatabase == null) {
-            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-            wDatabase = vlApplication.getDatabase();
-        }
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, mExamModel.getBookTitle(mBookIndex));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ExamLessonView examLessonView = new ExamLessonView(getActivity());
-        ArrayList<Lesson> lessons = (wDatabase == null) ? null : wDatabase.getLessonsByBook(mBookIndex);
+        ArrayList<Lesson> lessons = mExamModel.getLessons(mBookIndex);
         LinkedList<Integer> lessonIntegers = new LinkedList<>();
         examLessonView.setOnLessonClickListener(this);
         if(lessons != null)
@@ -80,7 +74,7 @@ public class ExamLessonFragment extends Fragment implements LessonView.OnLessonC
         ArrayList<Integer> contentIDs;
 
         mLessonIndex = lesson;
-        contentIDs = wDatabase.getContentIDs(mBookIndex, mLessonIndex);
+        contentIDs = mExamModel.getContent(mBookIndex, mLessonIndex);
         if (contentIDs.size() >= 4) {
             goExamFragment(lesson);
         }

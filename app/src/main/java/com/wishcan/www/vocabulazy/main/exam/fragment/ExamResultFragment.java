@@ -16,7 +16,7 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamResultView;
  * Use the {@link ExamResultFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamResultFragment extends Fragment implements ExamResultView.OnTryItemClickListener{
+public class ExamResultFragment extends ExamBaseFragment implements ExamResultView.OnTryItemClickListener{
 
     public static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
     public static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";

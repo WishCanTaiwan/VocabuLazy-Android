@@ -122,7 +122,7 @@ public class PlayerFragment extends GAPlayerFragment {
         wIndicesMatch = (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
         updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
 
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " +mBookIndex+ " Lesson " +mLessonIndex);
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, mPlayerModel.getLessonTitle(mBookIndex, mLessonIndex));
         ((MainActivity)getActivity()).enableExpressWay(false);
 
         /* register broadcast receiver */

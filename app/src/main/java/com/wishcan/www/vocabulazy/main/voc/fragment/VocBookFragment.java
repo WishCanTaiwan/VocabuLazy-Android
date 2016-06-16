@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.voc.model.VocModel;
 import com.wishcan.www.vocabulazy.main.voc.view.VocBookView;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -27,12 +29,9 @@ import java.util.LinkedList;
  * Use the {@link VocBookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VocBookFragment extends Fragment {
+public class VocBookFragment extends VocBaseFragment {
 
     public static final String TAG = VocBookFragment.class.getSimpleName();
-    private Tracker wTracker;
-
-    private Database wDatabase;
 
     public static VocBookFragment newInstance() {
         VocBookFragment fragment = new VocBookFragment();
@@ -48,28 +47,22 @@ public class VocBookFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-        wTracker = vlApplication.getDefaultTracker();
-        wDatabase = vlApplication.getDatabase();
+
+        if (mVocModel == null)
+            mVocModel = new VocModel((VLApplication) getActivity().getApplication());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "Setting screen name: " + TAG);
-        wTracker.setScreenName(TAG);
-        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        if (wDatabase == null) {
-            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-            wDatabase = vlApplication.getDatabase();
-        }
+        Logger.sendScreenViewEvent(TAG);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         VocBookView vocBookView = new VocBookView(getActivity());
-        ArrayList<Book> books = (wDatabase == null) ? null : wDatabase.getBooks();
+        ArrayList<Book> books = mVocModel.getBooks();
         LinkedList<String> bookNames = new LinkedList<>();
         vocBookView.setOnBookItemClickListener(new BookView.OnBookItemClickListener() {
             @Override
@@ -88,7 +81,6 @@ public class VocBookFragment extends Fragment {
                 bookNames.add(books.get(i).getTitle());
         else
             return new ErrorView(getActivity()).setErrorMsg("get book failed");
-
 
         vocBookView.refreshView(bookNames.size(), bookNames);
         return vocBookView;

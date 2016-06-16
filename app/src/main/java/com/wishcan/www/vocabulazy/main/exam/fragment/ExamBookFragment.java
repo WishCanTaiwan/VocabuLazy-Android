@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamBookView;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -27,11 +28,9 @@ import java.util.LinkedList;
  * Use the {@link ExamBookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamBookFragment extends Fragment {
+public class ExamBookFragment extends ExamBaseFragment {
 
     private static final int TITLE_RES_ID = R.string.fragment_exam_book_title;
-
-    private Database wDatabase;
 
     public static ExamBookFragment newInstance() {
         ExamBookFragment fragment = new ExamBookFragment();
@@ -43,26 +42,16 @@ public class ExamBookFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-        wDatabase = vlApplication.getDatabase();
-
+        if (mExamModel == null)
+            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
         ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "單元測驗");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (wDatabase == null) {
-            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-            wDatabase = vlApplication.getDatabase();
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ExamBookView examBookView = new ExamBookView(getActivity());
-        ArrayList<Book> books = (wDatabase == null) ? null : wDatabase.getBooks();
+        ArrayList<Book> books = mExamModel.getBooks();
         LinkedList<String> bookNames = new LinkedList<>();
         examBookView.setOnBookItemClickListener(new BookView.OnBookItemClickListener() {
             @Override
@@ -92,6 +81,4 @@ public class ExamBookFragment extends Fragment {
         args.putInt(ExamLessonFragment.BOOK_INDEX_STR, bookIndex);
         ((MainActivity) getActivity()).goFragment(ExamLessonFragment.class, args, "ExamLessonFragment", "ExamBookFragment");
     }
-
-
 }

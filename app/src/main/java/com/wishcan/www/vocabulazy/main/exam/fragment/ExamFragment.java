@@ -18,15 +18,13 @@ import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ExamFragment extends GAExamFragment {
+public class ExamFragment extends ExamBaseFragment {
 
     public static final String ARG_BOOK_INDEX = "bookIndex";
     public static final String ARG_LESSON_INDEX = "lessonIndex";
 
     private ExamView mExamView;
-    private ExamModel mPuzzleSetter;
-    private Database wDatabase;
-    private ArrayList<Vocabulary> mVocabularies;
+    private ExamModel.PuzzleSetter mPuzzleSetter;
     private int mCurrentBookIndex, mCurrentLessonIndex;
     private Runnable mRefreshAnimTask;
 
@@ -41,19 +39,15 @@ public class ExamFragment extends GAExamFragment {
             mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
             mCurrentLessonIndex = getArguments().getInt(ARG_LESSON_INDEX);
         }
-
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "Book " + mCurrentBookIndex + " Lesson " + mCurrentLessonIndex);
+        mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, mExamModel.getLessonTitle(mCurrentBookIndex, mCurrentLessonIndex));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mExamView = new ExamView(getActivity());
-        VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-        wDatabase = vlApplication.getDatabase();
-        mVocabularies =
-                wDatabase.getVocabulariesByIDs(
-                        wDatabase.getContentIDs(mCurrentBookIndex, mCurrentLessonIndex));
-        mPuzzleSetter = new ExamModel(mVocabularies);
+
+        mPuzzleSetter = mExamModel.createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
 
         // set ExamView listener
         mExamView.setExamButtonClickListener(this);
@@ -76,18 +70,10 @@ public class ExamFragment extends GAExamFragment {
                 mExamView.startPopOutSequentially();
             }
         }, 600);
-
     }
 
     public void restartExam(){
-        if (wDatabase == null) {
-            VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-            wDatabase = vlApplication.getDatabase();    
-        }
-        mVocabularies =
-                wDatabase.getVocabulariesByIDs(
-                        wDatabase.getContentIDs(mCurrentBookIndex, mCurrentLessonIndex));
-        mPuzzleSetter = new ExamModel(mVocabularies);
+        mPuzzleSetter = mExamModel.createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
         HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();      // should call first to refresh question index
         mExamView.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
         mExamView.startVanish();
@@ -143,7 +129,7 @@ public class ExamFragment extends GAExamFragment {
             }
         };
 
-        if(mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
+        if (mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
             Bundle args = new Bundle();
             args.putFloat(ExamResultFragment.BUNDLE_RATIO_STRING, (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum());
             args.putInt(ExamResultFragment.BUNDLE_COUNT_STRING, mPuzzleSetter.getCorrectCount());
@@ -158,7 +144,6 @@ public class ExamFragment extends GAExamFragment {
 
     @Override
     public void onPlayerClick(String str) {
-        // TODO: Beibei please add your function here. Params str is the string for TTS
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.START_SINGLE_ITEM);
         intent.putExtra(AudioService.EXAM_UTTERANCE, str);

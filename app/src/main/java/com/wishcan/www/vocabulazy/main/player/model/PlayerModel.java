@@ -53,6 +53,14 @@ public class PlayerModel {
         return wDatabase.getNumOfLesson(bookIndex);
     }
 
+    public String getBookTitle(int bookIndex) {
+        return wDatabase.getBookTitle(bookIndex);
+    }
+
+    public String getLessonTitle(int bookIndex, int lessonIndex) {
+        return wDatabase.getLessonTitle(bookIndex, lessonIndex);
+    }
+
     public ArrayList<Vocabulary> getCurrentContent() {
         return wPreferences.getCurrentContent();
     }

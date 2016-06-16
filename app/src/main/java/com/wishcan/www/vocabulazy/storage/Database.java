@@ -75,11 +75,26 @@ public class Database {
         return wBooks;
     }
 
+    public String getBookTitle(int bookIndex) {
+        return wBooks.get(bookIndex).getTitle();
+    }
+
     public int getLessonID(int bookIndex, int lessonIndex) {
         if (bookIndex >= 0)
             return wBooks.get(bookIndex).getContent().get(lessonIndex);
         else
             return wNotes.get(lessonIndex).getId();
+    }
+
+    public String getLessonTitle(int bookIndex, int lessonIndex) {
+        if (bookIndex < 0)
+            return wNotes.get(lessonIndex).getTitle();
+
+        int lessonId = wBooks.get(bookIndex).getContent().get(lessonIndex);
+        for (Lesson lesson : wLessons) {
+            if (lessonId == lesson.getId()) return lesson.getTitle();
+        }
+        return null;
     }
 
     public int getNumOfLesson(int bookIndex) {
