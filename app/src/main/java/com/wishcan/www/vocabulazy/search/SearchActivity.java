@@ -100,8 +100,10 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     Log.d(TAG, "searchView has focused");
-                    mSearchFragment.clearSearchDetail();
-                    mSearchFragment.clearDialogFragments();
+                    if (!isFinishing()) {
+                        mSearchFragment.clearSearchDetail();
+                        mSearchFragment.clearDialogFragments();
+                    }
                 } else {
                     Log.d(TAG, "searchView has not focus");
                 }

@@ -1,61 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wishcan.www.vocabulazy" >
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
-    <!--<uses-permission android:name="android.permission.INTERNET" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <!--<uses-permission android:name="android.permission.RECORD_AUDIO" />-->
+    <!--<uses-permission android:name="android.permission.CAMERA" />-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-feature android:name="android.hardware.camera"  android:required="false" />
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+    <!--<uses-permission android:name="android.permission.GET_ACCOUNTS" />-->
+    <!--<uses-feature android:name="android.hardware.camera"  android:required="false" />-->
+    <!--<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />-->
+    <!--<uses-feature android:name="android.hardware.camera.front" android:required="false" />-->
 
     <application
         android:name=".VLApplication"
         android:allowBackup="true"
         android:icon="@drawable/launcher_icon"
         android:label="@string/app_name" >
+
         <activity
             android:name=".cover.CoverActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyThemeForCoverActivity" >
+            android:theme="@style/MyThemeForCoverActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
         <activity
             android:name=".main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/MyThemeForMainActivity" >
         </activity>
 
-        <service
-            android:name=".service.AudioService"
-            android:exported="false" />
-
-        <!--<service-->
-            <!--android:enabled="true"-->
-            <!--android:name="io.uxtesting.UXTestingService" />-->
-
         <activity
             android:name=".search.SearchActivity"
             android:icon="@android:color/transparent"
             android:label="@string/app_name"
-
             android:theme="@style/MyThemeForSearchActivity" >
         </activity>
+
+        <service
+            android:name=".service.AudioService"
+            android:exported="false">
+        </service>
 
     </application>
 

@@ -98,6 +98,9 @@ public class SearchFragment extends GASearchFragment implements SearchView.OnIte
         if (mSearchListDialogFragment != null) {
             fragmentManager.beginTransaction().remove(mSearchListDialogFragment).commit();
         }
+
+        mNewNoteDialogFragment = null;
+        mSearchListDialogFragment = null;
     }
 
     @Override
