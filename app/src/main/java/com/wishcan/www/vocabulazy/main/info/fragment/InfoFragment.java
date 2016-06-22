@@ -20,6 +20,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.ga.GAInfoFragment;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.info.view.InfoView;
 import com.wishcan.www.vocabulazy.main.info.view.TypeFormView;
 
@@ -78,7 +79,7 @@ public class InfoFragment extends GAInfoFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        Logger.d(TAG, "onCreateView");
         mTypeFormView = new TypeFormView(getActivity());
         return mTypeFormView;
 //        mInfoView = new InfoView(getActivity());
