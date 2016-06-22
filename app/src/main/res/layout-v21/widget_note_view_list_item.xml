@@ -17,7 +17,7 @@
             android:id="@+id/action_note_combine"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_action_modify_note"
+            android:src="@drawable/action_modify_note"
             android:paddingEnd="@dimen/note_list_item_image_padding"
             android:paddingStart="0dp"
             android:layout_alignParentEnd="true" />
@@ -25,7 +25,7 @@
             android:id="@+id/action_note_rename"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_action_rename"
+            android:src="@drawable/action_rename"
             android:paddingEnd="@dimen/note_list_item_image_padding"
             android:paddingStart="0dp"
             android:layout_toStartOf="@id/action_note_combine" />
@@ -33,7 +33,7 @@
             android:id="@+id/action_note_delete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_action_delete"
+            android:src="@drawable/action_delete"
             android:paddingEnd="@dimen/note_list_item_image_padding"
             android:paddingStart="0dp"
             android:layout_toStartOf="@id/action_note_rename" />
@@ -41,7 +41,7 @@
             android:id="@+id/action_note_etc_close"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_action_more_white"
+            android:src="@drawable/action_more_white"
             android:paddingEnd="@dimen/note_list_item_image_padding"
             android:paddingStart="@dimen/note_list_item_image_padding"
             android:layout_toStartOf="@id/action_note_delete" />
