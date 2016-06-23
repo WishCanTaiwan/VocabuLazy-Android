@@ -1,8 +1,14 @@
 package com.wishcan.www.vocabulazy.storage.databaseObjects;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
+/**
+ * Using this class to represent Vocabulary objects which are read from the database.\n
+ *
+ * @author Allen Cheng Yu-Lun
+ * @version 1.0
+ * @since 1.0
+ */
 public class Vocabulary {
 
     public static final String TAG = Vocabulary.class.getSimpleName();
