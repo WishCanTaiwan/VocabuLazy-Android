@@ -71,11 +71,8 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
         super.onResume();
 
         if (checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS)) {
-            Log.d(TAG, "app installed");
             directToVocabuLazy();
         } else {
-            Log.d(TAG, "app not installed");
-            Log.d(TAG, "launching dialog..");
             CoverDialogFragment dialogFragment = new CoverDialogFragment();
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
@@ -102,7 +99,6 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
     }
 
     private boolean checkAppInstalledOrNot(String uri) {
-        Log.d(TAG, "checking whether the app is installed..");
         PackageManager pm = getActivity().getPackageManager();
         boolean app_installed;
         try {
@@ -134,7 +130,6 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
     }
 
     private void directToGooglePlay(String appPackageName) {
-        Log.d(TAG, "directing to Google Play..");
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException anfe) {

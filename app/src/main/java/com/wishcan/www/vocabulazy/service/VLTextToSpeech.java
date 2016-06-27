@@ -1,8 +1,10 @@
 package com.wishcan.www.vocabulazy.service;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 
 import com.wishcan.www.vocabulazy.log.Logger;
 
@@ -30,6 +32,11 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
     protected void onEngineInit(int status) {
         switch (status) {
             case TextToSpeech.SUCCESS:
+                if (!isLanguageAvailable()) {
+                    Intent intent = new Intent();
+                    intent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+                    mContext.startActivity(intent);
+                }
                 isEngineInit = true ;
                 break;
             default:
@@ -49,6 +56,7 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         if (mTextToSpeech != null)
             return;
         mTextToSpeech = new TextToSpeech(mContext, this, "com.google.android.tts");
+        Log.d(TAG, "engines " + mTextToSpeech.getEngines());
     }
 
     public void setUpListener(OnUtteranceFinishListener listener) {
@@ -121,6 +129,10 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
             return;
 
         mTextToSpeech.setLanguage(locale);
+    }
+
+    private boolean isLanguageAvailable() {
+        return (mTextToSpeech.isLanguageAvailable(Locale.ENGLISH) >= 0 && mTextToSpeech.isLanguageAvailable(Locale.TAIWAN) >= 0);
     }
 
     public interface OnUtteranceFinishListener {

@@ -2,10 +2,10 @@
   {
     "mode": 1,
     "random": false,
-    "listLoop": 1,
+    "listLoop": 3,
     "sentence": false,
-    "stopPeriod": 0,
-    "itemLoop": 1,
+    "stopPeriod": 1,
+    "itemLoop": 3,
     "speed": 2,
     "playTime": 10
   },
