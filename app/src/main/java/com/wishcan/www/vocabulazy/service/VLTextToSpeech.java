@@ -32,11 +32,12 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
     protected void onEngineInit(int status) {
         switch (status) {
             case TextToSpeech.SUCCESS:
-                if (!isLanguageAvailable()) {
-                    Intent intent = new Intent();
-                    intent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-                    mContext.startActivity(intent);
-                }
+//                if (!isLanguageAvailable()) {
+//                    Intent intent = new Intent();
+//                    intent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    mContext.startActivity(intent);
+//                }
                 isEngineInit = true ;
                 break;
             default:

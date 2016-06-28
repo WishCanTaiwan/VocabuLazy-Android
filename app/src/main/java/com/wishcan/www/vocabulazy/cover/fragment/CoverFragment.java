@@ -4,6 +4,7 @@ package com.wishcan.www.vocabulazy.cover.fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -73,11 +74,15 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
         if (checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS)) {
             directToVocabuLazy();
         } else {
-            CoverDialogFragment dialogFragment = new CoverDialogFragment();
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
-            fragmentTransaction.addToBackStack("CoverFragment");
-            fragmentTransaction.commit();
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                CoverDialogFragment dialogFragment = new CoverDialogFragment();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
+                fragmentTransaction.addToBackStack("CoverFragment");
+                fragmentTransaction.commit();
+//            } else {
+//                directToVocabuLazy();
+//            }
         }
     }
 
