@@ -151,6 +151,8 @@ abstract public class NoteView extends SlideBackViewPager{
 
         private NoteListView mSelfNoteListView;
 
+        private boolean mAnimationPerforming;
+
         public NoteListView(Context context) {
             this(context, null);
         }
@@ -168,6 +170,7 @@ abstract public class NoteView extends SlideBackViewPager{
             mAdapter = new CustomizedSimpleAdapter(context, mDataList, LIST_ITEM_RES_ID, FROM, TO);
             setAdapter(mAdapter);
             mSelfNoteListView = this;
+            mAnimationPerforming = false;
         }
 
         public void setOnListIconClickListener(OnListIconClickListener listener) {
@@ -368,8 +371,12 @@ abstract public class NoteView extends SlideBackViewPager{
             }
 
             private void handleListSlidingAnimation(View v, View iconView, float startX, float endX, Animator.AnimatorListener listener) {
+                Animator.AnimatorListener animatorListener;
                 AnimatorSet set = new AnimatorSet();
                 ValueAnimator mNoteEtcViewAnim;
+                if (mAnimationPerforming) {
+                    return;
+                }
                 if (iconView.getRotation() == 0)
                     mNoteEtcViewAnim = ObjectAnimator.ofFloat(iconView, "Rotation", 0f, 180f);
                 else
@@ -379,7 +386,30 @@ abstract public class NoteView extends SlideBackViewPager{
                 set.setDuration(300);
                 set.setInterpolator(new AccelerateDecelerateInterpolator());
                 if(listener != null){
-                    set.addListener(listener);
+                    animatorListener = listener;
+                    set.addListener(animatorListener);
+                }
+                {
+                    animatorListener = new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                            mAnimationPerforming = true;
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            mAnimationPerforming = false;
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+                        }
+                    };
+                    set.addListener(animatorListener);
                 }
                 set.start();
             }
