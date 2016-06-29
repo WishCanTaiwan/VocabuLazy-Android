@@ -73,6 +73,8 @@ public class VocBookFragment extends VocBaseFragment {
             @Override
             public void onNewItemClick() {
                 //TODO: The function for future use
+                goDialogFragment("");
+
             }
         });
 
@@ -93,5 +95,10 @@ public class VocBookFragment extends VocBaseFragment {
         ((MainActivity) getActivity()).goFragment(VocLessonFragment.class, args, "VocLessonFragment", "MainFragment");
     }
 
+    private VocBookDialogFragment goDialogFragment(String inputStr) {
+        Bundle args = new Bundle();
+        return (VocBookDialogFragment) ((MainActivity) getActivity())
+                .goFragment(VocBookDialogFragment.class, args, "VocBookDialogFragment", "VocBookFragment", MainActivity.FRAGMENT_ANIM.NONE, MainActivity.FRAGMENT_ANIM.NONE);
+    }
 
 }

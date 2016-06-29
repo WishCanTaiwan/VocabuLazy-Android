@@ -97,6 +97,9 @@
     <dimen name="dialog_circle_cross_padding">5dp</dimen>
     <dimen name="dialog_new_note_input_text_size">23sp</dimen>
 
+    <!-- SwallowBBAppo Dialog_New_Book Dimension-->
+    <dimen name="dialog_new_book_vertical_margin">40dp</dimen>
+    <dimen name="dialog_new_book_horizontal_margin">10dp</dimen>
 
 
     <!-- SwallowBBAppo Search_Activity Dimension-->

@@ -27,6 +27,7 @@
     <string name="action_person">Personal Information</string>
     <string name="dialog_addnote">自訂清單名稱</string>
     <string name="dialog_addtonote">新增至清單</string>
+    <string name="dialog_addbook">此為擴充單字書功能\n施工中!!敬請期待!!</string>
     <string name="dialog_delete_note">刪除清單</string>
     <string name="search_hint">Search here</string>
     <string name="tab0_str">BOOK</string>
