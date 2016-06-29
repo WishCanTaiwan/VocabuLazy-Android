@@ -312,6 +312,7 @@ public class PlayerFragment extends GAPlayerFragment {
 
     /**----------------- Implement PlayerModel.PlayerModelDataProcessListener -------------------**/
     /**
+     * @Link PlayerModel
      * Implement from PlayerModel
      * */
     @Override
@@ -323,6 +324,7 @@ public class PlayerFragment extends GAPlayerFragment {
                 mPlayerMainView.addNewPlayer(playerDataContent, mItemIndex);
             }
         }, 600);
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, mPlayerModel.getLessonTitle(mBookIndex, mLessonIndex));
     }
 
     @Override

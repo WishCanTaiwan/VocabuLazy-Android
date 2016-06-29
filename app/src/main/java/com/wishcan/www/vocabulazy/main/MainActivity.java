@@ -75,7 +75,7 @@ public class MainActivity extends FragmentActivity {
             mMainFragment = new MainFragment();
             mFragmentManager = getSupportFragmentManager();
             if(getActionBar() != null) {
-                getActionBar().setDisplayHomeAsUpEnabled(true);
+                getActionBar().setDisplayHomeAsUpEnabled(false);
             }
             mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
