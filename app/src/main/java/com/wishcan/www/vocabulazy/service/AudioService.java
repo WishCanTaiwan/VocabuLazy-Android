@@ -144,7 +144,7 @@ public class AudioService extends IntentService {
                     break;
                 mAudioPlayer.resetSpellCountDown();
                 mAudioPlayer.resetItemLoop();
-                mAudioPlayer.resetItemLoop();
+                mAudioPlayer.resetListLoop();
             case START_PLAYING:
                 if (intent == null)
                     break;
@@ -156,7 +156,7 @@ public class AudioService extends IntentService {
                 mAudioPlayer.playItemAt(itemIndex, sentenceIndex, playingField);
                 mAudioPlayer.resetSpellCountDown();
                 mAudioPlayer.resetItemLoop();
-                mAudioPlayer.resetItemLoop();
+                mAudioPlayer.resetListLoop();
                 break;
 
             case NEW_LIST_FOCUSED:
