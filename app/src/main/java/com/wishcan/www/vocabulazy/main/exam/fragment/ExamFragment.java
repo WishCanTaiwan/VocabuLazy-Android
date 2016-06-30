@@ -119,7 +119,7 @@ public class ExamFragment extends ExamBaseFragment {
             @Override
             public void run() {
                 if(mExamView.getAnimLocker())
-                    mExamView.postDelayed(mRefreshAnimTask, 100);
+                    mExamView.postDelayed(mRefreshAnimTask, 20);
                 else {
                     HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();
                     mExamView.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
