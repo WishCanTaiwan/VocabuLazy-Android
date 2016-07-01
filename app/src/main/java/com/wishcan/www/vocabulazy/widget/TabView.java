@@ -73,6 +73,7 @@ abstract public class TabView extends LinearLayout {
 
         mViewPager = new ViewPager(context);
         mViewPager.setId(R.id.tab_view_pager_id);
+        mViewPager.setOffscreenPageLimit(4);
 
         mTabStripe = new TabStripe(context);
 
