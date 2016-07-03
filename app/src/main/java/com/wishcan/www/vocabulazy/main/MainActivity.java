@@ -1,13 +1,18 @@
 package com.wishcan.www.vocabulazy.main;
 
 import android.app.ActionBar;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,13 +21,16 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
+import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MainActivity extends FragmentActivity {
@@ -59,6 +67,8 @@ public class MainActivity extends FragmentActivity {
     private Database wDatabase;
     private Preferences wPreferences;
 
+    private BroadcastReceiver mBroadcastReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +101,7 @@ public class MainActivity extends FragmentActivity {
             fragmentTransaction.add(VIEW_MAIN_RES_ID, mMainFragment, "MainFragment");
             fragmentTransaction.commit();
         }
+        registerBroadcastReceiver();
         startAudioService();
     }
 
@@ -141,6 +152,7 @@ public class MainActivity extends FragmentActivity {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
         stopAudioService();
+        unregisterBroadcastReceiver();
         wDatabase.writeToFile();
     }
 
@@ -263,12 +275,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    private void startAudioService() {
-        Log.d(TAG, "start service");
-        Intent intent = new Intent(this, AudioService.class);
-        intent.setAction(AudioService.START_SERVICE);
-        startService(intent);
-    }
+
 
     private void setCustomActionBar(){
         mActionBar = getActionBar();
@@ -291,9 +298,62 @@ public class MainActivity extends FragmentActivity {
             mActionBarTitleTextView.setText(titleStr);
     }
 
+    private void registerBroadcastReceiver() {
+        /* register broadcast receiver */
+        IntentFilter intentFilter = new IntentFilter(Preferences.VL_BROADCAST_INTENT);
+        mBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getStringExtra(Preferences.VL_BROADCAST_ACTION);
+                if (action.equals(AudioService.CHECK_VOICE_DATA)) {
+                    checkTTSData();
+                }
+
+            }
+        };
+        LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver, intentFilter);
+        Log.d(TAG, "register receiver");
+    }
+
+    private void unregisterBroadcastReceiver() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
+        Log.d(TAG, "unregister receiver");
+    }
+
+    private void startAudioService() {
+        Log.d(TAG, "start service");
+        Intent intent = new Intent(this, AudioService.class);
+        intent.setAction(AudioService.START_SERVICE);
+        startService(intent);
+    }
+
     private void stopAudioService() {
         Intent intent = new Intent(this, AudioService.class);
         intent.setAction(AudioService.STOP_SERVICE);
         startService(intent);
+    }
+
+    private void checkTTSData() {
+        Log.d(TAG, "check TTS data");
+        Intent intent = new Intent();
+        intent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            // Make sure the request was successful
+            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
+                Log.d(TAG, "check voice data pass");
+                ArrayList<String> voices = data.getStringArrayListExtra(TextToSpeech.Engine.EXTRA_AVAILABLE_VOICES);
+                Log.d(TAG, "available voices:");
+                for (String voice : voices) {
+                    Log.d(TAG, voice);
+                }
+            } else {
+                Log.d(TAG, "check voice data fail");
+            }
+        }
     }
 }

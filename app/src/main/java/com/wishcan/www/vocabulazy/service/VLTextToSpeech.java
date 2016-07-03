@@ -20,6 +20,7 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
     private Context mContext;
     private TextToSpeech mTextToSpeech;
     private OnUtteranceFinishListener mOnUtteranceFinishListener;
+    private OnEngineStatusListener mOnEngineStatusListener;
 
     private boolean isEngineInit = false;
     private String currentUtterance;
@@ -32,13 +33,9 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
     protected void onEngineInit(int status) {
         switch (status) {
             case TextToSpeech.SUCCESS:
-//                if (!isLanguageAvailable()) {
-//                    Intent intent = new Intent();
-//                    intent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    mContext.startActivity(intent);
-//                }
                 isEngineInit = true ;
+                // check if languages are available
+                mOnEngineStatusListener.onEngineInit();
                 break;
             default:
                 break;
@@ -57,10 +54,14 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         if (mTextToSpeech != null)
             return;
         mTextToSpeech = new TextToSpeech(mContext, this, "com.google.android.tts");
-        Log.d(TAG, "engines " + mTextToSpeech.getEngines());
+//        Log.d(TAG, "engines " + mTextToSpeech.getEngines());
     }
 
-    public void setUpListener(OnUtteranceFinishListener listener) {
+    public void setOnEngineStatusListener(OnEngineStatusListener listener) {
+        mOnEngineStatusListener = listener;
+    }
+
+    public void setOnUtteranceFinishListener(OnUtteranceFinishListener listener) {
         mOnUtteranceFinishListener = listener;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mTextToSpeech.setOnUtteranceProgressListener(this);
@@ -134,6 +135,10 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
 
     private boolean isLanguageAvailable() {
         return (mTextToSpeech.isLanguageAvailable(Locale.ENGLISH) >= 0 && mTextToSpeech.isLanguageAvailable(Locale.TAIWAN) >= 0);
+    }
+
+    public interface OnEngineStatusListener {
+        void onEngineInit();
     }
 
     public interface OnUtteranceFinishListener {

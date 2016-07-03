@@ -18,6 +18,7 @@ import java.util.Random;
 public class AudioPlayer implements AudioPlayerListener {
 
     public interface BroadcastTrigger {
+        void checkVoiceData();
         void onItemComplete();
         void onListComplete();
         void showDetail();
@@ -89,8 +90,9 @@ public class AudioPlayer implements AudioPlayerListener {
 
     public void bondToTTSEngine() {
         vlTextToSpeech = new VLTextToSpeech(mContext);
+        vlTextToSpeech.setOnEngineStatusListener(this);
         vlTextToSpeech.initTTS();
-        vlTextToSpeech.setUpListener(this);
+        vlTextToSpeech.setOnUtteranceFinishListener(this);
         mPlayerState = IDLE;
     }
 
@@ -237,6 +239,14 @@ public class AudioPlayer implements AudioPlayerListener {
         int listLoop = mOptionSettings.getListLoop();
         mPreferences.setListLoop(listLoop);
         listLoopCountDown = listLoop;
+    }
+
+    @Override
+    public void onEngineInit() {
+        Log.d(TAG, "onEnginInit");
+        if (mBroadcastTrigger == null)
+            return;
+        mBroadcastTrigger.checkVoiceData();
     }
 
     @Override

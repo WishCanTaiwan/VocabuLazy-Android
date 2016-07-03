@@ -34,6 +34,7 @@ public class AudioService extends IntentService {
     public static final String START_TIMER = "start-timer";
 
     /* Action to be broadcast to activity or fragment */
+    public static final String CHECK_VOICE_DATA = "check-voice-data";
     public static final String ITEM_COMPLETE = "item-complete";
     public static final String LIST_COMPLETE = "list-complete";
     public static final String SHOW_DETAIL = "show-detail";
@@ -222,6 +223,13 @@ public class AudioService extends IntentService {
 
         public Broadcaster(Context context) {
             this.context = context;
+        }
+
+        @Override
+        public void checkVoiceData() {
+            Intent intent = new Intent(Preferences.VL_BROADCAST_INTENT)
+                    .putExtra(broadcastAction, CHECK_VOICE_DATA);
+            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }
 
         @Override

@@ -129,6 +129,7 @@ public class PlayerFragment extends GAPlayerFragment {
         IntentFilter intentFilter = new IntentFilter(Preferences.VL_BROADCAST_INTENT);
         wServiceBroadcastReceiver = new ServiceBroadcastReceiver();
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(wServiceBroadcastReceiver, intentFilter);
+        Log.d(TAG, "register receiver");
         mIsWaitingAddNewPlayer = false;
     }
 
@@ -202,6 +203,7 @@ public class PlayerFragment extends GAPlayerFragment {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
         /* unregister broadcast receiver */
+        Log.d(TAG, "unregister receiver");
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(wServiceBroadcastReceiver);
     }
 
@@ -464,14 +466,14 @@ public class PlayerFragment extends GAPlayerFragment {
     /**
      * messages received from service
      */
-    public class ServiceBroadcastReceiver extends BroadcastReceiver {
+    protected class ServiceBroadcastReceiver extends BroadcastReceiver {
 
         private ServiceBroadcastReceiver() {}
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getStringExtra(Preferences.VL_BROADCAST_ACTION);
-
+            Log.d(TAG, "broadcast received, " + action);
             switch (action) {
 
                 case AudioService.ITEM_COMPLETE:

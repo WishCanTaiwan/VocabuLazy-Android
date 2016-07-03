@@ -73,6 +73,7 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
 
         if (checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS)) {
             directToVocabuLazy();
+
         } else {
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 CoverDialogFragment dialogFragment = new CoverDialogFragment();

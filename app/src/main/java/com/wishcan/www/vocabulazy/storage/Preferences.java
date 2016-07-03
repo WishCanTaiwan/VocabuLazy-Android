@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * should be separated from the @Database object.
  */
 public class Preferences {
-
+    
     public static final String VL_BROADCAST_INTENT = "vl-broadcast-intent";
     public static final String VL_BROADCAST_ACTION = "vl-broadcast-action";
 
