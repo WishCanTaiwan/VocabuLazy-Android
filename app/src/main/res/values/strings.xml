@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Version Strings-->
+    <string name="version_code">3</string>
+    <string name="version_name">- Beta Version 3 -</string>
     <!--Fragment Name-->
     <string name="fragment_main_title">主頁面</string>
     <string name="fragment_exam_book_title">單元測驗</string>

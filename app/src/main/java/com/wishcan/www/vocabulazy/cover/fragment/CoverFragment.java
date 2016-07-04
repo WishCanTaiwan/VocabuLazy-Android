@@ -70,20 +70,16 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
     @Override
     public void onResume() {
         super.onResume();
-
+//        directToVocabuLazy();
         if (checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS)) {
             directToVocabuLazy();
 
         } else {
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 CoverDialogFragment dialogFragment = new CoverDialogFragment();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
                 fragmentTransaction.addToBackStack("CoverFragment");
                 fragmentTransaction.commit();
-//            } else {
-//                directToVocabuLazy();
-//            }
         }
     }
 

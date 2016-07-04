@@ -32,6 +32,7 @@ import com.wishcan.www.vocabulazy.storage.Preferences;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class MainActivity extends FragmentActivity {
 
