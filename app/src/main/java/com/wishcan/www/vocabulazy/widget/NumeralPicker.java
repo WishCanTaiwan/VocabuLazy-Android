@@ -14,6 +14,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -82,11 +83,15 @@ public class NumeralPicker extends LinearLayout {
         setLeftArrowImageView(DEFAULT_LEFT_ARROW_RES_ID);
         setRightArrowImageView(DEFAULT_RIGHT_ARROW_RES_ID);
         setNumberTextView();
-
+/*
         int arrowImagePadding = (int) getResources().getDimension(DEFAULT_ARROW_IMAGE_PADDING_RES_ID);
         int numberTextPadding = (int) getResources().getDimension(DEFAULT_TEXT_PADDING_RES_ID);
-        mLeftArrowImageView.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 0.5f));
-        mRightArrowImageView.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 0.5f));
+*/
+        int arrowImagePadding = 0;
+        int numberTextPadding = 0;
+
+        mLeftArrowImageView.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 0.2f));
+        mRightArrowImageView.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 0.2f));
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mLeftArrowImageView.setPaddingRelative(arrowImagePadding, 0, arrowImagePadding, 0);
@@ -96,19 +101,21 @@ public class NumeralPicker extends LinearLayout {
             mLeftArrowImageView.setPadding(arrowImagePadding, 0, arrowImagePadding, 0);
             mRightArrowImageView.setPadding(arrowImagePadding, 0, arrowImagePadding, 0);
         }
-
-
-
+/*
         mNumberTextView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+*/
+        mNumberTextView.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 0.6f));
         mNumberTextView.setPaddingRelative(numberTextPadding, 0, numberTextPadding, 0);
-
+        mNumberTextView.setGravity(Gravity.CENTER);
+/*
+        setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+*/
         setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER_VERTICAL);
         GradientDrawable pickerBackgroundDrawable = (GradientDrawable) ContextCompat.getDrawable(getContext(), DEFAULT_PICKER_BACKGROUND_DRAWABLE);
         pickerBackgroundDrawable.setColor(mPickerBackgroundColor);
         setBackground(pickerBackgroundDrawable);
-
 
         addView(mLeftArrowImageView);
         addView(mNumberTextView);
@@ -156,7 +163,6 @@ public class NumeralPicker extends LinearLayout {
     }
 
     public void calculatePickerRange() {
-//        Logger.d(TAG, "calculatePickerRange: Max " + mMaximumNumber + ",  Min " + mMinimumNumber);
         mPickerRange = mMaximumNumber - mMinimumNumber + 1;
     }
 
