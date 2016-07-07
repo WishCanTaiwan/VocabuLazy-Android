@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -92,7 +93,7 @@ public class PlayerOptionView extends LinearLayout {
     /**
      * ViewPager usually doesn't support wrap_content
      * */
-    private ViewPager mViewPager;
+    private WrapContentViewPager mViewPager;
 
     /**
      * TabContentSlidePagerAdapter is used for giving the ViewPager the content
@@ -176,6 +177,7 @@ public class PlayerOptionView extends LinearLayout {
 
         mPagerAdapter = new LinkedListPagerAdapter(mTabContentList);
         mViewPager.setAdapter(mPagerAdapter);
+        mViewPager.setPagingEnabled(true);
 
         registerOptionsListener();
     }
@@ -500,6 +502,7 @@ public class PlayerOptionView extends LinearLayout {
     private class WrapContentViewPager extends ViewPager {
 
         private Context mContext;
+        private boolean isPagingEnabled = true;
 
         public WrapContentViewPager(Context context) {
             super(context);
@@ -512,6 +515,20 @@ public class PlayerOptionView extends LinearLayout {
 
             heightMeasureSpec = MeasureSpec.makeMeasureSpec((int)(mContext.getResources().getDisplayMetrics().heightPixels * 0.5), MeasureSpec.EXACTLY);
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            return this.isPagingEnabled && super.onTouchEvent(event);
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent event) {
+            return this.isPagingEnabled && super.onInterceptTouchEvent(event);
+        }
+
+        public void setPagingEnabled(boolean b) {
+            this.isPagingEnabled = b;
         }
     }
 
