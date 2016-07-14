@@ -26,6 +26,8 @@ import java.util.LinkedList;
  */
 public class ExamNoteFragment extends ExamBaseFragment implements ExamNoteView.OnListIconClickListener {
 
+    public static final String TAG = "E.LIST";
+
     private int mNoteIndex;
 
     public static ExamNoteFragment newInstance() {
@@ -61,6 +63,11 @@ public class ExamNoteFragment extends ExamBaseFragment implements ExamNoteView.O
         examNoteView.refreshView(notes.size(), dataList);
         examNoteView.setOnListIconClickListener(this);
         return examNoteView;
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     private void goExamFragment(int noteIndex){

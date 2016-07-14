@@ -12,10 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.ga.GAPlayerFragment;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-
 /**-------------------------------------- PlayerFragment ----------------------------------------**/
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +41,7 @@ import java.util.LinkedList;
  */
 public class PlayerFragment extends GAPlayerFragment {
 
-    private static final String TAG = PlayerFragment.class.getSimpleName();
+    public static final String TAG = "PLAYLIST";
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
     public static final String LESSON_INDEX_STR = "LESSON_INDEX_STR";
 
@@ -72,11 +71,6 @@ public class PlayerFragment extends GAPlayerFragment {
     private ServiceBroadcastReceiver wServiceBroadcastReceiver;
 
     /**
-     * The tracker used to track the app's behaviors and send to Google Analytics.
-     */
-    private Tracker wTracker;
-
-    /**
      * The flag for solving changing play list after onStop()
      * */
     private boolean mIsWaitingAddNewPlayer;
@@ -97,9 +91,7 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
         VLApplication application = (VLApplication) getActivity().getApplication();
-        wTracker = application.getDefaultTracker();
 
         requestAudioFocus();
 
@@ -129,14 +121,12 @@ public class PlayerFragment extends GAPlayerFragment {
         IntentFilter intentFilter = new IntentFilter(Preferences.VL_BROADCAST_INTENT);
         wServiceBroadcastReceiver = new ServiceBroadcastReceiver();
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(wServiceBroadcastReceiver, intentFilter);
-        Log.d(TAG, "register receiver");
         mIsWaitingAddNewPlayer = false;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
         mPlayerView = new PlayerView(getActivity());
         mPlayerMainView = mPlayerView.getPlayerMainView();
         mPlayerPanelView = mPlayerView.getPlayerPanelView();
@@ -161,19 +151,12 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
         setupOptions();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume");
-        Log.d(TAG, "Setting screen name: " + TAG + " book " + mBookIndex + " unit " + mLessonIndex);
-        wTracker.setScreenName(TAG + " book " + mBookIndex + " unit " + mLessonIndex);
-        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-        Log.d(TAG, "onResume at item " + mItemIndex);
         mPlayerMainView.moveToPosition(mItemIndex);
         ((MainActivity) getActivity()).enableExpressWay(false);
         if (mIsWaitingAddNewPlayer) {
@@ -183,7 +166,6 @@ public class PlayerFragment extends GAPlayerFragment {
              * if flag is raised, we should add new player during onResume(), fix the bug that after
              * turn off the screen and back to PlayerFragment causing PlayerList with no move
              */
-            Log.d(TAG, "mIsWaitingAddNewPlayer");
             mPlayerModel.createPlayerContent(mPlayerModel.getCurrentContent());
             mPlayerModel.createPlayerDetailContent(mPlayerModel.getCurrentContent().get(mItemIndex));
             mIsWaitingAddNewPlayer = false;
@@ -193,7 +175,6 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
         savePreferences();
         ((MainActivity) getActivity()).enableExpressWay(true);
     }
@@ -201,10 +182,12 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy");
-        /* unregister broadcast receiver */
-        Log.d(TAG, "unregister receiver");
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(wServiceBroadcastReceiver);
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     private void savePreferences() {
@@ -314,9 +297,9 @@ public class PlayerFragment extends GAPlayerFragment {
 
     /**----------------- Implement PlayerModel.PlayerModelDataProcessListener -------------------**/
     /**
-     * @Link PlayerModel
+     * @link PlayerModel
      * Implement from PlayerModel
-     * */
+     */
     @Override
     public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
         super.onPlayerContentCreated(playerDataContent);
@@ -381,15 +364,12 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
         super.onPlayerHorizontalScrollStop(isOrderChanged, direction, isViewTouchedDown);
-        Log.d(TAG, "onPlayerHorizontalScrollStop");
         if (!isOrderChanged) {
-            Log.d(TAG, "onPlayerHorizontalScrollStop !isOrderChanged");
             startPlayingAt(mItemIndex, mSentenceIndex, AudioPlayer.SPELL);
             return;
         }
 
         if (isViewTouchedDown) {
-            Log.d(TAG, "onPlayerHorizontalScrollStop isViewTouchedDown");
             int bookIndex = mPlayerModel.getBookIndex();
             int numOfLesson = mPlayerModel.getNumOfLessons(bookIndex);
             int oldLessonIndex = mPlayerModel.getLessonIndex();
@@ -398,7 +378,6 @@ public class PlayerFragment extends GAPlayerFragment {
             mPlayerModel.getVocabulariesIn(bookIndex, newLessonIndex);
             mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
         } else {
-            Log.d(TAG, "onPlayerHorizontalScrollStop !isViewTouchedDown");
             ArrayList<Vocabulary> vocabularies = mPlayerModel.getCurrentContent();
             mPlayerModel.createPlayerContent(vocabularies);
             mPlayerModel.createPlayerDetailContent(vocabularies.get(0));
@@ -473,7 +452,6 @@ public class PlayerFragment extends GAPlayerFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getStringExtra(Preferences.VL_BROADCAST_ACTION);
-            Log.d(TAG, "broadcast received, " + action);
             switch (action) {
 
                 case AudioService.ITEM_COMPLETE:
@@ -481,14 +459,11 @@ public class PlayerFragment extends GAPlayerFragment {
 
                 case AudioService.TO_ITEM:
                     int newItemIndex = intent.getIntExtra(AudioService.ITEM_INDEX, -1);
-                    Log.d(TAG, "to item " + newItemIndex);
                     updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
-                    Log.d(TAG, "moveToPosition Start");
                     mPlayerMainView.moveToPosition(newItemIndex);
                     if (mVocabularies != null) {
                         mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
                     }
-                    Log.d(TAG, "moveToPosition Done");
                     break;
 
                 case AudioService.LIST_COMPLETE:
@@ -527,7 +502,7 @@ public class PlayerFragment extends GAPlayerFragment {
                     break;
 
                 default:
-                    Log.d(TAG, "unexpected condition in onReceive: " + intent.toString());
+                    Logger.d(TAG, "unexpected condition in onReceive: " + intent.toString());
                     break;
             }
         }

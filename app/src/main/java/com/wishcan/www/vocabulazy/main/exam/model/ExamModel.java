@@ -1,13 +1,10 @@
 package com.wishcan.www.vocabulazy.main.exam.model;
 
 import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.main.voc.model.VocModel;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
-
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,10 +72,8 @@ public class ExamModel {
              */
 
             if(mTotalQuestionNum < 5) {
-                Log.d("ExamFragment", "mVocabularies = " + mTotalQuestionNum);
                 return null;
             }
-
 
             mCurrentQuestionIndex++;
 

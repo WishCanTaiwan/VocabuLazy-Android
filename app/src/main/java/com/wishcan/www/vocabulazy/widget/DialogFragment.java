@@ -7,13 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wishcan.www.vocabulazy.ga.GADialogFragment;
+
 /**
  * A simple {@link Fragment} subclass.
  * Fragment that calls this fragment must implement the
  * {@link DialogFragment.OnDialogFinishListener} interface
  * to handle dialog result events.
  */
-abstract public class DialogFragment<WishCan> extends Fragment {
+abstract public class DialogFragment<WishCan> extends GADialogFragment {
 
     protected abstract DialogView getDialogView();
     protected abstract String getCallerTag();

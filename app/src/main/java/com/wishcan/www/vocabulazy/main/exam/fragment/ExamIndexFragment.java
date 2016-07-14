@@ -21,6 +21,8 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamIndexView;
  */
 public class ExamIndexFragment extends ExamBaseFragment {
 
+    public static final String TAG = "EXAM";
+
     public static ExamIndexFragment newInstance() {
         ExamIndexFragment fragment = new ExamIndexFragment();
         Bundle args = new Bundle();
@@ -54,6 +56,11 @@ public class ExamIndexFragment extends ExamBaseFragment {
             }
         });
         return examIndexView;
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     private void goExamBookFragment(){

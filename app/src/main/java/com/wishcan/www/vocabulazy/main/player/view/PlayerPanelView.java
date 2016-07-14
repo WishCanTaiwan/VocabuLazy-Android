@@ -87,11 +87,11 @@ public class PlayerPanelView extends LinearLayout {
         if(play) {
             mCurrentIconState = 0;
             ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
-            Log.d("PlayerPanelView", mCurrentIconState + " TRUE");
+//            Log.d("PlayerPanelView", mCurrentIconState + " TRUE");
         } else {
             mCurrentIconState = 1;
             ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
-            Log.d("PlayerPanelView", "FALSE");
+//            Log.d("PlayerPanelView", "FALSE");
         }
     }
 }

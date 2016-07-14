@@ -4,11 +4,12 @@ import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
+
+import com.wishcan.www.vocabulazy.log.Logger;
 
 /**
  * Created by swallow on 2016/3/6.
@@ -38,7 +39,7 @@ public class AutoResizeTextView extends TextView {
                 }
             });
         } else {
-            Log.d("AutoResizeTextView", "viewTreeObserver is not alive");
+            Logger.d("AutoResizeTextView", "viewTreeObserver is not alive");
         }
     }
 

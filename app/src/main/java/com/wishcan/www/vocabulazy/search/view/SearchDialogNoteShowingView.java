@@ -68,7 +68,7 @@ public class SearchDialogNoteShowingView extends LinearLayout {
                     return;
                 }
                 int itemCount = mListView.getCount();
-                Log.d("SearchDialog", "position = " +position+ " itemCount = " +itemCount);
+//                Log.d("SearchDialog", "position = " +position+ " itemCount = " +itemCount);
                 if(position == itemCount - 1)
                     mOnListItemClickListener.onAddItemClick();
                 else

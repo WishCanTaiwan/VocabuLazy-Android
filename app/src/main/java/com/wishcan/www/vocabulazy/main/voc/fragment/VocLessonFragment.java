@@ -32,7 +32,7 @@ import java.util.LinkedList;
  */
 public class VocLessonFragment extends VocBaseFragment implements VocLessonView.OnLessonClickListener {
 
-    public static final String TAG = VocLessonFragment.class.getSimpleName();
+    public static final String TAG = "UNIT";
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
 
     private int mBookIndex;
@@ -66,7 +66,7 @@ public class VocLessonFragment extends VocBaseFragment implements VocLessonView.
     @Override
     public void onResume() {
         super.onResume();
-        Logger.sendScreenViewEvent(TAG + " book " + mBookIndex);
+//        Logger.sendScreenViewEvent(TAG + " book " + mBookIndex);
     }
 
     @Override
@@ -84,6 +84,11 @@ public class VocLessonFragment extends VocBaseFragment implements VocLessonView.
 
         vocLessonView.refreshView(lessonIntegers.size(), lessonIntegers);
         return vocLessonView;
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     private void goPlayerFragment(int bookIndex, int lessonIndex){

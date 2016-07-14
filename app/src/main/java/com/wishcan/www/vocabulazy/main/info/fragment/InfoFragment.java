@@ -31,7 +31,7 @@ import com.wishcan.www.vocabulazy.main.info.view.TypeFormView;
  */
 public class InfoFragment extends GAInfoFragment {
 
-    public static final String TAG = InfoFragment.class.getSimpleName();
+    public static final String TAG = "INFO";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,7 +79,6 @@ public class InfoFragment extends GAInfoFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Logger.d(TAG, "onCreateView");
         mTypeFormView = new TypeFormView(getActivity());
         return mTypeFormView;
 //        mInfoView = new InfoView(getActivity());
@@ -135,5 +134,10 @@ public class InfoFragment extends GAInfoFragment {
 //            });
 //        }
 //        return mInfoView;
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 }

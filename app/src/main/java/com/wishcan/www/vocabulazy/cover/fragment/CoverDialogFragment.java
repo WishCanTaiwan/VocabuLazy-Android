@@ -13,10 +13,10 @@ import com.wishcan.www.vocabulazy.widget.DialogView;
  */
 public class CoverDialogFragment extends DialogFragment {
 
+    public static final String TAG = "C.DIALOG";
+
     public static final boolean YES_CLICKED = true;
     public static final boolean NO_CLICKED = false;
-
-    public Logger wLogger;
 
     private CoverDialogView mCoverDialogView;
 
@@ -27,8 +27,6 @@ public class CoverDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VLApplication application = (VLApplication) getActivity().getApplication();
-        wLogger = application.getLogHelper();
         mCoverDialogView = new CoverDialogView(getContext());
     }
 
@@ -47,7 +45,6 @@ public class CoverDialogFragment extends DialogFragment {
                 @Override
                 public void onNoClicked() {
                     OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(CoverFragment.M_TAG);
-                    wLogger.d("CoverDialogFragment", "");
                     fragment.onDialogFinish(NO_CLICKED);
                     getActivity().onBackPressed();
                 }

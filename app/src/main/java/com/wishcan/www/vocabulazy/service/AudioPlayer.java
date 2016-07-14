@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
@@ -106,12 +107,12 @@ public class AudioPlayer implements AudioPlayerListener {
     public void getAudioFocus() {
         AudioManager audioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-        Log.d(TAG, "get audio focus, result " + result);
+//        Log.d(TAG, "get audio focus, result " + result);
         isAudioFocused = (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
     }
 
     public void releaseAudioFocus() {
-        Log.d(TAG, "release audio focus");
+//        Log.d(TAG, "release audio focus");
         AudioManager audioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         audioManager.abandonAudioFocus(this);
         isAudioFocused = false;
@@ -180,7 +181,7 @@ public class AudioPlayer implements AudioPlayerListener {
                 vlTextToSpeech.setLanguage(Locale.TAIWAN);
                 break;
             default:
-                Log.d(TAG, "unexpected case in startPlayingItemAt: " + itemIndex + ", " +
+                Logger.d(TAG, "unexpected case in startPlayingItemAt: " + itemIndex + ", " +
                         "playing " + playingField + ", sentence # " + sentenceIndex);
                 break;
         }
@@ -219,7 +220,7 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void resetTimer() {
-        Log.d(TAG, "reset timer");
+//        Log.d(TAG, "reset timer");
         mPreferences.setPlayTime(mOptionSettings.getPlayTime());
         mHandler.removeCallbacks(mTimerRunnable);
         startTimer();
@@ -243,7 +244,7 @@ public class AudioPlayer implements AudioPlayerListener {
 
     @Override
     public void onEngineInit() {
-        Log.d(TAG, "onEnginInit");
+//        Log.d(TAG, "onEnginInit");
         if (mBroadcastTrigger == null)
             return;
         mBroadcastTrigger.checkVoiceData();

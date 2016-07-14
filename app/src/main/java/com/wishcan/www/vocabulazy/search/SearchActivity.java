@@ -65,24 +65,9 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "Setting screen name: " + TAG);
-        wTracker.setScreenName(TAG);
-        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+//        Log.d(TAG, "Setting screen name: " + TAG);
+//        wTracker.setScreenName(TAG);
+//        wTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -99,13 +84,13 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    Log.d(TAG, "searchView has focused");
+//                    Log.d(TAG, "searchView has focused");
                     if (!isFinishing()) {
                         mSearchFragment.clearSearchDetail();
                         mSearchFragment.clearDialogFragments();
                     }
                 } else {
-                    Log.d(TAG, "searchView has not focus");
+//                    Log.d(TAG, "searchView has not focus");
                 }
             }
         });

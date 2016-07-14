@@ -285,7 +285,7 @@ abstract public class NoteView extends SlideBackViewPager{
                     mNoteEtcParentView.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View iconView) {
-                            Log.d(TAG, "onEtcClick");
+//                            Log.d(TAG, "onEtcClick");
                             mEtcParentView.setVisibility(VISIBLE);
                             float startX = mParentView.getX();
                             float endX;
@@ -310,7 +310,7 @@ abstract public class NoteView extends SlideBackViewPager{
                     mNoteEtcCloseFunctionView.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View iconView) {
-                            Log.d(TAG, "onCloseClick");
+//                            Log.d(TAG, "onCloseClick");
                             float startX = mParentView.getX();
                             float endX;
                             if (startX >= 0)

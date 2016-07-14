@@ -7,7 +7,7 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamView;
  */
 public class GAExamFragment extends GAFragment implements ExamView.ExamButtonClickListener{
     @Override
-    String getNameAsGaLabel() {
+    protected String getNameAsGaLabel() {
         return GAExamFragment.class.getSimpleName();
     }
 

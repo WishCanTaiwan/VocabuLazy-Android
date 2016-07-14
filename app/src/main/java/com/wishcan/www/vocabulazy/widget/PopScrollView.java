@@ -40,7 +40,6 @@ import java.util.LinkedList;
  * Version 2.0 is developed from 2015/1/14.
  * I am ready for an API, related to
  * customize PopItem and PopItemDetail
- *
  */
 abstract public class PopScrollView extends RelativeLayout {
 

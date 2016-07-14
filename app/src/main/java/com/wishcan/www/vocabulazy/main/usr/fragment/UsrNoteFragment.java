@@ -33,7 +33,7 @@ import java.util.LinkedList;
 public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.OnListIconClickListener,
                                                          DialogFragment.OnDialogFinishListener<String>{
 
-    public static final String TAG = UsrNoteFragment.class.getSimpleName();
+    public static final String TAG = "LIST";
     public static String M_TAG;
 
     private UsrNoteModel mUsrNoteModel;
@@ -79,6 +79,11 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
     }
 
     @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
+    }
+
+    @Override
     public void onListIconClick(int iconId, int position, View v) {
         DialogFragment f = null;
         ArrayList<Lesson> notes = mUsrNoteModel.getNotes();
@@ -88,7 +93,6 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
 
         switch (iconId) {
             case NoteView.ICON_PLAY:
-                Log.d(TAG, "wDatabase.getNote @" + position);
                 int noteSize = mUsrNoteModel.getNoteSize(position);
                 if (noteSize > 0) {
                     goPlayerFragment(-1, position);

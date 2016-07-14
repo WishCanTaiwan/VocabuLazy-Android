@@ -15,7 +15,7 @@ import com.wishcan.www.vocabulazy.widget.DialogView;
  */
 public class UsrNoteDialogFragment extends DialogFragment<String> implements UsrNoteDialogView.OnYesOrNoClickListener {
 
-    public static final String TAG = UsrNoteDialogFragment.class.getSimpleName();
+    public static final String TAG = "L.EDIT";
 
     public static final String DIALOG_BUNDLE_RES_ID_STR = "dialog_bundle_res_id_str";
     public static final String DIALOG_BUNDLE_STR_STR = "dialog_bundle_str_str";
@@ -61,6 +61,11 @@ public class UsrNoteDialogFragment extends DialogFragment<String> implements Usr
         wTracker.setScreenName(TAG);
         wTracker.send(new HitBuilders.ScreenViewBuilder().build());
         mUsrNoteDialogView.setOnYesOrNoClickedListener(this);
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     @Override

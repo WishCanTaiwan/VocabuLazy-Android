@@ -3,6 +3,7 @@ package com.wishcan.www.vocabulazy.ga;
 import android.view.View;
 
 import com.wishcan.www.vocabulazy.log.Logger;
+import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView;
@@ -29,8 +30,8 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerModel
 
     /**--------------------------- implement GAFragment abstract function -----------------------**/
     @Override
-    String getNameAsGaLabel() {
-        return GAPlayerFragment.class.getSimpleName();
+    protected String getNameAsGaLabel() {
+        return PlayerFragment.class.getSimpleName();
     }
 
     /**----------------- Implement PlayerModel.PlayerModelDataProcessListener -------------------**/

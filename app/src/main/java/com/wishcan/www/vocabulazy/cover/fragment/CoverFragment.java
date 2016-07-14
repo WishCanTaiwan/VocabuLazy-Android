@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -28,7 +29,7 @@ import com.wishcan.www.vocabulazy.widget.DialogFragment;
  */
 public class CoverFragment extends GACoverFragment implements DialogFragment.OnDialogFinishListener<Boolean>{
 
-    public static final String TAG = CoverFragment.class.getSimpleName();
+    public static final String TAG = "COVER";
 
     public static String M_TAG;
 
@@ -92,12 +93,15 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
     @Override
     public void onDialogFinish(Boolean ifYesClicked) {
         if (ifYesClicked) {
-            Log.d(TAG, "YES");
             directToGooglePlay(PACKAGE_NAME_GOOGLE_TTS);
         } else {
-            Log.d(TAG, "NO");
             directToVocabuLazy();
         }
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     private boolean checkAppInstalledOrNot(String uri) {
@@ -121,11 +125,9 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
             @Override
             public void run() {
                 if (!hasUserLeftAppFirst) {
-                    Logger.d(TAG, "use hasn't left app");
                     startActivity(intent);
                     getActivity().finish();
                 } else {
-                    Logger.d(TAG, "user already left app");
                 }
             }
         }, 2000);

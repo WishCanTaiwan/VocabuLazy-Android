@@ -226,12 +226,12 @@ public class ExamView extends LinearLayout {
 
     public void setButtonsEnable(int buttons) {
         mButtonsClickableFlag |= buttons;
-        Log.d("ExamView", Integer.toString(mButtonsClickableFlag, 2));
+//        Log.d("ExamView", Integer.toString(mButtonsClickableFlag, 2));
     }
 
     public void setButtonsDisable(int buttons) {
         buttons = ~buttons;
         mButtonsClickableFlag &= buttons;
-        Log.d("ExamView", Integer.toString(mButtonsClickableFlag, 2));
+//        Log.d("ExamView", Integer.toString(mButtonsClickableFlag, 2));
     }
 }

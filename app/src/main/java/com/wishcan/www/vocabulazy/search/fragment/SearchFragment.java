@@ -31,7 +31,7 @@ public class SearchFragment extends GASearchFragment implements SearchView.OnIte
                                                         DialogFragment.OnDialogFinishListener<Integer>,
                                                         SearchDialogFragment.OnSecDialogCreateListener {
 
-    public static final String TAG = SearchFragment.class.getSimpleName();
+    public static final String TAG = "SEARCH";
 
     public static String M_TAG;
 
@@ -72,6 +72,11 @@ public class SearchFragment extends GASearchFragment implements SearchView.OnIte
         return mSearchView;
     }
 
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
+    }
+
     public void refreshSearchResult(ArrayList<Vocabulary> vocabularies) {
         mSuggestedVocabularies = vocabularies;
         mSearchView.refreshSearchResult(
@@ -105,7 +110,6 @@ public class SearchFragment extends GASearchFragment implements SearchView.OnIte
 
     @Override
     public void onDialogFinish(Integer obj) {
-        Log.d(TAG, " select  " +obj.intValue());
         mSearchModel.addVocToNote(mSelectVocId, obj);
     }
 

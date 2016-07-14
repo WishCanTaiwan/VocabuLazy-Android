@@ -18,6 +18,8 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamResultView;
  */
 public class ExamResultFragment extends ExamBaseFragment implements ExamResultView.OnTryItemClickListener{
 
+    public static final String TAG = "E.RESULT";
+
     public static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
     public static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
 
@@ -56,6 +58,11 @@ public class ExamResultFragment extends ExamBaseFragment implements ExamResultVi
         fragmentView.setOnTryItemClickListener(this);
 
         return fragmentView;
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     /**--------------- Implements ExamView.OnTryItemClickListener ---------------------**/

@@ -20,6 +20,8 @@ import java.util.HashMap;
 
 public class ExamFragment extends ExamBaseFragment {
 
+    public static final String TAG = "E.QUESTION";
+
     public static final String ARG_BOOK_INDEX = "bookIndex";
     public static final String ARG_LESSON_INDEX = "lessonIndex";
 
@@ -70,6 +72,11 @@ public class ExamFragment extends ExamBaseFragment {
                 mExamView.startPopOutSequentially();
             }
         }, 600);
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     public void restartExam(){

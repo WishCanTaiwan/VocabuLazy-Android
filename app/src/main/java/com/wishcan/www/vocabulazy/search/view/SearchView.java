@@ -256,7 +256,7 @@ public class SearchView extends RelativeLayout {
 	            int len = mTo.length;
 	            final HashMap<String, Object> dataMap;
 	            if (mDataList == null) {
-                    Log.d("SearchView", "Error");
+//                    Log.d("SearchView", "Error");
                     return;
                 }
 	            dataMap = (HashMap) mDataList.get(position);

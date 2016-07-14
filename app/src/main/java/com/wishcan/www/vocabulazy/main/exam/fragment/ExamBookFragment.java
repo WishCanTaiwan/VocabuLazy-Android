@@ -30,6 +30,8 @@ import java.util.LinkedList;
  */
 public class ExamBookFragment extends ExamBaseFragment {
 
+    public static final String TAG = "E.HOME";
+
     private static final int TITLE_RES_ID = R.string.fragment_exam_book_title;
 
     public static ExamBookFragment newInstance() {
@@ -74,6 +76,11 @@ public class ExamBookFragment extends ExamBaseFragment {
 
         examBookView.refreshView(bookNames.size(), bookNames);
         return examBookView;
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     private void goExamLessonFragment(int bookIndex){

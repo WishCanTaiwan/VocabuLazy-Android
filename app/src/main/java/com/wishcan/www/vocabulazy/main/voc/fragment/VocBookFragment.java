@@ -31,7 +31,7 @@ import java.util.LinkedList;
  */
 public class VocBookFragment extends VocBaseFragment {
 
-    public static final String TAG = VocBookFragment.class.getSimpleName();
+    public static final String TAG = "HOME";
 
     public static VocBookFragment newInstance() {
         VocBookFragment fragment = new VocBookFragment();
@@ -55,7 +55,6 @@ public class VocBookFragment extends VocBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Logger.sendScreenViewEvent(TAG);
     }
 
     @Override
@@ -88,9 +87,14 @@ public class VocBookFragment extends VocBaseFragment {
         return vocBookView;
     }
 
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
+    }
+
     private void goVocLessonFragment(int bookIndex){
         Bundle args = new Bundle();
-        Log.d(TAG, " bookIndex " +bookIndex);
+//        Log.d(TAG, " bookIndex " +bookIndex);
         args.putInt(VocLessonFragment.BOOK_INDEX_STR, bookIndex);
         ((MainActivity) getActivity()).goFragment(VocLessonFragment.class, args, "VocLessonFragment", "MainFragment");
     }

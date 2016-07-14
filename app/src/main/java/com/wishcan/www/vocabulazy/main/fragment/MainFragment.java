@@ -21,7 +21,7 @@ import com.wishcan.www.vocabulazy.main.view.MainView;
  */
 public class MainFragment extends GAMainFragment {
 
-    public static final String TAG = MainFragment.class.getSimpleName();
+    public static final String TAG = "TAB_FRAME";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -97,8 +97,12 @@ public class MainFragment extends GAMainFragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState");
         outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 }

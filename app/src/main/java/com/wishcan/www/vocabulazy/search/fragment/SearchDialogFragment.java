@@ -24,7 +24,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
         void secDialogCreate(DialogFragment fragment);
     }
 
-    public static final String TAG = SearchDialogFragment.class.getSimpleName();
+    public static final String TAG = "S.NEW";
 
     public static String M_TAG;
 

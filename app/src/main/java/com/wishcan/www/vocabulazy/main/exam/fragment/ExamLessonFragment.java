@@ -24,6 +24,8 @@ import java.util.LinkedList;
 
 public class ExamLessonFragment extends ExamBaseFragment implements LessonView.OnLessonClickListener {
 
+    public static final String TAG = "E.UNIT";
+
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
 
     private ExamModel mExamModel;
@@ -60,6 +62,11 @@ public class ExamLessonFragment extends ExamBaseFragment implements LessonView.O
 
         examLessonView.refreshView(lessonIntegers.size(), lessonIntegers);
         return examLessonView;
+    }
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
     }
 
     private void goExamFragment(int lessonIndex){

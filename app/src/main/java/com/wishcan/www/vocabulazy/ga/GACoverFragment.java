@@ -5,7 +5,7 @@ package com.wishcan.www.vocabulazy.ga;
  */
 public class GACoverFragment extends GAFragment {
     @Override
-    String getNameAsGaLabel() {
+    protected String getNameAsGaLabel() {
         return GACoverFragment.class.getSimpleName();
     }
 }

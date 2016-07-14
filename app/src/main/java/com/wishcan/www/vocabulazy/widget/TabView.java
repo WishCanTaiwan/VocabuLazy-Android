@@ -255,7 +255,7 @@ abstract public class TabView extends LinearLayout {
          */
         private void moveTabMask(int position) {
             int tabStripeWidth = mTabStripe.getMeasuredWidth();
-            Log.d("TabView", "tabStripeWidth = " +tabStripeWidth);
+//            Log.d("TabView", "tabStripeWidth = " +tabStripeWidth);
             float offset = position * tabStripeWidth * (1f / mTabStripe.getChildCount());
             mTabMask.setTranslationX(offset);
         }

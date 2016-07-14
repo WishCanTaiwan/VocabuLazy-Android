@@ -4,9 +4,9 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
@@ -86,7 +86,7 @@ public class AudioService extends IntentService {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         String action = (intent != null) ? intent.getAction() : "";
-        Log.d(TAG, action);
+        Logger.d(TAG, action);
         /**
          * switch-case block for deciding the corresponding tasks for each action
          */
@@ -208,7 +208,7 @@ public class AudioService extends IntentService {
                 break;
 
             default:
-                Log.d(TAG, "undefined case");
+                Logger.d(TAG, "undefined case");
                 return START_REDELIVER_INTENT;
         }
 

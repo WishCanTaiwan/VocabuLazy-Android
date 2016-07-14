@@ -35,7 +35,7 @@ public abstract class GAFragment extends Fragment {
     private static final String CATEGORY_STRING = "FragmentLiveCycle";
 
     private static final String ACTION_STRING_s[] = {
-        "onCreate", "onCreateView", "onViewCreated", "onStart,",
+        "onCreate", "onCreateView", "onViewCreated", "onStart",
         "onResume", "onPause", "onStop", "onDestroy", "onSaveInstanceState"
     };
 
@@ -107,6 +107,6 @@ public abstract class GAFragment extends Fragment {
      * The abstract function should be implement to specified which Fragment is being running their
      * life cycle.
      * @return The String return will be used as Label for Google Analysis used
-     * */
-    abstract String getNameAsGaLabel();
+     */
+    protected abstract String getNameAsGaLabel();
 }

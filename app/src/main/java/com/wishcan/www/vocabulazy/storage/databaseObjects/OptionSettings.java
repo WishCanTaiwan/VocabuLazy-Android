@@ -15,7 +15,7 @@ public class OptionSettings {
     public static final String TAG = OptionSettings.class.getSimpleName();
 
     /**
-     * Value for {@link mode}. MODE_DEFAULT is the default option settings.
+     * Value for {@link #mode}. MODE_DEFAULT is the default option settings.
      */
     public static final int MODE_DEFAULT = 0;
 
@@ -70,7 +70,6 @@ public class OptionSettings {
     private int playTime;
 
     /**
-     *
      * @param mode
      * @param isRandom
      * @param listLoop

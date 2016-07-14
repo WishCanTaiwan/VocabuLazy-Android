@@ -8,6 +8,14 @@ import com.wishcan.www.vocabulazy.widget.DialogView;
  * Created by Swallow on 6/29/16.
  */
 public class VocBookDialogFragment extends DialogFragment<String> implements DialogView.OnYesOrNoClickListener {
+
+    public static final String TAG = "H.DIALOG";
+
+    @Override
+    protected String getNameAsGaLabel() {
+        return TAG;
+    }
+
     @Override
     protected DialogView getDialogView() {
         DialogView dialogView = new VocBookDialogView(getContext());
