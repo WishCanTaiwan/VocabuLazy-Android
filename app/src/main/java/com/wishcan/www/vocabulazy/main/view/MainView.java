@@ -30,7 +30,8 @@ public class MainView extends TabView {
     private static final int DEFAULT_TAB_ITEM_2_TAG_STR_RES_ID = R.string.main_exam_title;
     private static final int DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID = R.string.main_info_title;
 
-    public static final int[] TAGIDs = {DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID,
+    public static final int[] TAGIDs = {
+            DEFAULT_TAB_ITEM_0_TAG_STR_RES_ID,
             DEFAULT_TAB_ITEM_1_TAG_STR_RES_ID,
             DEFAULT_TAB_ITEM_2_TAG_STR_RES_ID,
             DEFAULT_TAB_ITEM_3_TAG_STR_RES_ID
@@ -45,7 +46,8 @@ public class MainView extends TabView {
     public MainView(final Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        String[] tags = {context.getString(TAGIDs[0]),
+        String[] tags = {
+                context.getString(TAGIDs[0]),
                 context.getString(TAGIDs[1]),
                 context.getString(TAGIDs[2]),
                 context.getString(TAGIDs[3])};

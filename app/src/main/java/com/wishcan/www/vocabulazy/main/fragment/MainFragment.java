@@ -19,7 +19,7 @@ import com.wishcan.www.vocabulazy.main.view.MainView;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends GAMainFragment {
+public class MainFragment extends GAMainFragment implements MainView.OnTabChangeListener {
 
     public static final String TAG = "TAB_FRAME";
 
@@ -73,26 +73,25 @@ public class MainFragment extends GAMainFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mMainView = (MainView) inflater.inflate(VIEW_RES_ID, container, false);
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             mCurrentTabIndex = savedInstanceState.getInt(ARG_TAB_INDEX);
         } else {
             mCurrentTabIndex = 0;
         }
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
         mMainView.post(new Runnable() {
             @Override
             public void run() {
                 mMainView.setCurrentTab(mCurrentTabIndex);
             }
         });
-        mMainView.setOnTabChangeListener(new MainView.OnTabChangeListener() {
-            @Override
-            public void onTabChange(int position) {
-                ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, getResources().getString(MainView.TAGIDs[position]));
-                mCurrentTabIndex = position;
-            }
-        });
+        mMainView.setOnTabChangeListener(this);
         return mMainView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
     }
 
     @Override
@@ -104,5 +103,11 @@ public class MainFragment extends GAMainFragment {
     @Override
     protected String getNameAsGaLabel() {
         return TAG;
+    }
+
+    @Override
+    public void onTabChange(int position) {
+        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, getResources().getString(MainView.TAGIDs[position]));
+        mCurrentTabIndex = position;
     }
 }

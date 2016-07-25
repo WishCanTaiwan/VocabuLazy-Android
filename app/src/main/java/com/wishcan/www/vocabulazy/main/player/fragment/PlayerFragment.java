@@ -309,7 +309,7 @@ public class PlayerFragment extends GAPlayerFragment {
                 mPlayerMainView.addNewPlayer(playerDataContent, mItemIndex);
             }
         }, 600);
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, mPlayerModel.getLessonTitle(mBookIndex, mLessonIndex));
+
     }
 
     @Override
@@ -377,6 +377,7 @@ public class PlayerFragment extends GAPlayerFragment {
             updateIndices(bookIndex, newLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
             mPlayerModel.getVocabulariesIn(bookIndex, newLessonIndex);
             mPlayerMainView.removeOldPlayer(direction == PlayerMainView.MOVE_TO_RIGHT ? PlayerMainView.RIGHT_VIEW_INDEX : PlayerMainView.LEFT_VIEW_INDEX);
+            ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, mPlayerModel.getLessonTitle(mBookIndex, mLessonIndex));
         } else {
             ArrayList<Vocabulary> vocabularies = mPlayerModel.getCurrentContent();
             mPlayerModel.createPlayerContent(vocabularies);

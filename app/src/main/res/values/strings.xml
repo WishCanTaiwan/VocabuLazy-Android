@@ -3,25 +3,53 @@
     <!--Version Strings-->
     <string name="version_code">3</string>
     <string name="version_name">- Beta Version 6 -</string>
+
+    <!-- Fragment Label for Google Analytics -->
+    <string name="ga_tag_cover_dialog">C.DIALOG</string>
+    <string name="ga_tag_cover">COVER</string>
+    <string name="ga_tag_exam_index">EXAM</string>
+    <string name="ga_tag_exam_book">E.HOME</string>
+    <string name="ga_tag_exam_lesson">E.UNIT</string>
+    <string name="ga_tag_exam_note">E.LIST</string>
+    <string name="ga_tag_exam">E.QUESTION</string>
+    <string name="ga_tag_exam_result">E.RESULT</string>
+    <string name="ga_tag_info">INFO</string>
+    <string name="ga_tag_player">PLAYLIST</string>
+    <string name="ga_tag_usr_note_dialog">L.EDIT</string>
+    <string name="ga_tag_usr_note">LIST</string>
+    <string name="ga_tag_voc_book">HOME</string>
+    <string name="ga_tag_voc_dialog">H.DIALOG</string>
+    <string name="ga_tag_voc_lesson">UNIT</string>
+    <string name="ga_tag_search_dialog">S.DIALOG</string>
+    <string name="ga_tag_search">SEARCH</string>
+
     <!--Fragment Name-->
     <string name="fragment_main_title">主頁面</string>
     <string name="fragment_exam_book_title">單元測驗</string>
     <string name="fragment_exam_note_title">清單測驗</string>
+
     <!-- widget -->
+
     <!-- main -->
     <string name="main_book_title">學習單元</string>
     <string name="main_note_title">我的清單</string>
     <string name="main_exam_title">測驗模式</string>
     <string name="main_info_title">關於我們</string>
+
     <!-- voc -->
+
     <!-- usr -->
+
     <!-- exam -->
+
     <!-- info -->
+
     <!-- player -->
+
     <!-- search -->
+
     <!-- cover -->
     <string name="dialog_cover">為提供最佳體驗，請至Google Play下載並安裝「Google 文字轉語音引擎」。\n點擊確定前往。</string>
-
 
     <string name="app_name">VocabuLazy</string>
     <string name="EnterSpell">Search</string>
@@ -60,7 +88,6 @@
         <item>5</item>
         <item>10</item>
     </string-array>
-
 
     <string name="reading_book_title">課文閱讀</string>
     <string name="title_activity_search">SearchActivity</string>

@@ -122,7 +122,7 @@ abstract public class TabView extends LinearLayout {
     public void setCurrentTab(int position){
         switchToTabContent(position);
         mTabStripe.setCurrentTabIndex(position);
-        initWhenTabIsSelected(position);
+//        initWhenTabIsSelected(position);
     }
 
 

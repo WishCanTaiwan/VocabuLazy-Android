@@ -13,25 +13,35 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.log.Logger;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamBookFragment;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamIndexFragment;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamLessonFragment;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamNoteFragment;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamResultFragment;
+import com.wishcan.www.vocabulazy.main.info.fragment.InfoFragment;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
+import com.wishcan.www.vocabulazy.main.usr.fragment.UsrNoteDialogFragment;
+import com.wishcan.www.vocabulazy.main.usr.fragment.UsrNoteFragment;
+import com.wishcan.www.vocabulazy.main.voc.fragment.VocBookDialogFragment;
+import com.wishcan.www.vocabulazy.main.voc.fragment.VocBookFragment;
+import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Locale;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity implements FragmentManager.OnBackStackChangedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -69,13 +79,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        VLApplication application = (VLApplication) getApplication();
-        wDatabase = application.getDatabase();
-        wPreferences = application.getPreferences();
-
-        mActionBarLL = new LinkedList<>();
-
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {
             mMainFragment = new MainFragment();
@@ -83,20 +86,18 @@ public class MainActivity extends FragmentActivity {
             if(getActionBar() != null) {
                 getActionBar().setDisplayHomeAsUpEnabled(false);
             }
-            mFragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-                @Override
-                public void onBackStackChanged() {
-                    if(mFragmentManager.getBackStackEntryCount() <= 0) {
-                        getActionBar().setDisplayHomeAsUpEnabled(false);
-                    } else {
-                        getActionBar().setDisplayHomeAsUpEnabled(true);
-                    }
-                }
-            });
+            mFragmentManager.addOnBackStackChangedListener(this);
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
             fragmentTransaction.add(VIEW_MAIN_RES_ID, mMainFragment, "MainFragment");
             fragmentTransaction.commit();
         }
+
+        VLApplication application = (VLApplication) getApplication();
+        wDatabase = application.getDatabase();
+        wPreferences = application.getPreferences();
+
+        mActionBarLL = new LinkedList<>();
+
         registerBroadcastReceiver();
         startAudioService();
     }
@@ -109,7 +110,8 @@ public class MainActivity extends FragmentActivity {
         }
         setCustomActionBar();
         if (mActionBarLL != null) {
-            setActionBarTitle(mActionBarLL.getFirst());
+            Log.d(TAG, "HEYHEY");
+//            setActionBarTitle(mActionBarLL.getFirst());
             if (mFragmentManager == null) {
                 mFragmentManager = getSupportFragmentManager();
             }
@@ -128,7 +130,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        Log.d(TAG, "onDestroy");
         stopAudioService();
         unregisterBroadcastReceiver();
         wDatabase.writeToFile();
@@ -154,9 +155,6 @@ public class MainActivity extends FragmentActivity {
             int bookIndex = wPreferences.getBookIndex();
             int lessonIndex = wPreferences.getLessonIndex();
             if(bookIndex != 1359 && lessonIndex != 1359) {
-//                Log.d(TAG, "retrive bookIndex " + bookIndex + " lessonIndex " + lessonIndex);
-//                Log.d(TAG, wDatabase.toString());
-
                 Bundle args = new Bundle();
                 args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
                 args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
@@ -164,6 +162,15 @@ public class MainActivity extends FragmentActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        if(mFragmentManager.getBackStackEntryCount() <= 0) {
+            getActionBar().setDisplayHomeAsUpEnabled(false);
+        } else {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -199,7 +206,7 @@ public class MainActivity extends FragmentActivity {
                     setCustomAnimations(enterResId, exitResId,
                             enterResId, exitResId);
         }
-        if(newTag == null || newTag.equals(""))
+        if (newTag == null || newTag.equals(""))
             newTag = "newTag";
         fragmentTransaction.add(MainActivity.VIEW_MAIN_RES_ID, f, newTag);
         if(backStackTag != null && !backStackTag.equals(""))
@@ -213,32 +220,44 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void switchActionBarStr(FRAGMENT_FLOW flow, String newActionBarStr) {
-//        Log.d(TAG, "notifyFragmentChange()");
-        if(newActionBarStr == null) {
+//        Log.d(TAG, "notifyFragmentChange() [" + newActionBarStr + "]");
+        String actionBarTitle = "";
+        if (newActionBarStr == null) {
             newActionBarStr = "";
         }
         switch (flow) {
             case GO:
+                Log.d(TAG, "GO " + newActionBarStr);
                 mActionBarLL.addFirst(newActionBarStr);
-                setActionBarTitle(mActionBarLL.getFirst());
+                actionBarTitle = mActionBarLL.getFirst();
+//                setActionBarTitle(mActionBarLL.getFirst());
                 break;
             case BACK:
-                if(mActionBarLL.size() > 1) {
+                Log.d(TAG, "BACK");
+                if( mActionBarLL.size() > 1) {
                     mActionBarLL.removeFirst();
-                    setActionBarTitle(mActionBarLL.getFirst());
+                    actionBarTitle = mActionBarLL.getFirst();
+//                    setActionBarTitle(mActionBarLL.getFirst());
                 }
                 break;
             case SAME:
+                Log.d(TAG, "SAME");
 //                Log.d(TAG, "switchActionBar SAME");
+//                if (mActionBarLL.size() > 0)
                 mActionBarLL.removeFirst();
                 mActionBarLL.addFirst(newActionBarStr);
-                setActionBarTitle(mActionBarLL.getFirst());
+                actionBarTitle = mActionBarLL.getFirst();
+//                setActionBarTitle(mActionBarLL.getFirst());
                 break;
             default:
                 break;
         }
+//        Log.d(TAG, "action bar title [" + actionBarTitle + "]");
+        setActionBarTitle(actionBarTitle);
+        Logger.sendEvent("UI Flow", "User Touch", actionBarTitle, 0);
+
 //        Log.d(TAG, "switchActionBarStr " +mActionBarLL.size());
-        if(mActionBarLL.size() > 0) {
+        if (mActionBarLL.size() > 0) {
 //            Log.d(TAG, "switchActionBarStr " +mActionBarLL.getFirst());
         }
     }
@@ -254,11 +273,9 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-
-
     private void setCustomActionBar(){
         mActionBar = getActionBar();
-        if(mActionBar != null) {
+        if (mActionBar != null) {
             mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM /*| ActionBar.DISPLAY_HOME_AS_UP*/);
             mActionBar.setCustomView(DEFAULT_CUSTOM_ACTION_BAR_RES_ID);
             mActionBarTitleTextView = (TextView) mActionBar.getCustomView().findViewById(TITLE_RES_ID);
@@ -268,12 +285,13 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void setActionBarTitle(String titleStr) {
+//        Log.d("user interface flow", "now at " + titleStr);
         if(mActionBarTitleTextView == null) {
             mActionBar = getActionBar();
             if(mActionBar != null && mActionBar.getCustomView() != null)
                 mActionBarTitleTextView = (TextView) mActionBar.getCustomView().findViewById(TITLE_RES_ID);
         }
-        if(mActionBarTitleTextView != null)
+        if (mActionBarTitleTextView != null)
             mActionBarTitleTextView.setText(titleStr);
     }
 
@@ -287,7 +305,6 @@ public class MainActivity extends FragmentActivity {
                 if (action.equals(AudioService.CHECK_VOICE_DATA)) {
                     checkTTSData();
                 }
-
             }
         };
         LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver, intentFilter);
@@ -313,26 +330,8 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void checkTTSData() {
-//        Log.d(TAG, "check TTS data");
         Intent intent = new Intent();
         intent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(intent, 0);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == 0) {
-            // Make sure the request was successful
-//            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
-//                Log.d(TAG, "check voice data pass");
-//                ArrayList<String> voices = data.getStringArrayListExtra(TextToSpeech.Engine.EXTRA_AVAILABLE_VOICES);
-//                Log.d(TAG, "available voices:");
-//                for (String voice : voices) {
-//                    Log.d(TAG, voice);
-//                }
-//            } else {
-//                Log.d(TAG, "check voice data fail");
-//            }
-//        }
     }
 }
