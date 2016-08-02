@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.main.view.MainView;
 
 import java.util.LinkedList;
 
@@ -31,9 +32,13 @@ import java.util.LinkedList;
  * 2. Create another content View corresponding to the TabItem
  * 3. Add both TabItem in step1 and content View in step2 by calling addTabAndTabContent
  */
-abstract public class TabView extends LinearLayout {
+public class TabView extends LinearLayout implements ViewPager.OnPageChangeListener {
 
-    abstract public void initWhenTabIsSelected(int position);
+    public interface OnTabChangeListener {
+        void onTabSelected(int position);
+    }
+
+//    abstract public void initWhenTabIsSelected(int position);
 
     /**
      * mTabStripe is used to contain several TabItems
@@ -44,12 +49,16 @@ abstract public class TabView extends LinearLayout {
      * mTabContentList is used to contain the content view corresponding to TabItem.
      * mTabContentList will be used in creating our own PagerAdapter TabContentSlidePagerAdapter
      */
-    private LinkedList<Class<?>> mTabContentList;
+//    private LinkedList<Class<?>> mTabContentList;
 
     /**
      * mViewPager is the ViewGroup for showing tab content view based on the current tab
      */
     private ViewPager mViewPager;
+
+    private Context mContext;
+    private LayoutParams mDefaultViewPagerLayoutParams;
+    private OnTabChangeListener mOnTabChangeListener;
 
     public TabView(Context context) {
         super(context);
@@ -63,55 +72,30 @@ abstract public class TabView extends LinearLayout {
      */
     public TabView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        LayoutParams mDefaultViewPagerLayoutParams;
-
+        mContext = context;
         setOrientation(VERTICAL);
         setBackgroundColor(Color.WHITE);
-
         mDefaultViewPagerLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, 0, 1);
+    }
 
-        mViewPager = new ViewPager(context);
-        mViewPager.setId(R.id.tab_view_pager_id);
-        mViewPager.setOffscreenPageLimit(4);
-
-        mTabStripe = new TabStripe(context);
-
-        mTabContentList = new LinkedList<>();
-
-        mViewPager.setLayoutParams(mDefaultViewPagerLayoutParams);
-        mViewPager.addOnPageChangeListener(new OnPageChangeListener());
+    public void setUpWithViewPager(ViewPager viewPager) {
+        mViewPager = viewPager;
+        mViewPager.addOnPageChangeListener(this);
+        CustomFragmentPagerAdapter pagerAdapter = (CustomFragmentPagerAdapter) mViewPager.getAdapter();
+        mTabStripe = new TabStripe(mContext);
+        for (int index = 0; index < pagerAdapter.getCount(); index++) {
+            TabItem tabItem = new TabItem(mContext, pagerAdapter.getDrawable(index), pagerAdapter.getTag(index));
+            tabItem.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setCurrentTab(v);
+                }
+            });
+            mTabStripe.addTabItem(tabItem);
+        }
 
         addView(mViewPager);
         addView(mTabStripe);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        super.onRestoreInstanceState(state);
-    }
-
-    @Override
-    protected Parcelable onSaveInstanceState() {
-
-        return super.onSaveInstanceState();
-    }
-
-    public void addTabAndTabContent(TabItem tabItem, Class<?> clss) {
-
-        mTabStripe.addTabItem(tabItem);
-
-        mTabContentList.add(clss);
-
-        tabItem.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setCurrentTab(v);
-            }
-        });
-
-        mViewPager.setAdapter(new LinkedListFragmentPagerAdapter(
-                ((MainActivity) getContext()), mTabContentList));
     }
 
     private void setCurrentTab(View v) {
@@ -122,39 +106,7 @@ abstract public class TabView extends LinearLayout {
     public void setCurrentTab(int position){
         switchToTabContent(position);
         mTabStripe.setCurrentTabIndex(position);
-        initWhenTabIsSelected(position);
-    }
-
-
-    public TabItem getCurrentTab() {
-        return mTabStripe.getCurrentTabItem();
-    }
-
-    public Fragment getCurrentTabContent() {
-//        return mTabContentList.get(mTabStripe.getCurrentTabIndex());
-        return null;
-    }
-
-    public Fragment getTabContent(int index) {
-//        return mTabContentList.get(index);
-        return null;
-    }
-
-    public void setTabStripeColor(int color) {
-        mTabStripe.setTabStripeColor(color);
-    }
-
-    public void setOnPagerChangeListener(OnPageChangeListener listener) {
-        mViewPager.clearOnPageChangeListeners();
-        mViewPager.addOnPageChangeListener(listener);
-    }
-
-    private void setCurrentTabIndex(int index) {
-        mTabStripe.setCurrentTabIndex(index);
-    }
-
-    public int getCurrentTabIndex() {
-        return mTabStripe.getCurrentTabIndex();
+//        initWhenTabIsSelected(position);
     }
 
     public void switchToTabContent(int index) {
@@ -162,12 +114,81 @@ abstract public class TabView extends LinearLayout {
         mViewPager.setCurrentItem(index, true);
     }
 
-    public int getTabCount() {
-        if(mTabStripe != null)
-            return mTabStripe.getChildCount();
-        else
-            return 0;
+    public void setTabStripeColor(int color) {
+        mTabStripe.setTabStripeColor(color);
     }
+
+    public void addOnTabChangeListener(OnTabChangeListener listener) {
+        mOnTabChangeListener = listener;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        mTabStripe.moveTabMask(position, positionOffset);
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        mTabStripe.moveTabMask(position);
+//        initWhenTabIsSelected(position);
+        mOnTabChangeListener.onTabSelected(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+//    public void addTabAndTabContent(TabItem tabItem, Class<?> clss) {
+//
+//        mTabStripe.addTabItem(tabItem);
+//
+////        mTabContentList.add(clss);
+//
+//        tabItem.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setCurrentTab(v);
+//            }
+//        });
+//
+////        mViewPager.setAdapter(new LinkedListFragmentPagerAdapter(
+////                ((MainActivity) getContext()), mTabContentList));
+//    }
+
+//    public TabItem getCurrentTab() {
+//        return mTabStripe.getCurrentTabItem();
+//    }
+
+//    public Fragment getCurrentTabContent() {
+////        return mTabContentList.get(mTabStripe.getCurrentTabIndex());
+//        return null;
+//    }
+
+//    public Fragment getTabContent(int index) {
+////        return mTabContentList.get(index);
+//        return null;
+//    }
+
+//    public void setOnPagerChangeListener(OnPageChangeListener listener) {
+//        mViewPager.clearOnPageChangeListeners();
+//        mViewPager.addOnPageChangeListener(listener);
+//    }
+
+//    private void setCurrentTabIndex(int index) {
+//        mTabStripe.setCurrentTabIndex(index);
+//    }
+
+//    public int getCurrentTabIndex() {
+//        return mTabStripe.getCurrentTabIndex();
+//    }
+
+//    public int getTabCount() {
+//        if(mTabStripe != null)
+//            return mTabStripe.getChildCount();
+//        else
+//            return 0;
+//    }
 
     /**
      * TabStripe is a RelativeLayout because the view have a special capability, mask.
@@ -176,7 +197,7 @@ abstract public class TabView extends LinearLayout {
      * 2. mTabMask, which is just a view with transparent black color, for covering the current Tab
      * to show which Tab is currently focused
      */
-    private class TabStripe extends RelativeLayout {
+    protected class TabStripe extends RelativeLayout {
 
         private static final int DEFAULT_HEIGHT_RES_ID = R.dimen.widget_tab_height;
         private static final int DEFAULT_MASK_COLOR_RES_ID = R.color.widget_tab_view_mask;
@@ -192,7 +213,6 @@ abstract public class TabView extends LinearLayout {
             super(context);
             initDefaultTabStripe();
         }
-
 
         /**
          * Initialize the mTabStripe and the LayoutParams, which will be used when TabItem is added
@@ -235,18 +255,10 @@ abstract public class TabView extends LinearLayout {
             return mTabStripe.indexOfChild(v);
         }
 
-        public TabItem getCurrentTabItem() {
-            return (TabItem) mTabStripe.getChildAt(mCurrentTabIndex);
-        }
-
         public void setCurrentTabIndex(int index) {
             if (index >= mTabStripe.getChildCount() || index < 0)
                 return;
             mCurrentTabIndex = index;
-        }
-
-        public int getCurrentTabIndex() {
-            return mCurrentTabIndex;
         }
 
         /**
@@ -255,7 +267,7 @@ abstract public class TabView extends LinearLayout {
          */
         private void moveTabMask(int position) {
             int tabStripeWidth = mTabStripe.getMeasuredWidth();
-            Log.d("TabView", "tabStripeWidth = " +tabStripeWidth);
+//            Log.d("TabView", "tabStripeWidth = " +tabStripeWidth);
             float offset = position * tabStripeWidth * (1f / mTabStripe.getChildCount());
             mTabMask.setTranslationX(offset);
         }
@@ -288,7 +300,13 @@ abstract public class TabView extends LinearLayout {
             ((LayoutParams) mTabMask.getLayoutParams()).addRule(ALIGN_PARENT_LEFT);
         }
 
+//        public TabItem getCurrentTabItem() {
+//            return (TabItem) mTabStripe.getChildAt(mCurrentTabIndex);
+//        }
 
+//        public int getCurrentTabIndex() {
+//            return mCurrentTabIndex;
+//        }
     }
 
     /**
@@ -310,6 +328,13 @@ abstract public class TabView extends LinearLayout {
             initDefaultTabItem();
         }
 
+        public TabItem(Context context, Drawable drawable, String tag) {
+            super(context);
+            mContext = context;
+            setDrawableIcon(drawable);
+            setTabItemTag(tag);
+        }
+
         private void initDefaultTabItem() {
 
             mTag = DEFAULT_TAG_STR;
@@ -328,9 +353,6 @@ abstract public class TabView extends LinearLayout {
             mTag = str;
         }
 
-        public String getTabItemTag() {
-            return mTag;
-        }
 
         public void setDrawableIcon(Drawable drawable) {
             if (getChildCount() != 0)
@@ -341,43 +363,48 @@ abstract public class TabView extends LinearLayout {
             addView(imageView);
         }
 
-        public void setTextIcon(String str) {
-            if (getChildCount() != 0)
-                removeAllViews();
 
-            textView = new TextView(mContext);
-            textView.setText(str);
-        }
+//        public String getTabItemTag() {
+//            return mTag;
+//        }
 
-        public void setTextIconColor(int color) {
-            textView.setTextColor(color);
-        }
+//        public void setTextIcon(String str) {
+//            if (getChildCount() != 0)
+//                removeAllViews();
+//
+//            textView = new TextView(mContext);
+//            textView.setText(str);
+//        }
 
-        public void setIconBackgroundColor(int color) {
-            setBackgroundColor(color);
-        }
+//        public void setTextIconColor(int color) {
+//            textView.setTextColor(color);
+//        }
+
+//        public void setIconBackgroundColor(int color) {
+//            setBackgroundColor(color);
+//        }
 
     }
 
-    /**
-     * Customized OnPageChangeListener for moving TabMask when ViewPager scrolling or selected
-     */
-    protected class OnPageChangeListener implements ViewPager.OnPageChangeListener {
-
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            mTabStripe.moveTabMask(position, positionOffset);
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            mTabStripe.moveTabMask(position);
-            initWhenTabIsSelected(position);
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    }
+//    /**
+//     * Customized OnPageChangeListener for moving TabMask when ViewPager scrolling or selected
+//     */
+//    public class OnPageChangeListener implements ViewPager.OnPageChangeListener {
+//
+//        @Override
+//        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+////            mTabStripe.moveTabMask(position, positionOffset);
+//        }
+//
+//        @Override
+//        public void onPageSelected(int position) {
+////            mTabStripe.moveTabMask(position);
+////            initWhenTabIsSelected(position);
+//        }
+//
+//        @Override
+//        public void onPageScrollStateChanged(int state) {
+//
+//        }
+//    }
 }

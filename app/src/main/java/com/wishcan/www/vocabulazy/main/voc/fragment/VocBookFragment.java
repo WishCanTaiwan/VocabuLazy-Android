@@ -53,12 +53,6 @@ public class VocBookFragment extends VocBaseFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Logger.sendScreenViewEvent(TAG);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         VocBookView vocBookView = new VocBookView(getActivity());

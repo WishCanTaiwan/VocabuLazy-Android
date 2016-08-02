@@ -41,6 +41,13 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
     private int mIconId;        // used for identify either Add or Delete action should be executed
     private int mPressedPosition;
 
+    public static UsrNoteFragment newInstance() {
+        UsrNoteFragment fragment = new UsrNoteFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public UsrNoteFragment() {
         // Required empty public constructor
     }
