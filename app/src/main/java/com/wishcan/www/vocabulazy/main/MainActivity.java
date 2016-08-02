@@ -1,39 +1,30 @@
 package com.wishcan.www.vocabulazy.main;
 
 import android.app.ActionBar;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.ga.GAFragment;
-import com.wishcan.www.vocabulazy.log.Logger;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamLessonFragment;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
+import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
-import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Locale;
 
 public class MainActivity extends BaseActivity {
 
@@ -88,6 +79,7 @@ public class MainActivity extends BaseActivity {
             if (getActionBar() != null)
                 getActionBar().setDisplayHomeAsUpEnabled(false);
             mMainFragment = MainFragment.newInstance();
+            mMainFragment.addOnTabSelectListener(this);
             mMainFragment.setTitles(TITLES);
             mMainFragment.setFragments(mFragments);
             mFragmentManager = getSupportFragmentManager();
@@ -107,7 +99,7 @@ public class MainActivity extends BaseActivity {
         }
         setCustomActionBar();
         if (mActionBarLL != null) {
-            setActionBarTitle(mActionBarLL.getFirst());
+//            setActionBarTitle(mActionBarLL.getFirst());
             if (mFragmentManager == null) {
                 mFragmentManager = getSupportFragmentManager();
             }
@@ -161,20 +153,101 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackStackChanged() {
+        Log.d(TAG, "on back stack changed");
+        String titleStr = mMainFragment.getCurrentTabTag();
         if (getActionBar() != null)
             getActionBar().setDisplayHomeAsUpEnabled(mFragmentManager.getBackStackEntryCount() > 0);
+        int entryCount = getSupportFragmentManager().getBackStackEntryCount();
+        if (entryCount > 0) {
+            Log.d(TAG, "[" + getSupportFragmentManager().getBackStackEntryAt(entryCount-1) + "]");
+            titleStr = getSupportFragmentManager().getBackStackEntryAt(entryCount-1).getName();
+        }
+        setActionBarTitle(titleStr);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        switchActionBarStr(FRAGMENT_FLOW.BACK, null);
+//        switchActionBarStr(FRAGMENT_FLOW.BACK, null);
     }
 
     @Override
     public boolean onNavigateUp() {
         onBackPressed();
         return super.onNavigateUp();
+    }
+
+    @Override
+    public void onTabSelected(int position) {
+        super.onTabSelected(position);
+        setActionBarTitle(mMainFragment.getCurrentTabTagAt(position));
+    }
+
+    @Override
+    public void onBookClicked(int position) {
+        super.onBookClicked(position);
+        if (mVocLessonFragment == null) {
+            mVocLessonFragment = VocLessonFragment.newInstance();
+        }
+        mVocLessonFragment.setBook(position);
+
+        String str = "Book " + (position+1);
+        goFragment(mVocLessonFragment, null, "VocLessonFragment", str);
+//        switchActionBarStr(FRAGMENT_FLOW.GO, str);
+        setActionBarTitle(str);
+    }
+
+    @Override
+    public void onExamIndexBookClicked() {
+        super.onExamIndexBookClicked();
+        String str = getString(R.string.fragment_exam_book_title);
+        goFragment(mExamBookFragment, null, "ExamBookFragment", str);
+        setActionBarTitle(str);
+    }
+
+    @Override
+    public void onExamIndexNoteClicked() {
+        super.onExamIndexNoteClicked();
+        String str = getString(R.string.fragment_exam_note_title);
+        goFragment(mExamNoteFragment, null, "ExamNoteFragment", str);
+        setActionBarTitle(str);
+    }
+
+    @Override
+    public void onExamBookClicked(int position) {
+        super.onExamBookClicked(position);
+        if (mExamLessonFragment == null) {
+            mExamLessonFragment = ExamLessonFragment.newInstance();
+        }
+        mExamLessonFragment.setExamBook(position);
+
+        String str = "Test Book " + (position+1);
+        goFragment(mExamLessonFragment, null, "ExamLessonFragment", str);
+        setActionBarTitle(str);
+    }
+
+    public void goFragment(Fragment fragment, Bundle args, String newTag, String backStackTag) {
+        goFragment(fragment, args, newTag, backStackTag, FRAGMENT_ANIM.DEFAULT, FRAGMENT_ANIM.DEFAULT);
+    }
+
+    public void goFragment(Fragment fragment, Bundle args, String newTag, String backStackTag, FRAGMENT_ANIM animEnterResId, FRAGMENT_ANIM animExitResId) {
+        int enterResId, exitResId;
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        enterResId = animEnterResId == FRAGMENT_ANIM.DEFAULT ? MainActivity.ANIM_ENTER_RES_ID : -1;
+        exitResId = animExitResId == FRAGMENT_ANIM.DEFAULT ? MainActivity.ANIM_EXIT_RES_ID: -1;
+
+        if (enterResId != -1 && exitResId != -1) {
+            fragmentTransaction.setCustomAnimations(enterResId, exitResId, enterResId, exitResId);
+        }
+        if (newTag == null || newTag.equals(""))
+            newTag = "newTag";
+        fragmentTransaction.add(VIEW_MAIN_RES_ID, fragment, newTag);
+        if (backStackTag != null && !backStackTag.equals(""))
+            fragmentTransaction.addToBackStack(backStackTag);
+        fragmentTransaction.commit();
     }
 
     public Fragment goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag, FRAGMENT_ANIM animEnterResId, FRAGMENT_ANIM animExitResId) {
@@ -214,7 +287,7 @@ public class MainActivity extends BaseActivity {
                 setActionBarTitle(mActionBarLL.getFirst());
                 break;
             case BACK:
-                if(mActionBarLL.size() > 1) {
+                if (mActionBarLL.size() > 1) {
                     mActionBarLL.removeFirst();
                     setActionBarTitle(mActionBarLL.getFirst());
                 }
@@ -233,16 +306,17 @@ public class MainActivity extends BaseActivity {
         MenuItem item = mOptionMenu.findItem(R.id.action_goto_player);
         if(item == null)
             return;
-        if(enable) {
-            item.setVisible(true);
-        } else {
-            item.setVisible(false);
-        }
+        item.setEnabled(enable);
+//        if(enable) {
+//            item.setVisible(true);
+//        } else {
+//            item.setVisible(false);
+//        }
     }
 
     private void setCustomActionBar(){
         mActionBar = getActionBar();
-        if(mActionBar != null) {
+        if (mActionBar != null) {
             mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM /*| ActionBar.DISPLAY_HOME_AS_UP*/);
             mActionBar.setCustomView(DEFAULT_CUSTOM_ACTION_BAR_RES_ID);
             mActionBarTitleTextView = (TextView) mActionBar.getCustomView().findViewById(TITLE_RES_ID);
@@ -254,10 +328,10 @@ public class MainActivity extends BaseActivity {
     private void setActionBarTitle(String titleStr) {
         if(mActionBarTitleTextView == null) {
             mActionBar = getActionBar();
-            if(mActionBar != null && mActionBar.getCustomView() != null)
+            if (mActionBar != null && mActionBar.getCustomView() != null)
                 mActionBarTitleTextView = (TextView) mActionBar.getCustomView().findViewById(TITLE_RES_ID);
         }
-        if(mActionBarTitleTextView != null)
+        if (mActionBarTitleTextView != null)
             mActionBarTitleTextView.setText(titleStr);
     }
 

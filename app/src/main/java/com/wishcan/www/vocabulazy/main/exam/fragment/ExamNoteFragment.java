@@ -26,7 +26,13 @@ import java.util.LinkedList;
  */
 public class ExamNoteFragment extends ExamBaseFragment implements ExamNoteView.OnListIconClickListener {
 
+    public interface OnExamNoteClickListener {
+        void onExamNoteClicked(int position);
+    }
+
     private int mNoteIndex;
+    private ExamNoteView mExamNoteView;
+    private OnExamNoteClickListener mOnExamNoteClickListener;
 
     public static ExamNoteFragment newInstance() {
         ExamNoteFragment fragment = new ExamNoteFragment();
@@ -38,29 +44,31 @@ public class ExamNoteFragment extends ExamBaseFragment implements ExamNoteView.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mNoteIndex = -1;
-        if (mExamModel == null)
-            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "清單測驗");
+//        mNoteIndex = -1;
+//
+//        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "清單測驗");
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ExamNoteView examNoteView = new ExamNoteView(getActivity());
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (mExamModel == null) mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
         ArrayList<Lesson> notes = mExamModel.getLessons(-1);
-        LinkedList<String> dataList = new LinkedList<>();
-
-        if(notes == null)
+        if (notes == null)
             return new ErrorView(getActivity()).setErrorMsg("DataBase not found");
 
-        for(int i = 0; i < notes.size(); i++){
+        LinkedList<String> dataList = new LinkedList<>();
+        for (int i = 0; i < notes.size(); i++)
             dataList.add(notes.get(i).getTitle());
-        }
 
-        examNoteView.refreshView(notes.size(), dataList);
-        examNoteView.setOnListIconClickListener(this);
-        return examNoteView;
+        if (mExamNoteView == null)
+            mExamNoteView = new ExamNoteView(getActivity());
+        mExamNoteView.refreshView(notes.size(), dataList);
+        mExamNoteView.setOnListIconClickListener(this);
+        return mExamNoteView;
+    }
+
+    public void addOnExamNoteClickListener(OnExamNoteClickListener listener) {
+        mOnExamNoteClickListener = listener;
     }
 
     private void goExamFragment(int noteIndex){
@@ -72,19 +80,22 @@ public class ExamNoteFragment extends ExamBaseFragment implements ExamNoteView.O
 
     @Override
     public void onListIconClick(int iconId, int position, View v) {
-        ArrayList<Integer> contentIDs;
-
-        switch(iconId) {
-            case NoteView.ICON_PLAY:
-                mNoteIndex = position;
-                /** -1 will get note contents*/
-                contentIDs = mExamModel.getContent(-1, mNoteIndex);
-                if (contentIDs.size() >= 4) {
-                    goExamFragment(mNoteIndex);
-                }
-                break;
-            default:
-                break;
+        if (iconId == NoteView.ICON_PLAY) {
+            mOnExamNoteClickListener.onExamNoteClicked(position);
         }
+
+//        ArrayList<Integer> contentIDs;
+//        switch(iconId) {
+//            case NoteView.ICON_PLAY:
+//                mNoteIndex = position;
+                /** -1 will get note contents*/
+//                contentIDs = mExamModel.getContent(-1, mNoteIndex);
+//                if (contentIDs.size() >= 4) {
+//                    goExamFragment(mNoteIndex);
+//                }
+//                break;
+//            default:
+//                break;
+//        }
     }
 }

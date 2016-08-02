@@ -35,7 +35,7 @@ public abstract class GAFragment extends Fragment {
     private static final String CATEGORY_STRING = "FragmentLiveCycle";
 
     private static final String ACTION_STRING_s[] = {
-        "onCreate", "onCreateView", "onViewCreated", "onStart,",
+        "onCreate", "onCreateView", "onViewCreated", "onStart",
         "onResume", "onPause", "onStop", "onDestroy", "onSaveInstanceState"
     };
 

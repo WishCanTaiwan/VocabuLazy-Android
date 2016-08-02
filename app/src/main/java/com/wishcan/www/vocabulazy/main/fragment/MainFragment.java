@@ -29,6 +29,10 @@ import com.wishcan.www.vocabulazy.widget.TabView;
  */
 public class MainFragment extends GAMainFragment implements TabView.OnTabChangeListener {
 
+    public interface OnTabSelectListener {
+        void onTabSelected(int position);
+    }
+
     public static final String TAG = MainFragment.class.getSimpleName();
 
     // TODO: Rename parameter arguments, choose names that match
@@ -43,6 +47,7 @@ public class MainFragment extends GAMainFragment implements TabView.OnTabChangeL
     private MainView mMainView;
 
     private int mCurrentTabIndex;
+    private OnTabSelectListener mOnTabSelectListener;
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -58,6 +63,7 @@ public class MainFragment extends GAMainFragment implements TabView.OnTabChangeL
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mCurrentTabIndex = 0;
         mDrawablesRID = new int[]{
                 R.drawable.main_book,
                 R.drawable.main_note,
@@ -75,12 +81,12 @@ public class MainFragment extends GAMainFragment implements TabView.OnTabChangeL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mMainView = (MainView) inflater.inflate(VIEW_RES_ID, container, false);
-        if(savedInstanceState != null){
-            mCurrentTabIndex = savedInstanceState.getInt(ARG_TAB_INDEX);
-        } else {
-            mCurrentTabIndex = 0;
-        }
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
+//        if(savedInstanceState != null){
+//            mCurrentTabIndex = savedInstanceState.getInt(ARG_TAB_INDEX);
+//        } else {
+//            mCurrentTabIndex = 0;
+//        }
+//        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
 
         CustomFragmentPagerAdapter pagerAdapter = new CustomFragmentPagerAdapter(getContext(), getActivity().getSupportFragmentManager(), mFragments, mDrawablesRID, mTagsRID);
 
@@ -96,16 +102,27 @@ public class MainFragment extends GAMainFragment implements TabView.OnTabChangeL
         return mMainView;
     }
 
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
+//        super.onSaveInstanceState(outState);
+//    }
+
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
-        super.onSaveInstanceState(outState);
+    public void onResume() {
+        super.onResume();
+        onTabSelected(mCurrentTabIndex);
     }
 
     @Override
     public void onTabSelected(int position) {
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, getResources().getString(MainView.TAGIDs[position]));
+//        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, getResources().getString(MainView.TAGIDs[position]));
         mCurrentTabIndex = position;
+        mOnTabSelectListener.onTabSelected(position);
+    }
+
+    public void addOnTabSelectListener(OnTabSelectListener listener) {
+        mOnTabSelectListener = listener;
     }
 
     public void setTitles(String[] titles) {
@@ -116,5 +133,11 @@ public class MainFragment extends GAMainFragment implements TabView.OnTabChangeL
         mFragments = fragments;
     }
 
+    public String getCurrentTabTag() {
+        return getCurrentTabTagAt(mCurrentTabIndex);
+    }
 
+    public String getCurrentTabTagAt(int position) {
+        return getContext().getString(mTagsRID[position]);
+    }
 }

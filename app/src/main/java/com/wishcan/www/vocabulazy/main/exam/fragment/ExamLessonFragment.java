@@ -24,12 +24,25 @@ import java.util.LinkedList;
 
 public class ExamLessonFragment extends ExamBaseFragment implements LessonView.OnLessonClickListener {
 
+    public interface OnExamLessonClickListener {
+        void onExamLessonClicked(int position);
+    }
+
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
 
-    private ExamModel mExamModel;
+//    private ExamModel mExamModel;
+    private ExamLessonView mExamLessonView;
+    private OnExamLessonClickListener mOnExamLessonClickListener;
 
     private int mBookIndex;
     private int mLessonIndex;
+
+    public static ExamLessonFragment newInstance() {
+        ExamLessonFragment fragment = new ExamLessonFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     public ExamLessonFragment() {
         // Required empty public constructor
@@ -38,28 +51,37 @@ public class ExamLessonFragment extends ExamBaseFragment implements LessonView.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (mExamModel == null)
-            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
-        mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
-        mLessonIndex = -1;
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, mExamModel.getBookTitle(mBookIndex));
+//        if (mExamModel == null)
+//            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
+//        mBookIndex = getArguments() == null ? 0 : getArguments().getInt(BOOK_INDEX_STR);
+//        mLessonIndex = -1;
+//        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, mExamModel.getBookTitle(mBookIndex));
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ExamLessonView examLessonView = new ExamLessonView(getActivity());
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (mExamModel == null) mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
         ArrayList<Lesson> lessons = mExamModel.getLessons(mBookIndex);
-        LinkedList<Integer> lessonIntegers = new LinkedList<>();
-        examLessonView.setOnLessonClickListener(this);
-        if(lessons != null)
-            for(int i = 0; i < lessons.size(); i++)
-                lessonIntegers.add(i + 1);
-        else
+        if(lessons == null)
             return new ErrorView(getActivity()).setErrorMsg("get lesson failed");
 
-        examLessonView.refreshView(lessonIntegers.size(), lessonIntegers);
-        return examLessonView;
+        LinkedList<Integer> lessonIntegers = new LinkedList<>();
+        for (int i = 0; i < lessons.size(); i++)
+            lessonIntegers.add(i + 1);
+
+        if (mExamLessonView == null)
+            mExamLessonView = new ExamLessonView(getActivity());
+        mExamLessonView.setOnLessonClickListener(this);
+        mExamLessonView.refreshView(lessonIntegers.size(), lessonIntegers);
+        return mExamLessonView;
+    }
+
+    public void addOnExamLessonClickListener(OnExamLessonClickListener listener) {
+        mOnExamLessonClickListener = listener;
+    }
+
+    public void setExamBook(int bookIndex) {
+        mBookIndex = bookIndex;
     }
 
     private void goExamFragment(int lessonIndex){
@@ -71,13 +93,14 @@ public class ExamLessonFragment extends ExamBaseFragment implements LessonView.O
 
     @Override
     public void onLessonClick(int lesson) {
-        ArrayList<Integer> contentIDs;
-
-        mLessonIndex = lesson;
-        contentIDs = mExamModel.getContent(mBookIndex, mLessonIndex);
-        if (contentIDs.size() >= 4) {
-            goExamFragment(lesson);
-        }
+        mOnExamLessonClickListener.onExamLessonClicked(lesson);
+//        ArrayList<Integer> contentIDs;
+//
+//        mLessonIndex = lesson;
+//        contentIDs = mExamModel.getContent(mBookIndex, mLessonIndex);
+//        if (contentIDs.size() >= 4) {
+//            goExamFragment(lesson);
+//        }
 
     }
 }

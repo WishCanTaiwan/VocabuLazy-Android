@@ -4,13 +4,10 @@ package com.wishcan.www.vocabulazy.main.exam.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.exam.view.ExamIndexView;
 
@@ -19,7 +16,15 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamIndexView;
  * Use the {@link ExamIndexFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamIndexFragment extends ExamBaseFragment {
+public class ExamIndexFragment extends ExamBaseFragment implements ExamIndexView.OnExamItemClickListener {
+
+    public interface OnExamIndexClickListener {
+        void onExamIndexBookClicked();
+        void onExamIndexNoteClicked();
+    }
+
+    private ExamIndexView mExamIndexView;
+    private OnExamIndexClickListener mOnExamIndexClickListener;
 
     public static ExamIndexFragment newInstance() {
         ExamIndexFragment fragment = new ExamIndexFragment();
@@ -33,27 +38,25 @@ public class ExamIndexFragment extends ExamBaseFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (mExamIndexView == null)
+            mExamIndexView = new ExamIndexView(getActivity());
+        mExamIndexView.setOnExamItemClickListener(this);
+        return mExamIndexView;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ExamIndexView examIndexView = new ExamIndexView(getActivity());
-        examIndexView.setOnExamItemClickListener(new ExamIndexView.OnExamItemClickListener() {
-            @Override
-            public void onExamUnitBookClick() {
-                goExamBookFragment();
-            }
+    public void onExamUnitBookClick() {
+        mOnExamIndexClickListener.onExamIndexBookClicked();
+    }
 
-            @Override
-            public void onExamUnitNoteClick() {
-                goExamNoteFragment();
-            }
-        });
-        return examIndexView;
+    @Override
+    public void onExamUnitNoteClick() {
+        mOnExamIndexClickListener.onExamIndexNoteClicked();
+    }
+
+    public void addOnExamIndexClickListener(OnExamIndexClickListener listener) {
+        mOnExamIndexClickListener = listener;
     }
 
     private void goExamBookFragment(){
@@ -65,5 +68,4 @@ public class ExamIndexFragment extends ExamBaseFragment {
         Bundle args = new Bundle();
         ((MainActivity) getActivity()).goFragment(ExamNoteFragment.class, args, "ExamNoteFragment", "ExamIndexFragment");
     }
-
 }

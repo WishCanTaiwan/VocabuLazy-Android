@@ -28,9 +28,17 @@ import java.util.LinkedList;
  * Use the {@link ExamBookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ExamBookFragment extends ExamBaseFragment {
+public class ExamBookFragment extends ExamBaseFragment implements BookView.OnBookItemClickListener {
+
+    public interface OnExamBookClickListener {
+        void onExamBookClicked(int position);
+    }
 
     private static final int TITLE_RES_ID = R.string.fragment_exam_book_title;
+
+    private ExamBookView mExamBookView;
+//    private int mExamBookIndex;
+    private OnExamBookClickListener mOnExamBookClickListener;
 
     public static ExamBookFragment newInstance() {
         ExamBookFragment fragment = new ExamBookFragment();
@@ -39,41 +47,47 @@ public class ExamBookFragment extends ExamBaseFragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (mExamModel == null)
-            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "單元測驗");
+    public ExamBookFragment() {
+        // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ExamBookView examBookView = new ExamBookView(getActivity());
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        if (mExamModel == null)
+//            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
+//        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, "單元測驗");
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ArrayList<Book> books = mExamModel.getBooks();
+        if (books == null) return new ErrorView(getActivity()).setErrorMsg("get book failed");
+
         LinkedList<String> bookNames = new LinkedList<>();
-        examBookView.setOnBookItemClickListener(new BookView.OnBookItemClickListener() {
-            @Override
-            public void onBookItemClick(int position) {
-                goExamLessonFragment(position);
-            }
+        for (int i = 0; i < books.size();i++)
+            bookNames.add(books.get(i).getTitle());
 
-            @Override
-            public void onNewItemClick() {
-                //TODO: The function for future use
-            }
-        });
+        if (mExamBookView == null)
+            mExamBookView = new ExamBookView(getActivity());
+        mExamBookView.setOnBookItemClickListener(this);
+        mExamBookView.refreshView(bookNames.size(), bookNames);
+        return mExamBookView;
+    }
 
-        if(books != null)
-            for(int i = 0; i < books.size();i++)
-                bookNames.add(books.get(i).getTitle());
-        else
-            return new ErrorView(getActivity()).setErrorMsg("get book failed");
+    @Override
+    public void onBookItemClick(int position) {
+//        goExamLessonFragment(position);
+        mOnExamBookClickListener.onExamBookClicked(position);
+    }
 
+    @Override
+    public void onNewItemClick() {
+        //TODO: The function for future use
+    }
 
-        examBookView.refreshView(bookNames.size(), bookNames);
-        return examBookView;
+    public void addOnExamBookClickListener(OnExamBookClickListener listener) {
+        mOnExamBookClickListener = listener;
     }
 
     private void goExamLessonFragment(int bookIndex){

@@ -29,9 +29,16 @@ import java.util.LinkedList;
  * Use the {@link VocBookFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VocBookFragment extends VocBaseFragment {
+public class VocBookFragment extends VocBaseFragment implements BookView.OnBookItemClickListener {
+
+    public interface OnBookClickListener {
+        void onBookClicked(int position);
+    }
 
     public static final String TAG = VocBookFragment.class.getSimpleName();
+
+    private VocBookView mVocBookView;
+    private OnBookClickListener mOnBookClickListener;
 
     public static VocBookFragment newInstance() {
         VocBookFragment fragment = new VocBookFragment();
@@ -45,46 +52,42 @@ public class VocBookFragment extends VocBaseFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ArrayList<Book> books = mVocModel.getBooks();
+        if (books == null) {
+            return new ErrorView(getActivity()).setErrorMsg("get book failed");
+        }
 
-        if (mVocModel == null)
-            mVocModel = new VocModel((VLApplication) getActivity().getApplication());
+        LinkedList<String> bookNames = new LinkedList<>();
+        for (Book book : books)
+            bookNames.add(book.getTitle());
+
+        if (mVocBookView == null)
+            mVocBookView = new VocBookView(getActivity());
+        mVocBookView.setOnBookItemClickListener(this);
+        mVocBookView.refreshView(bookNames.size(), bookNames);
+        return mVocBookView;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        VocBookView vocBookView = new VocBookView(getActivity());
-        ArrayList<Book> books = mVocModel.getBooks();
-        LinkedList<String> bookNames = new LinkedList<>();
-        vocBookView.setOnBookItemClickListener(new BookView.OnBookItemClickListener() {
-            @Override
-            public void onBookItemClick(int position) {
-                goVocLessonFragment(position);
-            }
+    public void onBookItemClick(int position) {
+//        goVocLessonFragment(position);
+        mOnBookClickListener.onBookClicked(position);
+    }
 
-            @Override
-            public void onNewItemClick() {
-                //TODO: The function for future use
-                goDialogFragment("");
+    @Override
+    public void onNewItemClick() {
+        //TODO: The function for future use
+//        goDialogFragment("");
+    }
 
-            }
-        });
-
-        if(books != null)
-            for(int i = 0; i < books.size();i++)
-                bookNames.add(books.get(i).getTitle());
-        else
-            return new ErrorView(getActivity()).setErrorMsg("get book failed");
-
-        vocBookView.refreshView(bookNames.size(), bookNames);
-        return vocBookView;
+    public void addOnBookClickListener(OnBookClickListener listener) {
+        mOnBookClickListener = listener;
     }
 
     private void goVocLessonFragment(int bookIndex){
         Bundle args = new Bundle();
-        Log.d(TAG, " bookIndex " +bookIndex);
+//        Log.d(TAG, " bookIndex " +bookIndex);
         args.putInt(VocLessonFragment.BOOK_INDEX_STR, bookIndex);
         ((MainActivity) getActivity()).goFragment(VocLessonFragment.class, args, "VocLessonFragment", "MainFragment");
     }
@@ -94,5 +97,6 @@ public class VocBookFragment extends VocBaseFragment {
         return (VocBookDialogFragment) ((MainActivity) getActivity())
                 .goFragment(VocBookDialogFragment.class, args, "VocBookDialogFragment", "VocBookFragment", MainActivity.FRAGMENT_ANIM.NONE, MainActivity.FRAGMENT_ANIM.NONE);
     }
+
 
 }
