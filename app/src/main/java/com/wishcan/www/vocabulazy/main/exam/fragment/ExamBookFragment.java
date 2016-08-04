@@ -91,8 +91,8 @@ public class ExamBookFragment extends ExamBaseFragment implements BookView.OnBoo
     }
 
     private void goExamLessonFragment(int bookIndex){
-        Bundle args = new Bundle();
-        args.putInt(ExamLessonFragment.BOOK_INDEX_STR, bookIndex);
-        ((MainActivity) getActivity()).goFragment(ExamLessonFragment.class, args, "ExamLessonFragment", "ExamBookFragment");
+//        Bundle args = new Bundle();
+//        args.putInt(ExamLessonFragment.BOOK_INDEX_STR, bookIndex);
+//        ((MainActivity) getActivity()).goFragment(ExamLessonFragment.class, args, "ExamLessonFragment", "ExamBookFragment");
     }
 }

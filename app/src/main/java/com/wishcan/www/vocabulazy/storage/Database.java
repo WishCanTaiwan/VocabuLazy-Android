@@ -269,7 +269,7 @@ public class Database {
         }
 
         T[] tArray = new Gson().fromJson(builder.toString(), classOfT);
-        return new ArrayList<T>(Arrays.asList(tArray));
+        return new ArrayList<>(Arrays.asList(tArray));
     }
 
     private <T> void write(String filename, T[] array) {

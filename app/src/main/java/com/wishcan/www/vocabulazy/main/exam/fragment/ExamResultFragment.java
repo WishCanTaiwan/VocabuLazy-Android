@@ -18,17 +18,23 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamResultView;
  */
 public class ExamResultFragment extends ExamBaseFragment implements ExamResultView.OnTryItemClickListener{
 
-    public static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
-    public static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
+    public interface OnExamTryAgainOrAnotherListener {
+        void onExamTryAgain();
+        void onExamTryAnother();
+    }
+
+//    public static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
+//    public static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
 
     private float mRatio;
     private int mCorrectCount;
 
-    public static ExamResultFragment newInstance(float ratio, int correctCount) {
+    private ExamResultView mExamResultView;
+    private OnExamTryAgainOrAnotherListener mOnExamTryAgainOrAnotherListener;
+
+    public static ExamResultFragment newInstance() {
         ExamResultFragment fragment = new ExamResultFragment();
         Bundle args = new Bundle();
-        args.putFloat(BUNDLE_RATIO_STRING, ratio);
-        args.putInt(BUNDLE_COUNT_STRING, correctCount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,38 +47,48 @@ public class ExamResultFragment extends ExamBaseFragment implements ExamResultVi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mRatio = getArguments().getFloat(BUNDLE_RATIO_STRING);
-            mCorrectCount = getArguments().getInt(BUNDLE_COUNT_STRING);
+//            mRatio = getArguments().getFloat(BUNDLE_RATIO_STRING);
+//            mCorrectCount = getArguments().getInt(BUNDLE_COUNT_STRING);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ExamResultView fragmentView;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        mExamResultView fragmentView;
 
         // Inflate the layout for this fragment
-        fragmentView = new ExamResultView(getActivity(), null, mCorrectCount, mRatio);
-        fragmentView.setOnTryItemClickListener(this);
+        if (mExamResultView == null)
+            mExamResultView = new ExamResultView(getActivity(), null, mCorrectCount, mRatio);
+        mExamResultView.setOnTryItemClickListener(this);
 
-        return fragmentView;
+        return mExamResultView;
     }
 
     /**--------------- Implements ExamView.OnTryItemClickListener ---------------------**/
     @Override
     public void onTryOtherClick() {
-        getActivity().onBackPressed();
-        getActivity().onBackPressed();
+        mOnExamTryAgainOrAnotherListener.onExamTryAnother();
+//        getActivity().onBackPressed();
+//        getActivity().onBackPressed();
     }
 
     @Override
     public void onTryAgainClick() {
-        ExamResultFragment fragment = this;   // This is used for removing the fragment self
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        transaction.remove(fragment);
-        transaction.commit();
-        ((ExamFragment) getFragmentManager().findFragmentByTag("ExamFragment")).restartExam();
+        mOnExamTryAgainOrAnotherListener.onExamTryAgain();
+//        ExamResultFragment fragment = this;   // This is used for removing the fragment self0
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        transaction.setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+//        transaction.remove(fragment);
+//        transaction.commit();
+//        ((ExamFragment) getFragmentManager().findFragmentByTag("ExamFragment")).restartExam();
     }
 
+    public void setResult(float ratio, int count) {
+        mRatio = ratio;
+        mCorrectCount = count;
+    }
+
+    public void addOnExamTryAgainOrAnotherListener(OnExamTryAgainOrAnotherListener listener) {
+        mOnExamTryAgainOrAnotherListener = listener;
+    }
 }

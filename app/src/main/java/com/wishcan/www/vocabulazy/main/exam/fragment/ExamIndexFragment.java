@@ -59,13 +59,13 @@ public class ExamIndexFragment extends ExamBaseFragment implements ExamIndexView
         mOnExamIndexClickListener = listener;
     }
 
-    private void goExamBookFragment(){
-        Bundle args = new Bundle();
-        ((MainActivity) getActivity()).goFragment(ExamBookFragment.class, args, "ExamBookFragment", "ExamIndexFragment");
-    }
+//    private void goExamBookFragment(){
+//        Bundle args = new Bundle();
+//        ((MainActivity) getActivity()).goFragment(ExamBookFragment.class, args, "ExamBookFragment", "ExamIndexFragment");
+//    }
 
-    private void goExamNoteFragment(){
-        Bundle args = new Bundle();
-        ((MainActivity) getActivity()).goFragment(ExamNoteFragment.class, args, "ExamNoteFragment", "ExamIndexFragment");
-    }
+//    private void goExamNoteFragment(){
+//        Bundle args = new Bundle();
+//        ((MainActivity) getActivity()).goFragment(ExamNoteFragment.class, args, "ExamNoteFragment", "ExamIndexFragment");
+//    }
 }

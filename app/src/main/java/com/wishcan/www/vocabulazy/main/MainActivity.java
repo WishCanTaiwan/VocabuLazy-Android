@@ -15,7 +15,9 @@ import android.widget.TextView;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.ga.GAFragment;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamLessonFragment;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamResultFragment;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
@@ -141,12 +143,12 @@ public class MainActivity extends BaseActivity {
             // fetching player information from database.
             int bookIndex = wPreferences.getBookIndex();
             int lessonIndex = wPreferences.getLessonIndex();
-            if(bookIndex != 1359 && lessonIndex != 1359) {
-                Bundle args = new Bundle();
-                args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
-                args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
-                goFragment(PlayerFragment.class, args, "PlayerFragment", "MainFragment");
-            }
+//            if(bookIndex != 1359 && lessonIndex != 1359) {
+//                Bundle args = new Bundle();
+//                args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
+//                args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
+//                goFragment(PlayerFragment.class, args, "PlayerFragment", "MainFragment");
+//            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -186,6 +188,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBookClicked(int position) {
         super.onBookClicked(position);
+        mBookIndex = position;
         if (mVocLessonFragment == null) {
             mVocLessonFragment = VocLessonFragment.newInstance();
         }
@@ -195,6 +198,12 @@ public class MainActivity extends BaseActivity {
         goFragment(mVocLessonFragment, null, "VocLessonFragment", str);
 //        switchActionBarStr(FRAGMENT_FLOW.GO, str);
         setActionBarTitle(str);
+    }
+
+    @Override
+    public void onLessonClicked(int position) {
+        super.onLessonClicked(position);
+        mLessonIndex = position;
     }
 
     @Override
@@ -216,6 +225,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onExamBookClicked(int position) {
         super.onExamBookClicked(position);
+        mExamBookIndex = position;
         if (mExamLessonFragment == null) {
             mExamLessonFragment = ExamLessonFragment.newInstance();
         }
@@ -224,6 +234,68 @@ public class MainActivity extends BaseActivity {
         String str = "Test Book " + (position+1);
         goFragment(mExamLessonFragment, null, "ExamLessonFragment", str);
         setActionBarTitle(str);
+    }
+
+    @Override
+    public void onExamLessonClicked(int position) {
+        super.onExamLessonClicked(position);
+        mExamLessonIndex = position;
+        if (mExamFragment == null) {
+            mExamFragment = ExamFragment.newInstance();
+        }
+        mExamFragment.setExam(mExamBookIndex, mExamLessonIndex);
+
+        String str = "Test Book " + (mBookIndex+1) + " Lesson " + (position+1);
+        goFragment(mExamFragment, null, "ExamFragment", str);
+        setActionBarTitle(str);
+    }
+
+    @Override
+    public void onExamNoteClicked(int position) {
+        super.onExamNoteClicked(position);
+        mExamBookIndex = -1;
+        mExamLessonIndex = position;
+        if (mExamFragment == null) {
+            mExamFragment = ExamFragment.newInstance();
+        }
+        mExamFragment.setExam(mExamBookIndex, mExamLessonIndex);
+
+        String str = "Test Note " + (position+1);
+        goFragment(mExamFragment, null, "ExamFragment", str);
+        setActionBarTitle(str);
+    }
+
+    @Override
+    public void onExamCompleted(float correctRatio, int correctCount) {
+        super.onExamCompleted(correctRatio, correctCount);
+        if (mExamResultFragment == null) {
+            mExamResultFragment = ExamResultFragment.newInstance();
+        }
+        mExamResultFragment.setResult(correctRatio, correctCount);
+
+        String str = "Exam Completed";
+        goFragment(mExamResultFragment, null, "ExamResultFragment", str);
+        setActionBarTitle(str);
+    }
+
+    @Override
+    public void onExamTryAgain() {
+        super.onExamTryAgain();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+        transaction.remove(mExamResultFragment);
+        transaction.commit();
+
+        mExamFragment.restartExam();
+        setActionBarTitle(getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount()-1).getName());
+    }
+
+    @Override
+    public void onExamTryAnother() {
+        super.onExamTryAnother();
+        getSupportFragmentManager().popBackStack();
+        getSupportFragmentManager().popBackStack();
+        setActionBarTitle(getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount()-1).getName());
     }
 
     public void goFragment(Fragment fragment, Bundle args, String newTag, String backStackTag) {
@@ -272,9 +344,9 @@ public class MainActivity extends BaseActivity {
         return f;
     }
 
-    public Fragment goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
-        return goFragment(cls, bundle, newTag, backStackTag, FRAGMENT_ANIM.DEFAULT, FRAGMENT_ANIM.DEFAULT);
-    }
+//    public Fragment goFragment(Class<?> cls, Bundle bundle, String newTag, String backStackTag) {
+//        return goFragment(cls, bundle, newTag, backStackTag, FRAGMENT_ANIM.DEFAULT, FRAGMENT_ANIM.DEFAULT);
+//    }
 
     public void switchActionBarStr(FRAGMENT_FLOW flow, String newActionBarStr) {
         Log.d(TAG, "notifyFragmentChange " + newActionBarStr);

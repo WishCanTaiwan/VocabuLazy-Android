@@ -5,18 +5,36 @@ import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamBookFragment;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamIndexFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamLessonFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamNoteFragment;
+import com.wishcan.www.vocabulazy.main.exam.fragment.ExamResultFragment;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.main.info.fragment.InfoFragment;
 import com.wishcan.www.vocabulazy.main.usr.fragment.UsrNoteFragment;
 import com.wishcan.www.vocabulazy.main.voc.fragment.VocBookFragment;
 import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 
-public class BaseActivity extends FragmentActivity implements FragmentManager.OnBackStackChangedListener, MainFragment.OnTabSelectListener, VocBookFragment.OnBookClickListener, ExamIndexFragment.OnExamIndexClickListener, VocLessonFragment.OnLessonClickListener, ExamBookFragment.OnExamBookClickListener, ExamLessonFragment.OnExamLessonClickListener, ExamNoteFragment.OnExamNoteClickListener {
+public class BaseActivity extends FragmentActivity
+        implements  FragmentManager.OnBackStackChangedListener,
+                    MainFragment.OnTabSelectListener,
+                    VocBookFragment.OnBookClickListener,
+                    ExamIndexFragment.OnExamIndexClickListener,
+                    VocLessonFragment.OnLessonClickListener,
+                    ExamBookFragment.OnExamBookClickListener,
+                    ExamLessonFragment.OnExamLessonClickListener,
+                    ExamNoteFragment.OnExamNoteClickListener,
+                    ExamFragment.OnExamCompleteListener,
+                    ExamResultFragment.OnExamTryAgainOrAnotherListener {
 
     public static final String TAG = "BaseActivity";
+
+    protected int mBookIndex;
+    protected int mLessonIndex;
+
+    protected int mExamBookIndex;
+    protected int mExamLessonIndex;
 
     protected VocBookFragment mVocBookFragment;
     protected UsrNoteFragment mUsrNoteFragment;
@@ -27,6 +45,8 @@ public class BaseActivity extends FragmentActivity implements FragmentManager.On
     protected ExamBookFragment mExamBookFragment;
     protected ExamLessonFragment mExamLessonFragment;
     protected ExamNoteFragment mExamNoteFragment;
+    protected ExamFragment mExamFragment;
+    protected ExamResultFragment mExamResultFragment;
 
     protected void initFragments() {
         if (mVocBookFragment == null) {
@@ -65,6 +85,16 @@ public class BaseActivity extends FragmentActivity implements FragmentManager.On
         if (mExamNoteFragment == null) {
             mExamNoteFragment = ExamNoteFragment.newInstance();
             mExamNoteFragment.addOnExamNoteClickListener(this);
+        }
+
+        if (mExamFragment == null) {
+            mExamFragment = ExamFragment.newInstance();
+            mExamFragment.addOnExamCompleteListener(this);
+        }
+
+        if (mExamResultFragment == null) {
+            mExamResultFragment = ExamResultFragment.newInstance();
+            mExamResultFragment.addOnExamTryAgainOrAnotherListener(this);
         }
     }
 
@@ -111,5 +141,20 @@ public class BaseActivity extends FragmentActivity implements FragmentManager.On
     @Override
     public void onExamNoteClicked(int position) {
         Log.d(TAG, "exam note " + position + " clicked");
+    }
+
+    @Override
+    public void onExamCompleted(float correctRatio, int correctCount) {
+        Log.d(TAG, "exam completed");
+    }
+
+    @Override
+    public void onExamTryAgain() {
+        Log.d(TAG, "exam try again");
+    }
+
+    @Override
+    public void onExamTryAnother() {
+        Log.d(TAG, "exam try another");
     }
 }

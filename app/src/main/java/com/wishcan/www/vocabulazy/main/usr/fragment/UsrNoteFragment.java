@@ -97,9 +97,9 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
             case NoteView.ICON_PLAY:
                 Log.d(TAG, "wDatabase.getNote @" + position);
                 int noteSize = mUsrNoteModel.getNoteSize(position);
-                if (noteSize > 0) {
-                    goPlayerFragment(-1, position);
-                }
+//                if (noteSize > 0) {
+//                    goPlayerFragment(-1, position);
+//                }
                 break;
             case NoteView.ICON_ETC:
                 break;
@@ -157,12 +157,12 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
 
-    private void goPlayerFragment(int bookIndex, int lessonIndex){
-        Bundle args = new Bundle();
-        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
-        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
-        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "UsrNoteFragment");
-    }
+//    private void goPlayerFragment(int bookIndex, int lessonIndex){
+//        Bundle args = new Bundle();
+//        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
+//        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
+//        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "UsrNoteFragment");
+//    }
 
     private UsrNoteDialogFragment goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s resId, String inputStr) {
         Bundle args = new Bundle();

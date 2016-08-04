@@ -71,12 +71,12 @@ public class ExamNoteFragment extends ExamBaseFragment implements ExamNoteView.O
         mOnExamNoteClickListener = listener;
     }
 
-    private void goExamFragment(int noteIndex){
-        Bundle args = new Bundle();
-        args.putInt(ExamFragment.ARG_BOOK_INDEX, -1);
-        args.putInt(ExamFragment.ARG_LESSON_INDEX, noteIndex);
-        ((MainActivity) getActivity()).goFragment(ExamFragment.class, args, "ExamFragment", "ExamLessonFragment");
-    }
+//    private void goExamFragment(int noteIndex){
+//        Bundle args = new Bundle();
+//        args.putInt(ExamFragment.ARG_BOOK_INDEX, -1);
+//        args.putInt(ExamFragment.ARG_LESSON_INDEX, noteIndex);
+//        ((MainActivity) getActivity()).goFragment(ExamFragment.class, args, "ExamFragment", "ExamLessonFragment");
+//    }
 
     @Override
     public void onListIconClick(int iconId, int position, View v) {

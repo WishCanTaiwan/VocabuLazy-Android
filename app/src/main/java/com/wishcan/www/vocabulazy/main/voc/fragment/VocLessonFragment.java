@@ -112,12 +112,12 @@ public class VocLessonFragment extends VocBaseFragment implements VocLessonView.
         mLessonClickListener = listener;
     }
 
-    private void goPlayerFragment(int bookIndex, int lessonIndex){
-        Bundle args = new Bundle();
-        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
-        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
-        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "VocLessonFragment");
-    }
+//    private void goPlayerFragment(int bookIndex, int lessonIndex){
+//        Bundle args = new Bundle();
+//        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
+//        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
+//        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "VocLessonFragment");
+//    }
 
     @Override
     public void onLessonClick(int lesson) {

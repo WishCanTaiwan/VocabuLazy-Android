@@ -84,12 +84,12 @@ public class ExamLessonFragment extends ExamBaseFragment implements LessonView.O
         mBookIndex = bookIndex;
     }
 
-    private void goExamFragment(int lessonIndex){
-        Bundle args = new Bundle();
-        args.putInt(ExamFragment.ARG_BOOK_INDEX, mBookIndex);
-        args.putInt(ExamFragment.ARG_LESSON_INDEX, lessonIndex);
-        ((MainActivity) getActivity()).goFragment(ExamFragment.class, args, "ExamFragment", "ExamLessonFragment");
-    }
+//    private void goExamFragment(int lessonIndex){
+//        Bundle args = new Bundle();
+//        args.putInt(ExamFragment.ARG_BOOK_INDEX, mBookIndex);
+//        args.putInt(ExamFragment.ARG_LESSON_INDEX, lessonIndex);
+//        ((MainActivity) getActivity()).goFragment(ExamFragment.class, args, "ExamFragment", "ExamLessonFragment");
+//    }
 
     @Override
     public void onLessonClick(int lesson) {
