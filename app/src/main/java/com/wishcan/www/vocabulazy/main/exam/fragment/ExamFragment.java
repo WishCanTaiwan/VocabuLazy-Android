@@ -27,8 +27,6 @@ public class ExamFragment extends ExamBaseFragment {
         void onExamCompleted(float correctRatio, int correctCount);
     }
 
-    public static final String TAG = "ExamFragment";
-
     public static final String ARG_BOOK_INDEX = "bookIndex";
     public static final String ARG_LESSON_INDEX = "lessonIndex";
 

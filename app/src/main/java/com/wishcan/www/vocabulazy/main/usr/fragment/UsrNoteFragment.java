@@ -37,7 +37,6 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
         void onNoteClicked(int position);
     }
 
-    public static final String TAG = UsrNoteFragment.class.getSimpleName();
     public static final String TAG = "LIST";
     public static String M_TAG;
 

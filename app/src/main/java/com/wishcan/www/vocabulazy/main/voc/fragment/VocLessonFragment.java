@@ -34,7 +34,6 @@ public class VocLessonFragment extends VocBaseFragment implements VocLessonView.
         void onLessonClicked(int position);
     }
 
-    public static final String TAG = VocLessonFragment.class.getSimpleName();
     public static final String TAG = "UNIT";
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
 

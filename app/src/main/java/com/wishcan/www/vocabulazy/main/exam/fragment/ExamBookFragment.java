@@ -35,8 +35,6 @@ public class ExamBookFragment extends ExamBaseFragment implements BookView.OnBoo
         void onExamBookClicked(int position);
     }
 
-    public static final String TAG = "ExamBookFragment";
-
     public static final String TAG = "E.HOME";
 
     private static final int TITLE_RES_ID = R.string.fragment_exam_book_title;
