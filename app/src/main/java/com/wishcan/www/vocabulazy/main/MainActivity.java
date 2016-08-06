@@ -18,7 +18,6 @@ import com.wishcan.www.vocabulazy.ga.GAFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamLessonFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamResultFragment;
-import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
@@ -89,7 +88,9 @@ public class MainActivity extends BaseActivity {
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
             fragmentTransaction.add(VIEW_MAIN_RES_ID, mMainFragment, "MainFragment");
             fragmentTransaction.commit();
+            mCurrentFragment = mMainFragment;
         }
+        addFragmentsToBackStack(R.id.activity_main_container);
         startAudioService();
     }
 
@@ -170,6 +171,13 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.remove(mCurrentFragment);
+//        transaction.commit();
+
+        // update
+//        mCurrentFragment = getSupportFragmentManager().
+
 //        switchActionBarStr(FRAGMENT_FLOW.BACK, null);
     }
 
@@ -193,10 +201,13 @@ public class MainActivity extends BaseActivity {
             mVocLessonFragment = VocLessonFragment.newInstance();
         }
         mVocLessonFragment.setBook(position);
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.show(mVocLessonFragment);
+//        transaction.commit();
 
+//        mCurrentFragment = mVocLessonFragment;
         String str = "Book " + (position+1);
         goFragment(mVocLessonFragment, null, "VocLessonFragment", str);
-//        switchActionBarStr(FRAGMENT_FLOW.GO, str);
         setActionBarTitle(str);
     }
 
@@ -204,11 +215,27 @@ public class MainActivity extends BaseActivity {
     public void onLessonClicked(int position) {
         super.onLessonClicked(position);
         mLessonIndex = position;
+        mPlayerFragment.setBookAndLesson(mBookIndex, mLessonIndex);
+        String str = "Book " + (mBookIndex+1) + " Lesson " + (mLessonIndex+1);
+        goFragment(mPlayerFragment, null, "PlayerFragment", str);
+        setActionBarTitle(str);
+    }
+
+    @Override
+    public void onNoteClicked(int position) {
+        super.onNoteClicked(position);
+        mBookIndex = -1;
+        mLessonIndex = position;
+        mPlayerFragment.setBookAndLesson(mBookIndex, mLessonIndex);
+        String str = "Note " + (mLessonIndex+1);
+        goFragment(mPlayerFragment, null, "PlayerFragment", str);
+        setActionBarTitle(str);
     }
 
     @Override
     public void onExamIndexBookClicked() {
         super.onExamIndexBookClicked();
+//        mCurrentFragment = mExamBookFragment;
         String str = getString(R.string.fragment_exam_book_title);
         goFragment(mExamBookFragment, null, "ExamBookFragment", str);
         setActionBarTitle(str);
@@ -217,6 +244,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onExamIndexNoteClicked() {
         super.onExamIndexNoteClicked();
+//        mCurrentFragment = mExamNoteFragment;
         String str = getString(R.string.fragment_exam_note_title);
         goFragment(mExamNoteFragment, null, "ExamNoteFragment", str);
         setActionBarTitle(str);
@@ -231,6 +259,7 @@ public class MainActivity extends BaseActivity {
         }
         mExamLessonFragment.setExamBook(position);
 
+//        mCurrentFragment = mExamLessonFragment;
         String str = "Test Book " + (position+1);
         goFragment(mExamLessonFragment, null, "ExamLessonFragment", str);
         setActionBarTitle(str);
@@ -245,6 +274,7 @@ public class MainActivity extends BaseActivity {
         }
         mExamFragment.setExam(mExamBookIndex, mExamLessonIndex);
 
+//        mCurrentFragment = mExamFragment;
         String str = "Test Book " + (mBookIndex+1) + " Lesson " + (position+1);
         goFragment(mExamFragment, null, "ExamFragment", str);
         setActionBarTitle(str);
@@ -260,6 +290,7 @@ public class MainActivity extends BaseActivity {
         }
         mExamFragment.setExam(mExamBookIndex, mExamLessonIndex);
 
+//        mCurrentFragment = mExamFragment;
         String str = "Test Note " + (position+1);
         goFragment(mExamFragment, null, "ExamFragment", str);
         setActionBarTitle(str);
@@ -273,6 +304,7 @@ public class MainActivity extends BaseActivity {
         }
         mExamResultFragment.setResult(correctRatio, correctCount);
 
+//        mCurrentFragment = mExamResultFragment;
         String str = "Exam Completed";
         goFragment(mExamResultFragment, null, "ExamResultFragment", str);
         setActionBarTitle(str);
@@ -286,6 +318,7 @@ public class MainActivity extends BaseActivity {
         transaction.remove(mExamResultFragment);
         transaction.commit();
 
+//        mCurrentFragment = mVocLessonFragment;
         mExamFragment.restartExam();
         setActionBarTitle(getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount()-1).getName());
     }
@@ -296,6 +329,13 @@ public class MainActivity extends BaseActivity {
         getSupportFragmentManager().popBackStack();
         getSupportFragmentManager().popBackStack();
         setActionBarTitle(getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount()-1).getName());
+    }
+
+    @Override
+    public void onLessonChange(int lesson) {
+        super.onLessonChange(lesson);
+        mLessonIndex = lesson;
+        setActionBarTitle("Book " + (mBookIndex+1) + " Lesson " + (mLessonIndex+1));
     }
 
     public void goFragment(Fragment fragment, Bundle args, String newTag, String backStackTag) {
@@ -398,7 +438,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setActionBarTitle(String titleStr) {
-        if(mActionBarTitleTextView == null) {
+        if (mActionBarTitleTextView == null) {
             mActionBar = getActionBar();
             if (mActionBar != null && mActionBar.getCustomView() != null)
                 mActionBarTitleTextView = (TextView) mActionBar.getCustomView().findViewById(TITLE_RES_ID);

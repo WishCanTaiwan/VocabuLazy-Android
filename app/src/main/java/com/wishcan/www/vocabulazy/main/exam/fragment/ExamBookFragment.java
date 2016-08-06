@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ public class ExamBookFragment extends ExamBaseFragment implements BookView.OnBoo
         void onExamBookClicked(int position);
     }
 
+    public static final String TAG = "ExamBookFragment";
+
     private static final int TITLE_RES_ID = R.string.fragment_exam_book_title;
 
     private ExamBookView mExamBookView;
@@ -53,6 +56,7 @@ public class ExamBookFragment extends ExamBaseFragment implements BookView.OnBoo
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
 //        if (mExamModel == null)
 //            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
@@ -61,6 +65,7 @@ public class ExamBookFragment extends ExamBaseFragment implements BookView.OnBoo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "Create View");
         ArrayList<Book> books = mExamModel.getBooks();
         if (books == null) return new ErrorView(getActivity()).setErrorMsg("get book failed");
 
@@ -73,6 +78,24 @@ public class ExamBookFragment extends ExamBaseFragment implements BookView.OnBoo
         mExamBookView.setOnBookItemClickListener(this);
         mExamBookView.refreshView(bookNames.size(), bookNames);
         return mExamBookView;
+    }
+
+    @Override
+    public void onResume() {
+        Log.d(TAG, "Resume");
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "Pause");
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "Destroy");
+        super.onDestroy();
     }
 
     @Override

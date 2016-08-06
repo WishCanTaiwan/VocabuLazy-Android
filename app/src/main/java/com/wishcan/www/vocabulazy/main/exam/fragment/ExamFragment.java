@@ -50,6 +50,7 @@ public class ExamFragment extends ExamBaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
 //        if (getArguments() != null) {
 //            mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
@@ -61,6 +62,7 @@ public class ExamFragment extends ExamBaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "Create View");
 
         if (mExamView == null)
             mExamView = new ExamView(getActivity());
@@ -85,6 +87,7 @@ public class ExamFragment extends ExamBaseFragment {
 
     @Override
     public void onResume() {
+        Log.d(TAG, "Resume");
         super.onResume();
         mExamView.postDelayed(new Runnable() {
             @Override
@@ -92,6 +95,18 @@ public class ExamFragment extends ExamBaseFragment {
                 mExamView.startPopOutSequentially();
             }
         }, 600);
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "Pause");
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "Destroy");
+        super.onDestroy();
     }
 
     public void setExam(int bookIndex, int lessonIndex) {

@@ -4,6 +4,7 @@ package com.wishcan.www.vocabulazy.main.exam.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class ExamResultFragment extends ExamBaseFragment implements ExamResultVi
         void onExamTryAgain();
         void onExamTryAnother();
     }
+
+    public static final String TAG = "ExamResultFragment";
 
 //    public static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
 //    public static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
@@ -45,6 +48,7 @@ public class ExamResultFragment extends ExamBaseFragment implements ExamResultVi
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
 //            mRatio = getArguments().getFloat(BUNDLE_RATIO_STRING);
@@ -53,7 +57,26 @@ public class ExamResultFragment extends ExamBaseFragment implements ExamResultVi
     }
 
     @Override
+    public void onResume() {
+        Log.d(TAG, "Resume");
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "Pause");
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "Destroy");
+        super.onDestroy();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "Create View");
 //        mExamResultView fragmentView;
 
         // Inflate the layout for this fragment

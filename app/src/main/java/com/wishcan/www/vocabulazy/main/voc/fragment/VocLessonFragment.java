@@ -58,6 +58,7 @@ public class VocLessonFragment extends VocBaseFragment implements VocLessonView.
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
 //        Log.d(TAG, "voc model [" + mVocModel.toString() + "]");
         if (mVocModel == null)
@@ -71,6 +72,7 @@ public class VocLessonFragment extends VocBaseFragment implements VocLessonView.
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "Create View");
         // if data model is null, create one
         if (mVocModel == null)
             mVocModel = new VocModel((VLApplication) getActivity().getApplication());
@@ -102,6 +104,24 @@ public class VocLessonFragment extends VocBaseFragment implements VocLessonView.
         mLessonView.setOnLessonClickListener(this);
         mLessonView.refreshView(mLessonIntegers.size(), mLessonIntegers);
         return mLessonView;
+    }
+
+    @Override
+    public void onResume() {
+        Log.d(TAG, "Resume");
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "Pause");
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "Destroy");
+        super.onDestroy();
     }
 
     public void setBook(int bookIndex) {

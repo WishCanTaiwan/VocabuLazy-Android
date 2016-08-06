@@ -2,8 +2,10 @@ package com.wishcan.www.vocabulazy.main;
 
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
+import com.wishcan.www.vocabulazy.ga.GAFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamBookFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamIndexFragment;
@@ -12,6 +14,7 @@ import com.wishcan.www.vocabulazy.main.exam.fragment.ExamNoteFragment;
 import com.wishcan.www.vocabulazy.main.exam.fragment.ExamResultFragment;
 import com.wishcan.www.vocabulazy.main.fragment.MainFragment;
 import com.wishcan.www.vocabulazy.main.info.fragment.InfoFragment;
+import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.usr.fragment.UsrNoteFragment;
 import com.wishcan.www.vocabulazy.main.voc.fragment.VocBookFragment;
 import com.wishcan.www.vocabulazy.main.voc.fragment.VocLessonFragment;
@@ -20,13 +23,15 @@ public class BaseActivity extends FragmentActivity
         implements  FragmentManager.OnBackStackChangedListener,
                     MainFragment.OnTabSelectListener,
                     VocBookFragment.OnBookClickListener,
+                    UsrNoteFragment.OnNoteClickListener,
                     ExamIndexFragment.OnExamIndexClickListener,
                     VocLessonFragment.OnLessonClickListener,
                     ExamBookFragment.OnExamBookClickListener,
                     ExamLessonFragment.OnExamLessonClickListener,
                     ExamNoteFragment.OnExamNoteClickListener,
                     ExamFragment.OnExamCompleteListener,
-                    ExamResultFragment.OnExamTryAgainOrAnotherListener {
+                    ExamResultFragment.OnExamTryAgainOrAnotherListener,
+                    PlayerFragment.OnPlayerLessonChangeListener {
 
     public static final String TAG = "BaseActivity";
 
@@ -35,6 +40,8 @@ public class BaseActivity extends FragmentActivity
 
     protected int mExamBookIndex;
     protected int mExamLessonIndex;
+
+    protected GAFragment mCurrentFragment;
 
     protected VocBookFragment mVocBookFragment;
     protected UsrNoteFragment mUsrNoteFragment;
@@ -48,6 +55,8 @@ public class BaseActivity extends FragmentActivity
     protected ExamFragment mExamFragment;
     protected ExamResultFragment mExamResultFragment;
 
+    protected PlayerFragment mPlayerFragment;
+
     protected void initFragments() {
         if (mVocBookFragment == null) {
             mVocBookFragment = VocBookFragment.newInstance();
@@ -56,6 +65,7 @@ public class BaseActivity extends FragmentActivity
 
         if (mUsrNoteFragment == null) {
             mUsrNoteFragment = UsrNoteFragment.newInstance();
+            mUsrNoteFragment.addOnNoteClickListener(this);
         }
 
         if (mExamIndexFragment == null) {
@@ -96,6 +106,34 @@ public class BaseActivity extends FragmentActivity
             mExamResultFragment = ExamResultFragment.newInstance();
             mExamResultFragment.addOnExamTryAgainOrAnotherListener(this);
         }
+
+        if (mPlayerFragment == null) {
+            mPlayerFragment = PlayerFragment.newInstance();
+            mPlayerFragment.addOnPlayerLessonChangeListener(this);
+        }
+    }
+
+    protected void addFragmentsToBackStack(int rid_container) {
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.add(rid_container, mVocLessonFragment, "VocLessonFragment");
+//        fragmentTransaction.hide(mVocLessonFragment);
+////        fragmentTransaction.addToBackStack("VocLessonFragment");
+//        fragmentTransaction.add(rid_container, mExamBookFragment, "ExamBookFragment");
+//        fragmentTransaction.hide(mExamBookFragment);
+////        fragmentTransaction.addToBackStack("ExamBookFragment");
+//        fragmentTransaction.add(rid_container, mExamLessonFragment, "ExamLessonFragment");
+//        fragmentTransaction.hide(mExamLessonFragment);
+////        fragmentTransaction.addToBackStack("ExamLessonFragment");
+//        fragmentTransaction.add(rid_container, mExamNoteFragment, "ExamNoteFragment");
+//        fragmentTransaction.hide(mExamNoteFragment);
+////        fragmentTransaction.addToBackStack("ExamNoteFragment");
+//        fragmentTransaction.add(rid_container, mExamFragment, "ExamFragment");
+//        fragmentTransaction.hide(mExamFragment);
+////        fragmentTransaction.addToBackStack("ExamFragment");
+//        fragmentTransaction.add(rid_container, mExamResultFragment, "ExamResultFragment");
+//        fragmentTransaction.hide(mExamResultFragment);
+////        fragmentTransaction.addToBackStack("ExamResultFragment");
+//        fragmentTransaction.commit();
     }
 
     @Override
@@ -116,6 +154,11 @@ public class BaseActivity extends FragmentActivity
     @Override
     public void onLessonClicked(int position) {
         Log.d(TAG, "lesson " + position + " clicked");
+    }
+
+    @Override
+    public void onNoteClicked(int position) {
+        Log.d(TAG, "note " + position + " clicked");
     }
 
     @Override
@@ -156,5 +199,10 @@ public class BaseActivity extends FragmentActivity
     @Override
     public void onExamTryAnother() {
         Log.d(TAG, "exam try another");
+    }
+
+    @Override
+    public void onLessonChange(int lesson) {
+        Log.d(TAG, "change to lesson " + lesson);
     }
 }

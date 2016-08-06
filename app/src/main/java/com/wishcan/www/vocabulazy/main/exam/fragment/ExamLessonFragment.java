@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ public class ExamLessonFragment extends ExamBaseFragment implements LessonView.O
     public interface OnExamLessonClickListener {
         void onExamLessonClicked(int position);
     }
+
+    public static final String TAG = "ExamLessonFragment";
 
     public static final String BOOK_INDEX_STR = "BOOK_INDEX_STR";
 
@@ -50,6 +53,7 @@ public class ExamLessonFragment extends ExamBaseFragment implements LessonView.O
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
 //        if (mExamModel == null)
 //            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
@@ -60,6 +64,7 @@ public class ExamLessonFragment extends ExamBaseFragment implements LessonView.O
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "Create View");
         if (mExamModel == null) mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
         ArrayList<Lesson> lessons = mExamModel.getLessons(mBookIndex);
         if(lessons == null)
@@ -74,6 +79,24 @@ public class ExamLessonFragment extends ExamBaseFragment implements LessonView.O
         mExamLessonView.setOnLessonClickListener(this);
         mExamLessonView.refreshView(lessonIntegers.size(), lessonIntegers);
         return mExamLessonView;
+    }
+
+    @Override
+    public void onResume() {
+        Log.d(TAG, "Resume");
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "Pause");
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "Destroy");
+        super.onDestroy();
     }
 
     public void addOnExamLessonClickListener(OnExamLessonClickListener listener) {

@@ -33,7 +33,7 @@ public class Logger {
     }
 
     public static void d(String TAG, String message) {
-        Log.d(TAG, message);
+//        Log.d(TAG, message);
         mLogBuffer.put(TAG, message);
     }
 
