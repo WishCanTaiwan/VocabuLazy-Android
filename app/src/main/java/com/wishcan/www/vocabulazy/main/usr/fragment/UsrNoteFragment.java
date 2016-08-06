@@ -33,13 +33,26 @@ import java.util.LinkedList;
 public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.OnListIconClickListener,
                                                          DialogFragment.OnDialogFinishListener<String>{
 
+    public interface OnNoteClickListener {
+        void onNoteClicked(int position);
+    }
+
+    public static final String TAG = UsrNoteFragment.class.getSimpleName();
     public static final String TAG = "LIST";
     public static String M_TAG;
 
     private UsrNoteModel mUsrNoteModel;
     private UsrNoteView mUsrNoteView;
+    private OnNoteClickListener mOnNoteClickListener;
     private int mIconId;        // used for identify either Add or Delete action should be executed
     private int mPressedPosition;
+
+    public static UsrNoteFragment newInstance() {
+        UsrNoteFragment fragment = new UsrNoteFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     public UsrNoteFragment() {
         // Required empty public constructor
@@ -60,8 +73,7 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mUsrNoteView = new UsrNoteView(getActivity());
         LinkedList<String> dataList = new LinkedList<>();
         ArrayList<Lesson> notes = mUsrNoteModel.getNotes();
@@ -79,11 +91,6 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
     }
 
     @Override
-    protected String getNameAsGaLabel() {
-        return TAG;
-    }
-
-    @Override
     public void onListIconClick(int iconId, int position, View v) {
         DialogFragment f = null;
         ArrayList<Lesson> notes = mUsrNoteModel.getNotes();
@@ -93,9 +100,11 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
 
         switch (iconId) {
             case NoteView.ICON_PLAY:
+                Log.d(TAG, "wDatabase.getNote @" + position);
                 int noteSize = mUsrNoteModel.getNoteSize(position);
                 if (noteSize > 0) {
-                    goPlayerFragment(-1, position);
+                    mOnNoteClickListener.onNoteClicked(position);
+//                    goPlayerFragment(-1, position);
                 }
                 break;
             case NoteView.ICON_ETC:
@@ -141,6 +150,10 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
 
+    public void addOnNoteClickListener(OnNoteClickListener listener) {
+        mOnNoteClickListener = listener;
+    }
+
     private void reload() {
         final ArrayList<Lesson> notes = mUsrNoteModel.getNotes();
         LinkedList<String> dataList = new LinkedList<>();
@@ -154,12 +167,12 @@ public class UsrNoteFragment extends GAUsrNoteFragment implements UsrNoteView.On
         mUsrNoteView.refreshView(notes.size(), dataList);
     }
 
-    private void goPlayerFragment(int bookIndex, int lessonIndex){
-        Bundle args = new Bundle();
-        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
-        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
-        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "UsrNoteFragment");
-    }
+//    private void goPlayerFragment(int bookIndex, int lessonIndex){
+//        Bundle args = new Bundle();
+//        args.putInt(PlayerFragment.BOOK_INDEX_STR, bookIndex);
+//        args.putInt(PlayerFragment.LESSON_INDEX_STR, lessonIndex);
+//        ((MainActivity) getActivity()).goFragment(PlayerFragment.class, args, "PlayerFragment", "UsrNoteFragment");
+//    }
 
     private UsrNoteDialogFragment goDialogFragment(UsrNoteDialogView.DIALOG_RES_ID_s resId, String inputStr) {
         Bundle args = new Bundle();

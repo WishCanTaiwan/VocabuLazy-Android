@@ -1,57 +1,57 @@
 package com.wishcan.www.vocabulazy.main.fragment;
 
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GAFragment;
 import com.wishcan.www.vocabulazy.ga.GAMainFragment;
 import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.main.view.MainView;
+import com.wishcan.www.vocabulazy.widget.CustomFragmentPagerAdapter;
+import com.wishcan.www.vocabulazy.widget.TabView;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends GAMainFragment implements MainView.OnTabChangeListener {
+public class MainFragment extends GAMainFragment implements TabView.OnTabChangeListener {
+
+    public interface OnTabSelectListener {
+        void onTabSelected(int position);
+    }
 
     public static final String TAG = "TAB_FRAME";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final int VIEW_RES_ID = R.layout.view_main;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private static final String ARG_TAB_INDEX = "tab_index";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private String[] mTitles;
+    private GAFragment[] mFragments;
+    private int[] mDrawablesRID;
+    private int[] mTagsRID;
     private MainView mMainView;
 
     private int mCurrentTabIndex;
+    private OnTabSelectListener mOnTabSelectListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MainFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(String param1, String param2) {
+    public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,51 +63,81 @@ public class MainFragment extends GAMainFragment implements MainView.OnTabChange
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mCurrentTabIndex = 0;
+        mDrawablesRID = new int[]{
+                R.drawable.main_book,
+                R.drawable.main_note,
+                R.drawable.main_exam,
+                R.drawable.main_info
+        };
+        mTagsRID = new int[]{
+                R.string.main_book_title,
+                R.string.main_note_title,
+                R.string.main_exam_title,
+                R.string.main_info_title,
+        };
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mMainView = (MainView) inflater.inflate(VIEW_RES_ID, container, false);
-        if (savedInstanceState != null) {
-            mCurrentTabIndex = savedInstanceState.getInt(ARG_TAB_INDEX);
-        } else {
-            mCurrentTabIndex = 0;
-        }
-        mMainView.post(new Runnable() {
-            @Override
-            public void run() {
-                mMainView.setCurrentTab(mCurrentTabIndex);
-            }
-        });
-        mMainView.setOnTabChangeListener(this);
+//        if(savedInstanceState != null){
+//            mCurrentTabIndex = savedInstanceState.getInt(ARG_TAB_INDEX);
+//        } else {
+//            mCurrentTabIndex = 0;
+//        }
+//        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
+
+        CustomFragmentPagerAdapter pagerAdapter = new CustomFragmentPagerAdapter(getContext(), getActivity().getSupportFragmentManager(), mFragments, mDrawablesRID, mTagsRID);
+
+        ViewPager viewPager = new ViewPager(getContext());
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setId(R.id.tab_view_pager_id);
+        viewPager.setOffscreenPageLimit(4);
+        viewPager.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
+
+        mMainView.setUpWithViewPager(viewPager);
+        mMainView.setTabStripeColor(ContextCompat.getColor(getContext(), R.color.main_tab_stripe));
+        mMainView.addOnTabChangeListener(this);
         return mMainView;
     }
+
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
+//        super.onSaveInstanceState(outState);
+//    }
 
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, getResources().getString(MainView.TAGIDs[mCurrentTabIndex]));
+        onTabSelected(mCurrentTabIndex);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(ARG_TAB_INDEX, mCurrentTabIndex);
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected String getNameAsGaLabel() {
-        return TAG;
-    }
-
-    @Override
-    public void onTabChange(int position) {
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, getResources().getString(MainView.TAGIDs[position]));
+    public void onTabSelected(int position) {
+//        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.SAME, getResources().getString(MainView.TAGIDs[position]));
         mCurrentTabIndex = position;
+        mOnTabSelectListener.onTabSelected(position);
+    }
+
+    public void addOnTabSelectListener(OnTabSelectListener listener) {
+        mOnTabSelectListener = listener;
+    }
+
+    public void setTitles(String[] titles) {
+        mTitles = titles;
+    }
+
+    public void setFragments(GAFragment[] fragments) {
+        mFragments = fragments;
+    }
+
+    public String getCurrentTabTag() {
+        return getCurrentTabTagAt(mCurrentTabIndex);
+    }
+
+    public String getCurrentTabTagAt(int position) {
+        return getContext().getString(mTagsRID[position]);
     }
 }

@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.main.exam.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,12 @@ public class ExamFragment extends ExamBaseFragment {
 
     public static final String TAG = "E.QUESTION";
 
+    public interface OnExamCompleteListener {
+        void onExamCompleted(float correctRatio, int correctCount);
+    }
+
+    public static final String TAG = "ExamFragment";
+
     public static final String ARG_BOOK_INDEX = "bookIndex";
     public static final String ARG_LESSON_INDEX = "lessonIndex";
 
@@ -30,25 +37,42 @@ public class ExamFragment extends ExamBaseFragment {
     private int mCurrentBookIndex, mCurrentLessonIndex;
     private Runnable mRefreshAnimTask;
 
+    private OnExamCompleteListener mOnExamCompleteListener;
+
+    public static ExamFragment newInstance() {
+        ExamFragment fragment = new ExamFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public ExamFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
-            mCurrentLessonIndex = getArguments().getInt(ARG_LESSON_INDEX);
-        }
-        mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
-        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, mExamModel.getLessonTitle(mCurrentBookIndex, mCurrentLessonIndex));
+//        if (getArguments() != null) {
+//            mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
+//            mCurrentLessonIndex = getArguments().getInt(ARG_LESSON_INDEX);
+//        }
+//        mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
+//        ((MainActivity)getActivity()).switchActionBarStr(MainActivity.FRAGMENT_FLOW.GO, mExamModel.getLessonTitle(mCurrentBookIndex, mCurrentLessonIndex));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mExamView = new ExamView(getActivity());
+        Log.d(TAG, "Create View");
 
+        if (mExamView == null)
+            mExamView = new ExamView(getActivity());
+
+        if (mExamModel == null)
+            mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
+
+//        Log.d(TAG, "enter exam [book " + mCurrentBookIndex + " lesson " + mCurrentLessonIndex + "]");
         mPuzzleSetter = mExamModel.createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
 
         // set ExamView listener
@@ -56,7 +80,7 @@ public class ExamFragment extends ExamBaseFragment {
 
         // fill in the question and option, which are from PuzzleSetter
         HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();      // should call first to refresh question index
-        if(map != null) {
+        if (map != null) {
             mExamView.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
         }
 
@@ -65,6 +89,7 @@ public class ExamFragment extends ExamBaseFragment {
 
     @Override
     public void onResume() {
+        Log.d(TAG, "Resume");
         super.onResume();
         mExamView.postDelayed(new Runnable() {
             @Override
@@ -75,11 +100,23 @@ public class ExamFragment extends ExamBaseFragment {
     }
 
     @Override
-    protected String getNameAsGaLabel() {
-        return TAG;
+    public void onPause() {
+        Log.d(TAG, "Pause");
+        super.onPause();
     }
 
-    public void restartExam(){
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "Destroy");
+        super.onDestroy();
+    }
+
+    public void setExam(int bookIndex, int lessonIndex) {
+        mCurrentBookIndex = bookIndex;
+        mCurrentLessonIndex = lessonIndex;
+    }
+
+    public void restartExam() {
         mPuzzleSetter = mExamModel.createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
         HashMap<Integer, ArrayList<String>> map = mPuzzleSetter.getANewQuestion();      // should call first to refresh question index
         mExamView.refreshContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum(), map);
@@ -92,6 +129,10 @@ public class ExamFragment extends ExamBaseFragment {
         }, 600);
         registerOnOptionClickEvent();
         registerOnNextClickEvent();
+    }
+
+    public void addOnExamCompleteListener(OnExamCompleteListener listener) {
+        mOnExamCompleteListener = listener;
     }
 
     private void registerOnOptionClickEvent(){
@@ -137,10 +178,16 @@ public class ExamFragment extends ExamBaseFragment {
         };
 
         if (mPuzzleSetter.getCurrentQuestionIndex() >= mPuzzleSetter.getTotalQuestionNum()) {
-            Bundle args = new Bundle();
-            args.putFloat(ExamResultFragment.BUNDLE_RATIO_STRING, (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum());
-            args.putInt(ExamResultFragment.BUNDLE_COUNT_STRING, mPuzzleSetter.getCorrectCount());
-            ((MainActivity) getActivity()).goFragment(ExamResultFragment.class, args, "ExamResultFragment", "ExamFragment");
+
+            float correctRatio = (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum();
+            int correctCount = mPuzzleSetter.getCorrectCount();
+
+            mOnExamCompleteListener.onExamCompleted(correctRatio, correctCount);
+
+//            Bundle args = new Bundle();
+//            args.putFloat(ExamResultFragment.BUNDLE_RATIO_STRING, (float) mPuzzleSetter.getCorrectCount() / mPuzzleSetter.getTotalQuestionNum());
+//            args.putInt(ExamResultFragment.BUNDLE_COUNT_STRING, mPuzzleSetter.getCorrectCount());
+//            ((MainActivity) getActivity()).goFragment(ExamResultFragment.class, args, "ExamResultFragment", "ExamFragment");
             return;
         }
 

@@ -4,6 +4,7 @@ package com.wishcan.www.vocabulazy.main.exam.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,19 +19,25 @@ import com.wishcan.www.vocabulazy.main.exam.view.ExamResultView;
  */
 public class ExamResultFragment extends ExamBaseFragment implements ExamResultView.OnTryItemClickListener{
 
-    public static final String TAG = "E.RESULT";
+    public interface OnExamTryAgainOrAnotherListener {
+        void onExamTryAgain();
+        void onExamTryAnother();
+    }
 
-    public static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
-    public static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
+    public static final String TAG = "ExamResultFragment";
+
+//    public static final String BUNDLE_RATIO_STRING = "BUNDLE_RATIO";
+//    public static final String BUNDLE_COUNT_STRING = "BUNDLE_COUNT";
 
     private float mRatio;
     private int mCorrectCount;
 
-    public static ExamResultFragment newInstance(float ratio, int correctCount) {
+    private ExamResultView mExamResultView;
+    private OnExamTryAgainOrAnotherListener mOnExamTryAgainOrAnotherListener;
+
+    public static ExamResultFragment newInstance() {
         ExamResultFragment fragment = new ExamResultFragment();
         Bundle args = new Bundle();
-        args.putFloat(BUNDLE_RATIO_STRING, ratio);
-        args.putInt(BUNDLE_COUNT_STRING, correctCount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,45 +48,70 @@ public class ExamResultFragment extends ExamBaseFragment implements ExamResultVi
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mRatio = getArguments().getFloat(BUNDLE_RATIO_STRING);
-            mCorrectCount = getArguments().getInt(BUNDLE_COUNT_STRING);
+//            mRatio = getArguments().getFloat(BUNDLE_RATIO_STRING);
+//            mCorrectCount = getArguments().getInt(BUNDLE_COUNT_STRING);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ExamResultView fragmentView;
-
-        // Inflate the layout for this fragment
-        fragmentView = new ExamResultView(getActivity(), null, mCorrectCount, mRatio);
-        fragmentView.setOnTryItemClickListener(this);
-
-        return fragmentView;
+    public void onResume() {
+        Log.d(TAG, "Resume");
+        super.onResume();
     }
 
     @Override
-    protected String getNameAsGaLabel() {
-        return TAG;
+    public void onPause() {
+        Log.d(TAG, "Pause");
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "Destroy");
+        super.onDestroy();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "Create View");
+//        mExamResultView fragmentView;
+
+        // Inflate the layout for this fragment
+        if (mExamResultView == null)
+            mExamResultView = new ExamResultView(getActivity(), null, mCorrectCount, mRatio);
+        mExamResultView.setOnTryItemClickListener(this);
+
+        return mExamResultView;
     }
 
     /**--------------- Implements ExamView.OnTryItemClickListener ---------------------**/
     @Override
     public void onTryOtherClick() {
-        getActivity().onBackPressed();
-        getActivity().onBackPressed();
+        mOnExamTryAgainOrAnotherListener.onExamTryAnother();
+//        getActivity().onBackPressed();
+//        getActivity().onBackPressed();
     }
 
     @Override
     public void onTryAgainClick() {
-        ExamResultFragment fragment = this;   // This is used for removing the fragment self
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
-        transaction.remove(fragment);
-        transaction.commit();
-        ((ExamFragment) getFragmentManager().findFragmentByTag("ExamFragment")).restartExam();
+        mOnExamTryAgainOrAnotherListener.onExamTryAgain();
+//        ExamResultFragment fragment = this;   // This is used for removing the fragment self0
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//        transaction.setCustomAnimations(MainActivity.ANIM_ENTER_RES_ID, MainActivity.ANIM_EXIT_RES_ID);
+//        transaction.remove(fragment);
+//        transaction.commit();
+//        ((ExamFragment) getFragmentManager().findFragmentByTag("ExamFragment")).restartExam();
     }
 
+    public void setResult(float ratio, int count) {
+        mRatio = ratio;
+        mCorrectCount = count;
+    }
+
+    public void addOnExamTryAgainOrAnotherListener(OnExamTryAgainOrAnotherListener listener) {
+        mOnExamTryAgainOrAnotherListener = listener;
+    }
 }
