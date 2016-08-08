@@ -19,12 +19,8 @@ import java.util.LinkedList;
 /**
  * Created by swallow on 2016/5/12.
  */
-abstract public class GAPlayerFragment extends GAFragment implements PlayerModel.PlayerModelDataProcessListener,
-                                                                     PlayerMainView.OnPlayerItemPreparedListener,
-                                                                     PlayerMainView.OnPlayerScrollListener,
-                                                                     PlayerPanelView.OnPanelItemClickListener,
-                                                                     PlayerOptionView.OnOptionChangedListener,
-                                                                     PlayerView.OnGrayBackClickListener {
+abstract public class GAPlayerFragment extends GAFragment implements PlayerView.PlayerEventListener,
+                                                                     PlayerModel.PlayerModelDataProcessListener {
 
     public static final String USER_TOUCH_EVENT = "user-touch-event";
 
@@ -50,18 +46,7 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerModel
     public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
     }
 
-    /**------------------ Implement PlayerMainView.OnPlayerItemPreparedListener -----------------**/
-    @Override
-    public void onInitialItemPrepared() {
-
-    }
-
-    @Override
-    public void onFinalItemPrepared() {
-
-    }
-
-    /**----------------- Implement PlayerMainView.OnPlayerScrollListener ------------------------**/
+    /**----------------- Implement PlayerView.PlayerEventListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
         if (isViewTouchedDown)
@@ -85,41 +70,49 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerModel
     }
 
     @Override
-    public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
+    public void onPlayerDetailScrollStop(int index, boolean isViewTouchedDown) {
         if (isViewTouchedDown)
             Logger.sendEvent(USER_TOUCH_EVENT, "detail-scroll-stopped", getNameAsGaLabel(), 1);
     }
 
     @Override
-    public void onDetailScrolling() {
+    public void onPlayerDetailScrolling() {
         Logger.sendEvent(USER_TOUCH_EVENT, "detail-scrolling", getNameAsGaLabel(), 1);
     }
-
-    /**----------------- Implement PlayerPanelView.OnPanelItemClickListener ---------------------**/
+    
     @Override
-    public void onOptionFavoriteClick() {
+    public void onPlayerInitialItemPrepared() {
+
+    }
+
+    @Override
+    public void onPlayerFinalItemPrepared() {
+
+    }
+    
+    @Override
+    public void onPlayerPanelFavoriteClick() {
         Logger.sendEvent(USER_TOUCH_EVENT, "option-favorite-clicked", getNameAsGaLabel(), 1);
     }
 
     @Override
-    public void onOptionPlayClick() {
+    public void onPlayerPanelPlayClick() {
         Logger.sendEvent(USER_TOUCH_EVENT, "option-play-clicked", getNameAsGaLabel(), 1);
     }
 
     @Override
-    public void onOptionOptionClick() {
+    public void onPlayerPanelOptionClick() {
         Logger.sendEvent(USER_TOUCH_EVENT, "option-option-clicked", getNameAsGaLabel(), 1);
     }
-
-    /**----------------- Implement PlayerOptionView.OnOptionChangedListener ---------------------**/
+    
     @Override
-    public void onOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode) {
+    public void onPlayerOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode) {
         Logger.sendEvent(USER_TOUCH_EVENT, "option-changed", getNameAsGaLabel(), 1);
     }
-
-    /**-------------------- Implement PlayerView.OnGrayBackClickListener ------------------------**/
+    
     @Override
     public void onGrayBackClick() {
         Logger.sendEvent(USER_TOUCH_EVENT, "gray-back-clicked", getNameAsGaLabel(), 1);
     }
+    
 }
