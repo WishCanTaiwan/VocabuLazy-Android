@@ -12,6 +12,10 @@ import android.widget.RelativeLayout;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+
 /**
  * Created by swallow on 2016/1/17.
  */
@@ -63,10 +67,11 @@ public class PlayerView extends RelativeLayout {
 	
 	@Override
     protected void onFinishInflate() {
-        mPlayerMainView = (PlayerMainView) childView.findViewById(VIEW_PLAYER_MAIN_RES_ID);
-		mPlayerPanelView = (PlayerPanelView) childView.findViewById(VIEW_PLAYER_PANEL_RES_ID);
-        mPlayerOptionView = (PlayerOptionView) childView.findViewById(VIEW_PLAYER_OPTION_RES_ID);
-        mPlayerOptionGrayBack = (ViewGroup) childView.findViewById(VIEW_PLAYER_OPTION_PARENT_RES_ID);
+		super.onFinishInflate();
+        mPlayerMainView = (PlayerMainView) findViewById(VIEW_PLAYER_MAIN_RES_ID);
+		mPlayerPanelView = (PlayerPanelView) findViewById(VIEW_PLAYER_PANEL_RES_ID);
+        mPlayerOptionView = (PlayerOptionView) findViewById(VIEW_PLAYER_OPTION_RES_ID);
+        mPlayerOptionGrayBack = (ViewGroup) findViewById(VIEW_PLAYER_OPTION_PARENT_RES_ID);
         
         registerEventListener();
     }
@@ -81,75 +86,75 @@ public class PlayerView extends RelativeLayout {
     private void registerEventListener() {
     	mPlayerMainView.setOnPlayerScrollListener(new PlayerMainView.OnPlayerScrollListener() {
     		@Override
-    		void onPlayerVerticalScrollStop(int index, boolean isViewTouchedDown) {
+    		public void onPlayerVerticalScrollStop(int index, boolean isViewTouchedDown) {
     			if (mPlayerEventListener != null) {
     				mPlayerEventListener.onPlayerVerticalScrollStop(index, isViewTouchedDown);
     			}
     		}
     		@Override
-	        void onPlayerVerticalScrolling() {
+            public void onPlayerVerticalScrolling() {
 	        	if (mPlayerEventListener != null) {
 	        		mPlayerEventListener.onPlayerVerticalScrolling();
     			}
 	        }
 	        @Override
-	        void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
+            public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
 	        	if (mPlayerEventListener != null) {
 	        		mPlayerEventListener.onPlayerHorizontalScrollStop(isOrderChanged, direction, isViewTouchedDown);
     			}
 	        }
 	        @Override
-	        void onPlayerHorizontalScrolling() {
+            public void onPlayerHorizontalScrolling() {
 	        	if (mPlayerEventListener != null) {
 	        		mPlayerEventListener.onPlayerHorizontalScrolling();
     			}
 	        }
 	        @Override
-	        void onDetailScrollStop(int index, boolean isViewTouchedDown) {
+            public void onDetailScrollStop(int index, boolean isViewTouchedDown) {
 	        	if (mPlayerEventListener != null) {
 	        		mPlayerEventListener.onPlayerDetailScrollStop(index, isViewTouchedDown);
     			}
 	        }
 	        @Override
-	        void onDetailScrolling() {
+            public void onDetailScrolling() {
 	        	if (mPlayerEventListener != null) {
 	        		mPlayerEventListener.onPlayerDetailScrolling();
     			}
 	        }
     	});
     	
-    	mPlayerMainView.setOnItemPreparedListener(new PlayerMainView.OnPlayerItemPreparedListener(){
+    	mPlayerMainView.setOnPlayerItemPreparedListener(new PlayerMainView.OnPlayerItemPreparedListener(){
     		@Override
-	        void onInitialItemPrepared() {
+            public void onInitialItemPrepared() {
 	        	if (mPlayerEventListener != null) {
 	        		mPlayerEventListener.onPlayerInitialItemPrepared();
 	        	}
 	        }
 	        @Override
-	        void onFinalItemPrepared() {
+            public void onFinalItemPrepared() {
 	        	if (mPlayerEventListener != null) {
 	        		mPlayerEventListener.onPlayerFinalItemPrepared();
 	        	}
 	        }
     	});
     	
-    	mPlayerPanelView.setOnPanelItemClickListener(new PlayerPanel.OnPanelItemClickListener(){
+    	mPlayerPanelView.setOnPanelItemClickListener(new PlayerPanelView.OnPanelItemClickListener(){
     		@Override
-    		void onOptionFavoriteClick() {
+            public void onOptionFavoriteClick() {
     			if (mPlayerEventListener != null) {
-    				mPlayerPanelView.onPlayerPanelFavoriteClick();
+                    mPlayerEventListener.onPlayerPanelFavoriteClick();
     			}
     		}
     		@Override
-			void onOptionPlayClick() {
+            public void onOptionPlayClick() {
 				if (mPlayerEventListener != null) {
-					mPlayerPanelView.onPlayerPanelPlayClick();
+                    mPlayerEventListener.onPlayerPanelPlayClick();
     			}
 			}
 			@Override
-			void onOptionOptionClick() {
+            public void onOptionOptionClick() {
 				if (mPlayerEventListener != null) {
-					mPlayerPanelView.onPlayerPanelOptionClick();
+                    mPlayerEventListener.onPlayerPanelOptionClick();
     			}
 			}
     	});
@@ -245,7 +250,7 @@ public class PlayerView extends RelativeLayout {
         mPlayerOptionView.setOptionsInTabContent(options);
 	}
 
-	public void setOnGrayBackClickListener(OnGrayBackClickListener listener) {
-		mOnGrayBackClickListener = listener;
-	}
+//	public void setOnGrayBackClickListener(OnGrayBackClickListener listener) {
+//		mOnGrayBackClickListener = listener;
+//	}
 }

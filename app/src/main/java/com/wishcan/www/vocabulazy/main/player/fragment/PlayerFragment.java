@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.ga.GAPlayerFragment;
 import com.wishcan.www.vocabulazy.main.MainActivity;
@@ -100,10 +101,11 @@ public class PlayerFragment extends GAPlayerFragment {
 
         requestAudioFocus();
 
-        if (mPlayerModel == null)
+        if (mPlayerModel == null) {
             mPlayerModel = new PlayerModel((VLApplication) getActivity().getApplication());
-        mPlayerModel.setDataProcessListener(this);
-
+            mPlayerModel.setDataProcessListener(this);
+            mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+        }
         int restoredBookIndex = 1359;
         int restoredLessonIndex = 1359;
         int restoredItemIndex = 0;
@@ -128,16 +130,15 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "Create View");
-        mPlayerView = new PlayerView(getActivity());
-
-        mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
-        boolean isPlaying = mPlayerModel.isPlaying();
 
         /** set Scroll Listener, update Player's detail content every time the scroll stopped */
         /** move listener setting into onCreate() */
-        mPlayerView.setPlayerEventListener(this);
-        mPlayerView.setIconState(false, isPlaying, false);
-        mPlayerView.setPlayerOptionTabContent(null);
+        if (mPlayerView == null) {
+            mPlayerView = (PlayerView) inflater.inflate(R.layout.view_player, container, false);
+            mPlayerView.setPlayerEventListener(this);
+            mPlayerView.setIconState(false, mPlayerModel.isPlaying(), false);
+            mPlayerView.setPlayerOptionTabContent(null);
+        }
 
         return mPlayerView;
     }
@@ -145,8 +146,8 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onResume() {
-        super.onResume();
         Log.d(TAG, "Resume");
+        super.onResume();
         setupOptions();
         mPlayerView.moveToPosition(mItemIndex);
         if (mIsWaitingAddNewPlayer) {
@@ -158,15 +159,15 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onPause() {
-        super.onPause();
         Log.d(TAG, "Pause");
+        super.onPause();
         savePreferences();
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         Log.d(TAG, "onDestroy");
+        super.onDestroy();
         /* unregister broadcast receiver */
         Log.d(TAG, "unregister receiver");
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mServiceBroadcastReceiver);
@@ -285,7 +286,7 @@ public class PlayerFragment extends GAPlayerFragment {
     /**
      * @Link PlayerModel
      * Implement from PlayerModel
-     * */
+     */
     @Override
     public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
         super.onPlayerContentCreated(playerDataContent);
@@ -396,19 +397,19 @@ public class PlayerFragment extends GAPlayerFragment {
     }
     
     @Override
-    public void onPlayerPanelOptionFavoriteClick() {
-        super.onOptionFavoriteClick();
+    public void onPlayerPanelFavoriteClick() {
+        super.onPlayerPanelFavoriteClick();
     }
 
     @Override
     public void onPlayerPanelPlayClick() {
-        super.onOptionPlayClick();
+        super.onPlayerPanelPlayClick();
         optionPlayClicked();
     }
 
     @Override
     public void onPlayerPanelOptionClick() {
-        super.onOptionOptionClick();
+        super.onPlayerPanelOptionClick();
         if (mPlayerView == null) {
             return;
         }
@@ -483,7 +484,7 @@ public class PlayerFragment extends GAPlayerFragment {
                 case AudioService.TO_SENTENCE:
                     int sentenceIndex = intent.getIntExtra(AudioService.SENTENCE_INDEX, -1);
                     updateIndices(mBookIndex, mLessonIndex, mItemIndex, sentenceIndex);
-                    mPlayerView.moveToDetailPage(sentenceIndex);
+                    mPlayerView.moveDetailPage(sentenceIndex);
                     break;
 
                 case AudioService.PLAYER_STATE_CHANGED:
