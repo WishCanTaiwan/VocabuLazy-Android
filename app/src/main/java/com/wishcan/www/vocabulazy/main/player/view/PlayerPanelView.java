@@ -25,7 +25,6 @@ public class PlayerPanelView extends LinearLayout {
 		void onOptionOptionClick();
 	}
 
-	private static final int VIEW_RES_ID = R.layout.view_player_panel;
 	private static final int VIEW_ICON_FAVORITE = R.id.action_player_favorite;
 	private static final int VIEW_ICON_PLAY = R.id.action_player_play;
 	private static final int VIEW_ICON_OPTION = R.id.action_player_option;
@@ -34,10 +33,15 @@ public class PlayerPanelView extends LinearLayout {
             R.drawable.player_stop,
             R.drawable.player_play
     };
+    
+    private static final int ICON_PLAY_STATE_STOP = 0x0;
+    private static final int ICON_PLAY_STATE_PLAY = 0x1;
+    
+    private ImageView mActionFavoriteIcon;
+    private ImageView mActionPlayIcon;
+    private ImageView mActionOptionIcon;
 
 	private OnPanelItemClickListener mOnPanelItemClickListener;
-    private ViewGroup mChildView;
-    private LevelListDrawable mDrawable;
     private int mCurrentIconState;
 
     public PlayerPanelView(Context context) {
@@ -48,35 +52,50 @@ public class PlayerPanelView extends LinearLayout {
         super(context, attrs);
 
         mCurrentIconState = -1;
-
-        mChildView = (ViewGroup) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_RES_ID, null);
-        mChildView.findViewById(VIEW_ICON_FAVORITE).setOnClickListener(new OnClickListener(){
+    }
+    
+    @Override
+    protected void onFinishInflate() {
+        mActionFavoriteIcon = findViewById(VIEW_ICON_FAVORITE);
+        mActionPlayIcon = findViewById(VIEW_ICON_PLAY);
+        mActionOptionIcon = findViewById(VIEW_ICON_OPTION);
+        
+        registerEventListener();
+    }
+    
+    private void registerEventListener() {
+        mActionFavoriteIcon.setOnClickListener(new OnClickListener(){
         	@Override
             public void onClick(View v) {
-                if(mOnPanelItemClickListener != null)
+                if(mOnPanelItemClickListener != null) {
                     mOnPanelItemClickListener.onOptionFavoriteClick();
+                }
             }
         });
-        mChildView.findViewById(VIEW_ICON_PLAY).setOnClickListener(new OnClickListener(){
+        
+        mActionPlayIcon.setOnClickListener(new OnClickListener(){
         	@Override
             public void onClick(View v) {
-                if(mCurrentIconState == 0)
-                    mCurrentIconState = 1;
-                else
-                    mCurrentIconState = 0;
+                if(mCurrentIconState == ICON_PLAY_STATE_STOP) {
+                    mCurrentIconState = ICON_PLAY_STATE_PLAY;
+                }
+                else {
+                    mCurrentIconState = ICON_PLAY_STATE_STOP;
+                }
                 ((ImageView) v).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
-                if(mOnPanelItemClickListener != null)
+                if(mOnPanelItemClickListener != null) {
                     mOnPanelItemClickListener.onOptionPlayClick();
+                }
             }
         });
-        mChildView.findViewById(VIEW_ICON_OPTION).setOnClickListener(new OnClickListener(){
+        
+        mActionOptionIcon.setOnClickListener(new OnClickListener(){
         	@Override
             public void onClick(View v) {
                 if(mOnPanelItemClickListener != null)
                     mOnPanelItemClickListener.onOptionOptionClick();
             }
         });
-        addView(mChildView);
     }
 
     public void setOnPanelItemClickListener(OnPanelItemClickListener listener){
@@ -85,13 +104,11 @@ public class PlayerPanelView extends LinearLayout {
 
     public void setIconState(boolean favorite, boolean play, boolean option){
         if(play) {
-            mCurrentIconState = 0;
-            ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
-//            Log.d("PlayerPanelView", mCurrentIconState + " TRUE");
+            mCurrentIconState = ICON_PLAY_STATE_STOP;
+            mActionPlayIcon.setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
         } else {
-            mCurrentIconState = 1;
-            ((ImageView) mChildView.findViewById(VIEW_ICON_PLAY)).setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
-//            Log.d("PlayerPanelView", "FALSE");
+            mCurrentIconState = ICON_PLAY_STATE_PLAY;
+            mActionPlayIcon.setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
         }
     }
 }

@@ -4,16 +4,9 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView
-        android:id="@+id/player_panel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+    <include layout="@layout/view_player_panel"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        />
+        android:layout_alignParentBottom="true"/>
 
     <com.wishcan.www.vocabulazy.main.player.view.PlayerMainView
         android:id="@+id/player_main_view"

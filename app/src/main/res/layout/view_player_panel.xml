@@ -1,4 +1,4 @@
-<LinearLayout
+<com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/player_panel"
         android:layout_width="wrap_content"
@@ -35,4 +35,4 @@
             android:onClick="onOptionClicked"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp" />
-</LinearLayout>
+</com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView>
