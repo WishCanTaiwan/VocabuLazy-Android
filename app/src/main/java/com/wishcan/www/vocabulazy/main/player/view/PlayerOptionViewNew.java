@@ -1,48 +1,9 @@
-package com.wishcan.www.vocabulazy.main.player.view;
-
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.graphics.Outline;
-import android.graphics.Path;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.PathShape;
-import android.os.Build;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
-import com.wishcan.www.vocabulazy.widget.LinkedListPagerAdapter;
-import com.wishcan.www.vocabulazy.widget.NumeralPicker;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-
-/**
- * Created by swallow on 2015/8/20.
- * this Layout will be a TabLayout, which is used for switching between our configuration
- */
 public class PlayerOptionView extends LinearLayout {
 
-    public static final String TAG = PlayerOptionView.class.getSimpleName();
-
-    public interface OnOptionChangedListener{
-        void onOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode);
-    }
-
+    private static final int VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID = R.layout.player_option_tab_content;
+    private static final int VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID = R.id.player_option_tab_layout;
+    private static final int VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID = R.id.player_option_tab_pager;
+    
     public static final int PLAYER_OPTION_RANDOM_VIEW_RES_ID = R.id.action_set_random;
     public static final int PLAYER_OPTION_REPEAT_VIEW_RES_ID = R.id.action_set_repeat;
     public static final int PLAYER_OPTION_SENTENCE_VIEW_RES_ID = R.id.action_set_sentence;
@@ -50,20 +11,6 @@ public class PlayerOptionView extends LinearLayout {
     public static final int PLAYER_OPTION_FREQUENCY_PICKER_RES_ID = R.id.action_picker_frequency;
     public static final int PLAYER_OPTION_SPEED_PICKER_RES_ID = R.id.action_picker_speed;
     public static final int PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID = R.id.action_picker_play_time;
-
-    private static final int DEFAULT_TRAPEZOID_LONG_HEIGHT = R.dimen.player_option_trapezoid_long_height;
-    private static final int DEFAULT_TRAPEZOID_SHORT_HEIGHT = R.dimen.player_option_trapezoid_short_height;
-    private static final int DEFAULT_PLAYER_OPTION_VIEW_RES_ID = R.layout.view_player_option_content;
-    private static final int COLOR_TAB_0_RES_ID = R.color.player_option_tab0;
-    private static final int COLOR_TAB_1_RES_ID = R.color.player_option_tab1;
-    private static final int COLOR_TAB_2_RES_ID = R.color.player_option_tab2;
-    private static final int COLOR_TAB_TEXT_0_RES_ID = R.color.player_option_tab0_text;
-    private static final int COLOR_TAB_TEXT_1_RES_ID = R.color.player_option_tab1_text;
-    private static final int COLOR_TAB_TEXT_2_RES_ID = R.color.player_option_tab2_text;
-    private static final int DEFAULT_TAB_TEXT_SIZE_RES_ID = R.dimen.player_option_tab_text;
-    private static final int STR_TAB_0_RES_ID = R.string.player_option_tab_0;
-    private static final int STR_TAB_1_RES_ID = R.string.player_option_tab_1;
-    private static final int STR_TAB_2_RES_ID = R.string.player_option_tab_2;
 
     private final int[] mOptionResIDs = {
             PLAYER_OPTION_RANDOM_VIEW_RES_ID,
@@ -96,25 +43,11 @@ public class PlayerOptionView extends LinearLayout {
     private PagerAdapter mPagerAdapter;
 
     /**
-     * These three imageview is used for adding to mTabView
-     * */
-    private PlayerOptionTabView mTabView0;
-    private PlayerOptionTabView mTabView1;
-    private PlayerOptionTabView mTabView2;
-
-    /**
-     * Three corresponding content is used for adding to mTabView as well
-     * */
-    private LinearLayout mTabContent0;
-    private LinearLayout mTabContent1;
-    private LinearLayout mTabContent2;
-
-    private View mCurrentTab;
-    private int mCurrentTabIndex;
+     * mTabContentList contains all TabContent
+     */
     private LinkedList<ViewGroup> mTabContentList;
-    private ArrayList<OptionSettings> mOptionSettingsLL;
-    private OnOptionChangedListener mListener;
-    private int mTabCount;
+
+    private OnOptionChangedListener mOnOptionChangedListener;
 
     public PlayerOptionView(Context context) {
         this(context, null);
@@ -123,58 +56,47 @@ public class PlayerOptionView extends LinearLayout {
     public PlayerOptionView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mContext = context;
-        /**
-         * Initialize the LinearLayout
-         * */
-        initAllLayout();
-
-        // This part is our customized part, we can call this function outside and add to this view.
-        // Just like use other view.
-        mTabView0 = new PlayerOptionTabView(mContext);
-        mTabView0.setColor(ContextCompat.getColor(mContext, COLOR_TAB_0_RES_ID));
-        mTabView0.setTextColor(ContextCompat.getColor(mContext, COLOR_TAB_TEXT_0_RES_ID));
-        mTabView0.setTextStr(getResources().getString(STR_TAB_0_RES_ID));
-        mTabView0.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(DEFAULT_TAB_TEXT_SIZE_RES_ID));
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            mTabView0.setElevation(50);
-        mTabContent0 = (LinearLayout)((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(DEFAULT_PLAYER_OPTION_VIEW_RES_ID, null);
-        mTabContent0.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        mTabContent0.setBackgroundColor(ContextCompat.getColor(mContext, COLOR_TAB_0_RES_ID));
-
-        mTabView1 = new PlayerOptionTabView(mContext);
-        mTabView1.setColor(ContextCompat.getColor(mContext, COLOR_TAB_1_RES_ID));
-        mTabView1.setTextColor(ContextCompat.getColor(mContext, COLOR_TAB_TEXT_1_RES_ID));
-        mTabView1.setTextStr(getResources().getString(STR_TAB_1_RES_ID));
-        mTabView1.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(DEFAULT_TAB_TEXT_SIZE_RES_ID));
-        mTabContent1 = (LinearLayout)((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(DEFAULT_PLAYER_OPTION_VIEW_RES_ID, null);
-        mTabContent1.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        mTabContent1.setBackgroundColor(ContextCompat.getColor(mContext, COLOR_TAB_1_RES_ID));
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            mTabView1.setElevation(20);
-
-        mTabView2 = new PlayerOptionTabView(mContext);
-        mTabView2.setColor(ContextCompat.getColor(mContext, COLOR_TAB_2_RES_ID));
-        mTabView2.setTextColor(ContextCompat.getColor(mContext, COLOR_TAB_TEXT_2_RES_ID));
-        mTabView2.setTextStr(getResources().getString(STR_TAB_2_RES_ID));
-        mTabView2.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(DEFAULT_TAB_TEXT_SIZE_RES_ID));
-        mTabContent2 = (LinearLayout)((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(DEFAULT_PLAYER_OPTION_VIEW_RES_ID, null);
-        mTabContent2.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        mTabContent2.setBackgroundColor(ContextCompat.getColor(mContext, COLOR_TAB_2_RES_ID));
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            mTabView2.setElevation(10);
-
-        addTabAndTabContent(mTabView0, mTabContent0);
-        addTabAndTabContent(mTabView1, mTabContent1);
-        addTabAndTabContent(mTabView2, mTabContent2);
-
-        mTabCount = mTabContentList.size();
-
+        mTabContentList = new LinkedList<>();
         mPagerAdapter = new LinkedListPagerAdapter(mTabContentList);
         mViewPager.setAdapter(mPagerAdapter);
+    }
+    
+    @Override
+    protected void onFinishInflate() {
+        mTabLayout = findViewById(VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID);
+        for (int i = 0; i < mTabLayout.childCount(); i++) {
+            final nextTabIndex = i;
+            View tab = mTabLayout.getChildAt(i);
+            tab.setOnClickListener(new OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    setCurrentTab(v);
+                }
+            });
+        }
+
+        mViewPager = findViewById(VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID);
         mViewPager.setPagingEnabled(true);
+        for (int i = 0; i < mTabLayout.childCount(); i++) {
+            ViewGroup tabContent = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID, null);
+            mTabContentList.add(tabContent);
+        }
 
         registerOptionsListener();
+    }
+
+    public ViewGroup getTabContent(int index) {
+        return mTabContentList.get(index);
+    }
+
+    public void setCurrentTab(View v) {
+        int nextTabIndex = mTabLayout.indexOfChild(v);
+        switchToTabContent(nextTabIndex);
+        mCurrentTab = v;
+        mCurrentTabIndex = nextTabIndex;
+        if (mOnOptionChangedListener != null) {
+            mOnOptionChangedListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
+        }
     }
 
     public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL){
@@ -258,86 +180,26 @@ public class PlayerOptionView extends LinearLayout {
         setOptionInTabContent(mode, optionID, option ? 1 : 0);
     }
 
-    public void addTabAndTabContent(View tab, ViewGroup tabContent){
-
-        LayoutParams layoutParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
-        tab.setLayoutParams(layoutParams);
-        mTabLayout.addView(tab);
-
-        mTabContentList.add(tabContent);
-
-        // Let first added tab as currentTab
-        if(mTabLayout.indexOfChild(tab) == 0) {
-            mCurrentTab = tab;
-            mCurrentTabIndex = 0;
-        }
-
-        tab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setCurrentTab(v);
-            }
-        });
-
+    public void setOnOptionChangedListener(OnOptionChangedListener listener) {
+        mOnOptionChangedListener = listener;
     }
 
-    public void setCurrentTab(View v){
-        int nextTabIndex = mTabLayout.indexOfChild(v);
-        switchToTabContent(nextTabIndex);
-        mCurrentTab = v;
-        mCurrentTabIndex = nextTabIndex;
-        if(mListener != null)
-            mListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
+    private void switchToTabContent(int index) {
+        mViewPager.setCurrentItem(index, true);
     }
 
-    public boolean isListenerNull() {
-        return mListener == null;
-    }
-
-    public View getCurrentTab(){ return mCurrentTab; }
-
-    public int getCurrentTabIndex(){ return mCurrentTabIndex; }
-
-    public void setOnOptionChangedListener(OnOptionChangedListener listener){
-        mListener = listener;
-    }
-
-    private void switchToTabContent(int index){mViewPager.setCurrentItem(index, true);}
-
-    public ViewGroup getTabContent(int index){
-        return mTabContentList.get(index);
-    }
-
-    private void initAllLayout(){
-        setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        setOrientation(VERTICAL);
-
-        mTabLayout = new LinearLayout(mContext);
-        mTabLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        mTabLayout.setOrientation(HORIZONTAL);
-
-        mTabContentList = new LinkedList<>();
-
-        mViewPager = new WrapContentViewPager(mContext);
-        mViewPager.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-
-        addView(mTabLayout);
-        addView(mViewPager);
-
-    }
-
-    private void registerOptionsListener(){
-        for(int i = 0; i < mTabCount; i++){
+    private void registerOptionsListener() {
+        for (int i = 0; i < mTabCount; i++) {
             ViewGroup viewGroup = getTabContent(i);
-            for(int j = 0; j < mOptionResIDs.length; j++) {
+            for (int j = 0; j < mOptionResIDs.length; j++) {
                 final View v = viewGroup.findViewById(mOptionResIDs[j]);
-                if(v instanceof ImageView) {
+                if (v instanceof ImageView) {
 
                     v.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             OptionSettings optionSettings = mOptionSettingsLL.get(mCurrentTabIndex);
-                            switch (v.getId()){
+                            switch (v.getId()) {
                                 case PLAYER_OPTION_RANDOM_VIEW_RES_ID:
                                     optionSettings.setRandom(!optionSettings.isRandom());
                                     ((ImageView) v).setImageLevel(optionSettings.isRandom() ? 1 : 0);
@@ -353,12 +215,13 @@ public class PlayerOptionView extends LinearLayout {
                                 default:
                                     break;
                             }
-                            if(mListener != null)
-                                mListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
+                            if (mOnOptionChangedListener != null) {
+                                mOnOptionChangedListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
+                            }
                         }
                     });
                 }
-                else if( v instanceof NumeralPicker){
+                else if (v instanceof NumeralPicker) {
                     ((NumeralPicker) v).setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
                         @Override
                         public void onPickerClicked(String valueStr) {
@@ -379,8 +242,9 @@ public class PlayerOptionView extends LinearLayout {
                                 default:
                                     break;
                             }
-                            if(mListener != null)
-                                mListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
+                            if (mOnOptionChangedListener != null) {
+                                mOnOptionChangedListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
+                            }
                         }
                     });
                 }
@@ -422,7 +286,6 @@ public class PlayerOptionView extends LinearLayout {
 
             init();
             initAllLayout();
-
         }
 
         private void init(){
@@ -458,13 +321,11 @@ public class PlayerOptionView extends LinearLayout {
             path.lineTo(width, longHeight);
             path.lineTo(width, longHeight - shortHeight);
             return path;
-
         }
 
         public void setColor(int color){
             shadowDrawable.getPaint().setColor(color);
             shadowDrawable.invalidateSelf();
-
         }
 
         public void setTextStr(String str){
@@ -489,17 +350,42 @@ public class PlayerOptionView extends LinearLayout {
         }
     }
 
+    @TargetApi(21)
+    private class TrapezoidOutlineProvider extends ViewOutlineProvider {
+
+        int width, longHeight, shortHeight;
+
+        public TrapezoidOutlineProvider() {
+            width = getResources().getDisplayMetrics().widthPixels / 3;
+            longHeight = (int) getResources().getDimension(DEFAULT_TRAPEZOID_LONG_HEIGHT);
+            shortHeight = (int) getResources().getDimension(DEFAULT_TRAPEZOID_SHORT_HEIGHT);
+        }
+
+        @Override
+        public void getOutline(View view, Outline outline) {
+            Path path  = new Path();
+            path.moveTo(0, 0);
+            path.lineTo(0, longHeight);
+            path.lineTo(width, longHeight);
+            path.lineTo(width, longHeight - shortHeight);
+            outline.setConvexPath(path);
+        }
+    }
+
     /**
      * WrapContentViewPager enables ViewPager can be assigned a specific size.
      * */
-    private class WrapContentViewPager extends ViewPager {
+    public class WrapContentViewPager extends ViewPager {
 
         private Context mContext;
         private boolean isPagingEnabled = true;
 
         public WrapContentViewPager(Context context) {
-            super(context);
+            this(context, null);
+        }
 
+        public WrapContentViewPager(Context context, AttributeSet attrs) {
+            super(context, attrs);
             mContext = context;
         }
 
@@ -522,28 +408,6 @@ public class PlayerOptionView extends LinearLayout {
 
         public void setPagingEnabled(boolean b) {
             this.isPagingEnabled = b;
-        }
-    }
-
-    @TargetApi(21)
-    private class TrapezoidOutlineProvider extends ViewOutlineProvider {
-
-        int width, longHeight, shortHeight;
-
-        public TrapezoidOutlineProvider() {
-            width = getResources().getDisplayMetrics().widthPixels / 3;
-            longHeight = (int) getResources().getDimension(DEFAULT_TRAPEZOID_LONG_HEIGHT);
-            shortHeight = (int) getResources().getDimension(DEFAULT_TRAPEZOID_SHORT_HEIGHT);
-        }
-
-        @Override
-        public void getOutline(View view, Outline outline) {
-            Path path  = new Path();
-            path.moveTo(0, 0);
-            path.lineTo(0, longHeight);
-            path.lineTo(width, longHeight);
-            path.lineTo(width, longHeight - shortHeight);
-            outline.setConvexPath(path);
         }
     }
 }

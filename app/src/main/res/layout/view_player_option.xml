@@ -1,0 +1,36 @@
+<com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <!-- TabLayout -->
+    <LinearLayout
+        android:id="@+id/player_option_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView.PlayerOptionTabView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+            
+        <com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView.PlayerOptionTabView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+            
+        <com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView.PlayerOptionTabView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        
+    </LinearLayout>
+    
+    <com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView.WrapContentViewPager
+        android:id="@+id/player_option_tab_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    
+</com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView>
