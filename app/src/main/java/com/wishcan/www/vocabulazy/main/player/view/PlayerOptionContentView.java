@@ -1,0 +1,157 @@
+package com.wishcan.www.vocabulazy.main.player.view;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+
+import com.wishcan.www.vocabulazy.widget.NumeralPicker;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
+
+public class PlayerOptionContentView extends LinearLayout {
+    
+    public interface OnOptionClickListener {
+        onOptionClick(int optionId, View v);
+    }
+
+    public static final int IDX_OPTION_RANDOM = 0x1;
+    public static final int IDX_OPTION_REPEAT = 0x2;
+    public static final int IDX_OPTION_SENTENCE = 0x3;
+    public static final int IDX_OPTION_SECOND = 0x4;
+    public static final int IDX_OPTION_FREQUENCY = 0x5;
+    public static final int IDX_OPTION_SPEED = 0x6;
+    public static final int IDX_OPTION_PLAY_TIME = 0x7;
+    
+    private static final int[] OPTION_IDX_s = {
+        0,
+        IDX_OPTION_RANDOM,
+        IDX_OPTION_REPEAT,
+        IDX_OPTION_SENTENCE,
+        IDX_OPTION_SECOND,
+        IDX_OPTION_FREQUENCY,
+        IDX_OPTION_SPEED,
+        IDX_OPTION_PLAY_TIME
+    };
+
+    private static final int PLAYER_OPTION_RANDOM_VIEW_RES_ID = R.id.action_set_random;
+    private static final int PLAYER_OPTION_REPEAT_VIEW_RES_ID = R.id.action_set_repeat;
+    private static final int PLAYER_OPTION_SENTENCE_VIEW_RES_ID = R.id.action_set_sentence;
+    private static final int PLAYER_OPTION_SECOND_PICKER_RES_ID = R.id.action_picker_second;
+    private static final int PLAYER_OPTION_FREQUENCY_PICKER_RES_ID = R.id.action_picker_frequency;
+    private static final int PLAYER_OPTION_SPEED_PICKER_RES_ID = R.id.action_picker_speed;
+    private static final int PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID = R.id.action_picker_play_time;
+    
+    private ImageView mRandomOptionView, mRepeatOptionView, mSentenceOptionView;
+    private NumeralPicker mSecondOptionPicker, mFrequencyOptionPicker, mSpeedOptionPicker, mPlayTimeOptionPicker;
+    
+    private OnOptionClickListener mOnOptionClickListener;
+    
+    public PlayerOptionContentView(Context context) {
+        this(context, null);
+    }
+    
+    public PlayerOptionContentView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+    
+    @Override
+    protected void onFinishInflate() {
+        mRandomOptionView = findViewById(PLAYER_OPTION_RANDOM_VIEW_RES_ID);
+        mRepeatOptionView = findViewById(PLAYER_OPTION_REPEAT_VIEW_RES_ID);
+        mSentenceOptionView = findViewById(PLAYER_OPTION_SENTENCE_VIEW_RES_ID);
+        mSecondOptionPicker = findViewById(PLAYER_OPTION_SECOND_PICKER_RES_ID);
+        mFrequencyOptionPicker = findViewById(PLAYER_OPTION_FREQUENCY_PICKER_RES_ID);
+        mSpeedOptionPicker = findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
+        mPlayTimeOptionPicker = findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
+        
+        registerOptionsListener();
+    }
+    
+    public void setOptionSettings(OptionSettings optionSettings) {
+        /** OPTION_IDX_s starts from 1 */
+        mRandomOptionView.setImageLevel(optionSettings.isRandom());
+        mRepeatOptionView.setImageLevel(optionSettings.getListLoop());
+        mSentenceOptionView.setImageLevel(optionSettings.isSentence());
+        /** TODO: refine calculatePickerRange into NumeralPicker constructor */
+        mSecondOptionPicker.calculatePickerRange();
+        mSecondOptionPicker.setPickerTextStr(String.valueOf(option));
+        mFrequencyOptionPicker.calculatePickerRange();
+        mFrequencyOptionPicker.setPickerTextStr(String.valueOf(option));
+        mSpeedOptionPicker.calculatePickerRange();
+        mSpeedOptionPicker.setPickerTextStr(String.valueOf(option));
+        mPlayTimeOptionPicker.calculatePickerRange();
+        mPlayTimeOptionPicker.setPickerTextStr(String.valueOf(option));
+    }
+    
+    public void setOnOptionClickListener(OnOptionClickListener listener) {
+        mOnOptionClickListener = listener;
+    }
+    
+    private void registerOptionsListener() {
+        mRandomOptionView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnOptionClickListener != null) {
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_RANDOM, view);
+                }
+            }
+        });
+        
+        mRepeatOptionView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnOptionClickListener != null) {
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_REPEAT, view);
+                }
+            }
+        });
+        
+        mSentenceOptionView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnOptionClickListener != null) {
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SENTENCE, view);
+                }
+            }
+        });
+        
+        mSecondOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+            @Override
+            public void onPickerClicked(String valueStr) {
+                if (mOnOptionClickListener != null) {
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SECOND, view);
+                }
+            }
+        });
+        
+        mFrequencyOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+            @Override
+            public void onPickerClicked(String valueStr) {
+                if (mOnOptionClickListener != null) {
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_FREQUENCY, view);
+                }
+            }
+        });
+        
+        mSpeedOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+            @Override
+            public void onPickerClicked(String valueStr) {
+                if (mOnOptionClickListener != null) {
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SPEED, view);
+                }
+            }
+        });
+        
+        
+        mPlayTimeOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+            @Override
+            public void onPickerClicked(String valueStr) {
+                if (mOnOptionClickListener != null) {
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_PLAY_TIME, view);
+                }
+            }
+        });
+    }
+}

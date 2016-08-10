@@ -40,6 +40,10 @@ public class PlayerView extends RelativeLayout {
 		void onPlayerPanelOptionClick();
         /** PlayerOptionView's Event */
         void onPlayerOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode);
+        /** TODO: replace old PlayerOptionView's Event with New PlayerOptionView's Event */
+        /**
+        void onPlayerOptionChanged(int optionID, int mode, View v);
+        */
 	}
 
 	private static final int VIEW_PLAYER_MAIN_RES_ID = R.id.player_main_view;
@@ -166,6 +170,14 @@ public class PlayerView extends RelativeLayout {
     				mPlayerEventListener.onPlayerOptionChanged(v, optionSettingsLL, currentMode);
     			}
     		}
+    		/**
+    		@Override
+    		public void onOptionChanged(int optionID, int mode, View v) {
+    			if (mPlayerEventListener != null) {
+    				mPlayerEventListener.onPlayerOptionChanged(optionID, mode, v);
+    			}
+    		}
+    		*/
     	});
 
     	mPlayerOptionGrayBack.setOnClickListener(new OnClickListener() {

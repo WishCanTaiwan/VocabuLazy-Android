@@ -423,6 +423,21 @@ public class PlayerFragment extends GAPlayerFragment {
         optionSettingChanged(optionSettingsLL, currentMode);
     }
     
+    // /**
+    //  * TODO: change old PlayerOptionView api to new one
+    //  */
+    // @Override
+    // public void onPlayerOptionChanged(int optionID, int mode, View v) {
+    //     super.onPlayerOptionChanged(optionID, mode, v);
+    //     /** Step 1. Get the option setting by api */
+    //     ArrayList<OptionSettings> optionSettingsLL = api();
+    //     /** Step 2. Refresh option setting */
+        
+    //     /** Step 3. Refresh Player Option Content by PlayerOptionView api */
+    //     mPlayerView.setPlayerOptionTabContent(optionSettingsLL);
+    // }
+    
+    
     @Override
     public void onGrayBackClick() {
         super.onGrayBackClick();

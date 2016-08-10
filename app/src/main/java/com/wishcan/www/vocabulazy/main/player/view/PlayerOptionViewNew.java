@@ -32,29 +32,15 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class PlayerOptionView extends LinearLayout {
+    
+    public interface OnOptionChangedListener{
+        void onOptionChanged(int optionID, int mode, View v);
+    }
 
     private static final int VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID = R.layout.player_option_tab_content;
     private static final int VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID = R.id.player_option_tab_layout;
     private static final int VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID = R.id.player_option_tab_pager;
-    
-    public static final int PLAYER_OPTION_RANDOM_VIEW_RES_ID = R.id.action_set_random;
-    public static final int PLAYER_OPTION_REPEAT_VIEW_RES_ID = R.id.action_set_repeat;
-    public static final int PLAYER_OPTION_SENTENCE_VIEW_RES_ID = R.id.action_set_sentence;
-    public static final int PLAYER_OPTION_SECOND_PICKER_RES_ID = R.id.action_picker_second;
-    public static final int PLAYER_OPTION_FREQUENCY_PICKER_RES_ID = R.id.action_picker_frequency;
-    public static final int PLAYER_OPTION_SPEED_PICKER_RES_ID = R.id.action_picker_speed;
-    public static final int PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID = R.id.action_picker_play_time;
 
-    private final int[] mOptionResIDs = {
-            PLAYER_OPTION_RANDOM_VIEW_RES_ID,
-            PLAYER_OPTION_REPEAT_VIEW_RES_ID,
-            PLAYER_OPTION_SENTENCE_VIEW_RES_ID,
-            PLAYER_OPTION_SECOND_PICKER_RES_ID,
-            PLAYER_OPTION_FREQUENCY_PICKER_RES_ID,
-            PLAYER_OPTION_SPEED_PICKER_RES_ID,
-            PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID
-    };
-    
     private Context mContext;
 
     /**
@@ -75,7 +61,7 @@ public class PlayerOptionView extends LinearLayout {
     /**
      * mTabContentList contains all TabContent
      */
-    private LinkedList<ViewGroup> mTabContentList;
+    private LinkedList<PlayerOptionContentView> mTabContentList;
 
     private OnOptionChangedListener mOnOptionChangedListener;
 
@@ -108,20 +94,20 @@ public class PlayerOptionView extends LinearLayout {
         mViewPager = findViewById(VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID);
         mViewPager.setPagingEnabled(true);
         for (int i = 0; i < mTabLayout.childCount(); i++) {
-            ViewGroup tabContent = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID, null);
+            PlayerOptionContentView tabContent = (PlayerOptionContentView) ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID, null);
             mTabContentList.add(tabContent);
         }
 
         registerOptionsListener();
     }
 
-    public ViewGroup getTabContent(int index) {
+    public PlayerOptionContentView getTabContent(int index) {
         return mTabContentList.get(index);
     }
 
     public void setCurrentTab(View v) {
         int nextTabIndex = mTabLayout.indexOfChild(v);
-        switchToTabContent(nextTabIndex);
+        mViewPager.setCurrentItem(nextTabIndex, true);
         mCurrentTab = v;
         mCurrentTabIndex = nextTabIndex;
         if (mOnOptionChangedListener != null) {
@@ -129,149 +115,43 @@ public class PlayerOptionView extends LinearLayout {
         }
     }
 
-    public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL){
+    public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL) {
 
-        if (optionSettingsLL == null) {
+        if (optionSettingsLL == null) { /** if no option setting, using default value */
             mOptionSettingsLL = new ArrayList<>();
             for (int i = 1; i <= 3; i++) {
                 mOptionSettingsLL.add(new OptionSettings(i, true, 1, true, i, 0, 1, 2));
             }
         }
-        else {
+        else { /** else, using option setting */
             mOptionSettingsLL = optionSettingsLL;
         }
 
         Iterator<OptionSettings> ii = mOptionSettingsLL.iterator();
         while (ii.hasNext()) {
             OptionSettings optionSettings = ii.next();
-            for (int i = 0; i < mOptionResIDs.length; i++) {
-                int optionID = mOptionResIDs[i];
-                int mode = optionSettings.getMode() - 1;
-                switch (optionID) {
-                    case PLAYER_OPTION_RANDOM_VIEW_RES_ID:
-                        setOptionInTabContent(mode, optionID, optionSettings.isRandom());
-                        break;
-                    case PLAYER_OPTION_REPEAT_VIEW_RES_ID:
-                        setOptionInTabContent(mode, optionID, optionSettings.getListLoop());
-                        break;
-                    case PLAYER_OPTION_SENTENCE_VIEW_RES_ID:
-                        setOptionInTabContent(mode, optionID, optionSettings.isSentence());
-                        break;
-                    case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, optionSettings.getStopPeriod());
-                        break;
-                    case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, optionSettings.getItemLoop());
-                        break;
-                    case PLAYER_OPTION_SPEED_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, optionSettings.getSpeed());
-                        break;
-                    case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
-                        setOptionInTabContent(mode, optionID, optionSettings.getPlayTime());
-                        break;
-                    default:
-                        break;
-                }
-            }
+            int mode = optionSettings.getMode() - 1;
+            PlayerOptionContentView tabContent = getTabContent(mode);
+            tabContent.setOptionSettings(optionSettings);
         }
-    }
-
-    public void setOptionInTabContent(int mode, int optionID, int option) {
-        ViewGroup tabContent = getTabContent(mode);
-        View v = tabContent.findViewById(optionID);
-        if (v instanceof ImageView) {
-            ((ImageView) v).setImageLevel(option);
-        }
-        else if (v instanceof NumeralPicker) {
-            NumeralPicker picker = (NumeralPicker) v;
-            switch (optionID) {
-                case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
-                case PLAYER_OPTION_SPEED_PICKER_RES_ID:
-                case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
-                    picker.calculatePickerRange();
-                    picker.setPickerTextStr(String.valueOf(option));
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-    }
-
-    public void setOptionInTabContent(int mode, int optionID, boolean option){
-        setOptionInTabContent(mode, optionID, option ? 1 : 0);
     }
 
     public void setOnOptionChangedListener(OnOptionChangedListener listener) {
         mOnOptionChangedListener = listener;
     }
 
-    private void switchToTabContent(int index) {
-        mViewPager.setCurrentItem(index, true);
-    }
-
     private void registerOptionsListener() {
         for (int i = 0; i < mTabCount; i++) {
-            ViewGroup viewGroup = getTabContent(i);
-            for (int j = 0; j < mOptionResIDs.length; j++) {
-                final View v = viewGroup.findViewById(mOptionResIDs[j]);
-                if (v instanceof ImageView) {
-                    v.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            OptionSettings optionSettings = mOptionSettingsLL.get(mCurrentTabIndex);
-                            switch (v.getId()) {
-                                case PLAYER_OPTION_RANDOM_VIEW_RES_ID:
-                                    optionSettings.setRandom(!optionSettings.isRandom());
-                                    ((ImageView) v).setImageLevel(optionSettings.isRandom() ? 1 : 0);
-                                    break;
-                                case PLAYER_OPTION_REPEAT_VIEW_RES_ID:
-                                    optionSettings.setListLoop((optionSettings.getListLoop() + 1) % 4);
-                                    ((ImageView) v).setImageLevel(optionSettings.getListLoop());
-                                    break;
-                                case PLAYER_OPTION_SENTENCE_VIEW_RES_ID:
-                                    optionSettings.setSentence(!optionSettings.isSentence());
-                                    ((ImageView) v).setImageLevel(optionSettings.isSentence() ? 1 : 0);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            if (mOnOptionChangedListener != null) {
-                                mOnOptionChangedListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
-                            }
-                        }
-                    });
+            PlayerOptionContentView tabContent = getTabContent(i);
+            tabContent.setOnOptionClickListener(new OnOptionClickListener() {
+                @Override
+                public void onOptionClick(int optionID, View v) {
+                    if (mOnOptionChangedListener != null) {
+                        /** Tab index is also mode id */
+                        mOnOptionChangedListener.onOptionChanged(optionID, i, v);
+                    }
                 }
-                else if (v instanceof NumeralPicker) {
-                    ((NumeralPicker) v).setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
-                        @Override
-                        public void onPickerClicked(String valueStr) {
-                            OptionSettings optionSettings = mOptionSettingsLL.get(mCurrentTabIndex);
-                            switch (v.getId()) {
-                                case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                                    optionSettings.setStopPeriod(Integer.valueOf(valueStr));
-                                    break;
-                                case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
-                                    optionSettings.setItemLoop(Integer.valueOf(valueStr));
-                                    break;
-                                case PLAYER_OPTION_SPEED_PICKER_RES_ID:
-                                    optionSettings.setSpeed(Integer.valueOf(valueStr));
-                                    break;
-                                case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
-                                    optionSettings.setPlayTime(Integer.valueOf(valueStr));
-                                    break;
-                                default:
-                                    break;
-                            }
-                            if (mOnOptionChangedListener != null) {
-                                mOnOptionChangedListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
-                            }
-                        }
-                    });
-                }
-            }
+            });
         }
     }
 
@@ -317,7 +197,7 @@ public class PlayerOptionView extends LinearLayout {
 
             setBackground(shadowDrawable);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                // this is important, change outline make shadow appear
+                /** this is important, change outline make shadow appear */
                 setOutlineProvider(new TrapezoidOutlineProvider());
                 setClipToOutline(true);
             }
