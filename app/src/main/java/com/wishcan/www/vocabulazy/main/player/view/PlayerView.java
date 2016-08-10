@@ -249,8 +249,4 @@ public class PlayerView extends RelativeLayout {
 	public void setPlayerOptionTabContent(ArrayList<OptionSettings> options) {
         mPlayerOptionView.setOptionsInTabContent(options);
 	}
-
-//	public void setOnGrayBackClickListener(OnGrayBackClickListener listener) {
-//		mOnGrayBackClickListener = listener;
-//	}
 }

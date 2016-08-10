@@ -1,3 +1,36 @@
+package com.wishcan.www.vocabulazy.main.player.view;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.graphics.Outline;
+import android.graphics.Path;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.PathShape;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
+import com.wishcan.www.vocabulazy.widget.LinkedListPagerAdapter;
+import com.wishcan.www.vocabulazy.widget.NumeralPicker;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 public class PlayerOptionView extends LinearLayout {
 
     private static final int VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID = R.layout.player_option_tab_content;
@@ -21,10 +54,7 @@ public class PlayerOptionView extends LinearLayout {
             PLAYER_OPTION_SPEED_PICKER_RES_ID,
             PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID
     };
-
-    /**
-     *
-     * */
+    
     private Context mContext;
 
     /**
@@ -101,21 +131,23 @@ public class PlayerOptionView extends LinearLayout {
 
     public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL){
 
-        if(optionSettingsLL == null) {
+        if (optionSettingsLL == null) {
             mOptionSettingsLL = new ArrayList<>();
-            for(int i = 1; i <= 3; i++)
+            for (int i = 1; i <= 3; i++) {
                 mOptionSettingsLL.add(new OptionSettings(i, true, 1, true, i, 0, 1, 2));
+            }
         }
-        else
+        else {
             mOptionSettingsLL = optionSettingsLL;
+        }
 
         Iterator<OptionSettings> ii = mOptionSettingsLL.iterator();
-        while(ii.hasNext()){
+        while (ii.hasNext()) {
             OptionSettings optionSettings = ii.next();
-            for(int i = 0; i < mOptionResIDs.length; i++){
+            for (int i = 0; i < mOptionResIDs.length; i++) {
                 int optionID = mOptionResIDs[i];
                 int mode = optionSettings.getMode() - 1;
-                switch (optionID){
+                switch (optionID) {
                     case PLAYER_OPTION_RANDOM_VIEW_RES_ID:
                         setOptionInTabContent(mode, optionID, optionSettings.isRandom());
                         break;
@@ -147,23 +179,15 @@ public class PlayerOptionView extends LinearLayout {
     public void setOptionInTabContent(int mode, int optionID, int option) {
         ViewGroup tabContent = getTabContent(mode);
         View v = tabContent.findViewById(optionID);
-        if(v instanceof ImageView)
+        if (v instanceof ImageView) {
             ((ImageView) v).setImageLevel(option);
+        }
         else if (v instanceof NumeralPicker) {
             NumeralPicker picker = (NumeralPicker) v;
             switch (optionID) {
                 case PLAYER_OPTION_SECOND_PICKER_RES_ID:
-                    picker.calculatePickerRange();
-                    picker.setPickerTextStr(String.valueOf(option));
-                    break;
                 case PLAYER_OPTION_FREQUENCY_PICKER_RES_ID:
-                    picker.calculatePickerRange();
-                    picker.setPickerTextStr(String.valueOf(option));
-                    break;
                 case PLAYER_OPTION_SPEED_PICKER_RES_ID:
-                    picker.calculatePickerRange();
-                    picker.setPickerTextStr(String.valueOf(option));
-                    break;
                 case PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID:
                     picker.calculatePickerRange();
                     picker.setPickerTextStr(String.valueOf(option));
@@ -194,7 +218,6 @@ public class PlayerOptionView extends LinearLayout {
             for (int j = 0; j < mOptionResIDs.length; j++) {
                 final View v = viewGroup.findViewById(mOptionResIDs[j]);
                 if (v instanceof ImageView) {
-
                     v.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -226,7 +249,7 @@ public class PlayerOptionView extends LinearLayout {
                         @Override
                         public void onPickerClicked(String valueStr) {
                             OptionSettings optionSettings = mOptionSettingsLL.get(mCurrentTabIndex);
-                            switch (v.getId()){
+                            switch (v.getId()) {
                                 case PLAYER_OPTION_SECOND_PICKER_RES_ID:
                                     optionSettings.setStopPeriod(Integer.valueOf(valueStr));
                                     break;
@@ -258,15 +281,11 @@ public class PlayerOptionView extends LinearLayout {
      * */
     public class PlayerOptionTabView extends RelativeLayout{
 
-        private TextView mTextView;
-
-        private String mTagString;
-
         private Context mContext;
-
+        private TextView mTextView;
         private ShapeDrawable shadowDrawable;
-
         private int mShadowLongHeight;
+        private String mTagString;
 
         public PlayerOptionTabView(Context context) {
             this(context, null);
@@ -297,7 +316,7 @@ public class PlayerOptionView extends LinearLayout {
             setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, mShadowLongHeight));
 
             setBackground(shadowDrawable);
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 // this is important, change outline make shadow appear
                 setOutlineProvider(new TrapezoidOutlineProvider());
                 setClipToOutline(true);
