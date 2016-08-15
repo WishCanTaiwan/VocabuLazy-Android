@@ -31,13 +31,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class PlayerOptionView extends LinearLayout {
+public class PlayerOptionViewNew extends LinearLayout {
+
+    private static final int DEFAULT_TRAPEZOID_LONG_HEIGHT = R.dimen.player_option_trapezoid_long_height;
+    private static final int DEFAULT_TRAPEZOID_SHORT_HEIGHT = R.dimen.player_option_trapezoid_short_height;
     
     public interface OnOptionChangedListener{
         void onOptionChanged(int optionID, int mode, View v);
     }
 
-    private static final int VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID = R.layout.player_option_tab_content;
+    private static final int VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID = R.layout.view_player_option_content;
     private static final int VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID = R.id.player_option_tab_layout;
     private static final int VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID = R.id.player_option_tab_pager;
 
@@ -61,15 +64,25 @@ public class PlayerOptionView extends LinearLayout {
     /**
      * mTabContentList contains all TabContent
      */
-    private LinkedList<PlayerOptionContentView> mTabContentList;
+    private LinkedList<ViewGroup> mTabContentList;
+
+    /**
+     *
+     * */
+    private LinearLayout mCurrentTab;
+
+    /**
+     *
+     * */
+    private int mCurrentTabIndex;
 
     private OnOptionChangedListener mOnOptionChangedListener;
 
-    public PlayerOptionView(Context context) {
+    public PlayerOptionViewNew(Context context) {
         this(context, null);
     }
 
-    public PlayerOptionView(Context context, AttributeSet attrs) {
+    public PlayerOptionViewNew(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mTabContentList = new LinkedList<>();
@@ -79,9 +92,9 @@ public class PlayerOptionView extends LinearLayout {
     
     @Override
     protected void onFinishInflate() {
-        mTabLayout = findViewById(VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID);
-        for (int i = 0; i < mTabLayout.childCount(); i++) {
-            final nextTabIndex = i;
+        super.onFinishInflate();
+        mTabLayout = (LinearLayout) findViewById(VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID);
+        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
             View tab = mTabLayout.getChildAt(i);
             tab.setOnClickListener(new OnClickListener(){
                 @Override
@@ -91,9 +104,9 @@ public class PlayerOptionView extends LinearLayout {
             });
         }
 
-        mViewPager = findViewById(VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID);
+        mViewPager = (WrapContentViewPager) findViewById(VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID);
         mViewPager.setPagingEnabled(true);
-        for (int i = 0; i < mTabLayout.childCount(); i++) {
+        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
             PlayerOptionContentView tabContent = (PlayerOptionContentView) ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID, null);
             mTabContentList.add(tabContent);
         }
@@ -102,32 +115,26 @@ public class PlayerOptionView extends LinearLayout {
     }
 
     public PlayerOptionContentView getTabContent(int index) {
-        return mTabContentList.get(index);
+        return (PlayerOptionContentView) mTabContentList.get(index);
     }
 
     public void setCurrentTab(View v) {
         int nextTabIndex = mTabLayout.indexOfChild(v);
         mViewPager.setCurrentItem(nextTabIndex, true);
-        mCurrentTab = v;
+        mCurrentTab = (LinearLayout) v;
         mCurrentTabIndex = nextTabIndex;
-        if (mOnOptionChangedListener != null) {
-            mOnOptionChangedListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
-        }
+//        if (mOnOptionChangedListener != null) {
+//            mOnOptionChangedListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
+//        }
     }
 
     public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL) {
 
         if (optionSettingsLL == null) { /** if no option setting, using default value */
-            mOptionSettingsLL = new ArrayList<>();
-            for (int i = 1; i <= 3; i++) {
-                mOptionSettingsLL.add(new OptionSettings(i, true, 1, true, i, 0, 1, 2));
-            }
-        }
-        else { /** else, using option setting */
-            mOptionSettingsLL = optionSettingsLL;
+            return;
         }
 
-        Iterator<OptionSettings> ii = mOptionSettingsLL.iterator();
+        Iterator<OptionSettings> ii = optionSettingsLL.iterator();
         while (ii.hasNext()) {
             OptionSettings optionSettings = ii.next();
             int mode = optionSettings.getMode() - 1;
@@ -141,14 +148,15 @@ public class PlayerOptionView extends LinearLayout {
     }
 
     private void registerOptionsListener() {
-        for (int i = 0; i < mTabCount; i++) {
+        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
+            final int nextTabIndex = i;
             PlayerOptionContentView tabContent = getTabContent(i);
-            tabContent.setOnOptionClickListener(new OnOptionClickListener() {
+            tabContent.setOnOptionClickListener(new PlayerOptionContentView.OnOptionClickListener() {
                 @Override
                 public void onOptionClick(int optionID, View v) {
                     if (mOnOptionChangedListener != null) {
                         /** Tab index is also mode id */
-                        mOnOptionChangedListener.onOptionChanged(optionID, i, v);
+                        mOnOptionChangedListener.onOptionChanged(optionID, nextTabIndex, v);
                     }
                 }
             });

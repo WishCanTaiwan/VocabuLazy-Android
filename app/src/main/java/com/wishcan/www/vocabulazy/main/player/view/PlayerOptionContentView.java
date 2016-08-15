@@ -2,18 +2,20 @@ package com.wishcan.www.vocabulazy.main.player.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.widget.NumeralPicker;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 
 public class PlayerOptionContentView extends LinearLayout {
     
     public interface OnOptionClickListener {
-        onOptionClick(int optionId, View v);
+        void onOptionClick(int optionId, View v);
     }
 
     public static final int IDX_OPTION_RANDOM = 0x1;
@@ -58,31 +60,32 @@ public class PlayerOptionContentView extends LinearLayout {
     
     @Override
     protected void onFinishInflate() {
-        mRandomOptionView = findViewById(PLAYER_OPTION_RANDOM_VIEW_RES_ID);
-        mRepeatOptionView = findViewById(PLAYER_OPTION_REPEAT_VIEW_RES_ID);
-        mSentenceOptionView = findViewById(PLAYER_OPTION_SENTENCE_VIEW_RES_ID);
-        mSecondOptionPicker = findViewById(PLAYER_OPTION_SECOND_PICKER_RES_ID);
-        mFrequencyOptionPicker = findViewById(PLAYER_OPTION_FREQUENCY_PICKER_RES_ID);
-        mSpeedOptionPicker = findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
-        mPlayTimeOptionPicker = findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
+        super.onFinishInflate();
+        mRandomOptionView = (ImageView) findViewById(PLAYER_OPTION_RANDOM_VIEW_RES_ID);
+        mRepeatOptionView = (ImageView) findViewById(PLAYER_OPTION_REPEAT_VIEW_RES_ID);
+        mSentenceOptionView = (ImageView) findViewById(PLAYER_OPTION_SENTENCE_VIEW_RES_ID);
+        mSecondOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SECOND_PICKER_RES_ID);
+        mFrequencyOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_FREQUENCY_PICKER_RES_ID);
+        mSpeedOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
+        mPlayTimeOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
         
         registerOptionsListener();
     }
     
     public void setOptionSettings(OptionSettings optionSettings) {
         /** OPTION_IDX_s starts from 1 */
-        mRandomOptionView.setImageLevel(optionSettings.isRandom());
+        mRandomOptionView.setImageLevel(optionSettings.isRandom() ? 1 : 0);
         mRepeatOptionView.setImageLevel(optionSettings.getListLoop());
-        mSentenceOptionView.setImageLevel(optionSettings.isSentence());
+        mSentenceOptionView.setImageLevel(optionSettings.isSentence() ? 1 : 0);
         /** TODO: refine calculatePickerRange into NumeralPicker constructor */
         mSecondOptionPicker.calculatePickerRange();
-        mSecondOptionPicker.setPickerTextStr(String.valueOf(option));
+        mSecondOptionPicker.setPickerTextStr(String.valueOf(optionSettings.getStopPeriod()));
         mFrequencyOptionPicker.calculatePickerRange();
-        mFrequencyOptionPicker.setPickerTextStr(String.valueOf(option));
+        mFrequencyOptionPicker.setPickerTextStr(String.valueOf(optionSettings.getItemLoop()));
         mSpeedOptionPicker.calculatePickerRange();
-        mSpeedOptionPicker.setPickerTextStr(String.valueOf(option));
+        mSpeedOptionPicker.setPickerTextStr(String.valueOf(optionSettings.getSpeed()));
         mPlayTimeOptionPicker.calculatePickerRange();
-        mPlayTimeOptionPicker.setPickerTextStr(String.valueOf(option));
+        mPlayTimeOptionPicker.setPickerTextStr(String.valueOf(optionSettings.getPlayTime()));
     }
     
     public void setOnOptionClickListener(OnOptionClickListener listener) {
@@ -121,7 +124,7 @@ public class PlayerOptionContentView extends LinearLayout {
             @Override
             public void onPickerClicked(String valueStr) {
                 if (mOnOptionClickListener != null) {
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SECOND, view);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SECOND, mSecondOptionPicker);
                 }
             }
         });
@@ -130,7 +133,7 @@ public class PlayerOptionContentView extends LinearLayout {
             @Override
             public void onPickerClicked(String valueStr) {
                 if (mOnOptionClickListener != null) {
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_FREQUENCY, view);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_FREQUENCY, mFrequencyOptionPicker);
                 }
             }
         });
@@ -139,7 +142,7 @@ public class PlayerOptionContentView extends LinearLayout {
             @Override
             public void onPickerClicked(String valueStr) {
                 if (mOnOptionClickListener != null) {
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SPEED, view);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SPEED, mSpeedOptionPicker);
                 }
             }
         });
@@ -149,7 +152,7 @@ public class PlayerOptionContentView extends LinearLayout {
             @Override
             public void onPickerClicked(String valueStr) {
                 if (mOnOptionClickListener != null) {
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_PLAY_TIME, view);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_PLAY_TIME, mPlayTimeOptionPicker);
                 }
             }
         });

@@ -1,14 +1,8 @@
 package com.wishcan.www.vocabulazy.main.player.view;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LevelListDrawable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -56,9 +50,10 @@ public class PlayerPanelView extends LinearLayout {
     
     @Override
     protected void onFinishInflate() {
-        mActionFavoriteIcon = findViewById(VIEW_ICON_FAVORITE);
-        mActionPlayIcon = findViewById(VIEW_ICON_PLAY);
-        mActionOptionIcon = findViewById(VIEW_ICON_OPTION);
+        super.onFinishInflate();
+        mActionFavoriteIcon = (ImageView) findViewById(VIEW_ICON_FAVORITE);
+        mActionPlayIcon = (ImageView) findViewById(VIEW_ICON_PLAY);
+        mActionOptionIcon = (ImageView) findViewById(VIEW_ICON_OPTION);
         
         registerEventListener();
     }
