@@ -67,4 +67,11 @@
         <attr name="setXXCircleOutline" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="PlayerOptionTabView">
+        <attr name="setPlayerTabBackgroundColor" format="color"/>
+        <attr name="setPlayerTabStringColor" format="color"/>
+        <attr name="setPlayerTabString" format="string"/>
+        <attr name="setPlayerTabStringSize" format="integer"/>
+    </declare-styleable>
+
 </resources>

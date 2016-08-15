@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.main.player.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Outline;
 import android.graphics.Path;
 import android.graphics.drawable.ShapeDrawable;
@@ -170,11 +171,19 @@ public class PlayerOptionViewNew extends LinearLayout {
      * */
     public static class PlayerOptionTabView extends RelativeLayout{
 
+        private static final int COLOR_TAB_RES_ID = R.color.player_option_tab0;
+        private static final int STR_TAB_RES_ID = R.string.player_option_tab_0;
+        private static final int COLOR_TAB_TEXT_RES_ID = R.color.player_option_tab0_text;
+        private static final int DEFAULT_TAB_TEXT_SIZE_RES_ID = R.dimen.player_option_tab_text;
+
         private Context mContext;
         private TextView mTextView;
         private ShapeDrawable shadowDrawable;
         private int mShadowLongHeight;
         private String mTagString;
+        private int mTagStringColor;
+        private int mBackgroundColor;
+        private int mTagStringSize;
 
         public PlayerOptionTabView(Context context) {
             this(context, null);
@@ -184,6 +193,7 @@ public class PlayerOptionViewNew extends LinearLayout {
             super(context, attrs);
 
             mContext = context;
+            TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PlayerOptionTabView, 0, 0);
 
             int shadowWidth = getResources().getDisplayMetrics().widthPixels / 3;
             int shadowLongHeight = mShadowLongHeight =(int) getResources().getDimension(DEFAULT_TRAPEZOID_LONG_HEIGHT);
@@ -192,12 +202,33 @@ public class PlayerOptionViewNew extends LinearLayout {
             Path path = setPathToTrapezoid(shadowWidth, shadowLongHeight, shadowShortHeight);
             shadowDrawable = new ShapeDrawable(new PathShape(path, shadowWidth, shadowLongHeight));
 
-            init();
             initAllLayout();
-        }
 
-        private void init(){
-            mTagString = "Tag";
+            try {
+                final int N = ta.getIndexCount();
+                for (int i = 0; i < N; i++) {
+                    int attribute = ta.getIndex(i);
+                    switch(attribute) {
+                        case R.styleable.PlayerOptionTabView_setPlayerTabBackgroundColor:
+                            mBackgroundColor = ta.getColor(attribute, ContextCompat.getColor(context, COLOR_TAB_RES_ID));
+                            break;
+                        case R.styleable.PlayerOptionTabView_setPlayerTabStringColor:
+                            mTagStringColor = ta.getColor(attribute, ContextCompat.getColor(context, COLOR_TAB_TEXT_RES_ID));
+                            break;
+                        case R.styleable.PlayerOptionTabView_setPlayerTabString:
+                            mTagString = ta.getString(attribute);
+                            break;
+                        case R.styleable.PlayerOptionTabView_setPlayerTabStringSize:
+                            mTagStringSize = ta.getDimensionPixelSize(attribute, 10);
+                            break;
+                    }
+                }
+            } finally {
+                setColor(mBackgroundColor);
+                setTextStr(mTagString);
+                setTextColor(mTagStringColor);
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, mTagStringSize);
+            }
         }
 
         private void initAllLayout(){
