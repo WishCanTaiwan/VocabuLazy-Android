@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.wishcan.www.vocabulazy.main.player.view.PlayerOptionContentView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -7,12 +8,13 @@
     android:gravity="center_horizontal"
     android:background="@color/theme_color_green">
 
+    <!-- Left part, three image view as button -->
     <LinearLayout
         android:id="@+id/image_views_parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="33dp"
-        android:paddingEnd="33dp"
+        android:paddingLeft="33dp"
+        android:paddingRight="33dp"
         android:paddingTop="31dp"
         android:paddingBottom="31dp"
         android:orientation="vertical"
@@ -46,9 +48,9 @@
             android:paddingBottom="@dimen/player_option_image_padding"
             />
 
-
     </LinearLayout>
 
+    <!-- Right part -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,27 +70,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/player_option_picker_indicator_text_color"
-                    android:textSize="@dimen/player_option_picker_indicator_text_size"
-                    android:text="@string/player_option_second_chinese"
-                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/player_option_picker_indicator_text_color"
                     android:textSize="@dimen/player_option_picker_indicator_text_size"
-                    android:text="@string/player_option_second"
-                    />
+                    android:text="@string/player_option_second_chinese" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_second" />
             </LinearLayout>
 
             <com.wishcan.www.vocabulazy.widget.NumeralPicker
                 android:id="@+id/action_picker_second"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
                 custom:setPickerBackgroundColor="#ffffff"
                 custom:setPickerMaximumNumber="9"
@@ -107,29 +109,28 @@
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center_horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/player_option_picker_indicator_text_color"
-                    android:textSize="@dimen/player_option_picker_indicator_text_size"
-                    android:text="@string/player_option_frequency_chinese"
-                    />
+                android:gravity="center_horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/player_option_picker_indicator_text_color"
                     android:textSize="@dimen/player_option_picker_indicator_text_size"
-                    android:text="@string/player_option_frequency"
-                    />
+                    android:text="@string/player_option_frequency_chinese" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_frequency" />
             </LinearLayout>
 
             <com.wishcan.www.vocabulazy.widget.NumeralPicker
                 android:id="@+id/action_picker_frequency"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
                 custom:setPickerBackgroundColor="#ffffff"
                 custom:setPickerMaximumNumber="5"
@@ -149,21 +150,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/player_option_picker_indicator_text_color"
-                    android:textSize="@dimen/player_option_picker_indicator_text_size"
-                    android:text="@string/player_option_speed_chinese"
-                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/player_option_picker_indicator_text_color"
                     android:textSize="@dimen/player_option_picker_indicator_text_size"
-                    android:text="@string/player_option_speed"
-                    />
+                    android:text="@string/player_option_speed_chinese" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+                    android:text="@string/player_option_speed" />
             </LinearLayout>
 
             <com.wishcan.www.vocabulazy.widget.NumeralPicker
@@ -171,6 +171,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 custom:setPickerBackgroundColor="#ffffff"
+                android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
                 custom:setPickerMaximumNumber="2"
                 custom:setPickerMinimumNumber="1" />
@@ -189,21 +190,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/player_option_picker_indicator_text_color"
-                    android:textSize="@dimen/player_option_picker_indicator_text_size"
-                    android:text="@string/player_option_play_time_chinese"
-                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/player_option_picker_indicator_text_color"
                     android:textSize="@dimen/player_option_picker_indicator_text_size"
-                    android:text="@string/player_option_play_time"
-                    />
+                    android:text="@string/player_option_play_time_chinese" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/player_option_picker_indicator_text_color"
+                    android:textSize="@dimen/player_option_picker_indicator_text_size"
+
+                    android:text="@string/player_option_play_time" />
             </LinearLayout>
 
             <com.wishcan.www.vocabulazy.widget.NumeralPicker
@@ -211,6 +212,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 custom:setPickerBackgroundColor="#ffffff"
+                android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
                 custom:setPickerMaximumNumber="40"
                 custom:setPickerMinimumNumber="10" />
@@ -219,4 +221,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</com.wishcan.www.vocabulazy.main.player.view.PlayerOptionContentView>

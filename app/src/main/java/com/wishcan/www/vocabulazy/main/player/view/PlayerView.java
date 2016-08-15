@@ -38,12 +38,11 @@ public class PlayerView extends RelativeLayout {
         void onPlayerPanelFavoriteClick();
 		void onPlayerPanelPlayClick();
 		void onPlayerPanelOptionClick();
-        /** PlayerOptionView's Event */
-        void onPlayerOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode);
+        /** PlayerOptionView's Event
+        void onPlayerOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode);*/
         /** TODO: replace old PlayerOptionView's Event with New PlayerOptionView's Event */
-        /**
         void onPlayerOptionChanged(int optionID, int mode, View v);
-        */
+
 	}
 
 	private static final int VIEW_PLAYER_MAIN_RES_ID = R.id.player_main_view;
@@ -55,7 +54,7 @@ public class PlayerView extends RelativeLayout {
 	
 	private PlayerMainView mPlayerMainView;
 	private PlayerPanelView mPlayerPanelView;
-	private PlayerOptionView mPlayerOptionView;
+	private PlayerOptionViewNew mPlayerOptionView;
 	private ViewGroup mPlayerOptionGrayBack;
 	
 	private PlayerEventListener mPlayerEventListener;
@@ -74,7 +73,7 @@ public class PlayerView extends RelativeLayout {
 		super.onFinishInflate();
         mPlayerMainView = (PlayerMainView) findViewById(VIEW_PLAYER_MAIN_RES_ID);
 		mPlayerPanelView = (PlayerPanelView) findViewById(VIEW_PLAYER_PANEL_RES_ID);
-        mPlayerOptionView = (PlayerOptionView) findViewById(VIEW_PLAYER_OPTION_RES_ID);
+        mPlayerOptionView = (PlayerOptionViewNew) findViewById(VIEW_PLAYER_OPTION_RES_ID);
         mPlayerOptionGrayBack = (ViewGroup) findViewById(VIEW_PLAYER_OPTION_PARENT_RES_ID);
         
         registerEventListener();
@@ -163,21 +162,23 @@ public class PlayerView extends RelativeLayout {
 			}
     	});
     	
-    	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener(){
+    	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionViewNew.OnOptionChangedListener(){
+			/**
     		@Override
     		public void onOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode) {
     			if (mPlayerEventListener != null) {
     				mPlayerEventListener.onPlayerOptionChanged(v, optionSettingsLL, currentMode);
     			}
     		}
-    		/**
+			*/
+
     		@Override
     		public void onOptionChanged(int optionID, int mode, View v) {
     			if (mPlayerEventListener != null) {
     				mPlayerEventListener.onPlayerOptionChanged(optionID, mode, v);
     			}
     		}
-    		*/
+
     	});
 
     	mPlayerOptionGrayBack.setOnClickListener(new OnClickListener() {

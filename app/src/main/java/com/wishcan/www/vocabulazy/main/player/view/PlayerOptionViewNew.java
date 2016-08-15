@@ -85,9 +85,9 @@ public class PlayerOptionViewNew extends LinearLayout {
     public PlayerOptionViewNew(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        mContext = context;
         mTabContentList = new LinkedList<>();
         mPagerAdapter = new LinkedListPagerAdapter(mTabContentList);
-        mViewPager.setAdapter(mPagerAdapter);
     }
     
     @Override
@@ -105,6 +105,7 @@ public class PlayerOptionViewNew extends LinearLayout {
         }
 
         mViewPager = (WrapContentViewPager) findViewById(VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID);
+        mViewPager.setAdapter(mPagerAdapter);
         mViewPager.setPagingEnabled(true);
         for (int i = 0; i < mTabLayout.getChildCount(); i++) {
             PlayerOptionContentView tabContent = (PlayerOptionContentView) ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID, null);
@@ -167,7 +168,7 @@ public class PlayerOptionViewNew extends LinearLayout {
      * PlayerOptionTabView is our Tab items, which is a RelativeLayout containing a
      * PlayerOptionImageView (a trapezoid) and a TextView(the tab item's title)
      * */
-    public class PlayerOptionTabView extends RelativeLayout{
+    public static class PlayerOptionTabView extends RelativeLayout{
 
         private Context mContext;
         private TextView mTextView;
@@ -206,7 +207,7 @@ public class PlayerOptionViewNew extends LinearLayout {
             setBackground(shadowDrawable);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 /** this is important, change outline make shadow appear */
-                setOutlineProvider(new TrapezoidOutlineProvider());
+                setOutlineProvider(new TrapezoidOutlineProvider(mContext));
                 setClipToOutline(true);
             }
 
@@ -258,14 +259,14 @@ public class PlayerOptionViewNew extends LinearLayout {
     }
 
     @TargetApi(21)
-    private class TrapezoidOutlineProvider extends ViewOutlineProvider {
+    private static class TrapezoidOutlineProvider extends ViewOutlineProvider {
 
         int width, longHeight, shortHeight;
 
-        public TrapezoidOutlineProvider() {
-            width = getResources().getDisplayMetrics().widthPixels / 3;
-            longHeight = (int) getResources().getDimension(DEFAULT_TRAPEZOID_LONG_HEIGHT);
-            shortHeight = (int) getResources().getDimension(DEFAULT_TRAPEZOID_SHORT_HEIGHT);
+        public TrapezoidOutlineProvider(Context context) {
+            width = context.getResources().getDisplayMetrics().widthPixels / 3;
+            longHeight = (int) context.getResources().getDimension(DEFAULT_TRAPEZOID_LONG_HEIGHT);
+            shortHeight = (int) context.getResources().getDimension(DEFAULT_TRAPEZOID_SHORT_HEIGHT);
         }
 
         @Override
@@ -282,7 +283,7 @@ public class PlayerOptionViewNew extends LinearLayout {
     /**
      * WrapContentViewPager enables ViewPager can be assigned a specific size.
      * */
-    public class WrapContentViewPager extends ViewPager {
+    public static class WrapContentViewPager extends ViewPager {
 
         private Context mContext;
         private boolean isPagingEnabled = true;
