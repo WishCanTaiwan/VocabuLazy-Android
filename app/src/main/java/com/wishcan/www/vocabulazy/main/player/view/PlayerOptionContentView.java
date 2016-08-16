@@ -1,12 +1,12 @@
 package com.wishcan.www.vocabulazy.main.player.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import java.util.ArrayList;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.widget.NumeralPicker;
@@ -44,11 +44,18 @@ public class PlayerOptionContentView extends LinearLayout {
     private static final int PLAYER_OPTION_FREQUENCY_PICKER_RES_ID = R.id.action_picker_frequency;
     private static final int PLAYER_OPTION_SPEED_PICKER_RES_ID = R.id.action_picker_speed;
     private static final int PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID = R.id.action_picker_play_time;
+
+    private static final int COLOR_TAB_RES_ID = R.color.player_option_tab0;
+
+    private static final int PLAYER_OPTION_CONTENT_ATTRIBUTE_s[] = {
+        R.styleable.PlayerOptionContent_setPlayerOptionContentColor
+    };
     
     private ImageView mRandomOptionView, mRepeatOptionView, mSentenceOptionView;
     private NumeralPicker mSecondOptionPicker, mFrequencyOptionPicker, mSpeedOptionPicker, mPlayTimeOptionPicker;
     
     private OnOptionClickListener mOnOptionClickListener;
+    private int mContentBackgroundColor;
     
     public PlayerOptionContentView(Context context) {
         this(context, null);
@@ -56,6 +63,20 @@ public class PlayerOptionContentView extends LinearLayout {
     
     public PlayerOptionContentView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PlayerOptionTabView, 0, 0);
+        try {
+            final int N = PLAYER_OPTION_CONTENT_ATTRIBUTE_s.length;
+            for (int i = 0; i < N; i++) {
+                int attribute = PLAYER_OPTION_CONTENT_ATTRIBUTE_s[i];
+                switch (attribute) {
+                    case R.styleable.PlayerOptionContent_setPlayerOptionContentColor:
+                        mContentBackgroundColor = ta.getColor(attribute, ContextCompat.getColor(context, COLOR_TAB_RES_ID));
+                        break;
+                }
+            }
+        } finally {
+            setContentBackgroundColor(mContentBackgroundColor);
+        }
     }
     
     @Override
@@ -67,7 +88,7 @@ public class PlayerOptionContentView extends LinearLayout {
         mSecondOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SECOND_PICKER_RES_ID);
         mFrequencyOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_FREQUENCY_PICKER_RES_ID);
         mSpeedOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
-        mPlayTimeOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
+        mPlayTimeOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_PLAY_TIME_PICKER_RES_ID);
         
         registerOptionsListener();
     }
@@ -90,6 +111,10 @@ public class PlayerOptionContentView extends LinearLayout {
     
     public void setOnOptionClickListener(OnOptionClickListener listener) {
         mOnOptionClickListener = listener;
+    }
+
+    public void setContentBackgroundColor(int color) {
+        setBackgroundColor(color);
     }
     
     private void registerOptionsListener() {

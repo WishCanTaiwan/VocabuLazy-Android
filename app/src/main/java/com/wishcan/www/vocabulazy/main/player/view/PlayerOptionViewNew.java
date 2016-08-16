@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -70,7 +71,7 @@ public class PlayerOptionViewNew extends LinearLayout {
     /**
      *
      * */
-    private LinearLayout mCurrentTab;
+    private PlayerOptionTabView mCurrentTab;
 
     /**
      *
@@ -88,7 +89,7 @@ public class PlayerOptionViewNew extends LinearLayout {
 
         mContext = context;
         mTabContentList = new LinkedList<>();
-        mPagerAdapter = new LinkedListPagerAdapter(mTabContentList);
+
     }
     
     @Override
@@ -106,12 +107,14 @@ public class PlayerOptionViewNew extends LinearLayout {
         }
 
         mViewPager = (WrapContentViewPager) findViewById(VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID);
-        mViewPager.setAdapter(mPagerAdapter);
-        mViewPager.setPagingEnabled(true);
-        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
-            PlayerOptionContentView tabContent = (PlayerOptionContentView) ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID, null);
+        for (int i = 0; i < mViewPager.getChildCount(); i++) {
+            PlayerOptionContentView tabContent = (PlayerOptionContentView) mViewPager.getChildAt(i);
+            tabContent.setContentBackgroundColor(((PlayerOptionTabView) mTabLayout.getChildAt(i)).getColor());
             mTabContentList.add(tabContent);
         }
+        mPagerAdapter = new LinkedListPagerAdapter(mTabContentList);
+        mViewPager.setAdapter(mPagerAdapter);
+        mViewPager.setPagingEnabled(true);
 
         registerOptionsListener();
     }
@@ -123,11 +126,14 @@ public class PlayerOptionViewNew extends LinearLayout {
     public void setCurrentTab(View v) {
         int nextTabIndex = mTabLayout.indexOfChild(v);
         mViewPager.setCurrentItem(nextTabIndex, true);
-        mCurrentTab = (LinearLayout) v;
+        mCurrentTab = (PlayerOptionTabView) v;
+        for (int i = nextTabIndex, k = 0; k < getChildCount(); i = (i + 1) % mTabLayout.getChildCount(), k++) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                PlayerOptionTabView tabView = (PlayerOptionTabView) mTabLayout.getChildAt(i);
+                tabView.setElevation(k == 0 ? 50 : k == 1 ? 20 : 10);
+            }
+        }
         mCurrentTabIndex = nextTabIndex;
-//        if (mOnOptionChangedListener != null) {
-//            mOnOptionChangedListener.onOptionChanged(v, mOptionSettingsLL, mCurrentTabIndex);
-//        }
     }
 
     public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL) {
@@ -176,6 +182,13 @@ public class PlayerOptionViewNew extends LinearLayout {
         private static final int COLOR_TAB_TEXT_RES_ID = R.color.player_option_tab0_text;
         private static final int DEFAULT_TAB_TEXT_SIZE_RES_ID = R.dimen.player_option_tab_text;
 
+        private static final int PLAYER_OPTION_TAB_ATTRIBUTE_s[] = {
+            R.styleable.PlayerOptionTabView_setPlayerTabBackgroundColor,
+            R.styleable.PlayerOptionTabView_setPlayerTabStringColor,
+            R.styleable.PlayerOptionTabView_setPlayerTabString,
+            R.styleable.PlayerOptionTabView_setPlayerTabStringSize
+        };
+
         private Context mContext;
         private TextView mTextView;
         private ShapeDrawable shadowDrawable;
@@ -205,9 +218,10 @@ public class PlayerOptionViewNew extends LinearLayout {
             initAllLayout();
 
             try {
-                final int N = ta.getIndexCount();
+                final int N = PLAYER_OPTION_TAB_ATTRIBUTE_s.length;
+
                 for (int i = 0; i < N; i++) {
-                    int attribute = ta.getIndex(i);
+                    int attribute = PLAYER_OPTION_TAB_ATTRIBUTE_s[i];
                     switch(attribute) {
                         case R.styleable.PlayerOptionTabView_setPlayerTabBackgroundColor:
                             mBackgroundColor = ta.getColor(attribute, ContextCompat.getColor(context, COLOR_TAB_RES_ID));
@@ -281,6 +295,10 @@ public class PlayerOptionViewNew extends LinearLayout {
 
         public void setTextSize(int unit, float size){
             mTextView.setTextSize(unit, size);
+        }
+
+        public int getColor() {
+            return mBackgroundColor;
         }
 
         @Override

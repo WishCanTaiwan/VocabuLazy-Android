@@ -44,6 +44,17 @@
     <view class="com.wishcan.www.vocabulazy.main.player.view.PlayerOptionViewNew$WrapContentViewPager"
         android:id="@+id/player_option_tab_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <include layout="@layout/view_player_option_content"
+            custom:setPlayerOptionContentColor="@color/player_option_tab0"/>
+
+        <include layout="@layout/view_player_option_content"
+            custom:setPlayerOptionContentColor="@color/player_option_tab2"/>
+
+        <include layout="@layout/view_player_option_content"
+            custom:setPlayerOptionContentColor="@color/player_option_tab1"/>
+
+    </view>
     
 </com.wishcan.www.vocabulazy.main.player.view.PlayerOptionViewNew>

@@ -30,6 +30,9 @@ public class LinkedListPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View v = mLinkedList.get(position);
+        if (v.getParent() != null) {
+            ((ViewGroup) v.getParent()).removeView(v);
+        }
         container.addView(v);
         return v;
     }
