@@ -24,13 +24,6 @@
         android:background="@color/default_dialog_background_color"
         android:visibility="invisible" >
 
-
-        <!--<com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView-->
-            <!--android:id="@+id/player_option_view"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--/>-->
         <include layout="@layout/view_player_option"
             android:id="@+id/player_option_view"
             android:layout_width="match_parent"

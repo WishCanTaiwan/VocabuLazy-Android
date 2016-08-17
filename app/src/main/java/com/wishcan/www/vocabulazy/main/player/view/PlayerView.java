@@ -2,7 +2,6 @@ package com.wishcan.www.vocabulazy.main.player.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -38,7 +37,6 @@ public class PlayerView extends RelativeLayout {
         void onPlayerPanelFavoriteClick();
 		void onPlayerPanelPlayClick();
 		void onPlayerPanelOptionClick();
-        /** TODO: replace old PlayerOptionView's Event with New PlayerOptionView's Event */
         void onPlayerOptionChanged(int optionID, int mode, View v);
 
 	}
@@ -52,7 +50,7 @@ public class PlayerView extends RelativeLayout {
 	
 	private PlayerMainView mPlayerMainView;
 	private PlayerPanelView mPlayerPanelView;
-	private PlayerOptionViewNew mPlayerOptionView;
+	private PlayerOptionView mPlayerOptionView;
 	private ViewGroup mPlayerOptionGrayBack;
 	
 	private PlayerEventListener mPlayerEventListener;
@@ -71,7 +69,7 @@ public class PlayerView extends RelativeLayout {
 		super.onFinishInflate();
         mPlayerMainView = (PlayerMainView) findViewById(VIEW_PLAYER_MAIN_RES_ID);
 		mPlayerPanelView = (PlayerPanelView) findViewById(VIEW_PLAYER_PANEL_RES_ID);
-        mPlayerOptionView = (PlayerOptionViewNew) findViewById(VIEW_PLAYER_OPTION_RES_ID);
+        mPlayerOptionView = (PlayerOptionView) findViewById(VIEW_PLAYER_OPTION_RES_ID);
         mPlayerOptionGrayBack = (ViewGroup) findViewById(VIEW_PLAYER_OPTION_PARENT_RES_ID);
         
         registerEventListener();
@@ -157,7 +155,7 @@ public class PlayerView extends RelativeLayout {
 			}
     	});
     	
-    	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionViewNew.OnOptionChangedListener(){
+    	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener(){
     		@Override
     		public void onOptionChanged(int optionID, int mode, View v) {
     			if (mPlayerEventListener != null) {
@@ -214,7 +212,7 @@ public class PlayerView extends RelativeLayout {
 	public void setIconState(boolean favorite, boolean play, boolean option) {
 		mPlayerPanelView.setIconState(favorite, play, option);
 	}
-	/**------------------------------ PlayerOptionView related action ---------------------------**/
+	/**------------------------------ PlayerOptionVie related action ---------------------------**/
 	public void showPlayerOptionView() {
 		if (mPlayerOptionGrayBack.getVisibility() == View.INVISIBLE) {
 			mPlayerOptionGrayBack.setVisibility(View.VISIBLE);

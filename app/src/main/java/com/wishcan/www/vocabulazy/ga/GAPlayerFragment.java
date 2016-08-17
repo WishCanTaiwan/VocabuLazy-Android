@@ -5,11 +5,7 @@ import android.view.View;
 import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.player.model.PlayerModel;
-import com.wishcan.www.vocabulazy.main.player.view.PlayerMainView;
-import com.wishcan.www.vocabulazy.main.player.view.PlayerOptionView;
-import com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView;
 import com.wishcan.www.vocabulazy.main.player.view.PlayerView;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;

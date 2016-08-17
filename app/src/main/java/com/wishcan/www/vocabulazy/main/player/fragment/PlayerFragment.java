@@ -423,7 +423,7 @@ public class PlayerFragment extends GAPlayerFragment {
          ArrayList<OptionSettings> optionSettingsLL = mPlayerModel.getOptionSettings();
          /** Step 2. Refresh option setting */
         
-         /** Step 3. Refresh Player Option Content by PlayerOptionView api */
+         /** Step 3. Refresh Player Option Content by playeroptionview api */
          mPlayerView.setPlayerOptionTabContent(optionSettingsLL);
      }
     
