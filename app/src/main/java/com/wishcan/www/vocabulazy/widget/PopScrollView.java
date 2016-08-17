@@ -65,7 +65,9 @@ abstract public class PopScrollView extends RelativeLayout {
     private static final float ZOOM_IN_FACTORY = 1.05f;
     private static final int DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW = 5;
     private static final int DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID = R.color.widget_pop_list_item_focused;
-    private static final int DEFAULT_LIST_ITEM0_COLOR_RES_ID = R.color.widget_pop_list_item0_border_bottom_color;
+    private static final int DEFAULT_LIST_ITEM_FONT_COLOR_RES_ID = R.color.player_list_item_font;
+    private static final int DEFAULT_LIST_ITEM_COLOR_RES_ID = R.color.widget_pop_list_item;
+    private static final int DEFAULT_LIST_ITEM_FOCUSED_FONT_COLOR_RES_ID = R.color.player_list_item_font1;
     private static final int DEFAULT_DETAILS_COLOR_RES_ID = R.color.widget_pop_details_color;
     private static final int DEFAULT_TOP_GRADIENT_DRAWABLE_RES_ID = R.drawable.widget_pop_top_gradient_filter;
     private static final int DEFAULT_BOT_GRADIENT_DRAWABLE_RES_ID = R.drawable.widget_pop_bottom_gradient_filter;
@@ -344,7 +346,7 @@ abstract public class PopScrollView extends RelativeLayout {
     private void performItemAppearanceChanged(int previousFocusedPosition) {
 
         int focused_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID);
-        int item0_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM0_COLOR_RES_ID);
+        int item0_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_COLOR_RES_ID);
         final View newFocusedView = getCurrentFocusedView();
 
         if(newFocusedView == null) {
@@ -370,7 +372,7 @@ abstract public class PopScrollView extends RelativeLayout {
                 if (newFocusedView instanceof ViewGroup) {
                     ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup) newFocusedView, TextView.class);
                     for (View v : arrayList) {
-                        ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font));
+                        ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), DEFAULT_LIST_ITEM_FONT_COLOR_RES_ID));
                     }
                 }
                 mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
@@ -420,7 +422,7 @@ abstract public class PopScrollView extends RelativeLayout {
                 if (previousFocusedView instanceof ViewGroup) {
                     ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup) previousFocusedView, TextView.class);
                     for (View v : arrayList) {
-                        ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font1));
+                        ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), DEFAULT_LIST_ITEM_FOCUSED_FONT_COLOR_RES_ID));
                     }
                 }
                 mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
@@ -459,7 +461,7 @@ abstract public class PopScrollView extends RelativeLayout {
             if (previousFocusedView instanceof ViewGroup) {
                 ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup)previousFocusedView, TextView.class);
                 for(View v : arrayList) {
-                    ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font1));
+                    ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), DEFAULT_LIST_ITEM_FOCUSED_FONT_COLOR_RES_ID));
                 }
             }
         }

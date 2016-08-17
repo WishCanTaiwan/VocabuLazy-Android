@@ -8,7 +8,7 @@
         android:height="50dp" />
     <stroke
         android:width="3dp"
-        android:color="@color/default_color_white"
+        android:color="@color/default_white"
         />
 
 </shape>

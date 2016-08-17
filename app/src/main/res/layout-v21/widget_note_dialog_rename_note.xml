@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize = "@dimen/dialog_new_note_button_text_size"
-                android:textColor= "@color/default_color_white"
+                android:textColor= "@color/default_white"
                 android:text     ="@string/button_cancel" />
 
         </LinearLayout>
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize = "@dimen/dialog_new_note_button_text_size"
-                android:textColor= "@color/default_color_white"
+                android:textColor= "@color/default_white"
                 android:text     ="@string/button_confirm" />
         </LinearLayout>
 

@@ -5,7 +5,7 @@
     android:paddingTop="20dp"
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
-    android:background="@color/default_color_white"
+    android:background="@color/default_white"
     android:layout_gravity="center_horizontal"
     android:clickable="true">
 
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="Appearance"
-                android:textColor="@color/default_color_white"
+                android:textColor="@color/default_white"
                 android:textSize="35sp" />
 
             <ImageView

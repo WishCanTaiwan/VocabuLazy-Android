@@ -208,7 +208,7 @@ public class PlayerView extends RelativeLayout {
 	public void moveDetailPage(int index) {
 		mPlayerMainView.moveToDetailPage(index);
 	}
-	/**------------------------------ PlayerPanelView related action  ---------------------------**/
+	/**----------------------------- PlayerPanelView related action  ---------------------------**/
 	public void setIconState(boolean favorite, boolean play, boolean option) {
 		mPlayerPanelView.setIconState(favorite, play, option);
 	}

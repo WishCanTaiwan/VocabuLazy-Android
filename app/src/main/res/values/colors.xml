@@ -1,50 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="black_alpha_1">#20000000</color>
+    <color name="black_alpha_2">#90000000</color>
+    <color name="black_1">#FF000000</color>
+    <color name="white_1">#FFFFFFFF</color>
+    <color name="white_2">#FFEEEEEF</color>
+    <color name="green_1">#FF1ABC9C</color>
+    <color name="green_2">#FF9CE7D3</color>
+    <color name="green_3">#FF48CFAE</color>
+    <color name="green_4">#FF66BF97</color>
+    <color name="green_5">#FFA5D0C3</color>
+    <color name="yellow_1">#FFFECE55</color>
+    <color name="yellow_2">#FFFDCE5D</color>
+    <color name="yellow_3">#FFD3AC49</color>
+    <color name="grey_1">#FF444A55</color>
+    <color name="grey_2">#FF666C78</color>
+    <color name="grey_3">#FF444B53</color>
+    <color name="grey_4">#FF434A54</color>
+    <color name="grey_5">#FF656B76</color>
+    <color name="grey_6">#FF9FA0A0</color>
+    <color name="grey_7">#FFA09E9C</color>
+
     <!-- STYLE -->
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorBackground">#ffffffff</color>
+    <color name="colorBackground">@color/white_1</color>
+    <color name="activity_background">@color/grey_1</color>
     <!-- widget -->
-    <color name="widget_tab_view_mask">#20000000</color>
-    <color name="widget_lesson_background">#ffffffff</color>
-    <color name="widget_lesson_divider">#ffeeeeef</color>
-    <color name="widget_note_divider">#ffeeeeef</color>
-    <color name="widget_picker_text">#ff444b53</color>
-    <color name="widget_picker_background">#ffffffff</color>
-    <color name="widget_pop_list_item0_border_bottom_color">#ff9ce7d3</color>
-    <color name="widget_pop_list_item_focused">#fffdce5d</color>
-    <color name="widget_pop_details_color">#ffd3ac49</color>
-    <color name="widget_dialog_background">#90000000</color>
+    <color name="widget_tab_view_mask">@color/black_alpha_1</color>
+    <color name="widget_lesson_background">@color/white_1</color>
+    <color name="widget_lesson_divider">@color/white_2</color>
+    <color name="widget_note_divider">@color/white_2</color>
+    <color name="widget_picker_text">@color/grey_3</color>
+    <color name="widget_picker_background">@color/white_1</color>
+    <color name="widget_pop_list_item">@color/green_2</color>
+    <color name="widget_pop_list_item_focused">@color/yellow_2</color>
+    <color name="widget_pop_details_color">@color/yellow_3</color>
+    <color name="widget_dialog_background">@color/black_alpha_2</color>
     <color name="widget_slide_back_view_pager_background">#00000000</color>
     <!-- main -->
-    <color name="main_tab_stripe">#FF1ABC9C</color>
+    <color name="main_tab_stripe">#@color/green_1</color>
     <!-- voc -->
     <!-- usr -->
     <!-- exam -->
     <!-- info -->
     <!-- player -->
-    <color name="player_list_item1_border_bottom_color">#ffb3eddf</color>
-    <color name="player_list_item2_border_bottom_color">#ffddf5ef</color>
-    <color name="player_list_item_font">#FF656B76</color>
-    <color name="player_list_item_font1">#FF9FA0A0</color>
-    <color name="player_pager_index_color">#ffa09e9c</color>
-    <color name="player_pager_index_selected">#ffd3ac49</color>
-    <color name="player_option_tab0">#ff48cfae</color>
-    <color name="player_option_tab1">#ff66bf97</color>
-    <color name="player_option_tab2">#ffa5d0c3</color>
-    <color name="player_option_tab0_text">#ffffffff</color>
-    <color name="player_option_tab1_text">#ffffffff</color>
-    <color name="player_option_tab2_text">#ffffffff</color>
-    <color name="player_option_picker_indicator_text_color">#ffffffff</color>
+    <color name="player_list_item_font">@color/grey_5</color>  <!--grey_5-->
+    <color name="player_list_item_font1">@color/grey_6</color> <!--grey_6-->
+    <color name="player_pager_index_color">@color/grey_7</color> <!--grey_7-->
+    <color name="player_pager_index_selected">@color/yellow_3</color>
+    <color name="player_option_tab0">@color/green_3</color>
+    <color name="player_option_tab1">@color/green_4</color>
+    <color name="player_option_tab2">@color/green_5</color>
+    <color name="player_option_tab0_text">@color/white_1</color>
+    <color name="player_option_tab1_text">@color/white_1</color>
+    <color name="player_option_tab2_text">@color/white_1</color>
+    <color name="player_option_picker_indicator_text_color">@color/white_1</color>
     <!-- search -->
-    <color name="search_divider">#ffeeeeef</color>
+    <color name="search_divider">@color/white_2</color>
 
-
-    <color name="default_color_white">#ffffffff</color>
-    <color name="test_color_0">#00ffff</color>
-    <color name="test_color_1">#ff00ff</color>
-    <color name="test_color_2">#ffff00</color>
+    <color name="default_white">@color/white_1</color>
 
     <!--theme_color-->
     <color name="theme_color_green">#ff48cfae</color>
@@ -87,7 +101,7 @@
     <color name="dialog_new_note_background_color">#ffeeeeef</color>
     <color name="dialog_new_note_button_background_green">#ff38cfae</color>
     <color name="dialog_new_note_button_background_gray">#ff666c78</color>
-    <color name="dialog_new_note_title_text_color">#ff434a54</color>
+    <color name="dialog_new_note_title_text_color">#ff434a54</color> <!-- grey_4 -->
     <color name="dialog_new_note_input_background_color">#ffffffff</color>
     <color name="dialog_new_note_input_text_color">#ff000000</color>
     <color name="dialog_new_note_input_background_border">#888888</color>

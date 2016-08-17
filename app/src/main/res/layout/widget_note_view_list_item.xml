@@ -64,7 +64,7 @@
         android:id = "@id/note_name_parent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/note_list_item_height"
-        android:background="@color/default_color_white"
+        android:background="@color/default_white"
         android:gravity="center_vertical"
         >
 
@@ -99,7 +99,7 @@
                 android:paddingEnd="@dimen/note_list_item_image_padding"
                 android:paddingLeft="@dimen/note_list_item_image_padding"
                 android:paddingStart="@dimen/note_list_item_image_padding"
-                android:background="@color/default_color_white"
+                android:background="@color/default_white"
                 android:src="@drawable/widget_note_arrow"/>
         </RelativeLayout>
 
