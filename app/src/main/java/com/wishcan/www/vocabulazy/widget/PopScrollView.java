@@ -52,13 +52,13 @@ abstract public class PopScrollView extends RelativeLayout {
         void onPopScrolling();
     }
 
-    public interface OnItemPreparedListener {
-        void onInitialItemPrepared();
-        void onFinalItemPrepared();
+    public interface OnPopItemPreparedListener {
+        void onInitialPopItemPrepared();
+        void onFinalPopItemPrepared();
     }
 
     private OnPopScrollStoppedListener mOnPopScrollStoppedListener;
-    private OnItemPreparedListener mOnItemPreparedListener;
+    private OnPopItemPreparedListener mOnPopItemPreparedListener;
 
     public static final int DEFAULT_PLAYER_LIST_ITEM_COUNT = 3;
 
@@ -140,36 +140,39 @@ abstract public class PopScrollView extends RelativeLayout {
         mMoveToInitPositionFlag = false;
         mMainThreadBusyState = MAIN_THREAD_STATE_IDLE;
 
+        checkInitialItemStateTask = new Runnable() {
+            @Override
+            public void run() {
+                if (initFocusedPosition(mInitialFocusedPosition)) {  // true
+                    mInitialItemCheckFlag = true;
+                    if (mOnPopItemPreparedListener != null) {
+                        mOnPopItemPreparedListener.onInitialPopItemPrepared();
+                    }
+
+                }
+                else {                                                // false
+                    PopScrollView.this.postDelayed(checkInitialItemStateTask, 100);
+                }
+            }
+        };
+
         checkFinalItemStateTask = new Runnable() {
             @Override
             public void run() {
-                if(getChildView(mPopItemCount - 1) != null && getChildView(0) != null) {
+                if (getChildView(mPopItemCount - 1) != null && getChildView(0) != null) {
                     mFinalItemCheckFlag = true;
-                    if(mOnItemPreparedListener != null)
-                        mOnItemPreparedListener.onFinalItemPrepared();
-                    if(checkMainThreadStateTask != null) {
+                    if (mOnPopItemPreparedListener != null) {
+                        mOnPopItemPreparedListener.onFinalPopItemPrepared();
+                    }
+                    if (checkMainThreadStateTask != null) {
                         mStartUpPosition = mInitialFocusedPosition;
                         mStartDownPosition = mStartUpPosition + 1;
                         checkMainThreadStateTask.run();
                     }
                 }
-                else
+                else {
                     PopScrollView.this.postDelayed(checkFinalItemStateTask, 100);
-
-            }
-        };
-
-        checkInitialItemStateTask = new Runnable() {
-            @Override
-            public void run() {
-                if(initFocusedPosition(mInitialFocusedPosition)) {  // true
-                    mInitialItemCheckFlag = true;
-                    if(mOnItemPreparedListener != null)
-                        mOnItemPreparedListener.onInitialItemPrepared();
-
                 }
-                else                                                // false
-                    PopScrollView.this.postDelayed(checkInitialItemStateTask, 100);
             }
         };
 
@@ -196,8 +199,9 @@ abstract public class PopScrollView extends RelativeLayout {
                     mMoveToInitPositionFlag = true;
                 }
 
-                if(mStartUpPosition > 0 || mStartDownPosition < mPopItemCount)
+                if(mStartUpPosition > 0 || mStartDownPosition < mPopItemCount) {
                     PopScrollView.this.postDelayed(checkMainThreadStateTask, 100);
+                }
             }
         };
 
@@ -212,7 +216,7 @@ abstract public class PopScrollView extends RelativeLayout {
      * Initialize the PopView, make the view size is about 0.9 & 0.7 screen resolution.
      * Initialize the child size, make it equal to 1/CHILD_COUNT of its parent size
      **********************************************************************************************/
-    private void initPopView(){
+    private void initPopView() {
 
         setChildSize();
         setChildZoomInSize();
@@ -271,7 +275,7 @@ abstract public class PopScrollView extends RelativeLayout {
      * width : mPopItemZoomInWidth
      * TopMargin = BottomMargin = (mPopItemHeight * (((float)DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW - 1) / 2));
      **********************************************************************************************/
-    private void setPopViewWithDefaultSize(){
+    private void setPopViewWithDefaultSize() {
         mScrollView = new MyScrollView(mContext);
 
         mPopViewHeight = mPopItemHeight * DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW;
@@ -295,7 +299,7 @@ abstract public class PopScrollView extends RelativeLayout {
      * find this position out, the corresponding getCurrentFocusedView should be the view located
      * in the center of ScrollView
      **********************************************************************************************/
-    private int findCurrentPosition(int coordinateY){
+    private int findCurrentPosition(int coordinateY) {
         /**
          * This parameter is used to find our currently center coordinateY. Because of the marginTop
          * we have set, we don't specific re-calculate centerCoordinate with adding half rect-height
@@ -310,7 +314,7 @@ abstract public class PopScrollView extends RelativeLayout {
         return (centerRectCenterCoordinateY / mPopItemHeight);
     }
 
-    public void moveToPosition(int position){
+    public void moveToPosition(int position) {
         mScrollView.smoothScrollTo(mScrollView.getScrollX(), position * mPopItemHeight);
     }
 
@@ -318,13 +322,15 @@ abstract public class PopScrollView extends RelativeLayout {
      * The method is used for setting current focused position based on scrollbar's position.
      * Normally, the item in the middle should be focused and the color will be orange.
      **********************************************************************************************/
-    public void setCurrentFocusedPosition(int newPosition){
+    public void setCurrentFocusedPosition(int newPosition) {
         int previousFocusedPosition;
 
-        if(newPosition >= mPopItemCount || newPosition < 0)
+        if (newPosition >= mPopItemCount || newPosition < 0) {
             return;
-        if(mShowingDetails == STATE_ITEM_DETAIL_SHOW)
+        }
+        if (mShowingDetails == STATE_ITEM_DETAIL_SHOW) {
             hideItemDetails();
+        }
 
         previousFocusedPosition = mCurrentFocusedPopItemPosition;
         mCurrentFocusedPopItemPosition = newPosition;
@@ -335,17 +341,19 @@ abstract public class PopScrollView extends RelativeLayout {
     /***********************************************************************************************
      *
      * ********************************************************************************************/
-    private void performItemAppearanceChanged(int previousFocusedPosition){
+    private void performItemAppearanceChanged(int previousFocusedPosition) {
 
         int focused_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM_FOCUSED_COLOR_RES_ID);
         int item0_color = ContextCompat.getColor(mContext, DEFAULT_LIST_ITEM0_COLOR_RES_ID);
         final View newFocusedView = getCurrentFocusedView();
 
-        if(newFocusedView == null)
+        if(newFocusedView == null) {
             return;
+        }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             newFocusedView.setElevation(30);
+        }
 
         ValueAnimator newFocusedViewAnim = ObjectAnimator.ofFloat(newFocusedView, "scaleX", 1.0f, ZOOM_IN_FACTORY);
         newFocusedViewAnim.setDuration(100);
@@ -377,22 +385,23 @@ abstract public class PopScrollView extends RelativeLayout {
             }
         });
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ValueAnimator newFocusedViewColorAnim = ObjectAnimator.ofArgb(newFocusedView, "BackgroundColor", item0_color, focused_color);
             newFocusedViewColorAnim.setDuration(100);
             newFocusedViewColorAnim.setInterpolator(new AccelerateDecelerateInterpolator());
             newFocusedViewColorAnim.start();
         }
-        else{
+        else {
             newFocusedView.setBackground(ContextCompat.getDrawable(mContext, DEFAULT_FOCUSED_ITEM_DRAWABLE_RES_ID));
         }
 
-        if(previousFocusedPosition < 0)
+        if (previousFocusedPosition < 0) {
             return;
+        }
 
         final View previousFocusedView = getChildView(previousFocusedPosition);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             previousFocusedView.setElevation(0);
         }
 
@@ -426,7 +435,7 @@ abstract public class PopScrollView extends RelativeLayout {
             }
         });
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ValueAnimator previousFocusedViewColorAnim = ObjectAnimator.ofArgb(previousFocusedView, "BackgroundColor", focused_color, item0_color);
             previousFocusedViewColorAnim.setDuration(100);
             previousFocusedViewColorAnim.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -447,7 +456,7 @@ abstract public class PopScrollView extends RelativeLayout {
 
         else {
             previousFocusedView.setBackground(ContextCompat.getDrawable(mContext, DEFAULT_ITEM_DRAWABLE_RES_ID));
-            if(previousFocusedView instanceof ViewGroup){
+            if (previousFocusedView instanceof ViewGroup) {
                 ArrayList<View> arrayList = Utility.findViewRecursive((ViewGroup)previousFocusedView, TextView.class);
                 for(View v : arrayList) {
                     ((TextView) v).setTextColor(ContextCompat.getColor(getContext(), R.color.player_list_item_font1));
@@ -465,11 +474,13 @@ abstract public class PopScrollView extends RelativeLayout {
      * and make the faked layout stretch to the larger size slowly (0.5s)
      * 2. Show the detail content of word (0.3s)
      **********************************************************************************************/
-    public void showItemDetails(){
-        if(mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
-            mItemDetailsLinearLayout = new ItemDetailLinearLayout(mContext, getCurrentFocusedPosition());
-        else
+    public void showItemDetails() {
+        if (mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW) {
+            mItemDetailsLinearLayout = new ItemDetailLinearLayout(mContext);
+        }
+        else {
             return;
+        }
 
         // Step 1
         LayoutParams layoutParams = new LayoutParams(mPopItemDetailWidth, mPopItemDetailHeight);
@@ -481,7 +492,7 @@ abstract public class PopScrollView extends RelativeLayout {
         PropertyValuesHolder stretchVH = PropertyValuesHolder.ofFloat("scaleY", ((float) mPopItemZoomInHeight) / mPopItemDetailHeight, 1f);
         PropertyValuesHolder elevateVH;
         Animator animator;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             elevateVH = PropertyValuesHolder.ofInt("Elevation", 0, 40);
             animator = ObjectAnimator.ofPropertyValuesHolder(mItemDetailsLinearLayout, stretchVH, elevateVH);
         } else {
@@ -507,7 +518,7 @@ abstract public class PopScrollView extends RelativeLayout {
         // step 2
         addView(mItemDetailsLinearLayout);
         View detailContentView = mItemDetailsLinearLayout.getChildAt(0);
-        if(detailContentView != null) {
+        if (detailContentView != null) {
             ValueAnimator detailAppearAnim = ObjectAnimator.ofFloat(detailContentView, "alpha", 0f, 1f);
             detailAppearAnim.setStartDelay(300);
             detailAppearAnim.setDuration(300).start();
@@ -522,14 +533,16 @@ abstract public class PopScrollView extends RelativeLayout {
      * 2. Make faked layout (fakedLinearLayout) ZoomOut and disappear (0.5s)
      * 3. Change Color and show the detail content of word (0.3s)
      **********************************************************************************************/
-    public void hideItemDetails(){
+    public void hideItemDetails() {
 
-        if(mItemDetailsLinearLayout == null)
+        if (mItemDetailsLinearLayout == null) {
             return;
+        }
 
         View detailContentView = mItemDetailsLinearLayout.getChildAt(0);
-        if(detailContentView == null)
+        if (detailContentView == null) {
             return;
+        }
 
         AnimatorSet animatorSet = new AnimatorSet();
         ValueAnimator detailDisappearAnim = ObjectAnimator.ofFloat(detailContentView, "alpha", 1.0f, 0f);
@@ -563,7 +576,7 @@ abstract public class PopScrollView extends RelativeLayout {
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public PopItemAdapter getPopItemAdapter(Context context,int resource, LinkedList<HashMap> dataList, String[] from, int[] to){
+    public PopItemAdapter getPopItemAdapter(Context context,int resource, LinkedList<HashMap> dataList, String[] from, int[] to) {
         mPopItemCount = dataList.size();
         return new PopItemAdapter(context, resource, dataList, from, to);
 
@@ -571,7 +584,7 @@ abstract public class PopScrollView extends RelativeLayout {
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public void setPopItemAdapter(PopItemAdapter adapter, int initialFocusedPosition){
+    public void setPopItemAdapter(PopItemAdapter adapter, int initialFocusedPosition) {
         mPopItemAdapter = adapter;
         mScrollView.removeAllViews();
         mScrollView.addView(mLinearLayout);
@@ -586,7 +599,7 @@ abstract public class PopScrollView extends RelativeLayout {
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    private void setChildSize(){
+    private void setChildSize() {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         mPopItemHeight = (int) Math.floor(displayMetrics.heightPixels* ((1 - 0.15) / DEFAULT_CHILD_COUNT_IN_SCROLL_VIEW));
         mPopItemWidth = (int) Math.floor(displayMetrics.widthPixels*0.90);
@@ -595,7 +608,7 @@ abstract public class PopScrollView extends RelativeLayout {
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    private void setChildZoomInSize(){
+    private void setChildZoomInSize() {
         mPopItemZoomInHeight = mPopItemHeight;
         mPopItemZoomInWidth = (int) Math.floor(mPopItemWidth *ZOOM_IN_FACTORY);
     }
@@ -603,42 +616,42 @@ abstract public class PopScrollView extends RelativeLayout {
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public void setOnPopScrollStoppedListener(OnPopScrollStoppedListener listener){
+    public void setOnPopScrollStoppedListener(OnPopScrollStoppedListener listener) {
         mOnPopScrollStoppedListener = listener;
     }
 
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public void setOnItemPreparedListener(OnItemPreparedListener listener){
-        mOnItemPreparedListener = listener;
+    public void setOnItemPreparedListener(OnPopItemPreparedListener listener) {
+        mOnPopItemPreparedListener = listener;
     }
 
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public View getChildView(int index){
+    public View getChildView(int index) {
         return mLinearLayout.getChildAt(index);
     }
 
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public View getCurrentFocusedView(){
+    public View getCurrentFocusedView() {
         return mLinearLayout.getChildAt(mCurrentFocusedPopItemPosition);
     }
 
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public boolean getInitialItemCheck(){
+    public boolean getInitialItemCheck() {
         return mInitialItemCheckFlag;
     }
 
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public boolean getFinalItemCheck(){
+    public boolean getFinalItemCheck() {
         return mFinalItemCheckFlag;
     }
 
@@ -646,28 +659,28 @@ abstract public class PopScrollView extends RelativeLayout {
      * The method used for returning the currently being focused view's position, typically means
      * the view's index in the scrollView center
      **********************************************************************************************/
-    public int getCurrentFocusedPosition(){
+    public int getCurrentFocusedPosition() {
         return mCurrentFocusedPopItemPosition;
     }
 
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public int getCurrentFocusedPositionCoordinateY(){
+    public int getCurrentFocusedPositionCoordinateY() {
         return mCurrentFocusedPopItemPosition * mPopItemHeight;
     }
 
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public int getCoordinateYByPosition(int position){
+    public int getCoordinateYByPosition(int position) {
         return position* mPopItemHeight;
     }
 
     /***********************************************************************************************
      *
      **********************************************************************************************/
-    public int isShowingDetails(){
+    public int isShowingDetails() {
         return mShowingDetails;
     }
 
@@ -689,7 +702,7 @@ abstract public class PopScrollView extends RelativeLayout {
         private int[] mTo;
         private LayoutInflater mInflater;
 
-        PopItemAdapter(Context context, int resource, LinkedList<HashMap> dataList, String[] from, int[] to){
+        PopItemAdapter(Context context, int resource, LinkedList<HashMap> dataList, String[] from, int[] to) {
             mParent = mLinearLayout;
             mDataList = dataList;
             mResource = resource;
@@ -702,18 +715,21 @@ abstract public class PopScrollView extends RelativeLayout {
          * TODO: This is the place need to be modified.
          * Just add empty item into Layout
          */
-        public void setChildViewToGroup(){
+        public void setChildViewToGroup() {
             int childViewCount = mDataList.size();
             mParent.removeAllViews();
             for(int i = 0; i < childViewCount; i++) {
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(mPopItemWidth, mPopItemHeight);
                 ViewGroup v = (ViewGroup) mInflater.inflate(mResource, mParent, false);
-                if(i == 0)
+                if (i == 0) {
                     layoutParams.setMargins(0, mPopViewTopMargin, 0, 0);
-                else if(i == childViewCount - 1)
+                }
+                else if (i == childViewCount - 1) {
                     layoutParams.setMargins(0, 0, 0, mPopViewBottomMargin);
-                else
+                }
+                else {
                     layoutParams.setMargins(0, 0, 0, 0);
+                }
                 v.setLayoutParams(layoutParams);
                 v.setVisibility(INVISIBLE);
                 mParent.addView(v);
@@ -721,20 +737,22 @@ abstract public class PopScrollView extends RelativeLayout {
         }
 
         private boolean setContentViewToChild(int position) {
-            if(position < 0 || position > mDataList.size())
+            if (position < 0 || position > mDataList.size()) {
                 return false;
+            }
             View v = mParent.getChildAt(position);
-            if(v == null)
+            if (v == null) {
                 return false;
+            }
             int itemFilledStartIndex = 0;
             int itemFilledEndIndex = DEFAULT_PLAYER_LIST_ITEM_COUNT;
             final HashMap<String, Object> dataMap = mDataList.get(position);
-            for(int i = itemFilledStartIndex; i < itemFilledEndIndex && i < dataMap.size(); i++){
+            for(int i = itemFilledStartIndex; i < itemFilledEndIndex && i < dataMap.size(); i++) {
                 /**
                  * here only contains spell and translation.
                  */
                 TextView textView = (TextView) v.findViewById(mTo[i]);
-                if(textView != null) {
+                if (textView != null) {
                     Typeface kkTypeFace = Typeface.createFromAsset(mContext.getAssets(), "fonts/tt0142m_.ttf");
                     textView.setTypeface(kkTypeFace);
                     textView.setText(dataMap.get(mFrom[i]).toString());
@@ -775,11 +793,12 @@ abstract public class PopScrollView extends RelativeLayout {
                 @Override
                 public void run() {
                     int newPosition = getScrollY();
-                    if(initialPosition - newPosition == 0){//has stopped
-                        if(onScrollStoppedListener!=null){
+                    if (initialPosition - newPosition == 0) {//has stopped
+                        if (onScrollStoppedListener!=null) {
                             onScrollStoppedListener.onScrollStopped(newPosition);
                         }
-                    }else{
+                    }
+                    else {
                         initialPosition = getScrollY();
                         MyScrollView.this.postDelayed(scrollerTask, newCheck);
                     }
@@ -798,8 +817,9 @@ abstract public class PopScrollView extends RelativeLayout {
 
         @Override
         public boolean onTouchEvent(MotionEvent ev) {
-            if(!mInitialItemCheckFlag)
+            if (!mInitialItemCheckFlag) {
                 return super.onTouchEvent(ev);
+            }
 
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_MOVE:
@@ -816,19 +836,19 @@ abstract public class PopScrollView extends RelativeLayout {
 
         @Override
         public boolean onInterceptTouchEvent(MotionEvent ev) {
-            if(ev.getAction() == MotionEvent.ACTION_DOWN){
+            if (ev.getAction() == MotionEvent.ACTION_DOWN) {
                 if (mShowingDetails == STATE_ITEM_DETAIL_SHOW) {
                     hideItemDetails();
                     return false;
                 }
-                if(!getInitialItemCheck())
+                if (!getInitialItemCheck()) {
                     return false;
-
+                }
             }
             return super.onInterceptTouchEvent(ev);
         }
 
-        private void startScrollerTask(){
+        private void startScrollerTask() {
 
             initialPosition = getScrollY();
             MyScrollView.this.postDelayed(scrollerTask, newCheck);
@@ -840,34 +860,37 @@ abstract public class PopScrollView extends RelativeLayout {
         }
 
         private class OnScrollStoppedListener{
-            public void onScrollStopped(int scrollEndPositionY){
+            public void onScrollStopped(int scrollEndPositionY) {
                 int offset = scrollEndPositionY % mPopItemHeight;
-                if(offset > Math.abs(mPopItemHeight *0.5)){
+                if (offset > Math.abs(mPopItemHeight *0.5)) {
                     offset = mPopItemHeight - offset;
                     smoothScrollTo(getScrollX(), scrollEndPositionY + offset);
                 }
-                else
+                else {
                     smoothScrollTo(getScrollX(), scrollEndPositionY - offset);
+                }
 
                 int newPosition;
-                if((newPosition = findCurrentPosition(getScrollY())) != mCurrentFocusedPopItemPosition)
+                if ((newPosition = findCurrentPosition(getScrollY())) != mCurrentFocusedPopItemPosition) {
                     setCurrentFocusedPosition(newPosition);
+                }
 
-                if(mOnPopScrollStoppedListener != null)
+                if (mOnPopScrollStoppedListener != null) {
                     mOnPopScrollStoppedListener.onPopScrollStopped(mCurrentFocusedPopItemPosition);
+                }
             }
         }
     }
 
     private class ItemDetailLinearLayout extends LinearLayout {
 
-        public ItemDetailLinearLayout(Context context, int index) {
+        public ItemDetailLinearLayout(Context context) {
             super(context);
             View itemDetailView = getItemDetailView();
 
             setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
-            if(itemDetailView != null ) {
+            if (itemDetailView != null ) {
                 addView(itemDetailView);
                 setOrientation(VERTICAL);
             }
