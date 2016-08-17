@@ -359,7 +359,7 @@ public class PlayerOptionView extends LinearLayout {
                     });
                 }
                 else if( v instanceof NumeralPicker){
-                    ((NumeralPicker) v).setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+                    ((NumeralPicker) v).setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
                         @Override
                         public void onPickerClicked(String valueStr) {
                             OptionSettings optionSettings = mOptionSettingsLL.get(mCurrentTabIndex);

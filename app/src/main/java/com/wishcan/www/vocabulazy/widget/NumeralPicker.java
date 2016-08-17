@@ -14,7 +14,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +29,7 @@ public class NumeralPicker extends LinearLayout {
 
     public static final String TAG = NumeralPicker.class.getSimpleName();
 
-    public interface OnPickerClickedListener {
+    public interface OnPickerClickListener {
         void onPickerClicked(String valueStr);
     }
 
@@ -56,7 +55,7 @@ public class NumeralPicker extends LinearLayout {
     private int mPickerBackgroundColor;
     private int mPickerTextColor;
     private Context mContext;
-    private OnPickerClickedListener mListener;
+    private OnPickerClickListener mOnPickerClickListener;
 
     public NumeralPicker(Context context) {
         this(context, null);
@@ -130,28 +129,16 @@ public class NumeralPicker extends LinearLayout {
         mNumberTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(DEFAULT_PICKER_TEXT_SIZE_RES_ID));
     }
 
-    public void setRightArrowImageView(ImageView v) {
-        if(v == null)
-            return;
-        mRightArrowImageView = v;
-        setRightArrowOnClickListener(mRightArrowImageView);
-    }
-
     public void setRightArrowImageView(int resId) {
         mRightArrowImageView = new ImageView(mContext);
         mRightArrowImageView.setImageResource(resId);
-        setRightArrowOnClickListener(mRightArrowImageView);
-    }
-
-    public void setLeftArrowImageView(ImageView v) {
-        mLeftArrowImageView = v;
-        setLeftArrowOnClickListener(mRightArrowImageView);
+        registerRightArrowOnClickListener(mRightArrowImageView);
     }
 
     public void setLeftArrowImageView(int resId) {
         mLeftArrowImageView = new ImageView(mContext);
         mLeftArrowImageView.setImageResource(resId);
-        setLeftArrowOnClickListener(mLeftArrowImageView);
+        registerLeftArrowOnClickListener(mLeftArrowImageView);
     }
 
     public void setMaximumNumber(int maximum){
@@ -166,38 +153,42 @@ public class NumeralPicker extends LinearLayout {
         mPickerRange = mMaximumNumber - mMinimumNumber + 1;
     }
 
-    public void setOnPickerClickedListener(OnPickerClickedListener listener) {
-        mListener = listener;
+    public void setOnPickerClickedListener(OnPickerClickListener listener) {
+        mOnPickerClickListener = listener;
     }
 
     public void setPickerTextStr(String str) {
         mNumberTextView.setText(str);
     }
 
-    private void setRightArrowOnClickListener(ImageView v) {
+    private void registerRightArrowOnClickListener(ImageView v) {
         v.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("NumeralPicker", "right on click");
                 int oldValue = Integer.parseInt(mNumberTextView.getText().toString());
                 int newValue = (((oldValue - mMinimumNumber) + 1 + mPickerRange) % mPickerRange) + mMinimumNumber;
                 String newValueStr = String.valueOf(newValue);
                 mNumberTextView.setText(newValueStr);
-                if (mListener != null)
-                    mListener.onPickerClicked(newValueStr);
+                if (mOnPickerClickListener != null) {
+                    mOnPickerClickListener.onPickerClicked(newValueStr);
+                }
             }
         });
     }
 
-    private void setLeftArrowOnClickListener(ImageView v) {
+    private void registerLeftArrowOnClickListener(ImageView v) {
         v.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("NumeralPicker", "left on click");
                 int oldValue = Integer.parseInt(mNumberTextView.getText().toString());
                 int newValue = (((oldValue - mMinimumNumber) - 1 + mPickerRange) % mPickerRange) + mMinimumNumber;
                 String newValueStr = String.valueOf(newValue);
                 mNumberTextView.setText(newValueStr);
-                if (mListener != null)
-                    mListener.onPickerClicked(newValueStr);
+                if (mOnPickerClickListener != null) {
+                    mOnPickerClickListener.onPickerClicked(newValueStr);
+                }
             }
         });
     }

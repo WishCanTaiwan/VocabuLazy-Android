@@ -38,8 +38,6 @@ public class PlayerView extends RelativeLayout {
         void onPlayerPanelFavoriteClick();
 		void onPlayerPanelPlayClick();
 		void onPlayerPanelOptionClick();
-        /** PlayerOptionView's Event
-        void onPlayerOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode);*/
         /** TODO: replace old PlayerOptionView's Event with New PlayerOptionView's Event */
         void onPlayerOptionChanged(int optionID, int mode, View v);
 
@@ -78,10 +76,7 @@ public class PlayerView extends RelativeLayout {
         
         registerEventListener();
     }
-    
-    /**
-     * TODO: replace all event handler to PlayerEventListener
-     */
+
     public void setPlayerEventListener(PlayerEventListener listener) {
     	mPlayerEventListener = listener;
     }
@@ -163,15 +158,6 @@ public class PlayerView extends RelativeLayout {
     	});
     	
     	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionViewNew.OnOptionChangedListener(){
-			/**
-    		@Override
-    		public void onOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode) {
-    			if (mPlayerEventListener != null) {
-    				mPlayerEventListener.onPlayerOptionChanged(v, optionSettingsLL, currentMode);
-    			}
-    		}
-			*/
-
     		@Override
     		public void onOptionChanged(int optionID, int mode, View v) {
     			if (mPlayerEventListener != null) {

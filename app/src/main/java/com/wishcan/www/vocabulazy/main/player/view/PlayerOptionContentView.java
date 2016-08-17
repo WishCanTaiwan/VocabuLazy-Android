@@ -145,7 +145,7 @@ public class PlayerOptionContentView extends LinearLayout {
             }
         });
         
-        mSecondOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+        mSecondOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override
             public void onPickerClicked(String valueStr) {
                 if (mOnOptionClickListener != null) {
@@ -154,7 +154,7 @@ public class PlayerOptionContentView extends LinearLayout {
             }
         });
         
-        mFrequencyOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+        mFrequencyOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override
             public void onPickerClicked(String valueStr) {
                 if (mOnOptionClickListener != null) {
@@ -163,7 +163,7 @@ public class PlayerOptionContentView extends LinearLayout {
             }
         });
         
-        mSpeedOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+        mSpeedOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override
             public void onPickerClicked(String valueStr) {
                 if (mOnOptionClickListener != null) {
@@ -171,9 +171,8 @@ public class PlayerOptionContentView extends LinearLayout {
                 }
             }
         });
-        
-        
-        mPlayTimeOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickedListener() {
+
+        mPlayTimeOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override
             public void onPickerClicked(String valueStr) {
                 if (mOnOptionClickListener != null) {

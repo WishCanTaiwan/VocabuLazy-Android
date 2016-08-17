@@ -27,7 +27,6 @@ import android.widget.TextView;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.widget.LinkedListPagerAdapter;
-import com.wishcan.www.vocabulazy.widget.NumeralPicker;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -42,7 +41,6 @@ public class PlayerOptionViewNew extends LinearLayout {
         void onOptionChanged(int optionID, int mode, View v);
     }
 
-    private static final int VIEW_PLAYER_OPTION_TAB_CONTENT_RES_ID = R.layout.view_player_option_content;
     private static final int VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID = R.id.player_option_tab_layout;
     private static final int VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID = R.id.player_option_tab_pager;
 

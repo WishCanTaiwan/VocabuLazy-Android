@@ -415,17 +415,7 @@ public class PlayerFragment extends GAPlayerFragment {
         }
         mPlayerView.showPlayerOptionView();
     }
-    
-//    @Override
-//    public void onPlayerOptionChanged(View v, ArrayList<OptionSettings> optionSettingsLL, int currentMode) {
-//        super.onPlayerOptionChanged(v, optionSettingsLL, currentMode);
-//        updateIndices(mBookIndex, mLessonIndex, mItemIndex, (optionSettingsLL.get(currentMode).isSentence() ? 0 : -1));
-//        optionSettingChanged(optionSettingsLL, currentMode);
-//    }
-    
-     /**
-      * TODO: change old PlayerOptionView api to new one
-      */
+
      @Override
      public void onPlayerOptionChanged(int optionID, int mode, View v) {
          super.onPlayerOptionChanged(optionID, mode, v);
