@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-------------------------------- All color being used -------------------------------------->
     <color name="black_alpha_1">#20000000</color>
     <color name="black_alpha_2">#90000000</color>
     <color name="black_1">#FF000000</color>
@@ -11,9 +12,11 @@
     <color name="green_3">#FF48CFAE</color>
     <color name="green_4">#FF66BF97</color>
     <color name="green_5">#FFA5D0C3</color>
+    <color name="green_6">#FF338473</color>
     <color name="yellow_1">#FFFECE55</color>
     <color name="yellow_2">#FFFDCE5D</color>
     <color name="yellow_3">#FFD3AC49</color>
+    <color name="yellow_4">#FFC89033</color>
     <color name="grey_1">#FF444A55</color>
     <color name="grey_2">#FF666C78</color>
     <color name="grey_3">#FF444B53</color>
@@ -22,10 +25,12 @@
     <color name="grey_6">#FF9FA0A0</color>
     <color name="grey_7">#FFA09E9C</color>
 
-    <!-- STYLE -->
+    <!------------------------------------------ STYLE ------------------------------------------->
     <color name="colorBackground">@color/white_1</color>
     <color name="activity_background">@color/grey_1</color>
-    <!-- widget -->
+    <color name="theme_color_green">@color/green_1</color>
+    <color name="theme_title_color_grey">@color/grey_1</color>
+    <!------------------------------------------ widget ------------------------------------------>
     <color name="widget_tab_view_mask">@color/black_alpha_1</color>
     <color name="widget_lesson_background">@color/white_1</color>
     <color name="widget_lesson_divider">@color/white_2</color>
@@ -37,16 +42,35 @@
     <color name="widget_pop_details_color">@color/yellow_3</color>
     <color name="widget_dialog_background">@color/black_alpha_2</color>
     <color name="widget_slide_back_view_pager_background">#00000000</color>
-    <!-- main -->
+    <color name="default_dialog_background_color">@color/black_alpha_2</color>
+    <!----------------------------------------- drawable ----------------------------------------->
+    <color name="circle_image_color_green">@color/green_1</color>
+    <color name="circle_image_color_yellow">@color/yellow_1</color>
+    <color name="circle_image_color_shadow_green">@color/green_6</color>
+    <color name="circle_image_color_shadow_yellow">@color/yellow_4</color>
+    <color name="circle_text_color_white">@color/white_1</color>
+    <color name="default_white">@color/white_1</color>
+    
+    <!------------------------------------------- main ------------------------------------------->
     <color name="main_tab_stripe">#@color/green_1</color>
-    <!-- voc -->
-    <!-- usr -->
-    <!-- exam -->
-    <!-- info -->
-    <!-- player -->
-    <color name="player_list_item_font">@color/grey_5</color>  <!--grey_5-->
-    <color name="player_list_item_font1">@color/grey_6</color> <!--grey_6-->
-    <color name="player_pager_index_color">@color/grey_7</color> <!--grey_7-->
+    <!------------------------------------------- voc -------------------------------------------->
+    <!------------------------------------------- usr -------------------------------------------->
+    <color name="note_list_item_text_color">@color/grey_2</color>
+    <color name="note_list_item_adding_note_color">@color/yellow_1</color>
+    <color name="note_cross_color">@color/white_1</color>
+    <color name="dialog_new_note_background_color">@color/white_2</color>
+    <color name="dialog_new_note_button_background_green">@color/green_1</color>
+    <color name="dialog_new_note_button_background_gray">@color/grey_2</color>
+    <color name="dialog_new_note_title_text_color">@color/grey_4</color>
+    <color name="dialog_new_note_input_background_color">@color/white_1</color>
+    <color name="dialog_new_note_input_text_color">@color/black_1</color>
+    <color name="dialog_new_note_input_background_border">@color/grey_6</color>
+    <!------------------------------------------- exam ------------------------------------------->
+    <!------------------------------------------- info ------------------------------------------->
+    <!------------------------------------------ player ------------------------------------------>
+    <color name="player_list_item_font">@color/grey_5</color>
+    <color name="player_list_item_font1">@color/grey_6</color>
+    <color name="player_pager_index_color">@color/grey_7</color>
     <color name="player_pager_index_selected">@color/yellow_3</color>
     <color name="player_option_tab0">@color/green_3</color>
     <color name="player_option_tab1">@color/green_4</color>
@@ -55,64 +79,14 @@
     <color name="player_option_tab1_text">@color/white_1</color>
     <color name="player_option_tab2_text">@color/white_1</color>
     <color name="player_option_picker_indicator_text_color">@color/white_1</color>
-    <!-- search -->
+    
+    <!------------------------------------------ search ------------------------------------------>
     <color name="search_divider">@color/white_2</color>
-
-    <color name="default_white">@color/white_1</color>
-
-    <!--theme_color-->
-    <color name="theme_color_green">#ff48cfae</color>
-    <color name="theme_title_color_grey">#ff444a55</color>
-
-    <!--main tab_layout_color-->
-    <color name="main_tab_layout_widget_color">#ff1abc9c</color>
-    <color name="main_tab_view_tab_stripe_color">#ff1abc9c</color>
-    <color name="main_tab_view_tab_mask">#20000000</color>
-    <!--circle_color-->
-    <color name="circle_image_color_green">#ff49cfaf</color>
-    <color name="circle_image_color_yellow">#fffece55</color>
-    <color name="circle_image_color_shadow_green">#ff338473</color>
-    <color name="circle_image_color_shadow_yellow">#ffc89033</color>
-    <color name="circle_text_color_white">#ffffffff</color>
-
-    <!--divider_color-->
-    <color name="divider_color_gray">#ffeeeeef</color>
-
-    <!--picker_color-->
-
-
-
-    <!--note_list_view_color-->
-    <color name="note_list_item_text_color">#ff666c78</color>
-    <color name="note_list_item_adding_note_color">#fffece55</color>
-
-    <!--note_cross_view_color-->
-    <color name="note_cross_color">#ffffffff</color>
-
-    <!--search_result_add_to_note_view_color-->
-    <color name="search_xx_color">#ff38cfae</color>
-    <color name="search_result_add_to_note_view_adding_icon_color">#fffece55</color>
-    <color name="search_result_list_view_text_color">#ff666c78</color>
-    <color name="search_xx_background_color">#ffffffff</color>
-    <color name="search_result_add_to_note_view_title_text_color">#ffffffff</color>
-    <color name="search_dialog_background_color">#20000000</color>
-
-    <!--dialog_new_note_color-->
-    <color name="dialog_new_note_background_color">#ffeeeeef</color>
-    <color name="dialog_new_note_button_background_green">#ff38cfae</color>
-    <color name="dialog_new_note_button_background_gray">#ff666c78</color>
-    <color name="dialog_new_note_title_text_color">#ff434a54</color> <!-- grey_4 -->
-    <color name="dialog_new_note_input_background_color">#ffffffff</color>
-    <color name="dialog_new_note_input_text_color">#ff000000</color>
-    <color name="dialog_new_note_input_background_border">#888888</color>
-
-    <!--player_view_color-->
-
-
-
-
-    <!--dialog_default_setting-->
-    <color name="default_dialog_background_color">#90000000</color>
-
+    <color name="search_xx_color">@color/green_1</color>
+    <color name="search_result_add_to_note_view_adding_icon_color">@color/yellow_1</color>
+    <color name="search_result_list_view_text_color">@color/grey_2</color>
+    <color name="search_xx_background_color">@color/white_1</color>
+    <color name="search_result_add_to_note_view_title_text_color">@color/white_1</color>
+    <color name="search_dialog_background_color">@color/black_alpha_1</color>
 
 </resources>
