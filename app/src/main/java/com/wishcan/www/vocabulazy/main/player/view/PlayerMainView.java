@@ -90,13 +90,26 @@ public class PlayerMainView extends Infinite3View {
         });
     }
 
-    public void addNewPlayer(LinkedList<HashMap> playerDataList, int initPosition){
+    @Override
+    public void setOnPageChangedListener(OnPageChangedListener listener) {
+        super.setOnPageChangedListener(listener);
+    }
+
+    public void setOnPlayerScrollListener(OnPlayerScrollListener listener) {
+        mOnPlayerScrollListener = listener;
+    }
+
+    public void setOnPlayerItemPreparedListener(OnPlayerItemPreparedListener listener) {
+        mOnPlayerItemPreparedListener = listener;
+    }
+
+    public void addNewPlayer(LinkedList<HashMap> playerDataList, int initPosition) {
         mPlayerScrollView = new PlayerScrollView(mContext);
         mPlayerScrollView.setPopItemAdapter(
-            mPlayerScrollView.getPopItemAdapter(mContext,
-                PlayerScrollView.PLAYER_ITEM_LAYOUT_RES_ID, playerDataList,
-                PlayerScrollView.PLAYER_ITEM_CONTENT_FROM,
-                PlayerScrollView.PLAYER_ITEM_CONTENT_TO), initPosition);
+                mPlayerScrollView.getPopItemAdapter(mContext,
+                        PlayerScrollView.PLAYER_ITEM_LAYOUT_RES_ID, playerDataList,
+                        PlayerScrollView.PLAYER_ITEM_CONTENT_FROM,
+                        PlayerScrollView.PLAYER_ITEM_CONTENT_TO), initPosition);
         mPlayerScrollView.setOnItemPreparedListener(new PopScrollView.OnPopItemPreparedListener() {
             @Override
             public void onInitialPopItemPrepared() {
@@ -133,14 +146,6 @@ public class PlayerMainView extends Infinite3View {
         });
 
         refreshItem(CENTER_VIEW_INDEX, mPlayerScrollView);
-    }
-
-    public void setOnPlayerScrollListener(OnPlayerScrollListener listener) {
-        mOnPlayerScrollListener = listener;
-    }
-
-    public void setOnPlayerItemPreparedListener(OnPlayerItemPreparedListener listener) {
-        mOnPlayerItemPreparedListener = listener;
     }
 
     public void removeOldPlayer(int position){
