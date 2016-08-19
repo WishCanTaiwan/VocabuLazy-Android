@@ -1,5 +1,8 @@
 package com.wishcan.www.vocabulazy.storage;
 
+import android.app.VoiceInteractor;
+
+import com.wishcan.www.vocabulazy.main.player.view.PlayerOptionContentView;
 import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;

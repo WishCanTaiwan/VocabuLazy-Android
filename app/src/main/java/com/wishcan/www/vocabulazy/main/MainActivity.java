@@ -201,11 +201,6 @@ public class MainActivity extends BaseActivity {
             mVocLessonFragment = VocLessonFragment.newInstance();
         }
         mVocLessonFragment.setBook(position);
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.show(mVocLessonFragment);
-//        transaction.commit();
-
-//        mCurrentFragment = mVocLessonFragment;
         String str = "Book " + (position+1);
         goFragment(mVocLessonFragment, null, "VocLessonFragment", str);
         setActionBarTitle(str);
@@ -235,7 +230,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onExamIndexBookClicked() {
         super.onExamIndexBookClicked();
-//        mCurrentFragment = mExamBookFragment;
         String str = getString(R.string.fragment_exam_book_title);
         goFragment(mExamBookFragment, null, "ExamBookFragment", str);
         setActionBarTitle(str);
@@ -244,7 +238,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onExamIndexNoteClicked() {
         super.onExamIndexNoteClicked();
-//        mCurrentFragment = mExamNoteFragment;
         String str = getString(R.string.fragment_exam_note_title);
         goFragment(mExamNoteFragment, null, "ExamNoteFragment", str);
         setActionBarTitle(str);
@@ -259,7 +252,6 @@ public class MainActivity extends BaseActivity {
         }
         mExamLessonFragment.setExamBook(position);
 
-//        mCurrentFragment = mExamLessonFragment;
         String str = "Test Book " + (position+1);
         goFragment(mExamLessonFragment, null, "ExamLessonFragment", str);
         setActionBarTitle(str);
@@ -274,7 +266,6 @@ public class MainActivity extends BaseActivity {
         }
         mExamFragment.setExam(mExamBookIndex, mExamLessonIndex);
 
-//        mCurrentFragment = mExamFragment;
         String str = "Test Book " + (mBookIndex+1) + " Lesson " + (position+1);
         goFragment(mExamFragment, null, "ExamFragment", str);
         setActionBarTitle(str);
@@ -335,7 +326,8 @@ public class MainActivity extends BaseActivity {
     public void onLessonChange(int lesson) {
         super.onLessonChange(lesson);
         mLessonIndex = lesson;
-        setActionBarTitle("Book " + (mBookIndex+1) + " Lesson " + (mLessonIndex+1));
+        String title = mBookIndex < 0 ? "Note "+(mLessonIndex+1) : "Book "+(mBookIndex+1)+" Lesson "+(mLessonIndex+1);
+        setActionBarTitle(title);
     }
 
     public void goFragment(Fragment fragment, Bundle args, String newTag, String backStackTag) {

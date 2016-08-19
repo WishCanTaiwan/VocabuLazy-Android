@@ -104,8 +104,8 @@ public class PlayerFragment extends GAPlayerFragment {
         if (mPlayerModel == null) {
             mPlayerModel = new PlayerModel((VLApplication) getActivity().getApplication());
             mPlayerModel.setDataProcessListener(this);
-            mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
         }
+
         int restoredBookIndex = 1359;
         int restoredLessonIndex = 1359;
         int restoredItemIndex = 0;
@@ -117,8 +117,11 @@ public class PlayerFragment extends GAPlayerFragment {
             restoredItemIndex = indices[2];
             restoredSentenceIndex = indices[3];
         }
+
         wIndicesMatch = (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
         updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
+        mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+
 
         /* register broadcast receiver */
         mServiceBroadcastReceiver = new ServiceBroadcastReceiver();
@@ -419,10 +422,11 @@ public class PlayerFragment extends GAPlayerFragment {
      @Override
      public void onPlayerOptionChanged(int optionID, int mode, View v) {
          super.onPlayerOptionChanged(optionID, mode, v);
+         Log.d(TAG, "option changed");
          /** Step 1. Get the option setting by api */
          ArrayList<OptionSettings> optionSettingsLL = mPlayerModel.getOptionSettings();
          /** Step 2. Refresh option setting */
-        
+         mPlayerModel.updateOptionSettings(optionID, mode, v);
          /** Step 3. Refresh Player Option Content by playeroptionview api */
          mPlayerView.setPlayerOptionTabContent(optionSettingsLL);
      }

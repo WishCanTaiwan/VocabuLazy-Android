@@ -93,6 +93,7 @@ public class Infinite3View extends RelativeLayout {
 
         mThreeViewLL = new LinkedList<>();
 
+        // adding three views to container/viewpager
         for (int i = 0; i < VIEW_NUMBER; i++) {
             RelativeLayout viewGroupItem = new RelativeLayout(mContext);
             viewGroupItem.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, 1));
@@ -243,8 +244,7 @@ public class Infinite3View extends RelativeLayout {
 
                 final VelocityTracker velocityTracker = mVelocityTracker;
                 velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
-                int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(
-                        velocityTracker, mActivePointerId);
+                int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(velocityTracker, mActivePointerId);
 
                 AnimatorSet set = new AnimatorSet();
                 ValueAnimator animatorLeft, animatorCenter, animatorRight;

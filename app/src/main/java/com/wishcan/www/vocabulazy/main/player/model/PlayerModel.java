@@ -2,8 +2,11 @@ package com.wishcan.www.vocabulazy.main.player.model;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.main.player.view.PlayerOptionContentView;
 import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
@@ -78,6 +81,51 @@ public class PlayerModel {
     public void setOptionSettingsAndMode(ArrayList<OptionSettings> optionSettings, int optionMode) {
         wPreferences.setOptionSettings(optionSettings);
         wPreferences.setOptionMode(optionMode);
+    }
+
+    public void updateOptionSettings(int optionItemId, int mode, View v) {
+//        wPreferences.updateOptionSetting(optionItemId, mode);
+        OptionSettings optionSettings = wPreferences.getOptionSettings().get(mode);
+        switch (optionItemId) {
+            case PlayerOptionContentView.IDX_OPTION_RANDOM:
+                boolean oldRandom = optionSettings.isRandom();
+                boolean newRandom = !oldRandom;
+                optionSettings.setRandom(newRandom);
+                break;
+            case PlayerOptionContentView.IDX_OPTION_REPEAT:
+                int oldRepeatVal = optionSettings.getListLoop();
+                int newRepeatVal = (oldRepeatVal+1) % 5;
+                optionSettings.setListLoop(newRepeatVal);
+                break;
+            case PlayerOptionContentView.IDX_OPTION_SENTENCE:
+                boolean oldSentence = optionSettings.isSentence();
+                boolean newSentence = !oldSentence;
+                optionSettings.setSentence(newSentence);
+                break;
+            case PlayerOptionContentView.IDX_OPTION_SECOND:
+                int oldSecond = optionSettings.getStopPeriod();
+                int newSecond = (oldSecond+1) % 10;
+                optionSettings.setStopPeriod(newSecond);
+                break;
+            case PlayerOptionContentView.IDX_OPTION_FREQUENCY:
+                int oldFrequency = optionSettings.getItemLoop();
+                int newFrequency = (oldFrequency-1+1) % 5 + 1; // frequency ranging from 1~5, thus "-1" for standardization and then "+1" for increasement.
+                optionSettings.setItemLoop(newFrequency);
+                break;
+            case PlayerOptionContentView.IDX_OPTION_SPEED:
+                int oldSpeed = optionSettings.getSpeed();
+                int newSpeed = (oldSpeed-1+1) % 2 + 1;
+                optionSettings.setSpeed(newSpeed);
+                break;
+            case PlayerOptionContentView.IDX_OPTION_PLAY_TIME:
+                int oldPlayTime = optionSettings.getPlayTime();
+                int newPlayTime = (oldPlayTime-10+1) % 30 + 10;
+                optionSettings.setPlayTime(newPlayTime);
+                break;
+            default:
+                break;
+        }
+        wPreferences.setOptionMode(mode);
     }
 
     public void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
