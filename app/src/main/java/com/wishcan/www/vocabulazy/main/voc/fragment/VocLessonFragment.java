@@ -10,14 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.log.Logger;
-import com.wishcan.www.vocabulazy.main.MainActivity;
-import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.main.voc.model.VocModel;
 import com.wishcan.www.vocabulazy.main.voc.view.VocLessonView;
-import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
-import com.wishcan.www.vocabulazy.widget.ErrorView;
 import com.wishcan.www.vocabulazy.widget.LessonView;
 
 import java.util.ArrayList;

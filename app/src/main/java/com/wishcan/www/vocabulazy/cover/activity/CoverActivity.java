@@ -1,4 +1,4 @@
-package com.wishcan.www.vocabulazy.cover;
+package com.wishcan.www.vocabulazy.cover.activity;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -30,10 +30,4 @@ public class CoverActivity extends FragmentActivity {
         fragmentTransaction.add(VIEW_MAIN_RES_ID, mCoverFragment, "CoverFragment");
         fragmentTransaction.commit();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
 }

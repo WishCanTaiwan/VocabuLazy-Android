@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/theme_color_green"
-    tools:context="com.wishcan.www.vocabulazy.cover.CoverActivity">
+    tools:context=".cover.activity.CoverActivity">
 
 </RelativeLayout>

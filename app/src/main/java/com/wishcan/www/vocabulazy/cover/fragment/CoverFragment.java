@@ -4,22 +4,16 @@ package com.wishcan.www.vocabulazy.cover.fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.cover.CoverActivity;
-import com.wishcan.www.vocabulazy.cover.view.CoverDialogView;
+import com.wishcan.www.vocabulazy.cover.activity.CoverActivity;
 import com.wishcan.www.vocabulazy.ga.GACoverFragment;
-import com.wishcan.www.vocabulazy.log.Logger;
-import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 

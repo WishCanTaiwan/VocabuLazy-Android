@@ -3,21 +3,14 @@ package com.wishcan.www.vocabulazy;
 import android.app.Application;
 
 import com.google.android.gms.analytics.Tracker;
-import com.wishcan.www.vocabulazy.log.Logger;
+import com.wishcan.www.vocabulazy.utility.log.Logger;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
-
-//import io.uxtesting.UXTeting;
 
 /**
  * This class is created for giving a global overview to our application.
  */
 public class VLApplication extends Application {
-
-    /**
-     * The unique key used by UXTesting api.
-     */
-    private static final String UXTESTING_APP_KEY = "JzskKAJgBGPlmP-NIBxBug";
 
     /**
      * The preferences which store all arguments and parameters.
@@ -48,11 +41,6 @@ public class VLApplication extends Application {
          * application, this is the only Database object to be accessed.
          */
         wDatabase = new Database(this);
-
-//        /**
-//         * call this method to enable UXTesting.
-//         */
-//        UXTesting.Init(this, UXTESTING_APP_KEY);
 
         /**
          * initialize the Logger object.

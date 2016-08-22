@@ -8,10 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.log.Logger;
+import com.wishcan.www.vocabulazy.utility.log.Logger;
 
 /**
  * GAFragment is an abstract class used for sending Lifecycle event to Google Analysis.

@@ -1,12 +1,8 @@
 package com.wishcan.www.vocabulazy.service;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
-
-import com.wishcan.www.vocabulazy.log.Logger;
 
 import java.util.HashMap;
 import java.util.Locale;

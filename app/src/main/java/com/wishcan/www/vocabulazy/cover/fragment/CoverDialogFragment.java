@@ -2,9 +2,7 @@ package com.wishcan.www.vocabulazy.cover.fragment;
 
 import android.os.Bundle;
 
-import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.cover.view.CoverDialogView;
-import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 import com.wishcan.www.vocabulazy.widget.DialogView;
 

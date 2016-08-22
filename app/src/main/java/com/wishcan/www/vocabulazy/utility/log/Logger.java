@@ -1,8 +1,6 @@
-package com.wishcan.www.vocabulazy.log;
+package com.wishcan.www.vocabulazy.utility.log;
 
 import android.content.Context;
-import android.text.style.AlignmentSpan;
-import android.util.Log;
 
 import com.google.android.gms.analytics.ExceptionReporter;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -10,10 +8,8 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.StandardExceptionParser;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.VLApplication;
 
 import java.util.ArrayList;
-import java.util.Queue;
 
 public class Logger {
 

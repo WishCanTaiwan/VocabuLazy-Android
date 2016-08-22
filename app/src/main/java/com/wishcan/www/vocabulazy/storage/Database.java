@@ -1,8 +1,6 @@
 package com.wishcan.www.vocabulazy.storage;
 
 import android.content.Context;
-import android.preference.Preference;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,7 +15,6 @@ import java.util.Arrays;
 import com.google.gson.Gson;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;

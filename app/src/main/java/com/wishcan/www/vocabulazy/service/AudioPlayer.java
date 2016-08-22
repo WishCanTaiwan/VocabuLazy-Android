@@ -3,10 +3,9 @@ package com.wishcan.www.vocabulazy.service;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Handler;
-import android.util.Log;
 
 import com.wishcan.www.vocabulazy.VLApplication;
-import com.wishcan.www.vocabulazy.log.Logger;
+import com.wishcan.www.vocabulazy.utility.log.Logger;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;

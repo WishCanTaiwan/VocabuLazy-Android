@@ -1,15 +1,12 @@
 package com.wishcan.www.vocabulazy.widget;
 
 import android.content.Context;
-import android.hardware.display.DisplayManager;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import com.wishcan.www.vocabulazy.log.Logger;
+import com.wishcan.www.vocabulazy.utility.log.Logger;
 
 /**
  * Created by swallow on 2016/3/6.

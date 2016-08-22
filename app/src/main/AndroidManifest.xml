@@ -24,7 +24,7 @@
         android:label="@string/app_name" >
 
         <activity
-            android:name=".cover.CoverActivity"
+            android:name=".cover.activity.CoverActivity"
             android:label="@string/app_name"
             android:theme="@style/MyThemeForCoverActivity">
             <intent-filter>

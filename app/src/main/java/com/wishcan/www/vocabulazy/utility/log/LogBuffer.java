@@ -1,4 +1,4 @@
-package com.wishcan.www.vocabulazy.log;
+package com.wishcan.www.vocabulazy.utility.log;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -4,23 +4,11 @@ package com.wishcan.www.vocabulazy.main.info.fragment;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.ga.GAInfoFragment;
-import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.info.view.InfoView;
 import com.wishcan.www.vocabulazy.main.info.view.TypeFormView;
 

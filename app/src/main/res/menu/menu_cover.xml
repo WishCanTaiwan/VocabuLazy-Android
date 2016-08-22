@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.wishcan.www.vocabulazy.cover.CoverActivity">
+    tools:context=".cover.activity.CoverActivity">
     <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"

@@ -1,4 +1,4 @@
-package com.wishcan.www.vocabulazy.log;
+package com.wishcan.www.vocabulazy.utility.log;
 
 public class LogEntry {
     private String tag;
