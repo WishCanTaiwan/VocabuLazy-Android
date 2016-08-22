@@ -27,21 +27,92 @@ public class PlayerView extends RelativeLayout {
 	 * The fragment contains the Player should implement to maintain MVC structure
 	 */
 	public interface PlayerEventListener {
-		/** TODO: Change this event into dialogview */
+		/**
+		 * The callback function when gray back clicked
+		 * */
 		void onGrayBackClick();
-		/** PlayerMainView's Event */
+
+		/**
+		 * The callback function when vertical scroll stopped
+		 * @param index indicate which player item is in the center
+		 * @param isViewTouchedDown the boolean is used to notify whether the move is caused by service or by user
+		 * @see PlayerMainView
+		 * */
 		void onPlayerVerticalScrollStop(int index, boolean isViewTouchedDown);
+
+		/**
+		 * The callback function when vertical scroll performing
+		 * @see PlayerMainView
+		 * */
         void onPlayerVerticalScrolling();
+
+		/**
+		 * The callback function when horizontal scroll stopped
+		 * @param isOrderChanged the boolean indicate whether really change the player page
+		 * @param direction the direction indicate which page is going to switch to
+		 * @param isViewTouchedDown the boolean is used to notify whether the move is caused by service or by user
+		 * @see PlayerMainView
+		 * */
         void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown);
+
+		/**
+		 * The callback function when horizontal scroll performing
+		 * @see PlayerMainView
+		 * */
         void onPlayerHorizontalScrolling();
+
+		/**
+		 * The callback function when Player detail page scroll stopped
+		 * @param index indicate the currently showing player detail page
+		 * @param isViewTouchedDown indicate the move is caused by service or by user
+		 * @see PlayerMainView
+		 * */
         void onPlayerDetailScrollStop(int index, boolean isViewTouchedDown);
+
+		/**
+		 * The callback function when Player detail page scroll performing
+		 * @see PlayerMainView
+		 * @see PlayerMainView.PlayerScrollView
+		 * */
         void onPlayerDetailScrolling();
+
+		/**
+		 * The callback function when first Player item is prepared
+		 * @see PlayerMainView
+		 * */
         void onPlayerInitialItemPrepared();
+
+		/**
+		 * The callback function when last Player item is prepared
+		 * @see PlayerMainView
+		 * */
         void onPlayerFinalItemPrepared();
-        /** PlayerPanel's Event */
+
+		/**
+		 * The callback function when icon "Favorite" is clicked
+		 * @see PlayerPanelView
+		 * */
         void onPlayerPanelFavoriteClick();
+
+		/**
+		 * The callback function when icon "Play" is clicked
+		 * @see PlayerPanelView
+		 * */
 		void onPlayerPanelPlayClick();
+
+		/**
+		 * The callback function when icon "Option" is clicked
+		 * @see PlayerPanelView
+		 * */
 		void onPlayerPanelOptionClick();
+
+		/**
+		 * The callback function when any one of Option in PlayerOptionContent changed
+		 * @param optionID indicate which option is changed by user
+		 * @param mode indicate which mode is currently being changed
+		 * @param v the changed view
+		 * @see PlayerOptionView
+		 * */
         void onPlayerOptionChanged(int optionID, int mode, View v);
 
 	}
@@ -90,7 +161,7 @@ public class PlayerView extends RelativeLayout {
     
     /**
 	 * Find all child view and register the callback if after setPlayerEventListener
-	 * @see setPlayerEventListener
+	 * @see #setPlayerEventListener(PlayerEventListener)
 	 */
     private void registerEventListener() {
     	mPlayerMainView.setOnPlayerScrollListener(new PlayerMainView.OnPlayerScrollListener() {
@@ -192,10 +263,11 @@ public class PlayerView extends RelativeLayout {
 	/**------------------------------  PlayerMainView related action  ---------------------------**/
 	
 	/**
-	 * Create a new PlayerScrollView and put into PlayerMainView's center as childview
-	 * @param playerDataList
-	 * @param initPosition
-	 * @see PlayerScrollView
+	 * Create a new PlayerScrollView and put into PlayerMainView's center as child view
+	 * @param playerDataList The linkedlist contains HashMaps &lt;key, value&gt; key will be the data need
+	 *                       to be input, while value will be the content.
+	 * @param initPosition The param determines the init position when player start playing
+	 * @see PlayerMainView.PlayerScrollView
 	 * @see PlayerMainView
 	 */
 	public void addNewPlayer(LinkedList<HashMap> playerDataList, int initPosition) {
@@ -206,7 +278,7 @@ public class PlayerView extends RelativeLayout {
 	 * Delete an old PlayerScrollView and remove it from PlayerMainView with specific direction
 	 * @param direction Specify which PlayerScrollView should be removed
 	 * @see PlayerMainView
-	 * @see PlayerScrollView
+	 * @see PlayerMainView.PlayerScrollView
 	 */
 	public void removeOldPlayer(int direction) {
 		mPlayerMainView.removeOldPlayer(direction);
@@ -225,7 +297,7 @@ public class PlayerView extends RelativeLayout {
 	 * Change the Player currently playing item
 	 * @param position Specify which playing item should be player immediately after api called
 	 * @see PlayerMainView
-	 * @see PlayerScrollView
+	 * @see PlayerMainView.PlayerScrollView
 	 */
 	public void moveToPosition(int position) {
 		mPlayerMainView.moveToPosition(position);
@@ -234,7 +306,7 @@ public class PlayerView extends RelativeLayout {
 	/**
 	 * Make the Player show the currently playing item's Player detail information 
 	 * @see PlayerMainView
-	 * @see PlayerScrollView
+	 * @see PlayerMainView.PlayerScrollView
 	 */
 	public void showDetail() {
 		mPlayerMainView.showDetail();
@@ -243,7 +315,7 @@ public class PlayerView extends RelativeLayout {
 	/**
 	 * Make the Player hide the currently playing item's Player detail information
 	 * @see PlayerMainView
-	 * @see PlayerScrollView
+	 * @see PlayerMainView.PlayerScrollView
 	 */
 	public void hideDetail() {
 		mPlayerMainView.hideDetail();
@@ -251,10 +323,10 @@ public class PlayerView extends RelativeLayout {
 	
 	/**
 	 * Update the Player detail information
-	 * @param dataMap contains <key, value> which cooresponding to input string and the view id
+	 * @param dataMap contains &lt;key, value&gt; which cooresponding to input string and the view id
 	 *		    	  , the view id is the view to show one data
 	 * @see PlayerMainView
-	 * @see PlayerScrollView
+	 * @see PlayerMainView.PlayerScrollView
 	 */
 	public void refreshPlayerDetail(HashMap<String, Object> dataMap) {
 		mPlayerMainView.refreshPlayerDetail(dataMap);
@@ -264,7 +336,7 @@ public class PlayerView extends RelativeLayout {
 	 * Playing item may have more than one page, the api make Player show different playing detail
 	 * @param index the page of playing detail information
 	 * @see PlayerMainView
-	 * @see PlayerScrollView
+	 * @see PlayerMainView.PlayerScrollView
 	 */
 	public void moveDetailPage(int index) {
 		mPlayerMainView.moveToDetailPage(index);
@@ -273,7 +345,11 @@ public class PlayerView extends RelativeLayout {
 	/**----------------------------- PlayerPanelView related action  ---------------------------**/
 	
 	/**
-	 * 
+	 * The api for setting PlayerPanelView states.
+	 * @param favorite the state of icon "favorite"
+	 * @param play the state of icon "play"
+	 * @param option the state of icon "option"
+	 * @see PlayerPanelView
 	 */
 	public void setIconState(boolean favorite, boolean play, boolean option) {
 		mPlayerPanelView.setIconState(favorite, play, option);
@@ -282,7 +358,9 @@ public class PlayerView extends RelativeLayout {
 	/**------------------------------ PlayerOptionVie related action ---------------------------**/
 	
 	/**
-	 * 
+	 * The api for showing PlayerOptionView, using animation instead of Dialog
+	 * TODO: Change the View into DialogView
+	 * @see PlayerOptionView
 	 */
 	public void showPlayerOptionView() {
 		if (mPlayerOptionGrayBack.getVisibility() == View.INVISIBLE) {
@@ -296,7 +374,9 @@ public class PlayerView extends RelativeLayout {
 	}
 	
 	/**
-	 * 
+	 * The api for hiding PlayerOptionView, using animation instead of Dialog
+	 * TODO: Change the View into DialogView
+	 * @see PlayerOptionView
 	 */
 	public void exitPlayerOptionView() {
 		if (mPlayerOptionGrayBack.getVisibility() != View.VISIBLE) {
@@ -318,7 +398,10 @@ public class PlayerView extends RelativeLayout {
 	}
 	
 	/**
-	 * 
+	 * The api for setting PlayerOptionView content by list of OptionSettings
+	 * @param options The ArrayList of OptionSettings, the length of ArrayList should be only 3
+	 * @see PlayerOptionView
+	 * @see OptionSettings
 	 */
 	public void setPlayerOptionTabContent(ArrayList<OptionSettings> options) {
         mPlayerOptionView.setOptionsInTabContent(options);
