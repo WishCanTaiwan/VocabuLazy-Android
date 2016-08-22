@@ -3,9 +3,9 @@ package com.wishcan.www.vocabulazy.ga;
 import android.view.View;
 
 import com.wishcan.www.vocabulazy.utility.log.Logger;
-import com.wishcan.www.vocabulazy.main.player.fragment.PlayerFragment;
-import com.wishcan.www.vocabulazy.main.player.model.PlayerModel;
-import com.wishcan.www.vocabulazy.main.player.view.PlayerView;
+import com.wishcan.www.vocabulazy.player.fragment.PlayerFragment;
+import com.wishcan.www.vocabulazy.player.model.PlayerModel;
+import com.wishcan.www.vocabulazy.player.view.PlayerView;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;

@@ -15,25 +15,25 @@ public class Vocabulary {
 
     private int id;
     private String spell;
-    private String kk;
-    private String category;
+    private String phonetic;
+    private String partOfSpeech;
     private String translation;
 
-    private ArrayList<String> enSentences;
-    private ArrayList<String> cnSentences;
+    private ArrayList<String> enSentence;
+    private ArrayList<String> cnSentence;
 
-    public Vocabulary(int id, String spell, String kk,
-                      String category,
+    public Vocabulary(int id, String spell, String phonetic,
+                      String partOfSpeech,
                       String translation,
-                      ArrayList<String> enSentences,
-                      ArrayList<String> cnSentences) {
+                      ArrayList<String> enSentence,
+                      ArrayList<String> cnSentence) {
         setId(id);
         setSpell(spell);
-        setKk(kk);
-        setCategory(category);
+        setPhonetic(phonetic);
+        setPartOfSpeech(partOfSpeech);
         setTranslation(translation);
-        setEnSentences(enSentences);
-        setCnSentences(cnSentences);
+        setEnSentence(enSentence);
+        setCnSentence(cnSentence);
     }
 
     public int getId() {
@@ -52,20 +52,20 @@ public class Vocabulary {
         this.spell = spell;
     }
 
-    public String getKk() {
-        return kk;
+    public String getPhonetic() {
+        return phonetic;
     }
 
-    public void setKk(String kk) {
-        this.kk = kk;
+    public void setPhonetic(String phonetic) {
+        this.phonetic = phonetic;
     }
 
-    public String getCategory() {
-        return category;
+    public String getPartOfSpeech() {
+        return partOfSpeech;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setPartOfSpeech(String partOfSpeech) {
+        this.partOfSpeech = partOfSpeech;
     }
 
     public String getTranslation() {
@@ -76,23 +76,23 @@ public class Vocabulary {
         this.translation = translation;
     }
 
-    public ArrayList<String> getEnSentences() {
-        return enSentences;
+    public ArrayList<String> getEnSentence() {
+        return enSentence;
     }
 
-    public void setEnSentences(ArrayList<String> enSentences) {
-        this.enSentences = enSentences;
+    public void setEnSentence(ArrayList<String> enSentence) {
+        this.enSentence = enSentence;
     }
 
-    public ArrayList<String> getCnSentences() {
-        return cnSentences;
+    public ArrayList<String> getCnSentence() {
+        return cnSentence;
     }
 
-    public void setCnSentences(ArrayList<String> cnSentences) {
-        this.cnSentences = cnSentences;
+    public void setCnSentence(ArrayList<String> cnSentence) {
+        this.cnSentence = cnSentence;
     }
 
     public int getSentenceAmount() {
-        return enSentences.size();
+        return enSentence.size();
     }
 }

@@ -7,8 +7,8 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.wishcan.www.vocabulazy.main.MainActivity;
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 //import com.wishcan.www.vocabulazy.view.adapter.LinkedListPagerAdapter;
 
 import java.util.LinkedList;
@@ -71,7 +71,7 @@ abstract public class SlideBackViewPager extends ViewPager {
         @Override
         public void onPageSelected(int position) {
             if (position == 0)
-                ((MainActivity) getContext()).onBackPressed();
+                ((MainMenuActivity) getContext()).onBackPressed();
         }
 
         @Override

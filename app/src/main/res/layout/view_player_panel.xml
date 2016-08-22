@@ -1,4 +1,4 @@
-<com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView
+<com.wishcan.www.vocabulazy.player.view.PlayerPanelView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,4 +34,4 @@
             android:onClick="onOptionClicked"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp" />
-</com.wishcan.www.vocabulazy.main.player.view.PlayerPanelView>
+</com.wishcan.www.vocabulazy.player.view.PlayerPanelView>

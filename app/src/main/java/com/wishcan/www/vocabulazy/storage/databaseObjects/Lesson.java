@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Using this class to represent Lesson and Note objects which are read from the database.\n
- * Each Lesson object is consist of an id, a title and a set of content ids.
+ * Each Lesson object is consist of an lessonId, a lessonTitle and a set of lessonContent ids.
  *
  * @author Allen Cheng Yu-Lun
  * @version 1.0
@@ -20,92 +20,92 @@ public class Lesson {
     /**
      * Id of the lesson.
      */
-    private int id;
+    private int lessonId;
 
     /**
      * Title of the lesson.
      */
-    private String title;
+    private String lessonTitle;
 
     /**
      * Content of the lesson, containing a list of {@link Vocabulary} ids.
      */
-    private ArrayList<Integer> content;
+    private ArrayList<Integer> lessonContent;
 
     /**
      * Call constructor to create a {@link Lesson} object.
      *
-     * @param id the id of the lesson.
-     * @param title the title of the lesson.
-     * @param content the content of the lesson.
+     * @param lessonId the lessonId of the lesson.
+     * @param lessonTitle the lessonTitle of the lesson.
+     * @param lessonContent the lessonContent of the lesson.
      */
-    public Lesson(int id, String title, ArrayList<Integer> content) {
-        setId(id);
-        setTitle(title);
-        setContent(content);
+    public Lesson(int lessonId, String lessonTitle, ArrayList<Integer> lessonContent) {
+        setLessonId(lessonId);
+        setLessonTitle(lessonTitle);
+        setLessonContent(lessonContent);
     }
 
     /**
-     * Call this method to get the id of the lesson.
+     * Call this method to get the lessonId of the lesson.
      *
-     * @return id of the lesson.
+     * @return lessonId of the lesson.
      */
-    public int getId() {
-        return id;
+    public int getLessonId() {
+        return lessonId;
     }
 
     /**
-     * Call this method to set id to the lesson.
+     * Call this method to set lessonId to the lesson.
      *
-     * @param id the id of lesson.
+     * @param lessonId the lessonId of lesson.
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setLessonId(int lessonId) {
+        this.lessonId = lessonId;
     }
 
     /**
-     * Call this method to get the title of the lesson.
+     * Call this method to get the lessonTitle of the lesson.
      *
-     * @return the title of the lesson.
+     * @return the lessonTitle of the lesson.
      */
-    public String getTitle() {
-        return title;
+    public String getLessonTitle() {
+        return lessonTitle;
     }
 
     /**
-     * Call this method to set title to the lesson.
+     * Call this method to set lessonTitle to the lesson.
      *
-     * @param title the title of the lesson.
+     * @param lessonTitle the lessonTitle of the lesson.
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setLessonTitle(String lessonTitle) {
+        this.lessonTitle = lessonTitle;
     }
 
     /**
      * Call this method to get the {@link Vocabulary} ids contained in the lesson.
      *
-     * @return the content of the lesson.
+     * @return the lessonContent of the lesson.
      */
-    public ArrayList<Integer> getContent() {
-        return content;
+    public ArrayList<Integer> getLessonContent() {
+        return lessonContent;
     }
 
     /**
-     * Call this method to set content to the lesson.
+     * Call this method to set lessonContent to the lesson.
      *
-     * @param content the content of the lesson.
+     * @param lessonContent the lessonContent of the lesson.
      */
-    public void setContent(ArrayList<Integer> content) {
-        this.content = content;
+    public void setLessonContent(ArrayList<Integer> lessonContent) {
+        this.lessonContent = lessonContent;
     }
 
     /**
-     * Call this method to give the lesson a new title.
+     * Call this method to give the lesson a new lessonTitle.
      *
-     * @param newTitle the new title of the lesson.
+     * @param newTitle the new lessonTitle of the lesson.
      */
     public void rename(String newTitle) {
-        title = newTitle;
+        lessonTitle = newTitle;
     }
 
 }

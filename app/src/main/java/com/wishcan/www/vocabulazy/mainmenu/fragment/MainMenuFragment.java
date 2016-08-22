@@ -20,9 +20,17 @@ import com.wishcan.www.vocabulazy.mainmenu.view.MainMenuViewPager;
 
 public class MainMenuFragment extends Fragment implements TextbookFragment.OnTextbookClickListener, NoteFragment.OnNoteClickListener, ExamIndexFragment.OnExamIndexClickListener {
 
+    public interface OnMainMenuEventListener {
+        void onTextbookSelected(int bookIndex, int lessonIndex);
+        void onNoteSelected(int noteIndex);
+        void onExamTextbookSelected(int examBookIndex, int examLessonIndex);
+        void onExamNoteSelected(int examNoteIndex);
+    }
+
     public static final String TAG = "MainMenuFragment";
 
     private MainMenuModel mModel;
+    private OnMainMenuEventListener mOnMainMenuEventListener;
     private TextbookFragment mTextbookFragment;
     private NoteFragment mNoteFragment;
     private ExamIndexFragment mExamIndexFragment;
@@ -43,18 +51,6 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
         initFragments();
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        Log.d(TAG, "Activity Created");
-        super.onActivityCreated(savedInstanceState);
-        mModel = ((MainMenuActivity) getActivity()).getModel();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
 
         // here fakes the process of loading data
         Handler handler = new Handler();
@@ -78,6 +74,20 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        Log.d(TAG, "Activity Created");
+        super.onActivityCreated(savedInstanceState);
+        mModel = ((MainMenuActivity) getActivity()).getModel();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
@@ -97,11 +107,13 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     @Override
     public void onTextbookClicked(int bookIndex, int lessonIndex) {
         Log.d(TAG, "Textbook [" + bookIndex + ", " + lessonIndex + "] clicked");
+        mOnMainMenuEventListener.onTextbookSelected(bookIndex, lessonIndex);
     }
 
     @Override
     public void onNotePlay(int noteIndex) {
         Log.d(TAG, "Note [PLAY " + noteIndex + "]");
+        mOnMainMenuEventListener.onNoteSelected(noteIndex);
     }
 
     @Override
@@ -127,6 +139,10 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     @Override
     public void onExamNoteClicked(int noteIndex) {
         Log.d(TAG, "Exam note [" + noteIndex + "]");
+    }
+
+    public void addOnMainMenuEventListener(OnMainMenuEventListener listener) {
+        mOnMainMenuEventListener = listener;
     }
 
     private void initFragments() {

@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.utility.log.Logger;
@@ -11,6 +12,8 @@ import com.wishcan.www.vocabulazy.storage.Preferences;
  * This class is created for giving a global overview to our application.
  */
 public class VLApplication extends Application {
+
+    public static final String TAG = "VLApplication";
 
     /**
      * The preferences which store all arguments and parameters.
@@ -30,6 +33,7 @@ public class VLApplication extends Application {
 
     @Override
     public void onCreate() {
+        Log.d(TAG, "Create");
         super.onCreate();
 
         /* Every-time the application is created, create a Preferences object and

@@ -1,13 +1,17 @@
 package com.wishcan.www.vocabulazy.mainmenu.model;
 
+import android.app.Activity;
 import android.content.Context;
 
+import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableGroupItem;
+import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Textbook;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +33,7 @@ public class MainMenuModel {
     ArrayList<NoteExpandableGroupItem> examIndexNoteGroupItems;
     HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> examIndexNoteChildItemsMap;
 
-    ArrayList<Book> fakeBooks;
+    ArrayList<Textbook> fakeBooks;
     ArrayList<Lesson> fakeLessons;
     ArrayList<Lesson> fakeNotes;
 
@@ -42,11 +46,12 @@ public class MainMenuModel {
         textbookGroupItems = new ArrayList<>();
         textbookChildItemsMap = new HashMap<>();
         for (int bookIndex = 0; bookIndex < fakeBooks.size(); bookIndex++) {
-            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getTitle());
+            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getBookTitle());
 
+            ArrayList<Lesson> lessons = fakeBooks.get(bookIndex).getBookContent();
             ArrayList<TextbookExpandableChildItem> childItems = new ArrayList<>();
-            for (int lessonIndex = 0; lessonIndex < fakeLessons.size(); lessonIndex++) {
-                TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(fakeLessons.get(lessonIndex).getTitle());
+            for (int lessonIndex = 0; lessonIndex < lessons.size(); lessonIndex++) {
+                TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(lessons.get(lessonIndex).getLessonTitle());
                 childItems.add(childItem);
             }
 
@@ -68,7 +73,7 @@ public class MainMenuModel {
         noteGroupItems = new ArrayList<>();
         noteChildItemsMap = new HashMap<>();
         for (int noteIndex = 0; noteIndex < fakeNotes.size(); noteIndex++) {
-            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getTitle());
+            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getLessonTitle());
 
             ArrayList<NoteExpandableChildItem> childItems = new ArrayList<>();
             for (int index = 0; index < 4; index++) {
@@ -95,11 +100,12 @@ public class MainMenuModel {
         examIndexTextbookGroupItems = new ArrayList<>();
         examIndexTextbookChildItemsMap = new HashMap<>();
         for (int bookIndex = 0; bookIndex < fakeBooks.size(); bookIndex++) {
-            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getTitle());
+            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getBookTitle());
 
+            ArrayList<Lesson> lessons = fakeBooks.get(bookIndex).getBookContent();
             ArrayList<TextbookExpandableChildItem> childItems = new ArrayList<>();
-            for (int lessonIndex = 0; lessonIndex < fakeLessons.size(); lessonIndex++) {
-                TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(fakeLessons.get(lessonIndex).getTitle());
+            for (int lessonIndex = 0; lessonIndex < lessons.size(); lessonIndex++) {
+                TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(lessons.get(lessonIndex).getLessonTitle());
                 childItems.add(childItem);
             }
 
@@ -112,7 +118,7 @@ public class MainMenuModel {
         examIndexNoteGroupItems = new ArrayList<>();
         examIndexNoteChildItemsMap = new HashMap<>();
         for (int noteIndex = 0; noteIndex < fakeNotes.size(); noteIndex++) {
-            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getTitle());
+            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getLessonTitle());
 
             ArrayList<NoteExpandableChildItem> childItems = new ArrayList<>();
             for (int index = 0; index < childs.length; index++) {
@@ -142,12 +148,16 @@ public class MainMenuModel {
     }
 
     public void createFakeData() {
-        fakeBooks = new ArrayList<>();
+
+        VLApplication application = (VLApplication) ((Activity) mContext).getApplication();
+        Database database = application.getDatabase();
+
+        fakeBooks = database.getTextbooks();
 //        for (int index = 0; index < 5; index++) {
 //            fakeBooks.add(new Book("Book " + (index+1)));
 //        }
 
-        fakeLessons = new ArrayList<>();
+//        fakeLessons = ;
 //        for (int index = 0; index < 20; index++) {
 //            fakeLessons.add(new Lesson("Lesson " + (index+1)));
 //        }

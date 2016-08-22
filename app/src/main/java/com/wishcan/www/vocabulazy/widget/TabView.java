@@ -17,10 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.main.MainActivity;
-import com.wishcan.www.vocabulazy.main.view.MainView;
-
-import java.util.LinkedList;
 
 /**
  * Created by swallow on 2015/9/19.

@@ -172,11 +172,11 @@ public class AudioPlayer implements AudioPlayerListener {
                 vlTextToSpeech.setLanguage(Locale.TAIWAN);
                 break;
             case EnSENTENCE:
-                string = mVocabularies.get(itemIndex).getEnSentences().get(sentenceIndex);
+                string = mVocabularies.get(itemIndex).getEnSentence().get(sentenceIndex);
                 vlTextToSpeech.setLanguage(Locale.ENGLISH);
                 break;
             case CnSENTENCE:
-                string = mVocabularies.get(itemIndex).getCnSentences().get(sentenceIndex);
+                string = mVocabularies.get(itemIndex).getCnSentence().get(sentenceIndex);
                 vlTextToSpeech.setLanguage(Locale.TAIWAN);
                 break;
             default:

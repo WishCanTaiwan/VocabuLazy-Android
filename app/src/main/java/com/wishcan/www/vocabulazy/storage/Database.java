@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.storage;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,11 +19,9 @@ import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Textbook;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
-/**
- * Created by allencheng07 on 2015/9/1.
- */
 public class Database {
     public static final String TAG = Database.class.getSimpleName();
 
@@ -33,6 +32,7 @@ public class Database {
     private Preferences mPreferences;
 
     private ArrayList<Vocabulary> wVocabularies;
+    private ArrayList<Textbook> mTextbooks;
     private ArrayList<Book> wBooks;
     private ArrayList<Lesson> wLessons;
     private ArrayList<Lesson> wNotes;
@@ -47,11 +47,14 @@ public class Database {
 
     public void loadFiles() {
         try {
-            wVocabularies = load(Vocabulary[].class, wContext.getResources().openRawResource(R.raw.vl_database_vocabulary));
+            wVocabularies = load(Vocabulary[].class, wContext.getResources().openRawResource(R.raw.highschool_vocabularies));
+            mTextbooks = load(Textbook[].class, wContext.getResources().openRawResource(R.raw.textbook));
             wBooks = load(Book[].class, wContext.getResources().openRawResource(R.raw.vl_database_book));
             wLessons = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.vl_database_lesson));
             wNotes = load(Lesson[].class, wContext.openFileInput(FILENAME_NOTE));
             wOptionSettings = load(OptionSettings[].class, wContext.openFileInput(FILENAME_OPTION));
+            Log.d(TAG, wVocabularies.size() + "vocabularies");
+            Log.d(TAG, mTextbooks.size() + " textbooks");
         } catch (FileNotFoundException fnfe) {
             wNotes = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.vl_database_note));
             wOptionSettings = load(OptionSettings[].class, wContext.getResources().openRawResource(R.raw.option));
@@ -72,6 +75,10 @@ public class Database {
         return wBooks;
     }
 
+    public ArrayList<Textbook> getTextbooks() {
+        return mTextbooks;
+    }
+
     public String getBookTitle(int bookIndex) {
         return wBooks.get(bookIndex).getTitle();
     }
@@ -80,16 +87,16 @@ public class Database {
         if (bookIndex >= 0)
             return wBooks.get(bookIndex).getContent().get(lessonIndex);
         else
-            return wNotes.get(lessonIndex).getId();
+            return wNotes.get(lessonIndex).getLessonId();
     }
 
     public String getLessonTitle(int bookIndex, int lessonIndex) {
         if (bookIndex < 0)
-            return wNotes.get(lessonIndex).getTitle();
+            return wNotes.get(lessonIndex).getLessonTitle();
 
         int lessonId = wBooks.get(bookIndex).getContent().get(lessonIndex);
         for (Lesson lesson : wLessons) {
-            if (lessonId == lesson.getId()) return lesson.getTitle();
+            if (lessonId == lesson.getLessonId()) return lesson.getLessonTitle();
         }
         return null;
     }
@@ -102,23 +109,23 @@ public class Database {
     }
 
     public int getNoteSize(int noteIndex) {
-        return wNotes.get(noteIndex).getContent().size();
+        return wNotes.get(noteIndex).getLessonContent().size();
     }
 
     public ArrayList<Integer> getContentIDs(int bookIndex, int lessonIndex) {
-        if (bookIndex < 0) {
-            return wNotes.get(lessonIndex).getContent();
-        }
-
-        int lessonId = getLessonID(bookIndex, lessonIndex);
-        ArrayList<Integer> content = new ArrayList<>();
-        for (int index = 0; index < wLessons.size(); index++) {
-            Lesson lesson = wLessons.get(index);
-            if (lessonId == lesson.getId()) {
-                content = lesson.getContent();
-            }
-        }
-        return content;
+//        if (bookIndex < 0) {
+//            return wNotes.get(lessonIndex).getLessonContent();
+//        }
+//
+//        int lessonId = getLessonID(bookIndex, lessonIndex);
+//        ArrayList<Integer> content = new ArrayList<>();
+//        for (int index = 0; index < wLessons.size(); index++) {
+//            Lesson lesson = wLessons.get(index);
+//            if (lessonId == lesson.getLessonId()) {
+//                content = lesson.getLessonContent();
+//            }
+//        }
+        return mTextbooks.get(bookIndex).getBookContent().get(lessonIndex).getLessonContent();
     }
 
     public ArrayList<Lesson> getLessonsByBook(int bookIndex) {
@@ -130,7 +137,7 @@ public class Database {
         for (int index = 0; index < content.size(); index++) {
             for (int index2 = 0; index2 < wLessons.size(); index2++) {
                 Lesson lesson = wLessons.get(index2);
-                if (content.get(index) == lesson.getId()) {
+                if (content.get(index) == lesson.getLessonId()) {
                     lessons.add(lesson);
                     break;
                 }
@@ -183,7 +190,7 @@ public class Database {
     }
 
     public void addVocToNote(int vocID, int noteIndex) {
-        ArrayList<Integer> content = wNotes.get(noteIndex).getContent();
+        ArrayList<Integer> content = wNotes.get(noteIndex).getLessonContent();
         for (int index = 0; index < content.size(); index++) {
             int id = content.get(index);
             if (id == vocID) {
@@ -194,14 +201,14 @@ public class Database {
     }
 
     public void renameNoteAt(int noteIndex, String name) {
-        int id = wNotes.get(noteIndex).getId();
+        int id = wNotes.get(noteIndex).getLessonId();
         renameNote(id, name);
     }
 
     public void renameNote(int id, String name) {
         for (int index = 0; index < wNotes.size(); index++) {
             Lesson note = wNotes.get(index);
-            if (id == note.getId()) {
+            if (id == note.getLessonId()) {
                 note.rename(name);
                 return;
             }
@@ -209,7 +216,7 @@ public class Database {
     }
 
     public void deleteNoteAt(int noteIndex) {
-        int id = wNotes.get(noteIndex).getId();
+        int id = wNotes.get(noteIndex).getLessonId();
         deleteNote(id);
     }
 
@@ -217,7 +224,7 @@ public class Database {
         Lesson noteToBeDelete = null;
         for (int index = 0; index < wNotes.size(); index++) {
             Lesson note = wNotes.get(index);
-            if (id == note.getId()) {
+            if (id == note.getLessonId()) {
                 noteToBeDelete = note;
             }
         }
@@ -230,7 +237,7 @@ public class Database {
         // refresh IDs
         for (int index = 0; index < wNotes.size(); index++) {
             Lesson note = wNotes.get(index);
-            note.setId(index);
+            note.setLessonId(index);
         }
     }
 

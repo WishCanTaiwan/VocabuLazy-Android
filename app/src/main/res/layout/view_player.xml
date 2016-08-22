@@ -1,4 +1,4 @@
-<com.wishcan.www.vocabulazy.main.player.view.PlayerView
+<com.wishcan.www.vocabulazy.player.view.PlayerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true" />
 
-    <com.wishcan.www.vocabulazy.main.player.view.PlayerMainView
+    <com.wishcan.www.vocabulazy.player.view.PlayerMainView
         android:id="@+id/player_main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,4 +31,4 @@
             android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
-</com.wishcan.www.vocabulazy.main.player.view.PlayerView>
+</com.wishcan.www.vocabulazy.player.view.PlayerView>

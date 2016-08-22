@@ -139,7 +139,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
         LinkedList<String> dataList = new LinkedList<>();
         if(notes != null)
             for(Lesson note : notes)
-                dataList.add(note.getTitle());
+                dataList.add(note.getLessonTitle());
         if(mSearchDialogView != null)
             mSearchDialogView.refreshNoteList(dataList);
     }
