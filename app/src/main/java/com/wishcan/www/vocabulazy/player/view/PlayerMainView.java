@@ -25,29 +25,82 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Created by swallow on 2016/1/14.
+ * @author Swallow Chen
+ * @since 2016/1/14.
  */
 public class PlayerMainView extends Infinite3View {
 
-    public static final String TAG = PlayerMainView.class.getSimpleName();
-
+    /**
+     * OnPlayerScrollListener contains all event of PlayerMainView's child
+     * @see Infinite3View
+     * @see PopScrollView
+     * @see PlayerScrollView.PlayerDetailView
+     * */
     public interface OnPlayerScrollListener {
-        /** For Infinite3View */
+        /**
+         * The callback function when vertical scroll stopped
+         * @param index indicate which player item is in the center
+         * @param isViewTouchedDown the boolean is used to notify whether the move is caused by service or by user
+         * @see PopScrollView
+         * */
         void onPlayerVerticalScrollStop(int index, boolean isViewTouchedDown);
+
+        /**
+         * The callback function when vertical scroll performing
+         * @see PopScrollView
+         * */
         void onPlayerVerticalScrolling();
-        /** For PopScrollView */
+
+        /**
+         * The callback function when horizontal scroll stopped
+         * @param isOrderChanged the boolean indicate whether really change the player page
+         * @param direction the direction indicate which page is going to switch to
+         * @param isViewTouchedDown the boolean is used to notify whether the move is caused by service or by user
+         * @see Infinite3View
+         * */
         void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown);
+
+        /**
+         * The callback function when horizontal scroll performing
+         * @see Infinite3View
+         * */
         void onPlayerHorizontalScrolling();
-        /** For PlayerDetailView */
+
+        /**
+         * The callback function when Player detail page scroll stopped
+         * @param index indicate the currently showing player detail page
+         * @param isViewTouchedDown indicate the move is caused by service or by user
+         * @see PlayerScrollView.PlayerDetailView
+         * */
         void onDetailScrollStop(int index, boolean isViewTouchedDown);
+
+        /**
+         * The callback function when Player detail page scroll performing
+         * @see PlayerScrollView.PlayerDetailView
+         * */
         void onDetailScrolling();
     }
 
-    /** For PlayerItem */
+    /**
+     * OnPlayerItemPreparedListener contains the event of Player Item states
+     * @see PopScrollView
+     * */
     public interface OnPlayerItemPreparedListener {
+
+        /**
+         * The callback function when first Player item is prepared
+         * @see PopScrollView
+         * */
         void onInitialItemPrepared();
+
+        /**
+         * The callback function when final Player item is prepared
+         * @see PopScrollView
+         * */
         void onFinalItemPrepared();
     }
+
+    public static final String TAG = PlayerMainView.class.getSimpleName();
 
     private Context mContext;
     private PlayerScrollView mPlayerScrollView;
