@@ -16,11 +16,16 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Created by swallow on 2016/1/17.
+ * @author Swallow Chen
+ * @since 2016/1/17
  */
 
 public class PlayerView extends RelativeLayout {
 
+	/**
+	 * PlayerEventListener contains all events of Player's child
+	 * The fragment contains the Player should implement to maintain MVC structure
+	 */
 	public interface PlayerEventListener {
 		/** TODO: Change this event into dialogview */
 		void onGrayBackClick();
@@ -75,10 +80,18 @@ public class PlayerView extends RelativeLayout {
         registerEventListener();
     }
 
+	/**
+	 * @param listener
+	 * Hock callback for Player event
+	 */
     public void setPlayerEventListener(PlayerEventListener listener) {
     	mPlayerEventListener = listener;
     }
     
+    /**
+	 * Find all child view and register the callback if after setPlayerEventListener
+	 * @see setPlayerEventListener
+	 */
     private void registerEventListener() {
     	mPlayerMainView.setOnPlayerScrollListener(new PlayerMainView.OnPlayerScrollListener() {
     		@Override
@@ -177,42 +190,100 @@ public class PlayerView extends RelativeLayout {
     }
     
 	/**------------------------------  PlayerMainView related action  ---------------------------**/
+	
+	/**
+	 * Create a new PlayerScrollView and put into PlayerMainView's center as childview
+	 * @param playerDataList
+	 * @param initPosition
+	 * @see PlayerScrollView
+	 * @see PlayerMainView
+	 */
 	public void addNewPlayer(LinkedList<HashMap> playerDataList, int initPosition) {
 		mPlayerMainView.addNewPlayer(playerDataList, initPosition);
 	}
 	
+	/**
+	 * Delete an old PlayerScrollView and remove it from PlayerMainView with specific direction
+	 * @param direction Specify which PlayerScrollView should be removed
+	 * @see PlayerMainView
+	 * @see PlayerScrollView
+	 */
 	public void removeOldPlayer(int direction) {
 		mPlayerMainView.removeOldPlayer(direction);
 	}
 	
+	/**
+	 * Change the Player page according to input
+	 * @param direction Specify which page should be shown after the api called
+	 * @see PlayerMainView
+	 */
 	public void moveToPlayer(int direction) {
 		mPlayerMainView.setCurrentItem(direction);
 	}
 	
+	/**
+	 * Change the Player currently playing item
+	 * @param position Specify which playing item should be player immediately after api called
+	 * @see PlayerMainView
+	 * @see PlayerScrollView
+	 */
 	public void moveToPosition(int position) {
 		mPlayerMainView.moveToPosition(position);
 	}
 	
+	/**
+	 * Make the Player show the currently playing item's Player detail information 
+	 * @see PlayerMainView
+	 * @see PlayerScrollView
+	 */
 	public void showDetail() {
 		mPlayerMainView.showDetail();
 	}
 	
+	/**
+	 * Make the Player hide the currently playing item's Player detail information
+	 * @see PlayerMainView
+	 * @see PlayerScrollView
+	 */
 	public void hideDetail() {
 		mPlayerMainView.hideDetail();
 	}
 	
+	/**
+	 * Update the Player detail information
+	 * @param dataMap contains <key, value> which cooresponding to input string and the view id
+	 *		    	  , the view id is the view to show one data
+	 * @see PlayerMainView
+	 * @see PlayerScrollView
+	 */
 	public void refreshPlayerDetail(HashMap<String, Object> dataMap) {
 		mPlayerMainView.refreshPlayerDetail(dataMap);
 	}
 	
+	/**
+	 * Playing item may have more than one page, the api make Player show different playing detail
+	 * @param index the page of playing detail information
+	 * @see PlayerMainView
+	 * @see PlayerScrollView
+	 */
 	public void moveDetailPage(int index) {
 		mPlayerMainView.moveToDetailPage(index);
 	}
+	
 	/**----------------------------- PlayerPanelView related action  ---------------------------**/
+	
+	/**
+	 * 
+	 */
 	public void setIconState(boolean favorite, boolean play, boolean option) {
 		mPlayerPanelView.setIconState(favorite, play, option);
 	}
+	
 	/**------------------------------ PlayerOptionVie related action ---------------------------**/
+	
+	/**
+	 * 
+	 */
 	public void showPlayerOptionView() {
 		if (mPlayerOptionGrayBack.getVisibility() == View.INVISIBLE) {
 			mPlayerOptionGrayBack.setVisibility(View.VISIBLE);
@@ -224,6 +295,9 @@ public class PlayerView extends RelativeLayout {
 		mPlayerOptionGrayBack.invalidate();
 	}
 	
+	/**
+	 * 
+	 */
 	public void exitPlayerOptionView() {
 		if (mPlayerOptionGrayBack.getVisibility() != View.VISIBLE) {
 			return;
@@ -243,6 +317,9 @@ public class PlayerView extends RelativeLayout {
 		});
 	}
 	
+	/**
+	 * 
+	 */
 	public void setPlayerOptionTabContent(ArrayList<OptionSettings> options) {
         mPlayerOptionView.setOptionsInTabContent(options);
 	}
