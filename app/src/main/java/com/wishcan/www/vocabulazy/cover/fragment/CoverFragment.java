@@ -20,6 +20,7 @@ import com.wishcan.www.vocabulazy.cover.view.CoverDialogView;
 import com.wishcan.www.vocabulazy.ga.GACoverFragment;
 import com.wishcan.www.vocabulazy.log.Logger;
 import com.wishcan.www.vocabulazy.main.MainActivity;
+import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
 /**
@@ -119,15 +120,13 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
     private void directToVocabuLazy() {
 
         if (mView == null) return;
-
-        final Intent intent = new Intent(getActivity(), MainActivity.class);
+//        final Intent intent = new Intent(getActivity(), MainMenuActivity.class);
         mView.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (!hasUserLeftAppFirst) {
-                    startActivity(intent);
+                    startActivity(new Intent(getActivity(), MainMenuActivity.class));
                     getActivity().finish();
-                } else {
                 }
             }
         }, 2000);

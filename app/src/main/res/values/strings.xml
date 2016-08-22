@@ -4,6 +4,8 @@
     <string name="version_code">3</string>
     <string name="version_name">- Beta Version 6 -</string>
 
+    <string name="label_main_menu_activity">MainMenuActivity</string>
+
     <!-- Fragment Label for Google Analytics -->
     <string name="ga_tag_cover_dialog">C.DIALOG</string>
     <string name="ga_tag_cover">COVER</string>
@@ -41,6 +43,8 @@
     <!-- usr -->
 
     <!-- exam -->
+    <string name="exam_index_textbook">Book</string>
+    <string name="exam_index_note">Note</string>
 
     <!-- info -->
 

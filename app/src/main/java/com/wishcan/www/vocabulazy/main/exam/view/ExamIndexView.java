@@ -20,8 +20,8 @@ public class ExamIndexView extends FrameLayout {
     }
 
     private static final int VIEW_RES_ID = R.layout.view_exam_index;
-    private static final int VIEW_UNIT_BOOK_RES_ID = R.id.exam_unit_book;
-    private static final int VIEW_UNIT_NOTE_RES_ID = R.id.exam_unit_note;
+    private static final int VIEW_UNIT_BOOK_RES_ID = 0;
+    private static final int VIEW_UNIT_NOTE_RES_ID = 0;
 
     private OnExamItemClickListener mOnExamItemClickListener;
 

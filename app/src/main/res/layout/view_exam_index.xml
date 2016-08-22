@@ -1,55 +1,48 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:gravity="center_horizontal"
-    android:background="#ffffff">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="12dp">
-
-        <ImageView android:src="@drawable/exam_rect_green_shadow"
-            android:id="@+id/exam_unit_book"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            />
+        android:padding="10dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="單元練習"
-            android:textSize="24sp"
-            android:textColor="#ffffff"
-            android:layout_centerInParent="true"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="12dp" >
-
-        <ImageView android:src="@drawable/exam_rect_green_shadow"
-            android:id="@+id/exam_unit_note"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            />
+            android:id="@+id/exam_index_textbook_text"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="@string/exam_index_textbook"
+            android:gravity="center"
+            android:background="@color/accent_material_dark" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="清單測驗"
-            android:textSize="24sp"
-            android:textColor="#ffffff"
-            android:layout_centerInParent="true"
-            />
+            android:id="@+id/exam_index_note_text"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="@string/exam_index_note"
+            android:gravity="center"
+            android:background="@color/accent_material_light" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-</LinearLayout>
+    <com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexViewPager
+        android:id="@+id/exam_index_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button_material_light" >
+
+        <include layout="@layout/view_exam_index_textbook"
+            android:id="@+id/exam_index_textbook_view"/>
+
+        <include layout="@layout/view_exam_index_note"
+            android:id="@+id/exam_index_note_view"/>
+
+    </com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexViewPager>
+
+</com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexView>
