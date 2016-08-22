@@ -88,7 +88,6 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/widget_note_white_circle"
                 android:paddingRight="@dimen/dialog_circle_cross_padding"
                 android:paddingEnd="@dimen/dialog_circle_cross_padding"/>
 

@@ -26,15 +26,9 @@
     <color name="grey_7">#FFA09E9C</color>
 
     <!--**************************************** style *****************************************-->
-    <color name="colorBackground">@color/white_1</color>
-    <color name="activity_background">@color/grey_1</color>
     <color name="theme_color_green">@color/green_1</color>
-    <color name="theme_title_color_grey">@color/grey_1</color>
     <!--**************************************** widget ****************************************-->
     <color name="widget_tab_view_mask">@color/black_alpha_1</color>
-    <color name="widget_lesson_background">@color/white_1</color>
-    <color name="widget_lesson_divider">@color/white_2</color>
-    <color name="widget_note_divider">@color/white_2</color>
     <color name="widget_picker_text">@color/grey_3</color>
     <color name="widget_picker_background">@color/white_1</color>
     <color name="widget_pop_list_item">@color/green_2</color>
@@ -42,22 +36,12 @@
     <color name="widget_pop_details_color">@color/yellow_3</color>
     <color name="widget_dialog_background">@color/black_alpha_2</color>
     <color name="widget_slide_back_view_pager_background">#00000000</color>
-    <color name="default_dialog_background_color">@color/black_alpha_2</color>
+    <color name="widget_cross">@color/white_1</color>
     <!--************************************** drawable ****************************************-->
-    <color name="circle_image_color_green">@color/green_1</color>
     <color name="circle_image_color_yellow">@color/yellow_1</color>
-    <color name="circle_image_color_shadow_green">@color/green_6</color>
-    <color name="circle_image_color_shadow_yellow">@color/yellow_4</color>
-    <color name="circle_text_color_white">@color/white_1</color>
     <color name="default_white">@color/white_1</color>
-    
-    <!--*************************************** main *******************************************-->
-    <color name="main_tab_stripe">@color/green_1</color>
-    <!--**************************************** voc *******************************************-->
+
     <!--**************************************** usr *******************************************-->
-    <color name="note_list_item_text_color">@color/grey_2</color>
-    <color name="note_list_item_adding_note_color">@color/yellow_1</color>
-    <color name="note_cross_color">@color/white_1</color>
     <color name="dialog_new_note_background_color">@color/white_2</color>
     <color name="dialog_new_note_button_background_green">@color/green_1</color>
     <color name="dialog_new_note_button_background_gray">@color/grey_2</color>
@@ -79,6 +63,7 @@
     <color name="player_option_tab1_text">@color/white_1</color>
     <color name="player_option_tab2_text">@color/white_1</color>
     <color name="player_option_picker_indicator_text_color">@color/white_1</color>
+    <color name="player_grey_background">@color/black_alpha_2</color>
     
     <!--**************************************** search ****************************************-->
     <color name="search_divider">@color/white_2</color>
@@ -88,5 +73,6 @@
     <color name="search_xx_background_color">@color/white_1</color>
     <color name="search_result_add_to_note_view_title_text_color">@color/white_1</color>
     <color name="search_dialog_background_color">@color/black_alpha_1</color>
+    <color name="search_note_list_text">@color/grey_2</color>
 
 </resources>

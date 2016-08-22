@@ -21,7 +21,7 @@
         android:id="@+id/player_option_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/default_dialog_background_color"
+        android:background="@color/player_grey_background"
         android:visibility="invisible" >
 
         <include layout="@layout/view_player_option"
