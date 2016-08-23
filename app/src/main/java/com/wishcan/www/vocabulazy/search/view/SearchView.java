@@ -445,7 +445,7 @@ public class SearchView extends RelativeLayout {
         private void createPagerIndex(int indexCount){
             for(int i = 0; i < indexCount; i++){
                 ImageView imageView = new ImageView(context);
-                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.circle_pager_index));
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.search_detail_pager_index));
                 if(i == 0)
                     ((GradientDrawable)imageView.getDrawable()).setColor(ContextCompat.getColor(context, R.color.player_pager_index_selected));
                 else

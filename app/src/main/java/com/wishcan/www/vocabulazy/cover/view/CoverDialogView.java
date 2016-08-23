@@ -12,7 +12,7 @@ import com.wishcan.www.vocabulazy.widget.DialogView;
  */
 public class CoverDialogView extends DialogView {
 
-    private static final int VIEW_RES_ID = R.layout.widget_cover_dialog;
+    private static final int VIEW_RES_ID = R.layout.view_cover_dialog;
     private static final int YES_ID = R.id.action_cover_confirm;
     private static final int NO_ID = R.id.action_cover_cancel;
 

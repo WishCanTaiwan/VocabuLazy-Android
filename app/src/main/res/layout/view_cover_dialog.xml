@@ -8,30 +8,15 @@
     >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dialog_new_note_vertical_margin"
-        android:layout_marginBottom="0dp"
-        android:text="@string/dialog_addnote"
-        android:textSize="@dimen/dialog_new_note_title_text_size"
-        android:textColor="@color/dialog_new_note_title_text_color"
-
-        />
-
-    <EditText
         android:id="@+id/dialog_input"
         android:layout_width="@dimen/dialog_new_note_input_text_width"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="@dimen/dialog_new_note_vertical_margin"
         android:layout_marginBottom="@dimen/dialog_new_note_vertical_margin"
         android:layout_marginLeft="@dimen/dialog_new_note_horizontal_margin"
         android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
-        android:hint="Enter note name"
-        android:lines="1"
-        android:singleLine="true"
-        android:background="@drawable/widget_note_white_border"
+        android:text="@string/dialog_cover"
         android:textColor="@color/dialog_new_note_input_text_color"
         android:textSize="@dimen/dialog_new_note_input_text_size"
         />
@@ -46,20 +31,21 @@
 
         >
         <LinearLayout
-            android:id="@+id/action_note_cancel"
+            android:id="@+id/action_cover_cancel"
             android:layout_width="0dp"
             android:layout_height="@dimen/dialog_new_note_button_height"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/dialog_new_note_horizontal_margin"
             android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
-            android:background="@color/dialog_new_note_button_background_gray"
+            android:background="@color/dialog_new_note_button_background_green"
             android:orientation="horizontal"
             android:gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/widget_note_white_cross"
+                android:src="@drawable/cover_dialog_white_cross"
+                android:paddingRight="@dimen/dialog_circle_cross_padding"
                 android:paddingEnd="@dimen/dialog_circle_cross_padding"/>
 
             <TextView
@@ -72,7 +58,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/action_note_confirm"
+            android:id="@+id/action_cover_confirm"
             android:layout_width="0dp"
             android:layout_height="@dimen/dialog_new_note_button_height"
             android:layout_weight="1"
@@ -80,14 +66,15 @@
             android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
             android:textSize    ="@dimen/dialog_new_note_button_text_size"
             android:text="@string/button_confirm"
-            android:background="@color/dialog_new_note_button_background_gray"
+            android:background="@color/dialog_new_note_button_background_green"
             android:gravity="center"
             android:orientation="horizontal" >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/widget_note_white_circle"
+                android:src="@drawable/cover_dialog_white_circle"
+                android:paddingRight="@dimen/dialog_circle_cross_padding"
                 android:paddingEnd="@dimen/dialog_circle_cross_padding"/>
 
             <TextView

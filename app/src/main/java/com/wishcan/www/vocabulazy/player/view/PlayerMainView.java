@@ -515,7 +515,7 @@ public class PlayerMainView extends Infinite3View {
             private void createPagerIndex(int indexCount) {
                 for(int i = 0; i < indexCount; i++){
                     ImageView imageView = new ImageView(context);
-                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.circle_pager_index));
+                    imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.player_detail_pager_index));
                     if(i == 0) {
                         ((GradientDrawable) imageView.getDrawable()).setColor(ContextCompat.getColor(context, PAGER_INDEX_SELECTED_COLOR));
                     }
