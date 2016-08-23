@@ -31,32 +31,33 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class PlayerOptionView extends LinearLayout {
-
-    private static final int DEFAULT_TRAPEZOID_LONG_HEIGHT = R.dimen.player_option_trapezoid_long_height;
-    private static final int DEFAULT_TRAPEZOID_SHORT_HEIGHT = R.dimen.player_option_trapezoid_short_height;
-    
+    /**
+     * OnOptionChangedListener is the callback function when any of option, including tab, is changed
+     */
     public interface OnOptionChangedListener{
         void onOptionChanged(int optionID, int mode, View v);
     }
 
     private static final int VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID = R.id.player_option_tab_layout;
     private static final int VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID = R.id.player_option_tab_pager;
+    private static final int DEFAULT_TRAPEZOID_LONG_HEIGHT = R.dimen.player_option_trapezoid_long_height;
+    private static final int DEFAULT_TRAPEZOID_SHORT_HEIGHT = R.dimen.player_option_trapezoid_short_height;
 
     private Context mContext;
 
     /**
      * This linearlayout is used to place tabs, all tabs weight is set to 1
-     * */
+     */
     private LinearLayout mTabLayout;
 
     /**
      * ViewPager usually doesn't support wrap_content
-     * */
+     */
     private WrapContentViewPager mViewPager;
 
     /**
      * TabContentSlidePagerAdapter is used for giving the ViewPager the content
-     * */
+     */
     private PagerAdapter mPagerAdapter;
 
     /**
@@ -65,15 +66,18 @@ public class PlayerOptionView extends LinearLayout {
     private LinkedList<ViewGroup> mTabContentList;
 
     /**
-     *
-     * */
+     * Indicate which Tab is currently chosen
+     */
     private PlayerOptionTabView mCurrentTab;
 
     /**
-     *
-     * */
+     * Indicate the chosen tab index
+     */
     private int mCurrentTabIndex;
 
+    /**
+     * The callback function 
+     */
     private OnOptionChangedListener mOnOptionChangedListener;
 
     public PlayerOptionView(Context context) {
@@ -115,6 +119,9 @@ public class PlayerOptionView extends LinearLayout {
         registerOptionsListener();
     }
 
+    /**
+     * 
+     */
     public PlayerOptionContentView getTabContent(int index) {
         return (PlayerOptionContentView) mTabContentList.get(index);
     }
