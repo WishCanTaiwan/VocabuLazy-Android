@@ -422,12 +422,8 @@ public class PlayerFragment extends GAPlayerFragment {
      public void onPlayerOptionChanged(int optionID, int mode, View v) {
          super.onPlayerOptionChanged(optionID, mode, v);
          Log.d(TAG, "option changed");
-         /** Step 1. Get the option setting by api */
-         ArrayList<OptionSettings> optionSettingsLL = mPlayerModel.getOptionSettings();
-         /** Step 2. Refresh option setting */
+         /** Refresh option setting */
          mPlayerModel.updateOptionSettings(optionID, mode, v);
-         /** Step 3. Refresh Player Option Content by playeroptionview api */
-         mPlayerView.setPlayerOptionTabContent(optionSettingsLL);
      }
     
     
