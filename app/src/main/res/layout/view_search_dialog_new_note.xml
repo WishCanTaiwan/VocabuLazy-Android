@@ -32,7 +32,7 @@
         android:lines="1"
         android:singleLine="true"
         android:background="@drawable/search_white_border"
-        android:textColor="@color/dialog_new_note_input_text_color"
+        android:textColor="@color/search_dialog_text"
         android:textSize="@dimen/dialog_new_note_input_text_size"
         />
 

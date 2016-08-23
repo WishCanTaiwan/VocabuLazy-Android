@@ -33,7 +33,7 @@ import java.util.LinkedList;
 public class PlayerOptionView extends LinearLayout {
     /**
      * OnOptionChangedListener is the callback function when any of option, including tab, is changed
-     */
+     * */
     public interface OnOptionChangedListener{
         void onOptionChanged(int optionID, int mode, View v);
     }
@@ -47,37 +47,37 @@ public class PlayerOptionView extends LinearLayout {
 
     /**
      * This linearlayout is used to place tabs, all tabs weight is set to 1
-     */
+     * */
     private LinearLayout mTabLayout;
 
     /**
      * ViewPager usually doesn't support wrap_content
-     */
+     * */
     private WrapContentViewPager mViewPager;
 
     /**
      * TabContentSlidePagerAdapter is used for giving the ViewPager the content
-     */
+     * */
     private PagerAdapter mPagerAdapter;
 
     /**
      * mTabContentList contains all TabContent
-     */
+     * */
     private LinkedList<ViewGroup> mTabContentList;
 
     /**
      * Indicate which Tab is currently chosen
-     */
+     * */
     private PlayerOptionTabView mCurrentTab;
 
     /**
      * Indicate the chosen tab index
-     */
+     * */
     private int mCurrentTabIndex;
 
     /**
      * The callback function 
-     */
+     * */
     private OnOptionChangedListener mOnOptionChangedListener;
 
     public PlayerOptionView(Context context) {
@@ -120,44 +120,16 @@ public class PlayerOptionView extends LinearLayout {
     }
 
     /**
-     * 
-     */
-    public PlayerOptionContentView getTabContent(int index) {
-        return (PlayerOptionContentView) mTabContentList.get(index);
-    }
-
-    public void setCurrentTab(View v) {
-        int nextTabIndex = mTabLayout.indexOfChild(v);
-        mViewPager.setCurrentItem(nextTabIndex, true);
-        mCurrentTab = (PlayerOptionTabView) v;
-        for (int i = nextTabIndex, k = 0; k < getChildCount(); i = (i + 1) % mTabLayout.getChildCount(), k++) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                PlayerOptionTabView tabView = (PlayerOptionTabView) mTabLayout.getChildAt(i);
-                tabView.setElevation(k == 0 ? 50 : k == 1 ? 20 : 10);
-            }
-        }
-        mCurrentTabIndex = nextTabIndex;
-    }
-
-    public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL) {
-
-        if (optionSettingsLL == null) { /** if no option setting, using default value */
-            return;
-        }
-
-        Iterator<OptionSettings> ii = optionSettingsLL.iterator();
-        while (ii.hasNext()) {
-            OptionSettings optionSettings = ii.next();
-            int mode = optionSettings.getMode() - 1;
-            PlayerOptionContentView tabContent = getTabContent(mode);
-            tabContent.setOptionSettings(optionSettings);
-        }
-    }
-
+     * Hook the callback function
+     * @param listener the callback function
+     * */
     public void setOnOptionChangedListener(OnOptionChangedListener listener) {
         mOnOptionChangedListener = listener;
     }
 
+    /**
+     * Register all the child's event
+     * */
     private void registerOptionsListener() {
         for (int i = 0; i < mTabLayout.getChildCount(); i++) {
             final int nextTabIndex = i;
@@ -171,6 +143,51 @@ public class PlayerOptionView extends LinearLayout {
                     }
                 }
             });
+        }
+    }
+
+    /**
+     * Use the api to get tab content object to customized options
+     * @param index indicate which tab content will be return
+     * @return PlayerOptionContentView return depends on the input
+     * */
+    public PlayerOptionContentView getTabContent(int index) {
+        return (PlayerOptionContentView) mTabContentList.get(index);
+    }
+
+    /**
+     * Use the api to make PlayerOption change to specific tab according to certain tab view
+     * @param v should be the tabview
+     * */
+    public void setCurrentTab(View v) {
+        int nextTabIndex = mTabLayout.indexOfChild(v);
+        mViewPager.setCurrentItem(nextTabIndex, true);
+        mCurrentTab = (PlayerOptionTabView) v;
+        for (int i = nextTabIndex, k = 0; k < getChildCount(); i = (i + 1) % mTabLayout.getChildCount(), k++) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                PlayerOptionTabView tabView = (PlayerOptionTabView) mTabLayout.getChildAt(i);
+                tabView.setElevation(k == 0 ? 50 : k == 1 ? 20 : 10);
+            }
+        }
+        mCurrentTabIndex = nextTabIndex;
+    }
+
+    /**
+     * Use input linkedlist to set all options in tab contents
+     * @param optionSettingsLL the list length should only be 3
+     * */
+    public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL) {
+
+        if (optionSettingsLL == null) { /** if no option setting, using default value */
+            return;
+        }
+
+        Iterator<OptionSettings> ii = optionSettingsLL.iterator();
+        while (ii.hasNext()) {
+            OptionSettings optionSettings = ii.next();
+            int mode = optionSettings.getMode() - 1;
+            PlayerOptionContentView tabContent = getTabContent(mode);
+            tabContent.setOptionSettings(optionSettings);
         }
     }
 
@@ -248,6 +265,9 @@ public class PlayerOptionView extends LinearLayout {
             }
         }
 
+        /**
+         * Initialize the layout of child view
+         * */
         private void initAllLayout(){
 
             setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, mShadowLongHeight));
@@ -269,6 +289,12 @@ public class PlayerOptionView extends LinearLayout {
             addView(mTextView);
         }
 
+        /**
+         * Draw the tab view by path of Trapezoid
+         * @param width assign the tab's width
+         * @param longHeight long height of trapezoid
+         * @param shortHeight short height of trapezoid
+         * */
         private Path setPathToTrapezoid(int width, int longHeight, int shortHeight){
 
             Path path  = new Path();
@@ -279,27 +305,51 @@ public class PlayerOptionView extends LinearLayout {
             return path;
         }
 
+        /**
+         * Api for changing tab's color
+         * @param color the tab color
+         * */
         public void setColor(int color){
             shadowDrawable.getPaint().setColor(color);
             shadowDrawable.invalidateSelf();
         }
 
+        /**
+         * Api for changing tab's indicator
+         * @param str the tab indicator string
+         * */
         public void setTextStr(String str){
             mTextView.setText(str);
         }
 
+        /**
+         * Api for changing tab's indicator color
+         * @param color the tab text's color
+         * */
         public void setTextColor(int color){
             mTextView.setTextColor(color);
         }
 
+        /**
+         * Api for changing tab's indicator size
+         * @param size the tab text's size
+         * */
         public void setTextSize(int size){
             mTextView.setTextSize(size);
         }
 
+        /**
+         * Api for changing tab's indicator size
+         * @param unit the size unit
+         * @param size the tab text's size
+         * */
         public void setTextSize(int unit, float size){
             mTextView.setTextSize(unit, size);
         }
 
+        /**
+         * Api for getting tab's color
+         * */
         public int getColor() {
             return mBackgroundColor;
         }
@@ -310,6 +360,9 @@ public class PlayerOptionView extends LinearLayout {
         }
     }
 
+    /**
+     * The path class of Trapezoid
+     * */
     @TargetApi(21)
     private static class TrapezoidOutlineProvider extends ViewOutlineProvider {
 
@@ -366,6 +419,10 @@ public class PlayerOptionView extends LinearLayout {
             return this.isPagingEnabled && super.onInterceptTouchEvent(event);
         }
 
+        /**
+         * Enable or disable the page sliding
+         * @param b true enable otherwise disable
+         * */
         public void setPagingEnabled(boolean b) {
             this.isPagingEnabled = b;
         }
