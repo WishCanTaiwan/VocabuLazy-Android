@@ -143,19 +143,29 @@ public class PlayerMainView extends Infinite3View {
         });
     }
 
-    @Override
-    public void setOnPageChangedListener(OnPageChangedListener listener) {
-        super.setOnPageChangedListener(listener);
-    }
-
+    /**
+     * Hook the callback function for handling Player scrolling event, including scrolling and scroll stop
+     * @param listener the implemented callback function
+     */
     public void setOnPlayerScrollListener(OnPlayerScrollListener listener) {
         mOnPlayerScrollListener = listener;
     }
 
+    /**
+     * Hook the callback function for handling Player item preparing event, including first item prepared and final item prepared
+     * @param listener the implemented callback function
+     */
     public void setOnPlayerItemPreparedListener(OnPlayerItemPreparedListener listener) {
         mOnPlayerItemPreparedListener = listener;
     }
 
+    /**
+     * Create a PopScrollView into Infinite3View with input data and start at input initPosition
+     * @param playerDataList the data ready to be shown on PlayerItem
+     * @param initPosition the start position of PopScrollView
+     * @see PopScrollView
+     * @see Infinite3View
+     */
     public void addNewPlayer(LinkedList<HashMap> playerDataList, int initPosition) {
         mPlayerScrollView = new PlayerScrollView(mContext);
         mPlayerScrollView.setPopItemAdapter(
@@ -201,34 +211,60 @@ public class PlayerMainView extends Infinite3View {
         refreshItem(CENTER_VIEW_INDEX, mPlayerScrollView);
     }
 
+    /**
+     * Delete the Player from Infinite3View
+     * @param the page ready to be deleted
+     * @see Infinite3View
+     */
     public void removeOldPlayer(int position){
         refreshItem(position, null);
     }
 
+    /**
+     * The api for dynamically refresth Player detail
+     * @param dataMap the data want to show on Player Detail
+     * @see PopScrollView
+     */
     public void refreshPlayerDetail(HashMap<String, Object> dataMap){
         if (mPlayerScrollView != null) {
             mPlayerScrollView.refreshPlayerDetail(dataMap);
         }
     }
 
+    /**
+     * The api show playing item detail
+     * @see PopScrollView
+     */
     public void showDetail() {
         if (mPlayerScrollView != null) {
             mPlayerScrollView.showItemDetails();
         }
     }
 
+    /**
+     * The api hides playing item detail
+     * @see PopScrollView
+     */
     public void hideDetail() {
         if (mPlayerScrollView != null) {
             mPlayerScrollView.hideItemDetails();
         }
     }
 
+    /**
+     * Move currently playing index to input position
+     * @param position the desired playing player index
+     */
     public void moveToPosition(int position) {
         if (mPlayerScrollView != null) {
             mPlayerScrollView.moveToPosition(position);
         }
     }
 
+    /**
+     * Move player detail page to input index
+     * @param index the desired index of playing detail
+     */
     public void moveToDetailPage(int index) {
         if (mPlayerScrollView != null) {
             mPlayerScrollView.setDetailPage(index);
@@ -270,7 +306,7 @@ public class PlayerMainView extends Infinite3View {
             R.id.player_voc_spell, R.id.player_voc_category, R.id.player_voc_translation
         };
 
-        public static final String[] PLAYER_ITEM_DETAIL_CONTENT_FROM ={
+        public static final String[] PLAYER_ITEM_DETAIL_CONTENT_FROM = {
             "voc_spell_detail",
             "voc_translation_detail",
             "voc_kk_detail",
@@ -318,6 +354,10 @@ public class PlayerMainView extends Infinite3View {
             return mPlayerDetailView;
         }
 
+        /**
+         * The api for dynamically refresth Player detail
+         * @param dataMap the data want to show on Player Detail
+         */
         public void refreshPlayerDetail(HashMap<String, Object> dataMap) {
             mPlayerDetailDataMap = dataMap;
             mPlayerDetailView = new PlayerDetailView(getContext());
@@ -326,6 +366,10 @@ public class PlayerMainView extends Infinite3View {
                     getContext(), mPlayerDetailDataMap, PLAYER_ITEM_DETAIL_CONTENT_FROM, PLAYER_ITEM_DETAIL_LAYOUT_CONTENT_TO));
         }
 
+        /**
+         * Move the playing detail page
+         * @param index the desired page index
+         */
         public void setDetailPage(int index) {
             mPlayerDetailView.setCurrentPage(index);
         }
@@ -349,15 +393,32 @@ public class PlayerMainView extends Infinite3View {
                 setOrientation(VERTICAL);
             }
 
+            /**
+             * After input, the PlayerDetailView will automatically fill in the input data based on adapter
+             * @param adatper the format of input data
+             */
             public void setAdapter(PopItemDetailAdapter adapter) {
                 mAdapter = adapter;
                 mAdapter.setChildViewToGroup();
             }
 
+            /**
+             * API return the adapter according to input param, the formate of input data will automatically assigned by function
+             * @return PopItemDetailAdapter the format of input data, can be used to setAdapter
+             * @param context the running activity
+             * @param dataMap the data ready to show on player detail
+             * @param from the data waiting filled in. The array can be got from the class public member
+             * @param to the view id waiting filled in. The array can be got from the class public member
+             * @see setAdapter
+             */
             public PopItemDetailAdapter getAdapter(Context context, HashMap<String, Object> dataMap, String[] from, int[] to) {
                 return new PopItemDetailAdapter(context, dataMap, from, to);
             }
 
+            /**
+             * Move the playing detail page
+             * @param index the desired page index
+             */
             public void setCurrentPage(int index) {
                 if (viewPager != null) {
                     viewPager.setCurrentItem(index);
@@ -382,6 +443,9 @@ public class PlayerMainView extends Infinite3View {
                     mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 }
 
+                /**
+                 * Fill in the data according to the constructor
+                 */
                 public void setChildViewToGroup() {
                     ViewGroup itemView = (ViewGroup) mInflater.inflate(PLAYER_ITEM_DETAIL_LAYOUT_RES_ID, null);
                     ArrayList<String> enSentences, ceSentences;
@@ -417,6 +481,12 @@ public class PlayerMainView extends Infinite3View {
                     createItemPages(pageCount, enSentences, ceSentences);
                 }
 
+                /**
+                 * The player detail page will be done by input list, list[0] to page 0, list[1] to page 1, .etc.
+                 * @param pageCount total page of player detail
+                 * @param en_sentenceList list length should be the same with pageCount
+                 * @param cn_sentenceList list length should be the same with pageCount
+                 */
                 private void createItemPages(int pageCount, ArrayList<String> en_sentenceList,
                                              ArrayList<String> cn_sentenceList) {
                     mItemPagesList = new LinkedList<>();
@@ -441,7 +511,6 @@ public class PlayerMainView extends Infinite3View {
             }
 
             private class OnPageChangeListener extends CustomPageChangeListener {
-
                 public OnPageChangeListener(ViewPager viewPager) {
                     super(viewPager);
                 }
@@ -512,6 +581,10 @@ public class PlayerMainView extends Infinite3View {
                 createPagerIndex(this.pagerCount);
             }
 
+            /**
+             * The function create the index to indicate which page is currently showing
+             * @param indexCount
+             */
             private void createPagerIndex(int indexCount) {
                 for(int i = 0; i < indexCount; i++){
                     ImageView imageView = new ImageView(context);
