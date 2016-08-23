@@ -3,7 +3,7 @@
     android:layout_width    ="wrap_content"
     android:layout_height   ="wrap_content"
     android:orientation     ="vertical"
-    android:background      ="@color/dialog_new_note_background_color"
+    android:background      ="@color/cover_dialog_background"
     android:elevation       ="10dp"
     >
 
@@ -37,7 +37,6 @@
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/dialog_new_note_horizontal_margin"
             android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
-            android:background="@color/dialog_new_note_button_background_green"
             android:orientation="horizontal"
             android:gravity="center">
 
@@ -66,7 +65,6 @@
             android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
             android:textSize    ="@dimen/dialog_new_note_button_text_size"
             android:text="@string/button_confirm"
-            android:background="@color/dialog_new_note_button_background_green"
             android:gravity="center"
             android:orientation="horizontal" >
 

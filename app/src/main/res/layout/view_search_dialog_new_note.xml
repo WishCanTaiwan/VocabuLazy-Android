@@ -3,7 +3,7 @@
     android:layout_width    ="wrap_content"
     android:layout_height   ="wrap_content"
     android:orientation     ="vertical"
-    android:background      ="@color/dialog_new_note_background_color"
+    android:background      ="@color/search_dialog_background"
     android:elevation       ="10dp"
     >
 
@@ -15,7 +15,7 @@
         android:layout_marginBottom="0dp"
         android:text="@string/dialog_addnote"
         android:textSize="@dimen/dialog_new_note_title_text_size"
-        android:textColor="@color/dialog_new_note_title_text_color"
+        android:textColor="@color/search_dialog_new_note_title_text"
 
         />
 
@@ -52,7 +52,6 @@
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/dialog_new_note_horizontal_margin"
             android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
-            android:background="@color/dialog_new_note_button_background_gray"
             android:orientation="horizontal"
             android:gravity="center">
 
@@ -81,7 +80,6 @@
             android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
             android:textSize    ="@dimen/dialog_new_note_button_text_size"
             android:text="@string/button_confirm"
-            android:background="@color/dialog_new_note_button_background_gray"
             android:gravity="center"
             android:orientation="horizontal" >
 

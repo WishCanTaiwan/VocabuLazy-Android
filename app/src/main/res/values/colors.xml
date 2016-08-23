@@ -2,6 +2,7 @@
 <resources>
 
     <!--******************************* All color being used ***********************************-->
+    <color name="transparent">#00000000</color>
     <color name="black_alpha_1">#20000000</color>
     <color name="black_alpha_2">#90000000</color>
     <color name="black_1">#FF000000</color>
@@ -28,30 +29,27 @@
     <!--**************************************** style *****************************************-->
     <color name="theme_color_green">@color/green_1</color>
     <!--**************************************** widget ****************************************-->
-    <color name="widget_tab_view_mask">@color/black_alpha_1</color>
+    <color name="widget_cross">@color/white_1</color>
+    <color name="widget_dialog_background">@color/black_alpha_2</color>
+    <color name="widget_dialog_button_background_green">@color/green_1</color>
+    <color name="widget_dialog_button_background_gray">@color/grey_2</color>
     <color name="widget_picker_text">@color/grey_3</color>
     <color name="widget_picker_background">@color/white_1</color>
     <color name="widget_pop_list_item">@color/green_2</color>
     <color name="widget_pop_list_item_focused">@color/yellow_2</color>
     <color name="widget_pop_details_color">@color/yellow_3</color>
-    <color name="widget_dialog_background">@color/black_alpha_2</color>
-    <color name="widget_slide_back_view_pager_background">#00000000</color>
-    <color name="widget_cross">@color/white_1</color>
+    <color name="widget_slide_back_view_pager_background">@color/transparent</color>
+    <color name="widget_tab_view_mask">@color/black_alpha_1</color>
+    
     <!--************************************** drawable ****************************************-->
-    <color name="circle_image_color_yellow">@color/yellow_1</color>
     <color name="default_white">@color/white_1</color>
 
-    <!--**************************************** usr *******************************************-->
-    <color name="dialog_new_note_background_color">@color/white_2</color>
-    <color name="dialog_new_note_button_background_green">@color/green_1</color>
-    <color name="dialog_new_note_button_background_gray">@color/grey_2</color>
-    <color name="dialog_new_note_title_text_color">@color/grey_4</color>
-    <color name="dialog_new_note_input_background_color">@color/white_1</color>
-    <color name="dialog_new_note_input_text_color">@color/black_1</color>
-    <color name="dialog_new_note_input_background_border">@color/grey_6</color>
+    <!--*************************************** cover ******************************************-->
+    <color name="cover_dialog_background">@color/white_2</color>
+    <color name="cover_dialog_text">@color/black_1</color>
     <!--**************************************** exam ******************************************-->
-    <!--**************************************** info ******************************************-->
     <!--**************************************** player ****************************************-->
+    <color name="player_grey_background">@color/black_alpha_2</color>
     <color name="player_list_item_font">@color/grey_5</color>
     <color name="player_list_item_font1">@color/grey_6</color>
     <color name="player_pager_index_color">@color/grey_7</color>
@@ -63,16 +61,17 @@
     <color name="player_option_tab1_text">@color/white_1</color>
     <color name="player_option_tab2_text">@color/white_1</color>
     <color name="player_option_picker_indicator_text_color">@color/white_1</color>
-    <color name="player_grey_background">@color/black_alpha_2</color>
     
     <!--**************************************** search ****************************************-->
     <color name="search_divider">@color/white_2</color>
     <color name="search_xx_color">@color/green_1</color>
+    <color name="search_xx_background_color">@color/white_1</color>
     <color name="search_result_add_to_note_view_adding_icon_color">@color/yellow_1</color>
     <color name="search_result_list_view_text_color">@color/grey_2</color>
-    <color name="search_xx_background_color">@color/white_1</color>
     <color name="search_result_add_to_note_view_title_text_color">@color/white_1</color>
-    <color name="search_dialog_background_color">@color/black_alpha_1</color>
+    <color name="search_dialog_background">@color/white_2</color>
+    <color name="search_dialog_text">@color/black_1</color>
+    <color name="search_dialog_new_note_title_text">@color/grey_4</color>
     <color name="search_note_list_text">@color/grey_2</color>
 
 </resources>
