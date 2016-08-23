@@ -78,4 +78,9 @@
     <declare-styleable name="PlayerOptionContent">
         <attr name="setPlayerOptionContentColor" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="LevelImageView">
+        <attr name="setMaxImageLevel" format="integer"/>
+    </declare-styleable>
+
 </resources>

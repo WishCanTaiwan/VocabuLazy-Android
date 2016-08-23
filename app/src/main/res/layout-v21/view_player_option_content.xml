@@ -20,30 +20,33 @@
         android:orientation="vertical"
         >
 
-        <ImageView
+        <com.wishcan.www.vocabulazy.widget.LevelImageView
             android:id="@+id/action_set_random"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:src="@drawable/player_random"
+            custom:setMaxImageLevel="1"
             android:paddingTop="@dimen/player_option_image_padding"
             android:paddingBottom="@dimen/player_option_image_padding"
             />
-        <ImageView
+        <com.wishcan.www.vocabulazy.widget.LevelImageView
             android:id="@+id/action_set_repeat"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:src="@drawable/player_repeat"
+            custom:setMaxImageLevel="4"
             android:paddingTop="@dimen/player_option_image_padding"
             android:paddingBottom="@dimen/player_option_image_padding"
             />
-        <ImageView
+        <com.wishcan.www.vocabulazy.widget.LevelImageView
             android:id="@+id/action_set_sentence"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:src="@drawable/player_sentence"
+            custom:setMaxImageLevel="1"
             android:paddingTop="@dimen/player_option_image_padding"
             android:paddingBottom="@dimen/player_option_image_padding"
             />

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.widget.LevelImageView;
 import com.wishcan.www.vocabulazy.widget.NumeralPicker;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 
@@ -51,7 +52,7 @@ public class PlayerOptionContentView extends LinearLayout {
         R.styleable.PlayerOptionContent_setPlayerOptionContentColor
     };
     
-    private ImageView mRandomOptionView, mRepeatOptionView, mSentenceOptionView;
+    private LevelImageView mRandomOptionView, mRepeatOptionView, mSentenceOptionView;
     private NumeralPicker mSecondOptionPicker, mFrequencyOptionPicker, mSpeedOptionPicker, mPlayTimeOptionPicker;
     
     private OnOptionClickListener mOnOptionClickListener;
@@ -82,9 +83,9 @@ public class PlayerOptionContentView extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mRandomOptionView = (ImageView) findViewById(PLAYER_OPTION_RANDOM_VIEW_RES_ID);
-        mRepeatOptionView = (ImageView) findViewById(PLAYER_OPTION_REPEAT_VIEW_RES_ID);
-        mSentenceOptionView = (ImageView) findViewById(PLAYER_OPTION_SENTENCE_VIEW_RES_ID);
+        mRandomOptionView = (LevelImageView) findViewById(PLAYER_OPTION_RANDOM_VIEW_RES_ID);
+        mRepeatOptionView = (LevelImageView) findViewById(PLAYER_OPTION_REPEAT_VIEW_RES_ID);
+        mSentenceOptionView = (LevelImageView) findViewById(PLAYER_OPTION_SENTENCE_VIEW_RES_ID);
         mSecondOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SECOND_PICKER_RES_ID);
         mFrequencyOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_FREQUENCY_PICKER_RES_ID);
         mSpeedOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
@@ -122,6 +123,8 @@ public class PlayerOptionContentView extends LinearLayout {
             @Override
             public void onClick(View view) {
                 if (mOnOptionClickListener != null) {
+                    LevelImageView v = (LevelImageView) view;
+                    v.setImageLevel(v.getImageLevel() + 1);
                     mOnOptionClickListener.onOptionClick(IDX_OPTION_RANDOM, view);
                 }
             }
@@ -131,6 +134,8 @@ public class PlayerOptionContentView extends LinearLayout {
             @Override
             public void onClick(View view) {
                 if (mOnOptionClickListener != null) {
+                    LevelImageView v = (LevelImageView) view;
+                    v.setImageLevel(v.getImageLevel() + 1);
                     mOnOptionClickListener.onOptionClick(IDX_OPTION_REPEAT, view);
                 }
             }
@@ -140,6 +145,8 @@ public class PlayerOptionContentView extends LinearLayout {
             @Override
             public void onClick(View view) {
                 if (mOnOptionClickListener != null) {
+                    LevelImageView v = (LevelImageView) view;
+                    v.setImageLevel(v.getImageLevel() + 1);
                     mOnOptionClickListener.onOptionClick(IDX_OPTION_SENTENCE, view);
                 }
             }
