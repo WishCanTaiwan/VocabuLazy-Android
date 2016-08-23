@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    android:background="@color/theme_color_green"
+    android:background="@color/search_detail_background"
     android:alpha="1.0">
     <LinearLayout
         android:id="@+id/voc_parent"

@@ -46,14 +46,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <include layout="@layout/view_player_option_content"
-            custom:setPlayerOptionContentColor="@color/player_option_tab0"/>
+        <include layout="@layout/view_player_option_content" />
 
-        <include layout="@layout/view_player_option_content"
-            custom:setPlayerOptionContentColor="@color/player_option_tab2"/>
+        <include layout="@layout/view_player_option_content" />
 
-        <include layout="@layout/view_player_option_content"
-            custom:setPlayerOptionContentColor="@color/player_option_tab1"/>
+        <include layout="@layout/view_player_option_content" />
 
     </view>
     

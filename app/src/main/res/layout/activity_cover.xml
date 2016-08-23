@@ -4,7 +4,7 @@
     android:id="@+id/activity_cover_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_color_green"
+    android:background="@color/cover_background"
     tools:context=".cover.activity.CoverActivity">
 
 </RelativeLayout>

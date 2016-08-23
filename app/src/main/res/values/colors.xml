@@ -10,14 +10,11 @@
     <color name="white_2">#FFEEEEEF</color>
     <color name="green_1">#FF1ABC9C</color>
     <color name="green_2">#FF9CE7D3</color>
-    <color name="green_3">#FF48CFAE</color>
-    <color name="green_4">#FF66BF97</color>
-    <color name="green_5">#FFA5D0C3</color>
+    <color name="green_3">#FF66BF97</color>
+    <color name="green_4">#FFA5D0C3</color>
     <color name="green_6">#FF338473</color>
     <color name="yellow_1">#FFFECE55</color>
     <color name="yellow_2">#FFFDCE5D</color>
-    <color name="yellow_3">#FFD3AC49</color>
-    <color name="yellow_4">#FFC89033</color>
     <color name="grey_1">#FF444A55</color>
     <color name="grey_2">#FF666C78</color>
     <color name="grey_3">#FF444B53</color>
@@ -37,26 +34,26 @@
     <color name="widget_picker_background">@color/white_1</color>
     <color name="widget_pop_list_item">@color/green_2</color>
     <color name="widget_pop_list_item_focused">@color/yellow_2</color>
-    <color name="widget_pop_details_color">@color/yellow_3</color>
+    <color name="widget_pop_details_color">@color/yellow_2</color>
     <color name="widget_slide_back_view_pager_background">@color/transparent</color>
     <color name="widget_tab_view_mask">@color/black_alpha_1</color>
-    
-    <!--************************************** drawable ****************************************-->
-    <color name="default_white">@color/white_1</color>
 
     <!--*************************************** cover ******************************************-->
+    <color name="cover_text">@color/white_1</color>
+    <color name="cover_background">@color/green_1</color>
     <color name="cover_dialog_background">@color/white_2</color>
-    <color name="cover_dialog_text">@color/black_1</color>
+    <color name="cover_dialog_text">@color/white_1</color>
     <!--**************************************** exam ******************************************-->
     <!--**************************************** player ****************************************-->
     <color name="player_grey_background">@color/black_alpha_2</color>
+    <color name="player_image_background">@color/white_1</color>
     <color name="player_list_item_font">@color/grey_5</color>
     <color name="player_list_item_font1">@color/grey_6</color>
     <color name="player_pager_index_color">@color/grey_7</color>
-    <color name="player_pager_index_selected">@color/yellow_3</color>
-    <color name="player_option_tab0">@color/green_3</color>
-    <color name="player_option_tab1">@color/green_4</color>
-    <color name="player_option_tab2">@color/green_5</color>
+    <color name="player_pager_index_selected">@color/yellow_2</color>
+    <color name="player_option_tab0">@color/green_1</color>
+    <color name="player_option_tab1">@color/green_3</color>
+    <color name="player_option_tab2">@color/green_4</color>
     <color name="player_option_tab0_text">@color/white_1</color>
     <color name="player_option_tab1_text">@color/white_1</color>
     <color name="player_option_tab2_text">@color/white_1</color>
@@ -67,8 +64,9 @@
     <color name="search_xx_color">@color/green_1</color>
     <color name="search_xx_background_color">@color/white_1</color>
     <color name="search_result_add_to_note_view_adding_icon_color">@color/yellow_1</color>
-    <color name="search_result_list_view_text_color">@color/grey_2</color>
     <color name="search_result_add_to_note_view_title_text_color">@color/white_1</color>
+    <color name="search_result_list_view_text_color">@color/grey_2</color>
+    <color name="search_detail_background">@color/green_1</color>
     <color name="search_dialog_background">@color/white_2</color>
     <color name="search_dialog_text">@color/black_1</color>
     <color name="search_dialog_new_note_title_text">@color/grey_4</color>
