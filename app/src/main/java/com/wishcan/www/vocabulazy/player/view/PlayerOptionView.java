@@ -30,6 +30,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * @author Swallow Chen
+ * @since 2016/1/17
+ */
 public class PlayerOptionView extends LinearLayout {
     /**
      * OnOptionChangedListener is the callback function when any of option, including tab, is changed

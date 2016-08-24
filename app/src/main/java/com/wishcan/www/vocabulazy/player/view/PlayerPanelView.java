@@ -9,10 +9,13 @@ import android.widget.LinearLayout;
 import com.wishcan.www.vocabulazy.R;
 
 /**
- * Created by swallow on 2016/1/17.
+ * @author Swallow Chen
+ * @since 2016/1/17
  */
 public class PlayerPanelView extends LinearLayout {
-
+    /**
+     * OnPanelItemListener is the callback function when any of setting item is clicked
+     * */
 	public interface OnPanelItemClickListener{
 		void onOptionFavoriteClick();
 		void onOptionPlayClick();
@@ -57,7 +60,34 @@ public class PlayerPanelView extends LinearLayout {
         
         registerEventListener();
     }
-    
+
+    /**
+     * Hook the callback function
+     * @param listener the callback function
+     * */
+    public void setOnPanelItemClickListener(OnPanelItemClickListener listener){
+        mOnPanelItemClickListener = listener;
+    }
+
+    /**
+     * The api for controller to customized the icon's state
+     * @param favorite the icon "favorite" state
+     * @param play the icon "play" state
+     * @param option the icon "option" state
+     * */
+    public void setIconState(boolean favorite, boolean play, boolean option){
+        if(play) {
+            mCurrentIconState = ICON_PLAY_STATE_STOP;
+            mActionPlayIcon.setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
+        } else {
+            mCurrentIconState = ICON_PLAY_STATE_PLAY;
+            mActionPlayIcon.setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
+        }
+    }
+
+    /**
+     * Register all the child's event
+     * */
     private void registerEventListener() {
         mActionFavoriteIcon.setOnClickListener(new OnClickListener(){
         	@Override
@@ -91,19 +121,5 @@ public class PlayerPanelView extends LinearLayout {
                     mOnPanelItemClickListener.onOptionOptionClick();
             }
         });
-    }
-
-    public void setOnPanelItemClickListener(OnPanelItemClickListener listener){
-    	mOnPanelItemClickListener = listener;
-    }
-
-    public void setIconState(boolean favorite, boolean play, boolean option){
-        if(play) {
-            mCurrentIconState = ICON_PLAY_STATE_STOP;
-            mActionPlayIcon.setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
-        } else {
-            mCurrentIconState = ICON_PLAY_STATE_PLAY;
-            mActionPlayIcon.setImageResource(ICON_PLAY_RES_ID[mCurrentIconState]);
-        }
     }
 }

@@ -19,7 +19,6 @@ import java.util.LinkedList;
  * @author Swallow Chen
  * @since 2016/1/17
  */
-
 public class PlayerView extends RelativeLayout {
 
 	/**

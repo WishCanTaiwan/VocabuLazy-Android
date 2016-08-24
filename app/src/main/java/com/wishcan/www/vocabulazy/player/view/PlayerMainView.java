@@ -213,7 +213,7 @@ public class PlayerMainView extends Infinite3View {
 
     /**
      * Delete the Player from Infinite3View
-     * @param the page ready to be deleted
+     * @param position the page ready to be deleted
      * @see Infinite3View
      */
     public void removeOldPlayer(int position){
@@ -395,7 +395,7 @@ public class PlayerMainView extends Infinite3View {
 
             /**
              * After input, the PlayerDetailView will automatically fill in the input data based on adapter
-             * @param adatper the format of input data
+             * @param adapter the format of input data
              */
             public void setAdapter(PopItemDetailAdapter adapter) {
                 mAdapter = adapter;
@@ -409,7 +409,7 @@ public class PlayerMainView extends Infinite3View {
              * @param dataMap the data ready to show on player detail
              * @param from the data waiting filled in. The array can be got from the class public member
              * @param to the view id waiting filled in. The array can be got from the class public member
-             * @see setAdapter
+             * @see PlayerDetailView#setAdapter(PopItemDetailAdapter)
              */
             public PopItemDetailAdapter getAdapter(Context context, HashMap<String, Object> dataMap, String[] from, int[] to) {
                 return new PopItemDetailAdapter(context, dataMap, from, to);
@@ -583,7 +583,7 @@ public class PlayerMainView extends Infinite3View {
 
             /**
              * The function create the index to indicate which page is currently showing
-             * @param indexCount
+             * @param indexCount the page number, so the view can create pager index
              */
             private void createPagerIndex(int indexCount) {
                 for(int i = 0; i < indexCount; i++){

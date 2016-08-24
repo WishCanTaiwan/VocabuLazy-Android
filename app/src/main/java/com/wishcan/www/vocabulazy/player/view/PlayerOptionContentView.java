@@ -14,7 +14,9 @@ import com.wishcan.www.vocabulazy.widget.NumeralPicker;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 
 public class PlayerOptionContentView extends LinearLayout {
-    
+    /**
+     * OnOptionClickListener is the callback function when any of option, including tab, is clicked
+     * */
     public interface OnOptionClickListener {
         void onOptionClick(int optionId, View v);
     }
@@ -93,7 +95,19 @@ public class PlayerOptionContentView extends LinearLayout {
         
         registerOptionsListener();
     }
-    
+
+    /**
+     * Hook the callback function
+     * @param listener the callback function
+     * */
+    public void setOnOptionClickListener(OnOptionClickListener listener) {
+        mOnOptionClickListener = listener;
+    }
+
+    /**
+     * The api for the controller the customized the showing items
+     * @param optionSettings the settings for customizing the option content
+     * */
     public void setOptionSettings(OptionSettings optionSettings) {
         /** OPTION_IDX_s starts from 1 */
         mRandomOptionView.setImageLevel(optionSettings.isRandom() ? 1 : 0);
@@ -109,15 +123,18 @@ public class PlayerOptionContentView extends LinearLayout {
         mPlayTimeOptionPicker.calculatePickerRange();
         mPlayTimeOptionPicker.setPickerTextStr(String.valueOf(optionSettings.getPlayTime()));
     }
-    
-    public void setOnOptionClickListener(OnOptionClickListener listener) {
-        mOnOptionClickListener = listener;
-    }
 
+    /**
+     * The api for customizing Option Content background
+     * @param color the color for Option content
+     * */
     public void setContentBackgroundColor(int color) {
         setBackgroundColor(color);
     }
-    
+
+    /**
+     * Register all the child's event
+     * */
     private void registerOptionsListener() {
         mRandomOptionView.setOnClickListener(new OnClickListener() {
             @Override
