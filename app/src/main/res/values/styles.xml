@@ -1,65 +1,47 @@
 <resources>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/green_1</item>
+        <item name="toolbarStyle">@style/AppToolBarStyle</item>
+        <item name="android:windowAnimationStyle">@style/AppAnimation.CoverActivity</item>
     </style>
 
-    <style name="MyThemeForCoverActivity" parent="@android:style/Theme.Holo">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowAnimationStyle">@style/MyCoverActivityAnimation</item>
+    <style name="AppTheme.CoverActivity" parent="AppTheme">
+        <item name="android:windowBackground">@color/green_1</item>
         <item name="android:windowDisablePreview">true</item>
     </style>
 
-    <style name="MyCoverActivityAnimation" parent="@android:style/Animation.Activity">
+    <style name="AppTheme.MainMenuActivity" parent="AppTheme">
+    </style>
+
+    <style name="AppTheme.PlayerActivity" parent="AppTheme">
+    </style>
+
+    <style name="AppTheme.ExamActivity" parent="AppTheme">
+    </style>
+
+    <style name="AppTheme.SearchActivity" parent="AppTheme">
+        <item name="android:homeAsUpIndicator">@drawable/action_previous_item</item>
+    </style>
+
+    <style name="AppAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/main_activity_enter_animation</item>
         <item name="android:activityOpenExitAnimation">@anim/translation_from_right_to_center</item>
         <item name="android:activityCloseEnterAnimation">@anim/main_activity_enter_animation</item>
         <item name="android:activityCloseExitAnimation">@anim/translation_from_center_to_right</item>
     </style>
 
-    <style name="MyThemeForMainActivity" parent="@android:style/Theme.Holo">
-        <!--<item name="android:actionBarSize">36dp</item>-->
-        <item name="android:windowAnimationStyle">@style/MyMainActivityAnimation</item>
-        <item name="android:homeAsUpIndicator">@drawable/action_previous_item</item>
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+    <style name="AppAnimation.CoverActivity" parent="AppAnimation">
     </style>
 
-    <style name="MyMainActivityAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/translation_from_right_to_center</item>
-        <item name="android:activityOpenExitAnimation">@anim/main_activity_enter_animation</item>
-        <item name="android:activityCloseEnterAnimation">@anim/main_activity_enter_animation</item>
-        <item name="android:activityCloseExitAnimation">@anim/translation_from_center_to_right</item>
+    <style name="AppAnimation.SearchActivity" parent="AppAnimation">
     </style>
 
-    <style name="MyThemeForSearchActivity" parent="@android:style/Theme.Holo">
-        <!--<item name="android:actionBarSize">36dp</item>-->
-        <item name="android:windowAnimationStyle">@style/MySearchActivityAnimation</item>
-        <item name="android:homeAsUpIndicator">@drawable/action_previous_item</item>
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@color/green_1</item>
-        <item name="android:colorBackground">@color/green_1</item>
+    <style name="AppToolBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/green_1</item>
     </style>
 
-    <style name="MySearchActivityAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/translation_from_right_to_center</item>
-        <item name="android:activityOpenExitAnimation">@anim/main_activity_enter_animation</item>
-        <item name="android:activityCloseEnterAnimation">@anim/main_activity_enter_animation</item>
-        <item name="android:activityCloseExitAnimation">@anim/translation_from_center_to_right</item>
-    </style>
-
-    <style name="MyActionBar" parent="@style/android:Widget.Holo.Light.ActionBar.Solid">
-        <item name="android:background">@color/theme_color_green</item>
-    </style>
-
-
+    <!-- Customized view -->
     <declare-styleable name="CrossView">
         <attr name="setCrossColor" format="color"/>
         <attr name="setCrossSize" format="dimension"/>
@@ -90,4 +72,25 @@
     <declare-styleable name="PlayerOptionContent">
         <attr name="setPlayerOptionContentColor" format="color"/>
     </declare-styleable>
+
+
+    <!-- For future reference -->
+    <!--<style name="MyThemeForMainActivity" parent="@android:style/Theme.Holo">-->
+    <!--<item name="android:actionBarSize">36dp</item>-->
+    <!--<item name="android:windowAnimationStyle">@style/MyMainActivityAnimation</item>-->
+    <!--<item name="android:homeAsUpIndicator">@drawable/action_previous_item</item>-->
+    <!--<item name="android:actionBarStyle">@style/MyActionBar</item>-->
+    <!--<item name="android:fitsSystemWindows">true</item>-->
+    <!--<item name="android:windowIsTranslucent">true</item>-->
+    <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+    <!--</style>-->
+
+    <!-- For future reference -->
+    <!--<style name="MyMainActivityAnimation" parent="@android:style/Animation.Activity">-->
+    <!--<item name="android:activityOpenEnterAnimation">@anim/translation_from_right_to_center</item>-->
+    <!--<item name="android:activityOpenExitAnimation">@anim/main_activity_enter_animation</item>-->
+    <!--<item name="android:activityCloseEnterAnimation">@anim/main_activity_enter_animation</item>-->
+    <!--<item name="android:activityCloseExitAnimation">@anim/translation_from_center_to_right</item>-->
+    <!--</style>-->
+
 </resources>

@@ -26,34 +26,28 @@
         <activity
             android:name=".cover.activity.CoverActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyThemeForCoverActivity">
+            android:theme="@style/AppTheme.CoverActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!--<activity-->
-            <!--android:name=".main.MainActivity"-->
-            <!--android:label="@string/app_name"-->
-            <!--android:theme="@style/MyThemeForMainActivity" >-->
-        <!--</activity>-->
-
         <activity
             android:name=".mainmenu.activity.MainMenuActivity"
             android:label="@string/label_main_menu_activity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme.MainMenuActivity"/>
 
         <activity
             android:name=".search.SearchActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyThemeForSearchActivity" >
+            android:theme="@style/AppTheme.SearchActivity" >
         </activity>
 
         <activity
             android:name=".player.activity.PlayerActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.PlayerActivity">
         </activity>
 
         <service
