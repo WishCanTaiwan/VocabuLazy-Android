@@ -17,10 +17,10 @@ import com.wishcan.www.vocabulazy.R;
  */
 public class XXView extends View {
 
-    private static int DEFAULT_PAINT_THICK_RES_ID = R.dimen.search_xx_thick;
+    private static int DEFAULT_PAINT_THICK_RES_ID = R.dimen.widget_xx_thick;
 
-    private static final int DEFAULT_XX_CIRCLE_SIZE_RES_ID = R.dimen.search_xx_circle_size;
-    private static final int DEFAULT_XX_LENGTH_RES_ID = R.dimen.search_xx_length_size;
+    private static final int DEFAULT_XX_CIRCLE_SIZE_RES_ID = R.dimen.widget_xx_circle_size;
+    private static final int DEFAULT_XX_LENGTH_RES_ID = R.dimen.widget_xx_length_size;
     private static final int DEFAULT_XX_COLOR_RES_ID = R.color.search_xx_color;
     private static final int DEFAULT_XX_BACKGROUND_COLOR_RES_ID = R.color.search_xx_background_color;
 

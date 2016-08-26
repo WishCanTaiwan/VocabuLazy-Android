@@ -11,29 +11,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dialog_new_note_vertical_margin"
+        android:layout_marginTop="@dimen/search_dialog_new_note_vertical_margin"
         android:layout_marginBottom="0dp"
         android:text="@string/dialog_addnote"
-        android:textSize="@dimen/dialog_new_note_title_text_size"
+        android:textSize="@dimen/search_dialog_new_note_title_text_size"
         android:textColor="@color/search_dialog_new_note_title_text"
 
         />
 
     <EditText
         android:id="@+id/dialog_input"
-        android:layout_width="@dimen/dialog_new_note_input_text_width"
+        android:layout_width="@dimen/search_dialog_new_note_input_text_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dialog_new_note_vertical_margin"
-        android:layout_marginBottom="@dimen/dialog_new_note_vertical_margin"
-        android:layout_marginLeft="@dimen/dialog_new_note_horizontal_margin"
-        android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
+        android:layout_marginTop="@dimen/search_dialog_new_note_vertical_margin"
+        android:layout_marginBottom="@dimen/search_dialog_new_note_vertical_margin"
+        android:layout_marginLeft="@dimen/search_dialog_new_note_horizontal_margin"
+        android:layout_marginRight="@dimen/search_dialog_new_note_horizontal_margin"
         android:hint="Enter note name"
         android:lines="1"
         android:singleLine="true"
         android:background="@drawable/search_white_border"
         android:textColor="@color/search_dialog_text"
-        android:textSize="@dimen/dialog_new_note_input_text_size"
+        android:textSize="@dimen/search_dialog_new_note_input_text_size"
         />
 
     <LinearLayout
@@ -41,17 +41,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="@dimen/dialog_new_note_vertical_margin"
+        android:layout_marginBottom="@dimen/search_dialog_new_note_vertical_margin"
         android:orientation="horizontal"
 
         >
         <LinearLayout
             android:id="@+id/action_note_cancel"
             android:layout_width="0dp"
-            android:layout_height="@dimen/dialog_new_note_button_height"
+            android:layout_height="@dimen/search_dialog_new_note_button_height"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/dialog_new_note_horizontal_margin"
-            android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
+            android:layout_marginLeft="@dimen/search_dialog_new_note_horizontal_margin"
+            android:layout_marginRight="@dimen/search_dialog_new_note_horizontal_margin"
             android:orientation="horizontal"
             android:gravity="center">
 
@@ -59,13 +59,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/search_dialog_white_cross"
-                android:paddingRight="@dimen/dialog_circle_cross_padding"
-                android:paddingEnd="@dimen/dialog_circle_cross_padding"/>
+                android:paddingRight="@dimen/search_dialog_new_note_ox_padding"
+                android:paddingEnd="@dimen/search_dialog_new_note_ox_padding"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize = "@dimen/dialog_new_note_button_text_size"
+                android:textSize = "@dimen/search_dialog_new_note_button_text_size"
                 android:textColor= "@color/search_dialog_text"
                 android:text     ="@string/button_cancel" />
 
@@ -74,11 +74,11 @@
         <LinearLayout
             android:id="@+id/action_note_confirm"
             android:layout_width="0dp"
-            android:layout_height="@dimen/dialog_new_note_button_height"
+            android:layout_height="@dimen/search_dialog_new_note_button_height"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/dialog_new_note_horizontal_margin"
-            android:layout_marginRight="@dimen/dialog_new_note_horizontal_margin"
-            android:textSize    ="@dimen/dialog_new_note_button_text_size"
+            android:layout_marginLeft="@dimen/search_dialog_new_note_horizontal_margin"
+            android:layout_marginRight="@dimen/search_dialog_new_note_horizontal_margin"
+            android:textSize    ="@dimen/search_dialog_new_note_button_text_size"
             android:text="@string/button_confirm"
             android:gravity="center"
             android:orientation="horizontal" >
@@ -87,13 +87,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/search_dialog_white_circle"
-                android:paddingRight="@dimen/dialog_circle_cross_padding"
-                android:paddingEnd="@dimen/dialog_circle_cross_padding"/>
+                android:paddingRight="@dimen/search_dialog_new_note_ox_padding"
+                android:paddingEnd="@dimen/search_dialog_new_note_ox_padding"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize = "@dimen/dialog_new_note_button_text_size"
+                android:textSize = "@dimen/search_dialog_new_note_button_text_size"
                 android:textColor= "@color/search_dialog_text"
                 android:text     ="@string/button_confirm" />
         </LinearLayout>

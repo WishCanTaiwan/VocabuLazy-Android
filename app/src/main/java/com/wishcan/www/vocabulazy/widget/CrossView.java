@@ -14,8 +14,8 @@ import com.wishcan.www.vocabulazy.R;
  */
 public class CrossView extends View {
 
-    private static int DEFAULT_PAINT_THICK_RES_ID = R.dimen.note_cross_thick;
-    private static int DEFAULT_CROSS_SIZE_RES_ID = R.dimen.note_cross_size;
+    private static int DEFAULT_PAINT_THICK_RES_ID = R.dimen.widget_cross_thick;
+    private static int DEFAULT_CROSS_SIZE_RES_ID = R.dimen.widget_cross_size;
     private static int DEFAULT_PAINT_COLOR_RES_ID = R.color.widget_cross;
 
     private Paint mPaint;
