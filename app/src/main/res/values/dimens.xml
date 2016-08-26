@@ -1,7 +1,7 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">2dp</dimen>
-    <dimen name="activity_vertical_margin">2dp</dimen>
+    <dimen name="activity_padding">2dp</dimen>
+    <dimen name="fragment_padding">2dp</dimen>
     <!-- widget -->
     <dimen name="widget_tab_height">66dp</dimen>
     <dimen name="widget_picker_arrow_image_padding">10dp</dimen>

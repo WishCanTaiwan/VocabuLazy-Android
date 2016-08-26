@@ -107,13 +107,17 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     @Override
     public void onTextbookClicked(int bookIndex, int lessonIndex) {
         Log.d(TAG, "Textbook [" + bookIndex + ", " + lessonIndex + "] clicked");
-        mOnMainMenuEventListener.onTextbookSelected(bookIndex, lessonIndex);
+        if (mOnMainMenuEventListener != null) {
+            mOnMainMenuEventListener.onTextbookSelected(bookIndex, lessonIndex);
+        }
     }
 
     @Override
     public void onNotePlay(int noteIndex) {
         Log.d(TAG, "Note [PLAY " + noteIndex + "]");
-        mOnMainMenuEventListener.onNoteSelected(noteIndex);
+        if (mOnMainMenuEventListener != null) {
+            mOnMainMenuEventListener.onNoteSelected(noteIndex);
+        }
     }
 
     @Override
@@ -134,11 +138,17 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     @Override
     public void onExamTextbookClicked(int bookIndex, int lessonIndex) {
         Log.d(TAG, "Exam textbook [" + bookIndex + ", " + lessonIndex + "] clicked");
+        if (mOnMainMenuEventListener != null) {
+            mOnMainMenuEventListener.onExamTextbookSelected(bookIndex, lessonIndex);
+        }
     }
 
     @Override
     public void onExamNoteClicked(int noteIndex) {
         Log.d(TAG, "Exam note [" + noteIndex + "]");
+        if (mOnMainMenuEventListener != null) {
+            mOnMainMenuEventListener.onExamNoteSelected(noteIndex);
+        }
     }
 
     public void addOnMainMenuEventListener(OnMainMenuEventListener listener) {

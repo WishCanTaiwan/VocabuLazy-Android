@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.exam.activity.ExamActivity;
 import com.wishcan.www.vocabulazy.mainmenu.fragment.MainMenuFragment;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
@@ -91,12 +92,18 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     @Override
     public void onExamTextbookSelected(int examBookIndex, int examLessonIndex) {
-
+        Intent intent = new Intent(MainMenuActivity.this, ExamActivity.class);
+        intent.putExtra(ExamActivity.ARG_BOOK_INDEX, examBookIndex);
+        intent.putExtra(ExamActivity.ARG_LESSON_INDEX, examLessonIndex);
+        startActivity(intent);
     }
 
     @Override
     public void onExamNoteSelected(int examNoteIndex) {
-
+        Intent intent = new Intent(MainMenuActivity.this, ExamActivity.class);
+        intent.putExtra(ExamActivity.ARG_BOOK_INDEX, -1);
+        intent.putExtra(ExamActivity.ARG_LESSON_INDEX, examNoteIndex);
+        startActivity(intent);
     }
 
     public MainMenuModel getModel() {

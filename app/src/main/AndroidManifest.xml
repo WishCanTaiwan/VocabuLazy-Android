@@ -39,15 +39,21 @@
             android:theme="@style/AppTheme.MainMenuActivity"/>
 
         <activity
-            android:name=".search.SearchActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.SearchActivity" >
-        </activity>
-
-        <activity
             android:name=".player.activity.PlayerActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.PlayerActivity">
+        </activity>
+
+        <activity
+            android:name=".exam.activity.ExamActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.ExamActivity">
+        </activity>
+
+        <activity
+            android:name=".search.SearchActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.SearchActivity" >
         </activity>
 
         <service

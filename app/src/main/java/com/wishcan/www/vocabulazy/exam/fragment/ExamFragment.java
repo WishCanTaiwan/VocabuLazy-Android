@@ -13,6 +13,8 @@ import com.wishcan.www.vocabulazy.R;
  */
 public class ExamFragment extends Fragment {
 
+    private static final int LAYOUT_RES_ID = R.layout.fragment_exam;
+
     public static ExamFragment newInstance() {
         ExamFragment fragment = new ExamFragment();
         return fragment;
@@ -24,7 +26,7 @@ public class ExamFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_textbook, container, false);
+        View rootView = inflater.inflate(LAYOUT_RES_ID, container, false);
         return rootView;
     }
 }
