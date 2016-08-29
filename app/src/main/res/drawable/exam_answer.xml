@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:maxLevel="0">
+        <ripple android:color="@color/green_2">
+            <item>
+                <layer-list>
+                    <item>
+                        <shape>
+                            <corners android:radius="60dp"/>
+                            <solid android:color="@color/green_1"/>
+                        </shape>
+                    </item>
+
+                    <item
+                        android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp">
+                        <shape>
+                            <corners android:radius="60dp"/>
+                            <solid android:color="@color/grey_2"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </ripple>
+    </item>
+    <item android:maxLevel="1">
+        <ripple android:color="@color/green_2">
+            <item>
+                <layer-list>
+                    <item>
+                        <shape>
+                            <corners android:radius="60dp"/>
+                            <solid android:color="@color/green_1"/>
+                        </shape>
+                    </item>
+
+                    <item
+                        android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp">
+                        <shape>
+                            <corners android:radius="60dp"/>
+                            <solid android:color="@color/green_1"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </ripple>
+    </item>
+    <item android:maxLevel="2">
+        <ripple android:color="@color/green_2">
+            <item>
+                <layer-list>
+                    <item>
+                        <shape>
+                            <corners android:radius="60dp"/>
+                            <solid android:color="@color/green_1"/>
+                        </shape>
+                    </item>
+
+                    <item
+                        android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp">
+                        <shape>
+                            <corners android:radius="60dp"/>
+                            <solid android:color="@color/white_1"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </ripple>
+    </item>
+</level-list>
