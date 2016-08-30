@@ -58,6 +58,10 @@
         <item name="android:textColor">@color/white_1</item>
     </style>
 
+    <style name="AppTextStyle.Exam" parent="AppTextStyle">
+
+    </style>
+
     <style name="AppTextStyle.Exam.Question" parent="AppTextStyle">
         <item name="android:textSize">32sp</item>
         <item name="android:maxLines">2</item>
