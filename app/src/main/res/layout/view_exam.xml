@@ -74,102 +74,18 @@
                 android:layout_weight="22"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp">
-
-                <LinearLayout
-                    android:id="@+id/exam_answer_1"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/exam_answer">
-
-                    <ImageView
-                        android:layout_width="5dp"
-                        android:layout_height="5dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="授權"
-                        style="@style/AppTextStyle.Exam.Answer.Correct"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/exam_answer_2"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/exam_answer">
-
-                    <ImageView
-                        android:layout_width="5dp"
-                        android:layout_height="5dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="創意"
-                        style="@style/AppTextStyle.Exam.Answer"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/exam_answer_3"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/exam_answer">
-
-                    <ImageView
-                        android:layout_width="5dp"
-                        android:layout_height="5dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="評論"
-                        style="@style/AppTextStyle.Exam.Answer.Wrong"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/exam_answer_4"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/exam_answer">
-
-                    <ImageView
-                        android:layout_width="5dp"
-                        android:layout_height="5dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="檸檬"
-                        style="@style/AppTextStyle.Exam.Answer"/>
-
-                </LinearLayout>
+                
+                <include layout="@layout/view_exam_answer"
+                    android:id="@+id/exam_answer_1"/>
+                    
+                <include layout="@layout/view_exam_answer"
+                    android:id="@+id/exam_answer_2"/>
+                    
+                <include layout="@layout/view_exam_answer"
+                    android:id="@+id/exam_answer_3"/>
+                    
+                <include layout="@layout/view_exam_answer"
+                    android:id="@+id/exam_answer_4"/>
 
             </LinearLayout>
         </LinearLayout>

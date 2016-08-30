@@ -12,7 +12,7 @@ import com.wishcan.www.vocabulazy.R;
 /**
  * Created by SwallowChen on 8/25/16.
  */
-public class ExamView extends LinearLayout{
+public class ExamView extends LinearLayout {
 
     private static final int PROGRESSBAR_RES_ID = R.id.exam_progressbar;
 
@@ -23,7 +23,7 @@ public class ExamView extends LinearLayout{
 
     private ProgressBar mExamProgressBar;
 
-    private LinearLayout mAnswer1, mAnswer2, mAnswer3, mAnswer4;
+    private ExamAnswerView mAnswer1, mAnswer2, mAnswer3, mAnswer4;
 
     public ExamView(Context context) {
         this(context, null);
@@ -37,10 +37,10 @@ public class ExamView extends LinearLayout{
     protected void onFinishInflate() {
         super.onFinishInflate();
         mExamProgressBar = (ProgressBar) findViewById(PROGRESSBAR_RES_ID);
-        mAnswer1 = (LinearLayout) findViewById(ANSWER_1_RES_ID);
-        mAnswer2 = (LinearLayout) findViewById(ANSWER_2_RES_ID);
-        mAnswer3 = (LinearLayout) findViewById(ANSWER_3_RES_ID);
-        mAnswer4 = (LinearLayout) findViewById(ANSWER_4_RES_ID);
+        mAnswer1 = (ExamAnswerView) findViewById(ANSWER_1_RES_ID);
+        mAnswer2 = (ExamAnswerView) findViewById(ANSWER_2_RES_ID);
+        mAnswer3 = (ExamAnswerView) findViewById(ANSWER_3_RES_ID);
+        mAnswer4 = (ExamAnswerView) findViewById(ANSWER_4_RES_ID);
 
         registerEventListener();
     }

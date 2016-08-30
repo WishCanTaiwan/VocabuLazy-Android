@@ -1,0 +1,25 @@
+<com.wishcan.www.vocabulazy.exam.view.ExamAnswerView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:layout_marginTop="10dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/exam_answer">
+    
+    <ImageView
+        android:id="@+id/exam_answer_image"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/exam_answer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="授權"
+        style="@style/AppTextStyle.Exam.Answer"/>
+    
+</com.wishcan.www.vocabulazy.exam.view.ExamAnswerView>
