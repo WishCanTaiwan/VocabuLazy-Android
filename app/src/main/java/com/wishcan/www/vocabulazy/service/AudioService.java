@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.utility.log.Logger;
 import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;

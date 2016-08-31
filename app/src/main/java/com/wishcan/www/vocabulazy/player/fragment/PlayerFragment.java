@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.ga.GAPlayerFragment;
 import com.wishcan.www.vocabulazy.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.player.view.PlayerView;

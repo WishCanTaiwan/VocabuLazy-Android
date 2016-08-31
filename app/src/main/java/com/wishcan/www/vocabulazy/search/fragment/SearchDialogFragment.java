@@ -2,7 +2,7 @@ package com.wishcan.www.vocabulazy.search.fragment;
 
 import android.os.Bundle;
 
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
 import com.wishcan.www.vocabulazy.storage.Database;

@@ -1,4 +1,4 @@
-package com.wishcan.www.vocabulazy;
+package com.wishcan.www.vocabulazy.application;
 
 import android.app.Application;
 import android.util.Log;

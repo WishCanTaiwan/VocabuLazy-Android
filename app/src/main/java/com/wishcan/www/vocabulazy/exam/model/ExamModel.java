@@ -1,6 +1,6 @@
 package com.wishcan.www.vocabulazy.exam.model;
 
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;

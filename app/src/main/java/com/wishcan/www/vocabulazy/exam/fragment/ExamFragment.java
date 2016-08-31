@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.exam.view.ExamAnswerView;
 import com.wishcan.www.vocabulazy.exam.view.ExamView;

@@ -3,7 +3,7 @@ package com.wishcan.www.vocabulazy.player.model;
 import android.os.AsyncTask;
 import android.view.View;
 
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.player.view.PlayerMainView;
 import com.wishcan.www.vocabulazy.player.view.PlayerOptionContentView;
 import com.wishcan.www.vocabulazy.service.AudioPlayer;

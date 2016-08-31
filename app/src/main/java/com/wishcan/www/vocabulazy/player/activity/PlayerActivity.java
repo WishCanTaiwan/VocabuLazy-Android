@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.player.fragment.PlayerFragment;
 import com.wishcan.www.vocabulazy.player.model.PlayerModel;
 

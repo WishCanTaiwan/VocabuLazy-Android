@@ -4,27 +4,22 @@ package com.wishcan.www.vocabulazy.search.fragment;
 import android.content.Context;
 import android.os.Bundle;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.ga.GASearchFragment;
 import com.wishcan.www.vocabulazy.search.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchDialogView;
 import com.wishcan.www.vocabulazy.search.view.SearchView;
-import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 
 public class SearchFragment extends GASearchFragment implements SearchView.OnItemClickListener,

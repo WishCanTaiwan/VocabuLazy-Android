@@ -1,8 +1,11 @@
 package com.wishcan.www.vocabulazy.exam.view;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -65,8 +68,8 @@ public class ExamView extends LinearLayout {
     }
 
     public void initContent(int progressBarInitValue, int progressBarTotalValue) {
-        mExamProgressBar.setMax(progressBarTotalValue);
-        mExamProgressBar.setProgress(progressBarInitValue);
+        mExamProgressBar.setMax(progressBarTotalValue * 10);
+        mExamProgressBar.setProgress(progressBarInitValue * 10);
     }
 
     public void setContent(HashMap<Integer, ArrayList<String>> map) {
@@ -83,7 +86,14 @@ public class ExamView extends LinearLayout {
     }
 
     public int updateExamProgressBar(int updateValue) {
-        mExamProgressBar.setProgress(updateValue);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            ObjectAnimator animation = ObjectAnimator.ofInt(mExamProgressBar, "progress", updateValue * 10);
+            animation.setDuration(300); // 0.5 second
+            animation.setInterpolator(new DecelerateInterpolator());
+            animation.start();
+        } else {
+            mExamProgressBar.setProgress(updateValue);
+        }
         return updateValue;
     }
 

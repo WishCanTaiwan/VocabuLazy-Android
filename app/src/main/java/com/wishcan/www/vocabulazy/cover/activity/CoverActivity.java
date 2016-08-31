@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.cover.fragment.CoverFragment;
 
 public class CoverActivity extends FragmentActivity {

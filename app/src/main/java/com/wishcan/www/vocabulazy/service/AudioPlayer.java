@@ -4,7 +4,7 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.os.Handler;
 
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.utility.log.Logger;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.Preferences;

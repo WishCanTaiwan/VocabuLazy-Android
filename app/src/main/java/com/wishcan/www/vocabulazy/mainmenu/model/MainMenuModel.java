@@ -3,13 +3,12 @@ package com.wishcan.www.vocabulazy.mainmenu.model;
 import android.app.Activity;
 import android.content.Context;
 
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableGroupItem;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Textbook;
 
