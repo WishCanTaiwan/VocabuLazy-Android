@@ -44,7 +44,7 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
 
         VLApplication application = (VLApplication) getApplication();
         wTracker = application.getDefaultTracker();
-        wDatabase = application.getDatabase();
+        wDatabase = Database.getInstance();
 
         setContentView(VIEW_ACTIVITY_RES_ID);
         if (savedInstanceState == null) {

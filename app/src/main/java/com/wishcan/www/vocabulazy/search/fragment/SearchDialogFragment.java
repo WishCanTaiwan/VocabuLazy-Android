@@ -50,7 +50,7 @@ public class SearchDialogFragment extends DialogFragment implements DialogFragme
         super.onCreate(savedInstanceState);
 
         VLApplication vlApplication = (VLApplication) getActivity().getApplication();
-        wDatabase = vlApplication.getDatabase();
+        wDatabase = Database.getInstance();
 
         if(getArguments() != null) {
             SearchDialogView.DIALOG_RES_ID_s resId = (SearchDialogView.DIALOG_RES_ID_s) getArguments().getSerializable(DIALOG_BUNDLE_STR);

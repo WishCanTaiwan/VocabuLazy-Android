@@ -18,6 +18,7 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Note;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Textbook;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
@@ -28,129 +29,80 @@ public class Database {
     public static final String FILENAME_NOTE = "note.json";
     public static final String FILENAME_OPTION = "option.json";
 
-    private Context wContext;
-    private Preferences mPreferences;
+    private static Database database = new Database();
 
-    private ArrayList<Vocabulary> wVocabularies;
+//    private Preferences mPreferences;
+
+    private ArrayList<Vocabulary> mVocabularies;
     private ArrayList<Textbook> mTextbooks;
-    private ArrayList<Book> wBooks;
-    private ArrayList<Lesson> wLessons;
-    private ArrayList<Lesson> wNotes;
-    private ArrayList<OptionSettings> wOptionSettings;
+    private ArrayList<Note> mNotes;
+    private ArrayList<OptionSettings> mOptionSettings;
 
     private static final int MAXIMUM_LIST_SIZE = 50;
 
-    public Database(VLApplication application) {
-        wContext = application.getApplicationContext();
-        mPreferences = application.getPreferences();
+    private Database() {
+
     }
 
-    public void loadFiles() {
+    public static Database getInstance() {
+        return database;
+    }
+
+    public void loadFiles(Context context) {
         try {
-            wVocabularies = load(Vocabulary[].class, wContext.getResources().openRawResource(R.raw.highschool_vocabularies));
-            mTextbooks = load(Textbook[].class, wContext.getResources().openRawResource(R.raw.textbook));
-            wBooks = load(Book[].class, wContext.getResources().openRawResource(R.raw.vl_database_book));
-            wLessons = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.vl_database_lesson));
-            wNotes = load(Lesson[].class, wContext.openFileInput(FILENAME_NOTE));
-            wOptionSettings = load(OptionSettings[].class, wContext.openFileInput(FILENAME_OPTION));
-            Log.d(TAG, wVocabularies.size() + "vocabularies");
-            Log.d(TAG, mTextbooks.size() + " textbooks");
+            mVocabularies = load(Vocabulary[].class, context.getResources().openRawResource(R.raw.highschool_vocabularies));
+            mTextbooks = load(Textbook[].class, context.getResources().openRawResource(R.raw.textbook));
+            mNotes = load(Note[].class, context.openFileInput(FILENAME_NOTE));
+            mOptionSettings = load(OptionSettings[].class, context.openFileInput(FILENAME_OPTION));
         } catch (FileNotFoundException fnfe) {
-            wNotes = load(Lesson[].class, wContext.getResources().openRawResource(R.raw.vl_database_note));
-            wOptionSettings = load(OptionSettings[].class, wContext.getResources().openRawResource(R.raw.option));
+            mNotes = load(Note[].class, context.getResources().openRawResource(R.raw.note));
+            mOptionSettings = load(OptionSettings[].class, context.getResources().openRawResource(R.raw.option));
         }
     }
 
-    public void writeToFile() {
-        write(FILENAME_NOTE, wNotes.toArray());
-        write(FILENAME_OPTION, mPreferences.getOptionSettings().toArray());
+    public void writeToFile(Context context) {
+        write(context, FILENAME_NOTE, mNotes.toArray());
+        write(context, FILENAME_OPTION, mOptionSettings.toArray());
     }
 
     public void initSettings() {
-        mPreferences.setOptionSettings(wOptionSettings);
-        mPreferences.setOptionMode(OptionSettings.MODE_DEFAULT);
-    }
-
-    public ArrayList<Book> getBooks() {
-        return wBooks;
+//        mPreferences.setOptionSettings(mOptionSettings);
+//        mPreferences.setOptionMode(OptionSettings.MODE_DEFAULT);
     }
 
     public ArrayList<Textbook> getTextbooks() {
         return mTextbooks;
     }
 
-    public String getBookTitle(int bookIndex) {
-        return wBooks.get(bookIndex).getTitle();
-    }
-
-    public int getLessonID(int bookIndex, int lessonIndex) {
-        if (bookIndex >= 0)
-            return wBooks.get(bookIndex).getContent().get(lessonIndex);
-        else
-            return wNotes.get(lessonIndex).getLessonId();
+    public String getTextbookTitle(int bookIndex) {
+        return mTextbooks.get(bookIndex).getBookTitle();
     }
 
     public String getLessonTitle(int bookIndex, int lessonIndex) {
-        if (bookIndex < 0)
-            return wNotes.get(lessonIndex).getLessonTitle();
-
-        int lessonId = wBooks.get(bookIndex).getContent().get(lessonIndex);
-        for (Lesson lesson : wLessons) {
-            if (lessonId == lesson.getLessonId()) return lesson.getLessonTitle();
-        }
-        return null;
+        return mTextbooks.get(bookIndex).getBookContent().get(lessonIndex).getLessonTitle();
     }
 
     public int getNumOfLesson(int bookIndex) {
-        if (bookIndex >= 0)
-            return wBooks.get(bookIndex).getContent().size();
-        else
-            return wNotes.size();
+        return mTextbooks.get(bookIndex).getBookContent().size();
     }
 
     public int getNoteSize(int noteIndex) {
-        return wNotes.get(noteIndex).getLessonContent().size();
+        return mNotes.get(noteIndex).getNoteContent().size();
     }
 
-    public ArrayList<Integer> getContentIDs(int bookIndex, int lessonIndex) {
-//        if (bookIndex < 0) {
-//            return wNotes.get(lessonIndex).getLessonContent();
-//        }
-//
-//        int lessonId = getLessonID(bookIndex, lessonIndex);
-//        ArrayList<Integer> content = new ArrayList<>();
-//        for (int index = 0; index < wLessons.size(); index++) {
-//            Lesson lesson = wLessons.get(index);
-//            if (lessonId == lesson.getLessonId()) {
-//                content = lesson.getLessonContent();
-//            }
-//        }
+    public ArrayList<Integer> getContentIds(int bookIndex, int lessonIndex) {
         return mTextbooks.get(bookIndex).getBookContent().get(lessonIndex).getLessonContent();
     }
 
     public ArrayList<Lesson> getLessonsByBook(int bookIndex) {
-        if (bookIndex < 0)
-            return wNotes;
-
-        ArrayList<Lesson> lessons = new ArrayList<>();
-        ArrayList<Integer> content = wBooks.get(bookIndex).getContent();
-        for (int index = 0; index < content.size(); index++) {
-            for (int index2 = 0; index2 < wLessons.size(); index2++) {
-                Lesson lesson = wLessons.get(index2);
-                if (content.get(index) == lesson.getLessonId()) {
-                    lessons.add(lesson);
-                    break;
-                }
-            }
-        }
-        return lessons;
+        return mTextbooks.get(bookIndex).getBookContent();
     }
 
     public ArrayList<Vocabulary> getVocabulariesByIDs(ArrayList<Integer> vocIDs) {
         ArrayList<Vocabulary> vocabularies = new ArrayList<>();
         for (int index = 0; index < vocIDs.size(); index++) {
-            for (int index2 = 0; index2 < wVocabularies.size(); index2++) {
-                Vocabulary vocabulary = wVocabularies.get(index2);
+            for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
+                Vocabulary vocabulary = mVocabularies.get(index2);
                 if (vocIDs.get(index).equals(vocabulary.getId())) {
                     vocabularies.add(vocabulary);
                 }
@@ -164,8 +116,8 @@ public class Database {
     /* Search operation */
     public ArrayList<Vocabulary> readSuggestVocabularyBySpell(String queryString) {
         ArrayList<Vocabulary> resultVocabularies = new ArrayList<>();
-        for (int index = 0; index < wVocabularies.size(); index++) {
-            Vocabulary vocabulary = wVocabularies.get(index);
+        for (int index = 0; index < mVocabularies.size(); index++) {
+            Vocabulary vocabulary = mVocabularies.get(index);
             String spell = vocabulary.getSpell();
             int queryStringLength = queryString.length();
             if (spell.length() < queryStringLength) {
@@ -185,12 +137,12 @@ public class Database {
 
     /* Note operations */
     public void createNewNote(String name) {
-        int index = wNotes.size();
-        wNotes.add(index, new Lesson(index, name, new ArrayList<Integer>()));
+        int index = mNotes.size();
+        mNotes.add(index, new Note(index, name, new ArrayList<Integer>()));
     }
 
     public void addVocToNote(int vocID, int noteIndex) {
-        ArrayList<Integer> content = wNotes.get(noteIndex).getLessonContent();
+        ArrayList<Integer> content = mNotes.get(noteIndex).getNoteContent();
         for (int index = 0; index < content.size(); index++) {
             int id = content.get(index);
             if (id == vocID) {
@@ -201,30 +153,30 @@ public class Database {
     }
 
     public void renameNoteAt(int noteIndex, String name) {
-        int id = wNotes.get(noteIndex).getLessonId();
+        int id = mNotes.get(noteIndex).getNoteId();
         renameNote(id, name);
     }
 
     public void renameNote(int id, String name) {
-        for (int index = 0; index < wNotes.size(); index++) {
-            Lesson note = wNotes.get(index);
-            if (id == note.getLessonId()) {
-                note.rename(name);
+        for (int index = 0; index < mNotes.size(); index++) {
+            Note note = mNotes.get(index);
+            if (id == note.getNoteId()) {
+                note.setNoteTitle(name);
                 return;
             }
         }
     }
 
     public void deleteNoteAt(int noteIndex) {
-        int id = wNotes.get(noteIndex).getLessonId();
+        int id = mNotes.get(noteIndex).getNoteId();
         deleteNote(id);
     }
 
     public void deleteNote(int id) {
-        Lesson noteToBeDelete = null;
-        for (int index = 0; index < wNotes.size(); index++) {
-            Lesson note = wNotes.get(index);
-            if (id == note.getLessonId()) {
+        Note noteToBeDelete = null;
+        for (int index = 0; index < mNotes.size(); index++) {
+            Note note = mNotes.get(index);
+            if (id == note.getNoteId()) {
                 noteToBeDelete = note;
             }
         }
@@ -232,12 +184,12 @@ public class Database {
         if (noteToBeDelete == null)
             return;
 
-        wNotes.remove(noteToBeDelete);
+        mNotes.remove(noteToBeDelete);
 
         // refresh IDs
-        for (int index = 0; index < wNotes.size(); index++) {
-            Lesson note = wNotes.get(index);
-            note.setLessonId(index);
+        for (int index = 0; index < mNotes.size(); index++) {
+            Note note = mNotes.get(index);
+            note.setNoteId(index);
         }
     }
 
@@ -246,26 +198,16 @@ public class Database {
     /* IO operations */
     private <T> ArrayList<T> load(Class<T[]> classOfT, InputStream inputStream) {
 
-        BufferedReader bfdReader = null;
-        try {
-            bfdReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        if (bfdReader == null) throw new NullPointerException();
-
-        String readline;
         StringBuilder builder = new StringBuilder();
-        try {
-            while ((readline = bfdReader.readLine()) != null) {
-                builder.append(readline);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         try {
+            String readLine;
+            BufferedReader bfdReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+
+            while ((readLine = bfdReader.readLine()) != null) {
+                builder.append(readLine);
+            }
+
             bfdReader.close();
             inputStream.close();
         } catch (IOException e) {
@@ -276,10 +218,9 @@ public class Database {
         return new ArrayList<>(Arrays.asList(tArray));
     }
 
-    private <T> void write(String filename, T[] array) {
-        FileOutputStream fos;
+    private <T> void write(Context context, String filename, T[] array) {
         try {
-            fos = wContext.openFileOutput(filename, Context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
             fos.write(new Gson().toJson(array).getBytes());
             fos.close();
         } catch (IOException e) {

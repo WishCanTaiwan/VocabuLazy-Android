@@ -72,7 +72,7 @@ public class AudioPlayer implements AudioPlayerListener {
     public AudioPlayer(VLApplication application) {
         mContext = application.getApplicationContext();
         mPreferences = application.getPreferences();
-        mDatabase = application.getDatabase();
+        mDatabase = Database.getInstance();
         mHandler = new Handler();
         mTimerRunnable = new Runnable() {
             @Override
@@ -418,7 +418,7 @@ public class AudioPlayer implements AudioPlayerListener {
         int numOfLesson = mDatabase.getNumOfLesson(bookIndex);
         int oldLessonIndex = mPreferences.getLessonIndex();
         int newLessonIndex = (oldLessonIndex+1) % numOfLesson;
-        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIDs(bookIndex, newLessonIndex));
+        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIds(bookIndex, newLessonIndex));
         mPreferences.setCurrentContent(vocabularies);
         mPreferences.setBookIndex(bookIndex);
         mPreferences.setLessonIndex(newLessonIndex);

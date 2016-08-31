@@ -36,15 +36,15 @@ public class VLApplication extends Application {
         Log.d(TAG, "Create");
         super.onCreate();
 
-        /* Every-time the application is created, create a Preferences object and
-            it will be shared among activities and fragments of this particular application. */
-        wPreferences = new Preferences();
+//        /* Every-time the application is created, create a Preferences object and
+//            it will be shared among activities and fragments of this particular application. */
+//        wPreferences = new Preferences();
 
-        /**
-         * Every-time entering the application, create a Database object, and throughout entire
-         * application, this is the only Database object to be accessed.
-         */
-        wDatabase = new Database(this);
+//        /**
+//         * Every-time entering the application, create a Database object, and throughout entire
+//         * application, this is the only Database object to be accessed.
+//         */
+//        wDatabase = new Database(this);
 
         /**
          * initialize the Logger object.
@@ -77,7 +77,7 @@ public class VLApplication extends Application {
     }
 
     public void loadDatabase() {
-        wDatabase.loadFiles();
+        wDatabase.loadFiles(getApplicationContext());
         wDatabase.initSettings();
     }
 

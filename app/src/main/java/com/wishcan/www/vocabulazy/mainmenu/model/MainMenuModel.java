@@ -1,15 +1,12 @@
 package com.wishcan.www.vocabulazy.mainmenu.model;
 
-import android.app.Activity;
-import android.content.Context;
-
-import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableGroupItem;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
+import com.wishcan.www.vocabulazy.storage.databaseObjects.Note;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Textbook;
 
 import java.util.ArrayList;
@@ -19,25 +16,21 @@ public class MainMenuModel {
 
     public static final String TAG = "MainMenuModel";
 
-    private Context mContext;
+    private ArrayList<TextbookExpandableGroupItem> textbookGroupItems;
+    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap;
 
-    ArrayList<TextbookExpandableGroupItem> textbookGroupItems;
-    HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap;
+    private ArrayList<NoteExpandableGroupItem> noteGroupItems;
+    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap;
 
-    ArrayList<NoteExpandableGroupItem> noteGroupItems;
-    HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap;
+    private ArrayList<TextbookExpandableGroupItem> examIndexTextbookGroupItems;
+    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> examIndexTextbookChildItemsMap;
+    private ArrayList<NoteExpandableGroupItem> examIndexNoteGroupItems;
+    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> examIndexNoteChildItemsMap;
 
-    ArrayList<TextbookExpandableGroupItem> examIndexTextbookGroupItems;
-    HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> examIndexTextbookChildItemsMap;
-    ArrayList<NoteExpandableGroupItem> examIndexNoteGroupItems;
-    HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> examIndexNoteChildItemsMap;
+    private ArrayList<Textbook> fakeBooks;
+    private ArrayList<Note> fakeNotes;
 
-    ArrayList<Textbook> fakeBooks;
-    ArrayList<Lesson> fakeLessons;
-    ArrayList<Lesson> fakeNotes;
-
-    public MainMenuModel(Context context) {
-        mContext = context;
+    public MainMenuModel() {
         createFakeData();
     }
 
@@ -72,7 +65,7 @@ public class MainMenuModel {
         noteGroupItems = new ArrayList<>();
         noteChildItemsMap = new HashMap<>();
         for (int noteIndex = 0; noteIndex < fakeNotes.size(); noteIndex++) {
-            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getLessonTitle());
+            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getNoteTitle());
 
             ArrayList<NoteExpandableChildItem> childItems = new ArrayList<>();
             for (int index = 0; index < 4; index++) {
@@ -117,7 +110,7 @@ public class MainMenuModel {
         examIndexNoteGroupItems = new ArrayList<>();
         examIndexNoteChildItemsMap = new HashMap<>();
         for (int noteIndex = 0; noteIndex < fakeNotes.size(); noteIndex++) {
-            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getLessonTitle());
+            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getNoteTitle());
 
             ArrayList<NoteExpandableChildItem> childItems = new ArrayList<>();
             for (int index = 0; index < childs.length; index++) {
@@ -147,23 +140,8 @@ public class MainMenuModel {
     }
 
     public void createFakeData() {
-
-        VLApplication application = (VLApplication) ((Activity) mContext).getApplication();
-        Database database = application.getDatabase();
-
+        Database database = Database.getInstance();
         fakeBooks = database.getTextbooks();
-//        for (int index = 0; index < 5; index++) {
-//            fakeBooks.add(new Book("Book " + (index+1)));
-//        }
-
-//        fakeLessons = ;
-//        for (int index = 0; index < 20; index++) {
-//            fakeLessons.add(new Lesson("Lesson " + (index+1)));
-//        }
-
         fakeNotes = new ArrayList<>();
-//        for (int index = 0; index < 10; index++) {
-//            fakeNotes.add(new Note("Note " + (index+1)));
-//        }
     }
 }

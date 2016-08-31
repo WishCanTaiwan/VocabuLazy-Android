@@ -13,8 +13,8 @@ public class SearchModel {
 
     private Database mDatabase;
 
-    public SearchModel(VLApplication vlApplication) {
-        mDatabase = vlApplication.getDatabase();
+    public SearchModel() {
+        mDatabase = Database.getInstance();
     }
 
     public void addVocToNote(int id, int index) {

@@ -45,7 +45,7 @@ public class ExamFragment extends Fragment implements ExamView.ExamEventListener
         } else {
             mCurrentBookIndex = mCurrentLessonIndex = 0;
         }
-        mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
+        mExamModel = new ExamModel();
         mPuzzleSetter = mExamModel.createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
     }
 

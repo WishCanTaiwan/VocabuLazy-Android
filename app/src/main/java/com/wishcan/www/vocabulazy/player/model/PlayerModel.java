@@ -29,7 +29,7 @@ public class PlayerModel {
     private PlayerModelDataProcessListener wDataProcessListener;
 
 	public PlayerModel(VLApplication application) {
-        wDatabase = application.getDatabase();
+        wDatabase = Database.getInstance();
         wPreferences = application.getPreferences();
 	}
 
@@ -52,7 +52,7 @@ public class PlayerModel {
     }
 
     public String getBookTitle(int bookIndex) {
-        return wDatabase.getBookTitle(bookIndex);
+        return wDatabase.getTextbookTitle(bookIndex);
     }
 
     public String getLessonTitle(int bookIndex, int lessonIndex) {
@@ -228,7 +228,7 @@ public class PlayerModel {
             if (params[0] instanceof Integer) {
                 int bookIndex = (Integer) params[0];
                 int lessonIndex = (Integer) params[1];
-                ArrayList<Integer> contentIDs = wDatabase.getContentIDs(bookIndex, lessonIndex);
+                ArrayList<Integer> contentIDs = wDatabase.getContentIds(bookIndex, lessonIndex);
                 mVocabularies = wDatabase.getVocabulariesByIDs(contentIDs);
                 return mVocabularies;
             }

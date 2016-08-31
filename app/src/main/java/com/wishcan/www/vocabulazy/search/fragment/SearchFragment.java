@@ -56,7 +56,7 @@ public class SearchFragment extends GASearchFragment implements SearchView.OnIte
         }
         M_TAG = getTag();
         if (mSearchModel == null)
-            mSearchModel = new SearchModel((VLApplication) getActivity().getApplication());
+            mSearchModel = new SearchModel();
     }
 
     @Override
