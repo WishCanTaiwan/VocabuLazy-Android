@@ -5,7 +5,7 @@
     tools:context=".cover.activity.CoverActivity">
     <item
         android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:title="@string/main_menu_menu_action_settings"
         android:orderInCategory="100"
         app:showAsAction="never"/>
 </menu>

@@ -15,7 +15,7 @@
         android:textColor="@color/search_result_add_to_note_view_title_text_color"
         android:layout_marginTop="25dp"
         android:textSize="@dimen/search_result_add_to_note_view_title_text_size"
-        android:text="@string/dialog_addtonote"
+        android:text="@string/search_dialog_add_to_note_title"
          />
 
 

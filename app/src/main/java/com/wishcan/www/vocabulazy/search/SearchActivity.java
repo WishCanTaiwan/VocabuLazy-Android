@@ -31,7 +31,6 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
 
     private static final int VIEW_ACTIVITY_RES_ID = R.layout.view_search_activity;
     private static final int DEFAULT_MENU_RES_ID = R.menu.menu_search;
-    private static final int DEFAULT_SEARCH_ITEM_RES_ID = R.id.action_search;
 
     private SearchFragment mSearchFragment;
     private SearchView mSearchView;
@@ -74,9 +73,6 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(DEFAULT_MENU_RES_ID, menu);
 
-        MenuItem searchItem = menu.findItem(DEFAULT_SEARCH_ITEM_RES_ID);
-        SearchView mSearchView = (SearchView) searchItem.getActionView();
-
         mSearchView.onActionViewExpanded();          // Important, make ActionView expand initially
         mSearchView.setOnQueryTextListener(this);
 
@@ -89,22 +85,11 @@ public class SearchActivity extends FragmentActivity implements SearchView.OnQue
                         mSearchFragment.clearSearchDetail();
                         mSearchFragment.clearDialogFragments();
                     }
-                } else {
-//                    Log.d(TAG, "searchView has not focus");
                 }
             }
         });
 
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_search) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

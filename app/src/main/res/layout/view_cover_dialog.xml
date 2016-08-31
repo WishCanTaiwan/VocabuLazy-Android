@@ -16,7 +16,7 @@
         android:layout_marginBottom="@dimen/cover_dialog_vertical_margin"
         android:layout_marginLeft="@dimen/cover_dialog_horizontal_margin"
         android:layout_marginRight="@dimen/cover_dialog_horizontal_margin"
-        android:text="@string/dialog_cover"
+        android:text="@string/cover_dialog"
         android:textColor="@color/cover_dialog_text"
         android:textSize="@dimen/cover_dialog_input_text_size"
         />
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:textSize = "@dimen/cover_dialog_button_text_size"
                 android:textColor= "@color/cover_dialog_text"
-                android:text     ="@string/button_cancel" />
+                android:text     ="@string/search_dialog_new_note_button_cancel" />
 
         </LinearLayout>
 
@@ -64,7 +64,7 @@
             android:layout_marginLeft="@dimen/cover_dialog_horizontal_margin"
             android:layout_marginRight="@dimen/cover_dialog_horizontal_margin"
             android:textSize    ="@dimen/cover_dialog_button_text_size"
-            android:text="@string/button_confirm"
+            android:text="@string/cover_dialog_button_confirm"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:textSize = "@dimen/cover_dialog_button_text_size"
                 android:textColor= "@color/cover_dialog_text"
-                android:text     ="@string/button_confirm" />
+                android:text     ="@string/cover_dialog_button_confirm" />
         </LinearLayout>
 
     </LinearLayout>
