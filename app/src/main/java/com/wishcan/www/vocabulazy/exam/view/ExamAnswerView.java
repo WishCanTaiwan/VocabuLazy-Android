@@ -15,7 +15,13 @@ import com.wishcan.www.vocabulazy.R;
  * @since 2016/8/30
  */
 public class ExamAnswerView extends LinearLayout {
+    /**
+     * The callback function of ExamAnswerView
+     * */
     public interface ExamAnswerEventListener {
+        /**
+         * The callback when View is clicked
+         * */
         void onClick();
     }
     
@@ -36,10 +42,23 @@ public class ExamAnswerView extends LinearLayout {
     private static final int IDX_DRAWABLE_IMG_EXAM_ANSWER_CHOSEN_LV = 0x0;
     private static final int IDX_DRAWABLE_IMG_EXAM_ANSWER_CORRECT_LV = 0x1;
     private static final int IDX_DRAWABLE_IMG_EXAM_ANSWER_WRONG_LV = 0x2;
-    
+
+    /**
+     * There are four states for ExamAnswerView, each state correspond to one appearance
+     * IDX_EXAM_ANSWER is the default state
+     * */
     public static final int IDX_EXAM_ANSWER = 0x0;
+    /**
+     * IDX_EXAM_ANSWER_CHOSEN is the state when view is being pressed
+     * */
     public static final int IDX_EXAM_ANSWER_CHOSEN = 0x1;
+    /**
+     * IDX_EAM_ANSWER_CORRECT is the state of ExamAnswerView showing correct
+     * */
     public static final int IDX_EXAM_ANSWER_CORRECT = 0x2;
+    /**
+     * IDX_EAM_ANSWER_CORRECT is the state of ExamAnswerView showing wrong
+     * */
     public static final int IDX_EXAM_ANSWER_WRONG = 0x3;
 
     private Context mContext;
@@ -66,15 +85,28 @@ public class ExamAnswerView extends LinearLayout {
         
         registerEventListener();
     }
-    
+
+    /**
+     * Hook the callback function for ExamAnswerView
+     * @param listener the callback function
+     * */
     public void setExamAnswerEventListener(ExamAnswerEventListener listener) {
         mExamAnswerEventListener = listener;
     }
 
+    /**
+     * Customizing The ExamAnswerView string
+     * @param str the showing string
+     * */
     public void setExamAnswerString(String str) {
         mExamAnswerTextView.setText(str);
     }
-    
+
+    /**
+     * Changing the state of ExamAnswerView. Changing the state will cause the appearance of View
+     * change as well.
+     * @param state
+     * */
     public void setExamAnswerState(int state) {
         int textStyleResId;
         LevelListDrawable bgdDrawable = (LevelListDrawable) this.getBackground();
