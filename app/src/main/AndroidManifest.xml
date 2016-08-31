@@ -51,9 +51,9 @@
         </activity>
 
         <activity
-            android:name=".search.SearchActivity"
+            android:name=".search.activity.SearchActivity"
             android:label="@string/label_search_activity"
-            android:theme="@style/AppTheme.SearchActivity" >
+            android:theme="@style/AppTheme.SearchActivity">
         </activity>
 
         <service

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.exam.fragment.ExamFragment;
 
 /**
  * Created by SwallowChen on 8/25/16.
@@ -18,6 +19,8 @@ public class ExamActivity extends AppCompatActivity {
 
     private static final int VIEW_RES_ID = R.layout.activity_exam;
     private static final int TOOLBAR_RES_ID = R.id.toolbar;
+
+    private ExamFragment mExamFragment;
 
     private int mBookIndex;
     private int mLessonIndex;
@@ -41,12 +44,12 @@ public class ExamActivity extends AppCompatActivity {
 
     @Override
     public void onAttachFragment(Fragment fragment) {
-
+        super.onAttachFragment(fragment);
+        mExamFragment = (ExamFragment) fragment;
     }
 
     private void setActionBarTitle(String title) {
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(title);
-//        mToolbar.setTitle(title);
     }
 }
