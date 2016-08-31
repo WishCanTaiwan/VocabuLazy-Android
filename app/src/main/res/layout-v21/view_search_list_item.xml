@@ -4,8 +4,8 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="#ffffff"
-    >
+    android:background="@color/search_list_item_background">
+
     <com.wishcan.www.vocabulazy.widget.CrossView
         android:id="@+id/search_result_adding_to_note_adding_icon"
         android:layout_width="wrap_content"

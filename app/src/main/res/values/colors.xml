@@ -60,7 +60,7 @@
     <color name="player_option_picker_indicator_text_color">@color/white_1</color>
     
     <!--**************************************** search ****************************************-->
-    <color name="search_divider">@color/white_2</color>
+    <color name="search_list_item_background">@color/white_2</color>
     <color name="search_xx_color">@color/green_1</color>
     <color name="search_xx_background_color">@color/white_1</color>
     <color name="search_result_add_to_note_view_adding_icon_color">@color/yellow_1</color>
