@@ -29,6 +29,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         setContentView(VIEW_RES_ID);
         mToolbar = (Toolbar) findViewById(TOOLBAR_RES_ID);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -49,12 +50,19 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
+    }
+
+    @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+        mSearchFragment.refreshSearchResult(newText);
+        return true;
     }
 }

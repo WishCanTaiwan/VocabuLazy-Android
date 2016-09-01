@@ -48,8 +48,10 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /** TODO: for testing flow only */
-        LinkedList<HashMap> dataList = mSearchModel.createSearchResultMap(wDatabase.readSuggestVocabularyBySpell("a"));
+    }
+
+    public void refreshSearchResult(String searchStr) {
+        LinkedList<HashMap> dataList = mSearchModel.createSearchResultMap(wDatabase.readSuggestVocabularyBySpell(searchStr));
         mSearchView.refreshSearchList(dataList);
     }
 }
