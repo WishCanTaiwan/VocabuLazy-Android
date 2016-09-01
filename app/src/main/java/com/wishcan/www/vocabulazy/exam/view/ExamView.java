@@ -19,8 +19,19 @@ import java.util.HashMap;
  * Created by SwallowChen on 8/25/16.
  */
 public class ExamView extends LinearLayout {
+    /**
+     * The listener contains all events of Exam's children
+     * */
     public interface ExamEventListener {
+        /**
+         * The callback function when ExamAnswerView is clicked
+         * @see ExamAnswerView
+         * */
         void onExamAnswerClick(int index);
+
+        /**
+         * The callback function when NextIcon bar is clicked
+         * */
         void onNextIconClick();
     }
 
@@ -63,15 +74,30 @@ public class ExamView extends LinearLayout {
         registerEventListener();
     }
 
+    /**
+     * Hook the callback function for ExamView
+     * @param listener the callback function
+     * */
     public void setExamEventListener(ExamEventListener listener) {
         mExamEventListener = listener;
     }
 
+    /**
+     * Fill in the init status of bar and clean all ExamAnswerView
+     * @param progressBarInitValue the init value of progress bar
+     * @param progressBarTotalValue the total value of progress bar
+     * @see ProgressBar
+     * @see ExamAnswerView
+     * */
     public void initContent(int progressBarInitValue, int progressBarTotalValue) {
         mExamProgressBar.setMax(progressBarTotalValue * 10);
         mExamProgressBar.setProgress(progressBarInitValue * 10);
     }
 
+    /**
+     * Fill in the ExamAnswerView with input map
+     * @param map contains the both Question and Answer information
+     * */
     public void setContent(HashMap<Integer, ArrayList<String>> map) {
         /** Question put in 0 */
         ArrayList<String> questionStrList = map.get(0);
@@ -80,11 +106,15 @@ public class ExamView extends LinearLayout {
             /** answer put in 1 ~ 4 */
             ArrayList<String> answerStrList = map.get(i);
             ExamAnswerView examAnswerView = EXAM_ANSWER_VIEW_s[i];
-            /** 0 is spell, 1 is chinese */
+            /** map.get(0) is spell, map.get(1) is chinese */
             examAnswerView.setExamAnswerString(answerStrList.get(1));
         }
     }
 
+    /**
+     * Update the progress bar on top of ExamView
+     * @param updateValue the desired value that want to be shown
+     * */
     public int updateExamProgressBar(int updateValue) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             ObjectAnimator animation = ObjectAnimator.ofInt(mExamProgressBar, "progress", updateValue * 10);
@@ -97,6 +127,12 @@ public class ExamView extends LinearLayout {
         return updateValue;
     }
 
+    /**
+     * There are 4 ExamAnswerView in ExamView, the input parameters will update these 4
+     * ExamAnswerView according to parameters
+     * @param updateValues size must equal to 4
+     * @see ExamAnswerView
+     * */
     public boolean setExamAnswerStates(ArrayList<Integer> updateValues) {
         if (updateValues.size() != 4) {
             return false;
@@ -109,6 +145,11 @@ public class ExamView extends LinearLayout {
         return true;
     }
 
+    /**
+     * There are 4 ExamAnswerView in ExamView, the input parameters will update these 4
+     * ExamAnswerView according to parameters
+     * @param updateValues length must equal to 4
+     * */
     public boolean setExamAnswerStates(int ... updateValues) {
         if (updateValues.length != 4) {
             return false;

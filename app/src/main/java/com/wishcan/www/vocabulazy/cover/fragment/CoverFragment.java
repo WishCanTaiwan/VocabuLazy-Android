@@ -15,6 +15,7 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.cover.activity.CoverActivity;
 import com.wishcan.www.vocabulazy.ga.GACoverFragment;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
+import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
 /**

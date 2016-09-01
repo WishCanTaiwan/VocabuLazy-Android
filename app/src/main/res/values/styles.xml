@@ -23,7 +23,7 @@
     </style>
 
     <style name="AppTheme.SearchActivity" parent="AppTheme">
-        <item name="android:homeAsUpIndicator">@drawable/action_previous_item</item>
+        <item name="toolbarStyle">@style/AppToolBarStyle.Search</item>
     </style>
 
     <style name="AppAnimation" parent="@android:style/Animation.Activity">
@@ -41,6 +41,12 @@
 
     <style name="AppToolBarStyle" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">@color/green_1</item>
+    </style>
+
+    <style name="AppToolBarStyle.Search" parent="AppToolBarStyle">
+        <item name="android:homeAsUpIndicator">@drawable/action_previous_item</item>
+        <item name="android:background">@color/white_1</item>
+        <item name="android:translationZ">3dp</item>
     </style>
 
     <style name="AppProgressBarStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">

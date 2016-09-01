@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/search_dialog_new_note_vertical_margin"
         android:layout_marginBottom="0dp"
-        android:text="@string/dialog_addnote"
+        android:text="@string/search_dialog_new_note"
         android:textSize="@dimen/search_dialog_new_note_title_text_size"
         android:textColor="@color/search_dialog_new_note_title_text"
 
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:textSize = "@dimen/search_dialog_new_note_button_text_size"
                 android:textColor= "@color/search_dialog_text"
-                android:text     ="@string/button_cancel" />
+                android:text     ="@string/search_dialog_new_note_button_cancel" />
 
         </LinearLayout>
 
@@ -79,7 +79,7 @@
             android:layout_marginLeft="@dimen/search_dialog_new_note_horizontal_margin"
             android:layout_marginRight="@dimen/search_dialog_new_note_horizontal_margin"
             android:textSize    ="@dimen/search_dialog_new_note_button_text_size"
-            android:text="@string/button_confirm"
+            android:text="@string/search_dialog_new_note_button_confirm"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:textSize = "@dimen/search_dialog_new_note_button_text_size"
                 android:textColor= "@color/search_dialog_text"
-                android:text     ="@string/button_confirm" />
+                android:text     ="@string/search_dialog_new_note_button_confirm" />
         </LinearLayout>
 
     </LinearLayout>

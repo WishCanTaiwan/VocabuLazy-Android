@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Version Strings-->
-    <string name="version_code">3</string>
+    <!-- Version Strings -->
     <string name="version_name">- New UI 2.0 -</string>
-
+    <!-- Manifest -->
+    <string name="app_name">VocabuLazy</string>
+    <string name="label_cover_activity">CoverActivity</string>
     <string name="label_main_menu_activity">MainMenuActivity</string>
+    <string name="label_exam_activity">ExamActivity</string>
+    <string name="label_player_activity">PlayerActivity</string>
+    <string name="label_search_activity">SearchActivity</string>
 
     <!-- Fragment Label for Google Analytics -->
     <string name="ga_tag_cover_dialog">C.DIALOG</string>
@@ -25,81 +29,15 @@
     <string name="ga_tag_search_dialog">S.DIALOG</string>
     <string name="ga_tag_search">SEARCH</string>
 
-    <!--Fragment Name-->
-    <string name="fragment_main_title">主頁面</string>
-    <string name="fragment_exam_book_title">單元測驗</string>
-    <string name="fragment_exam_note_title">清單測驗</string>
-
     <!-- widget -->
-
-    <!-- main -->
-    <string name="main_book_title">學習單元</string>
-    <string name="main_note_title">我的清單</string>
-    <string name="main_exam_title">測驗模式</string>
-    <string name="main_info_title">關於我們</string>
-
-    <!-- voc -->
-
-    <!-- usr -->
-
+    <!-- main_menu -->
+    <string name="main_menu_exam_index_textbook">Book</string>
+    <string name="main_menu_exam_index_note">Note</string>
+    <string name="main_menu_menu_action_settings">Settings</string>
     <!-- exam -->
-    <string name="exam_index_textbook">Book</string>
-    <string name="exam_index_note">Note</string>
 
     <!-- info -->
-
     <!-- player -->
-
-    <!-- search -->
-
-    <!-- cover -->
-    <string name="dialog_cover">為提供最佳體驗，請至Google Play下載並安裝「Google 文字轉語音引擎」。\n點擊確定前往。</string>
-
-    <string name="app_name">VocabuLazy</string>
-    <string name="EnterSpell">Search</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_search">Search</string>
-    <string name="action_person">Personal Information</string>
-    <string name="dialog_addnote">自訂清單名稱</string>
-    <string name="dialog_addtonote">新增至清單</string>
-    <string name="dialog_addbook">此為擴充單字書功能\n施工中!!敬請期待!!</string>
-    <string name="dialog_delete_note">刪除清單</string>
-    <string name="search_hint">Search here</string>
-    <string name="tab0_str">BOOK</string>
-    <string name="tab1_str">NOTE</string>
-    <string name="tab2_str">TEST</string>
-    <string name="tab3_str">INFO</string>
-    <string name="voc_detail_next_text">NEXT</string>
-    <string name="voc_detail_play_text">PLAY</string>
-    <string name="voc_detail_previous_text">PREVIOUS</string>
-
-    <string name="loop">Loop</string>
-    <string name="random">Random</string>
-    <string name="previous">Previous</string>
-    <string name="playpause">PlayPause</string>
-    <string name="next">Next</string>
-    <string name="mark">Mark</string>
-    <string name="timer">Timer</string>
-
-    <string name="button_cancel">取消</string>
-    <string name="button_confirm">確定</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string-array name="time_count_option">
-        <item>2</item>
-        <item>5</item>
-        <item>10</item>
-    </string-array>
-
-    <string name="reading_book_title">課文閱讀</string>
-    <string name="title_activity_search">SearchActivity</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_player">PlayerActivity</string>
-
-    <!--player_option_view_str-->
     <string name="player_option_tab_0">自訂模式</string>
     <string name="player_option_tab_1">睡眠模式</string>
     <string name="player_option_tab_2">通勤模式</string>
@@ -111,13 +49,15 @@
     <string name="player_option_speed">speed</string>
     <string name="player_option_play_time_chinese">播放時間</string>
     <string name="player_option_play_time">play-time</string>
-    <string name="title_activity_test">TestActivity</string>
+    <!-- search -->
+    <string name="search_menu_item">Search Menu Item</string>
+    <string name="search_dialog_new_note">自訂清單名稱</string>
+    <string name="search_dialog_new_note_button_cancel">取消</string>
+    <string name="search_dialog_new_note_button_confirm">確定</string>
+    <string name="search_dialog_add_to_note_title">新增至清單</string>
+    <!-- cover -->
+    <string name="cover_dialog">為提供最佳體驗，請至Google Play下載並安裝「Google 文字轉語音引擎」。\n點擊確定前往。</string>
+    <string name="cover_dialog_button_cancel">取消</string>
+    <string name="cover_dialog_button_confirm">確定</string>
 
-    <!--NumeralPicker_view_str-->
-    <string name="numeral_picker_main_indicator_string_default">主要標題</string>
-    <string name="numeral_picker_second_indicator_string_default">次要標題</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_cover">
-        CoverActivity
-    </string>
 </resources>

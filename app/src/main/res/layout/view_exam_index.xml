@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="@string/exam_index_textbook"
+            android:text="@string/main_menu_exam_index_textbook"
             android:gravity="center"
             android:background="@color/accent_material_dark" />
 
@@ -25,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="@string/exam_index_note"
+            android:text="@string/main_menu_exam_index_note"
             android:gravity="center"
             android:background="@color/accent_material_light" />
 

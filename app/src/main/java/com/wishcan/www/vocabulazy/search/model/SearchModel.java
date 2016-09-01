@@ -1,7 +1,8 @@
 package com.wishcan.www.vocabulazy.search.model;
 
-import com.wishcan.www.vocabulazy.application.VLApplication;
-import com.wishcan.www.vocabulazy.search.view.SearchView;
+import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.search.view.SearchDetailView;
+import com.wishcan.www.vocabulazy.search.view.SearchListView;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
@@ -13,8 +14,8 @@ public class SearchModel {
 
     private Database mDatabase;
 
-    public SearchModel() {
-        mDatabase = Database.getInstance();
+    public SearchModel(VLApplication vlApplication) {
+        mDatabase = vlApplication.getDatabase();
     }
 
     public void addVocToNote(int id, int index) {
@@ -28,11 +29,11 @@ public class SearchModel {
         LinkedList<HashMap> dataMap = new LinkedList<>();
         for(Vocabulary voc : vocabularies){
             HashMap<String, Object> hm = new HashMap<>();
-            String from[] = SearchView.SearchListView.LIST_ITEM_CONTENT_FROM;
+            String from[] = SearchListView.LIST_ITEM_CONTENT_FROM;
 
-            hm.put(from[SearchView.SearchListView.LIST_ITEM_CONTENT_ID_s.VOC_SPELL.getValue()], voc.getSpell());
-            hm.put(from[SearchView.SearchListView.LIST_ITEM_CONTENT_ID_s.VOC_TRANSLATION.getValue()], voc.getTranslation());
-            hm.put(from[SearchView.SearchListView.LIST_ITEM_CONTENT_ID_s.VOC_CATEGORY.getValue()], voc.getPartOfSpeech());
+            hm.put(from[SearchListView.IDX_VOC_SPELL], voc.getSpell());
+            hm.put(from[SearchListView.IDX_VOC_TRANSLATION], voc.getTranslation());
+            hm.put(from[SearchListView.IDX_VOC_CATEGORY], voc.getPartOfSpeech());
             dataMap.add(hm);
         }
         return dataMap;
@@ -40,11 +41,12 @@ public class SearchModel {
 
     public HashMap<String, Object> createSearchResultDetailMap(Vocabulary voc) {
         HashMap<String, Object> hm = new HashMap<>();
-        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SPELL_DETAIL.getResFrom(), voc.getSpell());
-        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_KK_DETAIL.getResFrom(), voc.getPhonetic());
-        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_TRANSLATION_DETAIL.getResFrom(), voc.getTranslation());
-        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_DETAIL.getResFrom(), voc.getEnSentence());
-        hm.put(SearchView.LIST_ITEM_DETAIL_CONTENT_TO_FROM_s.VOC_SENTENCE_TRANSLATION_DETAIL.getResFrom(), voc.getCnSentence());
+        String from[] = SearchDetailView.DETAIL_ITEM_CONTENT_FROM;
+        hm.put(from[SearchDetailView.IDX_VOC_SPELL], voc.getSpell());
+        hm.put(from[SearchDetailView.IDX_VOC_KK], voc.getPhonetic());
+        hm.put(from[SearchDetailView.IDX_VOC_TRANSLATION], voc.getTranslation());
+        hm.put(from[SearchDetailView.IDX_VOC_SENTENCE], voc.getEnSentence());
+        hm.put(from[SearchDetailView.IDX_VOC_SENTENCE_TRANSLATION], voc.getCnSentence());
         return hm;
     }
 }

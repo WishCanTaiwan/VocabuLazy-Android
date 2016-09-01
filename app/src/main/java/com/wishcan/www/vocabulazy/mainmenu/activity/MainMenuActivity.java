@@ -15,6 +15,7 @@ import com.wishcan.www.vocabulazy.exam.activity.ExamActivity;
 import com.wishcan.www.vocabulazy.mainmenu.fragment.MainMenuFragment;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
+import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;
 
 public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener {
@@ -55,7 +56,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cover, menu);
+        getMenuInflater().inflate(R.menu.menu_main_menu, menu);
         return true;
     }
 
@@ -68,6 +69,9 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            /** TODO: for test only */
+            Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
+            startActivity(intent);
             return true;
         }
 
