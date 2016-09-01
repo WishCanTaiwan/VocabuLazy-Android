@@ -15,8 +15,6 @@ import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.application.VLApplication;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Note;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;

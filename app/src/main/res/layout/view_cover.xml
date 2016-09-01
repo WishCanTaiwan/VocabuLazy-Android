@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.wishcan.www.vocabulazy.cover.view.CoverView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_padding">
+    android:padding="@dimen/activity_padding"
+    android:gravity="center">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,4 +14,4 @@
         android:textColor="@color/cover_text"
         />
 
-</RelativeLayout>
+</com.wishcan.www.vocabulazy.cover.view.CoverView>

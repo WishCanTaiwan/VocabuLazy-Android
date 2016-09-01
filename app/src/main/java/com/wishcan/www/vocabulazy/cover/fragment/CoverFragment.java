@@ -22,14 +22,13 @@ import com.wishcan.www.vocabulazy.widget.DialogFragment;
  * Use the {@link CoverFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CoverFragment extends GACoverFragment implements DialogFragment.OnDialogFinishListener<Boolean>{
+public class CoverFragment extends GACoverFragment {
 
     public static final String TAG = "COVER";
 
     public static String M_TAG;
 
     private static final int VIEW_RES_ID = R.layout.view_cover;
-    private static final String PACKAGE_NAME_GOOGLE_TTS = "com.google.android.tts";
     private static final String PACKAGE_NAME_TESTING_APP = "cc.forestapp";
 
     private boolean hasUserLeftAppFirst = false;
@@ -66,71 +65,39 @@ public class CoverFragment extends GACoverFragment implements DialogFragment.OnD
     @Override
     public void onResume() {
         super.onResume();
-//        directToVocabuLazy();
-        if (checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS)) {
-            directToVocabuLazy();
-
-        } else {
-                CoverDialogFragment dialogFragment = new CoverDialogFragment();
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
-                fragmentTransaction.addToBackStack("CoverFragment");
-                fragmentTransaction.commit();
-        }
+////        directToVocabuLazy();
+//        if (checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS)) {
+//            directToVocabuLazy();
+//        } else {
+//                CoverDialogFragment dialogFragment = new CoverDialogFragment();
+//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
+//                fragmentTransaction.addToBackStack("CoverFragment");
+//                fragmentTransaction.commit();
+//        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        hasUserLeftAppFirst = true;
+//        hasUserLeftAppFirst = true;
     }
 
-    @Override
-    public void onDialogFinish(Boolean ifYesClicked) {
-        if (ifYesClicked) {
-            directToGooglePlay(PACKAGE_NAME_GOOGLE_TTS);
-        } else {
-            directToVocabuLazy();
-        }
-    }
+//    @Override
+//    public void onDialogFinish(Boolean ifYesClicked) {
+//        if (ifYesClicked) {
+//            directToGooglePlay(PACKAGE_NAME_GOOGLE_TTS);
+//        } else {
+//            directToVocabuLazy();
+//        }
+//    }
 
     @Override
     protected String getNameAsGaLabel() {
         return TAG;
     }
 
-    private boolean checkAppInstalledOrNot(String uri) {
-        PackageManager pm = getActivity().getPackageManager();
-        boolean app_installed;
-        try {
-            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-            app_installed = true;
-        } catch (PackageManager.NameNotFoundException e) {
-            app_installed = false;
-        }
-        return app_installed;
-    }
 
-    private void directToVocabuLazy() {
 
-        if (mView == null) return;
-//        final Intent intent = new Intent(getActivity(), MainMenuActivity.class);
-        mView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!hasUserLeftAppFirst) {
-                    startActivity(new Intent(getActivity(), MainMenuActivity.class));
-                    getActivity().finish();
-                }
-            }
-        }, 2000);
-    }
 
-    private void directToGooglePlay(String appPackageName) {
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-        } catch (android.content.ActivityNotFoundException anfe) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-        }
-    }
 }

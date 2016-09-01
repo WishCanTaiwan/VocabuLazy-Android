@@ -68,14 +68,6 @@ public class VLApplication extends Application {
         return wPreferences;
     }
 
-    /**
-     * Call getDatabase to retrieve Database object.
-     * @return wDatabase
-     */
-    synchronized public Database getDatabase() {
-        return wDatabase;
-    }
-
     public void loadDatabase() {
         wDatabase.loadFiles(getApplicationContext());
         wDatabase.initSettings();
