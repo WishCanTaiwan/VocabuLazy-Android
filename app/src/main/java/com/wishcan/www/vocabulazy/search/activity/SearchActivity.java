@@ -13,8 +13,11 @@ import com.wishcan.www.vocabulazy.search.fragment.SearchFragment;
  */
 public class SearchActivity extends AppCompatActivity {
     private static final int VIEW_RES_ID = R.layout.activity_search;
+    private static final int MENU_RES_ID = R.menu.menu_search;
+    private static final int MENU_ITEM_SEARCH_RES_ID = R.id.menu_item_search;
     private static final int TOOLBAR_RES_ID = R.id.toolbar;
 
+    private SearchView mSearchActionView;
     private Toolbar mToolbar;
     private SearchFragment mSearchFragment;
 
@@ -30,5 +33,17 @@ public class SearchActivity extends AppCompatActivity {
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
         mSearchFragment = (SearchFragment) fragment;
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        /** Inflate the menu; this adds items to the action bar if it is present. */
+        getMenuInflater().inflate(MENU_RES_ID, menu);
+        menu.findItem(DEFAULT_SEARCH_ITEM_RES_ID);
+        mSearchActionView = (SearchView) searchItem.getActionView();
+
+        mSearchView.onActionViewExpanded();          // Important, make ActionView expand initially
+        mSearchView.setOnQueryTextListener(this);
+        return true;
     }
 }
