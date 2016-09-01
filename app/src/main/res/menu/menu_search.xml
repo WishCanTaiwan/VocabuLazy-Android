@@ -5,8 +5,8 @@
     tools:context="com.wishcan.www.vocabulazy.SearchActivity">
 
     <item
-        android:id="@+id/action_search"
-        android:title="@string/action_search"
+        android:id="@+id/menu_item_search"
+        android:title="@string/search_menu_item"
         android:showAsAction="ifRoom"
         android:actionViewClass = "android.widget.SearchView" />
 </menu>

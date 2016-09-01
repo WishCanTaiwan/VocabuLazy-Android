@@ -50,6 +50,7 @@
     <string name="player_option_play_time_chinese">播放時間</string>
     <string name="player_option_play_time">play-time</string>
     <!-- search -->
+    <string name="search_menu_item">Search Menu Item</string>
     <string name="search_dialog_new_note">自訂清單名稱</string>
     <string name="search_dialog_new_note_button_cancel">取消</string>
     <string name="search_dialog_new_note_button_confirm">確定</string>

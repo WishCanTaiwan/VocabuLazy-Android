@@ -3,7 +3,9 @@ package com.wishcan.www.vocabulazy.search.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.search.fragment.SearchFragment;
@@ -11,7 +13,7 @@ import com.wishcan.www.vocabulazy.search.fragment.SearchFragment;
 /**
  * Created by SwallowChen on 8/31/16.
  */
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private static final int VIEW_RES_ID = R.layout.activity_search;
     private static final int MENU_RES_ID = R.menu.menu_search;
     private static final int MENU_ITEM_SEARCH_RES_ID = R.id.menu_item_search;
@@ -39,11 +41,20 @@ public class SearchActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         /** Inflate the menu; this adds items to the action bar if it is present. */
         getMenuInflater().inflate(MENU_RES_ID, menu);
-        menu.findItem(DEFAULT_SEARCH_ITEM_RES_ID);
-        mSearchActionView = (SearchView) searchItem.getActionView();
+        mSearchActionView = (SearchView) menu.findItem(MENU_ITEM_SEARCH_RES_ID).getActionView();
 
-        mSearchView.onActionViewExpanded();          // Important, make ActionView expand initially
-        mSearchView.setOnQueryTextListener(this);
+        mSearchActionView.onActionViewExpanded();          // Important, make ActionView expand initially
+        mSearchActionView.setOnQueryTextListener(this);
         return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }
