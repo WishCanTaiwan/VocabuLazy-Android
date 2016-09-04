@@ -23,6 +23,13 @@ import com.wishcan.www.vocabulazy.R;
  */
 abstract public class DialogView<WishCan> extends LinearLayout {
 
+    /**
+     * Default call back function of dialog view, if necessary.
+     * If there are yes and no button, implement the call back and register yes/no view
+     * by setYesOnNoViewId function will automatically enable the callback
+     * @see #setYesOrNoViewId(int, int)
+     * @see #setOnYesOrNoClickedListener(OnYesOrNoClickListener)
+     */
     public interface OnYesOrNoClickListener {
         void onYesClicked();
         void onNoClicked();
@@ -37,8 +44,8 @@ abstract public class DialogView<WishCan> extends LinearLayout {
     private static final int DEFAULT_DIALOG_BUTTON_BACKGROUND_START_COLOR = R.color.widget_dialog_button_background_green;
 
     private LayoutParams mDefaultLayoutParams;
-    private LayoutParams mDefaultDialogLayoutParams;
-    private View mDialogView;
+    private LayoutParams mDefaultContentLayoutParams;
+    private View mContentView;
     private Context mContext;
     private OnYesOrNoClickListener mListener;
     private View mYesView;
@@ -59,9 +66,9 @@ abstract public class DialogView<WishCan> extends LinearLayout {
         setBackgroundColor(ContextCompat.getColor(context, DEFAULT_DIALOG_BACKGROUND_COLOR));
         setLayoutParams(mDefaultLayoutParams);
 
-        mDefaultDialogLayoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        mDefaultContentLayoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
-        mDialogView = new View(context);
+        mContentView = new View(context);
 
         setOnClickListener(new OnClickListener() {
             @Override
@@ -79,38 +86,38 @@ abstract public class DialogView<WishCan> extends LinearLayout {
     }
 
     public void setDialog(View v) {
-        setDialog(v, mDefaultDialogLayoutParams);
+        setDialog(v, mDefaultLayoutParams);
     }
 
-
     public void setDialog(View v, ViewGroup.LayoutParams layoutParams) {
-        mDialogView = v;
+        mContentView = v;
         if (!(v instanceof AdapterView)) {
-            mDialogView.setOnClickListener(new OnClickListener() {
+            mContentView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     requestFocus();
                 }
             });
         } else {
-            ((AdapterView) mDialogView).setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            ((AdapterView) mContentView).setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     requestFocus();
                 }
             });
         }
-        if (layoutParams != null)
-            mDialogView.setLayoutParams(layoutParams);
+        if (layoutParams != null) {
+            mContentView.setLayoutParams(layoutParams);
+        }
 
-        mDialogView.setVisibility(GONE);
-        addView(mDialogView);
+        mContentView.setVisibility(GONE);
+        addView(mContentView);
         setDialogTransition(getDialogTransition());
     }
 
     public void showDialog() {
         setVisibility(VISIBLE);
-        mDialogView.setVisibility(VISIBLE);
+        mContentView.setVisibility(VISIBLE);
     }
 
     public void closeDialog() {
@@ -119,7 +126,7 @@ abstract public class DialogView<WishCan> extends LinearLayout {
     }
 
     public View getDialog() {
-        return mDialogView;
+        return mContentView;
     }
 
     public void setDialogTransition(LayoutTransition transition) {
@@ -141,8 +148,8 @@ abstract public class DialogView<WishCan> extends LinearLayout {
     }
 
     public void setYesOrNoViewId(int yesId, int noId) {
-        mYesView = mDialogView.findViewById(yesId);
-        mNoView = mDialogView.findViewById(noId);
+        mYesView = mContentView.findViewById(yesId);
+        mNoView = mContentView.findViewById(noId);
         setYesOrNoView();
     }
 

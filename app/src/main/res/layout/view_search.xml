@@ -1,6 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/search_view_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<com.wishcan.www.vocabulazy.search.view.SearchView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,17 +8,6 @@
         android:id="@+id/search_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:visibility="visible"
-        />
+        android:divider="@color/transparent"/>
 
-    <RelativeLayout
-        android:id="@+id/search_detail_parent_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
-    </RelativeLayout>
-
-
-</RelativeLayout>
+</com.wishcan.www.vocabulazy.search.view.SearchView>

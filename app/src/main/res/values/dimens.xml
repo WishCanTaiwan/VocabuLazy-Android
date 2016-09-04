@@ -35,24 +35,11 @@
     <dimen name="player_option_image_padding">5dp</dimen>
     <!-- search -->
     <dimen name="search_divider_height">2dp</dimen>
-    <dimen name="search_result_add_to_note_dialog_height">290dp</dimen>
-    <dimen name="search_result_add_to_note_dialog_width">236dp</dimen>
-    <dimen name="search_result_add_to_note_dialog_title_width">240dp</dimen>
-    <dimen name="search_result_add_to_note_view_title_parent_height">73dp</dimen>
-    <dimen name="search_result_add_to_note_view_title_parent_width">233dp</dimen>
-    <dimen name="search_result_add_to_note_view_title_text_height">50dp</dimen>
-    <dimen name="search_result_add_to_note_view_title_text_width">208dp</dimen>
-    <dimen name="search_result_add_to_note_view_title_text_size">20sp</dimen>
-    <dimen name="search_result_add_to_note_view_item_height">40dp</dimen>
-    <dimen name="search_result_add_to_note_view_item_width">208dp</dimen>
     <dimen name="search_list_result_cross">25dp</dimen>
-    <dimen name="search_dialog_cross">20dp</dimen>
-    <dimen name="search_dialog_new_note_input_text_width">184dp</dimen>
-    <dimen name="search_dialog_new_note_vertical_margin">20dp</dimen>
-    <dimen name="search_dialog_new_note_horizontal_margin">10dp</dimen>
-    <dimen name="search_dialog_new_note_button_height">40dp</dimen>
-    <dimen name="search_dialog_new_note_title_text_size">15sp</dimen>
-    <dimen name="search_dialog_new_note_button_text_size">15sp</dimen>
-    <dimen name="search_dialog_new_note_ox_padding">5dp</dimen>
-    <dimen name="search_dialog_new_note_input_text_size">23sp</dimen>
+    <dimen name="search_dialog_add_voc_to_note_content_width">295dp</dimen>
+    <dimen name="search_dialog_add_voc_to_note_content_height">313dp</dimen>
+    <dimen name="search_dialog_add_voc_to_note_content_padding">20dp</dimen>
+    <dimen name="search_dialog_add_voc_to_note_content_text_size">20sp</dimen>
+    <dimen name="search_dialog_add_voc_to_note_content_yes_no_container_margin">28dp</dimen>
+    <dimen name="search_dialog_add_voc_to_note_content_yes_no_container_height">53dp</dimen>
 </resources>
