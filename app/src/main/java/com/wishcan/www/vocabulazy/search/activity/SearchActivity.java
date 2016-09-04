@@ -14,6 +14,7 @@ import com.wishcan.www.vocabulazy.search.fragment.SearchFragment;
  * Created by SwallowChen on 8/31/16.
  */
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+    public static final int VIEW_MAIN_RES_ID = R.id.activity_search_container;
     private static final int VIEW_RES_ID = R.layout.activity_search;
     private static final int MENU_RES_ID = R.menu.menu_search;
     private static final int MENU_ITEM_SEARCH_RES_ID = R.id.menu_item_search;
@@ -35,7 +36,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        mSearchFragment = (SearchFragment) fragment;
+        if (fragment instanceof SearchFragment) {
+            mSearchFragment = (SearchFragment) fragment;
+        } else {
+
+        }
     }
     
     @Override

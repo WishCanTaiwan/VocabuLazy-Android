@@ -1,10 +1,14 @@
 <resources>
 
+    <!-- Default Activity style setting -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/green_2</item>
         <item name="toolbarStyle">@style/AppToolBarStyle</item>
         <item name="android:windowAnimationStyle">@style/AppAnimation.CoverActivity</item>
     </style>
+
+    <!-- All Activity spec -->
 
     <style name="AppTheme.CoverActivity" parent="AppTheme">
         <item name="android:windowBackground">@color/green_1</item>
@@ -25,6 +29,8 @@
     <style name="AppTheme.SearchActivity" parent="AppTheme">
         <item name="toolbarStyle">@style/AppToolBarStyle.Search</item>
     </style>
+
+    <!-- Customized Style -->
 
     <style name="AppAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/main_activity_enter_animation</item>
