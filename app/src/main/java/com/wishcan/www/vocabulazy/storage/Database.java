@@ -1,5 +1,6 @@
 package com.wishcan.www.vocabulazy.storage;
 
+import android.app.VoiceInteractor;
 import android.content.Context;
 import android.util.Log;
 
@@ -48,7 +49,7 @@ public class Database {
 
     public void loadFiles(Context context) {
         try {
-            mVocabularies = load(Vocabulary[].class, context.getResources().openRawResource(R.raw.highschool_vocabularies));
+            mVocabularies = load(Vocabulary[].class, context.getResources().openRawResource(R.raw.vocabulary));
             mTextbooks = load(Textbook[].class, context.getResources().openRawResource(R.raw.textbook));
             mNotes = load(Note[].class, context.openFileInput(FILENAME_NOTE));
             mOptionSettings = load(OptionSettings[].class, context.openFileInput(FILENAME_OPTION));
@@ -73,15 +74,15 @@ public class Database {
     }
 
     public String getTextbookTitle(int bookIndex) {
-        return mTextbooks.get(bookIndex).getBookTitle();
+        return mTextbooks.get(bookIndex).getTextbookTitle();
     }
 
     public String getLessonTitle(int bookIndex, int lessonIndex) {
-        return mTextbooks.get(bookIndex).getBookContent().get(lessonIndex).getLessonTitle();
+        return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonTitle();
     }
 
     public int getNumOfLesson(int bookIndex) {
-        return mTextbooks.get(bookIndex).getBookContent().size();
+        return mTextbooks.get(bookIndex).getTextbookContent().size();
     }
 
     public int getNoteSize(int noteIndex) {
@@ -89,11 +90,11 @@ public class Database {
     }
 
     public ArrayList<Integer> getContentIds(int bookIndex, int lessonIndex) {
-        return mTextbooks.get(bookIndex).getBookContent().get(lessonIndex).getLessonContent();
+        return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonContent();
     }
 
     public ArrayList<Lesson> getLessonsByBook(int bookIndex) {
-        return mTextbooks.get(bookIndex).getBookContent();
+        return mTextbooks.get(bookIndex).getTextbookContent();
     }
 
     public ArrayList<Vocabulary> getVocabulariesByIDs(ArrayList<Integer> vocIDs) {
@@ -107,6 +108,10 @@ public class Database {
             }
         }
         return vocabularies;
+    }
+
+    public ArrayList<OptionSettings> getOptionSettings() {
+        return mOptionSettings;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

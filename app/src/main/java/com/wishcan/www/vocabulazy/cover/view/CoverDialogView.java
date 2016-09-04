@@ -23,6 +23,11 @@ public class CoverDialogView extends DialogView {
     public CoverDialogView(Context context, AttributeSet attrs) {
         super(context, attrs);
 //        setDialog(VIEW_RES_ID);
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
         setYesOrNoViewId(YES_ID, NO_ID);
     }
 

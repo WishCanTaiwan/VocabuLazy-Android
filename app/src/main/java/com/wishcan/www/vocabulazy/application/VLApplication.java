@@ -36,9 +36,9 @@ public class VLApplication extends Application {
         Log.d(TAG, "Create");
         super.onCreate();
 
-//        /* Every-time the application is created, create a Preferences object and
-//            it will be shared among activities and fragments of this particular application. */
-//        wPreferences = new Preferences();
+        /* Every-time the application is created, create a Preferences object and
+            it will be shared among activities and fragments of this particular application. */
+        wPreferences = new Preferences();
 
 //        /**
 //         * Every-time entering the application, create a Database object, and throughout entire

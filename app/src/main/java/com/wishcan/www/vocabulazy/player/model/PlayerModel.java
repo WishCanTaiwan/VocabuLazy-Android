@@ -72,7 +72,7 @@ public class PlayerModel {
     }
 
     public ArrayList<OptionSettings> getOptionSettings() {
-        return wPreferences.getOptionSettings();
+        return Database.getInstance().getOptionSettings();
     }
 
     public void setOptionSettingsAndMode(ArrayList<OptionSettings> optionSettings, int optionMode) {

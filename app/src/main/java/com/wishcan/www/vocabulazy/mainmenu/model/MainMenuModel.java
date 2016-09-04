@@ -38,9 +38,9 @@ public class MainMenuModel {
         textbookGroupItems = new ArrayList<>();
         textbookChildItemsMap = new HashMap<>();
         for (int bookIndex = 0; bookIndex < fakeBooks.size(); bookIndex++) {
-            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getBookTitle());
+            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getTextbookTitle());
 
-            ArrayList<Lesson> lessons = fakeBooks.get(bookIndex).getBookContent();
+            ArrayList<Lesson> lessons = fakeBooks.get(bookIndex).getTextbookContent();
             ArrayList<TextbookExpandableChildItem> childItems = new ArrayList<>();
             for (int lessonIndex = 0; lessonIndex < lessons.size(); lessonIndex++) {
                 TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(lessons.get(lessonIndex).getLessonTitle());
@@ -92,9 +92,9 @@ public class MainMenuModel {
         examIndexTextbookGroupItems = new ArrayList<>();
         examIndexTextbookChildItemsMap = new HashMap<>();
         for (int bookIndex = 0; bookIndex < fakeBooks.size(); bookIndex++) {
-            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getBookTitle());
+            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getTextbookTitle());
 
-            ArrayList<Lesson> lessons = fakeBooks.get(bookIndex).getBookContent();
+            ArrayList<Lesson> lessons = fakeBooks.get(bookIndex).getTextbookContent();
             ArrayList<TextbookExpandableChildItem> childItems = new ArrayList<>();
             for (int lessonIndex = 0; lessonIndex < lessons.size(); lessonIndex++) {
                 TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(lessons.get(lessonIndex).getLessonTitle());

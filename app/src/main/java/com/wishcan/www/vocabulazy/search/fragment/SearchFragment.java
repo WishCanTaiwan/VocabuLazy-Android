@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchView;
@@ -35,9 +34,8 @@ public class SearchFragment extends Fragment implements SearchView.SearchEventLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        VLApplication application = (VLApplication) getActivity().getApplication();
-        wDatabase = application.getDatabase();
-        mSearchModel = new SearchModel(application);
+        wDatabase = Database.getInstance();
+        mSearchModel = new SearchModel();
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.search.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +31,12 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         setContentView(VIEW_RES_ID);
         mToolbar = (Toolbar) findViewById(TOOLBAR_RES_ID);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // enabling HomeAsUp button
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override

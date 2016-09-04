@@ -31,11 +31,20 @@ public class CoverDialogFragment extends DialogFragment implements DialogView.On
     private OnDialogClickListener mOnDialogClickListener;
 
     public CoverDialogFragment() {
-        super();
+//        super();
     }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        View rootView = inflater.inflate(R.layout.fragment_cover_dialog, container, false);
+//        mCoverDialogView = (CoverDialogView) rootView.findViewById(R.id.cover_dialog_view);
+//        mCoverDialogView.setOnYesOrNoClickedListener(this);
+//        return mCoverDialogView;
+//    }
 
     @Override
     protected DialogView getDialogView() {
+        Log.d(TAG, "get dialog view");
         mCoverDialogView = (CoverDialogView) LayoutInflater.from(getActivity()).inflate(R.layout.view_cover_dialog, null, false);
         mCoverDialogView.setOnYesOrNoClickedListener(this);
         return mCoverDialogView;
