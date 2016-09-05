@@ -1,7 +1,9 @@
 package com.wishcan.www.vocabulazy.mainmenu.textbook.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ public class TextbookFragment extends Fragment implements TextbookView.OnTextboo
     public static final String TAG = "TextBookFragment";
 
     private TextbookView mTextbookView;
+    private ArrayList<TextbookExpandableGroupItem> mGroupItems;
+    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> mChildItemsMap;
     private OnTextbookClickListener mOnTextbookClickListener;
 
     public static TextbookFragment newInstance() {
@@ -41,6 +45,7 @@ public class TextbookFragment extends Fragment implements TextbookView.OnTextboo
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_textbook, container, false);
         mTextbookView = (TextbookView) rootView.findViewById(R.id.textbook_view);
+        mTextbookView.setAdapter(new TextbookContentAdapter(getContext(), mGroupItems, mChildItemsMap));
         mTextbookView.addOnTextBookClickListener(this);
         return rootView;
     }
@@ -55,6 +60,7 @@ public class TextbookFragment extends Fragment implements TextbookView.OnTextboo
     }
 
     public void updateBookContent(ArrayList<TextbookExpandableGroupItem> groupItems, HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> childItemsMap) {
-        mTextbookView.setAdapter(new TextbookContentAdapter(getContext(), groupItems, childItemsMap));
+        mGroupItems = groupItems;
+        mChildItemsMap = childItemsMap;
     }
 }

@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".cover.activity.CoverActivity">
 
+    <fragment
+        android:id="@+id/cover_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.wishcan.www.vocabulazy.cover.fragment.CoverFragment"
+        tools:layout="@layout/fragment_cover" />
+
 </RelativeLayout>

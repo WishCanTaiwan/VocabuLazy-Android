@@ -45,7 +45,6 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew implemen
         getActivity().onBackPressed();
     }
 
-
     @Override
     public void onBackgroundClick() {
         // The backgroundClick is doing onBackPressed by default

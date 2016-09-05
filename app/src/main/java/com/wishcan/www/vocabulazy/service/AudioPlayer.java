@@ -4,10 +4,9 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.os.Handler;
 
-import com.wishcan.www.vocabulazy.VLApplication;
+import com.wishcan.www.vocabulazy.application.GlobalVariable;
 import com.wishcan.www.vocabulazy.utility.log.Logger;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
@@ -45,7 +44,8 @@ public class AudioPlayer implements AudioPlayerListener {
     public static final String HALT_BY_FOCUS_LOSS = "halt-by-focus-loss";
 
     private Context mContext;
-    private Preferences mPreferences;
+    private GlobalVariable mGlobalVariable;
+//    private Preferences mPreferences;
     private Database mDatabase;
     private BroadcastTrigger mBroadcastTrigger;
     private Handler mHandler;
@@ -69,10 +69,11 @@ public class AudioPlayer implements AudioPlayerListener {
     private int itemLoopCountDown;
     private int listLoopCountDown;
 
-    public AudioPlayer(VLApplication application) {
+    public AudioPlayer(GlobalVariable application) {
+        mGlobalVariable = application;
         mContext = application.getApplicationContext();
-        mPreferences = application.getPreferences();
-        mDatabase = application.getDatabase();
+//        mPreferences = application.getPreferences();
+        mDatabase = Database.getInstance();
         mHandler = new Handler();
         mTimerRunnable = new Runnable() {
             @Override
@@ -130,15 +131,15 @@ public class AudioPlayer implements AudioPlayerListener {
         itemLoopCountDown = optionSettings.getItemLoop();
         listLoopCountDown = optionSettings.getListLoop();
 
-        mPreferences.setItemLoop(optionSettings.getItemLoop());
-        mPreferences.setListLoop(optionSettings.getListLoop());
-        mPreferences.setPlayTime(optionSettings.getPlayTime());
+        mGlobalVariable.playerItemLoop = optionSettings.getItemLoop();
+        mGlobalVariable.playerListLoop = optionSettings.getListLoop();
+        mGlobalVariable.playerPlayTime = optionSettings.getPlayTime();
     }
 
     public void updateOptionSettings(OptionSettings optionSettings) {
-        int oldItemLoop = mPreferences.getItemLoop();
-        int oldListLoop = mPreferences.getListLoop();
-        int oldPlayTime = mPreferences.getPlayTime();
+        int oldItemLoop = mGlobalVariable.playerItemLoop;
+        int oldListLoop = mGlobalVariable.playerListLoop;
+        int oldPlayTime = mGlobalVariable.playerPlayTime;
 
         int newItemLoop = optionSettings.getItemLoop();
         int newListLoop = optionSettings.getListLoop();
@@ -220,7 +221,7 @@ public class AudioPlayer implements AudioPlayerListener {
 
     public void resetTimer() {
 //        Log.d(TAG, "reset timer");
-        mPreferences.setPlayTime(mOptionSettings.getPlayTime());
+        mGlobalVariable.playerPlayTime = mOptionSettings.getPlayTime();
         mHandler.removeCallbacks(mTimerRunnable);
         startTimer();
     }
@@ -231,13 +232,13 @@ public class AudioPlayer implements AudioPlayerListener {
 
     public void resetItemLoop() {
         int itemLoop = mOptionSettings.getItemLoop();
-        mPreferences.setItemLoop(itemLoop);
+        mGlobalVariable.playerItemLoop = itemLoop;
         itemLoopCountDown = itemLoop;
     }
 
     public void resetListLoop() {
         int listLoop = mOptionSettings.getListLoop();
-        mPreferences.setListLoop(listLoop);
+        mGlobalVariable.playerListLoop = listLoop;
         listLoopCountDown = listLoop;
     }
 
@@ -386,12 +387,10 @@ public class AudioPlayer implements AudioPlayerListener {
         if (!playerState.equals(mPlayerState))
             mBroadcastTrigger.onPlayerStateChanged(playerState);
 
-        if (mPreferences != null) {
-            mPreferences.setItemIndex(itemIndex);
-            mPreferences.setSentenceIndex(sentenceIndex);
-            mPreferences.setPlayerState(playerState);
-            mPreferences.setPlayingField(playingField);
-        }
+        mGlobalVariable.playerItemIndex = itemIndex;
+        mGlobalVariable.playerSentenceIndex = sentenceIndex;
+        mGlobalVariable.playerState = playerState;
+        mGlobalVariable.playingField = playingField;
 
         mItemIndex = itemIndex;
         mSentenceIndex = sentenceIndex;
@@ -414,14 +413,14 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     private ArrayList<Vocabulary> loadNewContent() {
-        int bookIndex = mPreferences.getBookIndex();
+        int bookIndex = mGlobalVariable.playerTextbookIndex;
         int numOfLesson = mDatabase.getNumOfLesson(bookIndex);
-        int oldLessonIndex = mPreferences.getLessonIndex();
+        int oldLessonIndex = mGlobalVariable.playerLessonIndex;
         int newLessonIndex = (oldLessonIndex+1) % numOfLesson;
-        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIDs(bookIndex, newLessonIndex));
-        mPreferences.setCurrentContent(vocabularies);
-        mPreferences.setBookIndex(bookIndex);
-        mPreferences.setLessonIndex(newLessonIndex);
+        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIds(bookIndex, newLessonIndex));
+        mGlobalVariable.playerContent = vocabularies;
+        mGlobalVariable.playerTextbookIndex = bookIndex;
+        mGlobalVariable.playerLessonIndex = newLessonIndex;
         return vocabularies;
     }
 

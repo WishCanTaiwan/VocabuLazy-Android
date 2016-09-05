@@ -14,6 +14,7 @@ public class Vocabulary {
     public static final String TAG = Vocabulary.class.getSimpleName();
 
     private int id;
+    private int level;
     private String spell;
     private String phonetic;
     private String partOfSpeech;
@@ -22,12 +23,13 @@ public class Vocabulary {
     private ArrayList<String> enSentence;
     private ArrayList<String> cnSentence;
 
-    public Vocabulary(int id, String spell, String phonetic,
+    public Vocabulary(int id, int level, String spell, String phonetic,
                       String partOfSpeech,
                       String translation,
                       ArrayList<String> enSentence,
                       ArrayList<String> cnSentence) {
         setId(id);
+        setLevel(level);
         setSpell(spell);
         setPhonetic(phonetic);
         setPartOfSpeech(partOfSpeech);
@@ -42,6 +44,14 @@ public class Vocabulary {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getSpell() {

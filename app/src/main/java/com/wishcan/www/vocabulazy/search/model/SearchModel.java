@@ -1,6 +1,5 @@
 package com.wishcan.www.vocabulazy.search.model;
 
-import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.search.view.SearchDetailView;
 import com.wishcan.www.vocabulazy.search.view.SearchListView;
 import com.wishcan.www.vocabulazy.storage.Database;
@@ -14,8 +13,8 @@ public class SearchModel {
 
     private Database mDatabase;
 
-    public SearchModel(VLApplication vlApplication) {
-        mDatabase = vlApplication.getDatabase();
+    public SearchModel() {
+        mDatabase = Database.getInstance();
     }
 
     public void addVocToNote(int id, int index) {

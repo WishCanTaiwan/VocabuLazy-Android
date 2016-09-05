@@ -1,9 +1,6 @@
 package com.wishcan.www.vocabulazy.exam.model;
 
-import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Book;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
@@ -19,32 +16,12 @@ public class ExamModel {
 
     private Database mDatabase;
 
-    public ExamModel(VLApplication vlApplication){
-        mDatabase = vlApplication.getDatabase();
-    }
-
-    public String getBookTitle(int bookIndex) {
-        return mDatabase.getBookTitle(bookIndex);
-    }
-
-    public String getLessonTitle(int bookIndex, int lessonIndex) {
-        return mDatabase.getLessonTitle(bookIndex, lessonIndex);
-    }
-
-    public ArrayList<Book> getBooks() {
-        return mDatabase.getBooks();
-    }
-
-    public ArrayList<Lesson> getLessons(int bookIndex) {
-        return mDatabase.getLessonsByBook(bookIndex);
-    }
-
-    public ArrayList<Integer> getContent(int bookIndex, int lessonIndex) {
-        return mDatabase.getContentIDs(bookIndex, lessonIndex);
+    public ExamModel(){
+        mDatabase = Database.getInstance();
     }
 
     public PuzzleSetter createPuzzleSetter(int bookIndex, int lessonIndex) {
-        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIDs(bookIndex, lessonIndex));
+        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIds(bookIndex, lessonIndex));
         return new PuzzleSetter(vocabularies);
     }
 

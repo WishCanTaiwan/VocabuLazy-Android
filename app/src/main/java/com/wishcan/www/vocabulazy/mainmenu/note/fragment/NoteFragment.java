@@ -30,6 +30,8 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
     private static final int DELETE = 0x3;
 
     private NoteView mNoteView;
+    private ArrayList<NoteExpandableGroupItem> mGroupItems;
+    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> mChildItemsMap;
     private OnNoteClickListener mOnNoteClickListener;
 
     public static NoteFragment newInstance() {
@@ -47,6 +49,7 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
         mNoteView = (NoteView) rootView.findViewById(R.id.note_view);
+        mNoteView.setAdapter(new NoteContentAdapter(getContext(), mGroupItems, mChildItemsMap));
         mNoteView.addOnNoteItemListener(this);
         return rootView;
     }
@@ -77,6 +80,7 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
     }
 
     public void updateNoteContent(ArrayList<NoteExpandableGroupItem> groupItems, HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> childItemsMap) {
-        mNoteView.setAdapter(new NoteContentAdapter(getContext(), groupItems, childItemsMap));
+        mGroupItems = groupItems;
+        mChildItemsMap = childItemsMap;
     }
 }

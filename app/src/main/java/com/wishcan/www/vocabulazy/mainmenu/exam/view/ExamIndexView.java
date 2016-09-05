@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
@@ -73,16 +74,30 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
         mOnExamIndexClickListener.onExamTextbookClicked(bookIndex, lessonIndex);
     }
 
+    /**
+     *
+     * @param noteIndex
+     */
     @Override
     public void OnExamIndexNoteClicked(int noteIndex) {
         mOnExamIndexClickListener.onExamNoteClicked(noteIndex);
     }
 
+    /**
+     *
+     * @param textbookGroupItems
+     * @param textbookChildItemsMap
+     * @param noteGroupItems
+     * @param noteChildItemsMap
+     */
     public void updateContent(ArrayList<TextbookExpandableGroupItem> textbookGroupItems,
                               HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap,
                               ArrayList<NoteExpandableGroupItem> noteGroupItems,
                               HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap) {
         ExamIndexPagerAdapter pagerAdapter = new ExamIndexPagerAdapter(getContext(), new ViewGroup[]{mExamIndexTextbookView, mExamIndexNoteView}, textbookGroupItems, textbookChildItemsMap, noteGroupItems, noteChildItemsMap);
+
+        //
+        //
         mExamIndexViewPager.setAdapter(pagerAdapter);
         mExamIndexViewPager.setOffscreenPageLimit(pagerAdapter.getCount());
     }

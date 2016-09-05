@@ -3,6 +3,7 @@ package com.wishcan.www.vocabulazy.mainmenu.textbook.adapter;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TextbookContentAdapter extends BaseExpandableListAdapter {
+
+    public static final String TAG = "TextbookContentAdapter";
+
     private int groupHeight;
     private int childHeight;
 
@@ -25,6 +29,7 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
     private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> mChildItems;
 
     public TextbookContentAdapter(Context context, ArrayList<TextbookExpandableGroupItem> groupItems, HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> childItems) {
+        if (context == null) Log.d(TAG, "context is null");
         mContext = context;
         mGroupItems = groupItems;
         mChildItems = childItems;

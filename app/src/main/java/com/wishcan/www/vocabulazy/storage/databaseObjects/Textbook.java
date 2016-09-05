@@ -6,37 +6,37 @@ import java.util.ArrayList;
  * Created by allencheng07 on 2016/8/22.
  */
 public class Textbook {
-    private int bookId;
-    private String bookTitle;
-    private ArrayList<Lesson> bookContent;
+    private int textbookId;
+    private String textbookTitle;
+    private ArrayList<Lesson> textbookContent;
 
-    public Textbook(int bookId, String bookTitle, ArrayList<Lesson> bookContent) {
-        setBookId(bookId);
-        setBookTitle(bookTitle);
-        setBookContent(bookContent);
+    public Textbook(int textbookId, String textbookTitle, ArrayList<Lesson> textbookContent) {
+        setTextbookId(textbookId);
+        setTextbookTitle(textbookTitle);
+        setTextbookContent(textbookContent);
     }
 
-    public int getBookId() {
-        return bookId;
+    public int getTextbookId() {
+        return textbookId;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setTextbookId(int textbookId) {
+        this.textbookId = textbookId;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public String getTextbookTitle() {
+        return textbookTitle;
     }
 
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public void setTextbookTitle(String textbookTitle) {
+        this.textbookTitle = textbookTitle;
     }
 
-    public ArrayList<Lesson> getBookContent() {
-        return bookContent;
+    public ArrayList<Lesson> getTextbookContent() {
+        return textbookContent;
     }
 
-    public void setBookContent(ArrayList<Lesson> bookContent) {
-        this.bookContent = bookContent;
+    public void setTextbookContent(ArrayList<Lesson> textbookContent) {
+        this.textbookContent = textbookContent;
     }
 }

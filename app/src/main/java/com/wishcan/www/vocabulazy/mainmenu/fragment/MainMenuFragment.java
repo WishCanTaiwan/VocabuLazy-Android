@@ -1,7 +1,9 @@
 package com.wishcan.www.vocabulazy.mainmenu.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -48,43 +50,8 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
         initFragments();
-
-        // here fakes the process of loading data
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // when data loaded
-                mModel.generateBookItems();
-                // when items ready
-                mTextbookFragment.updateBookContent(mModel.getTextbookGroupItems(), mModel.getTextbookChildItemsMap());
-
-                mModel.generateNoteItems();
-
-                mNoteFragment.updateNoteContent(mModel.getNoteGroupItems(), mModel.getNoteChildItemsMap());
-
-                mModel.generateExamIndexItems();
-
-                mExamIndexFragment.updateExamIndexContent(mModel.getExamIndexTextbookGroupItems(), mModel.getExamIndexTextbookChildItemsMap(), mModel.getExamIndexNoteGroupItems(), mModel.getExamIndexNoteChildItemsMap());
-            }
-        }, 5000);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        Log.d(TAG, "Activity Created");
-        super.onActivityCreated(savedInstanceState);
-        mModel = ((MainMenuActivity) getActivity()).getModel();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-
     }
 
     @Override
@@ -102,6 +69,21 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.main_menu_tab_container);
         tabLayout.setupWithViewPager(viewPager);
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mModel = ((MainMenuActivity) getActivity()).getModel();
+        mModel.generateBookItems();
+        mModel.generateNoteItems();
+        mModel.generateExamIndexItems();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateFragmentsContent();
     }
 
     @Override
@@ -170,5 +152,11 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
             mExamIndexFragment = ExamIndexFragment.newInstance();
             mExamIndexFragment.addOnExamIndexClickListener(this);
         }
+    }
+
+    private void updateFragmentsContent() {
+        mTextbookFragment.updateBookContent(mModel.getTextbookGroupItems(), mModel.getTextbookChildItemsMap());
+        mNoteFragment.updateNoteContent(mModel.getNoteGroupItems(), mModel.getNoteChildItemsMap());
+        mExamIndexFragment.updateExamIndexContent(mModel.getExamIndexTextbookGroupItems(), mModel.getExamIndexTextbookChildItemsMap(), mModel.getExamIndexNoteGroupItems(), mModel.getExamIndexNoteChildItemsMap());
     }
 }

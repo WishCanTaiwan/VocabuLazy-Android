@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.VLApplication;
 import com.wishcan.www.vocabulazy.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.exam.view.ExamAnswerView;
 import com.wishcan.www.vocabulazy.exam.view.ExamView;
@@ -45,7 +44,7 @@ public class ExamFragment extends Fragment implements ExamView.ExamEventListener
         } else {
             mCurrentBookIndex = mCurrentLessonIndex = 0;
         }
-        mExamModel = new ExamModel((VLApplication) getActivity().getApplication());
+        mExamModel = new ExamModel();
         mPuzzleSetter = mExamModel.createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
     }
 

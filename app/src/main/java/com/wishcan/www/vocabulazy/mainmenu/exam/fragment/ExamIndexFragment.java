@@ -26,6 +26,10 @@ public class ExamIndexFragment extends Fragment implements ExamIndexView.OnExamI
     public static final String TAG = "ExamIndexFragment";
 
     private ExamIndexView mExamIndexView;
+    private ArrayList<TextbookExpandableGroupItem> mTextbookGroupItems;
+    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> mTextbookChildItemsMap;
+    private ArrayList<NoteExpandableGroupItem> mNoteGroupItems;
+    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> mNoteChildItemsMap;
     private OnExamIndexClickListener mOnExamIndexClickListener;
 
     public static ExamIndexFragment newInstance() {
@@ -43,6 +47,7 @@ public class ExamIndexFragment extends Fragment implements ExamIndexView.OnExamI
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_exam_index, container, false);
         mExamIndexView = (ExamIndexView) rootView.findViewById(R.id.exam_index_view);
+        mExamIndexView.updateContent(mTextbookGroupItems, mTextbookChildItemsMap, mNoteGroupItems, mNoteChildItemsMap);
         mExamIndexView.addOnExamIndexClickListener(this);
         return rootView;
     }
@@ -65,6 +70,12 @@ public class ExamIndexFragment extends Fragment implements ExamIndexView.OnExamI
                                        HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap,
                                        ArrayList<NoteExpandableGroupItem> noteGroupItems,
                                        HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap) {
-        mExamIndexView.updateContent(textbookGroupItems, textbookChildItemsMap, noteGroupItems, noteChildItemsMap);
+        mTextbookGroupItems = textbookGroupItems;
+        mTextbookChildItemsMap = textbookChildItemsMap;
+
+        mNoteGroupItems = noteGroupItems;
+        mNoteChildItemsMap = noteChildItemsMap;
+
+
     }
 }
