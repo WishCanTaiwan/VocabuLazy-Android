@@ -33,9 +33,7 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew implemen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (mDialogView == null) {
-            mDialogView = (SearchAddVocToNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
-        }
+        mDialogView = (SearchAddVocToNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
         Log.d("SearchDialogFragment", "onCreateView");
         mDialogView.setOnYesOrNoClickListener(this);
 
