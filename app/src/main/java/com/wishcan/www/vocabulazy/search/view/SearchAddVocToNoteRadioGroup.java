@@ -2,72 +2,74 @@ package com.wishcan.www.vocabulazy.search.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.RadioGroup;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
-import android.widget.SimpleAdapter;
+import android.widget.RadioGroup;
 
-import com.wishcan.www.vocabulazy.widget.AdapterView;
+import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.R;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class SearchAddVocToNoteRadioGroup extends RadioGroup implements AdapterView<ArrayList> {
+public class SearchAddVocToNoteRadioGroup extends RadioGroup {
 
     private static final int SEARCH_ADD_VOC_TO_NOTE_LIST_ITEM_RES_ID = R.layout.view_search_add_voc_to_note_radio_button;
     
-    public static final String[] LIST_ITEM_CONTENT_FROM = {
-            "note_name"
-    };
-    public static final int[] LIST_ITEM_CONTENT_TO = {
-            R.id.search_note_name
-    };
-    
     private Context mContext;
-    private ArrayList<String> mDataList;
+    private LinkedList<String> mDataList;
     private CustomizedSimpleAdapter mAdapter;
     
-    public SearchAddVocToNoteListView(Context context) {
+    public SearchAddVocToNoteRadioGroup(Context context) {
         this(context, null);
     }
 
-    public SearchAddVocToNoteListView(Context context, AttributeSet attrs) {
+    public SearchAddVocToNoteRadioGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mContext = context;
-        mDataList = new ArrayList<>();
-        mAdapter = new CustomizedSimpleAdapter(context, mDataList, SEARCH_ADD_VOC_TO_NOTE_LIST_ITEM_RES_ID, LIST_ITEM_CONTENT_FROM, LIST_ITEM_CONTENT_TO);
+        mDataList = new LinkedList<>();
+        mAdapter = new CustomizedSimpleAdapter(context, mDataList, SEARCH_ADD_VOC_TO_NOTE_LIST_ITEM_RES_ID);
         setAdapter(mAdapter);
     }
-    
-    @Override
-    public void refreshView(int count, ArrayList<String> dataList) {
-        if(dataList == null) {
+
+    /**
+     * TODO: refine performance
+     * @param adapter
+     */
+    public void setAdapter(CustomizedSimpleAdapter adapter) {
+        removeAllViews();
+        for (int i = 0; i < mDataList.size(); i++) {
+            addView(adapter.getView(i, null, this));
+        }
+    }
+
+    /**
+     * TODO: for future use, need refined
+     */
+    private void refresh() {
+        setAdapter(new CustomizedSimpleAdapter(mContext, mDataList, SEARCH_ADD_VOC_TO_NOTE_LIST_ITEM_RES_ID));
+    }
+
+    /**
+     * TODO: for future use, need refined
+     */
+    public void refreshView(LinkedList<String> linkedList) {
+        if(linkedList == null) {
             return;
         }
 
         mDataList.clear();
-        mDataList = dataList;
+        mDataList = linkedList;
         refresh();
     }
-    
-    public void setAdapter(SimpleAdapter adatper) {
-        removeAllViews();
-        for (int i = 0; i < mDataList.length; i++) {
-            addView(adapter.getView(i, null, this));
-        }
-    }
-    
-    private void refresh() {
-        mAdapter.notifyDataSetChanged();
-    }
-    
-    class CustomizedSimpleAdapter extends SimpleAdapter {
+
+    class CustomizedSimpleAdapter {
 
         private Context mContext;
-        private ArrayList<String> mDataList;
+        private LinkedList<String> mDataList;
         private int mResource;
-        private String[] mFrom;
-        private int[]   mTo;
 
         private LayoutInflater mInflater;
         /**
@@ -79,23 +81,15 @@ public class SearchAddVocToNoteRadioGroup extends RadioGroup implements AdapterV
          *                 "from"
          * @param resource Resource identifier of a view layout that defines the views for this list
          *                 item. The layout file should include at least those named views defined in "to"
-         * @param from     A list of column names that will be added to the Map associated with each
-         *                 item.
-         * @param to       The views that should display column in the "from" parameter. These should all be
-         *                 TextViews. The first N views in this list are given the values of the first N columns
          */
-        public CustomizedSimpleAdapter(Context context, ArrayList<String> data, int resource, String[] from, int[] to) {
-            super(context, data, resource, from, to);
+        public CustomizedSimpleAdapter(Context context, LinkedList<String> data, int resource) {
             mContext = context;
             mDataList = data;
             mResource = resource;
-            mFrom = from;
-            mTo = to;
 
             mInflater = ((SearchActivity) mContext).getLayoutInflater();
         }
 
-        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             return createViewFromResource(position, convertView, parent , mResource);
         }
@@ -113,9 +107,8 @@ public class SearchAddVocToNoteRadioGroup extends RadioGroup implements AdapterV
         }
 
         private void bindView(int position, View v){
-            int len = mTo.length;
             String string;
-            if (mDataList == null || len != null) {
+            if (mDataList == null) {
                 return;
             }
             string = mDataList.get(position);
