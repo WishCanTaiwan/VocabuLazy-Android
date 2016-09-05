@@ -2,77 +2,69 @@ package com.wishcan.www.vocabulazy.search.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
-import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.widget.AdapterView;
+import com.wishcan.www.vocabulazy.R;
 
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-/**
- * @since 2016/8/31
- */
-public class SearchListView extends ListView implements AdapterView<HashMap> {
-    private static final int SEARCH_LIST_ITEM_RES_ID = R.layout.view_search_list_item;
+public class SearchAddVocToNoteRadioGroup extends RadioGroup implements AdapterView<ArrayList> {
 
-    public static final int IDX_VOC_SPELL = 0x0;
-    public static final int IDX_VOC_TRANSLATION = 0x1;
-    public static final int IDX_VOC_CATEGORY = 0x2;
-
+    private static final int SEARCH_ADD_VOC_TO_NOTE_LIST_ITEM_RES_ID = R.layout.view_search_add_voc_to_note_radio_button;
+    
     public static final String[] LIST_ITEM_CONTENT_FROM = {
-            "voc_spell", "voc_translation", "voc_category"
+            "note_name"
     };
     public static final int[] LIST_ITEM_CONTENT_TO = {
-            R.id.search_result_eng_text_view, R.id.search_result_cn_text_view, R.id.search_result_category_text_view
+            R.id.search_note_name
     };
-
-    private LinkedList<HashMap<String, ?>> mDataList;
+    
+    private Context mContext;
+    private ArrayList<String> mDataList;
     private CustomizedSimpleAdapter mAdapter;
-
-    public SearchListView(Context context) {
+    
+    public SearchAddVocToNoteListView(Context context) {
         this(context, null);
     }
 
-    public SearchListView(Context context, AttributeSet attrs) {
+    public SearchAddVocToNoteListView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mDataList = new LinkedList<>();
-        mAdapter = new CustomizedSimpleAdapter(context, mDataList, SEARCH_LIST_ITEM_RES_ID, LIST_ITEM_CONTENT_FROM, LIST_ITEM_CONTENT_TO);
+        mContext = context;
+        mDataList = new ArrayList<>();
+        mAdapter = new CustomizedSimpleAdapter(context, mDataList, SEARCH_ADD_VOC_TO_NOTE_LIST_ITEM_RES_ID, LIST_ITEM_CONTENT_FROM, LIST_ITEM_CONTENT_TO);
         setAdapter(mAdapter);
     }
-
+    
     @Override
-    public void refreshView(int count, LinkedList<HashMap> dataList) {
+    public void refreshView(int count, ArrayList<String> dataList) {
         if(dataList == null) {
             return;
         }
 
         mDataList.clear();
-        for(HashMap ii:dataList){
-            HashMap<String, Object> hm = new HashMap<>();
-            for (int i = 0; i < LIST_ITEM_CONTENT_FROM.length && i < LIST_ITEM_CONTENT_TO.length; i++) {
-                hm.put(LIST_ITEM_CONTENT_FROM[i], ii.get(LIST_ITEM_CONTENT_FROM[i]));
-            }
-            mDataList.add(hm);
-        }
+        mDataList = dataList;
         refresh();
     }
-
+    
+    public void setAdapter(SimpleAdapter adatper) {
+        removeAllViews();
+        for (int i = 0; i < mDataList.length; i++) {
+            addView(adapter.getView(i, null, this));
+        }
+    }
+    
     private void refresh() {
         mAdapter.notifyDataSetChanged();
     }
-
+    
     class CustomizedSimpleAdapter extends SimpleAdapter {
 
         private Context mContext;
-        private LinkedList<HashMap<String, ?>> mDataList;
+        private ArrayList<String> mDataList;
         private int mResource;
         private String[] mFrom;
         private int[]   mTo;
@@ -92,10 +84,10 @@ public class SearchListView extends ListView implements AdapterView<HashMap> {
          * @param to       The views that should display column in the "from" parameter. These should all be
          *                 TextViews. The first N views in this list are given the values of the first N columns
          */
-        public CustomizedSimpleAdapter(Context context, LinkedList<HashMap<String, ?>> data, int resource, String[] from, int[] to) {
+        public CustomizedSimpleAdapter(Context context, ArrayList<String> data, int resource, String[] from, int[] to) {
             super(context, data, resource, from, to);
             mContext = context;
-            mDataList = (LinkedList) data;
+            mDataList = data;
             mResource = resource;
             mFrom = from;
             mTo = to;
@@ -122,15 +114,14 @@ public class SearchListView extends ListView implements AdapterView<HashMap> {
 
         private void bindView(int position, View v){
             int len = mTo.length;
-            final HashMap<String, Object> dataMap;
-            if (mDataList == null) {
+            String string;
+            if (mDataList == null || len != null) {
                 return;
             }
-            dataMap = (HashMap) mDataList.get(position);
-
-            for (int i = 0; i < len; i++) {
-                TextView textView = (TextView) v.findViewById(mTo[i]);
-                textView.setText((String) dataMap.get(mFrom[i]));
+            string = mDataList.get(position);
+            
+            if (v instanceof RadioButton) {
+                ((RadioButton) v).setText(string);
             }
         }
     }

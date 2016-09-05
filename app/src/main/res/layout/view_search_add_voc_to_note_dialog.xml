@@ -32,11 +32,16 @@
                     android:textSize="@dimen/search_dialog_add_voc_to_note_content_text_size"/>
 
                 <!-- reserved -->
-                <LinearLayout
+                <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
-                </LinearLayout>
+                    
+                    <com.wishcan.www.vocabulazy.search.view.SearchAddVocToNoteRadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    
+                </ScrollView>
+                
 
             </LinearLayout>
 
