@@ -320,9 +320,14 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onPlayerOptionChanged(int optionID, int mode, View v) {
         super.onPlayerOptionChanged(optionID, mode, v);
-        Log.d(TAG, "option changed");
+
+        // TODO: (swallow) when switching option tab, this method should be called.
+
         /** Refresh option setting */
         mPlayerModel.updateOptionSettings(optionID, mode, v);
+
+        // notify the service that option settings has changed
+        optionChanged();
     }
 
     private boolean checkIndicesMatch() {
@@ -394,6 +399,12 @@ public class PlayerFragment extends GAPlayerFragment {
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.NEW_SENTENCE_FOCUSED);
         intent.putExtra(AudioService.SENTENCE_INDEX, sentenceIndex);
+        getActivity().startService(intent);
+    }
+
+    private void optionChanged() {
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.OPTION_SETTINGS_CHANGED);
         getActivity().startService(intent);
     }
 
