@@ -100,15 +100,6 @@ public class PlayerOptionView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         mTabLayout = (LinearLayout) findViewById(VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID);
-        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
-            View tab = mTabLayout.getChildAt(i);
-            tab.setOnClickListener(new OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    setCurrentTab(v);
-                }
-            });
-        }
 
         mViewPager = (WrapContentViewPager) findViewById(VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID);
         for (int i = 0; i < mViewPager.getChildCount(); i++) {
@@ -138,6 +129,17 @@ public class PlayerOptionView extends LinearLayout {
         for (int i = 0; i < mTabLayout.getChildCount(); i++) {
             final int nextTabIndex = i;
             PlayerOptionContentView tabContent = getTabContent(i);
+            PlayerOptionTabView tabView = (PlayerOptionTabView) mTabLayout.getChildAt(i);
+            tabView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setCurrentTab(view);
+                    if (mOnOptionChangedListener != null) {
+                        /** Tab index is also mode id */
+                        mOnOptionChangedListener.onOptionChanged(PlayerOptionTabView.IDX_OPTION_TAB_0 | nextTabIndex, nextTabIndex, view);
+                    }
+                }
+            });
             tabContent.setOnOptionClickListener(new PlayerOptionContentView.OnOptionClickListener() {
                 @Override
                 public void onOptionClick(int optionID, View v) {
@@ -200,6 +202,10 @@ public class PlayerOptionView extends LinearLayout {
      * PlayerOptionImageView (a trapezoid) and a TextView(the tab item's title)
      * */
     public static class PlayerOptionTabView extends RelativeLayout{
+
+        public static final int IDX_OPTION_TAB_0 = 0x10;
+        public static final int IDX_OPTION_TAB_1 = 0x11;
+        public static final int IDX_OPTION_TAB_2 = 0x12;
 
         private static final int COLOR_TAB_RES_ID = R.color.player_option_tab0;
         private static final int STR_TAB_RES_ID = R.string.player_option_tab_0;

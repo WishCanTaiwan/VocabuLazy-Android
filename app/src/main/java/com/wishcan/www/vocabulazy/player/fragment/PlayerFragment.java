@@ -19,6 +19,7 @@ import com.wishcan.www.vocabulazy.application.GlobalVariable;
 import com.wishcan.www.vocabulazy.ga.GAPlayerFragment;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.player.model.PlayerModel;
+import com.wishcan.www.vocabulazy.player.view.PlayerOptionView;
 import com.wishcan.www.vocabulazy.player.view.PlayerView;
 import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.service.AudioService;
@@ -320,9 +321,17 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onPlayerOptionChanged(int optionID, int mode, View v) {
         super.onPlayerOptionChanged(optionID, mode, v);
-
-        // TODO: (swallow) when switching option tab, this method should be called.
-
+        // TODO: (To Beibei) tab idx will be 0x10, 0x11, 0x12 corresponding PlayerOptionTabView.IDX_OPTION_TAB_(0,1,2), please remove example below if you know how to use
+        switch (optionID) {
+            case PlayerOptionView.PlayerOptionTabView.IDX_OPTION_TAB_0:
+            case PlayerOptionView.PlayerOptionTabView.IDX_OPTION_TAB_1:
+            case PlayerOptionView.PlayerOptionTabView.IDX_OPTION_TAB_2:
+                Log.d("PlayerFragment", "onPlayerOptionChanged IDX = " + optionID);
+                break;
+            default:
+                Log.d("PlayerFragment", "onPlayerOptionChanged default");
+                break;
+        }
         /** Refresh option setting */
         mPlayerModel.updateOptionSettings(optionID, mode, v);
 
