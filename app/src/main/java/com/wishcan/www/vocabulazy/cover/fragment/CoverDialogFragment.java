@@ -9,13 +9,16 @@ import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.cover.view.CoverDialogView;
+import com.wishcan.www.vocabulazy.search.view.SearchAddVocToNoteDialogView;
 import com.wishcan.www.vocabulazy.widget.DialogFragment;
+import com.wishcan.www.vocabulazy.widget.DialogFragmentNew;
 import com.wishcan.www.vocabulazy.widget.DialogView;
+import com.wishcan.www.vocabulazy.widget.DialogViewNew;
 
 /**
  * Created by swallow on 2016/4/13.
  */
-public class CoverDialogFragment extends DialogFragment implements DialogView.OnYesOrNoClickListener {
+public class CoverDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener {
 
     public interface OnDialogClickListener {
         void onYesClicked();
@@ -24,53 +27,32 @@ public class CoverDialogFragment extends DialogFragment implements DialogView.On
 
     public static final String TAG = "C.DIALOG";
 
-    public static final boolean YES_CLICKED = true;
-    public static final boolean NO_CLICKED = false;
+    private static final int LAYOUT_RES_ID = R.layout.view_cover_dialog;
 
     private CoverDialogView mCoverDialogView;
     private OnDialogClickListener mOnDialogClickListener;
 
-    public CoverDialogFragment() {
-//        super();
-    }
-
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        View rootView = inflater.inflate(R.layout.fragment_cover_dialog, container, false);
-//        mCoverDialogView = (CoverDialogView) rootView.findViewById(R.id.cover_dialog_view);
-//        mCoverDialogView.setOnYesOrNoClickedListener(this);
-//        return mCoverDialogView;
-//    }
-
     @Override
-    protected DialogView getDialogView() {
-        Log.d(TAG, "get dialog view");
-        mCoverDialogView = (CoverDialogView) LayoutInflater.from(getActivity()).inflate(R.layout.view_cover_dialog, null, false);
-        mCoverDialogView.setOnYesOrNoClickedListener(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        if (mCoverDialogView == null) {
+            mCoverDialogView = (CoverDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
+        }
+        mCoverDialogView.setOnYesOrNoClickListener(this);
+
         return mCoverDialogView;
     }
 
     @Override
-    protected String getCallerTag() {
-        return CoverFragment.M_TAG;
-    }
-
-    @Override
-    public void onYesClicked() {
+    public void onYesClick() {
         Log.d(TAG, "yes");
         mOnDialogClickListener.onYesClicked();
-//        OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(CoverFragment.M_TAG);
-//        fragment.onDialogFinish(YES_CLICKED);
-//        getActivity().onBackPressed();
     }
 
     @Override
-    public void onNoClicked() {
+    public void onNoClick() {
         Log.d(TAG, "no");
         mOnDialogClickListener.onNoClicked();
-//        OnDialogFinishListener fragment = (OnDialogFinishListener) getFragmentManager().findFragmentByTag(CoverFragment.M_TAG);
-//        fragment.onDialogFinish(NO_CLICKED);
-//        getActivity().onBackPressed();
     }
 
     public void addOnDialogClickListener(OnDialogClickListener listener) {

@@ -31,7 +31,7 @@
 
         >
         <LinearLayout
-            android:id="@+id/action_cover_cancel"
+            android:id="@+id/cover_dialog_cancel"
             android:layout_width="0dp"
             android:layout_height="@dimen/cover_dialog_button_height"
             android:layout_weight="1"
@@ -57,7 +57,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/action_cover_confirm"
+            android:id="@+id/cover_dialog_confirm"
             android:layout_width="0dp"
             android:layout_height="@dimen/cover_dialog_button_height"
             android:layout_weight="1"
