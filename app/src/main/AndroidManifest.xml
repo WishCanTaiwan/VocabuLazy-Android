@@ -18,7 +18,7 @@
     <!--<uses-feature android:name="android.hardware.camera.front" android:required="false" />-->
 
     <application
-        android:name=".application.VLApplication"
+        android:name=".application.GlobalVariable"
         android:allowBackup="true"
         android:icon="@mipmap/launcher_icon"
         android:label="@string/app_name" >

@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 
-import com.wishcan.www.vocabulazy.application.VLApplication;
+import com.wishcan.www.vocabulazy.application.GlobalVariable;
 import com.wishcan.www.vocabulazy.utility.log.Logger;
-import com.wishcan.www.vocabulazy.storage.Preferences;
+//import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
@@ -51,7 +51,8 @@ public class AudioService extends IntentService {
     public static final String EXAM_UTTERANCE = "exam-utterance";
     public static final String PLAYER_STATE = "player-state";
 
-    private Preferences mPreferences;
+    private GlobalVariable mGlobalVariable;
+//    private Preferences mPreferences;
     private AudioPlayer mAudioPlayer;
 
     public AudioService() {
@@ -93,11 +94,11 @@ public class AudioService extends IntentService {
         switch (action) {
 
             case START_SERVICE:
-                VLApplication application = (VLApplication) getApplication();
-                mPreferences = application.getPreferences();
-                mAudioPlayer = new AudioPlayer(application);
+                mGlobalVariable = (GlobalVariable) getApplication();
+//                mPreferences = application.getPreferences();
+                mAudioPlayer = new AudioPlayer(mGlobalVariable);
                 mAudioPlayer.bondToTTSEngine();
-                Broadcaster broadcaster = new Broadcaster(application.getApplicationContext());
+                Broadcaster broadcaster = new Broadcaster(mGlobalVariable.getApplicationContext());
                 mAudioPlayer.setBroadcastTrigger(broadcaster);
                 break;
 
@@ -121,12 +122,10 @@ public class AudioService extends IntentService {
                 break;
 
             case SET_CONTENT:
-                if (mPreferences == null)
-                    break;
                 if (mAudioPlayer == null)
                     break;
-                ArrayList<Vocabulary> vocabularies = mPreferences.getCurrentContent();
-                OptionSettings optionSetting = mPreferences.getCurrentOptionSettings();
+                ArrayList<Vocabulary> vocabularies = mGlobalVariable.playerContent;
+                OptionSettings optionSetting = mGlobalVariable.optionSettings.get(mGlobalVariable.optionMode);
                 mAudioPlayer.setContent(vocabularies);
                 mAudioPlayer.setOptionSettings(optionSetting);
                 break;
@@ -181,11 +180,9 @@ public class AudioService extends IntentService {
                 break;
 
             case OPTION_SETTINGS_CHANGED:
-                if (mPreferences == null)
-                    break;
                 if (mAudioPlayer == null)
                     break;
-                OptionSettings optionSettings = mPreferences.getCurrentOptionSettings();
+                OptionSettings optionSettings = mGlobalVariable.optionSettings.get(mGlobalVariable.optionMode);
                 mAudioPlayer.updateOptionSettings(optionSettings);
                 break;
 
@@ -218,8 +215,8 @@ public class AudioService extends IntentService {
     private class Broadcaster implements AudioPlayer.BroadcastTrigger {
         private Context context;
 
-        private String broadcastIntent = Preferences.VL_BROADCAST_INTENT;
-        private String broadcastAction = Preferences.VL_BROADCAST_ACTION;
+        private String broadcastIntent = GlobalVariable.PLAYER_BROADCAST_INTENT;
+        private String broadcastAction = GlobalVariable.PLAYER_BROADCAST_ACTION;
 
         public Broadcaster(Context context) {
             this.context = context;
@@ -227,7 +224,7 @@ public class AudioService extends IntentService {
 
         @Override
         public void checkVoiceData() {
-            Intent intent = new Intent(Preferences.VL_BROADCAST_INTENT)
+            Intent intent = new Intent(GlobalVariable.PLAYER_BROADCAST_INTENT)
                     .putExtra(broadcastAction, CHECK_VOICE_DATA);
             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }

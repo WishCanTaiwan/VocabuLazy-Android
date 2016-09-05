@@ -63,7 +63,7 @@ public class Logger {
     public static void sendEvent(String category, String action, String label, long value) {
         d(label, action);
         if (wTracker == null) {
-//            wTracker = ((VLApplication) getActivity().getApplication()).getDefaultTracker();
+//            wTracker = ((GlobalVariable) getActivity().getApplication()).getDefaultTracker();
         }
 
         wTracker.send(new HitBuilders.EventBuilder()

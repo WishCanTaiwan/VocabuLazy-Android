@@ -1,6 +1,5 @@
 package com.wishcan.www.vocabulazy.search.model;
 
-import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.search.view.SearchDetailView;
 import com.wishcan.www.vocabulazy.search.view.SearchListView;
 import com.wishcan.www.vocabulazy.storage.Database;

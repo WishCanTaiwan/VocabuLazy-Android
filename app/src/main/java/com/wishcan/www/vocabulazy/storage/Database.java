@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.application.GlobalVariable;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Lesson;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Note;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
@@ -28,6 +29,8 @@ public class Database {
     public static final String FILENAME_NOTE = "note.json";
     public static final String FILENAME_OPTION = "option.json";
 
+    private GlobalVariable mGlobalVariable;
+
     private static Database database = new Database();
 
 //    private Preferences mPreferences;
@@ -35,38 +38,29 @@ public class Database {
     private ArrayList<Vocabulary> mVocabularies;
     private ArrayList<Textbook> mTextbooks;
     private ArrayList<Note> mNotes;
-    private ArrayList<OptionSettings> mOptionSettings;
 
     private static final int MAXIMUM_LIST_SIZE = 50;
-
-    private Database() {
-
-    }
 
     public static Database getInstance() {
         return database;
     }
 
     public void loadFiles(Context context) {
+        mGlobalVariable = ((GlobalVariable) context);
         try {
             mVocabularies = load(Vocabulary[].class, context.getResources().openRawResource(R.raw.vocabulary));
             mTextbooks = load(Textbook[].class, context.getResources().openRawResource(R.raw.textbook));
             mNotes = load(Note[].class, context.openFileInput(FILENAME_NOTE));
-            mOptionSettings = load(OptionSettings[].class, context.openFileInput(FILENAME_OPTION));
+            mGlobalVariable.optionSettings = load(OptionSettings[].class, context.openFileInput(FILENAME_OPTION));
         } catch (FileNotFoundException fnfe) {
             mNotes = load(Note[].class, context.getResources().openRawResource(R.raw.note));
-            mOptionSettings = load(OptionSettings[].class, context.getResources().openRawResource(R.raw.option));
+            mGlobalVariable.optionSettings = load(OptionSettings[].class, context.getResources().openRawResource(R.raw.option));
         }
     }
 
     public void writeToFile(Context context) {
         write(context, FILENAME_NOTE, mNotes.toArray());
-        write(context, FILENAME_OPTION, mOptionSettings.toArray());
-    }
-
-    public void initSettings() {
-//        mPreferences.setOptionSettings(mOptionSettings);
-//        mPreferences.setOptionMode(OptionSettings.MODE_DEFAULT);
+        write(context, FILENAME_OPTION, mGlobalVariable.optionSettings.toArray());
     }
 
     public ArrayList<Textbook> getTextbooks() {
@@ -111,7 +105,7 @@ public class Database {
     }
 
     public ArrayList<OptionSettings> getOptionSettings() {
-        return mOptionSettings;
+        return mGlobalVariable.optionSettings;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

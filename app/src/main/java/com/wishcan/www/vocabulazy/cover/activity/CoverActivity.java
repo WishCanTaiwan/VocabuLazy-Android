@@ -6,17 +6,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.application.VLApplication;
 import com.wishcan.www.vocabulazy.cover.fragment.CoverDialogFragment;
-import com.wishcan.www.vocabulazy.cover.fragment.CoverFragment;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.storage.Database;
-import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 public class CoverActivity extends FragmentActivity implements CoverDialogFragment.OnDialogClickListener {
 
@@ -35,7 +31,7 @@ public class CoverActivity extends FragmentActivity implements CoverDialogFragme
         setContentView(VIEW_ACTIVITY_RES_ID);
 
         // check whether Google TTS engine has been installed
-        isEngineInstalled = !checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS_ENGINE);
+        isEngineInstalled = checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS_ENGINE);
 
         // use AsyncTask to load database, prevent UI thread from being held
         loadDatabase();

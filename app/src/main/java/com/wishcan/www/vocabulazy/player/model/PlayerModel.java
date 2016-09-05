@@ -1,15 +1,15 @@
 package com.wishcan.www.vocabulazy.player.model;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
 
-import com.wishcan.www.vocabulazy.application.VLApplication;
+import com.wishcan.www.vocabulazy.application.GlobalVariable;
 import com.wishcan.www.vocabulazy.player.view.PlayerMainView;
 import com.wishcan.www.vocabulazy.player.view.PlayerOptionContentView;
 import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
-import com.wishcan.www.vocabulazy.storage.Preferences;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.LinkedList;
@@ -18,19 +18,25 @@ import java.util.HashMap;
 
 public class PlayerModel {
 
+    public interface PlayerModelDataProcessListener {
+        void onPlayerContentCreated(LinkedList<HashMap> playerDataContent);
+        void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent);
+        void onVocabulariesGet(ArrayList<Vocabulary> vocabularies);
+    }
+
     /**
      * The TAG string for debugging.
      */
     public static final String TAG = PlayerModel.class.getSimpleName();
 
+    private GlobalVariable mGlobalVariable;
     private Database wDatabase;
-    private Preferences wPreferences;
     private ArrayList<Vocabulary> mVocabularies;
     private PlayerModelDataProcessListener wDataProcessListener;
 
-	public PlayerModel(VLApplication application) {
+	public PlayerModel(Context context) {
+        mGlobalVariable = (GlobalVariable) context;
         wDatabase = Database.getInstance();
-        wPreferences = application.getPreferences();
 	}
 
     public void setDataProcessListener(PlayerModelDataProcessListener listener) {
@@ -40,11 +46,11 @@ public class PlayerModel {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     public int getBookIndex() {
-        return wPreferences.getBookIndex();
+        return mGlobalVariable.playerTextbookIndex;
     }
 
     public int getLessonIndex() {
-        return wPreferences.getLessonIndex();
+        return mGlobalVariable.playerLessonIndex;
     }
 
     public int getNumOfLessons(int bookIndex) {
@@ -60,15 +66,11 @@ public class PlayerModel {
     }
 
     public ArrayList<Vocabulary> getCurrentContent() {
-        return wPreferences.getCurrentContent();
+        return mGlobalVariable.playerContent;
     }
 
     public void setCurrentContent(ArrayList<Vocabulary> vocabularies) {
-        wPreferences.setCurrentContent(vocabularies);
-    }
-
-    public OptionSettings getCurrentOptionSettings() {
-        return wPreferences.getCurrentOptionSettings();
+        mGlobalVariable.playerContent = vocabularies;
     }
 
     public ArrayList<OptionSettings> getOptionSettings() {
@@ -76,13 +78,12 @@ public class PlayerModel {
     }
 
     public void setOptionSettingsAndMode(ArrayList<OptionSettings> optionSettings, int optionMode) {
-        wPreferences.setOptionSettings(optionSettings);
-        wPreferences.setOptionMode(optionMode);
+        mGlobalVariable.optionSettings = optionSettings;
+        mGlobalVariable.optionMode = optionMode;
     }
 
     public void updateOptionSettings(int optionItemId, int mode, View v) {
-//        wPreferences.updateOptionSetting(optionItemId, mode);
-        OptionSettings optionSettings = wPreferences.getOptionSettings().get(mode);
+        OptionSettings optionSettings = mGlobalVariable.optionSettings.get(mode);
         switch (optionItemId) {
             case PlayerOptionContentView.IDX_OPTION_RANDOM:
                 boolean oldRandom = optionSettings.isRandom();
@@ -122,69 +123,50 @@ public class PlayerModel {
             default:
                 break;
         }
-        wPreferences.setOptionMode(mode);
+        mGlobalVariable.optionMode = mode;
     }
 
     public void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
-        wPreferences.setBookIndex(bookIndex);
-        wPreferences.setLessonIndex(lessonIndex);
-        wPreferences.setItemIndex(itemIndex);
-        wPreferences.setSentenceIndex(sentenceIndex);
+        mGlobalVariable.playerTextbookIndex = bookIndex;
+        mGlobalVariable.playerLessonIndex = lessonIndex;
+        mGlobalVariable.playerItemIndex = itemIndex;
+        mGlobalVariable.playerSentenceIndex = sentenceIndex;
     }
-
-
 
     public boolean isPlaying() {
-        return wPreferences.getPlayerState().equals(AudioPlayer.PLAYING);
-    }
-
-    /**
-     * Call saveIndicesPreferences(int[]) to store/update the indices of player.
-     * int[0] is book index.
-     * int[1] is lesson index.
-     * int[2] is item index.
-     * int[3] is sentence index.
-     * @param indices an array of int consists of four indices {book, lesson, item, sentence}
-     */
-    public void saveIndicesPreferences(int[] indices) {
-        wPreferences.setBookIndex(indices[0]);
-        wPreferences.setLessonIndex(indices[1]);
-        wPreferences.setItemIndex(indices[2]);
-        wPreferences.setSentenceIndex(indices[3]);
-    }
-
-    /**
-     * Call loadIndicesPreferences to retrieve an array containing four indices of the player.
-     * int[0] is book index.
-     * int[1] is lesson index.
-     * int[2] is item index.
-     * int[3] is sentence index.
-     * @return indices
-     */
-    public int[] loadIndicesPreferences() {
-        int[] indices = new int[4];
-        indices[0] = wPreferences.getBookIndex();
-        indices[1] = wPreferences.getLessonIndex();
-        indices[2] = wPreferences.getItemIndex();
-        indices[3] = wPreferences.getSentenceIndex();
-        return indices;
+        return mGlobalVariable.playerState != null && mGlobalVariable.playerState.equals(AudioPlayer.PLAYING);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /* AsyncTasks */
+    /**
+     *
+     * @param vocabularyArrayList
+     */
     public void createPlayerContent(ArrayList<Vocabulary> vocabularyArrayList) {
         new PlayerModelAsyncTask().execute(vocabularyArrayList);
     }
 
+    /**
+     *
+     * @param vocabulary
+     */
     public void createPlayerDetailContent(Vocabulary vocabulary) {
         new PlayerModelAsyncTask().execute(vocabulary);
     }
 
+    /**
+     *
+     * @param bookIndex
+     * @param lessonIndex
+     */
     public void getVocabulariesIn(int bookIndex, int lessonIndex) {
         new PlayerModelAsyncTask().execute(bookIndex, lessonIndex);
     }
 
+    /**
+     *
+     */
     private class PlayerModelAsyncTask extends AsyncTask<Object, Void, Object> {
         @Override
         protected Object doInBackground(Object... params) {
@@ -257,12 +239,6 @@ public class PlayerModel {
                 wDataProcessListener.onVocabulariesGet(vocabularies);
             }
         }
-    }
-
-    public interface PlayerModelDataProcessListener {
-        void onPlayerContentCreated(LinkedList<HashMap> playerDataContent);
-        void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent);
-        void onVocabulariesGet(ArrayList<Vocabulary> vocabularies);
     }
 
 }
