@@ -26,8 +26,8 @@ import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 public class Database {
     public static final String TAG = Database.class.getSimpleName();
 
-    public static final String FILENAME_NOTE = "note.json";
-    public static final String FILENAME_OPTION = "option.json";
+    public static final String FILENAME_NOTE = "note";
+    public static final String FILENAME_OPTION = "optionSetting";
 
     private GlobalVariable mGlobalVariable;
 
@@ -45,26 +45,19 @@ public class Database {
 
     public void loadFiles(Context context) {
         mGlobalVariable = ((GlobalVariable) context);
-
-        // TODO: (allen) need to fix that filenotfound doesn't work
-//        try {
+        try {
             mVocabularies = load(Vocabulary[].class, context.getResources().openRawResource(R.raw.vocabulary));
             mTextbooks = load(Textbook[].class, context.getResources().openRawResource(R.raw.textbook));
-//            mNotes = load(Note[].class, context.openFileInput(FILENAME_NOTE));
-//            mGlobalVariable.optionSettings = load(OptionSettings[].class, context.openFileInput(FILENAME_OPTION));
+            mNotes = load(Note[].class, context.openFileInput(FILENAME_NOTE));
+            mGlobalVariable.optionSettings = load(OptionSettings[].class, context.openFileInput(FILENAME_OPTION));
+        } catch (FileNotFoundException fnfe) {
             mNotes = load(Note[].class, context.getResources().openRawResource(R.raw.note));
             mGlobalVariable.optionSettings = load(OptionSettings[].class, context.getResources().openRawResource(R.raw.option));
-            Log.d(TAG, "vocabulary " + mVocabularies.size());
-            Log.d(TAG, "textbook " + mTextbooks.size());
-            Log.d(TAG, "note " + mNotes.size());
-//        } catch (FileNotFoundException fnfe) {
-//            Log.d(TAG, "YOLO");
-//            mNotes = load(Note[].class, context.getResources().openRawResource(R.raw.note));
-//            mGlobalVariable.optionSettings = load(OptionSettings[].class, context.getResources().openRawResource(R.raw.option));
-//        }
+        }
     }
 
-    public void writeToFile(Context context) {
+    public synchronized void writeToFile(Context context) {
+        Log.d(TAG, "write database");
         write(context, FILENAME_NOTE, mNotes.toArray());
         write(context, FILENAME_OPTION, mGlobalVariable.optionSettings.toArray());
     }

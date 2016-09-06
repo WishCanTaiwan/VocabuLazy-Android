@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.mainmenu.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,6 +18,7 @@ import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;
+import com.wishcan.www.vocabulazy.storage.Database;
 
 public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener {
 
@@ -45,6 +47,18 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         super.onAttachFragment(fragment);
         MainMenuFragment mainMenuFragment = (MainMenuFragment) getSupportFragmentManager().findFragmentById(R.id.main_menu_fragment);
         mainMenuFragment.addOnMainMenuEventListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                Database.getInstance().writeToFile(getApplicationContext());
+                return null;
+            }
+        }.execute();
     }
 
     @Override
