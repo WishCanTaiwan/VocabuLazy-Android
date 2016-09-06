@@ -1,11 +1,16 @@
 package com.wishcan.www.vocabulazy.storage.databaseObjects;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
  * Created by allencheng07 on 2016/8/22.
  */
 public class Textbook {
+
+    public static final String TAG = "Textbook";
+
     private int textbookId;
     private String textbookTitle;
     private ArrayList<Lesson> textbookContent;
@@ -14,6 +19,7 @@ public class Textbook {
         setTextbookId(textbookId);
         setTextbookTitle(textbookTitle);
         setTextbookContent(textbookContent);
+        Log.d(TAG, "create " + textbookTitle);
     }
 
     public int getTextbookId() {

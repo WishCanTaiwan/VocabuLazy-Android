@@ -210,6 +210,7 @@ public class PlayerFragment extends GAPlayerFragment {
         mPlayerModel.createPlayerDetailContent(vocabularies.get((mIsSameAsLastEntrance ? mItemIndex : 0)));
 
         if (vocabularies.size() > 0 && !mIsSameAsLastEntrance) {
+            Log.d(TAG, "set content and start playing");
             setContent(vocabularies);
             updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
             startPlayingAt(0, -1, AudioPlayer.SPELL);

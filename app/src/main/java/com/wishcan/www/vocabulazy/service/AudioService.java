@@ -95,7 +95,6 @@ public class AudioService extends IntentService {
 
             case START_SERVICE:
                 mGlobalVariable = (GlobalVariable) getApplication();
-//                mPreferences = application.getPreferences();
                 mAudioPlayer = new AudioPlayer(mGlobalVariable);
                 mAudioPlayer.bondToTTSEngine();
                 Broadcaster broadcaster = new Broadcaster(mGlobalVariable.getApplicationContext());

@@ -1,6 +1,5 @@
 package com.wishcan.www.vocabulazy.storage;
 
-import android.app.VoiceInteractor;
 import android.content.Context;
 import android.util.Log;
 
@@ -10,9 +9,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import com.google.gson.Gson;
 import com.wishcan.www.vocabulazy.R;
@@ -26,14 +26,12 @@ import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 public class Database {
     public static final String TAG = Database.class.getSimpleName();
 
-    public static final String FILENAME_NOTE = "note.json";
-    public static final String FILENAME_OPTION = "option.json";
+    public static final String FILENAME_NOTE = "note";
+    public static final String FILENAME_OPTION = "optionSetting";
 
     private GlobalVariable mGlobalVariable;
 
     private static Database database = new Database();
-
-//    private Preferences mPreferences;
 
     private ArrayList<Vocabulary> mVocabularies;
     private ArrayList<Textbook> mTextbooks;
@@ -58,7 +56,8 @@ public class Database {
         }
     }
 
-    public void writeToFile(Context context) {
+    public synchronized void writeToFile(Context context) {
+        Log.d(TAG, "write database");
         write(context, FILENAME_NOTE, mNotes.toArray());
         write(context, FILENAME_OPTION, mGlobalVariable.optionSettings.toArray());
     }
@@ -67,28 +66,35 @@ public class Database {
         return mTextbooks;
     }
 
+    public ArrayList<Note> getNotes() {
+        return mNotes;
+    }
+
     public String getTextbookTitle(int bookIndex) {
         return mTextbooks.get(bookIndex).getTextbookTitle();
     }
 
     public String getLessonTitle(int bookIndex, int lessonIndex) {
+        if (bookIndex < 0) return mNotes.get(lessonIndex).getNoteTitle();
         return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonTitle();
     }
 
     public int getNumOfLesson(int bookIndex) {
+        if (bookIndex < 0) return mNotes.size();
         return mTextbooks.get(bookIndex).getTextbookContent().size();
     }
 
-    public int getNoteSize(int noteIndex) {
-        return mNotes.get(noteIndex).getNoteContent().size();
-    }
-
     public ArrayList<Integer> getContentIds(int bookIndex, int lessonIndex) {
+        if (bookIndex < 0) return mNotes.get(lessonIndex).getNoteContent();
         return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonContent();
     }
 
-    public ArrayList<Lesson> getLessonsByBook(int bookIndex) {
-        return mTextbooks.get(bookIndex).getTextbookContent();
+    public ArrayList<String> getNoteNames() {
+        ArrayList<String> noteNames = new ArrayList<>();
+        for (Note note : mNotes) {
+            noteNames.add(note.getNoteTitle());
+        }
+        return noteNames;
     }
 
     public ArrayList<Vocabulary> getVocabulariesByIDs(ArrayList<Integer> vocIDs) {
