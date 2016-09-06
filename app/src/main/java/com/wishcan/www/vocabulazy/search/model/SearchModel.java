@@ -21,7 +21,10 @@ public class SearchModel {
         mDatabase.addVocToNote(id, index);
     }
 
-    public LinkedList<HashMap> createSearchResultMap(ArrayList<Vocabulary> vocabularies) {
+    public LinkedList<HashMap> createSearchResultMap(String searchStr) {
+
+        ArrayList<Vocabulary> vocabularies = mDatabase.readSuggestVocabularyBySpell(searchStr);
+
         if (vocabularies == null)
             return null;
 
@@ -47,5 +50,18 @@ public class SearchModel {
         hm.put(from[SearchDetailView.IDX_VOC_SENTENCE], voc.getEnSentence());
         hm.put(from[SearchDetailView.IDX_VOC_SENTENCE_TRANSLATION], voc.getCnSentence());
         return hm;
+    }
+
+    public LinkedList<String> getNoteNameList() {
+        ArrayList<String> noteNameArrayList = mDatabase.getNoteNames();
+        return toLinkedList(noteNameArrayList);
+    }
+
+    private <T> LinkedList<T> toLinkedList(ArrayList<T> arrayList) {
+        LinkedList<T> linkedList = new LinkedList<>();
+        for (T t : arrayList) {
+            linkedList.add(t);
+        }
+        return linkedList;
     }
 }

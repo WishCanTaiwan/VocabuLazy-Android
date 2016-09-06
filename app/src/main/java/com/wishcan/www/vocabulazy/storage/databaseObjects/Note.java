@@ -1,8 +1,13 @@
 package com.wishcan.www.vocabulazy.storage.databaseObjects;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Note {
+
+    public static final String TAG = "Note";
+
     private int noteId;
     private String noteTitle;
     private ArrayList<Integer> noteContent;
@@ -11,6 +16,7 @@ public class Note {
         this.noteId = noteId;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
+        Log.d(TAG, "create note " + toString());
     }
 
     public int getNoteId() {
@@ -35,5 +41,9 @@ public class Note {
 
     public void setNoteContent(ArrayList<Integer> noteContent) {
         this.noteContent = noteContent;
+    }
+
+    public String toString() {
+        return "Note[id="+noteId+",title="+noteTitle+",content="+noteContent.toString()+"]";
     }
 }

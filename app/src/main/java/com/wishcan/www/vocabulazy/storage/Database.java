@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.storage;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -8,8 +9,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import com.google.gson.Gson;
 import com.wishcan.www.vocabulazy.R;
@@ -42,15 +45,23 @@ public class Database {
 
     public void loadFiles(Context context) {
         mGlobalVariable = ((GlobalVariable) context);
-        try {
+
+        // TODO: (allen) need to fix that filenotfound doesn't work
+//        try {
             mVocabularies = load(Vocabulary[].class, context.getResources().openRawResource(R.raw.vocabulary));
             mTextbooks = load(Textbook[].class, context.getResources().openRawResource(R.raw.textbook));
-            mNotes = load(Note[].class, context.openFileInput(FILENAME_NOTE));
-            mGlobalVariable.optionSettings = load(OptionSettings[].class, context.openFileInput(FILENAME_OPTION));
-        } catch (FileNotFoundException fnfe) {
+//            mNotes = load(Note[].class, context.openFileInput(FILENAME_NOTE));
+//            mGlobalVariable.optionSettings = load(OptionSettings[].class, context.openFileInput(FILENAME_OPTION));
             mNotes = load(Note[].class, context.getResources().openRawResource(R.raw.note));
             mGlobalVariable.optionSettings = load(OptionSettings[].class, context.getResources().openRawResource(R.raw.option));
-        }
+            Log.d(TAG, "vocabulary " + mVocabularies.size());
+            Log.d(TAG, "textbook " + mTextbooks.size());
+            Log.d(TAG, "note " + mNotes.size());
+//        } catch (FileNotFoundException fnfe) {
+//            Log.d(TAG, "YOLO");
+//            mNotes = load(Note[].class, context.getResources().openRawResource(R.raw.note));
+//            mGlobalVariable.optionSettings = load(OptionSettings[].class, context.getResources().openRawResource(R.raw.option));
+//        }
     }
 
     public void writeToFile(Context context) {
@@ -62,28 +73,35 @@ public class Database {
         return mTextbooks;
     }
 
+    public ArrayList<Note> getNotes() {
+        return mNotes;
+    }
+
     public String getTextbookTitle(int bookIndex) {
         return mTextbooks.get(bookIndex).getTextbookTitle();
     }
 
     public String getLessonTitle(int bookIndex, int lessonIndex) {
+        if (bookIndex < 0) return mNotes.get(lessonIndex).getNoteTitle();
         return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonTitle();
     }
 
     public int getNumOfLesson(int bookIndex) {
+        if (bookIndex < 0) return mNotes.size();
         return mTextbooks.get(bookIndex).getTextbookContent().size();
     }
 
-    public int getNoteSize(int noteIndex) {
-        return mNotes.get(noteIndex).getNoteContent().size();
-    }
-
     public ArrayList<Integer> getContentIds(int bookIndex, int lessonIndex) {
+        if (bookIndex < 0) return mNotes.get(lessonIndex).getNoteContent();
         return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonContent();
     }
 
-    public ArrayList<Lesson> getLessonsByBook(int bookIndex) {
-        return mTextbooks.get(bookIndex).getTextbookContent();
+    public ArrayList<String> getNoteNames() {
+        ArrayList<String> noteNames = new ArrayList<>();
+        for (Note note : mNotes) {
+            noteNames.add(note.getNoteTitle());
+        }
+        return noteNames;
     }
 
     public ArrayList<Vocabulary> getVocabulariesByIDs(ArrayList<Integer> vocIDs) {

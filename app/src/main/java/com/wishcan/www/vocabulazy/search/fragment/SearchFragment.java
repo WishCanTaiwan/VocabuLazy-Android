@@ -1,6 +1,8 @@
 package com.wishcan.www.vocabulazy.search.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -22,20 +24,16 @@ import java.util.LinkedList;
  */
 public class SearchFragment extends Fragment implements SearchView.SearchEventListener {
     private static final int LAYOUT_RES_ID = R.layout.view_search;
+    private Context mContext;
     private SearchView mSearchView;
-    private Database wDatabase;
     private SearchModel mSearchModel;
 
-    public static SearchFragment newInstance() {
-        SearchFragment fragment = new SearchFragment();
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        wDatabase = Database.getInstance();
-        mSearchModel = new SearchModel();
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // get the context of activity
+        mContext = context;
     }
 
     @Override
@@ -48,12 +46,13 @@ public class SearchFragment extends Fragment implements SearchView.SearchEventLi
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mSearchModel = ((SearchActivity) mContext).getModel();
     }
 
     public void refreshSearchResult(String searchStr) {
-        LinkedList<HashMap> dataList = mSearchModel.createSearchResultMap(wDatabase.readSuggestVocabularyBySpell(searchStr));
+        LinkedList<HashMap> dataList = mSearchModel.createSearchResultMap(searchStr);
         mSearchView.refreshSearchList(dataList);
     }
 

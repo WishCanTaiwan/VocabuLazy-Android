@@ -27,20 +27,20 @@ public class MainMenuModel {
     private ArrayList<NoteExpandableGroupItem> examIndexNoteGroupItems;
     private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> examIndexNoteChildItemsMap;
 
-    private ArrayList<Textbook> fakeBooks;
-    private ArrayList<Note> fakeNotes;
+    private ArrayList<Textbook> texbooks;
+    private ArrayList<Note> notes;
 
     public MainMenuModel() {
-        createFakeData();
+        getDataFromDatabase();
     }
 
     public void generateBookItems() {
         textbookGroupItems = new ArrayList<>();
         textbookChildItemsMap = new HashMap<>();
-        for (int bookIndex = 0; bookIndex < fakeBooks.size(); bookIndex++) {
-            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getTextbookTitle());
+        for (int bookIndex = 0; bookIndex < texbooks.size(); bookIndex++) {
+            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(texbooks.get(bookIndex).getTextbookTitle());
 
-            ArrayList<Lesson> lessons = fakeBooks.get(bookIndex).getTextbookContent();
+            ArrayList<Lesson> lessons = texbooks.get(bookIndex).getTextbookContent();
             ArrayList<TextbookExpandableChildItem> childItems = new ArrayList<>();
             for (int lessonIndex = 0; lessonIndex < lessons.size(); lessonIndex++) {
                 TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(lessons.get(lessonIndex).getLessonTitle());
@@ -64,8 +64,8 @@ public class MainMenuModel {
         String[] childs = new String[]{"Play", "Rename", "Copy", "Delete"};
         noteGroupItems = new ArrayList<>();
         noteChildItemsMap = new HashMap<>();
-        for (int noteIndex = 0; noteIndex < fakeNotes.size(); noteIndex++) {
-            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getNoteTitle());
+        for (int noteIndex = 0; noteIndex < notes.size(); noteIndex++) {
+            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(notes.get(noteIndex).getNoteTitle());
 
             ArrayList<NoteExpandableChildItem> childItems = new ArrayList<>();
             for (int index = 0; index < 4; index++) {
@@ -91,10 +91,10 @@ public class MainMenuModel {
         // generate textbook items for exam index
         examIndexTextbookGroupItems = new ArrayList<>();
         examIndexTextbookChildItemsMap = new HashMap<>();
-        for (int bookIndex = 0; bookIndex < fakeBooks.size(); bookIndex++) {
-            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(fakeBooks.get(bookIndex).getTextbookTitle());
+        for (int bookIndex = 0; bookIndex < texbooks.size(); bookIndex++) {
+            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(texbooks.get(bookIndex).getTextbookTitle());
 
-            ArrayList<Lesson> lessons = fakeBooks.get(bookIndex).getTextbookContent();
+            ArrayList<Lesson> lessons = texbooks.get(bookIndex).getTextbookContent();
             ArrayList<TextbookExpandableChildItem> childItems = new ArrayList<>();
             for (int lessonIndex = 0; lessonIndex < lessons.size(); lessonIndex++) {
                 TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(lessons.get(lessonIndex).getLessonTitle());
@@ -109,8 +109,8 @@ public class MainMenuModel {
         String[] childs = new String[]{"Play", "Rename", "Copy", "Delete"};
         examIndexNoteGroupItems = new ArrayList<>();
         examIndexNoteChildItemsMap = new HashMap<>();
-        for (int noteIndex = 0; noteIndex < fakeNotes.size(); noteIndex++) {
-            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(fakeNotes.get(noteIndex).getNoteTitle());
+        for (int noteIndex = 0; noteIndex < notes.size(); noteIndex++) {
+            NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(notes.get(noteIndex).getNoteTitle());
 
             ArrayList<NoteExpandableChildItem> childItems = new ArrayList<>();
             for (int index = 0; index < childs.length; index++) {
@@ -139,9 +139,9 @@ public class MainMenuModel {
         return examIndexNoteChildItemsMap;
     }
 
-    public void createFakeData() {
+    public void getDataFromDatabase() {
         Database database = Database.getInstance();
-        fakeBooks = database.getTextbooks();
-        fakeNotes = new ArrayList<>();
+        texbooks = database.getTextbooks();
+        notes = database.getNotes();
     }
 }

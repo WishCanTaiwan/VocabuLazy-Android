@@ -10,6 +10,7 @@ import android.view.Menu;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.search.fragment.SearchFragment;
+import com.wishcan.www.vocabulazy.search.model.SearchModel;
 
 /**
  * Created by SwallowChen on 8/31/16.
@@ -24,6 +25,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private SearchView mSearchActionView;
     private Toolbar mToolbar;
     private SearchFragment mSearchFragment;
+    private SearchModel mSearchModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        if (mSearchModel == null) {
+            mSearchModel = new SearchModel();
         }
     }
 
@@ -75,5 +80,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     public boolean onQueryTextChange(String newText) {
         mSearchFragment.refreshSearchResult(newText);
         return true;
+    }
+
+    public SearchModel getModel() {
+        return mSearchModel;
     }
 }
