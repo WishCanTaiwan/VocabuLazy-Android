@@ -28,15 +28,15 @@ public class GlobalVariable extends Application {
     public static final String PLAYER_BROADCAST_INTENT = "player-broadcast-intent";
     public static final String PLAYER_BROADCAST_ACTION = "player-broadcast-action";
 
-    public int playerTextbookIndex;
-    public int playerLessonIndex;
-    public int playerNoteIndex;
+    public int playerTextbookIndex = 1359;
+    public int playerLessonIndex = 1359;
+    public int playerNoteIndex = 1359;
 
     public ArrayList<Vocabulary> playerContent;
     public ArrayList<OptionSettings> optionSettings;
-    public int optionMode;
-    public int playerItemIndex;
-    public int playerSentenceIndex;
+    public int optionMode = 0;
+    public int playerItemIndex = -1;
+    public int playerSentenceIndex = -1;
     public String playerState;
     public String playingField;
 

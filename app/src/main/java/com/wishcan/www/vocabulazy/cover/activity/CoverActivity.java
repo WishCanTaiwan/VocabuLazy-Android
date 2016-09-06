@@ -31,7 +31,7 @@ public class CoverActivity extends FragmentActivity implements CoverDialogFragme
         setContentView(VIEW_ACTIVITY_RES_ID);
 
         // check whether Google TTS engine has been installed
-        isEngineInstalled = !checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS_ENGINE);
+        isEngineInstalled = checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS_ENGINE);
 
         // use AsyncTask to load database, prevent UI thread from being held
         loadDatabase();

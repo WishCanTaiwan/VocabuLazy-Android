@@ -1,8 +1,6 @@
 package com.wishcan.www.vocabulazy.storage;
 
-import android.app.VoiceInteractor;
 import android.content.Context;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,8 +29,6 @@ public class Database {
     private GlobalVariable mGlobalVariable;
 
     private static Database database = new Database();
-
-//    private Preferences mPreferences;
 
     private ArrayList<Vocabulary> mVocabularies;
     private ArrayList<Textbook> mTextbooks;
