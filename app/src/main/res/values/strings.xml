@@ -49,6 +49,7 @@
     <string name="player_option_speed">speed</string>
     <string name="player_option_play_time_chinese">播放時間</string>
     <string name="player_option_play_time">play-time</string>
+    <string name="player_dialog_add_voc_to_note_title">加入筆記清單</string>
     <!-- search -->
     <string name="search_menu_item">Search Menu Item</string>
     <string name="search_dialog_new_note">自訂清單名稱</string>

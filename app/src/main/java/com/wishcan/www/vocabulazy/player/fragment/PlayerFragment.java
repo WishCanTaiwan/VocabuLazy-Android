@@ -44,6 +44,10 @@ public class PlayerFragment extends GAPlayerFragment {
         void onLessonChange(int lesson);
     }
 
+    public interface OnPlayerOptionFavoriteClickListener {
+        void onFavoriteClick();
+    }
+
     private static final String TAG = PlayerFragment.class.getSimpleName();
 
     private int argBookIndex;
@@ -59,6 +63,7 @@ public class PlayerFragment extends GAPlayerFragment {
     private PlayerModel mPlayerModel;
 
     private OnPlayerLessonChangeListener mOnPlayerLessonChangeListener;
+    private OnPlayerOptionFavoriteClickListener mOnPlayerOptionFavoriteClickListener;
 
     /**
      * receiver to get broadcasts from AudioService
@@ -144,7 +149,6 @@ public class PlayerFragment extends GAPlayerFragment {
         mPlayerView.moveToPosition(mItemIndex);
         mPlayerView.setIconState(false, mPlayerModel.isPlaying(), false);
 
-        // TODO: ask swallow
         if (mIsWaitingAddNewPlayer) {
             mPlayerModel.createPlayerContent(mPlayerModel.getCurrentContent());
             mPlayerModel.createPlayerDetailContent(mPlayerModel.getCurrentContent().get(mItemIndex));
@@ -166,6 +170,10 @@ public class PlayerFragment extends GAPlayerFragment {
      */
     public void addOnPlayerLessonChangeListener(OnPlayerLessonChangeListener listener) {
         mOnPlayerLessonChangeListener = listener;
+    }
+
+    public void setOnPlayerOptionFavoriteClickListener(OnPlayerOptionFavoriteClickListener listener) {
+        mOnPlayerOptionFavoriteClickListener = listener;
     }
 
     /**
@@ -302,6 +310,14 @@ public class PlayerFragment extends GAPlayerFragment {
     public void onPlayerDetailScrolling() {
         super.onPlayerDetailScrolling();
         playerViewScrolling();
+    }
+
+    @Override
+    public void onPlayerPanelFavoriteClick() {
+        super.onPlayerPanelFavoriteClick();
+        if (mOnPlayerOptionFavoriteClickListener != null) {
+            mOnPlayerOptionFavoriteClickListener.onFavoriteClick();
+        }
     }
 
     @Override

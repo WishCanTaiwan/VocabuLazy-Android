@@ -21,8 +21,11 @@ import com.wishcan.www.vocabulazy.search.fragment.SearchNewNoteDialogFragment;
 /**
  * Created by SwallowChen on 8/31/16.
  */
-public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, SearchFragment.OnSearchItemEventListener, SearchAddVocToNoteDialogFragment.OnAddVocToNoteDialogFinishListener, SearchNewNoteDialogFragment.OnNewNoteDialogFinishListener {
-    public static final int VIEW_MAIN_RES_ID = R.id.activity_search_container;
+public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,
+                                                                 SearchFragment.OnSearchItemEventListener,
+                                                                 SearchAddVocToNoteDialogFragment.OnAddVocToNoteDialogFinishListener,
+                                                                 SearchNewNoteDialogFragment.OnNewNoteDialogFinishListener {
+    private static final int VIEW_MAIN_RES_ID = R.id.activity_search_container;
     private static final int VIEW_RES_ID = R.layout.activity_search;
     private static final int MENU_RES_ID = R.menu.menu_search;
     private static final int MENU_ITEM_SEARCH_RES_ID = R.id.menu_item_search;
@@ -96,6 +99,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         return super.onSupportNavigateUp();
     }
 
+    public SearchModel getModel() {
+        return mSearchModel;
+    }
+
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -142,9 +149,5 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         fragmentTransaction.add(SearchActivity.VIEW_MAIN_RES_ID, dialogFragment, "SearchAddVocToNoteDialogFragment");
         fragmentTransaction.addToBackStack("SearchAddVocToNoteDialogFragment");
         fragmentTransaction.commit();
-    }
-
-    public SearchModel getModel() {
-        return mSearchModel;
     }
 }

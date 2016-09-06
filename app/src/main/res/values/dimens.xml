@@ -33,6 +33,12 @@
     <dimen name="player_option_tab_text">18sp</dimen>
     <dimen name="player_option_picker_indicator_text_size">12sp</dimen>
     <dimen name="player_option_image_padding">5dp</dimen>
+    <dimen name="player_dialog_add_voc_to_note_content_width">295dp</dimen>
+    <dimen name="player_dialog_add_voc_to_note_content_height">313dp</dimen>
+    <dimen name="player_dialog_add_voc_to_note_content_padding">20dp</dimen>
+    <dimen name="player_dialog_add_voc_to_note_content_text_size">20sp</dimen>
+    <dimen name="player_dialog_add_voc_to_note_content_yes_no_container_margin">28dp</dimen>
+    <dimen name="player_dialog_add_voc_to_note_content_yes_no_container_height">53dp</dimen>
     <!-- search -->
     <dimen name="search_divider_height">2dp</dimen>
     <dimen name="search_list_result_cross">25dp</dimen>
