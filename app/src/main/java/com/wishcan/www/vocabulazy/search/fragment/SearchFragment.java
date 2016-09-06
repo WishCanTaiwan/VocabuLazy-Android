@@ -2,10 +2,7 @@ package com.wishcan.www.vocabulazy.search.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +20,24 @@ import java.util.LinkedList;
  * @since 2016/8/31
  */
 public class SearchFragment extends Fragment implements SearchView.SearchEventListener {
+
+    public interface OnSearchItemEventListener {
+        void onSearchListClick();
+        void onSearchAddClick();
+    }
     private static final int LAYOUT_RES_ID = R.layout.view_search;
+
     private Context mContext;
     private SearchView mSearchView;
+
+    private Database wDatabase;
     private SearchModel mSearchModel;
+    private OnSearchItemEventListener mOnSearchItemEventListener;
+
+    public static SearchFragment newInstance() {
+        SearchFragment fragment = new SearchFragment();
+        return fragment;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -46,9 +57,13 @@ public class SearchFragment extends Fragment implements SearchView.SearchEventLi
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mSearchModel = ((SearchActivity) mContext).getModel();
+    }
+
+    public void setOnSearchItemEventListener(OnSearchItemEventListener listener) {
+        mOnSearchItemEventListener = listener;
     }
 
     public void refreshSearchResult(String searchStr) {
@@ -58,16 +73,15 @@ public class SearchFragment extends Fragment implements SearchView.SearchEventLi
 
     @Override
     public void onSearchItemClick() {
-        Log.d("SearchFragment", "onSearchItemClick");
-        SearchAddVocToNoteDialogFragment dialogFragment = new SearchAddVocToNoteDialogFragment();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.add(SearchActivity.VIEW_MAIN_RES_ID, dialogFragment, "SearchAddVocToNoteDialogFragment");
-        fragmentTransaction.addToBackStack("SearchAddVocToNoteDialogFragment");
-        fragmentTransaction.commit();
+        if (mOnSearchItemEventListener != null) {
+            mOnSearchItemEventListener.onSearchListClick();
+        }
     }
 
     @Override
     public void onSearchAddClick() {
-
+        if (mOnSearchItemEventListener != null) {
+            mOnSearchItemEventListener.onSearchAddClick();
+        }
     }
 }

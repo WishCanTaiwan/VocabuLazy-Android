@@ -20,14 +20,19 @@ import java.util.LinkedList;
 /**
  * Created by SwallowChen on 9/4/16.
  */
-public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
+public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer> implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
+
+    public interface OnAddVocToNoteDialogFinishListener {
+        void onNeedNewNote();
+    }
 
     private static final int LAYOUT_RES_ID = R.layout.view_search_add_voc_to_note_dialog;
 
     private Context mContext;
 
-    private SearchAddVocToNoteDialogView mDialogView;
+    private SearchAddVocToNoteDialogView mSearchAddVocToNoteDialogView;
 
+    private OnAddVocToNoteDialogFinishListener mOnAddVocToNoteDialogFinishListener;
     private LinkedList<String> mNoteNameList;
 
     @Override
@@ -37,12 +42,12 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew implemen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mDialogView = (SearchAddVocToNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
+        mSearchAddVocToNoteDialogView = (SearchAddVocToNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
         Log.d("SearchDialogFragment", "onCreateView");
-        mDialogView.setOnYesOrNoClickListener(this);
+        mSearchAddVocToNoteDialogView.setOnYesOrNoClickListener(this);
+        mSearchAddVocToNoteDialogView.setOnBackgroundClickListener(this);
 
-        mDialogView.refreshNoteRadioGroup(mNoteNameList);
-        return mDialogView;
+        return mSearchAddVocToNoteDialogView;
     }
 
     @Override
@@ -54,7 +59,7 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew implemen
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         // parse the context to SearchActivity
@@ -65,19 +70,30 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew implemen
 
         // step 2: get note list, remember to replace linkedlist by search model
         mNoteNameList = searchModel.getNoteNameList();
+        mSearchAddVocToNoteDialogView.refreshNoteRadioGroup(mNoteNameList);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mDialogView != null) {
-            mDialogView.refreshNoteRadioGroup(mNoteNameList);
-        }
+    }
+
+    public void setOnAddVocToNoteDialogFinishListener(OnAddVocToNoteDialogFinishListener listener) {
+        mOnAddVocToNoteDialogFinishListener = listener;
     }
 
     @Override
     public void onYesClick() {
         getActivity().onBackPressed();
+        // TODO: ELSE part : (To beibei) please help me to complete add voc to note job
+        Log.d("SearchAddVocDialog", "index = " + mSearchAddVocToNoteDialogView.getCurrentCheckedNoteIndex() + "mNoteNameList size = " + mNoteNameList.size());
+        if (mSearchAddVocToNoteDialogView.getCurrentCheckedNoteIndex() == mNoteNameList.size()) {
+            if (mOnAddVocToNoteDialogFinishListener != null) {
+                mOnAddVocToNoteDialogFinishListener.onNeedNewNote();
+            }
+        } else {
+
+        }
     }
 
     @Override
@@ -87,6 +103,6 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew implemen
 
     @Override
     public void onBackgroundClick() {
-        // The backgroundClick is doing onBackPressed by default
+        getActivity().onBackPressed();
     }
 }

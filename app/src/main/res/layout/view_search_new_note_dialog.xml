@@ -32,6 +32,7 @@
                     android:textColor="#ff444b53"/>
 
                 <EditText
+                    android:id="@+id/search_new_note_dialog_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="為筆記命名..."

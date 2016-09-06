@@ -120,7 +120,6 @@ public class DialogViewNew extends LinearLayout {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((Activity) getContext()).onBackPressed();
                 if (mOnBackgroundClickListener != null) {
                     mOnBackgroundClickListener.onBackgroundClick();
                 }

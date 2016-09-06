@@ -37,4 +37,8 @@ public class SearchAddVocToNoteDialogView extends DialogViewNew {
     public void refreshNoteRadioGroup(LinkedList<String> linkedList) {
         mSearchAddVocToNoteRadioGroup.refreshView(linkedList);
     }
+
+    public int getCurrentCheckedNoteIndex() {
+        return mSearchAddVocToNoteRadioGroup.getCheckedRadioButtonId();
+    }
 }

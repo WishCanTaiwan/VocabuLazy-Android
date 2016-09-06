@@ -40,9 +40,12 @@ public class SearchAddVocToNoteRadioGroup extends RadioGroup {
      */
     public void setAdapter(CustomizedSimpleAdapter adapter) {
         removeAllViews();
+        /** The index showing newNote radio button */
+        int newNoteIndex = mDataList.size();
         for (int i = 0; i < mDataList.size(); i++) {
             addView(adapter.getView(i, null, this));
         }
+        addView(adapter.getView(newNoteIndex, null, this));
     }
 
     /**
@@ -106,15 +109,20 @@ public class SearchAddVocToNoteRadioGroup extends RadioGroup {
             return v;
         }
 
-        private void bindView(int position, View v){
-            String string;
+        private void bindView(int position, View v) {
             if (mDataList == null) {
                 return;
             }
-            string = mDataList.get(position);
-            
+
             if (v instanceof RadioButton) {
-                ((RadioButton) v).setText(string);
+                RadioButton radioButton = (RadioButton) v;
+                if (position == mDataList.size()) {
+                    radioButton.setText("新增筆記清單");
+                    // TODO: change RadioButton color
+                } else {
+                    radioButton.setText(mDataList.get(position));
+                }
+                radioButton.setId(position);
             }
         }
     }

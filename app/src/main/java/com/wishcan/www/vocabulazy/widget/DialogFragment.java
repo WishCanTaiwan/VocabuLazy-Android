@@ -67,7 +67,7 @@ abstract public class DialogFragment<WishCan> extends GADialogFragment {
 
     }
 
-    public void setOnDialogFinishListener(OnDialogFinishListener listener) {
+    public void setOnDialogFinishListener(OnDialogFinishListener<WishCan> listener) {
         mOnDialogFinishListener = listener;
     }
 
