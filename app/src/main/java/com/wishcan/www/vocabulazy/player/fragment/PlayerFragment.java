@@ -45,7 +45,7 @@ public class PlayerFragment extends GAPlayerFragment {
     }
 
     public interface OnPlayerOptionFavoriteClickListener {
-        void onFavoriteClick();
+        void onFavoriteClick(int vocId);
     }
 
     private static final String TAG = PlayerFragment.class.getSimpleName();
@@ -319,8 +319,9 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onPlayerPanelFavoriteClick() {
         super.onPlayerPanelFavoriteClick();
+        int vocId = mVocabularies.get(mItemIndex).getId();
         if (mOnPlayerOptionFavoriteClickListener != null) {
-            mOnPlayerOptionFavoriteClickListener.onFavoriteClick();
+            mOnPlayerOptionFavoriteClickListener.onFavoriteClick(vocId);
         }
     }
 

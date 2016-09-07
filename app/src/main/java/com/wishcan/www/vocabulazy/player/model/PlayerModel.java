@@ -30,13 +30,13 @@ public class PlayerModel {
     public static final String TAG = PlayerModel.class.getSimpleName();
 
     private GlobalVariable mGlobalVariable;
-    private Database wDatabase;
+    private Database mDatabase;
     private ArrayList<Vocabulary> mVocabularies;
     private PlayerModelDataProcessListener wDataProcessListener;
 
 	public PlayerModel(Context context) {
         mGlobalVariable = (GlobalVariable) context;
-        wDatabase = Database.getInstance();
+        mDatabase = Database.getInstance();
 	}
 
     public void setDataProcessListener(PlayerModelDataProcessListener listener) {
@@ -54,15 +54,15 @@ public class PlayerModel {
     }
 
     public int getNumOfLessons(int bookIndex) {
-        return wDatabase.getNumOfLesson(bookIndex);
+        return mDatabase.getNumOfLesson(bookIndex);
     }
 
     public String getBookTitle(int bookIndex) {
-        return wDatabase.getTextbookTitle(bookIndex);
+        return mDatabase.getTextbookTitle(bookIndex);
     }
 
     public String getLessonTitle(int bookIndex, int lessonIndex) {
-        return wDatabase.getLessonTitle(bookIndex, lessonIndex);
+        return mDatabase.getLessonTitle(bookIndex, lessonIndex);
     }
 
     public ArrayList<Vocabulary> getCurrentContent() {
@@ -135,6 +135,26 @@ public class PlayerModel {
 
     public boolean isPlaying() {
         return mGlobalVariable.playerState != null && mGlobalVariable.playerState.equals(AudioPlayer.PLAYING);
+    }
+
+    public void addVocToNote(int vocId, int noteIndex) {
+        mDatabase.addVocToNote(vocId, noteIndex);
+    }
+
+    public void addNewNote(String newNote) {
+        mDatabase.createNewNote(newNote);
+    }
+
+    public LinkedList<String> getNoteNameList() {
+        return toLinkedList(mDatabase.getNoteNames());
+    }
+
+    private <T> LinkedList<T> toLinkedList(ArrayList<T> arrayList) {
+        LinkedList<T> linkedList = new LinkedList<>();
+        for (T t : arrayList) {
+            linkedList.add(t);
+        }
+        return linkedList;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -210,8 +230,8 @@ public class PlayerModel {
             if (params[0] instanceof Integer) {
                 int bookIndex = (Integer) params[0];
                 int lessonIndex = (Integer) params[1];
-                ArrayList<Integer> contentIDs = wDatabase.getContentIds(bookIndex, lessonIndex);
-                mVocabularies = wDatabase.getVocabulariesByIDs(contentIDs);
+                ArrayList<Integer> contentIDs = mDatabase.getContentIds(bookIndex, lessonIndex);
+                mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
                 return mVocabularies;
             }
 

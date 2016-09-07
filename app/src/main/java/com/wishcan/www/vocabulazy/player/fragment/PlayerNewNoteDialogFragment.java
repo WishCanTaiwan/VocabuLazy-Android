@@ -1,12 +1,17 @@
 package com.wishcan.www.vocabulazy.player.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
+import com.wishcan.www.vocabulazy.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.player.view.PlayerNewNoteDialogView;
+import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
+import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.widget.DialogFragmentNew;
 import com.wishcan.www.vocabulazy.widget.DialogViewNew;
 
@@ -21,9 +26,19 @@ public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements Di
 
     private static final int LAYOUT_RES_ID = R.layout.view_player_new_note_dialog;
 
+    private Context mContext;
+
     private PlayerNewNoteDialogView mPlayerNewNoteDialogView;
 
     private OnNewNoteDialogFinishListener mOnDialogFinishListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // get the instance of activity
+        mContext = context;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +59,14 @@ public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements Di
     @Override
     public void onYesClick() {
         getActivity().onBackPressed();
-        // TODO: (To beibei) please help me to complete crate a new empty note with newNoteString
+
+        // get name of new note
         String newNoteString = mPlayerNewNoteDialogView.getNewNoteString();
+
+        // access search model and add new note to database
+        PlayerModel playerModel = ((PlayerActivity) mContext).getModel();
+        playerModel.addNewNote(newNoteString);
+
         if (mOnDialogFinishListener != null) {
             mOnDialogFinishListener.onNewNoteDone(newNoteString);
         }

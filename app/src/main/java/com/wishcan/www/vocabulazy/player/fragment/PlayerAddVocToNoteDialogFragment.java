@@ -27,7 +27,10 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
 
     private static final int LAYOUT_RES_ID = R.layout.view_player_add_voc_to_note_dialog;
 
+    private int mSelectedVocId;
+
     private Context mContext;
+    private PlayerModel mPlayerModel;
 
     private PlayerAddVocToNoteDialogView mPlayerAddVocToNoteDialogView;
 
@@ -64,13 +67,11 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
         // parse the context to PlayerActivity
         PlayerActivity activity = (PlayerActivity) mContext;
 
-        // step 1: get Search Model
-        PlayerModel playerModel = activity.getModel();
+        // step 1: get player Model
+        mPlayerModel = activity.getModel();
 
-        // TODO: (To beibei) please help me to prepare PlayerModel to get Note name list
         // step 2: get note list, remember to replace linkedlist by player model
-//        mNoteNameList = playerModel.getNoteNameList();
-        mNoteNameList = new LinkedList<>();
+        mNoteNameList = mPlayerModel.getNoteNameList();
         mPlayerAddVocToNoteDialogView.refreshNoteRadioGroup(mNoteNameList);
     }
 
@@ -83,16 +84,20 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
         mOnAddVocToNoteDialogFinishListener = listener;
     }
 
+    public void setSelectedVocId(int vocId) {
+        mSelectedVocId = vocId;
+    }
+
     @Override
     public void onYesClick() {
         getActivity().onBackPressed();
-        // TODO: ELSE part : (To beibei) please help me to complete add voc to note job
-        if (mPlayerAddVocToNoteDialogView.getCurrentCheckedNoteIndex() == mNoteNameList.size()) {
+        int selectedNoteIndex = mPlayerAddVocToNoteDialogView.getCurrentCheckedNoteIndex();
+        if (selectedNoteIndex == mNoteNameList.size()) {
             if (mOnAddVocToNoteDialogFinishListener != null) {
                 mOnAddVocToNoteDialogFinishListener.onNeedNewNote();
             }
         } else {
-
+            mPlayerModel.addVocToNote(mSelectedVocId, selectedNoteIndex);
         }
     }
 

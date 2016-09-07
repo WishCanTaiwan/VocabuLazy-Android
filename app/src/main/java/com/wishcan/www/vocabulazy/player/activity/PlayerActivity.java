@@ -97,9 +97,10 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
     }
 
     @Override
-    public void onFavoriteClick() {
-        Log.d("PlayerFragment", "onNewNote");
+    public void onFavoriteClick(int vocId) {
+        Log.d(TAG, "onNewNote");
         PlayerAddVocToNoteDialogFragment dialogFragment = new PlayerAddVocToNoteDialogFragment();
+        dialogFragment.setSelectedVocId(vocId);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(PlayerActivity.VIEW_MAIN_RES_ID, dialogFragment, "PlayerAddVocToNoteDialogFragment");
         fragmentTransaction.addToBackStack("PlayerAddVocToNoteDialogFragment");
@@ -109,7 +110,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
     /**-- PlayerAddVocToNoteDialogFragment callback --**/
     @Override
     public void onNeedNewNote() {
-        Log.d("PlayerFragment", "onNeedNewNote");
+        Log.d(TAG, "onNeedNewNote");
         PlayerNewNoteDialogFragment dialogFragment = new PlayerNewNoteDialogFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(PlayerActivity.VIEW_MAIN_RES_ID, dialogFragment, "PlayerNewNoteDialogFragment");
@@ -120,7 +121,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
     /**-- PlayerNewNoteDialogFragment callback --**/
     @Override
     public void onNewNoteDone(String string) {
-        Log.d("PlayerFragment", "onNewNote" + string);
+        Log.d(TAG, "onNewNote" + string);
         PlayerAddVocToNoteDialogFragment dialogFragment = new PlayerAddVocToNoteDialogFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(PlayerActivity.VIEW_MAIN_RES_ID, dialogFragment, "PlayerAddVocToNoteDialogFragment");
