@@ -30,7 +30,7 @@ public class NumeralPicker extends LinearLayout {
     public static final String TAG = NumeralPicker.class.getSimpleName();
 
     public interface OnPickerClickListener {
-        void onPickerClicked(String valueStr);
+        void onPickerClicked(int leftOrRight, String valueStr);
     }
 
     private static final int DEFAULT_MAXIMUM = 9;
@@ -171,7 +171,7 @@ public class NumeralPicker extends LinearLayout {
                 String newValueStr = String.valueOf(newValue);
                 mNumberTextView.setText(newValueStr);
                 if (mOnPickerClickListener != null) {
-                    mOnPickerClickListener.onPickerClicked(newValueStr);
+                    mOnPickerClickListener.onPickerClicked(1, newValueStr);
                 }
             }
         });
@@ -187,7 +187,7 @@ public class NumeralPicker extends LinearLayout {
                 String newValueStr = String.valueOf(newValue);
                 mNumberTextView.setText(newValueStr);
                 if (mOnPickerClickListener != null) {
-                    mOnPickerClickListener.onPickerClicked(newValueStr);
+                    mOnPickerClickListener.onPickerClicked(-1, newValueStr);
                 }
             }
         });

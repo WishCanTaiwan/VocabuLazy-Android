@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import com.wishcan.www.vocabulazy.application.GlobalVariable;
 import com.wishcan.www.vocabulazy.utility.log.Logger;
@@ -87,7 +88,7 @@ public class AudioService extends IntentService {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         String action = (intent != null) ? intent.getAction() : "";
-        Logger.d(TAG, action);
+        Log.d(TAG, action);
         /**
          * switch-case block for deciding the corresponding tasks for each action
          */

@@ -39,7 +39,7 @@ public class PlayerOptionView extends LinearLayout {
      * OnOptionChangedListener is the callback function when any of option, including tab, is changed
      * */
     public interface OnOptionChangedListener{
-        void onOptionChanged(int optionID, int mode, View v);
+        void onOptionChanged(int optionID, int mode, View v, int leftOrRight);
     }
 
     private static final int VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID = R.id.player_option_tab_layout;
@@ -136,16 +136,16 @@ public class PlayerOptionView extends LinearLayout {
                     setCurrentTab(view);
                     if (mOnOptionChangedListener != null) {
                         /** Tab index is also mode id */
-                        mOnOptionChangedListener.onOptionChanged(PlayerOptionTabView.IDX_OPTION_TAB_0 | nextTabIndex, nextTabIndex, view);
+                        mOnOptionChangedListener.onOptionChanged(PlayerOptionTabView.IDX_OPTION_TAB_0 | nextTabIndex, nextTabIndex, view, 0);
                     }
                 }
             });
             tabContent.setOnOptionClickListener(new PlayerOptionContentView.OnOptionClickListener() {
                 @Override
-                public void onOptionClick(int optionID, View v) {
+                public void onOptionClick(int optionID, View v, int leftOrRight) {
                     if (mOnOptionChangedListener != null) {
                         /** Tab index is also mode id */
-                        mOnOptionChangedListener.onOptionChanged(optionID, nextTabIndex, v);
+                        mOnOptionChangedListener.onOptionChanged(optionID, nextTabIndex, v, leftOrRight);
                     }
                 }
             });

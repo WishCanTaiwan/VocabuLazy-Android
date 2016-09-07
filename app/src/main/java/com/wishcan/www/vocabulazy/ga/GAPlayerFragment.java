@@ -102,7 +102,7 @@ abstract public class GAPlayerFragment extends GAFragment implements PlayerView.
     }
 
     @Override
-    public void onPlayerOptionChanged(int optionID, int mode, View v) {
+    public void onPlayerOptionChanged(int optionID, int mode, View v, int leftOrRight) {
         Logger.sendEvent(USER_TOUCH_EVENT, "option-changed", getNameAsGaLabel(), 1);
     }
     

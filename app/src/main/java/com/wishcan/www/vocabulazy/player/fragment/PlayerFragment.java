@@ -160,6 +160,13 @@ public class PlayerFragment extends GAPlayerFragment {
     public void onPause() {
         super.onPause();
 
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
         // unregister broadcast receiver
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mServiceBroadcastReceiver);
     }
@@ -334,6 +341,11 @@ public class PlayerFragment extends GAPlayerFragment {
     @Override
     public void onPlayerPanelOptionClick() {
         super.onPlayerPanelOptionClick();
+
+        // TODO: (swallow) please use the parameter mode to set option tab
+        GlobalVariable globalVariable = (GlobalVariable) ((Activity) mContext).getApplication();
+        int mode = globalVariable.optionMode;
+
         if (mPlayerView == null) {
             return;
         }
@@ -341,21 +353,11 @@ public class PlayerFragment extends GAPlayerFragment {
     }
 
     @Override
-    public void onPlayerOptionChanged(int optionID, int mode, View v) {
-        super.onPlayerOptionChanged(optionID, mode, v);
-        // TODO: (To Beibei) tab idx will be 0x10, 0x11, 0x12 corresponding PlayerOptionTabView.IDX_OPTION_TAB_(0,1,2), please remove example below if you know how to use
-        switch (optionID) {
-            case PlayerOptionView.PlayerOptionTabView.IDX_OPTION_TAB_0:
-            case PlayerOptionView.PlayerOptionTabView.IDX_OPTION_TAB_1:
-            case PlayerOptionView.PlayerOptionTabView.IDX_OPTION_TAB_2:
-                Log.d("PlayerFragment", "onPlayerOptionChanged IDX = " + optionID);
-                break;
-            default:
-                Log.d("PlayerFragment", "onPlayerOptionChanged default");
-                break;
-        }
+    public void onPlayerOptionChanged(int optionID, int mode, View v, int leftOrRight) {
+        super.onPlayerOptionChanged(optionID, mode, v, leftOrRight);
+
         /** Refresh option setting */
-        mPlayerModel.updateOptionSettings(optionID, mode, v);
+        mPlayerModel.updateOptionSettings(optionID, mode, v, leftOrRight);
 
         // notify the service that option settings has changed
         optionChanged();

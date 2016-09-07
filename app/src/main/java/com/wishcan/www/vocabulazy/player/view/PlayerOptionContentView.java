@@ -18,7 +18,7 @@ public class PlayerOptionContentView extends LinearLayout {
      * OnOptionClickListener is the callback function when any of option, including tab, is clicked
      * */
     public interface OnOptionClickListener {
-        void onOptionClick(int optionId, View v);
+        void onOptionClick(int optionId, View v, int leftOrRight);
     }
 
     public static final int IDX_OPTION_RANDOM = 0x1;
@@ -142,7 +142,7 @@ public class PlayerOptionContentView extends LinearLayout {
                 if (mOnOptionClickListener != null) {
                     LevelImageView v = (LevelImageView) view;
                     v.setImageLevel(v.getImageLevel() + 1);
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_RANDOM, view);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_RANDOM, view, 0);
                 }
             }
         });
@@ -153,7 +153,7 @@ public class PlayerOptionContentView extends LinearLayout {
                 if (mOnOptionClickListener != null) {
                     LevelImageView v = (LevelImageView) view;
                     v.setImageLevel(v.getImageLevel() + 1);
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_REPEAT, view);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_REPEAT, view, 0);
                 }
             }
         });
@@ -164,43 +164,43 @@ public class PlayerOptionContentView extends LinearLayout {
                 if (mOnOptionClickListener != null) {
                     LevelImageView v = (LevelImageView) view;
                     v.setImageLevel(v.getImageLevel() + 1);
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SENTENCE, view);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SENTENCE, view, 0);
                 }
             }
         });
         
         mSecondOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override
-            public void onPickerClicked(String valueStr) {
+            public void onPickerClicked(int leftOrRight, String valueStr) {
                 if (mOnOptionClickListener != null) {
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SECOND, mSecondOptionPicker);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SECOND, mSecondOptionPicker, leftOrRight);
                 }
             }
         });
         
         mFrequencyOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override
-            public void onPickerClicked(String valueStr) {
+            public void onPickerClicked(int leftOrRight, String valueStr) {
                 if (mOnOptionClickListener != null) {
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_FREQUENCY, mFrequencyOptionPicker);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_FREQUENCY, mFrequencyOptionPicker, leftOrRight);
                 }
             }
         });
         
         mSpeedOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override
-            public void onPickerClicked(String valueStr) {
+            public void onPickerClicked(int leftOrRight, String valueStr) {
                 if (mOnOptionClickListener != null) {
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SPEED, mSpeedOptionPicker);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SPEED, mSpeedOptionPicker, leftOrRight);
                 }
             }
         });
 
         mPlayTimeOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override
-            public void onPickerClicked(String valueStr) {
+            public void onPickerClicked(int leftOrRight, String valueStr) {
                 if (mOnOptionClickListener != null) {
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_PLAY_TIME, mPlayTimeOptionPicker);
+                    mOnOptionClickListener.onOptionClick(IDX_OPTION_PLAY_TIME, mPlayTimeOptionPicker, leftOrRight);
                 }
             }
         });

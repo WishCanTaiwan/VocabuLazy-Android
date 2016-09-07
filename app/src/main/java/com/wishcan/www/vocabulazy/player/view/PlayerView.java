@@ -110,9 +110,10 @@ public class PlayerView extends RelativeLayout {
 		 * @param optionID indicate which option is changed by user
 		 * @param mode indicate which mode is currently being changed
 		 * @param v the changed view
+		 * @param leftOrRight left/right arrow of pickers
 		 * @see PlayerOptionView
 		 * */
-        void onPlayerOptionChanged(int optionID, int mode, View v);
+        void onPlayerOptionChanged(int optionID, int mode, View v, int leftOrRight);
 
 	}
 
@@ -240,9 +241,9 @@ public class PlayerView extends RelativeLayout {
     	
     	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener(){
     		@Override
-    		public void onOptionChanged(int optionID, int mode, View v) {
+    		public void onOptionChanged(int optionID, int mode, View v, int leftOrRight) {
     			if (mPlayerEventListener != null) {
-    				mPlayerEventListener.onPlayerOptionChanged(optionID, mode, v);
+    				mPlayerEventListener.onPlayerOptionChanged(optionID, mode, v, leftOrRight);
     			}
     		}
 
