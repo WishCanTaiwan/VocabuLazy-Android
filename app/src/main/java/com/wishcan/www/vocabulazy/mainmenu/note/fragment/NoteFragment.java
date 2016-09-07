@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.mainmenu.note.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
         void onNoteCopy();
         void onNoteDelete(int noteIndex);
     }
+
+    public static final String TAG = "NoteFragment";
 
     private static final int PLAY = 0x0;
     private static final int RENAME = 0x1;
@@ -47,11 +50,19 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
         mNoteView = (NoteView) rootView.findViewById(R.id.note_view);
-        mNoteView.setAdapter(new NoteContentAdapter(getContext(), mGroupItems, mChildItemsMap));
+
         mNoteView.addOnNoteItemListener(this);
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        Log.d(TAG, "Resume");
+        super.onResume();
+        mNoteView.setAdapter(new NoteContentAdapter(getContext(), mGroupItems, mChildItemsMap));
     }
 
     @Override

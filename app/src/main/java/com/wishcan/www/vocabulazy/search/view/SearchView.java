@@ -16,13 +16,14 @@ import java.util.LinkedList;
  */
 public class SearchView extends RelativeLayout {
     public interface SearchEventListener {
-        void onSearchItemClick();
+        void onSearchItemClick(int vocId);
         void onSearchAddClick();
     }
 
     private static final int VIEW_SEARCH_LIST_RES_ID = R.id.search_list_view;
     private SearchListView mSearchListView;
 
+    private LinkedList<HashMap> mDataList;
     private SearchEventListener mSearchEventListener;
 
     public SearchView(Context context) {
@@ -46,6 +47,7 @@ public class SearchView extends RelativeLayout {
     }
 
     public void refreshSearchList(LinkedList<HashMap> dataList) {
+        mDataList = dataList;
         mSearchListView.refreshView(dataList.size(), dataList);
     }
 
@@ -53,8 +55,9 @@ public class SearchView extends RelativeLayout {
         mSearchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int id = (int) mDataList.get(i).get("vocId");
                 if (mSearchEventListener != null) {
-                    mSearchEventListener.onSearchItemClick();
+                    mSearchEventListener.onSearchItemClick(id);
                 }
             }
         });

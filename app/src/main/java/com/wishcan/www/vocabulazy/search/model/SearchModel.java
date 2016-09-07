@@ -21,6 +21,10 @@ public class SearchModel {
         mDatabase.addVocToNote(id, index);
     }
 
+    public void addNewNote(String newNote) {
+        mDatabase.createNewNote(newNote);
+    }
+
     public LinkedList<HashMap> createSearchResultMap(String searchStr) {
 
         ArrayList<Vocabulary> vocabularies = mDatabase.readSuggestVocabularyBySpell(searchStr);
@@ -33,6 +37,7 @@ public class SearchModel {
             HashMap<String, Object> hm = new HashMap<>();
             String from[] = SearchListView.LIST_ITEM_CONTENT_FROM;
 
+            hm.put("vocId", voc.getId());
             hm.put(from[SearchListView.IDX_VOC_SPELL], voc.getSpell());
             hm.put(from[SearchListView.IDX_VOC_TRANSLATION], voc.getTranslation());
             hm.put(from[SearchListView.IDX_VOC_CATEGORY], voc.getPartOfSpeech());

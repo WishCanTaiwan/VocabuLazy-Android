@@ -214,6 +214,10 @@ public class PlayerFragment extends GAPlayerFragment {
     public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
         super.onVocabulariesGet(vocabularies);
         mVocabularies = vocabularies;
+
+        if (vocabularies.size() == 0)
+            return;
+
         mPlayerModel.createPlayerContent(vocabularies);
         mPlayerModel.createPlayerDetailContent(vocabularies.get((mIsSameAsLastEntrance ? mItemIndex : 0)));
 

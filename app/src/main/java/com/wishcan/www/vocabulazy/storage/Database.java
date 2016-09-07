@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.storage;
 
 import android.content.Context;
+import android.icu.text.LocaleDisplayNames;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -145,6 +146,7 @@ public class Database {
     }
 
     public void addVocToNote(int vocID, int noteIndex) {
+        Log.d(TAG, "add voc " + vocID + " to note " + noteIndex);
         ArrayList<Integer> content = mNotes.get(noteIndex).getNoteContent();
         for (int index = 0; index < content.size(); index++) {
             int id = content.get(index);

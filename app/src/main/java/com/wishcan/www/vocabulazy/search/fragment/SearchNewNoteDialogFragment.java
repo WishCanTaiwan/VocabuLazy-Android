@@ -1,11 +1,14 @@
 package com.wishcan.www.vocabulazy.search.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
+import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchNewNoteDialogView;
 import com.wishcan.www.vocabulazy.widget.DialogFragmentNew;
 import com.wishcan.www.vocabulazy.widget.DialogViewNew;
@@ -21,13 +24,18 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
 
     private static final int LAYOUT_RES_ID = R.layout.view_search_new_note_dialog;
 
+    private Context mContext;
+
     private SearchNewNoteDialogView mSearchNewNoteDialogView;
 
     private OnNewNoteDialogFinishListener mOnDialogFinishListener;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // get the instance of activity
+        mContext = context;
     }
 
     @Override
@@ -43,9 +51,18 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
 
     @Override
     public void onYesClick() {
+
+        // remove current fragment
         getActivity().onBackPressed();
-        // TODO: (To beibei) please help me to complete crate a new empty note with newNoteString
+
+        // get name of new note
         String newNoteString = mSearchNewNoteDialogView.getNewNoteString();
+
+        // access search model and add new note to database
+        SearchModel searchModel = ((SearchActivity) mContext).getModel();
+        searchModel.addNewNote(newNoteString);
+
+        // notify new note has been added
         if (mOnDialogFinishListener != null) {
             mOnDialogFinishListener.onNewNoteDone(newNoteString);
         }

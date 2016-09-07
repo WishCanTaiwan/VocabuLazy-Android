@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.search.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import java.util.LinkedList;
 public class SearchFragment extends Fragment implements SearchView.SearchEventListener {
 
     public interface OnSearchItemEventListener {
-        void onSearchListClick();
+        void onSearchListClick(int vocId);
         void onSearchAddClick();
     }
     private static final int LAYOUT_RES_ID = R.layout.view_search;
@@ -30,21 +31,15 @@ public class SearchFragment extends Fragment implements SearchView.SearchEventLi
     private Context mContext;
     private SearchView mSearchView;
 
-    private Database wDatabase;
     private SearchModel mSearchModel;
     private OnSearchItemEventListener mOnSearchItemEventListener;
 
-    public static SearchFragment newInstance() {
-        SearchFragment fragment = new SearchFragment();
-        return fragment;
-    }
+    LinkedList<HashMap> mDataList;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // get the context of activity
-        mContext = context;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mDataList = new LinkedList<>();
     }
 
     @Override
@@ -54,6 +49,14 @@ public class SearchFragment extends Fragment implements SearchView.SearchEventLi
         }
         mSearchView.setSearchEventListener(this);
         return mSearchView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // get the context of activity
+        mContext = context;
     }
 
     @Override
@@ -67,14 +70,14 @@ public class SearchFragment extends Fragment implements SearchView.SearchEventLi
     }
 
     public void refreshSearchResult(String searchStr) {
-        LinkedList<HashMap> dataList = mSearchModel.createSearchResultMap(searchStr);
-        mSearchView.refreshSearchList(dataList);
+        mDataList = mSearchModel.createSearchResultMap(searchStr);
+        mSearchView.refreshSearchList(mDataList);
     }
 
     @Override
-    public void onSearchItemClick() {
+    public void onSearchItemClick(int vocId) {
         if (mOnSearchItemEventListener != null) {
-            mOnSearchItemEventListener.onSearchListClick();
+            mOnSearchItemEventListener.onSearchListClick(vocId);
         }
     }
 

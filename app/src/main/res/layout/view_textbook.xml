@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:dividerHeight="1dp"
-    android:padding="10dp"
+    android:dividerHeight="22dp"
+    android:divider="@color/textbook_fragment_divider_color"
     android:groupIndicator="@null"
-    android:background="@color/white_1"/>
+    android:background="@color/white_1"
+    android:scrollbars="none"/>

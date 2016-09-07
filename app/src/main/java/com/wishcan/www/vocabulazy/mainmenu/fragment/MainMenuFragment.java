@@ -75,9 +75,6 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mModel = ((MainMenuActivity) getActivity()).getModel();
-        mModel.generateBookItems();
-        mModel.generateNoteItems();
-        mModel.generateExamIndexItems();
     }
 
     @Override
@@ -155,6 +152,9 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     }
 
     private void updateFragmentsContent() {
+        mModel.generateBookItems();
+        mModel.generateNoteItems();
+        mModel.generateExamIndexItems();
         mTextbookFragment.updateBookContent(mModel.getTextbookGroupItems(), mModel.getTextbookChildItemsMap());
         mNoteFragment.updateNoteContent(mModel.getNoteGroupItems(), mModel.getNoteChildItemsMap());
         mExamIndexFragment.updateExamIndexContent(mModel.getExamIndexTextbookGroupItems(), mModel.getExamIndexTextbookChildItemsMap(), mModel.getExamIndexNoteGroupItems(), mModel.getExamIndexNoteChildItemsMap());

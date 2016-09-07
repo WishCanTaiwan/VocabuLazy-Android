@@ -32,13 +32,11 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
 
     private SearchAddVocToNoteDialogView mSearchAddVocToNoteDialogView;
 
+    private SearchModel mSearchModel;
     private OnAddVocToNoteDialogFinishListener mOnAddVocToNoteDialogFinishListener;
     private LinkedList<String> mNoteNameList;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private int selectedVocId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +44,6 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
         Log.d("SearchDialogFragment", "onCreateView");
         mSearchAddVocToNoteDialogView.setOnYesOrNoClickListener(this);
         mSearchAddVocToNoteDialogView.setOnBackgroundClickListener(this);
-
         return mSearchAddVocToNoteDialogView;
     }
 
@@ -66,16 +63,11 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
         SearchActivity activity = (SearchActivity) mContext;
 
         // step 1: get Search Model
-        SearchModel searchModel = activity.getModel();
+        mSearchModel = activity.getModel();
 
         // step 2: get note list, remember to replace linkedlist by search model
-        mNoteNameList = searchModel.getNoteNameList();
+        mNoteNameList = mSearchModel.getNoteNameList();
         mSearchAddVocToNoteDialogView.refreshNoteRadioGroup(mNoteNameList);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     public void setOnAddVocToNoteDialogFinishListener(OnAddVocToNoteDialogFinishListener listener) {
@@ -84,15 +76,21 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
 
     @Override
     public void onYesClick() {
+
+        // remove current fragment
         getActivity().onBackPressed();
-        // TODO: ELSE part : (To beibei) please help me to complete add voc to note job
-        Log.d("SearchAddVocDialog", "index = " + mSearchAddVocToNoteDialogView.getCurrentCheckedNoteIndex() + "mNoteNameList size = " + mNoteNameList.size());
+
+        // get selected note index
+        int selectedNoteIndex = mSearchAddVocToNoteDialogView.getCurrentCheckedNoteIndex();
+
+        // if the selected index is the last one, then pop NewNoteDialog to create new note
+        // otherwise add the vocabulary to the seleceted note
         if (mSearchAddVocToNoteDialogView.getCurrentCheckedNoteIndex() == mNoteNameList.size()) {
             if (mOnAddVocToNoteDialogFinishListener != null) {
                 mOnAddVocToNoteDialogFinishListener.onNeedNewNote();
             }
         } else {
-
+            mSearchModel.addVocToNote(selectedVocId, selectedNoteIndex);
         }
     }
 
@@ -104,5 +102,9 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
     @Override
     public void onBackgroundClick() {
         getActivity().onBackPressed();
+    }
+
+    public void setSelectedVocId(int vocId) {
+        selectedVocId = vocId;
     }
 }

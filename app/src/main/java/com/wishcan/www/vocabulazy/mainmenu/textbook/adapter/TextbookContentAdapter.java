@@ -83,7 +83,7 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
         TextView groupTextView = (TextView) convertView.findViewById(R.id.book_title);
         groupTextView.setText(groupTitle);
         groupTextView.setTypeface(null, Typeface.BOLD);
-        groupTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, groupHeight));
+//        groupTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, groupHeight));
 
         ExpandableListView expandableListView = (ExpandableListView) parent;
         boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
@@ -124,7 +124,7 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
         DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
         float screenHeightDp = displayMetrics.heightPixels / displayMetrics.density;
         int groupHeightDp = (int) (screenHeightDp/5 + 0.5f);
-        groupHeight = toPixel(groupHeightDp, mContext.getResources().getDisplayMetrics().density);
+        groupHeight = toPixel(165, mContext.getResources().getDisplayMetrics().density);
         childHeight = groupHeight/2;
     }
 

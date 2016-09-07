@@ -45,6 +45,7 @@
     <color name="cover_dialog_text">@color/white_1</color>
     <!-- MainMenu -->
     <color name="main_menu_fragment_default_background_color">@color/grey_7</color>
+    <color name="textbook_fragment_divider_color">@color/grey_7</color>
     <!--**************************************** exam ******************************************-->
     <!--**************************************** player ****************************************-->
     <color name="player_grey_background">@color/black_alpha_2</color>
