@@ -3,6 +3,7 @@ package com.wishcan.www.vocabulazy.exam.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,10 @@ import java.util.HashMap;
  * Created by SwallowChen on 8/25/16.
  */
 public class ExamFragment extends Fragment implements ExamView.ExamEventListener {
+    public interface OnExamDoneListener {
+        void onExamDone(int totalNumber, int correctNumber);
+    }
+
     public static final String ARG_BOOK_INDEX = "bookIndex";
     public static final String ARG_LESSON_INDEX = "lessonIndex";
 
@@ -30,13 +35,15 @@ public class ExamFragment extends Fragment implements ExamView.ExamEventListener
 
     private int mCurrentBookIndex, mCurrentLessonIndex;
 
+    private OnExamDoneListener mOnExamDoneListener;
+
     public static ExamFragment newInstance() {
         ExamFragment fragment = new ExamFragment();
         return fragment;
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mCurrentBookIndex = getArguments().getInt(ARG_BOOK_INDEX);
@@ -67,6 +74,10 @@ public class ExamFragment extends Fragment implements ExamView.ExamEventListener
         mExamView.setContent(questionArrayList);
     }
 
+    public void setOnExamDoneListener(OnExamDoneListener listener) {
+        mOnExamDoneListener = listener;
+    }
+
     @Override
     public void onExamAnswerClick(int index) {
         /** index start from 1 to 4 */
@@ -88,8 +99,19 @@ public class ExamFragment extends Fragment implements ExamView.ExamEventListener
     public void onNextIconClick() {
         /** NOTE: must call getANewQuestion to update question index */
         HashMap<Integer, ArrayList<String>> questionArrayList = mPuzzleSetter.getANewQuestion();
-        mExamView.updateExamProgressBar(mPuzzleSetter.getCurrentQuestionIndex());
-        mExamView.setExamAnswerStates(0, 0, 0, 0);
-        mExamView.setContent(questionArrayList);
+        // not enough question to start exam, but should not happen here
+        if (questionArrayList == null) {
+            return;
+        }
+        // the exam is over
+        if (questionArrayList.size() == 0) {
+            if (mOnExamDoneListener != null) {
+                mOnExamDoneListener.onExamDone(20, 15);
+            }
+        } else {
+            mExamView.updateExamProgressBar(mPuzzleSetter.getCurrentQuestionIndex());
+            mExamView.setExamAnswerStates(0, 0, 0, 0);
+            mExamView.setContent(questionArrayList);
+        }
     }
 }

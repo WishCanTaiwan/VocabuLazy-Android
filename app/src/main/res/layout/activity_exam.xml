@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_exam_container"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/view_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <fragment
-        android:id="@+id/exam_fragment"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.wishcan.www.vocabulazy.exam.fragment.ExamFragment" />
+        android:layout_alignParentTop="true"/>
 
-</LinearLayout>
+    <!-- for dynamic adding fragment, SearchFragment and SearchResultFragment -->
+    <LinearLayout
+        android:id="@+id/exam_fragment_container"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar" />
+
+</RelativeLayout>

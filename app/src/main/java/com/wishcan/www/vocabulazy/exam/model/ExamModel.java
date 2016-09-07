@@ -48,13 +48,18 @@ public class ExamModel {
              *     VALUE is english and translation
              */
 
+            // Null map means not enough question to start exam
             if(mTotalQuestionNum < 5) {
                 return null;
             }
 
             mCurrentQuestionIndex++;
 
+            // If current question index >= total question number, the exam is over. Return empty map
             HashMap<Integer, ArrayList<String>> questionMap = new HashMap<>();
+            if (mCurrentQuestionIndex >= mTotalQuestionNum) {
+                return questionMap;
+            }
 
             mAnswerOptionIndex = 0;     // reset the answer_option index
             do{     // Determine which option will be the answer

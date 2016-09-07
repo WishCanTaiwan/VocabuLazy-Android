@@ -22,6 +22,7 @@
     <color name="grey_5">#FF656B76</color>
     <color name="grey_6">#FF9FA0A0</color>
     <color name="grey_7">#FFA09E9C</color>
+    <color name="grey_8">#FFEEEEEF</color>
 
     <!--**************************************** style *****************************************-->
     <color name="theme_color_green">@color/green_1</color>

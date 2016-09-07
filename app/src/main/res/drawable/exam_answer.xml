@@ -6,7 +6,6 @@
                 <layer-list>
                     <item>
                         <shape>
-                            <corners android:radius="60dp"/>
                             <solid android:color="@color/green_1"/>
                         </shape>
                     </item>
@@ -14,8 +13,7 @@
                     <item
                         android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp">
                         <shape>
-                            <corners android:radius="60dp"/>
-                            <solid android:color="@color/grey_2"/>
+                            <solid android:color="@color/grey_8"/>
                         </shape>
                     </item>
                 </layer-list>
@@ -28,7 +26,6 @@
                 <layer-list>
                     <item>
                         <shape>
-                            <corners android:radius="60dp"/>
                             <solid android:color="@color/green_1"/>
                         </shape>
                     </item>
@@ -36,7 +33,6 @@
                     <item
                         android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp">
                         <shape>
-                            <corners android:radius="60dp"/>
                             <solid android:color="@color/green_1"/>
                         </shape>
                     </item>
@@ -50,7 +46,6 @@
                 <layer-list>
                     <item>
                         <shape>
-                            <corners android:radius="60dp"/>
                             <solid android:color="@color/green_1"/>
                         </shape>
                     </item>
@@ -58,8 +53,7 @@
                     <item
                         android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp">
                         <shape>
-                            <corners android:radius="60dp"/>
-                            <solid android:color="@color/white_1"/>
+                            <solid android:color="@color/yellow_1"/>
                         </shape>
                     </item>
                 </layer-list>
