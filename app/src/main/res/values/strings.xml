@@ -50,12 +50,21 @@
     <string name="player_option_play_time_chinese">播放時間</string>
     <string name="player_option_play_time">play-time</string>
     <string name="player_dialog_add_voc_to_note_title">加入筆記清單</string>
+    <string name="player_dialog_add_voc_to_note_yes">選擇</string>
+    <string name="player_dialog_add_voc_to_note_no">取消</string>
+    <string name="player_dialog_new_note_title">新增筆記清單</string>
+    <string name="player_dialog_new_note_hint">為筆記命名...</string>
+    <string name="player_dialog_new_note_yes">選擇</string>
+    <string name="player_dialog_new_note_no">取消</string>
     <!-- search -->
     <string name="search_menu_item">Search Menu Item</string>
-    <string name="search_dialog_new_note">自訂清單名稱</string>
-    <string name="search_dialog_new_note_button_cancel">取消</string>
-    <string name="search_dialog_new_note_button_confirm">確定</string>
     <string name="search_dialog_add_voc_to_note_title">加入筆記清單</string>
+    <string name="search_dialog_add_voc_to_note_yes">選擇</string>
+    <string name="search_dialog_add_voc_to_note_no">取消</string>
+    <string name="search_dialog_new_note_title">新增筆記清單</string>
+    <string name="search_dialog_new_note_hint">為筆記命名...</string>
+    <string name="search_dialog_new_note_yes">選擇</string>
+    <string name="search_dialog_new_note_no">取消</string>
     <!-- cover -->
     <string name="cover_dialog">為提供最佳體驗，請至Google Play下載並安裝「Google 文字轉語音引擎」。\n點擊確定前往。</string>
     <string name="cover_dialog_button_cancel">取消</string>
