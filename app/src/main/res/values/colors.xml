@@ -45,8 +45,14 @@
     <color name="cover_dialog_background">@color/white_2</color>
     <color name="cover_dialog_text">@color/white_1</color>
     <!-- MainMenu -->
-    <color name="main_menu_fragment_default_background_color">@color/grey_7</color>
-    <color name="textbook_fragment_divider_color">@color/grey_7</color>
+    <color name="main_menu_fragment_default_background_color">@color/white_2</color>
+    <color name="textbook_group_title_background_color">@color/green_1</color>
+    <color name="textbook_group_title_text_color">@color/white_1</color>
+    <color name="textbook_group_subtitle_background_color">@color/grey_2</color>
+    <color name="textbook_group_subtitle_text_color">@color/white_1</color>
+    <color name="textbook_child_background_color">@color/grey_2</color>
+    <color name="textbook_child_text_color">@color/white_1</color>
+    <color name="textbook_fragment_divider_color">@color/white_2</color>
     <!--**************************************** exam ******************************************-->
     <!--**************************************** player ****************************************-->
     <color name="player_grey_background">@color/black_alpha_2</color>

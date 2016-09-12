@@ -4,8 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:dividerHeight="22dp"
     android:divider="@color/textbook_fragment_divider_color"
+    android:childDivider="@color/textbook_fragment_divider_color"
+    android:headerDividersEnabled="true"
     android:groupIndicator="@null"
-    android:background="@color/white_1"
-    android:scrollbars="none"/>
+    android:background="@color/textbook_fragment_divider_color"
+    android:scrollbars="none"
+    android:paddingLeft="22dp"
+    android:paddingRight="22dp"
+    android:paddingBottom="22dp"/>

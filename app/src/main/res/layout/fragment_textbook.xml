@@ -4,9 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="22dp"
-    android:paddingRight="22dp"
-    android:paddingTop="22dp"
     android:background="@color/main_menu_fragment_default_background_color">
 
     <include layout="@layout/view_textbook"

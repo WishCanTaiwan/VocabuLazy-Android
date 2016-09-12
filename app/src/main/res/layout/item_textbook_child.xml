@@ -2,11 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/textbook_child_background_color">
 
+    <!-- TODO: (design) need arrow sets to replace drawableRight, drawableEnd -->
     <TextView
         android:id="@+id/lesson_title"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:text="@string/textbook_child_title"
+        android:textSize="22sp"
+        android:textColor="@color/textbook_child_text_color"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:drawableRight="@drawable/player_play"
+        android:drawableEnd="@drawable/player_play"/>
 
 </LinearLayout>

@@ -63,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:textSize = "@dimen/cover_dialog_button_text_size"
                         android:textColor= "@color/cover_dialog_text"
-                        android:text     ="@string/search_dialog_new_note_button_cancel" />
+                        android:text     ="@string/cover_dialog_button_cancel" />
 
                 </LinearLayout>
 
