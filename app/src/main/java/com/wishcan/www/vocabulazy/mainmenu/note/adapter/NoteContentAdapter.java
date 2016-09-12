@@ -70,16 +70,21 @@ public class NoteContentAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        String groupIndex = "" + (groupPosition+1);
         String groupTitle = ((NoteExpandableGroupItem) getGroup(groupPosition)).getGroupStr();
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.item_note_group, parent, false);
         }
 
+        TextView groupIndexTextView = (TextView) convertView.findViewById(R.id.note_group_index);
+        groupIndexTextView.setText(groupIndex);
+        groupIndexTextView.setTypeface(null, Typeface.BOLD);
+
         TextView groupTextView = (TextView) convertView.findViewById(R.id.note_group_text);
         groupTextView.setText(groupTitle);
         groupTextView.setTypeface(null, Typeface.BOLD);
-        groupTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, groupHeight));
+//        groupTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, groupHeight));
 
         ExpandableListView expandableListView = (ExpandableListView) parent;
         boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
@@ -100,7 +105,7 @@ public class NoteContentAdapter extends BaseExpandableListAdapter {
 
         TextView childTextView = (TextView) convertView.findViewById(R.id.note_child_text);
         childTextView.setText(childTitle);
-        childTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, childHeight));
+//        childTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, childHeight));
 
         ExpandableListView expandableListView = (ExpandableListView) parent;
         boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);

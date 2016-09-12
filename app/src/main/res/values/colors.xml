@@ -53,6 +53,18 @@
     <color name="textbook_child_background_color">@color/grey_2</color>
     <color name="textbook_child_text_color">@color/white_1</color>
     <color name="textbook_fragment_divider_color">@color/white_2</color>
+    <color name="note_fragment_default_background_color">@color/white_2</color>
+    <color name="note_view_default_background_color">@color/white_2</color>
+    <color name="note_group_background_color">@color/green_1</color>
+    <color name="note_group_text_color">@color/white_1</color>
+    <color name="note_child_background_color">@color/grey_2</color>
+    <color name="note_child_text_color">@color/white_1</color>
+    <color name="note_divider_color">@color/white_2</color>
+    <color name="exam_default_background_color">@color/white_2</color>
+    <color name="exam_index_border">@color/grey_2</color>
+    <color name="exam_index_selected">@color/grey_2</color>
+    <color name="exam_index_selected_text_color">@color/white_1</color>
+    <color name="exam_index_not_selected_text_color">@color/grey_2</color>
     <!--**************************************** exam ******************************************-->
     <!--**************************************** player ****************************************-->
     <color name="player_grey_background">@color/black_alpha_2</color>

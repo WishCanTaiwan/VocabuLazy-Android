@@ -59,7 +59,7 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
         Fragment[] fragments = new Fragment[]{mTextbookFragment, mNoteFragment, mExamIndexFragment};
-        String[] titles = new String[]{"Book", "Note", "Exam"};
+        String[] titles = getResources().getStringArray(R.array.main_menu_tab_title);
         MainMenuFragmentPagerAdapter pagerAdapter = new MainMenuFragmentPagerAdapter(getActivity().getSupportFragmentManager(), fragments, titles);
 
         MainMenuViewPager viewPager = (MainMenuViewPager) rootView.findViewById(R.id.main_menu_viewpager);

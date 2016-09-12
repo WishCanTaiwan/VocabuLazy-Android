@@ -6,16 +6,14 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_height="20dp"
         android:background="@color/textbook_fragment_divider_color"/>
 
     <TextView
         android:id="@+id/book_title"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="23"
+        android:layout_height="127dp"
         android:background="@color/textbook_group_title_background_color"
         android:text="@string/textbook_group_title"
         android:textSize="53sp"
@@ -28,8 +26,7 @@
         android:id="@+id/book_subtitle"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_height="45dp"
         android:background="@color/textbook_group_subtitle_background_color"
         android:text="@string/textbook_group_subtitle"
         android:textSize="22sp"

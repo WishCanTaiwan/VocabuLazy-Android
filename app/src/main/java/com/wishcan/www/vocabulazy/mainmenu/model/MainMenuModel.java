@@ -1,5 +1,8 @@
 package com.wishcan.www.vocabulazy.mainmenu.model;
 
+import android.content.Context;
+
+import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
@@ -16,6 +19,8 @@ public class MainMenuModel {
 
     public static final String TAG = "MainMenuModel";
 
+    private Context mContext;
+
     private ArrayList<TextbookExpandableGroupItem> textbookGroupItems;
     private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap;
 
@@ -30,7 +35,8 @@ public class MainMenuModel {
     private ArrayList<Textbook> texbooks;
     private ArrayList<Note> notes;
 
-    public MainMenuModel() {
+    public MainMenuModel(Context context) {
+        mContext = context;
         getDataFromDatabase();
     }
 
@@ -61,7 +67,7 @@ public class MainMenuModel {
     }
 
     public void generateNoteItems() {
-        String[] childs = new String[]{"Play", "Rename", "Copy", "Delete"};
+        String[] childStrings = mContext.getResources().getStringArray(R.array.note_child);
         noteGroupItems = new ArrayList<>();
         noteChildItemsMap = new HashMap<>();
         for (int noteIndex = 0; noteIndex < notes.size(); noteIndex++) {
@@ -69,7 +75,7 @@ public class MainMenuModel {
 
             ArrayList<NoteExpandableChildItem> childItems = new ArrayList<>();
             for (int index = 0; index < 4; index++) {
-                NoteExpandableChildItem childItem = new NoteExpandableChildItem(childs[index]);
+                NoteExpandableChildItem childItem = new NoteExpandableChildItem(childStrings[index]);
                 childItems.add(childItem);
             }
 

@@ -81,12 +81,12 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.item_textbook_group, parent, false);
-            convertView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, groupHeight));
+//            convertView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, groupHeight));
         }
 
         TextView groupTextView = (TextView) convertView.findViewById(R.id.book_subtitle);
         groupTextView.setText(groupTitle);
-        groupTextView.setTypeface(null, Typeface.BOLD);
+//        groupTextView.setTypeface(null, Typeface.BOLD);
 
         ExpandableListView expandableListView = (ExpandableListView) parent;
         boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
@@ -103,12 +103,12 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_textbook_child, parent, false);
-            convertView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, childHeight));
+//            convertView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, childHeight));
         }
 
         TextView childTextView = (TextView) convertView.findViewById(R.id.lesson_title);
         childTextView.setText(childTitle);
-        childTextView.setTypeface(null, Typeface.BOLD);
+//        childTextView.setTypeface(null, Typeface.BOLD);
 //        childTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, childHeight));
 
         ExpandableListView expandableListView = (ExpandableListView) parent;

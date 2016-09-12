@@ -31,12 +31,27 @@
 
     <!-- widget -->
     <!-- main_menu -->
-    <string name="main_menu_exam_index_textbook">Book</string>
-    <string name="main_menu_exam_index_note">Note</string>
+    <string name="main_menu_exam_index_textbook">七千單字</string>
+    <string name="main_menu_exam_index_note">自訂清單</string>
     <string name="main_menu_menu_action_settings">Settings</string>
+    <string-array name="main_menu_tab_title">
+        <item>七千單字</item>
+        <item>自訂清單</item>
+        <item>測驗特區</item>
+        <item>關於我們</item>
+    </string-array>
     <string name="textbook_group_title">必考7000字</string>
     <string name="textbook_group_subtitle">Level Default</string>
     <string name="textbook_child_title">Lesson Default</string>
+    <string name="note_index">0</string>
+    <string name="note_group_default_text">Note Default</string>
+    <string name="note_child_default_text">Note Option</string>
+    <string-array name="note_child">
+        <item>播放清單</item>
+        <item>重新命名</item>
+        <item>複製清單</item>
+        <item>刪除清單</item>
+    </string-array>
     <!-- exam -->
 
     <!-- info -->

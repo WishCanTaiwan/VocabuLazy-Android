@@ -7,6 +7,7 @@
     android:background="@color/main_menu_fragment_default_background_color">
 
     <include layout="@layout/view_textbook"
-        android:id="@+id/textbook_view"/>
+        android:id="@+id/textbook_view"
+        android:background="@color/textbook_fragment_divider_color"/>
 
 </LinearLayout>

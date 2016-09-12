@@ -3,13 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/exam_default_background_color">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:paddingTop="24dp"
+        android:paddingLeft="42dp"
+        android:paddingRight="42dp"
+        android:background="@color/exam_default_background_color">
 
         <TextView
             android:id="@+id/exam_index_textbook_text"
@@ -17,8 +21,11 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:text="@string/main_menu_exam_index_textbook"
+            android:textColor="@color/exam_index_text_color"
+            android:textSize="20sp"
             android:gravity="center"
-            android:background="@color/accent_material_dark" />
+            android:background="@drawable/exam_index_selector">
+        </TextView>
 
         <TextView
             android:id="@+id/exam_index_note_text"
@@ -26,8 +33,10 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:text="@string/main_menu_exam_index_note"
+            android:textColor="@color/exam_index_text_color"
+            android:textSize="20sp"
             android:gravity="center"
-            android:background="@color/accent_material_light" />
+            android:background="@drawable/exam_index_selector" />
 
     </LinearLayout>
 
@@ -35,7 +44,7 @@
         android:id="@+id/exam_index_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/button_material_light" >
+        android:background="@color/exam_default_background_color" >
 
         <include layout="@layout/view_exam_index_textbook"
             android:id="@+id/exam_index_textbook_view"/>

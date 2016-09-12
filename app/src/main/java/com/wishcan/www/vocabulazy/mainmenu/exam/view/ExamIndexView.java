@@ -57,11 +57,15 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
 
     @Override
     public void onClick(View view) {
+        mExamIndexTextBookTextView.setSelected(false);
+        mExamIndexNoteTextView.setSelected(false);
         switch (view.getId()) {
             case R.id.exam_index_textbook_text:
+                mExamIndexTextBookTextView.setSelected(true);
                 mExamIndexViewPager.setCurrentItem(VIEWPAGER_INDEX_TEXTBOOK);
                 break;
             case R.id.exam_index_note_text:
+                mExamIndexNoteTextView.setSelected(true);
                 mExamIndexViewPager.setCurrentItem(VIEWPAGER_INDEX_NOTE);
                 break;
             default:
@@ -134,5 +138,7 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
             mExamIndexViewPager.setAdapter(pagerAdapter);
             mExamIndexViewPager.setOffscreenPageLimit(pagerAdapter.getCount());
         }
+
+        mExamIndexTextBookTextView.setSelected(true);
     }
 }

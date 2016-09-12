@@ -6,6 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.design.widget.TabLayout
+        android:id="@+id/main_menu_tab_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_color_green"/>
+
     <com.wishcan.www.vocabulazy.mainmenu.view.MainMenuViewPager
         android:id="@+id/main_menu_viewpager"
         android:layout_width="match_parent"
@@ -13,10 +19,5 @@
         android:layout_weight="1"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/main_menu_tab_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/theme_color_green"/>
 
 </LinearLayout>

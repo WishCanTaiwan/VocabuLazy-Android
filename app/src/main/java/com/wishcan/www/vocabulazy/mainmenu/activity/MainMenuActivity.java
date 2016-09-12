@@ -36,7 +36,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         setSupportActionBar(toolbar);
 
         if (model == null) {
-            model = new MainMenuModel();
+            model = new MainMenuModel(getApplicationContext());
         }
 
         startAudioService();
