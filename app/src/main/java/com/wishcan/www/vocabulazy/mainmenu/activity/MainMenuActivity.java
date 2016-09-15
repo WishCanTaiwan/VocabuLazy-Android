@@ -87,12 +87,16 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            /** TODO: for test only */
-            Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
-            startActivity(intent);
-            return true;
+        switch (id) {
+            case R.id.action_search:
+                /** TODO: for test only */
+                Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_back_to_player:
+                break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);

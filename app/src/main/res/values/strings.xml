@@ -29,11 +29,14 @@
     <string name="ga_tag_search_dialog">S.DIALOG</string>
     <string name="ga_tag_search">SEARCH</string>
 
+    <!-- menu -->
+    <string name="menu_main_menu_action_search">搜尋</string>
+    <string name="menu_main_menu_action_to_player">前往Player</string>
+
     <!-- widget -->
     <!-- main_menu -->
     <string name="main_menu_exam_index_textbook">七千單字</string>
     <string name="main_menu_exam_index_note">自訂清單</string>
-    <string name="main_menu_menu_action_settings">Settings</string>
     <string-array name="main_menu_tab_title">
         <item>七千單字</item>
         <item>自訂清單</item>

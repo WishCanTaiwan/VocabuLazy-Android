@@ -3,10 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".cover.activity.CoverActivity">
+
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/main_menu_menu_action_settings"
+        android:id="@+id/action_search"
+        android:title="@string/menu_main_menu_action_search"
         android:orderInCategory="100"
         android:icon="@drawable/ic_search_white_48dp"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_back_to_player"
+        android:title="@string/menu_main_menu_action_to_player"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_equalizer_white_48dp"
+        app:showAsAction="ifRoom" />
 </menu>
