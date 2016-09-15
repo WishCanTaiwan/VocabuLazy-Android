@@ -25,13 +25,14 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     public interface OnMainMenuEventListener {
         void onTextbookSelected(int bookIndex, int lessonIndex);
         void onNoteSelected(int noteIndex);
+        void onNoteRename(int noteIndex, String originalName);
         void onExamTextbookSelected(int examBookIndex, int examLessonIndex);
         void onExamNoteSelected(int examNoteIndex);
     }
 
     public static final String TAG = "MainMenuFragment";
 
-    private MainMenuModel mModel;
+    private MainMenuModel mMainMenuModel;
     private OnMainMenuEventListener mOnMainMenuEventListener;
     private TextbookFragment mTextbookFragment;
     private NoteFragment mNoteFragment;
@@ -74,7 +75,7 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mModel = ((MainMenuActivity) getActivity()).getModel();
+        mMainMenuModel = ((MainMenuActivity) getActivity()).getModel();
     }
 
     @Override
@@ -100,8 +101,11 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     }
 
     @Override
-    public void onNoteRename(String name) {
-        Log.d(TAG, "Note [RENAME]");
+    public void onNoteRename(int noteIndex, String name) {
+        Log.d(TAG, "Note [RENAME " + name + " at " + noteIndex+"]");
+        if (mOnMainMenuEventListener != null) {
+            mOnMainMenuEventListener.onNoteRename(noteIndex, name);
+        }
     }
 
     @Override
@@ -134,6 +138,12 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         mOnMainMenuEventListener = listener;
     }
 
+    public void refreshNoteFragment() {
+        Log.d(TAG, "refresh");
+        mMainMenuModel.generateNoteItems();
+        mNoteFragment.updateNoteContent(mMainMenuModel.getNoteGroupItems(), mMainMenuModel.getNoteChildItemsMap());
+    }
+
     private void initFragments() {
         if (mTextbookFragment == null) {
             mTextbookFragment = TextbookFragment.newInstance();
@@ -151,12 +161,16 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         }
     }
 
-    private void updateFragmentsContent() {
-        mModel.generateBookItems();
-        mModel.generateNoteItems();
-        mModel.generateExamIndexItems();
-        mTextbookFragment.updateBookContent(mModel.getTextbookGroupItems(), mModel.getTextbookChildItemsMap());
-        mNoteFragment.updateNoteContent(mModel.getNoteGroupItems(), mModel.getNoteChildItemsMap());
-        mExamIndexFragment.updateExamIndexContent(mModel.getExamIndexTextbookGroupItems(), mModel.getExamIndexTextbookChildItemsMap(), mModel.getExamIndexNoteGroupItems(), mModel.getExamIndexNoteChildItemsMap());
+    public void updateFragmentsContent() {
+        mMainMenuModel.generateBookItems();
+        mMainMenuModel.generateNoteItems();
+        mMainMenuModel.generateExamIndexItems();
+        mTextbookFragment.updateBookContent(mMainMenuModel.getTextbookGroupItems(), mMainMenuModel.getTextbookChildItemsMap());
+        mNoteFragment.updateNoteContent(mMainMenuModel.getNoteGroupItems(), mMainMenuModel.getNoteChildItemsMap());
+        mExamIndexFragment.updateExamIndexContent(mMainMenuModel.getExamIndexTextbookGroupItems(), mMainMenuModel.getExamIndexTextbookChildItemsMap(), mMainMenuModel.getExamIndexNoteGroupItems(), mMainMenuModel.getExamIndexNoteChildItemsMap());
+    }
+
+    public void refreshFragments() {
+        mNoteFragment.refresh();
     }
 }

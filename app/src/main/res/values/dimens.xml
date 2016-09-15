@@ -22,6 +22,7 @@
     <dimen name="cover_dialog_ox_padding">5dp</dimen>
     <dimen name="cover_dialog_input_text_size">23sp</dimen>
     <!-- main_menu -->
+    <dimen name="note_dialog_rename_translation_z">@dimen/dialog_z</dimen>
     <!-- exam -->
     <!-- info -->
     <!-- player -->

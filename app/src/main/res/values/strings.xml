@@ -40,9 +40,11 @@
         <item>測驗特區</item>
         <item>關於我們</item>
     </string-array>
+    <!-- main menu textbook -->
     <string name="textbook_group_title">必考7000字</string>
     <string name="textbook_group_subtitle">Level Default</string>
     <string name="textbook_child_title">Lesson Default</string>
+    <!-- main menu note -->
     <string name="note_index">0</string>
     <string name="note_group_default_text">Note Default</string>
     <string name="note_child_default_text">Note Option</string>
@@ -52,9 +54,14 @@
         <item>複製清單</item>
         <item>刪除清單</item>
     </string-array>
+    <string name="note_rename_dialog_title">重新命名清單</string>
+    <string name="note_rename_dialog_hint">原清單名稱</string>
+    <string name="note_rename_dialog_confirm">確定</string>
+    <string name="note_rename_dialog_cancel">取消</string>
+    <!-- main menu exam -->
+    <!-- main menu info -->
     <!-- exam -->
 
-    <!-- info -->
     <!-- player -->
     <string name="player_option_tab_0">自訂模式</string>
     <string name="player_option_tab_1">睡眠模式</string>

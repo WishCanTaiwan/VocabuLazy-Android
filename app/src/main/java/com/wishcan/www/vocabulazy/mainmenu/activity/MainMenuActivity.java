@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.mainmenu.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -15,16 +16,18 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.exam.activity.ExamActivity;
 import com.wishcan.www.vocabulazy.mainmenu.fragment.MainMenuFragment;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
+import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteRenameDialogFragment;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 
-public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener {
+public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener, NoteRenameDialogFragment.OnRenameCompleteListener {
 
     public static final String TAG = "MainMenuActivity";
 
-    private MainMenuModel model;
+    private MainMenuFragment mMainMenuFragment;
+    private MainMenuModel mMainMenuModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,8 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (model == null) {
-            model = new MainMenuModel(getApplicationContext());
+        if (mMainMenuModel == null) {
+            mMainMenuModel = new MainMenuModel(getApplicationContext());
         }
 
         startAudioService();
@@ -45,8 +48,8 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        MainMenuFragment mainMenuFragment = (MainMenuFragment) getSupportFragmentManager().findFragmentById(R.id.main_menu_fragment);
-        mainMenuFragment.addOnMainMenuEventListener(this);
+        mMainMenuFragment = (MainMenuFragment) getSupportFragmentManager().findFragmentById(R.id.main_menu_fragment);
+        mMainMenuFragment.addOnMainMenuEventListener(this);
     }
 
     @Override
@@ -109,6 +112,26 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     }
 
     @Override
+    public void onNoteRename(int noteIndex, String originalName) {
+        // add fragment to mainmenufragment
+        NoteRenameDialogFragment fragment = new NoteRenameDialogFragment();
+        fragment.addOnRenameCompleteListener(this);
+        fragment.setNoteIndex(noteIndex);
+        fragment.setOriginalString(originalName);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, fragment, "NoteRenameDialogFragment");
+        transaction.addToBackStack("NoteRenameDialogFragment");
+        transaction.commit();
+    }
+
+    @Override
+    public void onRenameCompleted() {
+        Log.d(TAG, "Rename completed");
+        mMainMenuFragment.updateFragmentsContent();
+        mMainMenuFragment.refreshFragments();
+    }
+
+    @Override
     public void onExamTextbookSelected(int examBookIndex, int examLessonIndex) {
         Intent intent = new Intent(MainMenuActivity.this, ExamActivity.class);
         intent.putExtra(ExamActivity.ARG_BOOK_INDEX, examBookIndex);
@@ -125,7 +148,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     }
 
     public MainMenuModel getModel() {
-        return model;
+        return mMainMenuModel;
     }
 
     private void startAudioService() {

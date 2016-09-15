@@ -20,6 +20,7 @@ public class MainMenuModel {
     public static final String TAG = "MainMenuModel";
 
     private Context mContext;
+    private Database mDatabase;
 
     private ArrayList<TextbookExpandableGroupItem> textbookGroupItems;
     private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap;
@@ -146,8 +147,16 @@ public class MainMenuModel {
     }
 
     public void getDataFromDatabase() {
-        Database database = Database.getInstance();
-        texbooks = database.getTextbooks();
-        notes = database.getNotes();
+        mDatabase = Database.getInstance();
+        texbooks = mDatabase.getTextbooks();
+        notes = mDatabase.getNotes();
+    }
+
+    public String getNoteTitle(int noteIndex) {
+        return mDatabase.getLessonTitle(-1, noteIndex);
+    }
+
+    public void renameNote(int noteIndex, String name) {
+        mDatabase.renameNoteAt(noteIndex, name);
     }
 }

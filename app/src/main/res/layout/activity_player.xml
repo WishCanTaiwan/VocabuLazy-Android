@@ -15,6 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.wishcan.www.vocabulazy.player.fragment.PlayerFragment"
-        android:layout_below="@+id/toolbar"/>
+        android:layout_below="@id/toolbar"/>
 
 </RelativeLayout>
