@@ -63,4 +63,8 @@ public class TextbookFragment extends Fragment implements TextbookView.OnTextboo
         mGroupItems = groupItems;
         mChildItemsMap = childItemsMap;
     }
+
+    public void refresh() {
+        mTextbookView.setAdapter(new TextbookContentAdapter(getContext(), mGroupItems, mChildItemsMap));
+    }
 }

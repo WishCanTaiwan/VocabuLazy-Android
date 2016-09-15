@@ -75,7 +75,9 @@ public class ExamIndexFragment extends Fragment implements ExamIndexView.OnExamI
 
         mNoteGroupItems = noteGroupItems;
         mNoteChildItemsMap = noteChildItemsMap;
+    }
 
-
+    public void refresh() {
+        mExamIndexView.updateContent(mTextbookGroupItems, mTextbookChildItemsMap, mNoteGroupItems, mNoteChildItemsMap);
     }
 }

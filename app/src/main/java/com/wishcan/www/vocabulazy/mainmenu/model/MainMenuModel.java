@@ -159,4 +159,8 @@ public class MainMenuModel {
     public void renameNote(int noteIndex, String name) {
         mDatabase.renameNoteAt(noteIndex, name);
     }
+
+    public void deleteNote(int noteIndex) {
+        mDatabase.deleteNoteAt(noteIndex);
+    }
 }

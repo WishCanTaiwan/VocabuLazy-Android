@@ -58,6 +58,10 @@
     <string name="note_rename_dialog_hint">原清單名稱</string>
     <string name="note_rename_dialog_confirm">確定</string>
     <string name="note_rename_dialog_cancel">取消</string>
+    <string name="note_delete_dialog_title">確定刪除此清單?</string>
+    <string name="note_delete_dialog_subtitle">清單名稱</string>
+    <string name="note_delete_dialog_confirm">確定</string>
+    <string name="note_delete_dialog_cancel">取消</string>
     <!-- main menu exam -->
     <!-- main menu info -->
     <!-- exam -->

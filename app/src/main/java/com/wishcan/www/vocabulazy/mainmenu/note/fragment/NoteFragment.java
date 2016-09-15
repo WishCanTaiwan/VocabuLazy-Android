@@ -26,7 +26,7 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
         void onNotePlay(int noteIndex);
         void onNoteRename(int noteIndex, String name);
         void onNoteCopy();
-        void onNoteDelete(int noteIndex);
+        void onNoteDelete(int noteIndex, String name);
     }
 
     public static final String TAG = "NoteFragment";
@@ -80,19 +80,19 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
 
     @Override
     public void onNoteChildClicked(int groupPosition, int childPosition) {
+        String name = mMainMenuModel.getNoteTitle(groupPosition);
         switch (childPosition) {
             case PLAY:
                 mOnNoteClickListener.onNotePlay(groupPosition);
                 break;
             case RENAME:
-                String name = mMainMenuModel.getNoteTitle(groupPosition);
                 mOnNoteClickListener.onNoteRename(groupPosition, name);
                 break;
             case COPY:
                 mOnNoteClickListener.onNoteCopy();
                 break;
             case DELETE:
-                mOnNoteClickListener.onNoteDelete(groupPosition);
+                mOnNoteClickListener.onNoteDelete(groupPosition, name);
                 break;
             default:
                 break;

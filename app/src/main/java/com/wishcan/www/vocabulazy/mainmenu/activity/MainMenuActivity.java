@@ -16,13 +16,15 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.exam.activity.ExamActivity;
 import com.wishcan.www.vocabulazy.mainmenu.fragment.MainMenuFragment;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
+import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteDeleteDialogFragment;
 import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteRenameDialogFragment;
+import com.wishcan.www.vocabulazy.mainmenu.note.view.NoteDeleteDialogView;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
 
-public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener, NoteRenameDialogFragment.OnRenameCompleteListener {
+public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener, NoteRenameDialogFragment.OnRenameCompleteListener, NoteDeleteDialogFragment.OnNoteDeleteListener {
 
     public static final String TAG = "MainMenuActivity";
 
@@ -127,6 +129,25 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     @Override
     public void onRenameCompleted() {
         Log.d(TAG, "Rename completed");
+        mMainMenuFragment.updateFragmentsContent();
+        mMainMenuFragment.refreshFragments();
+    }
+
+    @Override
+    public void onNoteDelete(int noteIndex, String noteTitle) {
+        NoteDeleteDialogFragment fragment = new NoteDeleteDialogFragment();
+        fragment.addOnNoteDeleteListener(this);
+        fragment.setNoteIndex(noteIndex);
+        fragment.setNoteTitle(noteTitle);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, fragment, "NoteDeleteDialogFragment");
+        transaction.addToBackStack("NoteDeleteDialogFragment");
+        transaction.commit();
+    }
+
+    @Override
+    public void onNoteDeleted() {
+        Log.d(TAG, "Note deleted");
         mMainMenuFragment.updateFragmentsContent();
         mMainMenuFragment.refreshFragments();
     }
