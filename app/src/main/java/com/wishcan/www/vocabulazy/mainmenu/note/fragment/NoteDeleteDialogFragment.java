@@ -1,7 +1,6 @@
 package com.wishcan.www.vocabulazy.mainmenu.note.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.mainmenu.note.view.NoteDeleteDialogView;
 import com.wishcan.www.vocabulazy.widget.DialogFragmentNew;
-import com.wishcan.www.vocabulazy.widget.DialogView;
 import com.wishcan.www.vocabulazy.widget.DialogViewNew;
 
 /**
@@ -31,7 +29,7 @@ public class NoteDeleteDialogFragment extends DialogFragmentNew implements Dialo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mNoteDeleteDialogView = (NoteDeleteDialogView) inflater.inflate(R.layout.view_note_delete, container, false);
+        mNoteDeleteDialogView = (NoteDeleteDialogView) inflater.inflate(R.layout.view_note_delete_dialog, container, false);
         mNoteDeleteDialogView.setNoteTitle(noteTitle);
         mNoteDeleteDialogView.setOnYesOrNoClickListener(this);
         return mNoteDeleteDialogView;

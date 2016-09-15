@@ -27,6 +27,7 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         void onNoteSelected(int noteIndex);
         void onNoteRename(int noteIndex, String originalName);
         void onNoteDelete(int noteIndex, String noteTitle);
+        void onNoteCreate();
         void onExamTextbookSelected(int examBookIndex, int examLessonIndex);
         void onExamNoteSelected(int examNoteIndex);
     }
@@ -120,7 +121,13 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         if (mOnMainMenuEventListener != null) {
             mOnMainMenuEventListener.onNoteDelete(noteIndex, name);
         }
+    }
 
+    @Override
+    public void onNoteCreate() {
+        if (mOnMainMenuEventListener != null) {
+            mOnMainMenuEventListener.onNoteCreate();
+        }
     }
 
     @Override

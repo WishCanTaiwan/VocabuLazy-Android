@@ -34,14 +34,6 @@ public class NoteRenameDialogFragment extends DialogFragmentNew implements Dialo
     private int noteIndex;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // get the instance of activity
-        mContext = context;
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "Create View");
         mNoteRenameDialogView = (NoteRenameDialogView) inflater.inflate(R.layout.view_note_rename_dialog, container, false);

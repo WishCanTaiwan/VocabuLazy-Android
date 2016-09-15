@@ -3,6 +3,7 @@ package com.wishcan.www.vocabulazy.mainmenu.note.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,13 +21,14 @@ import com.wishcan.www.vocabulazy.mainmenu.note.view.NoteView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickListener {
+public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickListener, FloatingActionButton.OnClickListener {
 
     public interface OnNoteClickListener {
         void onNotePlay(int noteIndex);
         void onNoteRename(int noteIndex, String name);
         void onNoteCopy();
         void onNoteDelete(int noteIndex, String name);
+        void onNoteCreate();
     }
 
     public static final String TAG = "NoteFragment";
@@ -58,8 +60,10 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
         Log.d(TAG, "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
         mNoteView = (NoteView) rootView.findViewById(R.id.note_view);
-
         mNoteView.addOnNoteItemListener(this);
+
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.new_note_fab);
+        fab.setOnClickListener(this);
         return rootView;
     }
 
@@ -97,6 +101,11 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        mOnNoteClickListener.onNoteCreate();
     }
 
     public void addOnNoteClickListener(OnNoteClickListener listener) {

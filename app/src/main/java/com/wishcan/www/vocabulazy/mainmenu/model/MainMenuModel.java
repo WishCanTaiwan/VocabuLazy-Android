@@ -163,4 +163,8 @@ public class MainMenuModel {
     public void deleteNote(int noteIndex) {
         mDatabase.deleteNoteAt(noteIndex);
     }
+
+    public void createNote(String noteTitle) {
+        mDatabase.createNewNote(noteTitle);
+    }
 }
