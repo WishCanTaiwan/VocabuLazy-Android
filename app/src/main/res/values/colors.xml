@@ -65,6 +65,7 @@
     <color name="exam_index_selected">@color/grey_2</color>
     <color name="exam_index_selected_text_color">@color/white_1</color>
     <color name="exam_index_not_selected_text_color">@color/grey_2</color>
+    <color name="info_default_background_color">@color/white_2</color>
     <!--**************************************** exam ******************************************-->
     <!--**************************************** player ****************************************-->
     <color name="player_grey_background">@color/black_alpha_2</color>

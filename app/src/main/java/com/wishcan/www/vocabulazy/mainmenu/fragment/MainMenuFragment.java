@@ -15,6 +15,7 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.mainmenu.adapter.MainMenuFragmentPagerAdapter;
 import com.wishcan.www.vocabulazy.mainmenu.exam.fragment.ExamIndexFragment;
+import com.wishcan.www.vocabulazy.mainmenu.info.InfoFragment;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteFragment;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.fragment.TextbookFragment;
@@ -39,13 +40,7 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     private TextbookFragment mTextbookFragment;
     private NoteFragment mNoteFragment;
     private ExamIndexFragment mExamIndexFragment;
-
-    public static MainMenuFragment newInstance() {
-        MainMenuFragment fragment = new MainMenuFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private InfoFragment mInfoFragment;
 
     public MainMenuFragment() {
 
@@ -61,7 +56,7 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
-        Fragment[] fragments = new Fragment[]{mTextbookFragment, mNoteFragment, mExamIndexFragment};
+        Fragment[] fragments = new Fragment[]{mTextbookFragment, mNoteFragment, mExamIndexFragment, mInfoFragment};
         String[] titles = getResources().getStringArray(R.array.main_menu_tab_title);
         MainMenuFragmentPagerAdapter pagerAdapter = new MainMenuFragmentPagerAdapter(getActivity().getSupportFragmentManager(), fragments, titles);
 
@@ -150,12 +145,6 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         mOnMainMenuEventListener = listener;
     }
 
-    public void refreshNoteFragment() {
-        Log.d(TAG, "refresh");
-        mMainMenuModel.generateNoteItems();
-        mNoteFragment.updateNoteContent(mMainMenuModel.getNoteGroupItems(), mMainMenuModel.getNoteChildItemsMap());
-    }
-
     private void initFragments() {
         if (mTextbookFragment == null) {
             mTextbookFragment = TextbookFragment.newInstance();
@@ -170,6 +159,10 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
         if (mExamIndexFragment == null) {
             mExamIndexFragment = ExamIndexFragment.newInstance();
             mExamIndexFragment.addOnExamIndexClickListener(this);
+        }
+
+        if (mInfoFragment == null) {
+            mInfoFragment = InfoFragment.getInstance();
         }
     }
 
