@@ -48,6 +48,7 @@ public class ExamIndexFragment extends Fragment implements ExamIndexView.OnExamI
         View rootView = inflater.inflate(R.layout.fragment_exam_index, container, false);
         mExamIndexView = (ExamIndexView) rootView.findViewById(R.id.exam_index_view);
         mExamIndexView.updateContent(mTextbookGroupItems, mTextbookChildItemsMap, mNoteGroupItems, mNoteChildItemsMap);
+        mExamIndexView.refresh();
         mExamIndexView.addOnExamIndexClickListener(this);
         return rootView;
     }
@@ -79,5 +80,6 @@ public class ExamIndexFragment extends Fragment implements ExamIndexView.OnExamI
 
     public void refresh() {
         mExamIndexView.updateContent(mTextbookGroupItems, mTextbookChildItemsMap, mNoteGroupItems, mNoteChildItemsMap);
+        mExamIndexView.refresh();
     }
 }

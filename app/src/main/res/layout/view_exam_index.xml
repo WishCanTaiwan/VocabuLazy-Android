@@ -40,18 +40,29 @@
 
     </LinearLayout>
 
-    <com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexViewPager
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/exam_index_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/exam_default_background_color" >
+        android:background="@color/exam_default_background_color"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp">
 
-        <include layout="@layout/view_exam_index_textbook"
-            android:id="@+id/exam_index_textbook_view"/>
+    </LinearLayout>
 
-        <include layout="@layout/view_exam_index_note"
-            android:id="@+id/exam_index_note_view"/>
+    <!--<com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexViewPager-->
+        <!--android:id="@+id/exam_index_container"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/exam_default_background_color" >-->
 
-    </com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexViewPager>
+        <!--<include layout="@layout/view_exam_index_textbook"-->
+            <!--android:id="@+id/exam_index_textbook_view"/>-->
+
+        <!--<include layout="@layout/view_exam_index_note"-->
+            <!--android:id="@+id/exam_index_note_view"/>-->
+
+    <!--</com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexViewPager>-->
 
 </com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexView>

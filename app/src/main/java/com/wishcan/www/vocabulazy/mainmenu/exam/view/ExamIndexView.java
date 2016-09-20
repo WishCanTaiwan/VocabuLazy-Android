@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.mainmenu.exam.view;
 
 import android.content.Context;
+import android.support.v4.app.FragmentTransaction;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +12,13 @@ import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.mainmenu.exam.adapter.ExamIndexPagerAdapter;
+import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteContentAdapter;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
+import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookContentAdapter;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableGroupItem;
+import com.wishcan.www.vocabulazy.mainmenu.textbook.fragment.TextbookFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,9 +38,15 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
     private TextView mExamIndexTextBookTextView;
     private TextView mExamIndexNoteTextView;
     private ExamIndexViewPager mExamIndexViewPager;
+    private LinearLayout examIndexContainer;
     private ExamIndexTextbookView mExamIndexTextbookView;
     private ExamIndexNoteView mExamIndexNoteView;
     private OnExamIndexClickListener mOnExamIndexClickListener;
+
+    private ArrayList<TextbookExpandableGroupItem> textbookGroupItems;
+    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap;
+    private ArrayList<NoteExpandableGroupItem> noteGroupItems;
+    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap;
 
     public ExamIndexView(Context context) {
         super(context);
@@ -44,6 +54,7 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
 
     public ExamIndexView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
     }
 
     @Override
@@ -62,11 +73,19 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
         switch (view.getId()) {
             case R.id.exam_index_textbook_text:
                 mExamIndexTextBookTextView.setSelected(true);
-                mExamIndexViewPager.setCurrentItem(VIEWPAGER_INDEX_TEXTBOOK);
+
+                examIndexContainer.removeAllViewsInLayout();
+                examIndexContainer.addView(mExamIndexTextbookView);
+
+//                mExamIndexViewPager.setCurrentItem(VIEWPAGER_INDEX_TEXTBOOK);
                 break;
             case R.id.exam_index_note_text:
                 mExamIndexNoteTextView.setSelected(true);
-                mExamIndexViewPager.setCurrentItem(VIEWPAGER_INDEX_NOTE);
+
+                examIndexContainer.removeAllViewsInLayout();
+                examIndexContainer.addView(mExamIndexNoteView);
+
+//                mExamIndexViewPager.setCurrentItem(VIEWPAGER_INDEX_NOTE);
                 break;
             default:
                 break;
@@ -98,12 +117,21 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
                               HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap,
                               ArrayList<NoteExpandableGroupItem> noteGroupItems,
                               HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap) {
-        ExamIndexPagerAdapter pagerAdapter = new ExamIndexPagerAdapter(getContext(), new ViewGroup[]{mExamIndexTextbookView, mExamIndexNoteView}, textbookGroupItems, textbookChildItemsMap, noteGroupItems, noteChildItemsMap);
 
-        //
-        //
-        mExamIndexViewPager.setAdapter(pagerAdapter);
-        mExamIndexViewPager.setOffscreenPageLimit(pagerAdapter.getCount());
+        this.textbookGroupItems = textbookGroupItems;
+        this.textbookChildItemsMap = textbookChildItemsMap;
+        this.noteGroupItems = noteGroupItems;
+        this.noteChildItemsMap = noteChildItemsMap;
+
+//        ExamIndexPagerAdapter pagerAdapter = new ExamIndexPagerAdapter(getContext(), new ViewGroup[]{mExamIndexTextbookView, mExamIndexNoteView}, textbookGroupItems, textbookChildItemsMap, noteGroupItems, noteChildItemsMap);
+
+//        mExamIndexViewPager.setAdapter(pagerAdapter);
+//        mExamIndexViewPager.setOffscreenPageLimit(pagerAdapter.getCount());
+    }
+
+    public void refresh() {
+        mExamIndexTextbookView.setAdapter(new TextbookContentAdapter(getContext(), textbookGroupItems, textbookChildItemsMap));
+        mExamIndexNoteView.setAdapter(new NoteContentAdapter(getContext(), noteGroupItems, noteChildItemsMap));
     }
 
     public void addOnExamIndexClickListener(OnExamIndexClickListener listener) {
@@ -122,22 +150,31 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
         }
 
         if (mExamIndexTextbookView == null) {
-            mExamIndexTextbookView = (ExamIndexTextbookView) findViewById(R.id.exam_index_textbook_view);
+//            mExamIndexTextbookView = (ExamIndexTextbookView) findViewById(R.id.exam_index_textbook_view);
+            mExamIndexTextbookView = new ExamIndexTextbookView(getContext());
             mExamIndexTextbookView.addOnExamTextbookClickListener(this);
+            mExamIndexTextbookView.setVerticalScrollBarEnabled(false);
         }
 
         if (mExamIndexNoteView == null) {
-            mExamIndexNoteView = (ExamIndexNoteView) findViewById(R.id.exam_index_note_view);
+//            mExamIndexNoteView = (ExamIndexNoteView) findViewById(R.id.exam_index_note_view);
+            mExamIndexNoteView = new ExamIndexNoteView(getContext());
             mExamIndexNoteView.addOnExamIndexNoteClickListener(this);
+            mExamIndexNoteView.setVerticalScrollBarEnabled(false);
         }
 
-        if (mExamIndexViewPager == null) {
-            ExamIndexPagerAdapter pagerAdapter = new ExamIndexPagerAdapter(getContext(), new ViewGroup[]{mExamIndexTextbookView, mExamIndexNoteView});
-            mExamIndexViewPager = (ExamIndexViewPager) findViewById(R.id.exam_index_container);
-//            mExamIndexViewPager.setPagingEnabled(false);
-            mExamIndexViewPager.setAdapter(pagerAdapter);
-            mExamIndexViewPager.setOffscreenPageLimit(pagerAdapter.getCount());
+        if (examIndexContainer == null) {
+            examIndexContainer = (LinearLayout) findViewById(R.id.exam_index_container);
+            examIndexContainer.addView(mExamIndexTextbookView);
         }
+
+//        if (mExamIndexViewPager == null) {
+//            ExamIndexPagerAdapter pagerAdapter = new ExamIndexPagerAdapter(getContext(), new ViewGroup[]{mExamIndexTextbookView, mExamIndexNoteView});
+//            mExamIndexViewPager = (ExamIndexViewPager) findViewById(R.id.exam_index_container);
+////            mExamIndexViewPager.setPagingEnabled(false);
+//            mExamIndexViewPager.setAdapter(pagerAdapter);
+//            mExamIndexViewPager.setOffscreenPageLimit(pagerAdapter.getCount());
+//        }
 
         mExamIndexTextBookTextView.setSelected(true);
     }
