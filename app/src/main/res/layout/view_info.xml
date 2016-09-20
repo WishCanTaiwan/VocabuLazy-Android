@@ -4,4 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info_rate_us"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info_report"
+        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
+        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info_guide"
+        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
+        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info_terms_conditions"
+        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
+        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info_wishcan_introduction"
+        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
+        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+
 </com.wishcan.www.vocabulazy.mainmenu.info.InfoView>

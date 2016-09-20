@@ -71,6 +71,11 @@
     <string name="note_create_dialog_cancel">取消</string>
     <!-- main menu exam -->
     <!-- main menu info -->
+    <string name="info_rate_us">給我們評價</string>
+    <string name="info_report">回報問題</string>
+    <string name="info_guide">新手導引</string>
+    <string name="info_terms_conditions">服務條款</string>
+    <string name="info_wishcan_introduction">WishCan介紹</string>
     <!-- exam -->
 
     <!-- player -->
