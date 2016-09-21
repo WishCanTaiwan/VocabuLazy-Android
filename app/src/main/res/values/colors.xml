@@ -81,6 +81,7 @@
     <color name="player_option_tab1_text">@color/white_1</color>
     <color name="player_option_tab2_text">@color/white_1</color>
     <color name="player_option_picker_indicator_text_color">@color/white_1</color>
+    <color name="player_dialog_add_voc_to_note_text">@color/grey_4</color>
     <color name="player_dialog_add_voc_to_note_background">@color/black_alpha_1</color>
     <color name="player_dialog_new_note_background">@color/black_alpha_1</color>
     <!--**************************************** search ****************************************-->
@@ -93,6 +94,7 @@
     <color name="search_note_list_text">@color/grey_2</color>
     <color name="search_detail_background">@color/green_1</color>
     <color name="search_dialog_text">@color/black_1</color>
+    <color name="search_dialog_add_voc_to_note_text">@color/grey_4</color>
     <color name="search_dialog_add_voc_add_to_note_background">@color/black_alpha_1</color>
     <color name="search_dialog_new_note_title_text">@color/grey_4</color>
     <color name="search_dialog_new_note_background">@color/black_alpha_1</color>

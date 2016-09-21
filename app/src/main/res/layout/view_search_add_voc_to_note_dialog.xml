@@ -28,8 +28,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/search_dialog_add_voc_to_note_title_margin"
                     android:text="@string/search_dialog_add_voc_to_note_title"
-                    android:textSize="@dimen/search_dialog_add_voc_to_note_content_text_size"/>
+                    android:textSize="@dimen/search_dialog_add_voc_to_note_content_text_size"
+                    android:textColor="@color/search_dialog_add_voc_to_note_text"/>
 
                 <ScrollView
                     android:layout_width="match_parent"

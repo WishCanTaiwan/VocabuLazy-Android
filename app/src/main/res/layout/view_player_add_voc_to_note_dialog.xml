@@ -28,6 +28,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/player_dialog_add_voc_to_note_title_margin"
+                    android:textColor="@color/player_dialog_add_voc_to_note_text"
                     android:text="@string/player_dialog_add_voc_to_note_title"
                     android:textSize="@dimen/player_dialog_add_voc_to_note_content_text_size"/>
 
