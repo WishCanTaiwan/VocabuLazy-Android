@@ -4,7 +4,7 @@
     <string name="version_name">- New UI 2.0 -</string>
     <!-- Manifest -->
     <string name="app_name">VocabuLazy</string>
-    <string name="label_cover_activity">CoverActivity</string>
+    <string name="label_cover_activity">VocabuLazy</string>
     <string name="label_main_menu_activity">MainMenuActivity</string>
     <string name="label_exam_activity">ExamActivity</string>
     <string name="label_player_activity">PlayerActivity</string>
