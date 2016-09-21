@@ -76,6 +76,13 @@
     <string name="info_guide">新手導引</string>
     <string name="info_terms_conditions">服務條款</string>
     <string name="info_wishcan_introduction">WishCan介紹</string>
+    <string name="info_goto_market_message">前往Google Play商店給我們評價！</string>
+    <string name="info_alert_dialog_positive">前往</string>
+    <string name="info_alert_dialog_negative">算ㄌ</string>
+    <string name="info_report_page_title">意見回饋</string>
+    <string name="info_report_page_hint">我覺得...</string>
+    <string name="info_report_page_send">送出</string>
+    <string name="info_report_page_cancel">取消</string>
     <!-- exam -->
 
     <!-- player -->

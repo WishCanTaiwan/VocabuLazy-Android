@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wishcan.www.vocabulazy.mainmenu.info.ReportPageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="18dp"
+    android:background="@color/white_2">
+
+    <TextView
+        android:id="@+id/report_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/info_report_page_title"
+        android:fontFamily="sans-serif"
+        android:textSize="22sp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:id="@+id/title_edit_text_divider"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/report_title"
+        android:background="@color/grey_6"/>
+
+    <EditText
+        android:id="@+id/report_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_edit_text_divider"
+        android:layout_above="@+id/edit_text_button_divider"
+        android:hint="@string/info_report_page_hint"
+        android:gravity="start" />
+
+    <View
+        android:id="@+id/edit_text_button_divider"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_above="@+id/report_button_container"
+        android:background="@color/grey_6"/>
+
+    <LinearLayout
+        android:id="@+id/report_button_container"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="?attr/buttonBarStyle"
+            android:text="@string/info_report_page_cancel"
+            android:fontFamily="sans-serif"/>
+
+        <Button
+            android:id="@+id/send_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="?attr/buttonBarStyle"
+            android:text="@string/info_report_page_send"
+            android:fontFamily="sans-serif"/>
+
+    </LinearLayout>
+
+
+</com.wishcan.www.vocabulazy.mainmenu.info.ReportPageView>

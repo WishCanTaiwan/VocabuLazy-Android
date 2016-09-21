@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.mainmenu.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.exam.activity.ExamActivity;
 import com.wishcan.www.vocabulazy.mainmenu.fragment.MainMenuFragment;
+import com.wishcan.www.vocabulazy.mainmenu.info.ReportPageFragment;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteCreateDialogFragment;
 import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteDeleteDialogFragment;
@@ -191,6 +193,26 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     public MainMenuModel getModel() {
         return mMainMenuModel;
+    }
+
+    public void navigateToGooglePlay() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+        }
+    }
+
+    public void displayReportPage() {
+        ReportPageFragment fragment = new ReportPageFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, fragment, ReportPageFragment.TAG);
+        transaction.addToBackStack(ReportPageFragment.TAG);
+        transaction.commit();
+    }
+
+    public void sendReport(String message) {
+
     }
 
     private void startAudioService() {

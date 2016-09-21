@@ -4,37 +4,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/info_rate_us"/>
+        android:layout_height="5dp"
+        android:background="@color/white_2"/>
 
     <TextView
+        android:id="@+id/rate_us_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/info_rate_us"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/white_2"/>
+
+    <TextView
+
+        android:id="@+id/report_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:text="@string/info_report"
+        android:fontFamily="sans-serif"
         android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/white_2"/>
 
     <TextView
+        android:id="@+id/guide_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="@string/info_guide"
+        android:fontFamily="sans-serif"
         android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/white_2"/>
 
     <TextView
+        android:id="@+id/terms_conditions_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="@string/info_terms_conditions"
         android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/white_2"/>
 
     <TextView
+        android:id="@+id/wishcan_introduction_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="@string/info_wishcan_introduction"
         android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/white_2"/>
 
 </com.wishcan.www.vocabulazy.mainmenu.info.InfoView>
