@@ -17,6 +17,9 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.exam.activity.ExamActivity;
 import com.wishcan.www.vocabulazy.mainmenu.fragment.MainMenuFragment;
 import com.wishcan.www.vocabulazy.mainmenu.info.ReportPageFragment;
+import com.wishcan.www.vocabulazy.mainmenu.info.TNCFragment;
+import com.wishcan.www.vocabulazy.mainmenu.info.UserGuideFragment;
+import com.wishcan.www.vocabulazy.mainmenu.info.WishCanIntroFragment;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteCreateDialogFragment;
 import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteDeleteDialogFragment;
@@ -208,6 +211,30 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, fragment, ReportPageFragment.TAG);
         transaction.addToBackStack(ReportPageFragment.TAG);
+        transaction.commit();
+    }
+
+    public void displayUserGuide() {
+        UserGuideFragment fragment = new UserGuideFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, fragment, UserGuideFragment.TAG);
+        transaction.addToBackStack(UserGuideFragment.TAG);
+        transaction.commit();
+    }
+
+    public void displayTNCPage() {
+        TNCFragment fragment = new TNCFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, fragment, TNCFragment.TAG);
+        transaction.addToBackStack(TNCFragment.TAG);
+        transaction.commit();
+    }
+
+    public void displayIntroPage() {
+        WishCanIntroFragment fragment = new WishCanIntroFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, fragment, WishCanIntroFragment.TAG);
+        transaction.addToBackStack(WishCanIntroFragment.TAG);
         transaction.commit();
     }
 
