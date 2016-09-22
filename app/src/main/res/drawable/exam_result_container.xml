@@ -7,7 +7,7 @@
     </item>
 
     <item
-        android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp">
+        android:top="3dp" android:bottom="3dp" android:left="3dp" android:right="3dp">
         <shape>
             <solid android:color="@color/grey_8"/>
         </shape>

@@ -14,17 +14,18 @@
         android:max="1"/>
 
     <LinearLayout
+        android:id="@+id/exam_result_parent"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="51.7dp"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp">
+        android:layout_marginTop="@dimen/exam_result_parent_margin_top"
+        android:paddingLeft="@dimen/exam_result_parent_padding"
+        android:paddingRight="@dimen/exam_result_parent_padding">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="@dimen/exam_result_container_height"
             android:background="@drawable/exam_result_container">
 
             <!-- Left image container -->
@@ -36,7 +37,8 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/exam_result"/>
 
             </LinearLayout>
 
@@ -57,22 +59,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="測驗結束！"
-                        android:textSize="30sp"
+                        android:textSize="@dimen/exam_result_container_text_1"
                         android:textColor="@color/green_1"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="28.6dp"
+                        android:layout_marginTop="@dimen/exam_result_container_text_margin"
                         android:text="答對5題"
-                        android:textSize="23sp"/>
+                        android:textSize="@dimen/exam_result_container_text_2"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="28.6dp"
+                        android:layout_marginTop="@dimen/exam_result_container_text_margin"
                         android:text="答對率50%"
-                        android:textSize="23sp"/>
+                        android:textSize="@dimen/exam_result_container_text_2"/>
 
                 </LinearLayout>
 
@@ -83,8 +85,8 @@
         <com.wishcan.www.vocabulazy.exam.view.ExamResultAnswerView
             android:id="@+id/exam_result_try_again"
             android:layout_width="match_parent"
-            android:layout_height="69.3dp"
-            android:layout_marginTop="61.6dp"
+            android:layout_height="@dimen/exam_result_answer_height"
+            android:layout_marginTop="@dimen/exam_result_answer_margin_top1"
             android:background="@drawable/exam_result_answer"
             android:gravity="center">
 
@@ -92,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="再測一次"
-                android:textSize="20.8sp"
+                android:textSize="@dimen/exam_result_answer_text"
                 android:textColor="@color/white_1"/>
 
         </com.wishcan.www.vocabulazy.exam.view.ExamResultAnswerView>
@@ -100,8 +102,8 @@
         <com.wishcan.www.vocabulazy.exam.view.ExamResultAnswerView
             android:id="@+id/exam_result_try_other"
             android:layout_width="match_parent"
-            android:layout_height="69.3dp"
-            android:layout_marginTop="11dp"
+            android:layout_height="@dimen/exam_result_answer_height"
+            android:layout_marginTop="@dimen/exam_result_answer_margin_top2"
             android:background="@drawable/exam_result_answer"
             android:gravity="center">
 
@@ -109,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="試試其他單元"
-                android:textSize="20.8sp"
+                android:textSize="@dimen/exam_result_answer_text"
                 android:textColor="@color/white_1"/>
 
         </com.wishcan.www.vocabulazy.exam.view.ExamResultAnswerView>

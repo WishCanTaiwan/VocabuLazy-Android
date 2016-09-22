@@ -24,6 +24,16 @@
     <!-- main_menu -->
     <dimen name="note_dialog_rename_translation_z">@dimen/dialog_z</dimen>
     <!-- exam -->
+    <dimen name="exam_result_parent_margin_top">47dp</dimen>
+    <dimen name="exam_result_parent_padding">22dp</dimen>
+    <dimen name="exam_result_container_height">250dp</dimen>
+    <dimen name="exam_result_container_text_1">30sp</dimen>
+    <dimen name="exam_result_container_text_2">23sp</dimen>
+    <dimen name="exam_result_container_text_margin">26dp</dimen>
+    <dimen name="exam_result_answer_height">56dp</dimen>
+    <dimen name="exam_result_answer_text">20.8sp</dimen>
+    <dimen name="exam_result_answer_margin_top1">56dp</dimen>
+    <dimen name="exam_result_answer_margin_top2">10dp</dimen>
     <!-- info -->
     <!-- player -->
     <dimen name="player_list_item_text0_size">36sp</dimen>
