@@ -4,10 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:background="@color/note_divider_color"/>
+
 
     <LinearLayout
         android:orientation="horizontal"
@@ -34,5 +31,11 @@
             android:textColor="@color/note_group_text_color"/>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/group_divider"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:background="@color/note_divider_color"/>
 
 </LinearLayout>

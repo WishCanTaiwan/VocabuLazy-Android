@@ -89,8 +89,8 @@ public class NoteContentAdapter extends BaseExpandableListAdapter {
         ExpandableListView expandableListView = (ExpandableListView) parent;
         boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
 
-//        View groupDivider = convertView.findViewById(R.id.group_divider);
-//        groupDivider.setVisibility((isExpanded || isLastGroup) ? View.GONE : View.VISIBLE);
+        View groupDivider = convertView.findViewById(R.id.group_divider);
+        groupDivider.setVisibility((isExpanded || isLastGroup) ? View.GONE : View.VISIBLE);
 
         return convertView;
     }
@@ -110,8 +110,8 @@ public class NoteContentAdapter extends BaseExpandableListAdapter {
         ExpandableListView expandableListView = (ExpandableListView) parent;
         boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
 
-//        View childDivider = convertView.findViewById(R.id.child_divider);
-//        childDivider.setVisibility((isLastChild && !isLastGroup) ? View.VISIBLE : View.GONE);
+        View childDivider = convertView.findViewById(R.id.child_divider);
+        childDivider.setVisibility((isLastChild && !isLastGroup) ? View.VISIBLE : View.GONE);
 
         return convertView;
     }

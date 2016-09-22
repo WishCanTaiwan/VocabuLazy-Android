@@ -16,4 +16,10 @@
         android:paddingLeft="17dp"
         android:paddingRight="17dp"/>
 
+    <View
+        android:id="@+id/child_divider"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:background="@color/note_divider_color"/>
+
 </LinearLayout>
