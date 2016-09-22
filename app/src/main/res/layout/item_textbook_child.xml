@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="wrap_content"
     android:background="@color/textbook_child_background_color">
 
     <!-- TODO: (design) need arrow sets to replace drawableRight, drawableEnd -->
@@ -10,7 +10,7 @@
         android:id="@+id/lesson_title"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="@string/textbook_child_title"
         android:textSize="20sp"
         android:textColor="@color/textbook_child_text_color"
