@@ -10,7 +10,10 @@
         android:id="@+id/main_menu_tab_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/theme_color_green"/>
+        android:background="@color/theme_color_green"
+        app:tabIndicatorHeight="7dp"
+        app:tabTextColor="@color/green_7"
+        app:tabSelectedTextColor="@color/white_1"/>
 
     <com.wishcan.www.vocabulazy.mainmenu.view.MainMenuViewPager
         android:id="@+id/main_menu_viewpager"

@@ -4,6 +4,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/green_2</item>
+        <item name="colorAccent">@color/yellow_2</item>
         <item name="toolbarStyle">@style/AppToolBarStyle</item>
         <item name="android:windowAnimationStyle">@style/AppAnimation.CoverActivity</item>
     </style>
@@ -16,6 +17,8 @@
     </style>
 
     <style name="AppTheme.MainMenuActivity" parent="AppTheme">
+        <item name="android:textAppearance">@color/white_1</item>
+        <item name="android:actionBarTabBarStyle">@style/Base.Widget.AppCompat.ActionBar.TabBar</item>
     </style>
 
     <style name="AppTheme.PlayerActivity" parent="AppTheme">
