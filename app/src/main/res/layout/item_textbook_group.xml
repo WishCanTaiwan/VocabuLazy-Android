@@ -4,39 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
     <TextView
         android:id="@+id/book_title"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="127dp"
+        android:layout_height="115dp"
         android:background="@color/textbook_group_title_background_color"
         android:text="@string/textbook_group_title"
-        android:textSize="53sp"
+        android:textSize="48sp"
         android:textColor="@color/textbook_group_title_text_color"
-        android:paddingLeft="17dp"
-        android:paddingRight="17dp"/>
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"/>
 
     <!-- TODO: (design) need arrow sets to replace drawableRight, drawableEnd -->
     <TextView
         android:id="@+id/book_subtitle"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:background="@color/textbook_group_subtitle_background_color"
         android:text="@string/textbook_group_subtitle"
         android:textSize="22sp"
         android:textColor="@color/textbook_group_subtitle_text_color"
-        android:paddingLeft="17dp"
-        android:paddingRight="17dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
         android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
 
     <View
         android:id="@+id/group_divider"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
+        android:layout_height="15dp"
         android:background="@color/textbook_fragment_divider_color"/>
 
 </LinearLayout>

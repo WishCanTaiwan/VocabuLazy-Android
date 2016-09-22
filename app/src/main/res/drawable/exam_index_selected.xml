@@ -5,6 +5,6 @@
         android:color="@color/exam_index_selected" />
 
     <stroke
-        android:width="5dp"
+        android:width="4dp"
         android:color="@color/exam_index_border" />
 </shape>

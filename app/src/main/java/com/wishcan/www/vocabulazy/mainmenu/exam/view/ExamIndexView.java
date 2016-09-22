@@ -154,6 +154,7 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
             mExamIndexTextbookView = new ExamIndexTextbookView(getContext());
             mExamIndexTextbookView.addOnExamTextbookClickListener(this);
             mExamIndexTextbookView.setVerticalScrollBarEnabled(false);
+            mExamIndexTextbookView.setGroupIndicator(null);
         }
 
         if (mExamIndexNoteView == null) {
@@ -161,6 +162,7 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
             mExamIndexNoteView = new ExamIndexNoteView(getContext());
             mExamIndexNoteView.addOnExamIndexNoteClickListener(this);
             mExamIndexNoteView.setVerticalScrollBarEnabled(false);
+            mExamIndexNoteView.setGroupIndicator(null);
         }
 
         if (examIndexContainer == null) {

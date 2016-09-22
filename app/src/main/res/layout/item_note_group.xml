@@ -4,18 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:background="@color/note_group_background_color">
 
         <TextView
             android:id="@+id/note_group_index"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:gravity="center"
             android:text="@string/note_index"
             android:textSize="23sp"
@@ -24,7 +22,7 @@
         <TextView
             android:id="@+id/note_group_text"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:gravity="center_vertical"
             android:text="@string/note_group_default_text"
             android:textSize="23sp"
@@ -35,7 +33,7 @@
     <View
         android:id="@+id/group_divider"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
+        android:layout_height="15dp"
         android:background="@color/note_divider_color"/>
 
 </LinearLayout>

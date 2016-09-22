@@ -10,19 +10,19 @@
         android:id="@+id/lesson_title"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:text="@string/textbook_child_title"
         android:textSize="20sp"
         android:textColor="@color/textbook_child_text_color"
-        android:paddingLeft="17dp"
-        android:paddingRight="17dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:drawableRight="@drawable/player_play"
         android:drawableEnd="@drawable/player_play"/>
 
     <View
         android:id="@+id/child_divider"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
+        android:layout_height="15dp"
         android:background="@color/textbook_fragment_divider_color" />
 
 </LinearLayout>

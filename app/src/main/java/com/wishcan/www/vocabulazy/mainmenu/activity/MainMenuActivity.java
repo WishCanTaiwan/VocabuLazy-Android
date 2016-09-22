@@ -3,7 +3,9 @@ package com.wishcan.www.vocabulazy.mainmenu.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -43,8 +45,8 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // setup title and title color
+        setActionBar();
 
         if (mMainMenuModel == null) {
             mMainMenuModel = new MainMenuModel(getApplicationContext());
@@ -196,6 +198,14 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     public MainMenuModel getModel() {
         return mMainMenuModel;
+    }
+
+    public void setActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setTitle("Title");
+//        }
     }
 
     public void navigateToGooglePlay() {

@@ -83,7 +83,7 @@ public class NoteContentAdapter extends BaseExpandableListAdapter {
 
         TextView groupTextView = (TextView) convertView.findViewById(R.id.note_group_text);
         groupTextView.setText(groupTitle);
-        groupTextView.setTypeface(null, Typeface.BOLD);
+//        groupTextView.setTypeface(null, Typeface.BOLD);
 //        groupTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, groupHeight));
 
         ExpandableListView expandableListView = (ExpandableListView) parent;

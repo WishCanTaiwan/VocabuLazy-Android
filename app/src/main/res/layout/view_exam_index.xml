@@ -11,15 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="22dp"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:paddingBottom="22dp"
+        android:paddingLeft="38dp"
+        android:paddingRight="38dp"
+        android:paddingBottom="16dp"
         android:background="@color/exam_default_background_color">
 
         <TextView
             android:id="@+id/exam_index_textbook_text"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="38dp"
             android:layout_weight="1"
             android:text="@string/main_menu_exam_index_textbook"
             android:textColor="@color/exam_index_text_color"
@@ -31,7 +31,7 @@
         <TextView
             android:id="@+id/exam_index_note_text"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="38dp"
             android:layout_weight="1"
             android:text="@string/main_menu_exam_index_note"
             android:textColor="@color/exam_index_text_color"
@@ -47,8 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/exam_default_background_color"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
     </LinearLayout>
 

@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/note_child_text"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:background="@color/note_child_background_color"
         android:text="@string/note_child_default_text"
         android:textSize="23sp"
@@ -19,7 +19,7 @@
     <View
         android:id="@+id/child_divider"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
+        android:layout_height="15dp"
         android:background="@color/note_divider_color"/>
 
 </LinearLayout>
