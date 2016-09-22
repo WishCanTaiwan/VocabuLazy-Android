@@ -4,10 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="@color/textbook_fragment_divider_color"/>
+
 
     <TextView
         android:id="@+id/book_title"
@@ -35,5 +32,11 @@
         android:paddingRight="17dp"
         android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
         android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+
+    <View
+        android:id="@+id/group_divider"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:background="@color/textbook_fragment_divider_color"/>
 
 </LinearLayout>

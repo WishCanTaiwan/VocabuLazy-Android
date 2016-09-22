@@ -81,7 +81,6 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.item_textbook_group, parent, false);
-//            convertView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, groupHeight));
         }
 
         TextView groupTextView = (TextView) convertView.findViewById(R.id.book_subtitle);
@@ -91,8 +90,8 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
         ExpandableListView expandableListView = (ExpandableListView) parent;
         boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
 
-//        View groupDivider = convertView.findViewById(R.id.group_divider);
-//        groupDivider.setVisibility((isExpanded || isLastGroup) ? View.GONE : View.VISIBLE);
+        View groupDivider = convertView.findViewById(R.id.group_divider);
+        groupDivider.setVisibility((isExpanded || isLastGroup) ? View.GONE : View.VISIBLE);
 
         return convertView;
     }
@@ -103,19 +102,16 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_textbook_child, parent, false);
-//            convertView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, childHeight));
         }
 
         TextView childTextView = (TextView) convertView.findViewById(R.id.lesson_title);
         childTextView.setText(childTitle);
-//        childTextView.setTypeface(null, Typeface.BOLD);
-//        childTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, childHeight));
 
         ExpandableListView expandableListView = (ExpandableListView) parent;
         boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
 
-//        View childDivider = convertView.findViewById(R.id.child_divider);
-//        childDivider.setVisibility((isLastChild && !isLastGroup) ? View.VISIBLE : View.GONE);
+        View childDivider = convertView.findViewById(R.id.child_divider);
+        childDivider.setVisibility((isLastChild && !isLastGroup) ? View.VISIBLE : View.GONE);
 
         return convertView;
     }
