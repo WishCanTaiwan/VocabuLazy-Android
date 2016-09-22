@@ -47,6 +47,7 @@
 
     <style name="AppToolBarStyle" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">@color/green_1</item>
+        <item name="titleTextAppearance">@style/AppTextAppearance</item>
     </style>
 
     <style name="AppToolBarStyle.Search" parent="AppToolBarStyle">
@@ -91,6 +92,10 @@
 
     <style name="AppTextStyle.Exam.Answer.Wrong" parent="AppTextStyle.Exam.Answer">
         <item name="android:textColor">@color/white_1</item>
+    </style>
+
+    <style name="AppTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="@android:textColor">@color/white_1</item>
     </style>
 
     <!-- Customized view -->
