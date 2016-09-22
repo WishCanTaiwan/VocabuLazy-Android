@@ -201,11 +201,16 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     }
 
     public void setActionBar() {
+        // find toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        // set toolbar as action bar
         setSupportActionBar(toolbar);
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setTitle("Title");
-//        }
+
+        // set action bar title
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+        }
     }
 
     public void navigateToGooglePlay() {

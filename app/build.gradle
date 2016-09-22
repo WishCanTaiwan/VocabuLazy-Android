@@ -13,8 +13,8 @@ android {
         applicationId "com.wishcan.www.vocabulazy"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 7
-        versionName '0.7'
+        versionCode 8
+        versionName '0.8'
     }
     buildTypes {
         release {

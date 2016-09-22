@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Version Strings -->
-    <string name="version_name">- New UI 2.0 -</string>
+    <string name="version_name">- beta version 8 -</string>
     <!-- Manifest -->
     <string name="app_name">VocabuLazy</string>
     <string name="label_cover_activity">VocabuLazy</string>
