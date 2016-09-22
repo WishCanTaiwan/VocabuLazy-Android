@@ -22,6 +22,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
-        android:clickable="true" />
+        android:clickable="true"
+        android:src="@drawable/ic_add_white_48dp"/>
 
 </RelativeLayout>

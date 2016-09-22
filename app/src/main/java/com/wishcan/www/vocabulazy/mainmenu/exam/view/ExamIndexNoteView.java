@@ -33,24 +33,11 @@ public class ExamIndexNoteView extends ExpandableListView implements ExpandableL
 
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long id) {
-//        if (childPosition == 0) {
-//            mOnExamIndexNoteClickListener.OnExamIndexNoteClicked(groupPosition);
-//        }
         return true;
     }
 
     @Override
     public boolean onGroupClick(ExpandableListView expandableListView, View view, int groupPosition, long id) {
-//        if (groupPosition != lastExpandedGroupPosition) {
-//            expandableListView.collapseGroup(lastExpandedGroupPosition);
-//            expandableListView.expandGroup(groupPosition, true);
-//            expandableListView.setSelection(groupPosition);
-//            lastExpandedGroupPosition = groupPosition;
-//        } else {
-//            expandableListView.collapseGroup(groupPosition);
-//            lastExpandedGroupPosition = -1;
-//        }
-
         mOnExamIndexNoteClickListener.OnExamIndexNoteClicked(groupPosition);
         return true;
     }
