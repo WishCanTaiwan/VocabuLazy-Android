@@ -3,7 +3,7 @@ package com.wishcan.www.vocabulazy.ga;
 /**
  * Created by allencheng07 on 2016/6/16.
  */
-public class GACoverFragment extends GAFragment {
+public class GACoverFragment extends GABaseFragment {
     @Override
     protected String getNameAsGaLabel() {
         return GACoverFragment.class.getSimpleName();

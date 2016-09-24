@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import com.wishcan.www.vocabulazy.utility.log.Logger;
 
 /**
- * GAFragment is an abstract class used for sending Lifecycle event to Google Analysis.
- * All fragments extends the GAFragment will automatically sending their Lifecycle event as long as
- * they implement {@link GAFragment#getNameAsGaLabel()}
+ * GABaseFragment is an abstract class used for sending Lifecycle event to Google Analysis.
+ * All fragments extends the GABaseFragment will automatically sending their Lifecycle event as long as
+ * they implement {@link GABaseFragment#getNameAsGaLabel()}
  */
-public abstract class GAFragment extends Fragment {
+public abstract class GABaseFragment extends Fragment {
 
     public interface GAFragmentLifeCycle {
         int ON_CREATE               = 0;

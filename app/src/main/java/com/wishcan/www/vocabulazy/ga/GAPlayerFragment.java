@@ -15,12 +15,12 @@ import java.util.LinkedList;
 /**
  * Created by swallow on 2016/5/12.
  */
-abstract public class GAPlayerFragment extends GAFragment implements PlayerView.PlayerEventListener,
+abstract public class GAPlayerFragment extends GABaseFragment implements PlayerView.PlayerEventListener,
                                                                      PlayerModel.PlayerModelDataProcessListener {
 
     public static final String USER_TOUCH_EVENT = "user-touch-event";
 
-    /**--------------------------- implement GAFragment abstract function -----------------------**/
+    /**--------------------------- implement GABaseFragment abstract function -----------------------**/
     @Override
     protected String getNameAsGaLabel() {
         return PlayerFragment.class.getSimpleName();
