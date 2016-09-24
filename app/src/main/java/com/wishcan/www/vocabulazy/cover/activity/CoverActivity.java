@@ -26,7 +26,6 @@ public class CoverActivity extends FragmentActivity implements CoverDialogFragme
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
         setContentView(VIEW_ACTIVITY_RES_ID);
 
@@ -106,6 +105,4 @@ public class CoverActivity extends FragmentActivity implements CoverDialogFragme
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
         }
     }
-
-
 }

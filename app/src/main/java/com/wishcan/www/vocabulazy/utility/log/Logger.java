@@ -30,7 +30,7 @@ public class Logger {
 
     public static void d(String TAG, String message) {
 //        Log.d(TAG, message);
-        mLogBuffer.put(TAG, message);
+//        mLogBuffer.put(TAG, message);
     }
 
     /**
@@ -61,26 +61,26 @@ public class Logger {
     }
 
     public static void sendEvent(String category, String action, String label, long value) {
-        d(label, action);
-        if (wTracker == null) {
-//            wTracker = ((GlobalVariable) getActivity().getApplication()).getDefaultTracker();
-        }
+//        d(label, action);
+//        if (wTracker == null) {
+////            wTracker = ((GlobalVariable) getActivity().getApplication()).getDefaultTracker();
+//        }
 
-        wTracker.send(new HitBuilders.EventBuilder()
-                .setCategory(category)
-                .setAction(action)
-                .setLabel(label)
-                .setValue(value)
-                .build());
+//        wTracker.send(new HitBuilders.EventBuilder()
+//                .setCategory(category)
+//                .setAction(action)
+//                .setLabel(label)
+//                .setValue(value)
+//                .build());
     }
 
     public static void sendException(Context context, Exception e, boolean isFatal) {
-        ArrayList<LogEntry> logs = mLogBuffer.pull();
-        d(e.toString(), e.getMessage());
-
-        wTracker.send(new HitBuilders.ExceptionBuilder()
-                .setDescription(new StandardExceptionParser(context, null).getDescription(Thread.currentThread().getName(), e))
-                .setFatal(isFatal)
-                .build());
+//        ArrayList<LogEntry> logs = mLogBuffer.pull();
+//        d(e.toString(), e.getMessage());
+//
+//        wTracker.send(new HitBuilders.ExceptionBuilder()
+//                .setDescription(new StandardExceptionParser(context, null).getDescription(Thread.currentThread().getName(), e))
+//                .setFatal(isFatal)
+//                .build());
     }
 }
