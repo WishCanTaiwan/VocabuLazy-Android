@@ -20,6 +20,7 @@ import static com.google.android.gms.analytics.internal.zzy.e;
 public class GAManager {
 
     // TODO: tooooooooooo dooooooooooooo
+    // TODO: allen try to create conflict
     // TODO: swallow : ok
 
     // TAG for debugging
