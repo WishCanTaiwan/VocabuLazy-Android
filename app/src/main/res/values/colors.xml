@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- TODO: Clean up the color resource based on zeplin -->
     <!--******************************* All color being used ***********************************-->
     <color name="transparent">#00000000</color>
     <color name="black_alpha_1">#20000000</color>
