@@ -4,7 +4,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/green_2</item>
-        <item name="colorAccent">@color/yellow_2</item>
+        <item name="colorAccent">@color/yellow_1</item>
         <item name="toolbarStyle">@style/AppToolBarStyle</item>
         <item name="android:windowAnimationStyle">@style/AppAnimation.CoverActivity</item>
     </style>
@@ -133,7 +133,6 @@
     <declare-styleable name="PlayerOptionContent">
         <attr name="setPlayerOptionContentColor" format="color"/>
     </declare-styleable>
-
 
     <!-- For future reference -->
     <!--<style name="MyThemeForMainActivity" parent="@android:style/Theme.Holo">-->
