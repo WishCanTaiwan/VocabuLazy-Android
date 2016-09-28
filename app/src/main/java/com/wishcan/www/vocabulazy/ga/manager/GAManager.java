@@ -20,6 +20,7 @@ import static com.google.android.gms.analytics.internal.zzy.e;
 public class GAManager {
 
     // TODO: tooooooooooo dooooooooooooo
+    // TODO: swallow : ok
 
     // TAG for debugging
     public static final String TAG = "GAManager";
