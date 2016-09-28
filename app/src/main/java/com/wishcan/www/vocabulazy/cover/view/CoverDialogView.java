@@ -5,7 +5,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.wishcan.www.vocabulazy.R;
-import com.wishcan.www.vocabulazy.widget.DialogView;
 import com.wishcan.www.vocabulazy.widget.DialogViewNew;
 
 /**

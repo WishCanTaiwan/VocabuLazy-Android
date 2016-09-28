@@ -9,16 +9,20 @@ import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.cover.view.CoverDialogView;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.search.view.SearchAddVocToNoteDialogView;
-import com.wishcan.www.vocabulazy.widget.DialogFragment;
 import com.wishcan.www.vocabulazy.widget.DialogFragmentNew;
-import com.wishcan.www.vocabulazy.widget.DialogView;
 import com.wishcan.www.vocabulazy.widget.DialogViewNew;
 
 /**
  * Created by swallow on 2016/4/13.
  */
 public class CoverDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.TTS_ENGINE_INSTALL;
+    }
 
     public interface OnDialogClickListener {
         void onYesClicked();

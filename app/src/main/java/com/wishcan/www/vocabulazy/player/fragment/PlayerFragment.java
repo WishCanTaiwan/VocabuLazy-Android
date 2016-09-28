@@ -16,10 +16,10 @@ import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.application.GlobalVariable;
-import com.wishcan.www.vocabulazy.ga.GAPlayerFragment;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.player.model.PlayerModel;
-import com.wishcan.www.vocabulazy.player.view.PlayerOptionView;
 import com.wishcan.www.vocabulazy.player.view.PlayerView;
 import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.service.AudioService;
@@ -38,7 +38,8 @@ import java.util.LinkedList;
  * Use the {@link PlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends GAPlayerFragment {
+public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerEventListener,
+        PlayerModel.PlayerModelDataProcessListener {
 
     public interface OnPlayerLessonChangeListener {
         void onLessonChange(int lesson);
@@ -164,6 +165,11 @@ public class PlayerFragment extends GAPlayerFragment {
     }
 
     @Override
+    protected String getGALabel() {
+        return GAScreenName.PLAYER;
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
 
@@ -202,7 +208,6 @@ public class PlayerFragment extends GAPlayerFragment {
      */
     @Override
     public void onPlayerContentCreated(final LinkedList<HashMap> playerDataContent) {
-        super.onPlayerContentCreated(playerDataContent);
         mPlayerView.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -213,13 +218,11 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent) {
-        super.onDetailPlayerContentCreated(playerDetailDataContent);
         mPlayerView.refreshPlayerDetail(playerDetailDataContent);
     }
 
     @Override
     public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
-        super.onVocabulariesGet(vocabularies);
         mVocabularies = vocabularies;
 
         if (vocabularies.size() == 0)
@@ -237,10 +240,14 @@ public class PlayerFragment extends GAPlayerFragment {
         }
     }
 
+    @Override
+    public void onGrayBackClick() {
+
+    }
+
     /**----------------- Implement PlayerView.PlayerEventListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
-        super.onPlayerVerticalScrollStop(currentPosition, isViewTouchedDown);
         updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
         if (isViewTouchedDown) {
             newItemFocused(currentPosition);
@@ -250,13 +257,11 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onPlayerVerticalScrolling() {
-        super.onPlayerVerticalScrolling();
         playerViewScrolling();
     }
 
     @Override
     public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
-        super.onPlayerHorizontalScrollStop(isOrderChanged, direction, isViewTouchedDown);
 
         // if the order of Infinite3View has not changed, the player should remain the same
         if (!isOrderChanged) {
@@ -304,13 +309,11 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onPlayerHorizontalScrolling() {
-        super.onPlayerHorizontalScrolling();
         playerViewScrolling();
     }
 
     @Override
     public void onPlayerDetailScrollStop(int index, boolean isViewTouchedDown) {
-        super.onPlayerDetailScrollStop(index, isViewTouchedDown);
         updateIndices(mBookIndex, mLessonIndex, mItemIndex, index);
         if (isViewTouchedDown) {
             newSentenceFocused(index);
@@ -319,13 +322,21 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onPlayerDetailScrolling() {
-        super.onPlayerDetailScrolling();
         playerViewScrolling();
     }
 
     @Override
+    public void onPlayerInitialItemPrepared() {
+
+    }
+
+    @Override
+    public void onPlayerFinalItemPrepared() {
+
+    }
+
+    @Override
     public void onPlayerPanelFavoriteClick() {
-        super.onPlayerPanelFavoriteClick();
         int vocId = mVocabularies.get(mItemIndex).getId();
         if (mOnPlayerOptionFavoriteClickListener != null) {
             mOnPlayerOptionFavoriteClickListener.onFavoriteClick(vocId);
@@ -334,13 +345,11 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onPlayerPanelPlayClick() {
-        super.onPlayerPanelPlayClick();
         optionPlayClicked();
     }
 
     @Override
     public void onPlayerPanelOptionClick() {
-        super.onPlayerPanelOptionClick();
 
         // TODO: (swallow) please use the parameter mode to set option tab
         GlobalVariable globalVariable = (GlobalVariable) ((Activity) mContext).getApplication();
@@ -354,7 +363,6 @@ public class PlayerFragment extends GAPlayerFragment {
 
     @Override
     public void onPlayerOptionChanged(int optionID, int mode, View v, int leftOrRight) {
-        super.onPlayerOptionChanged(optionID, mode, v, leftOrRight);
 
         /** Refresh option setting */
         mPlayerModel.updateOptionSettings(optionID, mode, v, leftOrRight);

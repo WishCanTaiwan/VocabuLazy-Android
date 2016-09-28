@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.mainmenu.adapter.MainMenuFragmentPagerAdapter;
 import com.wishcan.www.vocabulazy.mainmenu.exam.fragment.ExamIndexFragment;
@@ -21,7 +22,7 @@ import com.wishcan.www.vocabulazy.mainmenu.note.fragment.NoteFragment;
 import com.wishcan.www.vocabulazy.mainmenu.textbook.fragment.TextbookFragment;
 import com.wishcan.www.vocabulazy.mainmenu.view.MainMenuViewPager;
 
-public class MainMenuFragment extends Fragment implements TextbookFragment.OnTextbookClickListener, NoteFragment.OnNoteClickListener, ExamIndexFragment.OnExamIndexClickListener {
+public class MainMenuFragment extends GABaseFragment implements TextbookFragment.OnTextbookClickListener, NoteFragment.OnNoteClickListener, ExamIndexFragment.OnExamIndexClickListener {
 
     public interface OnMainMenuEventListener {
         void onTextbookSelected(int bookIndex, int lessonIndex);
@@ -79,6 +80,11 @@ public class MainMenuFragment extends Fragment implements TextbookFragment.OnTex
     public void onResume() {
         super.onResume();
         updateFragmentsContent();
+    }
+
+    @Override
+    protected String getGALabel() {
+        return null;
     }
 
     @Override

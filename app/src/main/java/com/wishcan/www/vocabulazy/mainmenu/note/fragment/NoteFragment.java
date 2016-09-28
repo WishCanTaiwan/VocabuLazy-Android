@@ -1,16 +1,16 @@
 package com.wishcan.www.vocabulazy.mainmenu.note.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteContentAdapter;
@@ -21,7 +21,7 @@ import com.wishcan.www.vocabulazy.mainmenu.note.view.NoteView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickListener, FloatingActionButton.OnClickListener {
+public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemClickListener, FloatingActionButton.OnClickListener {
 
     public interface OnNoteClickListener {
         void onNotePlay(int noteIndex);
@@ -80,6 +80,11 @@ public class NoteFragment extends Fragment implements NoteView.OnNoteItemClickLi
         Log.d(TAG, "Resume");
         super.onResume();
         mNoteView.setAdapter(new NoteContentAdapter(getContext(), mGroupItems, mChildItemsMap));
+    }
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.NOTE;
     }
 
     @Override

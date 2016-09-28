@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.player.view.PlayerAddVocToNoteDialogView;
@@ -20,6 +21,11 @@ import java.util.LinkedList;
  * Created by SwallowChen on 9/6/16.
  */
 public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer> implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.SELECT_NOTE;
+    }
 
     public interface OnAddVocToNoteDialogFinishListener {
         void onNeedNewNote();

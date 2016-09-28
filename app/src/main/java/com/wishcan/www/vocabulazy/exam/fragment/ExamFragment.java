@@ -2,8 +2,6 @@ package com.wishcan.www.vocabulazy.exam.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +10,8 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.exam.model.ExamModel;
 import com.wishcan.www.vocabulazy.exam.view.ExamAnswerView;
 import com.wishcan.www.vocabulazy.exam.view.ExamView;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +19,13 @@ import java.util.HashMap;
 /**
  * Created by SwallowChen on 8/25/16.
  */
-public class ExamFragment extends Fragment implements ExamView.ExamEventListener {
+public class ExamFragment extends GABaseFragment implements ExamView.ExamEventListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.QUESTIONS;
+    }
+
     public interface OnExamDoneListener {
         void onExamDone(int totalNumber, int correctNumber);
     }

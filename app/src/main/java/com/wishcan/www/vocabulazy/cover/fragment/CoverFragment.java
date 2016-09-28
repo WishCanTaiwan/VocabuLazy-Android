@@ -13,17 +13,17 @@ import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.cover.activity.CoverActivity;
-import com.wishcan.www.vocabulazy.ga.GACoverFragment;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
-import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CoverFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CoverFragment extends GACoverFragment {
+public class CoverFragment extends GABaseFragment {
 
     public static final String TAG = "COVER";
 
@@ -94,11 +94,7 @@ public class CoverFragment extends GACoverFragment {
 //    }
 
     @Override
-    protected String getNameAsGaLabel() {
-        return TAG;
+    protected String getGALabel() {
+        return GAScreenName.SPLASH;
     }
-
-
-
-
 }

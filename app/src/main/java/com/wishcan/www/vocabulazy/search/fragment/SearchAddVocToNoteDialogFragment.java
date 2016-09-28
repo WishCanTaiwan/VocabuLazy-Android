@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchAddVocToNoteDialogView;
-import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.widget.DialogFragmentNew;
 import com.wishcan.www.vocabulazy.widget.DialogViewNew;
 
@@ -21,6 +21,11 @@ import java.util.LinkedList;
  * Created by SwallowChen on 9/4/16.
  */
 public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer> implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.SELECT_NOTE;
+    }
 
     public interface OnAddVocToNoteDialogFinishListener {
         void onNeedNewNote();

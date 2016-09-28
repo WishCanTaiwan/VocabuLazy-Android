@@ -2,18 +2,19 @@ package com.wishcan.www.vocabulazy.mainmenu.info;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 
 /**
  * Created by allencheng07 on 2016/9/21.
  */
 
-public class UserGuideFragment extends Fragment {
+public class UserGuideFragment extends GABaseFragment {
 
     public static final String TAG = "UserGuideFragment";
 
@@ -27,5 +28,10 @@ public class UserGuideFragment extends Fragment {
 
     private void findViews(View view) {
 
+    }
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.USER_GUIDE;
     }
 }

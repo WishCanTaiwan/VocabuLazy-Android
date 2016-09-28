@@ -2,17 +2,16 @@ package com.wishcan.www.vocabulazy.search.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchView;
-import com.wishcan.www.vocabulazy.storage.Database;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -20,7 +19,12 @@ import java.util.LinkedList;
 /**
  * @since 2016/8/31
  */
-public class SearchFragment extends Fragment implements SearchView.SearchEventListener {
+public class SearchFragment extends GABaseFragment implements SearchView.SearchEventListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.SEARCH;
+    }
 
     public interface OnSearchItemEventListener {
         void onSearchListClick(int vocId);

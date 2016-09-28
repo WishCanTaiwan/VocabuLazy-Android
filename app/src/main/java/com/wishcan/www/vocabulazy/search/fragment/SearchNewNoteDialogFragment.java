@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchNewNoteDialogView;
@@ -17,6 +18,11 @@ import com.wishcan.www.vocabulazy.widget.DialogViewNew;
  * Created by SwallowChen on 9/6/16.
  */
 public class SearchNewNoteDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.CREATE_NOTE;
+    }
 
     public interface OnNewNoteDialogFinishListener {
         void onNewNoteDone(String string);
