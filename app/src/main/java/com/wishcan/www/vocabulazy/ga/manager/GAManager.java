@@ -21,6 +21,7 @@ public class GAManager {
 
     // TODO: tooooooooooo dooooooooooooo
     // TODO: allen try to create conflict
+    // TODO: swallow : ok
 
     // TAG for debugging
     public static final String TAG = "GAManager";
