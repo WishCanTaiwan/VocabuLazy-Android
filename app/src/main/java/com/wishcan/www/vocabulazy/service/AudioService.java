@@ -7,8 +7,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.wishcan.www.vocabulazy.application.GlobalVariable;
-import com.wishcan.www.vocabulazy.utility.log.Logger;
-//import com.wishcan.www.vocabulazy.storage.Preferences;
+import com.wishcan.www.vocabulazy.utility.Logger;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
 
