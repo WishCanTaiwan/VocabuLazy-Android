@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- TODO: Clean up the color resource based on zeplin -->
     <!--******************************* All color being used ***********************************-->
     <color name="transparent">#00000000</color>
     <color name="black_alpha_1">#20000000</color>
     <color name="black_alpha_2">#90000000</color>
-    <color name="black_1">#FF000000</color>
     <color name="white_1">#FFFFFFFF</color>
-    <color name="white_2">#FFEEEEEF</color>
-    <color name="green_1">#FF1ABC9C</color>
-    <color name="green_2">#FF9CE7D3</color>
-    <color name="green_3">#FF66BF97</color>
-    <color name="green_4">#FFA5D0C3</color>
-    <color name="green_6">#FF338473</color>
-    <color name="green_7">#FFA3E4D7</color>
-    <color name="yellow_1">#FFFECE55</color>
-    <color name="yellow_2">#FFFDCE5D</color>
-    <color name="grey_1">#FF444A55</color>
+    <color name="white_2">#FFFAFAFA</color>
+    <color name="black_1">#FF000000</color>
+    <color name="black_2">#FF444B53</color>
+    <color name="black_3">#FF434A54</color>
+    <color name="black_4">#FF4A4A4A</color>
+    <color name="grey_1">#FFEEEEEF</color>
     <color name="grey_2">#FF666C78</color>
-    <color name="grey_3">#FF444B53</color>
-    <color name="grey_4">#FF434A54</color>
-    <color name="grey_5">#FF656B76</color>
-    <color name="grey_6">#FF9FA0A0</color>
-    <color name="grey_7">#FFA09E9C</color>
-    <color name="grey_8">#FFEEEEEF</color>
+    <color name="grey_3">#FF9FA0A0</color>
+    <color name="grey_4">#FFCCCCCC</color>
+    <color name="grey_5">#FF888888</color>
+    <color name="grey_6">#FFF7F7F7</color>
+    <color name="green_1">#FF1ABC9C</color>
+    <color name="green_2">#FFA3E4D7</color>
+    <color name="green_3">#FF99E4D2</color>
+    <color name="green_4">#FFA5D0C3</color>
+    <color name="yellow_1">#FFFECE55</color>
+    <color name="yellow_2">#FFD2AC49</color>
 
     <!--**************************************** style *****************************************-->
     <color name="theme_color_green">@color/green_1</color>
@@ -35,8 +33,10 @@
     <color name="widget_dialog_button_background_gray">@color/grey_2</color>
     <color name="widget_picker_text">@color/grey_3</color>
     <color name="widget_picker_background">@color/white_1</color>
-    <color name="widget_pop_list_item">@color/green_2</color>
-    <color name="widget_pop_list_item_focused">@color/yellow_2</color>
+    <color name="widget_pop_list_item">@color/green_3</color>
+    <color name="widget_pop_list_item_focused">@color/yellow_1</color>
+    <color name="widget_pop_list_item_font">@color/grey_3</color>
+    <color name="widget_pop_list_item_font1">@color/black_3</color>
     <color name="widget_pop_details_color">@color/yellow_2</color>
     <color name="widget_slide_back_view_pager_background">@color/transparent</color>
     <color name="widget_tab_view_mask">@color/black_alpha_1</color>
@@ -47,6 +47,8 @@
     <color name="cover_dialog_background">@color/white_2</color>
     <color name="cover_dialog_text">@color/white_1</color>
     <!-- MainMenu -->
+    <color name="main_menu_fragment_tab_default_text_color">@color/white_1</color>
+    <color name="main_menu_fragment_tab_selected_text_color">@color/white_1</color>
     <color name="main_menu_fragment_default_background_color">@color/white_2</color>
     <color name="textbook_group_title_background_color">@color/green_1</color>
     <color name="textbook_group_title_text_color">@color/white_1</color>
@@ -72,9 +74,9 @@
     <!--**************************************** player ****************************************-->
     <color name="player_grey_background">@color/black_alpha_2</color>
     <color name="player_image_background">@color/white_1</color>
-    <color name="player_list_item_font">@color/grey_5</color>
-    <color name="player_list_item_font1">@color/grey_6</color>
-    <color name="player_pager_index_color">@color/grey_7</color>
+    <color name="player_list_item_font">@color/black_3</color>
+    <color name="player_list_item_font1">@color/grey_3</color>
+    <color name="player_pager_index_color">@color/grey_3</color>
     <color name="player_pager_index_selected">@color/yellow_2</color>
     <color name="player_option_tab0">@color/green_1</color>
     <color name="player_option_tab1">@color/green_3</color>
