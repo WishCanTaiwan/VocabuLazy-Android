@@ -31,8 +31,8 @@
         android:layout_height="50dp"
         android:text="@string/info_report"
         android:fontFamily="sans-serif"
-        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"
+        android:drawableRight="@drawable/main_menu_note_arrow"
+        android:drawableEnd="@drawable/main_menu_note_arrow"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:gravity="center_vertical"/>
@@ -48,8 +48,8 @@
         android:layout_height="50dp"
         android:text="@string/info_guide"
         android:fontFamily="sans-serif"
-        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"
+        android:drawableRight="@drawable/main_menu_note_arrow"
+        android:drawableEnd="@drawable/main_menu_note_arrow"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:gravity="center_vertical"/>
@@ -64,8 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/info_terms_conditions"
-        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"
+        android:drawableRight="@drawable/main_menu_note_arrow"
+        android:drawableEnd="@drawable/main_menu_note_arrow"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:gravity="center_vertical"/>
@@ -80,8 +80,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/info_wishcan_introduction"
-        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"
+        android:drawableRight="@drawable/main_menu_note_arrow"
+        android:drawableEnd="@drawable/main_menu_note_arrow"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:gravity="center_vertical"/>

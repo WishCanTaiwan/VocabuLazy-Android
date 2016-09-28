@@ -20,6 +20,11 @@ public class MainMenuFragmentPagerAdapter extends FragmentPagerAdapter {
         this.titles = titles;
     }
 
+    public MainMenuFragmentPagerAdapter(FragmentManager fm, Fragment[] fragments) {
+        super(fm);
+        this.fragments = fragments;
+    }
+
     @Override
     public Fragment getItem(int position) {
         return fragments[position];
@@ -30,8 +35,8 @@ public class MainMenuFragmentPagerAdapter extends FragmentPagerAdapter {
         return fragments.length;
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return titles[position];
-    }
+//    @Override
+//    public CharSequence getPageTitle(int position) {
+//        return titles[position];
+//    }
 }
