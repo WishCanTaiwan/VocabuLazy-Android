@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.application.GlobalVariable;
 import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.manager.GAManager;
 import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.player.model.PlayerModel;
@@ -41,41 +42,53 @@ import java.util.LinkedList;
 public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerEventListener,
         PlayerModel.PlayerModelDataProcessListener {
 
+    // callback interface
     public interface OnPlayerLessonChangeListener {
         void onLessonChange(int lesson);
     }
 
+    // callback interface
     public interface OnPlayerOptionFavoriteClickListener {
         void onFavoriteClick(int vocId);
     }
 
+    // TAG for debugging
     private static final String TAG = PlayerFragment.class.getSimpleName();
 
+    // indices
     private int argBookIndex;
     private int argLessonIndex;
     private int mBookIndex;
     private int mLessonIndex;
     private int mItemIndex;
     private int mSentenceIndex;
+
+    // flag to identify whether user enter the same unit/note
     private boolean mIsSameAsLastEntrance;
-    private ArrayList<Vocabulary> mVocabularies;
-    private PlayerView mPlayerView;
+
+    // flag for solving changing play list after onStop()
+    private boolean mIsWaitingAddNewPlayer = false;
+
+    // the context of the application/activity
     private Context mContext;
+
+    // data model
     private PlayerModel mPlayerModel;
 
+    // views
+    private PlayerView mPlayerView;
+
+    //
+    private ArrayList<Vocabulary> mVocabularies;
+
+    // listeners
     private OnPlayerLessonChangeListener mOnPlayerLessonChangeListener;
     private OnPlayerOptionFavoriteClickListener mOnPlayerOptionFavoriteClickListener;
 
-    /**
-     * receiver to get broadcasts from AudioService
-     */
+    // broadcast receiver
     private ServiceBroadcastReceiver mServiceBroadcastReceiver;
 
-    /**
-     * The flag for solving changing play list after onStop()
-     */
-    private boolean mIsWaitingAddNewPlayer = false;
-
+    // factory method to instantiate PlayerFragment
     public static PlayerFragment newInstance() {
         PlayerFragment fragment = new PlayerFragment();
         Bundle args = new Bundle();
@@ -83,9 +96,12 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         return fragment;
     }
 
+    // required empty constructor
     public PlayerFragment() {
         // Required empty public constructor
     }
+
+    /** Life cycle **/
 
     @Override
     public void onAttach(Context context) {
@@ -137,6 +153,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     public void onResume() {
         super.onResume();
 
+        // send GA screen event
+        GAManager.getInstance().sendScreenEvent(GAScreenName.PLAYER);
+
         // request audio focus when the fragment is on
         requestAudioFocus();
 
@@ -158,18 +177,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-
-
-    }
-
-    @Override
-    protected String getGALabel() {
-        return GAScreenName.PLAYER;
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
 
@@ -177,28 +184,11 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mServiceBroadcastReceiver);
     }
 
-    /**
-     * Add a {@link OnPlayerLessonChangeListener} to {@link PlayerFragment}.
-     * @param listener An instance of {@link OnPlayerLessonChangeListener}
-     */
-    public void addOnPlayerLessonChangeListener(OnPlayerLessonChangeListener listener) {
-        mOnPlayerLessonChangeListener = listener;
-    }
+    /** Abstracts and Interfaces **/
 
-    public void setOnPlayerOptionFavoriteClickListener(OnPlayerOptionFavoriteClickListener listener) {
-        mOnPlayerOptionFavoriteClickListener = listener;
-    }
-
-    /**
-     * When entering {@link PlayerFragment}, we need to tell the fragment which book and lesson is
-     * selected for creating corresponding views. By calling this method, we are able to assign the
-     * book index and lesson index to the fragment.
-     * @param bookIndex The index of the selected book.
-     * @param lessonIndex The index of the selected lesson.
-     */
-    public void setBookAndLesson(int bookIndex, int lessonIndex) {
-        argBookIndex = bookIndex;
-        argLessonIndex = lessonIndex;
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.PLAYER;
     }
 
     /**----------------- Implement PlayerModel.PlayerModelDataProcessListener -------------------**/
@@ -371,6 +361,34 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         optionChanged();
     }
 
+    /** Public methods **/
+
+    /**
+     * Add a {@link OnPlayerLessonChangeListener} to {@link PlayerFragment}.
+     * @param listener An instance of {@link OnPlayerLessonChangeListener}
+     */
+    public void addOnPlayerLessonChangeListener(OnPlayerLessonChangeListener listener) {
+        mOnPlayerLessonChangeListener = listener;
+    }
+
+    public void setOnPlayerOptionFavoriteClickListener(OnPlayerOptionFavoriteClickListener listener) {
+        mOnPlayerOptionFavoriteClickListener = listener;
+    }
+
+    /**
+     * When entering {@link PlayerFragment}, we need to tell the fragment which book and lesson is
+     * selected for creating corresponding views. By calling this method, we are able to assign the
+     * book index and lesson index to the fragment.
+     * @param bookIndex The index of the selected book.
+     * @param lessonIndex The index of the selected lesson.
+     */
+    public void setBookAndLesson(int bookIndex, int lessonIndex) {
+        argBookIndex = bookIndex;
+        argLessonIndex = lessonIndex;
+    }
+
+    /** Private methods **/
+
     private boolean checkIndicesMatch() {
         GlobalVariable globalVariable = (GlobalVariable) ((Activity) mContext).getApplication();
         int restoredBookIndex = globalVariable.playerTextbookIndex;
@@ -462,7 +480,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     }
 
     /**
-     *
+     * Broadcast receiver
      */
     protected class ServiceBroadcastReceiver extends BroadcastReceiver {
 

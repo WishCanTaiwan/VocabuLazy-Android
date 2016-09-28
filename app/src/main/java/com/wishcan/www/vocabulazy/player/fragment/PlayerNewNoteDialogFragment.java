@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.manager.GAManager;
 import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.player.model.PlayerModel;
@@ -19,22 +20,24 @@ import com.wishcan.www.vocabulazy.widget.DialogViewNew;
  */
 public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
 
-    @Override
-    protected String getGALabel() {
-        return GAScreenName.CREATE_NOTE;
-    }
-
+    // call back interface
     public interface OnNewNoteDialogFinishListener {
         void onNewNoteDone(String string);
     }
 
+    // layout resource id
     private static final int LAYOUT_RES_ID = R.layout.view_player_new_note_dialog;
 
+    // the context of application/activity
     private Context mContext;
 
+    // views
     private PlayerNewNoteDialogView mPlayerNewNoteDialogView;
 
+    // listeners
     private OnNewNoteDialogFinishListener mOnDialogFinishListener;
+
+    /** Life cycles **/
 
     @Override
     public void onAttach(Context context) {
@@ -45,19 +48,25 @@ public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements Di
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mPlayerNewNoteDialogView = (PlayerNewNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
         mPlayerNewNoteDialogView.setOnYesOrNoClickListener(this);
         return mPlayerNewNoteDialogView;
     }
 
-    public void setOnNewNoteDialogFinishListener(OnNewNoteDialogFinishListener listener) {
-        mOnDialogFinishListener = listener;
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // send GA screen event
+        GAManager.getInstance().sendScreenEvent(GAScreenName.CREATE_NOTE);
+    }
+
+    /** Abstracts and Interfaces **/
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.CREATE_NOTE;
     }
 
     @Override
@@ -84,5 +93,11 @@ public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements Di
     @Override
     public void onBackgroundClick() {
         getActivity().onBackPressed();
+    }
+
+    /** Public methods **/
+
+    public void setOnNewNoteDialogFinishListener(OnNewNoteDialogFinishListener listener) {
+        mOnDialogFinishListener = listener;
     }
 }
