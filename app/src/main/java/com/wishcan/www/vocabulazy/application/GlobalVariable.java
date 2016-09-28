@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.google.android.gms.analytics.Tracker;
+import com.wishcan.www.vocabulazy.BuildConfig;
 import com.wishcan.www.vocabulazy.ga.manager.GAManager;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
@@ -51,5 +52,10 @@ public class GlobalVariable extends Application {
 
         // init google analytics services
         GAManager.getInstance().init(getApplicationContext());
+
+        // if it is DEBUG mode, disable the GA temporary
+        if (BuildConfig.DEBUG) {
+            GAManager.getInstance().disableGATemporary(true);
+        }
     }
 }
