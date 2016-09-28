@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.mainmenu.note.view.NoteRenameDialogView;
@@ -19,6 +20,11 @@ import com.wishcan.www.vocabulazy.widget.DialogViewNew;
  * Created by allencheng07 on 2016/9/12.
  */
 public class NoteRenameDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.RENAME_NOTE;
+    }
 
     public interface OnRenameCompleteListener {
         void onRenameCompleted();

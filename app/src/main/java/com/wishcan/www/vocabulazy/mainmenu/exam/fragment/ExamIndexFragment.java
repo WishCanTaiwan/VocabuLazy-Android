@@ -1,12 +1,13 @@
 package com.wishcan.www.vocabulazy.mainmenu.exam.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexView;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import com.wishcan.www.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
@@ -16,7 +17,12 @@ import com.wishcan.www.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableGr
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ExamIndexFragment extends Fragment implements ExamIndexView.OnExamIndexClickListener {
+public class ExamIndexFragment extends GABaseFragment implements ExamIndexView.OnExamIndexClickListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.EXAM_TEXTBOOK;
+    }
 
     public interface OnExamIndexClickListener {
         void onExamTextbookClicked(int bookIndex, int lessonIndex);

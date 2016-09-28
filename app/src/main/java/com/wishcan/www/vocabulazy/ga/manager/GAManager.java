@@ -1,6 +1,7 @@
 package com.wishcan.www.vocabulazy.ga.manager;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.android.gms.analytics.ExceptionReporter;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -91,6 +92,9 @@ public class GAManager {
      * @param screenName the name of the screen.
      */
     public void sendScreenEvent(String screenName) {
+
+        Log.d(TAG, "send screen " + screenName);
+
         mGlobalTracker.setScreenName(screenName);
         mGlobalTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }

@@ -13,33 +13,31 @@ import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.cover.activity.CoverActivity;
-import com.wishcan.www.vocabulazy.ga.GACoverFragment;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.manager.GAManager;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
-import com.wishcan.www.vocabulazy.widget.DialogFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CoverFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CoverFragment extends GACoverFragment {
+public class CoverFragment extends GABaseFragment {
 
-    public static final String TAG = "COVER";
+    // TAG for debugging
+    public static final String TAG = "CoverFragment";
 
-    public static String M_TAG;
-
+    // layout resource id
     private static final int VIEW_RES_ID = R.layout.view_cover;
-    private static final String PACKAGE_NAME_TESTING_APP = "cc.forestapp";
 
-    private boolean hasUserLeftAppFirst = false;
-
-    private View mView;
-
+    // Required empty public constructor
     public CoverFragment() {
-        // Required empty public constructor
+
     }
 
+    // factory method for instantiate CoverFragment
     public static CoverFragment newInstance() {
         CoverFragment fragment = new CoverFragment();
         Bundle args = new Bundle();
@@ -47,58 +45,26 @@ public class CoverFragment extends GACoverFragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
-        M_TAG = getTag();
-        hasUserLeftAppFirst = false;
-    }
+    /** Life cycles **/
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mView =  inflater.inflate(VIEW_RES_ID, container, false);
-        return mView;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // inflate cover fragment xml
+        return inflater.inflate(VIEW_RES_ID, container, false);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-////        directToVocabuLazy();
-//        if (checkAppInstalledOrNot(PACKAGE_NAME_GOOGLE_TTS)) {
-//            directToVocabuLazy();
-//        } else {
-//                CoverDialogFragment dialogFragment = new CoverDialogFragment();
-//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.add(CoverActivity.VIEW_MAIN_RES_ID, dialogFragment, "CoverDialogFragment");
-//                fragmentTransaction.addToBackStack("CoverFragment");
-//                fragmentTransaction.commit();
-//        }
+
+        // send GA screen event
+        GAManager.getInstance().sendScreenEvent(GAScreenName.SPLASH);
     }
+
+    /** Abstracts and Interfaces **/
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-//        hasUserLeftAppFirst = true;
+    protected String getGALabel() {
+        return GAScreenName.SPLASH;
     }
-
-//    @Override
-//    public void onDialogFinish(Boolean ifYesClicked) {
-//        if (ifYesClicked) {
-//            directToGooglePlay(PACKAGE_NAME_GOOGLE_TTS);
-//        } else {
-//            directToVocabuLazy();
-//        }
-//    }
-
-    @Override
-    protected String getNameAsGaLabel() {
-        return TAG;
-    }
-
-
-
-
 }
