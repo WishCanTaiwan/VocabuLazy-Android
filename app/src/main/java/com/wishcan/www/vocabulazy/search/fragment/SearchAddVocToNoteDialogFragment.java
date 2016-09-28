@@ -8,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.manager.GAManager;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchAddVocToNoteDialogView;
-import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.widget.DialogFragmentNew;
 import com.wishcan.www.vocabulazy.widget.DialogViewNew;
 
@@ -22,30 +23,33 @@ import java.util.LinkedList;
  */
 public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer> implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
 
+    // callback interface
     public interface OnAddVocToNoteDialogFinishListener {
         void onNeedNewNote();
     }
 
+    // layout resource id
     private static final int LAYOUT_RES_ID = R.layout.view_search_add_voc_to_note_dialog;
 
-    private Context mContext;
-
-    private SearchAddVocToNoteDialogView mSearchAddVocToNoteDialogView;
-
-    private SearchModel mSearchModel;
-    private OnAddVocToNoteDialogFinishListener mOnAddVocToNoteDialogFinishListener;
-    private LinkedList<String> mNoteNameList;
-
+    // used to record the id of selected vocabulary
     private int selectedVocId;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mSearchAddVocToNoteDialogView = (SearchAddVocToNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
-        Log.d("SearchDialogFragment", "onCreateView");
-        mSearchAddVocToNoteDialogView.setOnYesOrNoClickListener(this);
-        mSearchAddVocToNoteDialogView.setOnBackgroundClickListener(this);
-        return mSearchAddVocToNoteDialogView;
-    }
+    // the context of the application/activity
+    private Context mContext;
+
+    // data model
+    private SearchModel mSearchModel;
+
+    // views
+    private SearchAddVocToNoteDialogView mSearchAddVocToNoteDialogView;
+
+    // listeners
+    private OnAddVocToNoteDialogFinishListener mOnAddVocToNoteDialogFinishListener;
+
+    // the name of notes
+    private LinkedList<String> mNoteNameList;
+
+    /** Life cycles **/
 
     @Override
     public void onAttach(Context context) {
@@ -53,6 +57,14 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
 
         // get the context instance of the activity
         mContext = context;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mSearchAddVocToNoteDialogView = (SearchAddVocToNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
+        mSearchAddVocToNoteDialogView.setOnYesOrNoClickListener(this);
+        mSearchAddVocToNoteDialogView.setOnBackgroundClickListener(this);
+        return mSearchAddVocToNoteDialogView;
     }
 
     @Override
@@ -70,8 +82,19 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
         mSearchAddVocToNoteDialogView.refreshNoteRadioGroup(mNoteNameList);
     }
 
-    public void setOnAddVocToNoteDialogFinishListener(OnAddVocToNoteDialogFinishListener listener) {
-        mOnAddVocToNoteDialogFinishListener = listener;
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // send GA screen event
+        GAManager.getInstance().sendScreenEvent(GAScreenName.SELECT_NOTE);
+    }
+
+    /** Abstracts and Interfaces **/
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.SELECT_NOTE;
     }
 
     @Override
@@ -104,7 +127,23 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
         getActivity().onBackPressed();
     }
 
+    /** Public methods **/
+
+    /**
+     * Set the id of selected vocabulary.
+     *
+     * @param vocId the id the selected vocabulary.
+     */
     public void setSelectedVocId(int vocId) {
         selectedVocId = vocId;
+    }
+
+    /**
+     * Set {@link OnAddVocToNoteDialogFinishListener}.
+     *
+     * @param listener the instance of {@link OnAddVocToNoteDialogFinishListener}
+     */
+    public void setOnAddVocToNoteDialogFinishListener(OnAddVocToNoteDialogFinishListener listener) {
+        mOnAddVocToNoteDialogFinishListener = listener;
     }
 }

@@ -2,7 +2,6 @@ package com.wishcan.www.vocabulazy.mainmenu.info;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 
 /**
  * Created by allencheng07 on 2016/9/21.
  */
 
-public class ReportPageFragment extends Fragment {
+public class ReportPageFragment extends GABaseFragment {
 
     public static final String TAG = "ReportPageFragment";
 
@@ -64,4 +65,8 @@ public class ReportPageFragment extends Fragment {
         });
     }
 
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.REPORT;
+    }
 }

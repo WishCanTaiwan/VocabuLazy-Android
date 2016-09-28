@@ -3,8 +3,6 @@ package com.wishcan.www.vocabulazy.mainmenu.info;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,14 +11,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by allencheng07 on 2016/9/15.
  */
-public class InfoFragment extends Fragment {
+public class InfoFragment extends GABaseFragment {
 
     public static final String TAG = "InfoFragment";
 
@@ -115,5 +113,10 @@ public class InfoFragment extends Fragment {
 
     public void close() {
         alertDialog.cancel();
+    }
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.INFO;
     }
 }

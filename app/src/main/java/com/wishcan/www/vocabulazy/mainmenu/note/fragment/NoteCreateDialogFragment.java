@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
 import com.wishcan.www.vocabulazy.mainmenu.model.MainMenuModel;
 import com.wishcan.www.vocabulazy.mainmenu.note.view.NoteCreateDialogView;
@@ -17,6 +18,11 @@ import com.wishcan.www.vocabulazy.widget.DialogViewNew;
  * Created by allencheng07 on 2016/9/15.
  */
 public class NoteCreateDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.CREATE_NOTE;
+    }
 
     public interface OnNoteCreateListener {
         void onNoteCreated();

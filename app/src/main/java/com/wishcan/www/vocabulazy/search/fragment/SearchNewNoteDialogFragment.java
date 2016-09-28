@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.manager.GAManager;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.search.view.SearchNewNoteDialogView;
@@ -18,17 +20,24 @@ import com.wishcan.www.vocabulazy.widget.DialogViewNew;
  */
 public class SearchNewNoteDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
 
+    // callback interface
     public interface OnNewNoteDialogFinishListener {
         void onNewNoteDone(String string);
     }
 
+    // layout resource id
     private static final int LAYOUT_RES_ID = R.layout.view_search_new_note_dialog;
 
+    // the context of the application/activity
     private Context mContext;
 
+    // views
     private SearchNewNoteDialogView mSearchNewNoteDialogView;
 
+    // listeners
     private OnNewNoteDialogFinishListener mOnDialogFinishListener;
+
+    /** Life cycles **/
 
     @Override
     public void onAttach(Context context) {
@@ -45,8 +54,19 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
         return mSearchNewNoteDialogView;
     }
 
-    public void setOnNewNoteDialogFinishListener(OnNewNoteDialogFinishListener listener) {
-        mOnDialogFinishListener = listener;
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // send GA screen event
+        GAManager.getInstance().sendScreenEvent(GAScreenName.CREATE_NOTE);
+    }
+
+    /** Abstracts and Interfaces **/
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.CREATE_NOTE;
     }
 
     @Override
@@ -76,5 +96,16 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
     @Override
     public void onBackgroundClick() {
         getActivity().onBackPressed();
+    }
+
+    /** Public methods **/
+
+    /**
+     * Set {@link OnNewNoteDialogFinishListener}.
+     *
+     * @param listener the instance of {@link OnNewNoteDialogFinishListener}.
+     */
+    public void setOnNewNoteDialogFinishListener(OnNewNoteDialogFinishListener listener) {
+        mOnDialogFinishListener = listener;
     }
 }

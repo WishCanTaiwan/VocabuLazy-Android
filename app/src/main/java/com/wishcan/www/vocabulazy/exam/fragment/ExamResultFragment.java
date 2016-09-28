@@ -1,18 +1,24 @@
 package com.wishcan.www.vocabulazy.exam.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.exam.view.ExamResultView;
+import com.wishcan.www.vocabulazy.ga.GABaseFragment;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 
 /**
  * Created by SwallowChen on 9/7/16.
  */
-public class ExamResultFragment extends Fragment implements ExamResultView.OnExamResultEventListener {
+public class ExamResultFragment extends GABaseFragment implements ExamResultView.OnExamResultEventListener {
+
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.RESULT;
+    }
 
     public interface OnExamResultDoneListener {
         void onExamTryAgain();

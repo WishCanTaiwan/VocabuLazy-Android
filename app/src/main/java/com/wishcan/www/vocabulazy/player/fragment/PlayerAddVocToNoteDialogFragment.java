@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.ga.manager.GAManager;
+import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.player.model.PlayerModel;
 import com.wishcan.www.vocabulazy.player.view.PlayerAddVocToNoteDialogView;
@@ -21,21 +23,33 @@ import java.util.LinkedList;
  */
 public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer> implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
 
+    // callback interface
     public interface OnAddVocToNoteDialogFinishListener {
         void onNeedNewNote();
     }
 
+    // layout resources
     private static final int LAYOUT_RES_ID = R.layout.view_player_add_voc_to_note_dialog;
 
+    // record the id of selected vocabulary
     private int mSelectedVocId;
 
+    // the context of the application/activity
     private Context mContext;
+
+    // data model
     private PlayerModel mPlayerModel;
 
+    // views
     private PlayerAddVocToNoteDialogView mPlayerAddVocToNoteDialogView;
 
+    // listener
     private OnAddVocToNoteDialogFinishListener mOnAddVocToNoteDialogFinishListener;
+
+    // the name list of notes
     private LinkedList<String> mNoteNameList;
+
+    /** Life cycles **/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +59,6 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mPlayerAddVocToNoteDialogView = (PlayerAddVocToNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
-        Log.d("PlayerDialogFragment", "onCreateView");
         mPlayerAddVocToNoteDialogView.setOnYesOrNoClickListener(this);
         mPlayerAddVocToNoteDialogView.setOnBackgroundClickListener(this);
 
@@ -78,14 +91,16 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
     @Override
     public void onResume() {
         super.onResume();
+
+        // send GA screen event
+        GAManager.getInstance().sendScreenEvent(GAScreenName.SELECT_NOTE);
     }
 
-    public void setOnAddVocToNoteDialogFinishListener(OnAddVocToNoteDialogFinishListener listener) {
-        mOnAddVocToNoteDialogFinishListener = listener;
-    }
+    /** Abstracts and Interfaces **/
 
-    public void setSelectedVocId(int vocId) {
-        mSelectedVocId = vocId;
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.SELECT_NOTE;
     }
 
     @Override
@@ -109,5 +124,25 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
     @Override
     public void onBackgroundClick() {
         getActivity().onBackPressed();
+    }
+
+    /** Public methods **/
+
+    /**
+     * Set {@link OnAddVocToNoteDialogFinishListener}.
+     *
+     * @param listener {@link OnAddVocToNoteDialogFinishListener}
+     */
+    public void setOnAddVocToNoteDialogFinishListener(OnAddVocToNoteDialogFinishListener listener) {
+        mOnAddVocToNoteDialogFinishListener = listener;
+    }
+
+    /**
+     * Set the id of selected vocabulary.
+     *
+     * @param vocId the id of selected vocabulary.
+     */
+    public void setSelectedVocId(int vocId) {
+        mSelectedVocId = vocId;
     }
 }
