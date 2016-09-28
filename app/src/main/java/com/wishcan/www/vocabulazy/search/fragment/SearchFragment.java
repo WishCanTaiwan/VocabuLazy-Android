@@ -21,24 +21,39 @@ import java.util.LinkedList;
  */
 public class SearchFragment extends GABaseFragment implements SearchView.SearchEventListener {
 
-    @Override
-    protected String getGALabel() {
-        return GAScreenName.SEARCH;
-    }
-
+    // callback interface
     public interface OnSearchItemEventListener {
         void onSearchListClick(int vocId);
         void onSearchAddClick();
     }
+
+    // layout resource id
     private static final int LAYOUT_RES_ID = R.layout.view_search;
 
+    // the context of the application/activity
     private Context mContext;
+
+    // views
     private SearchView mSearchView;
 
+    // data model
     private SearchModel mSearchModel;
+
+    // listener
     private OnSearchItemEventListener mOnSearchItemEventListener;
 
-    LinkedList<HashMap> mDataList;
+    // 
+    private LinkedList<HashMap> mDataList;
+
+    /** Life cycles **/
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // get the context of activity
+        mContext = context;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,26 +71,16 @@ public class SearchFragment extends GABaseFragment implements SearchView.SearchE
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // get the context of activity
-        mContext = context;
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mSearchModel = ((SearchActivity) mContext).getModel();
     }
 
-    public void setOnSearchItemEventListener(OnSearchItemEventListener listener) {
-        mOnSearchItemEventListener = listener;
-    }
+    /** Abstracts and Interfaces **/
 
-    public void refreshSearchResult(String searchStr) {
-        mDataList = mSearchModel.createSearchResultMap(searchStr);
-        mSearchView.refreshSearchList(mDataList);
+    @Override
+    protected String getGALabel() {
+        return GAScreenName.SEARCH;
     }
 
     @Override
@@ -90,5 +95,26 @@ public class SearchFragment extends GABaseFragment implements SearchView.SearchE
         if (mOnSearchItemEventListener != null) {
             mOnSearchItemEventListener.onSearchAddClick();
         }
+    }
+
+    /** Public methods **/
+
+    /**
+     * Set {@link OnSearchItemEventListener}.
+     *
+     * @param listener the instance of {@link OnSearchItemEventListener}
+     */
+    public void setOnSearchItemEventListener(OnSearchItemEventListener listener) {
+        mOnSearchItemEventListener = listener;
+    }
+
+    /**
+     * Refresh the search result based on the query string.
+     *
+     * @param searchStr the query string.
+     */
+    public void refreshSearchResult(String searchStr) {
+        mDataList = mSearchModel.createSearchResultMap(searchStr);
+        mSearchView.refreshSearchList(mDataList);
     }
 }
