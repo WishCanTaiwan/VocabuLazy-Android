@@ -15,6 +15,7 @@ public class GAScreenName {
     // screen names in main menu
     public static final String TEXTBOOK = "Textbook";
     public static final String NOTE = "Note";
+    public static final String EXAM_INDEX = "Exam Index";
     public static final String EXAM_TEXTBOOK = "Exam Textbook";
     public static final String EXAM_NOTE = "Exam Note";
     public static final String INFO = "Information";
