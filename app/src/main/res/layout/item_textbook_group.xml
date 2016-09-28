@@ -16,7 +16,6 @@
         android:paddingLeft="22dp"
         android:paddingRight="22dp"/>
 
-    <!-- TODO: (design) need arrow sets to replace drawableRight, drawableEnd -->
     <TextView
         android:id="@+id/book_subtitle"
         android:gravity="center_vertical"
@@ -28,8 +27,8 @@
         android:textColor="@color/textbook_group_subtitle_text_color"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:drawableRight="@drawable/widget_picker_arrow_yellow_right"
-        android:drawableEnd="@drawable/widget_picker_arrow_yellow_right"/>
+        android:drawableRight="@drawable/main_menu_text_book_arrow"
+        android:drawableEnd="@drawable/main_menu_text_book_arrow"/>
 
     <View
         android:id="@+id/group_divider"

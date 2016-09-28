@@ -26,7 +26,10 @@
             android:gravity="center_vertical"
             android:text="@string/note_group_default_text"
             android:textSize="23sp"
-            android:textColor="@color/note_group_text_color"/>
+            android:textColor="@color/note_group_text_color"
+            android:paddingRight="20dp"
+            android:drawableRight="@drawable/main_menu_note_arrow"
+            android:drawableEnd="@drawable/main_menu_note_arrow"/>
 
     </LinearLayout>
 
