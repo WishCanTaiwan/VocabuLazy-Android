@@ -6,7 +6,7 @@ import android.util.TypedValue;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import com.wishcan.www.vocabulazy.utility.log.Logger;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 /**
  * Created by swallow on 2016/3/6.

@@ -5,7 +5,7 @@ import android.media.AudioManager;
 import android.os.Handler;
 
 import com.wishcan.www.vocabulazy.application.GlobalVariable;
-import com.wishcan.www.vocabulazy.utility.log.Logger;
+import com.wishcan.www.vocabulazy.utility.Logger;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
