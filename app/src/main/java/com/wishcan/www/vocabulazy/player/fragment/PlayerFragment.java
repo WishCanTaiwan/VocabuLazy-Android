@@ -421,7 +421,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     private void setContent(ArrayList<Vocabulary> vocabularies) {
         if (mPlayerModel == null) {
-            sendException(getContext(), new NullPointerException(), true);
+            GAManager.getInstance().sendException(getContext(), new NullPointerException(), true);
             return;
         }
         mPlayerModel.setCurrentContent(vocabularies);
