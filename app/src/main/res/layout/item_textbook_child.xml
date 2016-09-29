@@ -16,8 +16,8 @@
         android:textColor="@color/textbook_child_text_color"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:drawableRight="@drawable/player_play"
-        android:drawableEnd="@drawable/player_play"/>
+        android:drawableRight="@drawable/ic_play_circle_outline_white_36dp"
+        android:drawableEnd="@drawable/ic_play_circle_outline_white_36dp"/>
 
     <View
         android:id="@+id/child_divider"
