@@ -23,4 +23,10 @@
         android:background="@color/grey_6"
         android:layout_below="@id/wishcan_intro_title"/>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wishcan_intro_divider"/>
+
 </RelativeLayout>
