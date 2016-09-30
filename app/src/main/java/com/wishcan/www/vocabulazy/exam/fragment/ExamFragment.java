@@ -30,8 +30,11 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
         void onExamDone(int totalNumber, int correctNumber);
     }
 
-    public static final String ARG_BOOK_INDEX = "bookIndex";
-    public static final String ARG_LESSON_INDEX = "lessonIndex";
+    private static final String ARG_BOOK_INDEX = "bookIndex";
+    private static final String ARG_LESSON_INDEX = "lessonIndex";
+
+    private static final int STATE_THINKING = 0x0;
+    private static final int STATE_ANSWERED = 0x1;
 
     private static final int LAYOUT_RES_ID = R.layout.view_exam;
 
@@ -40,11 +43,16 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
     private ExamModel.PuzzleSetter mPuzzleSetter;
 
     private int mCurrentBookIndex, mCurrentLessonIndex;
+    private int mAnswerState;
 
     private OnExamDoneListener mOnExamDoneListener;
 
-    public static ExamFragment newInstance() {
+    public static ExamFragment newInstance(int bookIndex, int lessonIndex) {
         ExamFragment fragment = new ExamFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_BOOK_INDEX, bookIndex);
+        args.putInt(ARG_LESSON_INDEX, lessonIndex);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -86,6 +94,9 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
 
     @Override
     public void onExamAnswerClick(int index) {
+        if (mAnswerState == STATE_ANSWERED) {
+            return;
+        }
         /** index start from 1 to 4 */
         int correctIndex = mPuzzleSetter.checkAnswer(index);
         ArrayList<Integer> stateList = new ArrayList<>();
@@ -99,10 +110,19 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
             }
         }
         mExamView.setExamAnswerStates(stateList);
+        mExamView.showNextIcon();
+        mAnswerState = STATE_ANSWERED;
     }
 
     @Override
     public void onNextIconClick() {
+        if (!mExamView.isNextIconVisible()) {
+            return;
+        }
+        // hide anyway, preventing from start exam again and next icon shows
+        mExamView.hideNextIcon();
+        // change state anyway, preventing from start exam again and state suspend
+        mAnswerState = STATE_THINKING;
         /** NOTE: must call getANewQuestion to update question index */
         HashMap<Integer, ArrayList<String>> questionArrayList = mPuzzleSetter.getANewQuestion();
         // not enough question to start exam, but should not happen here
@@ -112,7 +132,7 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
         // the exam is over
         if (questionArrayList.size() == 0) {
             if (mOnExamDoneListener != null) {
-                mOnExamDoneListener.onExamDone(20, 15);
+                mOnExamDoneListener.onExamDone(mPuzzleSetter.getTotalQuestionNum(), mPuzzleSetter.getCorrectCount());
             }
         } else {
             mExamView.updateExamProgressBar(mPuzzleSetter.getCurrentQuestionIndex());

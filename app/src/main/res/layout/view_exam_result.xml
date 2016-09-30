@@ -63,6 +63,7 @@
                         android:textColor="@color/green_1"/>
 
                     <TextView
+                        android:id="@+id/exam_result_answer_correct_count_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/exam_result_container_text_margin"
@@ -70,6 +71,7 @@
                         android:textSize="@dimen/exam_result_container_text_2"/>
 
                     <TextView
+                        android:id="@+id/exam_result_answer_correct_ratio_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/exam_result_container_text_margin"
