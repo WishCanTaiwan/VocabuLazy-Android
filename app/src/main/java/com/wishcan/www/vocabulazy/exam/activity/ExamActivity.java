@@ -45,7 +45,7 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
         setSupportActionBar(mToolbar);
         setActionBarTitle("Book " + mBookIndex + " Lesson " + mLessonIndex);
 
-        ExamFragment fragment = new ExamFragment();
+        ExamFragment fragment = ExamFragment.newInstance(mBookIndex, mLessonIndex);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(ExamActivity.VIEW_MAIN_RES_ID, fragment, "ExamFragment");
         fragmentTransaction.commit();
@@ -71,7 +71,10 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
     @Override
     public void onExamDone(int totalNumber, int correctNumber) {
         Log.d(TAG, "onExamDone" + correctNumber);
-        ExamResultFragment fragment = new ExamResultFragment();
+        int correctCount, correctRatio;
+        correctCount = correctNumber;
+        correctRatio = (int) ((correctNumber / (float)totalNumber) * 100);
+        ExamResultFragment fragment = ExamResultFragment.newInstance(correctCount, correctRatio);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(ExamActivity.VIEW_MAIN_RES_ID, fragment, "ExamResultFragment");
         fragmentTransaction.commit();
@@ -80,7 +83,7 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
     @Override
     public void onExamTryAgain() {
         Log.d(TAG, "onExamTryAgain");
-        ExamFragment fragment = new ExamFragment();
+        ExamFragment fragment = ExamFragment.newInstance(mBookIndex, mLessonIndex);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(ExamActivity.VIEW_MAIN_RES_ID, fragment, "ExamFragment");
         fragmentTransaction.commit();

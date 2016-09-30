@@ -27,19 +27,33 @@ public class ExamResultFragment extends GABaseFragment implements ExamResultView
 
     private static final int LAYOUT_RES_ID = R.layout.view_exam_result;
 
+    private static final String ARG_COUNT = "correctCount";
+    private static final String ARG_RATIO = "correctRatio";
 
     private ExamResultView mExamResultView;
 
     private OnExamResultDoneListener mOnExamResultDoneListener;
 
-    public static ExamFragment newInstance() {
-        ExamFragment fragment = new ExamFragment();
+    private int mCorrectCount, mCorrectRatio;
+
+    public static ExamResultFragment newInstance(int correctCount, int correctRatio) {
+        ExamResultFragment fragment = new ExamResultFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_COUNT, correctCount);
+        args.putInt(ARG_RATIO, correctRatio);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mCorrectCount = getArguments().getInt(ARG_COUNT);
+            mCorrectRatio = getArguments().getInt(ARG_RATIO);
+        } else {
+            mCorrectCount = mCorrectRatio = 0;
+        }
     }
 
     @Override
@@ -48,6 +62,8 @@ public class ExamResultFragment extends GABaseFragment implements ExamResultView
             mExamResultView = (ExamResultView) inflater.inflate(LAYOUT_RES_ID, container, false);
         }
 
+        mExamResultView.setCorrectCount(mCorrectCount);
+        mExamResultView.setCorrectRatio(mCorrectRatio);
         mExamResultView.setOnExamResultEventListener(this);
         return mExamResultView;
     }
