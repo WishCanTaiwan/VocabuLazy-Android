@@ -71,6 +71,9 @@ public class ExamView extends LinearLayout {
         EXAM_ANSWER_VIEW_s[3] = mExamAnswer3 = (ExamAnswerView) findViewById(VIEW_ANSWER_3_RES_ID);
         EXAM_ANSWER_VIEW_s[4] = mExamAnswer4 = (ExamAnswerView) findViewById(VIEW_ANSWER_4_RES_ID);
         mNextIcon = (LinearLayout) findViewById(VIEW_NEXT_ICON_RES_ID);
+
+        // for the bug that if set invisible in xml, the layout will error. Reset visibility here.
+        hideNextIcon();
         registerEventListener();
     }
 
@@ -161,6 +164,24 @@ public class ExamView extends LinearLayout {
             examAnswerView.setExamAnswerState(updateValues[j]);
         }
         return true;
+    }
+
+    /**
+     * Make Icon in ExamView show
+     * */
+    public void showNextIcon() {
+        mNextIcon.setVisibility(VISIBLE);
+    }
+
+    /**
+     * Make Icon in ExamView hide
+     * */
+    public void hideNextIcon() {
+        mNextIcon.setVisibility(INVISIBLE);
+    }
+
+    public boolean isNextIconVisible() {
+        return (mNextIcon.getVisibility() == VISIBLE);
     }
 
     private void registerEventListener() {
