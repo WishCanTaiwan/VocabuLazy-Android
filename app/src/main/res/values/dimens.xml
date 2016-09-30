@@ -86,4 +86,10 @@
     <dimen name="search_dialog_new_note_content_yes_no_container_height">53dp</dimen>
     <dimen name="search_dialog_new_note_content_translation_z">@dimen/dialog_z</dimen>
     <dimen name="search_dialog_new_note_content_yes_no_container_translation_z">10dp</dimen>
+
+    <!-- main menu -->
+    <dimen name="textbook_group_text_size">48sp</dimen>
+
+    <!-- player -->
+    <dimen name="player_option_level_image_padding">33dp</dimen>
 </resources>
