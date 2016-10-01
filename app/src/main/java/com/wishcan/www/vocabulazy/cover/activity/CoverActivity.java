@@ -43,14 +43,14 @@ public class CoverActivity extends FragmentActivity implements CoverDialogFragme
 
         // if the tts engine is not installed, launch the dialoag asking user to download and
         // install Google Text-to-Speech Engine
-        if (!isEngineInstalled) {
-            Log.d(TAG, "launching cover dialog");
-            CoverDialogFragment fragment = new CoverDialogFragment();
-            fragment.addOnDialogClickListener(this);
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(VIEW_MAIN_RES_ID, fragment, "CoverDialogFragment");
-            fragmentTransaction.commit();
-        }
+//        if (!isEngineInstalled) {
+//            Log.d(TAG, "launching cover dialog");
+//            CoverDialogFragment fragment = new CoverDialogFragment();
+//            fragment.addOnDialogClickListener(this);
+//            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.add(VIEW_MAIN_RES_ID, fragment, "CoverDialogFragment");
+//            fragmentTransaction.commit();
+//        }
     }
 
     @Override
@@ -77,7 +77,16 @@ public class CoverActivity extends FragmentActivity implements CoverDialogFragme
             protected void onPostExecute(Void aVoid) {
                 Log.d(TAG, "finish loading database");
                 super.onPostExecute(aVoid);
-                if (isEngineInstalled) directToVocabuLazy();
+                if (isEngineInstalled) {
+                    directToVocabuLazy();
+
+                } else {
+                    CoverDialogFragment fragment = new CoverDialogFragment();
+                    fragment.addOnDialogClickListener(CoverActivity.this);
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.add(VIEW_MAIN_RES_ID, fragment, "CoverDialogFragment");
+                    fragmentTransaction.commit();
+                }
             }
         }.execute();
     }
