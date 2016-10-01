@@ -39,6 +39,8 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     private MainMenuFragment mMainMenuFragment;
     private MainMenuModel mMainMenuModel;
 
+    private boolean isPlaying;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "Create");
@@ -84,6 +86,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_menu, menu);
+        menu.getItem(1).setVisible(isPlaying);
         return true;
     }
 
@@ -111,18 +114,20 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     @Override
     public void onTextbookSelected(int bookIndex, int lessonIndex) {
-        Intent intent = new Intent(MainMenuActivity.this, PlayerActivity.class);
-        intent.putExtra(PlayerActivity.ARG_BOOK_INDEX, bookIndex);
-        intent.putExtra(PlayerActivity.ARG_LESSON_INDEX, lessonIndex);
-        startActivity(intent);
+        navigateToPlayer(bookIndex, lessonIndex);
+//        Intent intent = new Intent(MainMenuActivity.this, PlayerActivity.class);
+//        intent.putExtra(PlayerActivity.ARG_BOOK_INDEX, bookIndex);
+//        intent.putExtra(PlayerActivity.ARG_LESSON_INDEX, lessonIndex);
+//        startActivity(intent);
     }
 
     @Override
     public void onNoteSelected(int noteIndex) {
-        Intent intent = new Intent(MainMenuActivity.this, PlayerActivity.class);
-        intent.putExtra(PlayerActivity.ARG_BOOK_INDEX, -1);
-        intent.putExtra(PlayerActivity.ARG_LESSON_INDEX, noteIndex);
-        startActivity(intent);
+        navigateToPlayer(-1, noteIndex);
+//        Intent intent = new Intent(MainMenuActivity.this, PlayerActivity.class);
+//        intent.putExtra(PlayerActivity.ARG_BOOK_INDEX, -1);
+//        intent.putExtra(PlayerActivity.ARG_LESSON_INDEX, noteIndex);
+//        startActivity(intent);
     }
 
     @Override
@@ -221,6 +226,14 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         }
     }
 
+    public void navigateToPlayer(int bookIndex, int lessonIndex) {
+        // TODO: should use startActivityForResult, expecting return the status of player, playing or not?
+        Intent intent = new Intent(MainMenuActivity.this, PlayerActivity.class);
+        intent.putExtra(PlayerActivity.ARG_BOOK_INDEX, bookIndex);
+        intent.putExtra(PlayerActivity.ARG_LESSON_INDEX, lessonIndex);
+        startActivity(intent);
+    }
+
     public void displayReportPage() {
         ReportPageFragment fragment = new ReportPageFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -255,6 +268,19 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     public void sendReport(String message) {
 
+    }
+
+    public void enableBackToPlayerMenuItem(boolean isPlaying) {
+
+        // update playing status
+        setIsPlaying(isPlaying);
+
+        // will update the menu according to playing status
+        invalidateOptionsMenu();
+    }
+
+    public void setIsPlaying(boolean isPlaying) {
+        this.isPlaying = isPlaying;
     }
 
     private void startAudioService() {

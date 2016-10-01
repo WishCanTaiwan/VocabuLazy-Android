@@ -14,6 +14,7 @@
     <style name="AppTheme.CoverActivity" parent="AppTheme">
         <item name="android:windowBackground">@color/green_1</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="colorAccent">@color/green_1</item>
     </style>
 
     <style name="AppTheme.MainMenuActivity" parent="AppTheme">
