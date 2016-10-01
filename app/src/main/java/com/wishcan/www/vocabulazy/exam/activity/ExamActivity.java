@@ -10,6 +10,8 @@ import android.util.Log;
 import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.exam.fragment.ExamFragment;
 import com.wishcan.www.vocabulazy.exam.fragment.ExamResultFragment;
+import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 /**
  * Created by SwallowChen on 8/25/16.
@@ -33,7 +35,6 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
 
         mBookIndex = getIntent().getIntExtra(ARG_BOOK_INDEX, 1359);
@@ -43,7 +44,7 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
         mToolbar = (Toolbar) findViewById(TOOLBAR_RES_ID);
 
         setSupportActionBar(mToolbar);
-        setActionBarTitle("Book " + mBookIndex + " Lesson " + mLessonIndex);
+        setActionBarTitle(Database.getInstance().getLessonTitle(mBookIndex, mLessonIndex));
 
         ExamFragment fragment = ExamFragment.newInstance(mBookIndex, mLessonIndex);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -70,7 +71,7 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
 
     @Override
     public void onExamDone(int totalNumber, int correctNumber) {
-        Log.d(TAG, "onExamDone" + correctNumber);
+        Logger.d(TAG, "onExamDone" + correctNumber);
         int correctCount, correctRatio;
         correctCount = correctNumber;
         correctRatio = (int) ((correctNumber / (float)totalNumber) * 100);
@@ -82,7 +83,7 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
 
     @Override
     public void onExamTryAgain() {
-        Log.d(TAG, "onExamTryAgain");
+        Logger.d(TAG, "onExamTryAgain");
         ExamFragment fragment = ExamFragment.newInstance(mBookIndex, mLessonIndex);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(ExamActivity.VIEW_MAIN_RES_ID, fragment, "ExamFragment");
@@ -91,7 +92,7 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
 
     @Override
     public void onExamTryOther() {
-        Log.d(TAG, "onExamTryOther");
+        Logger.d(TAG, "onExamTryOther");
         finish();
     }
 }
