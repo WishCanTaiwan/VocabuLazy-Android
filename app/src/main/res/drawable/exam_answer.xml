@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <level-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:maxLevel="0">
-        <item>
             <layer-list>
                 <item>
                     <shape>
@@ -16,10 +15,8 @@
                     </shape>
                 </item>
             </layer-list>
-        </item>
     </item>
     <item android:maxLevel="1">
-        <item>
             <layer-list>
                 <item>
                     <shape>
@@ -34,10 +31,8 @@
                     </shape>
                 </item>
             </layer-list>
-        </item>
     </item>
     <item android:maxLevel="2">
-        <item>
             <layer-list>
                 <item>
                     <shape>
@@ -53,5 +48,4 @@
                 </item>
             </layer-list>
         </item>
-    </item>
 </level-list>
