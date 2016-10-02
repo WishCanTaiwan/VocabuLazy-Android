@@ -23,7 +23,6 @@ public class GlobalVariable extends Application {
 
     public int playerTextbookIndex = 1359;
     public int playerLessonIndex = 1359;
-    public int playerNoteIndex = 1359;
 
     public ArrayList<Vocabulary> playerContent;
     public ArrayList<OptionSettings> optionSettings;
