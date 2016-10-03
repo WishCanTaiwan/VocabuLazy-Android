@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.wishcan.www.vocabulazy.utility.Logger;
+
 /**
  * Created by SwallowChen on 9/4/16.
  */
@@ -39,7 +41,7 @@ public class DialogViewNew extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         if (getChildCount() != 1) {
-            Log.d("DialogView", "DialogView can contains only one child as dialog content");
+            Logger.d("DialogView", "DialogView can contains only one child as dialog content");
             return;
         }
         mContentView = getChildAt(0);

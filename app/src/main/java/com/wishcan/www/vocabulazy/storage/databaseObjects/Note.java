@@ -16,7 +16,6 @@ public class Note {
         this.noteId = noteId;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
-        Log.d(TAG, "create note " + toString());
     }
 
     public int getNoteId() {

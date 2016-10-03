@@ -23,16 +23,4 @@ public class MainMenuViewPager extends ViewPager implements NestedScrollingParen
     public MainMenuViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
-//    @Override
-//    public boolean onInterceptTouchEvent(MotionEvent ev) {
-//        Log.d(TAG, "intercept "+ev.getAction());
-//        return super.onInterceptTouchEvent(ev);
-//    }
-
-//    @Override
-//    public boolean onTouchEvent(MotionEvent ev) {
-//        Log.d(TAG, ""+ev.getAction());
-//        return super.onTouchEvent(ev);
-//    }
 }

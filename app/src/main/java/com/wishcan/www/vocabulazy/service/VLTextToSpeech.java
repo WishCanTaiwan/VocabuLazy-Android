@@ -50,7 +50,6 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         if (mTextToSpeech != null)
             return;
         mTextToSpeech = new TextToSpeech(mContext, this, "com.google.android.tts");
-//        Log.d(TAG, "engines " + mTextToSpeech.getEngines());
     }
 
     public void setOnEngineStatusListener(OnEngineStatusListener listener) {

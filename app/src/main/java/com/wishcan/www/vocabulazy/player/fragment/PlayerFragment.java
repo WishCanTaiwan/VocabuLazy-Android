@@ -26,6 +26,7 @@ import com.wishcan.www.vocabulazy.service.AudioPlayer;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
+import com.wishcan.www.vocabulazy.utility.Logger;
 import com.wishcan.www.vocabulazy.widget.Infinite3View;
 
 import java.util.ArrayList;
@@ -222,7 +223,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         mPlayerModel.createPlayerDetailContent(vocabularies.get((mIsSameAsLastEntrance ? mItemIndex : 0)));
 
         if (vocabularies.size() > 0 && !mIsSameAsLastEntrance) {
-            Log.d(TAG, "set content and start playing");
+            Logger.d(TAG, "set content and start playing");
             setContent(vocabularies);
             updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
             startPlayingAt(0, -1, AudioPlayer.SPELL);
@@ -489,7 +490,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getStringExtra(GlobalVariable.PLAYER_BROADCAST_ACTION);
-            Log.d(TAG, "broadcast received, " + action);
+            Logger.d(TAG, "broadcast received, " + action);
             switch (action) {
 
                 case AudioService.ITEM_COMPLETE:
@@ -497,14 +498,11 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
                 case AudioService.TO_ITEM:
                     int newItemIndex = intent.getIntExtra(AudioService.ITEM_INDEX, -1);
-                    Log.d(TAG, "to item " + newItemIndex);
                     updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
-                    Log.d(TAG, "moveToPosition Start");
                     mPlayerView.moveToPosition(newItemIndex);
                     if (mVocabularies != null) {
                         mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
                     }
-                    Log.d(TAG, "moveToPosition Done");
                     break;
 
                 case AudioService.LIST_COMPLETE:
@@ -524,11 +522,11 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                     break;
 
                 case AudioService.SHOW_DETAIL:
-                    mPlayerView.showDetail();
+//                    mPlayerView.showDetail();
                     break;
 
                 case AudioService.HIDE_DETAIL:
-                    mPlayerView.hideDetail();
+//                    mPlayerView.hideDetail();
                     break;
 
                 case AudioService.TO_SENTENCE:
@@ -543,7 +541,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                     break;
 
                 default:
-                    Log.d(TAG, "unexpected condition in onReceive: " + intent.toString());
+                    Logger.d(TAG, "unexpected condition in onReceive: " + intent.toString());
                     break;
             }
         }

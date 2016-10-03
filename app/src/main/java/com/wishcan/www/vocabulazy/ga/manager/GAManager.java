@@ -9,6 +9,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.StandardExceptionParser;
 import com.google.android.gms.analytics.Tracker;
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 import static com.google.android.gms.analytics.internal.zzy.e;
 
@@ -93,7 +94,7 @@ public class GAManager {
      */
     public void sendScreenEvent(String screenName) {
 
-        Log.d(TAG, "send screen " + screenName);
+        Logger.d(TAG, "send screen " + screenName);
 
         mGlobalTracker.setScreenName(screenName);
         mGlobalTracker.send(new HitBuilders.ScreenViewBuilder().build());

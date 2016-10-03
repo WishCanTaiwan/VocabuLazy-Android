@@ -53,7 +53,6 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "Create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
@@ -164,7 +163,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     @Override
     public void onRenameCompleted() {
-        Log.d(TAG, "Rename completed");
+        Logger.d(TAG, "Rename completed");
         mMainMenuFragment.updateFragmentsContent();
         mMainMenuFragment.refreshFragments();
     }
@@ -183,7 +182,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     @Override
     public void onNoteDeleted() {
-        Log.d(TAG, "Note deleted");
+        Logger.d(TAG, "Note deleted");
         mMainMenuFragment.updateFragmentsContent();
         mMainMenuFragment.refreshFragments();
     }

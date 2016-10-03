@@ -19,7 +19,6 @@ public class Textbook {
         setTextbookId(textbookId);
         setTextbookTitle(textbookTitle);
         setTextbookContent(textbookContent);
-        Log.d(TAG, "create " + textbookTitle);
     }
 
     public int getTextbookId() {

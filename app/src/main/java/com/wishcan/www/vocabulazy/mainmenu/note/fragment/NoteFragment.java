@@ -57,7 +57,6 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_note, container, false);
         mNoteView = (NoteView) rootView.findViewById(R.id.note_view);
         mNoteView.addOnNoteItemListener(this);
@@ -77,7 +76,6 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
 
     @Override
     public void onResume() {
-        Log.d(TAG, "Resume");
         super.onResume();
         mNoteView.setAdapter(new NoteContentAdapter(getContext(), mGroupItems, mChildItemsMap));
     }
