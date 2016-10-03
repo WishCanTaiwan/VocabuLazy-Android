@@ -524,11 +524,11 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                     break;
 
                 case AudioService.SHOW_DETAIL:
-                    mPlayerView.showDetail();
+//                    mPlayerView.showDetail();
                     break;
 
                 case AudioService.HIDE_DETAIL:
-                    mPlayerView.hideDetail();
+//                    mPlayerView.hideDetail();
                     break;
 
                 case AudioService.TO_SENTENCE:
