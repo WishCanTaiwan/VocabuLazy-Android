@@ -14,23 +14,32 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/exam_next_icon"
-            android:orientation="horizontal"
+        
+        <RelativeLayout
+            android:id="@+id/exam_next_fab_container"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/green_1">
+            android:paddingRight="20dp">
 
-        </LinearLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/exam_next_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:src="@drawable/ic_forward_white_48dp"/>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/exam_next_icon"
-            android:layout_marginBottom="10dp">
+            android:layout_above="@id/exam_next_fab_container">
 
             <LinearLayout
                 android:id="@+id/exam_question_parent"
@@ -75,16 +84,16 @@
                 android:layout_weight="22"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp">
-                
+
                 <include layout="@layout/view_exam_answer"
                     android:id="@+id/exam_answer_1"/>
-                    
+
                 <include layout="@layout/view_exam_answer"
                     android:id="@+id/exam_answer_2"/>
-                    
+
                 <include layout="@layout/view_exam_answer"
                     android:id="@+id/exam_answer_3"/>
-                    
+
                 <include layout="@layout/view_exam_answer"
                     android:id="@+id/exam_answer_4"/>
 
