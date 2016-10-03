@@ -3,6 +3,7 @@ package com.wishcan.www.vocabulazy.exam.view;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
+import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -18,7 +19,8 @@ import java.util.HashMap;
 /**
  * Created by SwallowChen on 8/25/16.
  */
-public class ExamView extends LinearLayout {
+public class ExamView extends LinearLayout implements FloatingActionButton.OnClickListener{
+
     /**
      * The listener contains all events of Exam's children
      * */
@@ -43,13 +45,13 @@ public class ExamView extends LinearLayout {
     private static final int VIEW_ANSWER_3_RES_ID = R.id.exam_answer_3;
     private static final int VIEW_ANSWER_4_RES_ID = R.id.exam_answer_4;
 
-    private static final int VIEW_NEXT_ICON_RES_ID = R.id.exam_next_icon;
+    private static final int VIEW_NEXT_ICON_RES_ID = R.id.exam_next_fab;
 
     private ProgressBar mExamProgressBar;
     private TextView mExamQuestion;
     private ExamAnswerView mExamAnswer1, mExamAnswer2, mExamAnswer3, mExamAnswer4;
-    private LinearLayout mNextIcon;
     private ExamAnswerView EXAM_ANSWER_VIEW_s[] = new ExamAnswerView[5];
+    private FloatingActionButton mNextIconFab;
 
     private ExamEventListener mExamEventListener;
 
@@ -70,10 +72,9 @@ public class ExamView extends LinearLayout {
         EXAM_ANSWER_VIEW_s[2] = mExamAnswer2 = (ExamAnswerView) findViewById(VIEW_ANSWER_2_RES_ID);
         EXAM_ANSWER_VIEW_s[3] = mExamAnswer3 = (ExamAnswerView) findViewById(VIEW_ANSWER_3_RES_ID);
         EXAM_ANSWER_VIEW_s[4] = mExamAnswer4 = (ExamAnswerView) findViewById(VIEW_ANSWER_4_RES_ID);
-        mNextIcon = (LinearLayout) findViewById(VIEW_NEXT_ICON_RES_ID);
 
-        // for the bug that if set invisible in xml, the layout will error. Reset visibility here.
-        hideNextIcon();
+        mNextIconFab = (FloatingActionButton) findViewById(VIEW_NEXT_ICON_RES_ID);
+
         registerEventListener();
     }
 
@@ -166,24 +167,6 @@ public class ExamView extends LinearLayout {
         return true;
     }
 
-    /**
-     * Make Icon in ExamView show
-     * */
-    public void showNextIcon() {
-        mNextIcon.setVisibility(VISIBLE);
-    }
-
-    /**
-     * Make Icon in ExamView hide
-     * */
-    public void hideNextIcon() {
-        mNextIcon.setVisibility(INVISIBLE);
-    }
-
-    public boolean isNextIconVisible() {
-        return (mNextIcon.getVisibility() == VISIBLE);
-    }
-
     private void registerEventListener() {
         for (int i = 1; i < EXAM_ANSWER_VIEW_s.length; i++) {
             final int index = i;
@@ -197,14 +180,24 @@ public class ExamView extends LinearLayout {
                 }
             });
         }
+        mNextIconFab.setOnClickListener(this);
+    }
 
-        mNextIcon.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mExamEventListener != null) {
-                    mExamEventListener.onNextIconClick();
-                }
-            }
-        });
+    public void hideNextIcon() {
+        mNextIconFab.hide();
+    }
+
+    public void showNextIcon() {
+        mNextIconFab.show();
+    }
+
+    /**
+     * FloatingActionButtons' callback
+     * */
+    @Override
+    public void onClick(View view) {
+        if (mExamEventListener != null) {
+            mExamEventListener.onNextIconClick();
+        }
     }
 }

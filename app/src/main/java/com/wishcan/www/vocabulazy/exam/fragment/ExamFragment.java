@@ -2,6 +2,7 @@ package com.wishcan.www.vocabulazy.exam.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,6 +87,8 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
         HashMap<Integer, ArrayList<String>> questionArrayList = mPuzzleSetter.getANewQuestion();
         mExamView.initContent(mPuzzleSetter.getCurrentQuestionIndex(), mPuzzleSetter.getTotalQuestionNum());
         mExamView.setContent(questionArrayList);
+        // hide nextIcon first
+        mExamView.hideNextIcon();
     }
 
     public void setOnExamDoneListener(OnExamDoneListener listener) {
@@ -116,13 +119,14 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
 
     @Override
     public void onNextIconClick() {
-        if (!mExamView.isNextIconVisible()) {
+        // prevent from continuously click during the floating action button hiding animation
+        if (mAnswerState == STATE_THINKING) {
             return;
         }
-        // hide anyway, preventing from start exam again and next icon shows
-        mExamView.hideNextIcon();
         // change state anyway, preventing from start exam again and state suspend
         mAnswerState = STATE_THINKING;
+        // hide next icon anyway
+        mExamView.hideNextIcon();
         /** NOTE: must call getANewQuestion to update question index */
         HashMap<Integer, ArrayList<String>> questionArrayList = mPuzzleSetter.getANewQuestion();
         // not enough question to start exam, but should not happen here

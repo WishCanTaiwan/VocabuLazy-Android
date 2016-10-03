@@ -27,6 +27,7 @@
 
     <style name="AppTheme.ExamActivity" parent="AppTheme">
         <item name="android:windowBackground">@color/grey_1</item>
+        <item name="colorAccent">@color/green_1</item>
         <item name="android:progressBarStyle">@style/AppProgressBarStyle</item>
     </style>
 
