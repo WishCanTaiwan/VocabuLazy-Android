@@ -165,7 +165,6 @@ public class NumeralPicker extends LinearLayout {
         v.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("NumeralPicker", "right on click");
                 int oldValue = Integer.parseInt(mNumberTextView.getText().toString());
                 int newValue = (((oldValue - mMinimumNumber) + 1 + mPickerRange) % mPickerRange) + mMinimumNumber;
                 String newValueStr = String.valueOf(newValue);
@@ -181,7 +180,6 @@ public class NumeralPicker extends LinearLayout {
         v.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("NumeralPicker", "left on click");
                 int oldValue = Integer.parseInt(mNumberTextView.getText().toString());
                 int newValue = (((oldValue - mMinimumNumber) - 1 + mPickerRange) % mPickerRange) + mMinimumNumber;
                 String newValueStr = String.valueOf(newValue);

@@ -87,7 +87,7 @@ public class AudioService extends IntentService {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         String action = (intent != null) ? intent.getAction() : "";
-        Log.d(TAG, action);
+        Logger.d(TAG, action);
         /**
          * switch-case block for deciding the corresponding tasks for each action
          */

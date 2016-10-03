@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 /**
  * Created by Swallow on 8/23/16.
@@ -38,7 +39,7 @@ public class LevelImageView extends ImageView {
                 }
             }
         } finally {
-            Log.d("LevelImageView", "mMaxImageLevel " + mMaxImageLevel);
+            Logger.d("LevelImageView", "mMaxImageLevel " + mMaxImageLevel);
             setMaxImageLevel(mMaxImageLevel);
         }
     }

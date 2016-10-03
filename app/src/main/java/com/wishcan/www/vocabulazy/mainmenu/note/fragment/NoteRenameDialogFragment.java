@@ -41,7 +41,6 @@ public class NoteRenameDialogFragment extends DialogFragmentNew implements Dialo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "Create View");
         mNoteRenameDialogView = (NoteRenameDialogView) inflater.inflate(R.layout.view_note_rename_dialog, container, false);
         mNoteRenameDialogView.setOriginalString(originalString);
         mNoteRenameDialogView.setOnYesOrNoClickListener(this);

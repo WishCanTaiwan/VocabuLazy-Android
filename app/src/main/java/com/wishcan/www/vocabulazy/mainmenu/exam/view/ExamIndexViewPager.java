@@ -22,17 +22,4 @@ public class ExamIndexViewPager extends ViewPager implements NestedScrollingChil
         super(context, attrs);
     }
 
-//    @Override
-//    public boolean onInterceptTouchEvent(MotionEvent ev) {
-//        Log.d(TAG, "intercept "+ev.getAction());
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onTouchEvent(MotionEvent ev) {
-//        Log.d(TAG, ""+ev.getAction());
-//        return true;
-//    }
-
-
 }

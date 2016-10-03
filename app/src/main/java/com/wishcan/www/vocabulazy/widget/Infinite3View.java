@@ -177,8 +177,6 @@ public class Infinite3View extends RelativeLayout {
         ViewGroup oriLeft = mThreeViewLL.get(LEFT_VIEW_INDEX);
         ViewGroup oriRight = mThreeViewLL.get(RIGHT_VIEW_INDEX);
 
-        Log.d(TAG, moveToLeftOrRight + "");
-
         if (moveToLeftOrRight == MOVE_TO_RIGHT) {  //right
             mThreeViewLL.removeLast();
             mThreeViewLL.addFirst(oriRight);

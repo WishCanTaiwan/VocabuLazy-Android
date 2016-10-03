@@ -17,6 +17,7 @@ import com.wishcan.www.vocabulazy.search.fragment.SearchFragment;
 import com.wishcan.www.vocabulazy.search.model.SearchModel;
 import com.wishcan.www.vocabulazy.storage.Database;
 import com.wishcan.www.vocabulazy.search.fragment.SearchNewNoteDialogFragment;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 /**
  * Created by SwallowChen on 8/31/16.
@@ -119,7 +120,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     /**-- SearchFragment callback --**/
     @Override
     public void onSearchListClick(int vocId) {
-        Log.d(TAG, "onSearchListClick");
+        Logger.d(TAG, "onSearchListClick");
         SearchAddVocToNoteDialogFragment dialogFragment = new SearchAddVocToNoteDialogFragment();
         dialogFragment.setSelectedVocId(vocId);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -135,7 +136,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     /**-- SearchAddVocToNoteDialogFragment callback --**/
     @Override
     public void onNeedNewNote() {
-        Log.d(TAG, "onNeedNewNote");
+        Logger.d(TAG, "onNeedNewNote");
         SearchNewNoteDialogFragment dialogFragment = new SearchNewNoteDialogFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(SearchActivity.VIEW_MAIN_RES_ID, dialogFragment, "SearchNewNoteDialogFragment");
@@ -146,7 +147,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     /**-- SearchNewNoteDialogFragment callback --**/
     @Override
     public void onNewNoteDone(String string) {
-        Log.d(TAG, "onNewNote" + string);
+        Logger.d(TAG, "onNewNote" + string);
         SearchAddVocToNoteDialogFragment dialogFragment = new SearchAddVocToNoteDialogFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(SearchActivity.VIEW_MAIN_RES_ID, dialogFragment, "SearchAddVocToNoteDialogFragment");

@@ -32,7 +32,6 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
     private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> mChildItems;
 
     public TextbookContentAdapter(Context context, ArrayList<TextbookExpandableGroupItem> groupItems, HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> childItems) {
-        if (context == null) Log.d(TAG, "context is null");
         mContext = context;
         mGroupItems = groupItems;
         mChildItems = childItems;

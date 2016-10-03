@@ -59,7 +59,6 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
 
     @Override
     protected void onFinishInflate() {
-        Log.d(TAG, "Finish Inflate");
         super.onFinishInflate();
 
         // after inflation completed, we can findViewById and set up listeners
