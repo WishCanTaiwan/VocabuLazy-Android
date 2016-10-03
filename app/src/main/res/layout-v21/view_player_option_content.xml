@@ -11,9 +11,9 @@
     <LinearLayout
         android:id="@+id/image_views_parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="33dp"
-        android:paddingRight="33dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/player_option_level_image_padding"
+        android:paddingRight="@dimen/player_option_level_image_padding"
         android:paddingTop="31dp"
         android:paddingBottom="31dp"
         android:orientation="vertical"
@@ -39,16 +39,16 @@
             android:paddingTop="@dimen/player_option_image_padding"
             android:paddingBottom="@dimen/player_option_image_padding"
             />
-        <com.wishcan.www.vocabulazy.widget.LevelImageView
-            android:id="@+id/action_set_sentence"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:src="@drawable/player_sentence"
-            custom:setMaxImageLevel="1"
-            android:paddingTop="@dimen/player_option_image_padding"
-            android:paddingBottom="@dimen/player_option_image_padding"
-            />
+        <!--<com.wishcan.www.vocabulazy.widget.LevelImageView-->
+            <!--android:id="@+id/action_set_sentence"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:src="@drawable/player_sentence"-->
+            <!--custom:setMaxImageLevel="1"-->
+            <!--android:paddingTop="@dimen/player_option_image_padding"-->
+            <!--android:paddingBottom="@dimen/player_option_image_padding"-->
+            <!--/>-->
 
     </LinearLayout>
 

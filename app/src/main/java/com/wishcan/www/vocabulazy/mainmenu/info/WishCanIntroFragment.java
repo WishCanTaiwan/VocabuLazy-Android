@@ -2,6 +2,8 @@ package com.wishcan.www.vocabulazy.mainmenu.info;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,30 @@ public class WishCanIntroFragment extends GABaseFragment {
 
     public static final String TAG = "WishCanIntroFragment";
 
+    private RecyclerView recyclerView;
+
+    private int[] profilePictures = {
+            R.drawable.profile_sojier,
+            R.drawable.profile_carlos,
+            R.drawable.profile_allen,
+            R.drawable.profile_swallow,
+            R.drawable.profile_goston,
+            R.drawable.profile_jianhow,
+            R.drawable.profile_tom,
+            R.drawable.profile_daisy
+    };
+
+    private String[] introductions = {
+            "Head - Sojier",
+            "Co-founder - Carlos",
+            "Android Developer - Allen",
+            "Android Developer - Swallow",
+            "iOS Developer - Goston",
+            "iOS Developer - Jian How",
+            "Designer - Tom",
+            "Designer - Daisy"
+    };
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -27,7 +53,9 @@ public class WishCanIntroFragment extends GABaseFragment {
     }
 
     private void findViews(View view) {
-
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(new MemberInfoAdapter(profilePictures, introductions));
     }
 
     @Override

@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.wishcan.www.vocabulazy.R;
+import com.wishcan.www.vocabulazy.application.GlobalVariable;
 import com.wishcan.www.vocabulazy.exam.activity.ExamActivity;
 import com.wishcan.www.vocabulazy.mainmenu.fragment.MainMenuFragment;
 import com.wishcan.www.vocabulazy.mainmenu.info.ReportPageFragment;
@@ -31,13 +32,24 @@ import com.wishcan.www.vocabulazy.player.activity.PlayerActivity;
 import com.wishcan.www.vocabulazy.search.activity.SearchActivity;
 import com.wishcan.www.vocabulazy.service.AudioService;
 import com.wishcan.www.vocabulazy.storage.Database;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener, NoteRenameDialogFragment.OnRenameCompleteListener, NoteDeleteDialogFragment.OnNoteDeleteListener, NoteCreateDialogFragment.OnNoteCreateListener {
 
+    // TAG for debugging
     public static final String TAG = "MainMenuActivity";
+
+    // Keys for intent bundle data
+    public static final String KEY_IS_PLAYING = "is-playing";
+
+    // request codes
+    public static final int REQUEST_CODE_PLAYER_STATE = 0x1;
 
     private MainMenuFragment mMainMenuFragment;
     private MainMenuModel mMainMenuModel;
+
+    // tag to record the player state
+    private boolean isPlaying;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +96,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_menu, menu);
+        menu.getItem(1).setVisible(isPlaying);
         return true;
     }
 
@@ -96,11 +109,11 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
         switch (id) {
             case R.id.action_search:
-                /** TODO: for test only */
-                Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
-                startActivity(intent);
+                navigateToSearch();
                 return true;
             case R.id.action_back_to_player:
+                GlobalVariable globalVariable = (GlobalVariable) getApplication();
+                navigateToPlayer(globalVariable.playerTextbookIndex, globalVariable.playerLessonIndex);
                 break;
             default:
                 break;
@@ -110,19 +123,30 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == REQUEST_CODE_PLAYER_STATE) {
+
+            Logger.d(TAG, "result code " + resultCode);
+            if (resultCode == RESULT_OK){
+
+                // enable the express way returning to player
+                enableBackToPlayerMenuItem(data.getBooleanExtra(KEY_IS_PLAYING, false));
+
+                Logger.d(TAG, "result ok");
+            }
+
+        }
+    }
+
+    @Override
     public void onTextbookSelected(int bookIndex, int lessonIndex) {
-        Intent intent = new Intent(MainMenuActivity.this, PlayerActivity.class);
-        intent.putExtra(PlayerActivity.ARG_BOOK_INDEX, bookIndex);
-        intent.putExtra(PlayerActivity.ARG_LESSON_INDEX, lessonIndex);
-        startActivity(intent);
+        navigateToPlayer(bookIndex, lessonIndex);
     }
 
     @Override
     public void onNoteSelected(int noteIndex) {
-        Intent intent = new Intent(MainMenuActivity.this, PlayerActivity.class);
-        intent.putExtra(PlayerActivity.ARG_BOOK_INDEX, -1);
-        intent.putExtra(PlayerActivity.ARG_LESSON_INDEX, noteIndex);
-        startActivity(intent);
+        navigateToPlayer(-1, noteIndex);
     }
 
     @Override
@@ -221,6 +245,19 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         }
     }
 
+    public void navigateToPlayer(int bookIndex, int lessonIndex) {
+        // TODO: should use startActivityForResult, expecting return the status of player, playing or not?
+        Intent intent = new Intent(MainMenuActivity.this, PlayerActivity.class);
+        intent.putExtra(PlayerActivity.ARG_BOOK_INDEX, bookIndex);
+        intent.putExtra(PlayerActivity.ARG_LESSON_INDEX, lessonIndex);
+        startActivityForResult(intent, REQUEST_CODE_PLAYER_STATE);
+    }
+
+    public void navigateToSearch() {
+        Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+
     public void displayReportPage() {
         ReportPageFragment fragment = new ReportPageFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -255,6 +292,19 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
 
     public void sendReport(String message) {
 
+    }
+
+    public void enableBackToPlayerMenuItem(boolean isPlaying) {
+
+        // update playing status
+        setIsPlaying(isPlaying);
+
+        // will update the menu according to playing status
+        invalidateOptionsMenu();
+    }
+
+    public void setIsPlaying(boolean isPlaying) {
+        this.isPlaying = isPlaying;
     }
 
     private void startAudioService() {

@@ -42,7 +42,7 @@ public class PlayerOptionContentView extends LinearLayout {
 
     private static final int PLAYER_OPTION_RANDOM_VIEW_RES_ID = R.id.action_set_random;
     private static final int PLAYER_OPTION_REPEAT_VIEW_RES_ID = R.id.action_set_repeat;
-    private static final int PLAYER_OPTION_SENTENCE_VIEW_RES_ID = R.id.action_set_sentence;
+//    private static final int PLAYER_OPTION_SENTENCE_VIEW_RES_ID = R.id.action_set_sentence;
     private static final int PLAYER_OPTION_SECOND_PICKER_RES_ID = R.id.action_picker_second;
     private static final int PLAYER_OPTION_FREQUENCY_PICKER_RES_ID = R.id.action_picker_frequency;
     private static final int PLAYER_OPTION_SPEED_PICKER_RES_ID = R.id.action_picker_speed;
@@ -87,7 +87,7 @@ public class PlayerOptionContentView extends LinearLayout {
         super.onFinishInflate();
         mRandomOptionView = (LevelImageView) findViewById(PLAYER_OPTION_RANDOM_VIEW_RES_ID);
         mRepeatOptionView = (LevelImageView) findViewById(PLAYER_OPTION_REPEAT_VIEW_RES_ID);
-        mSentenceOptionView = (LevelImageView) findViewById(PLAYER_OPTION_SENTENCE_VIEW_RES_ID);
+//        mSentenceOptionView = (LevelImageView) findViewById(PLAYER_OPTION_SENTENCE_VIEW_RES_ID);
         mSecondOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SECOND_PICKER_RES_ID);
         mFrequencyOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_FREQUENCY_PICKER_RES_ID);
         mSpeedOptionPicker = (NumeralPicker) findViewById(PLAYER_OPTION_SPEED_PICKER_RES_ID);
@@ -112,7 +112,7 @@ public class PlayerOptionContentView extends LinearLayout {
         /** OPTION_IDX_s starts from 1 */
         mRandomOptionView.setImageLevel(optionSettings.isRandom() ? 1 : 0);
         mRepeatOptionView.setImageLevel(optionSettings.getListLoop());
-        mSentenceOptionView.setImageLevel(optionSettings.isSentence() ? 1 : 0);
+//        mSentenceOptionView.setImageLevel(optionSettings.isSentence() ? 1 : 0);
         /** TODO: refine calculatePickerRange into NumeralPicker constructor */
         mSecondOptionPicker.calculatePickerRange();
         mSecondOptionPicker.setPickerTextStr(String.valueOf(optionSettings.getStopPeriod()));
@@ -158,16 +158,16 @@ public class PlayerOptionContentView extends LinearLayout {
             }
         });
         
-        mSentenceOptionView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mOnOptionClickListener != null) {
-                    LevelImageView v = (LevelImageView) view;
-                    v.setImageLevel(v.getImageLevel() + 1);
-                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SENTENCE, view, 0);
-                }
-            }
-        });
+//        mSentenceOptionView.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (mOnOptionClickListener != null) {
+//                    LevelImageView v = (LevelImageView) view;
+//                    v.setImageLevel(v.getImageLevel() + 1);
+//                    mOnOptionClickListener.onOptionClick(IDX_OPTION_SENTENCE, view, 0);
+//                }
+//            }
+//        });
         
         mSecondOptionPicker.setOnPickerClickedListener(new NumeralPicker.OnPickerClickListener() {
             @Override

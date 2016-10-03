@@ -114,8 +114,9 @@
     <string name="search_dialog_new_note_yes">選擇</string>
     <string name="search_dialog_new_note_no">取消</string>
     <!-- cover -->
-    <string name="cover_dialog">為提供最佳體驗，請至Google Play下載並安裝「Google 文字轉語音引擎」。\n點擊確定前往。</string>
+    <string name="cover_dialog_title">尚未安裝Google文字轉語音引擎</string>
+    <string name="cover_dialog_message">為了取得最佳使用體驗，請至商店下載並安裝「Google 文字轉語音引擎」。</string>
     <string name="cover_dialog_button_cancel">取消</string>
-    <string name="cover_dialog_button_confirm">確定</string>
+    <string name="cover_dialog_button_confirm">前往 Google Play</string>
 
 </resources>

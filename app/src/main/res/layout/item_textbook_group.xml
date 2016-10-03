@@ -11,7 +11,7 @@
         android:layout_height="115dp"
         android:background="@color/textbook_group_title_background_color"
         android:text="@string/textbook_group_title"
-        android:textSize="48sp"
+        android:textSize="@dimen/textbook_group_text_size"
         android:textColor="@color/textbook_group_title_text_color"
         android:paddingLeft="22dp"
         android:paddingRight="22dp"/>
