@@ -6,7 +6,7 @@
     android:layout_height="50dp"
     android:background="@color/search_list_item_background"
     >
-    <com.wishcan.www.vocabulazy.widget.CrossView
+    <wishcantw.vocabulazy.widget.CrossView
         android:id="@+id/search_result_adding_to_note_adding_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

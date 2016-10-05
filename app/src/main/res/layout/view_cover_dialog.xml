@@ -1,4 +1,4 @@
-<com.wishcan.www.vocabulazy.cover.view.CoverDialogView xmlns:android="http://schemas.android.com/apk/res/android"
+<wishcantw.vocabulazy.cover.view.CoverDialogView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -98,4 +98,4 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-</com.wishcan.www.vocabulazy.cover.view.CoverDialogView>
+</wishcantw.vocabulazy.cover.view.CoverDialogView>

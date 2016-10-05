@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexView
+<wishcantw.vocabulazy.mainmenu.exam.view.ExamIndexView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -52,7 +52,7 @@
 
     </LinearLayout>
 
-    <!--<com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexViewPager-->
+    <!--<ExamIndexViewPager-->
         <!--android:id="@+id/exam_index_container"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -64,6 +64,6 @@
         <!--<include layout="@layout/view_exam_index_note"-->
             <!--android:id="@+id/exam_index_note_view"/>-->
 
-    <!--</com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexViewPager>-->
+    <!--</ExamIndexViewPager>-->
 
-</com.wishcan.www.vocabulazy.mainmenu.exam.view.ExamIndexView>
+</wishcantw.vocabulazy.mainmenu.exam.view.ExamIndexView>

@@ -15,7 +15,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.wishcan.www.vocabulazy.widget.AutoResizeTextView
+        <wishcantw.vocabulazy.widget.AutoResizeTextView
             android:id="@+id/player_voc_spell"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
