@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class GlobalVariable extends Application {
 
+    // TAG for debugging
     public static final String TAG = "GlobalVariable";
 
     public static final String PLAYER_BROADCAST_INTENT = "player-broadcast-intent";
