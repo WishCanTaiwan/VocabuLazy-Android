@@ -42,38 +42,38 @@
         android:layout_height="5dp"
         android:background="@color/white_2"/>
 
-    <TextView
-        android:id="@+id/guide_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/info_guide"
-        android:fontFamily="sans-serif"
-        android:drawableRight="@drawable/main_menu_note_arrow"
-        android:drawableEnd="@drawable/main_menu_note_arrow"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:gravity="center_vertical"/>
+    <!--<TextView-->
+        <!--android:id="@+id/guide_text_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:text="@string/info_guide"-->
+        <!--android:fontFamily="sans-serif"-->
+        <!--android:drawableRight="@drawable/main_menu_note_arrow"-->
+        <!--android:drawableEnd="@drawable/main_menu_note_arrow"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:paddingRight="16dp"-->
+        <!--android:gravity="center_vertical"/>-->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/white_2"/>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="5dp"-->
+        <!--android:background="@color/white_2"/>-->
 
-    <TextView
-        android:id="@+id/terms_conditions_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/info_terms_conditions"
-        android:drawableRight="@drawable/main_menu_note_arrow"
-        android:drawableEnd="@drawable/main_menu_note_arrow"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:gravity="center_vertical"/>
+    <!--<TextView-->
+        <!--android:id="@+id/terms_conditions_text_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:text="@string/info_terms_conditions"-->
+        <!--android:drawableRight="@drawable/main_menu_note_arrow"-->
+        <!--android:drawableEnd="@drawable/main_menu_note_arrow"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:paddingRight="16dp"-->
+        <!--android:gravity="center_vertical"/>-->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/white_2"/>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="5dp"-->
+        <!--android:background="@color/white_2"/>-->
 
     <TextView
         android:id="@+id/wishcan_introduction_text_view"

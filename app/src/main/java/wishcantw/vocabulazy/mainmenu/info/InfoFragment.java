@@ -59,23 +59,23 @@ public class InfoFragment extends GABaseFragment {
             }
         });
 
-        TextView userGuideTextView = (TextView) view.findViewById(R.id.guide_text_view);
-        userGuideTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // go to user guide
-                ((MainMenuActivity) getActivity()).displayUserGuide();
-            }
-        });
+//        TextView userGuideTextView = (TextView) view.findViewById(R.id.guide_text_view);
+//        userGuideTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // go to user guide
+//                ((MainMenuActivity) getActivity()).displayUserGuide();
+//            }
+//        });
 
-        TextView tncTextView = (TextView) view.findViewById(R.id.terms_conditions_text_view);
-        tncTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // go to TNC (terms and conditions) page
-                ((MainMenuActivity) getActivity()).displayTNCPage();
-            }
-        });
+//        TextView tncTextView = (TextView) view.findViewById(R.id.terms_conditions_text_view);
+//        tncTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // go to TNC (terms and conditions) page
+//                ((MainMenuActivity) getActivity()).displayTNCPage();
+//            }
+//        });
 
         TextView introTextView = (TextView) view.findViewById(R.id.wishcan_introduction_text_view);
         introTextView.setOnClickListener(new View.OnClickListener() {
