@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             style="?attr/buttonBarStyle"
             android:text="@string/info_report_page_cancel"
+            android:textSize="16sp"
             android:fontFamily="sans-serif"/>
 
         <Button
@@ -62,6 +63,7 @@
             android:layout_height="wrap_content"
             style="?attr/buttonBarStyle"
             android:text="@string/info_report_page_send"
+            android:textSize="16sp"
             android:fontFamily="sans-serif"/>
 
     </LinearLayout>
