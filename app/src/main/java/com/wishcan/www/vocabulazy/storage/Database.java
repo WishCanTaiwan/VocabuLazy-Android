@@ -23,6 +23,7 @@ import com.wishcan.www.vocabulazy.storage.databaseObjects.Note;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.OptionSettings;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Textbook;
 import com.wishcan.www.vocabulazy.storage.databaseObjects.Vocabulary;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 public class Database {
     public static final String TAG = Database.class.getSimpleName();
@@ -58,7 +59,7 @@ public class Database {
     }
 
     public synchronized void writeToFile(Context context) {
-        Log.d(TAG, "write database");
+        Logger.d(TAG, "Write database");
         write(context, FILENAME_NOTE, mNotes.toArray());
         write(context, FILENAME_OPTION, mGlobalVariable.optionSettings.toArray());
     }
@@ -146,7 +147,6 @@ public class Database {
     }
 
     public void addVocToNote(int vocID, int noteIndex) {
-        Log.d(TAG, "add voc " + vocID + " to note " + noteIndex);
         ArrayList<Integer> content = mNotes.get(noteIndex).getNoteContent();
         for (int index = 0; index < content.size(); index++) {
             int id = content.get(index);

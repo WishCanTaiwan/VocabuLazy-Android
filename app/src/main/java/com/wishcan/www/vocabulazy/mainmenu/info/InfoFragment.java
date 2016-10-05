@@ -14,6 +14,7 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.ga.GABaseFragment;
 import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 /**
  * Created by allencheng07 on 2016/9/15.
@@ -95,7 +96,6 @@ public class InfoFragment extends GABaseFragment {
         builder.setPositiveButton(R.string.info_alert_dialog_positive, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Log.d(TAG, "ok");
                 ((MainMenuActivity) getActivity()).navigateToGooglePlay();
                 close();
             }
@@ -103,7 +103,6 @@ public class InfoFragment extends GABaseFragment {
         builder.setNegativeButton(R.string.info_alert_dialog_negative, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Log.d(TAG, "no");
                 close();
             }
         });

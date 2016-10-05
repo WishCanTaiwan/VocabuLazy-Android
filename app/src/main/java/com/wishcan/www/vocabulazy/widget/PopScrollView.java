@@ -764,14 +764,14 @@ abstract public class PopScrollView extends RelativeLayout {
             v.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = mParent.indexOfChild(v);
-                    if (position != mCurrentFocusedPopItemPosition) {
-                        if (mShowingDetails == STATE_ITEM_DETAIL_SHOW)
-                            hideItemDetails();
-                    } else {
-                        if (mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
-                            showItemDetails();
-                    }
+//                    int position = mParent.indexOfChild(v);
+//                    if (position != mCurrentFocusedPopItemPosition) {
+//                        if (mShowingDetails == STATE_ITEM_DETAIL_SHOW)
+//                            hideItemDetails();
+//                    } else {
+//                        if (mShowingDetails == STATE_ITEM_DETAIL_NOT_SHOW)
+//                            showItemDetails();
+//                    }
                 }
             });
             v.setVisibility(VISIBLE);

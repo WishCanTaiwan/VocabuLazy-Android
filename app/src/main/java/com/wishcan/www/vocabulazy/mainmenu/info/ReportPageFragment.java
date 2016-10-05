@@ -13,6 +13,7 @@ import com.wishcan.www.vocabulazy.R;
 import com.wishcan.www.vocabulazy.ga.GABaseFragment;
 import com.wishcan.www.vocabulazy.ga.tags.GAScreenName;
 import com.wishcan.www.vocabulazy.mainmenu.activity.MainMenuActivity;
+import com.wishcan.www.vocabulazy.utility.Logger;
 
 /**
  * Created by allencheng07 on 2016/9/21.
@@ -45,7 +46,6 @@ public class ReportPageFragment extends GABaseFragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "send");
                 // send report
                 ((MainMenuActivity) getActivity()).sendReport(editText.getText().toString());
 
@@ -59,7 +59,6 @@ public class ReportPageFragment extends GABaseFragment {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "cancel");
                 getActivity().onBackPressed();
             }
         });
