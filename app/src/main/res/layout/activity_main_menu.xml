@@ -15,7 +15,7 @@
         android:id="@+id/main_menu_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.wishcan.www.vocabulazy.mainmenu.fragment.MainMenuFragment"
+        android:name="wishcantw.vocabulazy.mainmenu.fragment.MainMenuFragment"
         android:layout_below="@id/toolbar"/>
 
 </RelativeLayout>

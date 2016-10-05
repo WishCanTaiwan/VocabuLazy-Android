@@ -1,4 +1,4 @@
-<com.wishcan.www.vocabulazy.exam.view.ExamAnswerView 
+<wishcantw.vocabulazy.exam.view.ExamAnswerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -22,4 +22,4 @@
         android:text="授權"
         style="@style/AppTextStyle.Exam.Answer"/>
     
-</com.wishcan.www.vocabulazy.exam.view.ExamAnswerView>
+</wishcantw.vocabulazy.exam.view.ExamAnswerView>

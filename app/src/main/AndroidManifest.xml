@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wishcan.www.vocabulazy">
+    package="wishcantw.vocabulazy">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,13 +14,13 @@
 
 
     <application
-        android:name=".application.GlobalVariable"
+        android:name="wishcantw.vocabulazy.application.GlobalVariable"
         android:allowBackup="true"
         android:icon="@mipmap/launcher_icon"
         android:label="@string/app_name" >
 
         <activity
-            android:name=".cover.activity.CoverActivity"
+            android:name="wishcantw.vocabulazy.cover.activity.CoverActivity"
             android:label="@string/label_cover_activity"
             android:theme="@style/AppTheme.CoverActivity">
             <intent-filter>
@@ -30,30 +30,30 @@
         </activity>
 
         <activity
-            android:name=".mainmenu.activity.MainMenuActivity"
+            android:name="wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity"
             android:label="@string/label_main_menu_activity"
             android:theme="@style/AppTheme.MainMenuActivity"/>
 
         <activity
-            android:name=".player.activity.PlayerActivity"
+            android:name="wishcantw.vocabulazy.player.activity.PlayerActivity"
             android:label="@string/label_player_activity"
             android:theme="@style/AppTheme.PlayerActivity">
         </activity>
 
         <activity
-            android:name=".exam.activity.ExamActivity"
+            android:name="wishcantw.vocabulazy.exam.activity.ExamActivity"
             android:label="@string/label_exam_activity"
             android:theme="@style/AppTheme.ExamActivity">
         </activity>
 
         <activity
-            android:name=".search.activity.SearchActivity"
+            android:name="wishcantw.vocabulazy.search.activity.SearchActivity"
             android:label="@string/label_search_activity"
             android:theme="@style/AppTheme.SearchActivity">
         </activity>
 
         <service
-            android:name=".service.AudioService"
+            android:name="wishcantw.vocabulazy.service.AudioService"
             android:exported="false">
         </service>
 

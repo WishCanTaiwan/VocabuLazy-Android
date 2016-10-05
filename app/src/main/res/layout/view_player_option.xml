@@ -1,4 +1,4 @@
-<com.wishcan.www.vocabulazy.player.view.PlayerOptionView
+<wishcantw.vocabulazy.player.view.PlayerOptionView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         
-        <view class="com.wishcan.www.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
+        <view class="wishcantw.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -21,7 +21,7 @@
             custom:setPlayerTabString="@string/player_option_tab_0"
             custom:setPlayerTabStringSize="@dimen/player_option_tab_text"/>
             
-        <view class="com.wishcan.www.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
+        <view class="wishcantw.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -30,7 +30,7 @@
             custom:setPlayerTabString="@string/player_option_tab_1"
             custom:setPlayerTabStringSize="@dimen/player_option_tab_text"/>
             
-        <view class="com.wishcan.www.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
+        <view class="wishcantw.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,7 +41,7 @@
         
     </LinearLayout>
     
-    <view class="com.wishcan.www.vocabulazy.player.view.PlayerOptionView$WrapContentViewPager"
+    <view class="wishcantw.vocabulazy.player.view.PlayerOptionView$WrapContentViewPager"
         android:id="@+id/player_option_tab_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -54,4 +54,4 @@
 
     </view>
     
-</com.wishcan.www.vocabulazy.player.view.PlayerOptionView>
+</wishcantw.vocabulazy.player.view.PlayerOptionView>
