@@ -7,4 +7,5 @@
     <!-- player -->
     <dimen name="player_option_level_image_padding">33dp</dimen>
 
+    <dimen name="cover_text_padding">250dp</dimen>
 </resources>
