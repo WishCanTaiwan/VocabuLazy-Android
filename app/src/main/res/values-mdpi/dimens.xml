@@ -4,4 +4,6 @@
     <dimen name="textbook_group_text_size">40sp</dimen>
 
     <dimen name="player_option_level_image_padding">16dp</dimen>
+
+    <dimen name="cover_text_padding">350dp</dimen>
 </resources>

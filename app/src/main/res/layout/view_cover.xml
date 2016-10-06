@@ -3,15 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_padding"
-    android:gravity="center">
+    android:padding="@dimen/activity_padding">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/version_name"
-        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:textColor="@color/cover_text"
-        />
+        android:id="@+id/textView" />
+
+    <TextView
+        android:id="@+id/logo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/cover_text_padding"
+        android:text="@string/app_name"
+        android:textColor="@color/cover_text"
+        android:fontFamily="sans-serif"
+        android:textSize="25sp"
+        android:drawableLeft="@mipmap/launcher_icon"
+        android:drawableStart="@mipmap/launcher_icon"
+        android:drawablePadding="10dp"
+        android:textStyle="bold"/>
 
 </wishcantw.vocabulazy.cover.view.CoverView>
