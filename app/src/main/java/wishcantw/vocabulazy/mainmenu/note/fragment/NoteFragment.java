@@ -1,11 +1,13 @@
 package wishcantw.vocabulazy.mainmenu.note.fragment;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.ga.GABaseFragment;
@@ -38,7 +40,9 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
     private static final int DELETE = 0x3;
 
     private MainMenuModel mMainMenuModel;
+    private View rootView;
     private NoteView mNoteView;
+    private ImageView imageView;
     private ArrayList<NoteExpandableGroupItem> mGroupItems;
     private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> mChildItemsMap;
     private OnNoteClickListener mOnNoteClickListener;
@@ -56,9 +60,11 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_note, container, false);
+        rootView = inflater.inflate(R.layout.fragment_note, container, false);
         mNoteView = (NoteView) rootView.findViewById(R.id.note_view);
         mNoteView.addOnNoteItemListener(this);
+
+        imageView = (ImageView) rootView.findViewById(R.id.imageView);
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.new_note_fab);
         fab.setOnClickListener(this);
@@ -121,5 +127,10 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
 
     public void refresh() {
         mNoteView.setAdapter(new NoteContentAdapter(getContext(), mGroupItems, mChildItemsMap));
+        if (mGroupItems.size() > 0) {
+            imageView.setVisibility(View.INVISIBLE);
+        } else {
+            imageView.setVisibility(View.VISIBLE);
+        }
     }
 }

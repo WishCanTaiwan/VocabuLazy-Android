@@ -5,5 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:groupIndicator="@null"
-    android:background="@color/note_view_default_background_color"
+    android:background="@drawable/no_note_background"
     android:scrollbars="none"/>
