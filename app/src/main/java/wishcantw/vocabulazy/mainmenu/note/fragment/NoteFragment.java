@@ -95,6 +95,7 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
         String name = mMainMenuModel.getNoteTitle(groupPosition);
         switch (childPosition) {
             case PLAY:
+                // TODO: prevent from entering if there's no vocabulary
                 mOnNoteClickListener.onNotePlay(groupPosition);
                 break;
             case RENAME:

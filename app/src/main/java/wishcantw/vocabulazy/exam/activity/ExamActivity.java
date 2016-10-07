@@ -5,17 +5,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.exam.fragment.ExamFragment;
 import wishcantw.vocabulazy.exam.fragment.ExamResultFragment;
+import wishcantw.vocabulazy.exam.fragment.ExamVocTooLessDialogFragment;
 import wishcantw.vocabulazy.storage.Database;
 import wishcantw.vocabulazy.utility.Logger;
 
 /**
  * Created by SwallowChen on 8/25/16.
  */
-public class ExamActivity extends AppCompatActivity implements ExamFragment.OnExamDoneListener, ExamResultFragment.OnExamResultDoneListener {
+public class ExamActivity extends AppCompatActivity implements ExamFragment.OnExamDoneListener,
+                                                               ExamResultFragment.OnExamResultDoneListener,
+                                                               ExamVocTooLessDialogFragment.OnExamAlertDoneListener {
     public static final String TAG = "ExamActivity";
     public static final String ARG_BOOK_INDEX = "arg-book-index";
     public static final String ARG_LESSON_INDEX = "arg-lesson-index";
@@ -26,9 +30,12 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
 
     private ExamFragment mExamFragment;
     private ExamResultFragment mExamResultFragment;
+    private ExamVocTooLessDialogFragment mExamVocTooLessDialogFragment;
 
     private int mBookIndex;
     private int mLessonIndex;
+
+    private Database mDatabase;
 
     private Toolbar mToolbar;
 
@@ -41,6 +48,9 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
 
         setContentView(VIEW_RES_ID);
         mToolbar = (Toolbar) findViewById(TOOLBAR_RES_ID);
+
+        // get Database instance
+        mDatabase = Database.getInstance();
 
         setSupportActionBar(mToolbar);
         setActionBarTitle(Database.getInstance().getLessonTitle(mBookIndex, mLessonIndex));
@@ -57,15 +67,23 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
         if (fragment instanceof ExamFragment) {
             mExamFragment = (ExamFragment) fragment;
             mExamFragment.setOnExamDoneListener(this);
-        } else if  (fragment instanceof ExamResultFragment) {
+        } else if (fragment instanceof ExamResultFragment) {
             mExamResultFragment = (ExamResultFragment) fragment;
             mExamResultFragment.setOnExamResultDoneListener(this);
+        } else if (fragment instanceof ExamVocTooLessDialogFragment) {
+            // Handle listener if necessary
+            mExamVocTooLessDialogFragment = (ExamVocTooLessDialogFragment) fragment;
+            mExamVocTooLessDialogFragment.setOnExamAlertDoneListener(this);
         }
     }
 
-    private void setActionBarTitle(String title) {
-        if (getSupportActionBar() != null)
-            getSupportActionBar().setTitle(title);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mDatabase.getContentIds(mBookIndex, mLessonIndex).size() <= 3) {
+            onVocToLessAlert();
+            Log.d("ExamActivity", "getContentIds + " + mDatabase.getContentIds(mBookIndex, mLessonIndex).size());
+        }
     }
 
     @Override
@@ -93,5 +111,25 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
     public void onExamTryOther() {
         Logger.d(TAG, "onExamTryOther");
         finish();
+    }
+
+    @Override
+    public void onExamAlertDone() {
+        Logger.d(TAG, "onExamAlertDone");
+        finish();
+    }
+
+    private void setActionBarTitle(String title) {
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle(title);
+    }
+
+    private void onVocToLessAlert() {
+        Logger.d(TAG, "onVocToLessAlert");
+        ExamVocTooLessDialogFragment dialogFragment = new ExamVocTooLessDialogFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(ExamActivity.VIEW_MAIN_RES_ID, dialogFragment, "ExamVocTooLessDialogFragment");
+        fragmentTransaction.addToBackStack("ExamVocTooLessDialogFragment");
+        fragmentTransaction.commit();
     }
 }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wishcantw.vocabulazy.exam.view.ExamVocTooLessDialogView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/exam_dialog_voc_to_less_background"
+    android:gravity="center">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="@dimen/exam_dialog_voc_too_less_width"
+        android:layout_height="@dimen/exam_dialog_voc_too_less_height"
+        android:translationZ="@dimen/exam_dialog_voc_too_less_translation_z">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/exam_dialog_voc_too_less_yes_no_container"
+                android:paddingTop="@dimen/exam_dialog_voc_too_less_content_padding"
+                android:paddingLeft="@dimen/exam_dialog_voc_too_less_content_padding"
+                android:paddingRight="@dimen/exam_dialog_voc_too_less_content_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/exam_dialog_voc_too_less_title"
+                    android:textSize="@dimen/exam_dialog_voc_too_less_content_text_size"
+                    android:textColor="#ff444b53"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/exam_dialog_voc_too_less_yes_no_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/exam_dialog_voc_too_less_yes_no_container_height"
+                android:layout_alignParentBottom="true"
+                android:translationZ="@dimen/exam_dialog_voc_too_less_yes_no_container_translation_z">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:id="@+id/exam_voc_too_less_dialog_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/exam_dialog_add_voc_too_less_content_yes_no_container_margin"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/exam_dialog_voc_too_less_yes"
+                            android:textSize="@dimen/exam_dialog_voc_too_less_content_text_size"
+                            android:textColor="@color/green_1"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</wishcantw.vocabulazy.exam.view.ExamVocTooLessDialogView>
