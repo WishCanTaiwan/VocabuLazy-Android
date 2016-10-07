@@ -82,7 +82,7 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
     @Override
     public void onResume() {
         super.onResume();
-        mNoteView.setAdapter(new NoteContentAdapter(getContext(), mGroupItems, mChildItemsMap));
+        refresh();
     }
 
     @Override
