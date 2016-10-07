@@ -12,14 +12,16 @@ import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.player.fragment.PlayerAddVocToNoteDialogFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerNewNoteDialogFragment;
+import wishcantw.vocabulazy.player.fragment.PlayerVocTooLessDialogFragment;
 import wishcantw.vocabulazy.player.model.PlayerModel;
 import wishcantw.vocabulazy.storage.Database;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class PlayerActivity extends AppCompatActivity implements PlayerFragment.OnPlayerLessonChangeListener,
                                                                  PlayerFragment.OnPlayerOptionFavoriteClickListener,
-        PlayerAddVocToNoteDialogFragment.OnAddVocToNoteDialogFinishListener,
-        PlayerNewNoteDialogFragment.OnNewNoteDialogFinishListener {
+                                                                 PlayerAddVocToNoteDialogFragment.OnAddVocToNoteDialogFinishListener,
+                                                                 PlayerNewNoteDialogFragment.OnNewNoteDialogFinishListener,
+                                                                 PlayerVocTooLessDialogFragment.OnPlayerAlertDoneListener {
     private static final int VIEW_RES_ID = R.layout.activity_player;
     private static final int VIEW_MAIN_RES_ID = R.id.activity_player_container;
 
@@ -39,6 +41,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
     private PlayerFragment mPlayerFragment;
     private PlayerAddVocToNoteDialogFragment mPlayerAddVocToNoteDialogFragment;
     private PlayerNewNoteDialogFragment mPlayerNewNoteDialogFragment;
+    private PlayerVocTooLessDialogFragment mPlayerVocTooLessDialogFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,17 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         } else if (fragment instanceof PlayerNewNoteDialogFragment) {
             mPlayerNewNoteDialogFragment = (PlayerNewNoteDialogFragment) fragment;
             mPlayerNewNoteDialogFragment.setOnNewNoteDialogFinishListener(this);
+        } else if (fragment instanceof PlayerVocTooLessDialogFragment) {
+            mPlayerVocTooLessDialogFragment = (PlayerVocTooLessDialogFragment) fragment;
+            mPlayerVocTooLessDialogFragment.setOnExamAlertDoneListener(this);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mDatabase.getContentIds(bookIndex, lessonIndex).size() <= 0) {
+            onVocToLessAlert();
         }
     }
 
@@ -140,9 +154,25 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         fragmentTransaction.commit();
     }
 
+    /**-- PlayerVocTooLessDialogFragment callback --**/
+    @Override
+    public void onPlayerAlertDone() {
+        Logger.d(TAG, "onPlayerAlertDone");
+        finish();
+    }
+
     private void setPlayerStateResult() {
         Intent intent = new Intent(PlayerActivity.this, MainMenuActivity.class);
         intent.putExtra(MainMenuActivity.KEY_IS_PLAYING, mPlayerModel.isPlaying());
         setResult(RESULT_OK, intent);
+    }
+
+    private void onVocToLessAlert() {
+        Logger.d(TAG, "onVocToLessAlert");
+        PlayerVocTooLessDialogFragment dialogFragment = new PlayerVocTooLessDialogFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(PlayerActivity.VIEW_MAIN_RES_ID, dialogFragment, "PlayerVocTooLessDialogFragment");
+        fragmentTransaction.addToBackStack("PlayerVocTooLessDialogFragment");
+        fragmentTransaction.commit();
     }
 }

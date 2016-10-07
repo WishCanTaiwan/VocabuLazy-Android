@@ -103,6 +103,9 @@ public class ExamView extends LinearLayout implements FloatingActionButton.OnCli
      * @param map contains the both Question and Answer information
      * */
     public void setContent(HashMap<Integer, ArrayList<String>> map) {
+        if (map == null || map.size() < EXAM_ANSWER_VIEW_s.length) {
+            return;
+        }
         /** Question put in 0 */
         ArrayList<String> questionStrList = map.get(0);
         mExamQuestion.setText(questionStrList.get(0));

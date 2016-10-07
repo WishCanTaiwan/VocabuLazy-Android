@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"/>
 
     <!-- for dynamic adding fragment, SearchFragment and SearchResultFragment -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/exam_fragment_container"
         android:orientation="horizontal"
         android:layout_width="match_parent"
