@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Version Strings -->
-    <string name="version_name">version 1.0</string>
+    <string name="version_name">v%s</string>
+    <string name="version_config">version-code-config</string>
     <!-- Manifest -->
     <string name="app_name">VocabuLazy</string>
     <string name="label_cover_activity">VocabuLazy</string>
@@ -78,7 +79,7 @@
     <string name="info_wishcan_introduction">WishCan介紹</string>
     <string name="info_goto_market_message">前往Google Play商店給我們評價！</string>
     <string name="info_alert_dialog_positive">前往</string>
-    <string name="info_alert_dialog_negative">算ㄌ</string>
+    <string name="info_alert_dialog_negative">不用了</string>
     <string name="info_report_page_title">意見回饋</string>
     <string name="info_report_page_hint">我覺得...</string>
     <string name="info_report_page_send">送出</string>
@@ -118,5 +119,11 @@
     <string name="cover_dialog_message">為了取得最佳使用體驗，請至商店下載並安裝「Google 文字轉語音引擎」。</string>
     <string name="cover_dialog_button_cancel">取消</string>
     <string name="cover_dialog_button_confirm">前往 Google Play</string>
+    <string name="cover_dialog_update_title">版本 %s 更新內容</string>
+    <string name="cover_dialog_update_message">
+        1. 修正自訂清單中沒有單字時依然可以進去播放頁面甚至造成程式崩潰的情況。\n
+        2. 修正自訂清單頁面中背景圖片的錯置情形。
+    </string>
+    <string name="cover_dialog_update_positive_button">我知道了</string>
 
 </resources>

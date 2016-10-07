@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,6 @@ import wishcantw.vocabulazy.ga.GABaseFragment;
 import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 
-/**
- * Created by allencheng07 on 2016/9/15.
- */
 public class InfoFragment extends GABaseFragment {
 
     public static final String TAG = "InfoFragment";
@@ -89,23 +87,23 @@ public class InfoFragment extends GABaseFragment {
     }
 
     private void showAlert(String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(message);
-        builder.setPositiveButton(R.string.info_alert_dialog_positive, new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.InfoAlertDialog))
+        .setTitle(message)
+        .setPositiveButton(R.string.info_alert_dialog_positive, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 ((MainMenuActivity) getActivity()).navigateToGooglePlay();
-                close();
+                dialogInterface.dismiss();
             }
-        });
-        builder.setNegativeButton(R.string.info_alert_dialog_negative, new DialogInterface.OnClickListener() {
+        })
+        .setNegativeButton(R.string.info_alert_dialog_negative, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                close();
+                dialogInterface.dismiss();
             }
-        });
-        alertDialog = builder.create();
-        alertDialog.show();
+        })
+        .create()
+        .show();
     }
 
     public void close() {
