@@ -44,8 +44,12 @@ public class DialogViewNew extends LinearLayout {
             return;
         }
         mContentView = getChildAt(0);
-        mContentYesView = mContentView.findViewById(mContentYesViewId);
-        mContentNoView = mContentView.findViewById(mContentNoViewId);
+        if (mContentYesViewId != -1) {
+            mContentYesView = mContentView.findViewById(mContentYesViewId);
+        }
+        if (mContentNoViewId != -1) {
+            mContentNoView = mContentView.findViewById(mContentNoViewId);
+        }
 
         registerEventListener();
     }
@@ -59,8 +63,12 @@ public class DialogViewNew extends LinearLayout {
     }
 
     public void setYesOrNoId(int yesId, int noId) {
-        mContentYesViewId = yesId;
-        mContentNoViewId = noId;
+        if (yesId != -1) {
+            mContentYesViewId = yesId;
+        }
+        if (noId != -1) {
+            mContentNoViewId = noId;
+        }
     }
 
     public void enableYesFunction() {

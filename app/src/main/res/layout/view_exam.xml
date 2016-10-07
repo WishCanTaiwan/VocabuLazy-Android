@@ -56,8 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    style="@style/AppTextStyle.Exam.Question"
-                    android:text="Creativity Communication"/>
+                    style="@style/AppTextStyle.Exam.Question"/>
 
             </LinearLayout>
 

@@ -84,6 +84,8 @@
     <string name="info_report_page_send">送出</string>
     <string name="info_report_page_cancel">取消</string>
     <!-- exam -->
+    <string name="exam_dialog_voc_too_less_yes">確認</string>
+    <string name="exam_dialog_voc_too_less_title">請新增至少一個單字</string>
 
     <!-- player -->
     <string name="player_option_tab_0">自訂模式</string>
@@ -104,6 +106,8 @@
     <string name="player_dialog_new_note_hint">為筆記命名...</string>
     <string name="player_dialog_new_note_yes">選擇</string>
     <string name="player_dialog_new_note_no">取消</string>
+    <string name="player_dialog_voc_too_less_yes">確認</string>
+    <string name="player_dialog_voc_too_less_title">請新增至少一個單字</string>
     <!-- search -->
     <string name="search_menu_item">Search Menu Item</string>
     <string name="search_dialog_add_voc_to_note_title">加入筆記清單</string>

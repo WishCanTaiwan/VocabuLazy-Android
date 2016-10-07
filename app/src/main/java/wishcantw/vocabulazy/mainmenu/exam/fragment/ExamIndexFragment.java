@@ -61,6 +61,7 @@ public class ExamIndexFragment extends GABaseFragment implements ExamIndexView.O
 
     @Override
     public void onExamTextbookClicked(int bookIndex, int lessonIndex) {
+        // TODO: prevent from entering exam if there's too less vocabulary (5)
         mOnExamIndexClickListener.onExamTextbookClicked(bookIndex, lessonIndex);
     }
 
