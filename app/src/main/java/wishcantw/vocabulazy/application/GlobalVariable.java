@@ -2,11 +2,9 @@ package wishcantw.vocabulazy.application;
 
 import android.app.Application;
 
-import wishcantw.vocabulazy.BuildConfig;
-import wishcantw.vocabulazy.ga.manager.GAManager;
+import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
 import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
-//import wishcantw.vocabulazy.storage.Preferences;
 
 import java.util.ArrayList;
 
@@ -40,12 +38,7 @@ public class GlobalVariable extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // init google analytics services
-        GAManager.getInstance().init(getApplicationContext());
-
-        // if it is DEBUG mode, disable the GA temporary
-        if (BuildConfig.DEBUG) {
-            GAManager.getInstance().disableGATemporary(true);
-        }
+        // init firebase analytics service
+        FirebaseManager.getInstance().init(GlobalVariable.this);
     }
 }

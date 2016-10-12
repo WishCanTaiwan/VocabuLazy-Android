@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.exam.model.ExamModel;
 import wishcantw.vocabulazy.exam.view.ExamAnswerView;
 import wishcantw.vocabulazy.exam.view.ExamView;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.QUESTIONS;
+        return Analytics.ScreenName.QUESTIONS;
     }
 
     public interface OnExamDoneListener {

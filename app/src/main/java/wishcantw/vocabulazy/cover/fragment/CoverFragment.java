@@ -13,9 +13,9 @@ import java.util.Locale;
 
 import wishcantw.vocabulazy.R;
 
+import wishcantw.vocabulazy.analytics.Analytics;
+import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.manager.GAManager;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,14 +60,14 @@ public class CoverFragment extends GABaseFragment {
         super.onResume();
 
         // send GA screen event
-        GAManager.getInstance().sendScreenEvent(GAScreenName.SPLASH);
+        FirebaseManager.getInstance().sendScreenEvent(Analytics.ScreenName.SPLASH);
     }
 
     /** Abstracts and Interfaces **/
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.SPLASH;
+        return Analytics.ScreenName.SPLASH;
     }
 
     private void findViews(View view) {

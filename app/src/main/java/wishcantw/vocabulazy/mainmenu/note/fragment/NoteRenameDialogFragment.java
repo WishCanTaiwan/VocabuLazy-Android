@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.mainmenu.model.MainMenuModel;
 import wishcantw.vocabulazy.mainmenu.note.view.NoteRenameDialogView;
@@ -22,7 +22,7 @@ public class NoteRenameDialogFragment extends DialogFragmentNew implements Dialo
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.RENAME_NOTE;
+        return Analytics.ScreenName.RENAME_NOTE;
     }
 
     public interface OnRenameCompleteListener {

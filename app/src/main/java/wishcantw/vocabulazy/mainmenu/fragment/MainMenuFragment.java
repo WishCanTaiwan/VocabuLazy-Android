@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
+import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.manager.GAManager;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.mainmenu.adapter.MainMenuFragmentPagerAdapter;
 import wishcantw.vocabulazy.mainmenu.exam.fragment.ExamIndexFragment;
@@ -64,10 +64,10 @@ public class MainMenuFragment extends GABaseFragment implements TextbookFragment
 
     // screen name of the fragment
     private String[] mScreenName = {
-            GAScreenName.TEXTBOOK,
-            GAScreenName.NOTE,
-            GAScreenName.EXAM_INDEX,
-            GAScreenName.INFO
+            Analytics.ScreenName.TEXTBOOK,
+            Analytics.ScreenName.NOTE,
+            Analytics.ScreenName.EXAM_INDEX,
+            Analytics.ScreenName.INFO
     };
 
     // record the position/index of selected tab
@@ -132,7 +132,7 @@ public class MainMenuFragment extends GABaseFragment implements TextbookFragment
         updateFragmentsContent();
 
         // send GA screen events
-        GAManager.getInstance().sendScreenEvent(mScreenName[selectedTab]);
+        FirebaseManager.getInstance().sendScreenEvent(mScreenName[selectedTab]);
     }
 
     /** Abstracts and Interfaces **/
@@ -154,7 +154,7 @@ public class MainMenuFragment extends GABaseFragment implements TextbookFragment
         selectedTab = position;
 
         // set screen name
-        GAManager.getInstance().sendScreenEvent(mScreenName[selectedTab]);
+        FirebaseManager.getInstance().sendScreenEvent(mScreenName[selectedTab]);
     }
 
     @Override
