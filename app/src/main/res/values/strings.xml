@@ -45,7 +45,7 @@
         <item>關於我們</item>
     </string-array>
     <!-- main menu textbook -->
-    <string name="textbook_group_title">必考7000字</string>
+    <string name="textbook_group_title">必考7000單字</string>
     <string name="textbook_group_subtitle">Level Default</string>
     <string name="textbook_child_title">Lesson Default</string>
     <!-- main menu note -->

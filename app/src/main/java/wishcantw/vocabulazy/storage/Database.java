@@ -76,6 +76,10 @@ public class Database {
         return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonTitle();
     }
 
+    public String getTextbookType(int bookIndex) {
+        return mTextbooks.get(bookIndex).getTextbookType();
+    }
+
     public int getNumOfLesson(int bookIndex) {
         if (bookIndex < 0) return mNotes.size();
         return mTextbooks.get(bookIndex).getTextbookContent().size();
