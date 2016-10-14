@@ -10,6 +10,7 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.storage.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,6 +79,10 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
             LayoutInflater infalInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.item_textbook_group, parent, false);
         }
+
+        TextView textView_textbookType = (TextView) convertView.findViewById(R.id.book_title);
+        String textbookType = Database.getInstance().getTextbookType(groupPosition);
+        textView_textbookType.setText(textbookType);
 
         TextView groupTextView = (TextView) convertView.findViewById(R.id.book_subtitle);
         groupTextView.setText(groupTitle);

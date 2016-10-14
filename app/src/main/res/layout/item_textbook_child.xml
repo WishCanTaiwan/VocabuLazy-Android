@@ -3,9 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/textbook_child_background_color">
+    android:background="@drawable/expandable_child_background">
 
-    <!-- TODO: (design) need arrow sets to replace drawableRight, drawableEnd -->
     <TextView
         android:id="@+id/lesson_title"
         android:gravity="center_vertical"

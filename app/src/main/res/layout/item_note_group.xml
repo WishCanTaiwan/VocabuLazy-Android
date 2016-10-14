@@ -8,7 +8,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/note_group_background_color">
+        android:background="@drawable/expandable_group_background">
 
         <TextView
             android:id="@+id/note_group_index"
