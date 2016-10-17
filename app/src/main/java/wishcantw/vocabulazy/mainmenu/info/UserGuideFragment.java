@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 
 /**
  * Created by allencheng07 on 2016/9/21.
@@ -32,6 +32,6 @@ public class UserGuideFragment extends GABaseFragment {
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.USER_GUIDE;
+        return Analytics.ScreenName.USER_GUIDE;
     }
 }

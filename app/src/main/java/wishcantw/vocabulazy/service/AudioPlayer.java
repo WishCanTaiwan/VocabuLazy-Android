@@ -2,7 +2,9 @@ package wishcantw.vocabulazy.service;
 
 import android.content.Context;
 import android.media.AudioManager;
+import android.os.AsyncTask;
 import android.os.Handler;
+import android.provider.ContactsContract;
 
 import wishcantw.vocabulazy.application.GlobalVariable;
 import wishcantw.vocabulazy.utility.Logger;
@@ -11,6 +13,8 @@ import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
 import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Random;
 
@@ -159,7 +163,25 @@ public class AudioPlayer implements AudioPlayerListener {
         vlTextToSpeech.speak(utterance, 1 /* default speed */);
     }
 
-    public void playItemAt(int itemIndex, int sentenceIndex, String playingField) {
+    /**
+     * Start playing vocabulary based on the given information.
+     *
+     * @param itemIndex the index of the vocabularies
+     * @param sentenceIndex the index of the sentence
+     * @param playingField the playing field of vocabulary
+     */
+    void playItemAt(final int itemIndex, final int sentenceIndex, final String playingField) {
+
+        // check vocabulary validity
+        if (mVocabularies == null) {
+            return;
+        }
+
+        // check size of vocabulary
+        if (mVocabularies.isEmpty()) {
+            return;
+        }
+
         String string = "";
         switch (playingField) {
             case SPELL:

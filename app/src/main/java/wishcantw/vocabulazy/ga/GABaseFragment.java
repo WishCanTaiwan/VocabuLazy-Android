@@ -12,17 +12,11 @@ public abstract class GABaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-//        // send resume event to GA
-//        GAManager.getInstance().sendEvent(GACategory.LIFE_CYCLE, GAAction.RESUME, getGALabel(), 1);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
-//        // send pause event to GA
-//        GAManager.getInstance().sendEvent(GACategory.LIFE_CYCLE, GAAction.PAUSE, getGALabel(), 1);
     }
 
     /**

@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
-import wishcantw.vocabulazy.ga.manager.GAManager;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
+import wishcantw.vocabulazy.analytics.Analytics;
+import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.search.activity.SearchActivity;
 import wishcantw.vocabulazy.search.model.SearchModel;
 import wishcantw.vocabulazy.search.view.SearchNewNoteDialogView;
@@ -59,14 +59,14 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
         super.onResume();
 
         // send GA screen event
-        GAManager.getInstance().sendScreenEvent(GAScreenName.CREATE_NOTE);
+        FirebaseManager.getInstance().sendScreenEvent(Analytics.ScreenName.CREATE_NOTE);
     }
 
     /** Abstracts and Interfaces **/
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.CREATE_NOTE;
+        return Analytics.ScreenName.CREATE_NOTE;
     }
 
     @Override

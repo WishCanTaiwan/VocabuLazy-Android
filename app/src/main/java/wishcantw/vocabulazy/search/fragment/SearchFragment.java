@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.search.activity.SearchActivity;
 import wishcantw.vocabulazy.search.model.SearchModel;
 import wishcantw.vocabulazy.search.view.SearchView;
@@ -80,7 +80,7 @@ public class SearchFragment extends GABaseFragment implements SearchView.SearchE
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.SEARCH;
+        return Analytics.ScreenName.SEARCH;
     }
 
     @Override

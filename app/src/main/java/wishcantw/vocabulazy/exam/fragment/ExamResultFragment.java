@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.exam.view.ExamResultView;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 
 /**
  * Created by SwallowChen on 9/7/16.
@@ -17,7 +17,7 @@ public class ExamResultFragment extends GABaseFragment implements ExamResultView
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.RESULT;
+        return Analytics.ScreenName.RESULT;
     }
 
     public interface OnExamResultDoneListener {

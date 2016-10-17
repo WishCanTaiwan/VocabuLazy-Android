@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/textbook_child_background_color">
+    android:background="@drawable/expandable_child_background">
 
-    <!-- TODO: (design) need arrow sets to replace drawableRight, drawableEnd -->
     <TextView
-        android:id="@+id/lesson_title"
+        android:id="@+id/textView_lessonTitle"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="@string/textbook_child_title"
+        android:background="@android:color/transparent"
+        tools:text="Lesson Default"
         android:textSize="20sp"
         android:textColor="@color/textbook_child_text_color"
+        android:textAllCaps="false"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:drawableRight="@drawable/ic_play_circle_outline_white_36dp"
-        android:drawableEnd="@drawable/ic_play_circle_outline_white_36dp"/>
+        android:drawableEnd="@drawable/ic_play_circle_outline_white_36dp" />
 
     <View
-        android:id="@+id/child_divider"
+        android:id="@+id/view_divider"
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:background="@color/textbook_fragment_divider_color" />
