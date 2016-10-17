@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.mainmenu.model.MainMenuModel;
 import wishcantw.vocabulazy.mainmenu.note.adapter.NoteContentAdapter;
@@ -87,7 +87,7 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.NOTE;
+        return Analytics.ScreenName.NOTE;
     }
 
     @Override

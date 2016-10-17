@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 
 /**
@@ -64,6 +64,6 @@ public class ReportPageFragment extends GABaseFragment {
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.REPORT;
+        return Analytics.ScreenName.REPORT;
     }
 }

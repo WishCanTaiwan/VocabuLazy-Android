@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.mainmenu.exam.view.ExamIndexView;
 import wishcantw.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import wishcantw.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
@@ -21,7 +21,7 @@ public class ExamIndexFragment extends GABaseFragment implements ExamIndexView.O
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.EXAM_TEXTBOOK;
+        return Analytics.ScreenName.EXAM_TEXTBOOK;
     }
 
     public interface OnExamIndexClickListener {
