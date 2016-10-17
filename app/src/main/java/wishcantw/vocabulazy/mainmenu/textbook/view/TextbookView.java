@@ -1,8 +1,10 @@
 package wishcantw.vocabulazy.mainmenu.textbook.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ExpandableListView;
 
 public class TextbookView extends ExpandableListView implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener {
@@ -33,12 +35,13 @@ public class TextbookView extends ExpandableListView implements ExpandableListVi
         if (groupPosition != lastExpandedGroupPosition) {
             expandableListView.collapseGroup(lastExpandedGroupPosition);
             expandableListView.expandGroup(groupPosition, true);
-            expandableListView.setSelection(groupPosition);
+            expandableListView.smoothScrollToPosition(groupPosition);
             lastExpandedGroupPosition = groupPosition;
         } else {
             expandableListView.collapseGroup(groupPosition);
             lastExpandedGroupPosition = -1;
         }
+
         return true;
     }
 
@@ -48,7 +51,7 @@ public class TextbookView extends ExpandableListView implements ExpandableListVi
         return true;
     }
 
-    public void addOnTextBookClickListener(OnTextbookClickListener listener) {
+    public void addOnTextBookClickListener(@NonNull OnTextbookClickListener listener) {
         mOnTextbookClickListener = listener;
     }
 }

@@ -83,7 +83,7 @@ public class CoverActivity extends FragmentActivity {
             protected Void doInBackground(Void... voids) {
                 Logger.d(TAG, "Start loading database");
                 Database database = Database.getInstance();
-                database.loadFiles(getApplicationContext());
+                database.init(getApplicationContext());
                 return null;
             }
 

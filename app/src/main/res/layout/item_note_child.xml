@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/note_child_text"
+        android:id="@+id/textView_option"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/expandable_child_background"
-        android:text="@string/note_child_default_text"
+        tools:text="Option"
         android:textSize="23sp"
         android:textColor="@color/note_child_text_color"
         android:gravity="center_vertical"
@@ -17,7 +18,7 @@
         android:paddingRight="17dp"/>
 
     <View
-        android:id="@+id/child_divider"
+        android:id="@+id/view_divider"
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:background="@color/note_divider_color"/>
