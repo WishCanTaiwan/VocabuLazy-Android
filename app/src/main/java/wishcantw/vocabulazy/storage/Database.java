@@ -145,15 +145,23 @@ public class Database {
         mNotes.add(index, new Note(index, name, new ArrayList<Integer>()));
     }
 
-    public void addVocToNote(int vocID, int noteIndex) {
-        ArrayList<Integer> content = mNotes.get(noteIndex).getNoteContent();
-        for (int index = 0; index < content.size(); index++) {
-            int id = content.get(index);
-            if (id == vocID) {
-                break;
-            }
+    /**
+     * Add vocabulary to a note.
+     *
+     * @param vocId the id of the vocabulary that will be added.
+     * @param noteIndex the index of the note
+     */
+    public void addVocToNote(int vocId, int noteIndex) {
+        // check noteIndex validity
+        if (noteIndex >= mNotes.size()) {
+            return;
         }
-        content.add(vocID);
+
+        // if the selected note doesn't have the vocabulary, then add the vocabulary to note
+        ArrayList<Integer> content = mNotes.get(noteIndex).getNoteContent();
+        if (!content.contains(vocId)) {
+            content.add(vocId);
+        }
     }
 
     public void renameNoteAt(int noteIndex, String name) {
