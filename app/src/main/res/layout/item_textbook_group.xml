@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/book_title"
+        android:id="@+id/textView_bookTitle"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="115dp"
@@ -17,21 +17,22 @@
         android:paddingRight="22dp"/>
 
     <TextView
-        android:id="@+id/book_subtitle"
+        android:id="@+id/textView_bookSubTitle"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:background="@drawable/expandable_child_background"
         android:text="@string/textbook_group_subtitle"
         android:textSize="22sp"
         android:textColor="@color/textbook_group_subtitle_text_color"
+        android:textAllCaps="false"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:drawableRight="@drawable/main_menu_text_book_arrow"
         android:drawableEnd="@drawable/main_menu_text_book_arrow"/>
 
     <View
-        android:id="@+id/group_divider"
+        android:id="@+id/view_divider"
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:background="@color/textbook_fragment_divider_color"/>
