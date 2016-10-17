@@ -2,11 +2,9 @@ package wishcantw.vocabulazy.application;
 
 import android.app.Application;
 
-import wishcantw.vocabulazy.BuildConfig;
-import wishcantw.vocabulazy.ga.manager.GAManager;
+import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
 import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
-//import wishcantw.vocabulazy.storage.Preferences;
 
 import java.util.ArrayList;
 
@@ -21,31 +19,26 @@ public class GlobalVariable extends Application {
     public static final String PLAYER_BROADCAST_INTENT = "player-broadcast-intent";
     public static final String PLAYER_BROADCAST_ACTION = "player-broadcast-action";
 
-    public int playerTextbookIndex = 1359;
-    public int playerLessonIndex = 1359;
+    public static int playerTextbookIndex = 1359;
+    public static int playerLessonIndex = 1359;
 
-    public ArrayList<Vocabulary> playerContent;
-    public ArrayList<OptionSettings> optionSettings;
-    public int optionMode = 0;
-    public int playerItemIndex = -1;
-    public int playerSentenceIndex = -1;
-    public String playerState;
-    public String playingField;
+    public static ArrayList<Vocabulary> playerContent;
+    public static ArrayList<OptionSettings> optionSettings;
+    public static int optionMode = 0;
+    public static int playerItemIndex = -1;
+    public static int playerSentenceIndex = -1;
+    public static String playerState;
+    public static String playingField;
 
-    public int playerItemLoop;
-    public int playerListLoop;
-    public int playerPlayTime;
+    public static int playerItemLoop;
+    public static int playerListLoop;
+    public static int playerPlayTime;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        // init google analytics services
-        GAManager.getInstance().init(getApplicationContext());
-
-        // if it is DEBUG mode, disable the GA temporary
-        if (BuildConfig.DEBUG) {
-            GAManager.getInstance().disableGATemporary(true);
-        }
+        // init firebase analytics service
+        FirebaseManager.getInstance().init(GlobalVariable.this);
     }
 }

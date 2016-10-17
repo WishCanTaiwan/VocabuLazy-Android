@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookContentAdapter;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableGroupItem;
@@ -20,7 +20,7 @@ public class TextbookFragment extends GABaseFragment implements TextbookView.OnT
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.TEXTBOOK;
+        return Analytics.ScreenName.TEXTBOOK;
     }
 
     public interface OnTextbookClickListener {

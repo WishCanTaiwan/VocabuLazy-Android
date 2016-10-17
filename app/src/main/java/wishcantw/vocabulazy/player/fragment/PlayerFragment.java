@@ -14,10 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
+import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.application.GlobalVariable;
 import wishcantw.vocabulazy.ga.GABaseFragment;
-import wishcantw.vocabulazy.ga.manager.GAManager;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.player.activity.PlayerActivity;
 import wishcantw.vocabulazy.player.model.PlayerModel;
 import wishcantw.vocabulazy.player.view.PlayerView;
@@ -154,7 +154,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         super.onResume();
 
         // send GA screen event
-        GAManager.getInstance().sendScreenEvent(GAScreenName.PLAYER);
+        FirebaseManager.getInstance().sendScreenEvent(Analytics.ScreenName.PLAYER);
 
         // request audio focus when the fragment is on
         requestAudioFocus();
@@ -188,7 +188,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.PLAYER;
+        return Analytics.ScreenName.PLAYER;
     }
 
     /**----------------- Implement PlayerModel.PlayerModelDataProcessListener -------------------**/
@@ -421,7 +421,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     private void setContent(ArrayList<Vocabulary> vocabularies) {
         if (mPlayerModel == null) {
-            GAManager.getInstance().sendException(getContext(), new NullPointerException(), true);
             return;
         }
         mPlayerModel.setCurrentContent(vocabularies);

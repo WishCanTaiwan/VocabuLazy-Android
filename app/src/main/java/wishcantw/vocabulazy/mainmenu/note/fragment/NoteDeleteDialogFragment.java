@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
+import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.mainmenu.model.MainMenuModel;
 import wishcantw.vocabulazy.mainmenu.note.view.NoteDeleteDialogView;
@@ -20,7 +20,7 @@ public class NoteDeleteDialogFragment extends DialogFragmentNew implements Dialo
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.DELETE_NOTE;
+        return Analytics.ScreenName.DELETE_NOTE;
     }
 
     public interface OnNoteDeleteListener {

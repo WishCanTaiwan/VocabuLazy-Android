@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "70011846552",
-    "project_id": "vocabulazy-4af2f"
+    "firebase_url": "https://vocabulazy-4af2f.firebaseio.com",
+    "project_id": "vocabulazy-4af2f",
+    "storage_bucket": "vocabulazy-4af2f.appspot.com"
   },
   "client": [
     {
@@ -11,7 +13,32 @@
           "package_name": "www.wishcan.com"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "70011846552-p6orp2k9uohsj4em0246ub5j3274ap63.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-5100l2239529dppsrf6r38jdtcpfrl5b.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-f9u11h6i3aml4enkn7mg54pc2d5cif7k.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-1hg776g95dl584g9bjljnjsmb3ouqm9h.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-pitnc269j4v7qsde4l7cofcof0ruo4gp.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-0gcfp1jasl23cuuo2vb7vj105p13pvdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBCXRrxerDBoWOqPciHF_xHz6PsXBtcXe4"
@@ -26,7 +53,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     },
@@ -37,7 +64,32 @@
           "package_name": "com.wishcan.www"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "70011846552-p6orp2k9uohsj4em0246ub5j3274ap63.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-5100l2239529dppsrf6r38jdtcpfrl5b.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-f9u11h6i3aml4enkn7mg54pc2d5cif7k.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-1hg776g95dl584g9bjljnjsmb3ouqm9h.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-pitnc269j4v7qsde4l7cofcof0ruo4gp.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-0gcfp1jasl23cuuo2vb7vj105p13pvdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBCXRrxerDBoWOqPciHF_xHz6PsXBtcXe4"
@@ -52,7 +104,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     },
@@ -63,7 +115,32 @@
           "package_name": "com.wishcan.www.vocabulazy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "70011846552-p6orp2k9uohsj4em0246ub5j3274ap63.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-5100l2239529dppsrf6r38jdtcpfrl5b.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-f9u11h6i3aml4enkn7mg54pc2d5cif7k.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-1hg776g95dl584g9bjljnjsmb3ouqm9h.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-pitnc269j4v7qsde4l7cofcof0ruo4gp.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-0gcfp1jasl23cuuo2vb7vj105p13pvdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBCXRrxerDBoWOqPciHF_xHz6PsXBtcXe4"
@@ -81,7 +158,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     },
@@ -92,7 +169,32 @@
           "package_name": "wishcantw.vocabulazy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "70011846552-p6orp2k9uohsj4em0246ub5j3274ap63.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-5100l2239529dppsrf6r38jdtcpfrl5b.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-f9u11h6i3aml4enkn7mg54pc2d5cif7k.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-1hg776g95dl584g9bjljnjsmb3ouqm9h.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-pitnc269j4v7qsde4l7cofcof0ruo4gp.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "70011846552-0gcfp1jasl23cuuo2vb7vj105p13pvdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBCXRrxerDBoWOqPciHF_xHz6PsXBtcXe4"
@@ -110,7 +212,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

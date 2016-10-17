@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.analytics.Analytics;
+import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.cover.view.CoverDialogView;
-import wishcantw.vocabulazy.ga.manager.GAManager;
-import wishcantw.vocabulazy.ga.tags.GAScreenName;
 import wishcantw.vocabulazy.widget.DialogFragmentNew;
 import wishcantw.vocabulazy.widget.DialogViewNew;
 
@@ -52,7 +52,7 @@ public class CoverDialogFragment extends DialogFragmentNew implements DialogView
         super.onResume();
 
         // send GA screen event
-        GAManager.getInstance().sendScreenEvent(GAScreenName.TTS_ENGINE_INSTALL);
+        FirebaseManager.getInstance().sendScreenEvent(Analytics.ScreenName.TTS_ENGINE_INSTALL);
     }
 
     /** Abstracts and Interfaces **/
@@ -69,7 +69,7 @@ public class CoverDialogFragment extends DialogFragmentNew implements DialogView
 
     @Override
     protected String getGALabel() {
-        return GAScreenName.TTS_ENGINE_INSTALL;
+        return Analytics.ScreenName.TTS_ENGINE_INSTALL;
     }
 
     /** Public methods **/
