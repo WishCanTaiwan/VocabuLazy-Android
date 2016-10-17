@@ -1,6 +1,8 @@
 package wishcantw.vocabulazy.storage;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -27,6 +29,7 @@ public class Database {
     public static final String FILENAME_OPTION = "optionSetting";
 
     private GlobalVariable mGlobalVariable;
+    private Context context;
 
     private static Database database = new Database();
 
@@ -38,6 +41,11 @@ public class Database {
 
     public static Database getInstance() {
         return database;
+    }
+
+    public void init(Context context) {
+        this.context = context;
+        loadFiles(context);
     }
 
     public void loadFiles(Context context) {
@@ -72,8 +80,21 @@ public class Database {
     }
 
     public String getLessonTitle(int bookIndex, int lessonIndex) {
-        if (bookIndex < 0) return mNotes.get(lessonIndex).getNoteTitle();
+        if (bookIndex < 0) return getNoteTitle(lessonIndex);
+
+        if (mTextbooks == null ||
+                bookIndex >= mTextbooks.size() ||
+                mTextbooks.get(bookIndex).getTextbookContent() == null ||
+                lessonIndex >= mTextbooks.get(bookIndex).getTextbookContent().size()) {
+            return "";
+        }
         return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonTitle();
+    }
+
+    public String getNoteTitle(int noteIndex) {
+        return (mNotes == null || noteIndex >= mNotes.size())
+                ? ""
+                : mNotes.get(noteIndex).getNoteTitle();
     }
 
     public String getTextbookType(int bookIndex) {
@@ -86,8 +107,21 @@ public class Database {
     }
 
     public ArrayList<Integer> getContentIds(int bookIndex, int lessonIndex) {
-        if (bookIndex < 0) return mNotes.get(lessonIndex).getNoteContent();
+        if (bookIndex < 0) return getNoteContent(lessonIndex);
+
+        if (mTextbooks == null ||
+                bookIndex >= mTextbooks.size() ||
+                mTextbooks.get(bookIndex).getTextbookContent() == null ||
+                lessonIndex >= mTextbooks.get(bookIndex).getTextbookContent().size()) {
+            return new ArrayList<>();
+        }
         return mTextbooks.get(bookIndex).getTextbookContent().get(lessonIndex).getLessonContent();
+    }
+
+    public ArrayList<Integer> getNoteContent(int noteIndex) {
+        return (mNotes == null || noteIndex >= mNotes.size())
+                ? new ArrayList<Integer>()
+                : mNotes.get(noteIndex).getNoteContent();
     }
 
     public ArrayList<String> getNoteNames() {
@@ -98,7 +132,7 @@ public class Database {
         return noteNames;
     }
 
-    public ArrayList<Vocabulary> getVocabulariesByIDs(ArrayList<Integer> vocIDs) {
+    public ArrayList<Vocabulary> getVocabulariesByIDs(@NonNull final ArrayList<Integer> vocIDs) {
         ArrayList<Vocabulary> vocabularies = new ArrayList<>();
         for (int index = 0; index < vocIDs.size(); index++) {
             for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
