@@ -9,12 +9,14 @@ public class Textbook {
 
     public static final String TAG = "Textbook";
 
+    private String textbookType;
     private int textbookId;
     private String textbookTitle;
     private ArrayList<Lesson> textbookContent;
 
-    public Textbook(int textbookId, String textbookTitle, ArrayList<Lesson> textbookContent) {
+    public Textbook(int textbookId, String textbookType, String textbookTitle, ArrayList<Lesson> textbookContent) {
         setTextbookId(textbookId);
+        setTextbookType(textbookType);
         setTextbookTitle(textbookTitle);
         setTextbookContent(textbookContent);
     }
@@ -33,6 +35,14 @@ public class Textbook {
 
     public void setTextbookTitle(String textbookTitle) {
         this.textbookTitle = textbookTitle;
+    }
+
+    public String getTextbookType() {
+        return textbookType;
+    }
+
+    public void setTextbookType(String textbookType) {
+        this.textbookType = textbookType;
     }
 
     public ArrayList<Lesson> getTextbookContent() {

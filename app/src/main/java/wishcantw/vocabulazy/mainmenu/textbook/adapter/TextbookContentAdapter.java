@@ -1,15 +1,18 @@
 package wishcantw.vocabulazy.mainmenu.textbook.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.storage.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,22 +21,19 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
 
     public static final String TAG = "TextbookContentAdapter";
 
-    private static final float RATIO_GROUP = 170f/647f;
-    private static final float RATIO_CHILD = 7f/34f;
-
-    private int groupHeight;
-    private int childHeight;
+//    private static final float RATIO_GROUP = 170f/647f;
+//    private static final float RATIO_CHILD = 7f/34f;
 
     private Context mContext;
     private ArrayList<TextbookExpandableGroupItem> mGroupItems;
     private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> mChildItems;
 
-    public TextbookContentAdapter(Context context, ArrayList<TextbookExpandableGroupItem> groupItems, HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> childItems) {
+    public TextbookContentAdapter(@NonNull Context context,
+                                  @NonNull ArrayList<TextbookExpandableGroupItem> groupItems,
+                                  @NonNull HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> childItems) {
         mContext = context;
         mGroupItems = groupItems;
         mChildItems = childItems;
-
-        calculateLayoutParams();
     }
 
     @Override
@@ -73,41 +73,56 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+
+        // get group texts
+        String textbookType = Database.getInstance().getTextbookType(groupPosition);
         String groupTitle = ((TextbookExpandableGroupItem) getGroup(groupPosition)).getGroupStr();
+
+        // if convert view is null, inflate a new one
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.item_textbook_group, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_textbook_group, parent, false);
         }
 
-        TextView groupTextView = (TextView) convertView.findViewById(R.id.book_subtitle);
-        groupTextView.setText(groupTitle);
-//        groupTextView.setTypeface(null, Typeface.BOLD);
+        // set textbook type text
+        ((TextView) convertView.findViewById(R.id.textView_bookTitle)).setText(textbookType);
 
-        ExpandableListView expandableListView = (ExpandableListView) parent;
-        boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
+        // set textbook subtitle
+        ((TextView) convertView.findViewById(R.id.textView_bookSubTitle)).setText(groupTitle);
 
-        View groupDivider = convertView.findViewById(R.id.group_divider);
-        groupDivider.setVisibility((isExpanded || isLastGroup) ? View.GONE : View.VISIBLE);
+        // tag for last group
+        boolean isLastGroup = getGroupCount()-1 == groupPosition;
+
+        // set group divider visibility
+        convertView.findViewById(R.id.view_divider)
+                .setVisibility((isExpanded || isLastGroup)
+                        ? View.GONE
+                        : View.VISIBLE);
 
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+
+        // get child title
         String childTitle = ((TextbookExpandableChildItem) getChild(groupPosition, childPosition)).getChildStr();
+
+        // if convertView is null, inflate a new layout
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_textbook_child, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_textbook_child, parent, false);
         }
 
-        TextView childTextView = (TextView) convertView.findViewById(R.id.lesson_title);
-        childTextView.setText(childTitle);
+        // get child text view and set text
+        ((TextView) convertView.findViewById(R.id.textView_lessonTitle)).setText(childTitle);
 
-        ExpandableListView expandableListView = (ExpandableListView) parent;
-        boolean isLastGroup = (expandableListView.getExpandableListAdapter().getGroupCount()-1 == groupPosition);
+        // tag for last group
+        boolean isLastGroup = getGroupCount()-1 == groupPosition;
 
-        View childDivider = convertView.findViewById(R.id.child_divider);
-        childDivider.setVisibility((isLastChild && !isLastGroup) ? View.VISIBLE : View.GONE);
+        // set divider visibility
+        convertView.findViewById(R.id.view_divider).setVisibility(
+                (isLastChild && !isLastGroup)
+                        ? View.VISIBLE
+                        : View.GONE);
 
         return convertView;
     }
@@ -115,18 +130,5 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
-    }
-
-    private void calculateLayoutParams() {
-        DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
-        float screenHeightDp = displayMetrics.heightPixels / displayMetrics.density;
-        int groupHeightDp = (int) (screenHeightDp * RATIO_GROUP + 0.5f);
-        int childHeightDp = (int) (groupHeightDp * RATIO_CHILD + 0.5f);
-        groupHeight = toPixel(groupHeightDp, mContext.getResources().getDisplayMetrics().density);
-        childHeight = toPixel(childHeightDp, mContext.getResources().getDisplayMetrics().density);
-    }
-
-    private int toPixel(int dp, float density) {
-        return (int) (dp*density + 0.5f);
     }
 }

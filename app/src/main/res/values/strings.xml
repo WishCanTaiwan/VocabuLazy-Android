@@ -45,7 +45,7 @@
         <item>關於我們</item>
     </string-array>
     <!-- main menu textbook -->
-    <string name="textbook_group_title">必考7000字</string>
+    <string name="textbook_group_title">必考7000單字</string>
     <string name="textbook_group_subtitle">Level Default</string>
     <string name="textbook_child_title">Lesson Default</string>
     <!-- main menu note -->
@@ -120,8 +120,8 @@
     <string name="search_dialog_new_note_no">取消</string>
     <!-- cover -->
     <string name="cover_dialog_title">尚未安裝Google文字轉語音引擎</string>
-    <string name="cover_dialog_message">為了取得最佳使用體驗，請至商店下載並安裝「Google 文字轉語音引擎」。</string>
-    <string name="cover_dialog_button_cancel">取消</string>
+    <string name="cover_dialog_message">為了取得最佳使用體驗，請至商店下載並安裝「Google 文字轉語音引擎」。\n\n若沒有安裝語音引擎，部分語音將無法順利播送哦！</string>
+    <string name="cover_dialog_button_cancel">不要安裝</string>
     <string name="cover_dialog_button_confirm">前往 Google Play</string>
     <string name="cover_dialog_update_title">版本 %s 更新內容</string>
     <string name="cover_dialog_update_message">

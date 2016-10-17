@@ -185,7 +185,8 @@ public class PlayerModel {
     /**
      *
      */
-    private class PlayerModelAsyncTask extends AsyncTask<Object, Void, Object> {
+        private class PlayerModelAsyncTask extends AsyncTask<Object, Void, Object> {
+        @SuppressWarnings("unchecked")
         @Override
         protected Object doInBackground(Object... params) {
 
@@ -236,6 +237,7 @@ public class PlayerModel {
             return null;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         protected void onPostExecute(Object result) {
             super.onPostExecute(result);

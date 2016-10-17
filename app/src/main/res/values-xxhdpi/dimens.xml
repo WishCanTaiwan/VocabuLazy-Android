@@ -2,7 +2,7 @@
 <resources>
 
     <!-- main menu -->
-    <dimen name="textbook_group_text_size">48sp</dimen>
+    <dimen name="textbook_group_text_size">40sp</dimen>
 
     <!-- player -->
     <dimen name="player_option_level_image_padding">33dp</dimen>
