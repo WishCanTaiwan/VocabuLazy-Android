@@ -33,11 +33,13 @@ public class FirebaseManager {
     private FirebaseAnalytics mFirebaseAnalytics;
 
     public void init(Context context) {
-        Logger.d(FirebaseManager.TAG, "init firebase services");
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+        if (mFirebaseAnalytics == null) {
+            Logger.d(FirebaseManager.TAG, "init firebase services");
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+        }
     }
 
-    public void sendEvent(String event, HashMap<String, String> paramMap) {
+    public void sendEvent(@NonNull String event, @NonNull HashMap<String, String> paramMap) {
 
         Bundle bundle = new Bundle();
         Set<String> keySet = paramMap.keySet();
@@ -55,6 +57,6 @@ public class FirebaseManager {
     }
 
     public void sendException() {
-
+        // TODO: 2016/10/17 handle customized exception message here, now Firebase will send exception reports automatically
     }
 }
