@@ -1,6 +1,7 @@
 package wishcantw.vocabulazy.mainmenu.note.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -37,7 +38,7 @@ public class NoteView extends ExpandableListView implements ExpandableListView.O
         if (groupPosition != lastExpandedGroupPosition) {
             expandableListView.collapseGroup(lastExpandedGroupPosition);
             expandableListView.expandGroup(groupPosition, true);
-            expandableListView.setSelection(groupPosition);
+            expandableListView.smoothScrollToPosition(groupPosition);
             lastExpandedGroupPosition = groupPosition;
         } else {
             expandableListView.collapseGroup(groupPosition);
@@ -46,7 +47,7 @@ public class NoteView extends ExpandableListView implements ExpandableListView.O
         return true;
     }
 
-    public void addOnNoteItemListener(OnNoteItemClickListener listener) {
+    public void addOnNoteItemListener(@NonNull OnNoteItemClickListener listener) {
         mOnNoteItemClickListener = listener;
     }
 }

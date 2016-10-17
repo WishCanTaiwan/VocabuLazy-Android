@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,30 +12,34 @@
         android:background="@drawable/expandable_group_background">
 
         <TextView
-            android:id="@+id/note_group_index"
+            android:id="@+id/textView_index"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:gravity="center"
-            android:text="@string/note_index"
+            tools:text="0"
             android:textSize="23sp"
-            android:textColor="@color/note_group_text_color"/>
+            android:textColor="@color/note_group_text_color"
+            android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/note_group_text"
+            android:id="@+id/textView_title"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center_vertical"
-            android:text="@string/note_group_default_text"
+            tools:text="Default Note"
             android:textSize="23sp"
             android:textColor="@color/note_group_text_color"
+            android:paddingLeft="0dp"
             android:paddingRight="20dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="20dp"
             android:drawableRight="@drawable/main_menu_note_arrow"
             android:drawableEnd="@drawable/main_menu_note_arrow"/>
 
     </LinearLayout>
 
     <View
-        android:id="@+id/group_divider"
+        android:id="@+id/view_divider"
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:background="@color/note_divider_color"/>
