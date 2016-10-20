@@ -2,6 +2,8 @@ package wishcantw.vocabulazy.application;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
 import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
@@ -37,6 +39,7 @@ public class GlobalVariable extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         // init firebase analytics service
         FirebaseManager.getInstance().init(GlobalVariable.this);
