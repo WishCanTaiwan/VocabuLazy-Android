@@ -41,12 +41,18 @@ public class ExamModel {
             mCorrectCount = 0;
         }
 
+        /**
+         *
+         * @return HashMap<Integer, ArrayList<String>>
+         *     KEY is QuestionAndOption, 0 means Question, 1-4 means option
+         *     VALUE is english and translation
+         */
         public HashMap<Integer, ArrayList<String>> getANewQuestion(){
-            /***
-             * HashMap<Integer, ArrayList<String>>
-             *     KEY is QuestionAndOption, 0 means Question, 1-4 means option
-             *     VALUE is english and translation
-             */
+            // Because one of option is correct answer,
+            // it is in the condition of (pickIndex == mCurrentQuestionIndex)
+            int pickedAnswerIndexArray[] = {-1, -1, -1};
+            // pt is used for recording how may pickedAnswerIndex is recorded.
+            int pt = 0;
 
             // Null map means not enough question to start exam
             if(mTotalQuestionNum < 5) {
@@ -69,21 +75,28 @@ public class ExamModel {
             for(int i = 0; i < 5; i++){
                 int pickIndex;      // It's used to pick up option from vocabularies
                 ArrayList<String> strArr = new ArrayList<>();   //save option and answer string
-                if(i == 0) {          // 0 is for question, only spell is needed
+                // 0 is for question, only spell is needed
+                if(i == 0) {
                     pickIndex = mCurrentQuestionIndex;
                     strArr.add(mVocabularies.get(pickIndex).getSpell());
                 }
+                // if (i == mAnswerOptionIndex) means the option is the answer
                 else if(i == mAnswerOptionIndex){
                     pickIndex = mCurrentQuestionIndex;
                     strArr.add("");
                     strArr.add(mVocabularies.get(pickIndex).getTranslation());
                 }
+                // otherwise, all others are wrong answers. Record it to prevent duplicate options
                 else {
                     do {
                         pickIndex = new Random().nextInt(mTotalQuestionNum);
-                    } while(pickIndex == mCurrentQuestionIndex);
+                    } while(pickIndex == mCurrentQuestionIndex
+                            || pickIndex == pickedAnswerIndexArray[0]
+                            || pickIndex == pickedAnswerIndexArray[1]
+                            || pickIndex == pickedAnswerIndexArray[2]);
                     strArr.add(mVocabularies.get(pickIndex).getSpell());
                     strArr.add(mVocabularies.get(pickIndex).getTranslation());
+                    pickedAnswerIndexArray[pt++] = pickIndex;
                 }
                 questionMap.put(i, strArr);
             }
