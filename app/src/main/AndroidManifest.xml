@@ -20,7 +20,8 @@
         <activity
             android:name="wishcantw.vocabulazy.cover.activity.CoverActivity"
             android:label="@string/label_cover_activity"
-            android:theme="@style/AppTheme.CoverActivity">
+            android:theme="@style/AppTheme.CoverActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -30,34 +31,35 @@
         <activity
             android:name="wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity"
             android:label="@string/label_main_menu_activity"
-            android:theme="@style/AppTheme.MainMenuActivity"/>
+            android:theme="@style/AppTheme.MainMenuActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="wishcantw.vocabulazy.player.activity.PlayerActivity"
             android:label="@string/label_player_activity"
-            android:theme="@style/AppTheme.PlayerActivity">
-        </activity>
+            android:theme="@style/AppTheme.PlayerActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="wishcantw.vocabulazy.exam.activity.ExamActivity"
             android:label="@string/label_exam_activity"
-            android:theme="@style/AppTheme.ExamActivity">
-        </activity>
+            android:theme="@style/AppTheme.ExamActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="wishcantw.vocabulazy.search.activity.SearchActivity"
             android:label="@string/label_search_activity"
-            android:theme="@style/AppTheme.SearchActivity">
-        </activity>
+            android:theme="@style/AppTheme.SearchActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name="wishcantw.vocabulazy.service.AudioService"
-            android:exported="false">
-        </service>
+            android:exported="false" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="9a4b2afb00f201293cf5fee6915e471be4ddeb81" />
+
     </application>
 
 </manifest>
