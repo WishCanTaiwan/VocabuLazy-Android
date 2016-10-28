@@ -15952,8 +15952,8 @@
 	"phonetic": "[ˈdrɪŋk]",
 	"enSentence": ["default sentence."],
 	"level": 1,
-	"partOfSpeech": "n./",
-	"translation": "v.",
+	"partOfSpeech": "n./v.",
+	"translation": "喝；飲料",
 	"id": 1772
 }, {
 	"spell": "drive",
