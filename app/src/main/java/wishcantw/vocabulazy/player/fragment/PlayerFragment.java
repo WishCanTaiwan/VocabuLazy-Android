@@ -136,9 +136,12 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        if (mPlayerModel == null) {
+            return;
+        }
+
         // get model instance from activity
-        PlayerActivity activity = (PlayerActivity) mContext;
-        mPlayerModel = activity.getModel();
+        mPlayerModel = ((PlayerActivity) getActivity()).getModel();
 
         // set listener listening to data loading progress
         mPlayerModel.setDataProcessListener(this);
@@ -166,13 +169,21 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         // register broadcast receiver
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mServiceBroadcastReceiver, new IntentFilter(GlobalVariable.PLAYER_BROADCAST_INTENT));
 
+        if (mPlayerModel == null || mPlayerView == null) {
+            return;
+        }
+
         // move the focus to current playing item and set icon state
         mPlayerView.moveToPosition(mItemIndex);
-        mPlayerView.setIconState(false, (mPlayerModel != null && mPlayerModel.isPlaying()), false);
+        mPlayerView.setIconState(false, mPlayerModel.isPlaying(), false);
 
-        if (mIsWaitingAddNewPlayer && mPlayerModel != null) {
+        if (mIsWaitingAddNewPlayer) {
             mPlayerModel.createPlayerContent(mPlayerModel.getCurrentContent());
-            mPlayerModel.createPlayerDetailContent(mPlayerModel.getCurrentContent().get(mItemIndex));
+            if (!mPlayerModel.getCurrentContent().isEmpty()
+                    && mPlayerModel.getCurrentContent().size() > mItemIndex
+                    && mItemIndex > -1) {
+                mPlayerModel.createPlayerDetailContent(mPlayerModel.getCurrentContent().get(mItemIndex));
+            }
             mIsWaitingAddNewPlayer = false;
         }
     }
@@ -225,9 +236,11 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         if ( vocabularies == null || vocabularies.isEmpty())
             return;
 
+        int itemIndex = mIsSameAsLastEntrance ? mItemIndex : 0;
         mPlayerModel.createPlayerContent(vocabularies);
-        mPlayerModel.createPlayerDetailContent(vocabularies.get((mIsSameAsLastEntrance ? mItemIndex : 0)));
-
+        if (vocabularies.size() > itemIndex) {
+            mPlayerModel.createPlayerDetailContent(vocabularies.get(itemIndex));
+        }
         if (vocabularies.size() > 0 && !mIsSameAsLastEntrance) {
             Logger.d(TAG, "set content and start playing");
             setContent(vocabularies);
@@ -248,7 +261,10 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
         if (isViewTouchedDown) {
             newItemFocused(currentPosition);
-            if (mPlayerModel != null && mVocabularies != null && mVocabularies.size() > currentPosition) {
+            if (mPlayerModel != null
+                    && mVocabularies != null
+                    && mVocabularies.size() > currentPosition
+                    && currentPosition > -1) {
                 mPlayerModel.createPlayerDetailContent(mVocabularies.get(currentPosition));
             }
         }
@@ -299,6 +315,10 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
             // therefore we only need to get content from model.
             ArrayList<Vocabulary> vocabularies = mPlayerModel.getCurrentContent();
 
+            if (vocabularies == null || vocabularies.isEmpty()) {
+                return;
+            }
+
             // create player views based on contents
             mPlayerModel.createPlayerContent(vocabularies);
 
@@ -341,14 +361,16 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     @Override
     public void onPlayerPanelFavoriteClick() {
 
-        if (mVocabularies == null || mVocabularies.size() <= mItemIndex) {
+        if (mVocabularies == null || mVocabularies.isEmpty()) {
             return;
         }
 
-        int vocId = mVocabularies.get(mItemIndex).getId();
 
-        if (mOnPlayerOptionFavoriteClickListener != null) {
-            mOnPlayerOptionFavoriteClickListener.onFavoriteClick(vocId);
+        if (mVocabularies.size() > mItemIndex && mItemIndex > -1) {
+            int vocId = mVocabularies.get(mItemIndex).getId();
+            if (mOnPlayerOptionFavoriteClickListener != null) {
+                mOnPlayerOptionFavoriteClickListener.onFavoriteClick(vocId);
+            }
         }
     }
 
@@ -437,7 +459,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         mPlayerView.setPlayerOptionTabContent(options);
 
         int sentenceIndex = -1;
-        if (options != null && options.size() > 0) {
+        if (options != null && !options.isEmpty()) {
             sentenceIndex = options.get(0).isSentence() ? 0 : -1;
         }
         updateIndices(mBookIndex, mLessonIndex, mItemIndex, sentenceIndex);
@@ -529,6 +551,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                         break;
                     }
                     int newItemIndex = intent.getIntExtra(AudioService.ITEM_INDEX, -1);
+                    if (newItemIndex == -1) {
+                        break;
+                    }
                     updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
                     mPlayerView.moveToPosition(newItemIndex);
                     mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
@@ -566,6 +591,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                         break;
                     }
                     int sentenceIndex = intent.getIntExtra(AudioService.SENTENCE_INDEX, -1);
+                    if (sentenceIndex == -1) {
+                        break;
+                    }
                     updateIndices(mBookIndex, mLessonIndex, mItemIndex, sentenceIndex);
                     mPlayerView.moveDetailPage(sentenceIndex);
                     break;
