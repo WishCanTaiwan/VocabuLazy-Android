@@ -40,7 +40,6 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
     private static final int DELETE = 0x3;
 
     private MainMenuModel mMainMenuModel;
-    private View rootView;
     private NoteView mNoteView;
     private ImageView imageView;
     private ArrayList<NoteExpandableGroupItem> mGroupItems;
@@ -60,7 +59,7 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_note, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_note, container, false);
         mNoteView = (NoteView) rootView.findViewById(R.id.note_view);
         mNoteView.addOnNoteItemListener(this);
 
@@ -127,7 +126,7 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
     }
 
     public void refresh() {
-        mNoteView.setAdapter(new NoteContentAdapter(getContext(), mGroupItems, mChildItemsMap));
+        mNoteView.setAdapter(new NoteContentAdapter(mGroupItems, mChildItemsMap));
         if (mGroupItems.size() > 0) {
             imageView.setVisibility(View.INVISIBLE);
         } else {
