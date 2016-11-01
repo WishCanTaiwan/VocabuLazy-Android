@@ -1,6 +1,5 @@
 package wishcantw.vocabulazy.mainmenu.note.fragment;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;

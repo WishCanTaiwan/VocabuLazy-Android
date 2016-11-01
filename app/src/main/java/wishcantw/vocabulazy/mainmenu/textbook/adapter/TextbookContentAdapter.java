@@ -1,14 +1,10 @@
 package wishcantw.vocabulazy.mainmenu.textbook.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
