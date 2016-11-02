@@ -125,8 +125,8 @@
     <string name="cover_dialog_button_confirm">前往 Google Play</string>
     <string name="cover_dialog_update_title">版本 %s 更新內容</string>
     <string name="cover_dialog_update_message">
-        1. 修正一些會造成程式崩潰的錯誤。\n
-        2. 介面優化。
+        1. 修正測驗頁面顯示錯誤。\n
+        2. 修正手機翻轉時造成的錯誤。
     </string>
     <string name="cover_dialog_update_positive_button">我知道了</string>
 
