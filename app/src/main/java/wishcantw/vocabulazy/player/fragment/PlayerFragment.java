@@ -136,10 +136,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (mPlayerModel == null) {
-            return;
-        }
-
         // get model instance from activity
         mPlayerModel = ((PlayerActivity) getActivity()).getModel();
 
