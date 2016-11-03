@@ -95,28 +95,27 @@ public class AudioService extends IntentService {
             case START_SERVICE:
                 mGlobalVariable = (GlobalVariable) getApplication();
                 mAudioPlayer = new AudioPlayer(mGlobalVariable);
-                mAudioPlayer.bondToTTSEngine();
-                Broadcaster broadcaster = new Broadcaster(mGlobalVariable.getApplicationContext());
-                mAudioPlayer.setBroadcastTrigger(broadcaster);
+                mAudioPlayer.bondToTTSEngine(getApplicationContext());
+                mAudioPlayer.setBroadcastTrigger(new Broadcaster(getApplicationContext()));
                 break;
 
             case STOP_SERVICE:
                 if (mAudioPlayer == null)
                     break;
-                mAudioPlayer.releaseAudioFocus();
+                mAudioPlayer.releaseAudioFocus(getApplicationContext());
                 mAudioPlayer.releaseTTSResource();
                 break;
 
             case GET_AUDIO_FOCUS:
                 if (mAudioPlayer == null)
                     break;
-                mAudioPlayer.getAudioFocus();
+                mAudioPlayer.getAudioFocus(getApplicationContext());
                 break;
 
             case RELEASE_AUDIO_FOCUS:
                 if (mAudioPlayer == null)
                     break;
-                mAudioPlayer.releaseAudioFocus();
+                mAudioPlayer.releaseAudioFocus(getApplicationContext());
                 break;
 
             case SET_CONTENT:
@@ -187,7 +186,7 @@ public class AudioService extends IntentService {
             case PLAY_BUTTON_CLICKED:
                 if (mAudioPlayer == null)
                     break;
-                mAudioPlayer.playButtonClick();
+                mAudioPlayer.playButtonClick(getApplicationContext());
                 break;
 
             case PLAYERVIEW_SCROLLING:
