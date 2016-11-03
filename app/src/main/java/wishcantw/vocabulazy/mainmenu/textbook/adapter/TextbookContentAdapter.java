@@ -1,14 +1,10 @@
 package wishcantw.vocabulazy.mainmenu.textbook.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
@@ -24,14 +20,11 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
 //    private static final float RATIO_GROUP = 170f/647f;
 //    private static final float RATIO_CHILD = 7f/34f;
 
-    private Context mContext;
-    private ArrayList<TextbookExpandableGroupItem> mGroupItems;
-    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> mChildItems;
+    private ArrayList<TextbookExpandableGroupItem> mGroupItems = new ArrayList<>();
+    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> mChildItems = new HashMap<>();
 
-    public TextbookContentAdapter(@NonNull Context context,
-                                  @NonNull ArrayList<TextbookExpandableGroupItem> groupItems,
+    public TextbookContentAdapter(@NonNull ArrayList<TextbookExpandableGroupItem> groupItems,
                                   @NonNull HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> childItems) {
-        mContext = context;
         mGroupItems = groupItems;
         mChildItems = childItems;
     }
@@ -80,7 +73,7 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
 
         // if convert view is null, inflate a new one
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_textbook_group, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_textbook_group, parent, false);
         }
 
         // set textbook type text
@@ -109,7 +102,7 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
 
         // if convertView is null, inflate a new layout
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_textbook_child, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_textbook_child, parent, false);
         }
 
         // get child text view and set text

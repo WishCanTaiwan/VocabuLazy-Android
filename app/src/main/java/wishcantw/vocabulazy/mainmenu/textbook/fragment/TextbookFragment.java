@@ -49,7 +49,7 @@ public class TextbookFragment extends GABaseFragment implements TextbookView.OnT
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_textbook, container, false);
         mTextbookView = (TextbookView) rootView.findViewById(R.id.textbook_view);
-        mTextbookView.setAdapter(new TextbookContentAdapter(getContext(), mGroupItems, mChildItemsMap));
+        mTextbookView.setAdapter(new TextbookContentAdapter(mGroupItems, mChildItemsMap));
         mTextbookView.addOnTextBookClickListener(this);
         return rootView;
     }
@@ -69,6 +69,6 @@ public class TextbookFragment extends GABaseFragment implements TextbookView.OnT
     }
 
     public void refresh() {
-        mTextbookView.setAdapter(new TextbookContentAdapter(getContext(), mGroupItems, mChildItemsMap));
+        mTextbookView.setAdapter(new TextbookContentAdapter(mGroupItems, mChildItemsMap));
     }
 }

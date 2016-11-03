@@ -29,13 +29,12 @@ public class Database {
     public static final String FILENAME_OPTION = "optionSetting";
 
     private GlobalVariable mGlobalVariable;
-    private Context context;
 
     private static Database database = new Database();
 
-    private ArrayList<Vocabulary> mVocabularies;
-    private ArrayList<Textbook> mTextbooks;
-    private ArrayList<Note> mNotes;
+    private ArrayList<Vocabulary> mVocabularies = new ArrayList<>();
+    private ArrayList<Textbook> mTextbooks = new ArrayList<>();
+    private ArrayList<Note> mNotes = new ArrayList<>();
 
     private static final int MAXIMUM_LIST_SIZE = 50;
 
@@ -44,7 +43,6 @@ public class Database {
     }
 
     public void init(Context context) {
-        this.context = context;
         loadFiles(context);
     }
 
@@ -98,11 +96,18 @@ public class Database {
     }
 
     public String getTextbookType(int bookIndex) {
+        if (mTextbooks == null || mTextbooks.isEmpty() || bookIndex < 0 || bookIndex >= mTextbooks.size()) {
+            return "Textbook";
+        }
         return mTextbooks.get(bookIndex).getTextbookType();
     }
 
     public int getNumOfLesson(int bookIndex) {
-        if (bookIndex < 0) return mNotes.size();
+        if (bookIndex < 0 && mNotes != null) return mNotes.size();
+        if (mTextbooks == null || mTextbooks.isEmpty() || bookIndex >= mTextbooks.size()
+                || mTextbooks.get(bookIndex) == null || mTextbooks.get(bookIndex).getTextbookContent() == null) {
+            return 0;
+        }
         return mTextbooks.get(bookIndex).getTextbookContent().size();
     }
 
@@ -126,19 +131,23 @@ public class Database {
 
     public ArrayList<String> getNoteNames() {
         ArrayList<String> noteNames = new ArrayList<>();
-        for (Note note : mNotes) {
-            noteNames.add(note.getNoteTitle());
+        if (mNotes != null) {
+            for (Note note : mNotes) {
+                noteNames.add(note.getNoteTitle());
+            }
         }
         return noteNames;
     }
 
     public ArrayList<Vocabulary> getVocabulariesByIDs(@NonNull final ArrayList<Integer> vocIDs) {
         ArrayList<Vocabulary> vocabularies = new ArrayList<>();
-        for (int index = 0; index < vocIDs.size(); index++) {
-            for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
-                Vocabulary vocabulary = mVocabularies.get(index2);
-                if (vocIDs.get(index).equals(vocabulary.getId())) {
-                    vocabularies.add(vocabulary);
+        if (mVocabularies != null) {
+            for (int index = 0; index < vocIDs.size(); index++) {
+                for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
+                    Vocabulary vocabulary = mVocabularies.get(index2);
+                    if (vocIDs.get(index).equals(vocabulary.getId())) {
+                        vocabularies.add(vocabulary);
+                    }
                 }
             }
         }
@@ -154,17 +163,19 @@ public class Database {
     /* Search operation */
     public ArrayList<Vocabulary> readSuggestVocabularyBySpell(String queryString) {
         ArrayList<Vocabulary> resultVocabularies = new ArrayList<>();
-        for (int index = 0; index < mVocabularies.size(); index++) {
-            Vocabulary vocabulary = mVocabularies.get(index);
-            String spell = vocabulary.getSpell();
-            int queryStringLength = queryString.length();
-            if (spell.length() < queryStringLength) {
-                continue;
-            }
-            if (spell.substring(0, queryStringLength).equals(queryString)) {
-                resultVocabularies.add(vocabulary);
-                if (resultVocabularies.size() > MAXIMUM_LIST_SIZE) {
-                    break;
+        if (mVocabularies != null) {
+            for (int index = 0; index < mVocabularies.size(); index++) {
+                Vocabulary vocabulary = mVocabularies.get(index);
+                String spell = vocabulary.getSpell();
+                int queryStringLength = queryString.length();
+                if (spell.length() < queryStringLength) {
+                    continue;
+                }
+                if (spell.substring(0, queryStringLength).equals(queryString)) {
+                    resultVocabularies.add(vocabulary);
+                    if (resultVocabularies.size() > MAXIMUM_LIST_SIZE) {
+                        break;
+                    }
                 }
             }
         }
@@ -175,6 +186,7 @@ public class Database {
 
     /* Note operations */
     public void createNewNote(String name) {
+        if (mNotes == null) mNotes = new ArrayList<>();
         int index = mNotes.size();
         mNotes.add(index, new Note(index, name, new ArrayList<Integer>()));
     }
@@ -187,7 +199,7 @@ public class Database {
      */
     public void addVocToNote(int vocId, int noteIndex) {
         // check noteIndex validity
-        if (noteIndex >= mNotes.size()) {
+        if (noteIndex >= mNotes.size() || noteIndex == -1) {
             return;
         }
 
@@ -199,30 +211,38 @@ public class Database {
     }
 
     public void renameNoteAt(int noteIndex, String name) {
+        if (mNotes == null || noteIndex == -1
+                || noteIndex >= mNotes.size() || mNotes.get(noteIndex) == null) {
+            return;
+        }
         int id = mNotes.get(noteIndex).getNoteId();
-        renameNote(id, name);
+        renameNote(mNotes, id, name);
     }
 
-    public void renameNote(int id, String name) {
-        for (int index = 0; index < mNotes.size(); index++) {
-            Note note = mNotes.get(index);
-            if (id == note.getNoteId()) {
-                note.setNoteTitle(name);
+    private void renameNote(@NonNull ArrayList<Note> notes, int noteId, String newName) {
+        for (int index = 0; index < notes.size(); index++) {
+            Note note = notes.get(index);
+            if (noteId == note.getNoteId()) {
+                note.setNoteTitle(newName);
                 return;
             }
         }
     }
 
     public void deleteNoteAt(int noteIndex) {
+        if (mNotes == null|| noteIndex == -1
+                || noteIndex >= mNotes.size() || mNotes.get(noteIndex) == null) {
+            return;
+        }
         int id = mNotes.get(noteIndex).getNoteId();
-        deleteNote(id);
+        deleteNote(mNotes, id);
     }
 
-    public void deleteNote(int id) {
+    private void deleteNote(@NonNull ArrayList<Note> notes, int noteId) {
         Note noteToBeDelete = null;
-        for (int index = 0; index < mNotes.size(); index++) {
-            Note note = mNotes.get(index);
-            if (id == note.getNoteId()) {
+        for (int index = 0; index < notes.size(); index++) {
+            Note note = notes.get(index);
+            if (noteId == note.getNoteId()) {
                 noteToBeDelete = note;
             }
         }
@@ -230,11 +250,11 @@ public class Database {
         if (noteToBeDelete == null)
             return;
 
-        mNotes.remove(noteToBeDelete);
+        notes.remove(noteToBeDelete);
 
         // refresh IDs
-        for (int index = 0; index < mNotes.size(); index++) {
-            Note note = mNotes.get(index);
+        for (int index = 0; index < notes.size(); index++) {
+            Note note = notes.get(index);
             note.setNoteId(index);
         }
     }

@@ -1,14 +1,10 @@
 package wishcantw.vocabulazy.mainmenu.note.adapter;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
@@ -18,14 +14,11 @@ import java.util.HashMap;
 
 public class NoteContentAdapter extends BaseExpandableListAdapter {
 
-    private Context mContext;
-    private ArrayList<NoteExpandableGroupItem> mGroupItems;
-    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> mChildItemsMap;
+    private ArrayList<NoteExpandableGroupItem> mGroupItems = new ArrayList<>();
+    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> mChildItemsMap = new HashMap<>();
 
-    public NoteContentAdapter(@NonNull Context context,
-                              @NonNull ArrayList<NoteExpandableGroupItem> groupItems,
+    public NoteContentAdapter(@NonNull ArrayList<NoteExpandableGroupItem> groupItems,
                               @NonNull HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> childItemsMap) {
-        mContext = context;
         mGroupItems = groupItems;
         mChildItemsMap = childItemsMap;
     }
@@ -74,7 +67,7 @@ public class NoteContentAdapter extends BaseExpandableListAdapter {
 
         // if convert view is null, inflate a new one
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_note_group, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_note_group, parent, false);
         }
 
         // set note index
@@ -103,7 +96,7 @@ public class NoteContentAdapter extends BaseExpandableListAdapter {
 
         // if the convert view is null, inflate one
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_note_child, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_note_child, parent, false);
         }
 
         // set note child text
