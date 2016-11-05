@@ -20,8 +20,8 @@ public class Vocabulary {
     private String partOfSpeech;
     private String translation;
 
-    private ArrayList<String> enSentence;
-    private ArrayList<String> cnSentence;
+    private ArrayList<String> enSentence = new ArrayList<>();
+    private ArrayList<String> cnSentence = new ArrayList<>();
 
     public Vocabulary(int id, int level, String spell, String phonetic,
                       String partOfSpeech,

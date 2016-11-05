@@ -2,9 +2,6 @@ package wishcantw.vocabulazy.database.object;
 
 import java.util.ArrayList;
 
-/**
- * Created by allencheng07 on 2016/8/22.
- */
 public class Textbook {
 
     public static final String TAG = "Textbook";
@@ -12,7 +9,7 @@ public class Textbook {
     private String textbookType;
     private int textbookId;
     private String textbookTitle;
-    private ArrayList<Lesson> textbookContent;
+    private ArrayList<Lesson> textbookContent = new ArrayList<>();
 
     public Textbook(int textbookId, String textbookType, String textbookTitle, ArrayList<Lesson> textbookContent) {
         setTextbookId(textbookId);

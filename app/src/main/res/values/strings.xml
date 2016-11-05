@@ -3,6 +3,7 @@
     <!-- Version Strings -->
     <string name="version_name">v%s</string>
     <string name="version_config">version-code-config</string>
+
     <!-- Manifest -->
     <string name="app_name">VocabuLazy</string>
     <string name="label_cover_activity">VocabuLazy</string>
@@ -45,13 +46,13 @@
         <item>關於我們</item>
     </string-array>
     <!-- main menu textbook -->
-    <string name="textbook_group_title">必考7000單字</string>
-    <string name="textbook_group_subtitle">Level Default</string>
-    <string name="textbook_child_title">Lesson Default</string>
+    <string name="textbook_group_title">參考書</string>
+    <string name="textbook_group_subtitle">難度</string>
+    <string name="textbook_child_title">單元</string>
     <!-- main menu note -->
     <string name="note_index">0</string>
-    <string name="note_group_default_text">Note Default</string>
-    <string name="note_child_default_text">Note Option</string>
+    <string name="note_group_default_text">筆記</string>
+    <string name="note_child_default_text">選項</string>
     <string-array name="note_child">
         <item>播放清單</item>
         <item>重新命名</item>
@@ -81,7 +82,7 @@
     <string name="info_alert_dialog_positive">前往</string>
     <string name="info_alert_dialog_negative">不用了</string>
     <string name="info_report_page_title">意見回饋</string>
-    <string name="info_report_page_hint">我覺得...</string>
+    <string name="info_report_page_hint">我覺得&#8230;</string>
     <string name="info_report_page_send">送出</string>
     <string name="info_report_page_cancel">取消</string>
     <!-- exam -->
@@ -104,7 +105,7 @@
     <string name="player_dialog_add_voc_to_note_yes">選擇</string>
     <string name="player_dialog_add_voc_to_note_no">取消</string>
     <string name="player_dialog_new_note_title">新增筆記清單</string>
-    <string name="player_dialog_new_note_hint">為筆記命名...</string>
+    <string name="player_dialog_new_note_hint">為筆記命名&#8230;</string>
     <string name="player_dialog_new_note_yes">選擇</string>
     <string name="player_dialog_new_note_no">取消</string>
     <string name="player_dialog_voc_too_less_yes">確認</string>
@@ -115,7 +116,7 @@
     <string name="search_dialog_add_voc_to_note_yes">選擇</string>
     <string name="search_dialog_add_voc_to_note_no">取消</string>
     <string name="search_dialog_new_note_title">新增筆記清單</string>
-    <string name="search_dialog_new_note_hint">為筆記命名...</string>
+    <string name="search_dialog_new_note_hint">為筆記命名&#8230;</string>
     <string name="search_dialog_new_note_yes">選擇</string>
     <string name="search_dialog_new_note_no">取消</string>
     <!-- cover -->
