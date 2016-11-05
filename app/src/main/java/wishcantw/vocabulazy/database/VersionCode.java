@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.storage;
+package wishcantw.vocabulazy.database;
 
 public class VersionCode {
     private int versionCode;

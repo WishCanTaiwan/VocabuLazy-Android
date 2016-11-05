@@ -1,6 +1,4 @@
-package wishcantw.vocabulazy.storage.databaseObjects;
-
-import android.util.Log;
+package wishcantw.vocabulazy.database.object;
 
 import java.util.ArrayList;
 

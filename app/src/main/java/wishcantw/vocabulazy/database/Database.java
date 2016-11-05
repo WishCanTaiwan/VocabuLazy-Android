@@ -1,7 +1,6 @@
-package wishcantw.vocabulazy.storage;
+package wishcantw.vocabulazy.database;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import java.io.BufferedReader;
@@ -16,10 +15,10 @@ import java.util.Arrays;
 import com.google.gson.Gson;
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.application.GlobalVariable;
-import wishcantw.vocabulazy.storage.databaseObjects.Note;
-import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
-import wishcantw.vocabulazy.storage.databaseObjects.Textbook;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import wishcantw.vocabulazy.database.object.Note;
+import wishcantw.vocabulazy.database.object.OptionSettings;
+import wishcantw.vocabulazy.database.object.Textbook;
+import wishcantw.vocabulazy.database.object.Vocabulary;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class Database {

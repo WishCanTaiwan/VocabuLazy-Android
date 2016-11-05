@@ -1,7 +1,7 @@
 package wishcantw.vocabulazy.exam.model;
 
-import wishcantw.vocabulazy.storage.Database;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.object.Vocabulary;
 
 import java.util.ArrayList;
 import java.util.HashMap;

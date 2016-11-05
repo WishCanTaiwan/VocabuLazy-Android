@@ -9,12 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import junit.runner.Version;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -26,8 +22,8 @@ import java.util.Locale;
 
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
-import wishcantw.vocabulazy.storage.Database;
-import wishcantw.vocabulazy.storage.VersionCode;
+import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.VersionCode;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class CoverActivity extends FragmentActivity {

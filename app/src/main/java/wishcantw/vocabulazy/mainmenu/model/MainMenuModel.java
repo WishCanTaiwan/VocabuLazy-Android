@@ -7,10 +7,10 @@ import wishcantw.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import wishcantw.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableGroupItem;
-import wishcantw.vocabulazy.storage.Database;
-import wishcantw.vocabulazy.storage.databaseObjects.Lesson;
-import wishcantw.vocabulazy.storage.databaseObjects.Note;
-import wishcantw.vocabulazy.storage.databaseObjects.Textbook;
+import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.object.Lesson;
+import wishcantw.vocabulazy.database.object.Note;
+import wishcantw.vocabulazy.database.object.Textbook;
 
 import java.util.ArrayList;
 import java.util.HashMap;

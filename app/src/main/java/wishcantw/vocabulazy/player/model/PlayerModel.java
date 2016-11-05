@@ -9,9 +9,9 @@ import wishcantw.vocabulazy.player.view.PlayerMainView;
 import wishcantw.vocabulazy.player.view.PlayerOptionContentView;
 import wishcantw.vocabulazy.player.view.PlayerOptionView;
 import wishcantw.vocabulazy.service.AudioPlayer;
-import wishcantw.vocabulazy.storage.Database;
-import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.object.OptionSettings;
+import wishcantw.vocabulazy.database.object.Vocabulary;
 
 import java.util.LinkedList;
 import java.util.ArrayList;

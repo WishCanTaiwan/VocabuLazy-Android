@@ -27,7 +27,7 @@ import wishcantw.vocabulazy.mainmenu.note.fragment.NoteRenameDialogFragment;
 import wishcantw.vocabulazy.player.activity.PlayerActivity;
 import wishcantw.vocabulazy.search.activity.SearchActivity;
 import wishcantw.vocabulazy.service.AudioService;
-import wishcantw.vocabulazy.storage.Database;
+import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener, NoteRenameDialogFragment.OnRenameCompleteListener, NoteDeleteDialogFragment.OnNoteDeleteListener, NoteCreateDialogFragment.OnNoteCreateListener {

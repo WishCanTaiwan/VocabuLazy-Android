@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.storage.databaseObjects;
+package wishcantw.vocabulazy.database.object;
 
 import java.util.ArrayList;
 

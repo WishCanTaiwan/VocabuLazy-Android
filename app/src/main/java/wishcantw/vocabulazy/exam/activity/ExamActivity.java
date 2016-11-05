@@ -11,7 +11,7 @@ import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.exam.fragment.ExamFragment;
 import wishcantw.vocabulazy.exam.fragment.ExamResultFragment;
 import wishcantw.vocabulazy.exam.fragment.ExamVocTooLessDialogFragment;
-import wishcantw.vocabulazy.storage.Database;
+import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.utility.Logger;
 
 /**

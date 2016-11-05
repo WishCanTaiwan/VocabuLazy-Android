@@ -5,8 +5,8 @@ import android.app.Application;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
-import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import wishcantw.vocabulazy.database.object.OptionSettings;
+import wishcantw.vocabulazy.database.object.Vocabulary;
 
 import java.util.ArrayList;
 

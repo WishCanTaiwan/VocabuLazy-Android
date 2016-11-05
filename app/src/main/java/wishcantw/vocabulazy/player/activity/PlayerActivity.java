@@ -14,7 +14,7 @@ import wishcantw.vocabulazy.player.fragment.PlayerFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerNewNoteDialogFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerVocTooLessDialogFragment;
 import wishcantw.vocabulazy.player.model.PlayerModel;
-import wishcantw.vocabulazy.storage.Database;
+import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class PlayerActivity extends AppCompatActivity implements PlayerFragment.OnPlayerLessonChangeListener,

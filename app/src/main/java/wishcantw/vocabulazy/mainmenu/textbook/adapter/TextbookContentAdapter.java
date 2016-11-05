@@ -8,7 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
-import wishcantw.vocabulazy.storage.Database;
+import wishcantw.vocabulazy.database.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;

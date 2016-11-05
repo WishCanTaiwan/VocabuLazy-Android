@@ -7,8 +7,8 @@ import android.support.v4.content.LocalBroadcastManager;
 
 import wishcantw.vocabulazy.application.GlobalVariable;
 import wishcantw.vocabulazy.utility.Logger;
-import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import wishcantw.vocabulazy.database.object.OptionSettings;
+import wishcantw.vocabulazy.database.object.Vocabulary;
 
 import java.util.ArrayList;
 

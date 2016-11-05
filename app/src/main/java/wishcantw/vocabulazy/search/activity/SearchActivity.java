@@ -14,7 +14,7 @@ import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.search.fragment.SearchAddVocToNoteDialogFragment;
 import wishcantw.vocabulazy.search.fragment.SearchFragment;
 import wishcantw.vocabulazy.search.model.SearchModel;
-import wishcantw.vocabulazy.storage.Database;
+import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.search.fragment.SearchNewNoteDialogFragment;
 import wishcantw.vocabulazy.utility.Logger;
 

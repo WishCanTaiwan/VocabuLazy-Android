@@ -2,8 +2,8 @@ package wishcantw.vocabulazy.search.model;
 
 import wishcantw.vocabulazy.search.view.SearchDetailView;
 import wishcantw.vocabulazy.search.view.SearchListView;
-import wishcantw.vocabulazy.storage.Database;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.object.Vocabulary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
