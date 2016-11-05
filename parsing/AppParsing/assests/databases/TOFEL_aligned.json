@@ -1,12 +1,11 @@
-
-[{
+{
 	"spell" : "abridge",
 	"cnSentence" : ["未定義例句"],
 	"phonetic" : "[ә'bridʒ]",
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "(書等)刪節",
+	"translation" : "(书等)删节",
 	"id" : 10000
 },
 {
@@ -26,7 +25,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "吸收(水、光、蒸汽等）；使全神貫注",
+	"translation" : "吸收(水、光、蒸汽等）；使全神贯注",
 	"id" : 10002
 },
 {
@@ -36,7 +35,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "戒除,棄權",
+	"translation" : "戒除,弃权",
 	"id" : 10003
 },
 {
@@ -46,7 +45,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "抽象的摘要，梗概提取；摘錄要點",
+	"translation" : "抽象的摘要，梗概提取；摘录要点",
 	"id" : 10004
 },
 {
@@ -56,7 +55,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "使加速，使增速，促進加快，增加",
+	"translation" : "使加速，使增速，促进加快，增加",
 	"id" : 10005
 },
 {
@@ -66,7 +65,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "提供住宿;使適應;容納",
+	"translation" : "提供住宿;使适应;容纳",
 	"id" : 10006
 },
 {
@@ -76,7 +75,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "陪伴，陪同；伴隨，和...一起發生，伴奏",
+	"translation" : "陪伴，陪同；伴随，和...一起发生，伴奏",
 	"id" : 10007
 },
 {
@@ -86,7 +85,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "搭話",
+	"translation" : "搭话",
 	"id" : 10008
 },
 {
@@ -96,7 +95,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "歸咎於",
+	"translation" : "归咎于",
 	"id" : 10009
 },
 {
@@ -106,7 +105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "積累,積聚",
+	"translation" : "积累,积聚",
 	"id" : 10010
 },
 {
@@ -116,7 +115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "指責,歸咎於",
+	"translation" : "指责,归咎于",
 	"id" : 10011
 },
 {
@@ -126,7 +125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "宣告無罪；表現",
+	"translation" : "宣告无罪；表现",
 	"id" : 10012
 },
 {
@@ -136,7 +135,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "粘著;堅持;忠於",
+	"translation" : "粘着;坚持;忠于",
 	"id" : 10013
 },
 {
@@ -146,7 +145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "調節；整頓，調整適應(to)；使調節",
+	"translation" : "调节；整顿，调整适应(to)；使调节",
 	"id" : 10014
 },
 {
@@ -156,7 +155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "掌管,料理…的事務;實施;給予,派給,投(藥)",
+	"translation" : "掌管,料理…的事务;实施;给予,派给,投(药)",
 	"id" : 10015
 },
 {
@@ -166,7 +165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "極度痛苦",
+	"translation" : "极度痛苦",
 	"id" : 10016
 },
 {
@@ -176,7 +175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使疏遠",
+	"translation" : "使疏远",
 	"id" : 10017
 },
 {
@@ -186,7 +185,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "降下；落在,飛落,突然注意到",
+	"translation" : "降下；落在,飞落,突然注意到",
 	"id" : 10018
 },
 {
@@ -196,7 +195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "分配,配給",
+	"translation" : "分配,配给",
 	"id" : 10019
 },
 {
@@ -206,7 +205,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "（按份額）分配",
+	"translation" : "（按份额）分配",
 	"id" : 10020
 },
 {
@@ -216,7 +215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "誘惑",
+	"translation" : "诱惑",
 	"id" : 10021
 },
 {
@@ -226,7 +225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "交替的,輪流的;輪流交替,交替",
+	"translation" : "交替的,轮流的;轮流交替,交替",
 	"id" : 10022
 },
 {
@@ -246,7 +245,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "附屬建築物;附加；吞併，合併",
+	"translation" : "附属建筑物;附加；吞并，合并",
 	"id" : 10024
 },
 {
@@ -256,7 +255,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "消滅,殲滅",
+	"translation" : "消灭,歼灭",
 	"id" : 10025
 },
 {
@@ -266,7 +265,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "註解",
+	"translation" : "注解",
 	"id" : 10026
 },
 {
@@ -276,7 +275,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "道歉，認錯；辯護，辯解",
+	"translation" : "道歉，认错；辩护，辩解",
 	"id" : 10027
 },
 {
@@ -286,7 +285,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "背教；脫黨",
+	"translation" : "背教；脱党",
 	"id" : 10028
 },
 {
@@ -296,7 +295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使驚駭",
+	"translation" : "使惊骇",
 	"id" : 10029
 },
 {
@@ -326,7 +325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "誹謗",
+	"translation" : "诽谤",
 	"id" : 10032
 },
 {
@@ -346,7 +345,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "集合，召集；裝配；收集集合，聚集",
+	"translation" : "集合，召集；装配；收集集合，聚集",
 	"id" : 10034
 },
 {
@@ -366,7 +365,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "減輕",
+	"translation" : "减轻",
 	"id" : 10036
 },
 {
@@ -376,7 +375,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使確信，使放心(of)；向…保證",
+	"translation" : "使确信，使放心(of)；向…保证",
 	"id" : 10037
 },
 {
@@ -386,7 +385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "斷言",
+	"translation" : "断言",
 	"id" : 10038
 },
 {
@@ -396,7 +395,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "聲明",
+	"translation" : "声明",
 	"id" : 10039
 },
 {
@@ -416,7 +415,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "禁戒；節制",
+	"translation" : "禁戒；节制",
 	"id" : 10041
 },
 {
@@ -426,7 +425,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "深淵",
+	"translation" : "深渊",
 	"id" : 10042
 },
 {
@@ -436,7 +435,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "幫兇",
+	"translation" : "帮凶",
 	"id" : 10043
 },
 {
@@ -446,7 +445,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "頂點",
+	"translation" : "顶点",
 	"id" : 10044
 },
 {
@@ -456,7 +455,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "敏鋭",
+	"translation" : "敏锐",
 	"id" : 10045
 },
 {
@@ -466,7 +465,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "格言；諺語",
+	"translation" : "格言；谚语",
 	"id" : 10046
 },
 {
@@ -476,7 +475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "摻假；劣等貨，假貨，次品",
+	"translation" : "掺假；劣等货，假货，次品",
 	"id" : 10047
 },
 {
@@ -496,7 +495,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "密切關係；類同",
+	"translation" : "密切关系；类同",
 	"id" : 10049
 },
 {
@@ -506,7 +505,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "敏捷；機敏",
+	"translation" : "敏捷；机敏",
 	"id" : 10050
 },
 {
@@ -516,7 +515,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "營養",
+	"translation" : "营养",
 	"id" : 10051
 },
 {
@@ -536,7 +535,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "利他主義",
+	"translation" : "利他主义",
 	"id" : 10053
 },
 {
@@ -576,7 +575,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "相似,類推,類推法",
+	"translation" : "相似,类推,类推法",
 	"id" : 10057
 },
 {
@@ -586,7 +585,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "憎惡",
+	"translation" : "憎恶",
 	"id" : 10058
 },
 {
@@ -596,7 +595,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "異常",
+	"translation" : "异常",
 	"id" : 10059
 },
 {
@@ -636,7 +635,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "熱心",
+	"translation" : "热心",
 	"id" : 10063
 },
 {
@@ -696,7 +695,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "驗屍",
+	"translation" : "验尸",
 	"id" : 10069
 },
 {
@@ -706,7 +705,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "貪婪",
+	"translation" : "贪婪",
 	"id" : 10070
 },
 {
@@ -726,7 +725,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "厭惡的",
+	"translation" : "厌恶的",
 	"id" : 10072
 },
 {
@@ -746,7 +745,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "失敗的",
+	"translation" : "失败的",
 	"id" : 10074
 },
 {
@@ -756,7 +755,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "荒謬的,可笑的",
+	"translation" : "荒谬的,可笑的",
 	"id" : 10075
 },
 {
@@ -786,7 +785,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "昏亂的；腐壞的",
+	"translation" : "昏乱的；腐坏的",
 	"id" : 10078
 },
 {
@@ -796,7 +795,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "堅定不移的",
+	"translation" : "坚定不移的",
 	"id" : 10079
 },
 {
@@ -806,7 +805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "鄰接的,鄰近的",
+	"translation" : "邻接的,邻近的",
 	"id" : 10080
 },
 {
@@ -816,7 +815,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "靈巧的",
+	"translation" : "灵巧的",
 	"id" : 10081
 },
 {
@@ -826,7 +825,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "偶發的",
+	"translation" : "偶发的",
 	"id" : 10082
 },
 {
@@ -836,7 +835,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "不利的;逆的;(天氣)惡劣的",
+	"translation" : "不利的;逆的;(天气)恶劣的",
 	"id" : 10083
 },
 {
@@ -846,7 +845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "美學的,藝術",
+	"translation" : "美学的,艺术",
 	"id" : 10084
 },
 {
@@ -866,7 +865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "發紅的",
+	"translation" : "发红的",
 	"id" : 10086
 },
 {
@@ -876,7 +875,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "模棱兩可的",
+	"translation" : "模棱两可的",
 	"id" : 10087
 },
 {
@@ -886,7 +885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "有責任的",
+	"translation" : "有责任的",
 	"id" : 10088
 },
 {
@@ -916,7 +915,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "充足的;寬敞的",
+	"translation" : "充足的;宽敞的",
 	"id" : 10091
 },
 {
@@ -926,7 +925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "有生氣的；熱烈的",
+	"translation" : "有生气的；热烈的",
 	"id" : 10092
 },
 {
@@ -936,7 +935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "鼓舞生氣的；啟發的",
+	"translation" : "鼓舞生气的；启发的",
 	"id" : 10093
 },
 {
@@ -976,7 +975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "恰當的，合宜的撥給，挪用，盜用",
+	"translation" : "恰当的，合宜的拨给，挪用，盗用",
 	"id" : 10097
 },
 {
@@ -986,7 +985,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "近似的,約略的接近,近似",
+	"translation" : "近似的,约略的接近,近似",
 	"id" : 10098
 },
 {
@@ -996,7 +995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "(語言、詞彙等)古代的,已不通用的",
+	"translation" : "(语言、词汇等)古代的,已不通用的",
 	"id" : 10099
 },
 {
@@ -1006,7 +1005,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "艱鉅的,艱苦的",
+	"translation" : "艰巨的,艰苦的",
 	"id" : 10100
 },
 {
@@ -1016,7 +1015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "勤奮的",
+	"translation" : "勤奋的",
 	"id" : 10101
 },
 {
@@ -1026,7 +1025,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "大膽的",
+	"translation" : "大胆的",
 	"id" : 10102
 },
 {
@@ -1046,7 +1045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "蔚藍的",
+	"translation" : "蔚蓝的",
 	"id" : 10104
 },
 {
@@ -1056,7 +1055,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "嘮叨；說話不清",
+	"translation" : "唠叨；说话不清",
 	"id" : 10105
 },
 {
@@ -1066,7 +1065,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "背後誹謗",
+	"translation" : "背后诽谤",
 	"id" : 10106
 },
 {
@@ -1076,7 +1075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "糾纏",
+	"translation" : "纠缠",
 	"id" : 10107
 },
 {
@@ -1086,7 +1085,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "曬浴於",
+	"translation" : "晒浴于",
 	"id" : 10108
 },
 {
@@ -1106,7 +1105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "裝飾",
+	"translation" : "装饰",
 	"id" : 10110
 },
 {
@@ -1116,7 +1115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "請求，乞求懇請，行乞",
+	"translation" : "请求，乞求恳请，行乞",
 	"id" : 10111
 },
 {
@@ -1126,7 +1125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "引起；產生",
+	"translation" : "引起；产生",
 	"id" : 10112
 },
 {
@@ -1136,7 +1135,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "吝嗇，羡慕",
+	"translation" : "吝啬，羡慕",
 	"id" : 10113
 },
 {
@@ -1146,7 +1145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "欺騙；消遣",
+	"translation" : "欺骗；消遣",
 	"id" : 10114
 },
 {
@@ -1156,7 +1155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "與…不符合；掩飾",
+	"translation" : "与…不符合；掩饰",
 	"id" : 10115
 },
 {
@@ -1166,7 +1165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使喪失(親人)",
+	"translation" : "使丧失(亲人)",
 	"id" : 10116
 },
 {
@@ -1176,7 +1175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "包圍",
+	"translation" : "包围",
 	"id" : 10117
 },
 {
@@ -1186,7 +1185,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "圍",
+	"translation" : "围",
 	"id" : 10118
 },
 {
@@ -1196,7 +1195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "指出,證明,表示,預示",
+	"translation" : "指出,证明,表示,预示",
 	"id" : 10119
 },
 {
@@ -1206,7 +1205,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "預示",
+	"translation" : "预示",
 	"id" : 10120
 },
 {
@@ -1216,7 +1215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "直率的嚇唬",
+	"translation" : "直率的吓唬",
 	"id" : 10121
 },
 {
@@ -1226,7 +1225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "用以夾住或支撐的東西;拉條;撐臂;背帶;支住;奮起振作",
+	"translation" : "用以夹住或支撑的东西;拉条;撑臂;背带;支住;奋起振作",
 	"id" : 10122
 },
 {
@@ -1236,7 +1235,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "揮舞",
+	"translation" : "挥舞",
 	"id" : 10123
 },
 {
@@ -1246,7 +1245,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "爭吵",
+	"translation" : "争吵",
 	"id" : 10124
 },
 {
@@ -1256,7 +1255,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "釀造,調製",
+	"translation" : "酿造,调制",
 	"id" : 10125
 },
 {
@@ -1266,7 +1265,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./v.",
-	"translation" : "青腫,受傷,傷痕",
+	"translation" : "青肿,受伤,伤痕",
 	"id" : 10126
 },
 {
@@ -1276,7 +1275,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "撞人,頂撞",
+	"translation" : "撞人,顶撞",
 	"id" : 10127
 },
 {
@@ -1286,7 +1285,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./vt.",
-	"translation" : "路障;街壘;擋牆;設柵防守",
+	"translation" : "路障;街垒;挡墙;设栅防守",
 	"id" : 10128
 },
 {
@@ -1296,7 +1295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "臉盆，盆；盆地，流域，內海",
+	"translation" : "脸盆，盆；盆地，流域，内海",
 	"id" : 10129
 },
 {
@@ -1306,7 +1305,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "飲料(汽水、茶、酒等)",
+	"translation" : "饮料(汽水、茶、酒等)",
 	"id" : 10130
 },
 {
@@ -1316,7 +1315,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "固執",
+	"translation" : "固执",
 	"id" : 10131
 },
 {
@@ -1326,7 +1325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "虛張的勇氣",
+	"translation" : "虚张的勇气",
 	"id" : 10132
 },
 {
@@ -1336,7 +1335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "(杯、碗的)邊",
+	"translation" : "(杯、碗的)边",
 	"id" : 10133
 },
 {
@@ -1346,7 +1345,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "惡霸,暴徒;威嚇,欺侮",
+	"translation" : "恶霸,暴徒;威吓,欺侮",
 	"id" : 10134
 },
 {
@@ -1356,7 +1355,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "禿頭的,單調的",
+	"translation" : "秃头的,单调的",
 	"id" : 10135
 },
 {
@@ -1366,7 +1365,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "溫和的",
+	"translation" : "温和的",
 	"id" : 10136
 },
 {
@@ -1376,7 +1375,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "交戰的；好爭吵的",
+	"translation" : "交战的；好争吵的",
 	"id" : 10137
 },
 {
@@ -1386,7 +1385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "有益的，有用的，有好處的",
+	"translation" : "有益的，有用的，有好处的",
 	"id" : 10138
 },
 {
@@ -1396,7 +1395,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "黯淡的;(天氣)陰冷的;淒涼的",
+	"translation" : "黯淡的;(天气)阴冷的;凄凉的",
 	"id" : 10139
 },
 {
@@ -1416,7 +1415,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "輕快的;興隆的;寒冷而清新的",
+	"translation" : "轻快的;兴隆的;寒冷而清新的",
 	"id" : 10141
 },
 {
@@ -1426,7 +1425,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "野蠻的,殘忍的",
+	"translation" : "野蛮的,残忍的",
 	"id" : 10142
 },
 {
@@ -1446,7 +1445,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "傾覆",
+	"translation" : "倾覆",
 	"id" : 10144
 },
 {
@@ -1466,7 +1465,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "撫愛",
+	"translation" : "抚爱",
 	"id" : 10146
 },
 {
@@ -1476,7 +1475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "斥責",
+	"translation" : "斥责",
 	"id" : 10147
 },
 {
@@ -1496,7 +1495,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "愛護,抱有(希望);懷有(情感)",
+	"translation" : "爱护,抱有(希望);怀有(情感)",
 	"id" : 10149
 },
 {
@@ -1506,7 +1505,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "責罵",
+	"translation" : "责骂",
 	"id" : 10150
 },
 {
@@ -1516,7 +1515,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "發出啾啾聲",
+	"translation" : "发出啾啾声",
 	"id" : 10151
 },
 {
@@ -1526,7 +1525,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "悶塞,壓抑,悶死",
+	"translation" : "闷塞,压抑,闷死",
 	"id" : 10152
 },
 {
@@ -1546,7 +1545,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "輕聲地笑",
+	"translation" : "轻声地笑",
 	"id" : 10154
 },
 {
@@ -1556,7 +1555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "在…周圍畫線；限制",
+	"translation" : "在…周围画线；限制",
 	"id" : 10155
 },
 {
@@ -1566,7 +1565,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "欺詐；以計勝過",
+	"translation" : "欺诈；以计胜过",
 	"id" : 10156
 },
 {
@@ -1576,7 +1575,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "喧鬧",
+	"translation" : "喧闹",
 	"id" : 10157
 },
 {
@@ -1586,7 +1585,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "劈開,剁開",
+	"translation" : "劈开,剁开",
 	"id" : 10158
 },
 {
@@ -1596,7 +1595,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "釘牢；揪住",
+	"translation" : "钉牢；揪住",
 	"id" : 10159
 },
 {
@@ -1606,7 +1605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "回形針;夾子;剪;修剪;猛打;剪短;猛擊,痛打",
+	"translation" : "回形针;夹子;剪;修剪;猛打;剪短;猛击,痛打",
 	"id" : 10160
 },
 {
@@ -1626,7 +1625,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "抓住,攫住;抓,攫,控制;離合器",
+	"translation" : "抓住,攫住;抓,攫,控制;离合器",
 	"id" : 10162
 },
 {
@@ -1636,7 +1635,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "嬌養；溺愛,悉心照料",
+	"translation" : "娇养；溺爱,悉心照料",
 	"id" : 10163
 },
 {
@@ -1646,7 +1645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "欺騙",
+	"translation" : "欺骗",
 	"id" : 10164
 },
 {
@@ -1666,7 +1665,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "硬幣，貨幣鑄造(硬幣)，創造(新詞)",
+	"translation" : "硬币，货币铸造(硬币)，创造(新词)",
 	"id" : 10166
 },
 {
@@ -1676,7 +1675,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "比較",
+	"translation" : "比较",
 	"id" : 10167
 },
 {
@@ -1706,7 +1705,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "遵從",
+	"translation" : "遵从",
 	"id" : 10170
 },
 {
@@ -1716,7 +1715,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "相稱，適合",
+	"translation" : "相称，适合",
 	"id" : 10171
 },
 {
@@ -1736,7 +1735,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "想出(主意);懷孕",
+	"translation" : "想出(主意);怀孕",
 	"id" : 10173
 },
 {
@@ -1746,7 +1745,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "調合;編造(故事等)",
+	"translation" : "调合;编造(故事等)",
 	"id" : 10174
 },
 {
@@ -1756,7 +1755,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "同意；同時發生",
+	"translation" : "同意；同时发生",
 	"id" : 10175
 },
 {
@@ -1766,7 +1765,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "寬恕",
+	"translation" : "宽恕",
 	"id" : 10176
 },
 {
@@ -1776,7 +1775,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "聯合；同盟,同夥",
+	"translation" : "联合；同盟,同伙",
 	"id" : 10177
 },
 {
@@ -1806,7 +1805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "獻祭",
+	"translation" : "献祭",
 	"id" : 10180
 },
 {
@@ -1816,7 +1815,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "運送,交付",
+	"translation" : "运送,交付",
 	"id" : 10181
 },
 {
@@ -1836,7 +1835,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "陰謀；密謀,巧合,共同導致",
+	"translation" : "阴谋；密谋,巧合,共同导致",
 	"id" : 10183
 },
 {
@@ -1846,7 +1845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "解釋",
+	"translation" : "解释",
 	"id" : 10184
 },
 {
@@ -1856,7 +1855,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "弄髒,污染",
+	"translation" : "弄脏,污染",
 	"id" : 10185
 },
 {
@@ -1866,7 +1865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "蔑視",
+	"translation" : "蔑视",
 	"id" : 10186
 },
 {
@@ -1876,7 +1875,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "仔細考慮;注視;打算;預計",
+	"translation" : "仔细考虑;注视;打算;预计",
 	"id" : 10187
 },
 {
@@ -1886,7 +1885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "反駁,否認;同…矛盾",
+	"translation" : "反驳,否认;同…矛盾",
 	"id" : 10188
 },
 {
@@ -1896,7 +1895,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "辯駁",
+	"translation" : "辩驳",
 	"id" : 10189
 },
 {
@@ -1906,7 +1905,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "召集,召喚,集合",
+	"translation" : "召集,召唤,集合",
 	"id" : 10190
 },
 {
@@ -1916,7 +1915,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "(在形式、狀態、用途等方面)(使)改變",
+	"translation" : "(在形式、状态、用途等方面)(使)改变",
 	"id" : 10191
 },
 {
@@ -1936,7 +1935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "護航",
+	"translation" : "护航",
 	"id" : 10193
 },
 {
@@ -1946,7 +1945,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "籠子,拘禁",
+	"translation" : "笼子,拘禁",
 	"id" : 10194
 },
 {
@@ -1956,7 +1955,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "畏縮",
+	"translation" : "畏缩",
 	"id" : 10195
 },
 {
@@ -1976,7 +1975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "碰撞,墜落碰撞",
+	"translation" : "碰撞,坠落碰撞",
 	"id" : 10197
 },
 {
@@ -1986,7 +1985,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使發狂",
+	"translation" : "使发狂",
 	"id" : 10198
 },
 {
@@ -1996,7 +1995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "把…弄皺,滿是皺痕;壓碎;崩潰",
+	"translation" : "把…弄皱,满是皱痕;压碎;崩溃",
 	"id" : 10199
 },
 {
@@ -2006,7 +2005,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "截短,削減",
+	"translation" : "截短,削减",
 	"id" : 10200
 },
 {
@@ -2016,7 +2015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "陰謀",
+	"translation" : "阴谋",
 	"id" : 10201
 },
 {
@@ -2046,7 +2045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "屍體；殘骸",
+	"translation" : "尸体；残骸",
 	"id" : 10204
 },
 {
@@ -2076,7 +2075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "傷亡人員",
+	"translation" : "伤亡人员",
 	"id" : 10207
 },
 {
@@ -2086,7 +2085,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "洪水,突然降臨的大災難",
+	"translation" : "洪水,突然降临的大灾难",
 	"id" : 10208
 },
 {
@@ -2096,7 +2095,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "異常的災禍",
+	"translation" : "异常的灾祸",
 	"id" : 10209
 },
 {
@@ -2106,7 +2105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./vt.",
-	"translation" : "審查,審查員;刪改",
+	"translation" : "审查,审查员;删改",
 	"id" : 10210
 },
 {
@@ -2116,7 +2115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "割讓",
+	"translation" : "割让",
 	"id" : 10211
 },
 {
@@ -2126,7 +2125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "斷層,裂口;巨大分歧,差別",
+	"translation" : "断层,裂口;巨大分歧,差别",
 	"id" : 10212
 },
 {
@@ -2136,7 +2135,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "pl.",
-	"translation" : "日常工作；()家庭雜務",
+	"translation" : "日常工作；()家庭杂务",
 	"id" : 10213
 },
 {
@@ -2146,7 +2145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "室友,與某人成為好友",
+	"translation" : "室友,与某人成为好友",
 	"id" : 10214
 },
 {
@@ -2156,7 +2155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "一串,一簇;群集;叢生",
+	"translation" : "一串,一簇;群集;丛生",
 	"id" : 10215
 },
 {
@@ -2166,7 +2165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "零亂",
+	"translation" : "零乱",
 	"id" : 10216
 },
 {
@@ -2176,7 +2175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "認識",
+	"translation" : "认识",
 	"id" : 10217
 },
 {
@@ -2186,7 +2185,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "附著(力)",
+	"translation" : "附着(力)",
 	"id" : 10218
 },
 {
@@ -2196,7 +2195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "共謀",
+	"translation" : "共谋",
 	"id" : 10219
 },
 {
@@ -2206,7 +2205,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "小雄駒",
+	"translation" : "小雄驹",
 	"id" : 10220
 },
 {
@@ -2216,7 +2215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "禮讓",
+	"translation" : "礼让",
 	"id" : 10221
 },
 {
@@ -2226,7 +2225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a./n.",
-	"translation" : "緊密的,緊湊的;合同",
+	"translation" : "紧密的,紧凑的;合同",
 	"id" : 10222
 },
 {
@@ -2246,7 +2245,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "調味品",
+	"translation" : "调味品",
 	"id" : 10224
 },
 {
@@ -2266,7 +2265,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "默許",
+	"translation" : "默许",
 	"id" : 10226
 },
 {
@@ -2296,7 +2295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "自製",
+	"translation" : "自制",
 	"id" : 10229
 },
 {
@@ -2306,7 +2305,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "(不動產等的)轉讓，讓與；轉讓證書",
+	"translation" : "(不动产等的)转让，让与；转让证书",
 	"id" : 10230
 },
 {
@@ -2316,7 +2315,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "小海灣",
+	"translation" : "小海湾",
 	"id" : 10231
 },
 {
@@ -2326,7 +2325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "小灣；小溪",
+	"translation" : "小湾；小溪",
 	"id" : 10232
 },
 {
@@ -2336,7 +2335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "烹調,菜餚",
+	"translation" : "烹调,菜肴",
 	"id" : 10233
 },
 {
@@ -2346,7 +2345,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "頂點",
+	"translation" : "顶点",
 	"id" : 10234
 },
 {
@@ -2356,7 +2355,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "好奇心；稀奇的東西，古董，古玩",
+	"translation" : "好奇心；稀奇的东西，古董，古玩",
 	"id" : 10235
 },
 {
@@ -2366,7 +2365,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "無情的",
+	"translation" : "无情的",
 	"id" : 10236
 },
 {
@@ -2386,7 +2385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "反覆無常的",
+	"translation" : "反复无常的",
 	"id" : 10238
 },
 {
@@ -2406,7 +2405,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "主要的,基本的;深紅色;基數",
+	"translation" : "主要的,基本的;深红色;基数",
 	"id" : 10240
 },
 {
@@ -2416,7 +2415,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "肉體的",
+	"translation" : "肉体的",
 	"id" : 10241
 },
 {
@@ -2436,7 +2435,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "有道德的;善良的;貞潔的;簡樸的",
+	"translation" : "有道德的;善良的;贞洁的;简朴的",
 	"id" : 10243
 },
 {
@@ -2456,7 +2455,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "吵鬧的",
+	"translation" : "吵闹的",
 	"id" : 10245
 },
 {
@@ -2486,7 +2485,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "稱讚的；免費的",
+	"translation" : "称赞的；免费的",
 	"id" : 10248
 },
 {
@@ -2496,7 +2495,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "驚慌失措的；困惑的",
+	"translation" : "惊慌失措的；困惑的",
 	"id" : 10249
 },
 {
@@ -2526,7 +2525,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "認真的",
+	"translation" : "认真的",
 	"id" : 10252
 },
 {
@@ -2536,7 +2535,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "明顯的,引人注目的",
+	"translation" : "明显的,引人注目的",
 	"id" : 10253
 },
 {
@@ -2546,7 +2545,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "慣例的,常規的,習俗的,傳統的",
+	"translation" : "惯例的,常规的,习俗的,传统的",
 	"id" : 10254
 },
 {
@@ -2556,7 +2555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "貪心的",
+	"translation" : "贪心的",
 	"id" : 10255
 },
 {
@@ -2566,7 +2565,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "舒適的",
+	"translation" : "舒适的",
 	"id" : 10256
 },
 {
@@ -2576,7 +2575,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "愚蠢的,粗魯的",
+	"translation" : "愚蠢的,粗鲁的",
 	"id" : 10257
 },
 {
@@ -2586,7 +2585,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "脆的,易碎的;霜凍的;乾脆的;油炸馬鈴薯片;(使)發脆",
+	"translation" : "脆的,易碎的;霜冻的;干脆的;油炸马铃薯片;(使)发脆",
 	"id" : 10258
 },
 {
@@ -2596,7 +2595,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "穿過,使交叉",
+	"translation" : "穿过,使交叉",
 	"id" : 10259
 },
 {
@@ -2606,7 +2605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "簡陋的；天然的，未加工的；粗魯(俗)的",
+	"translation" : "简陋的；天然的，未加工的；粗鲁(俗)的",
 	"id" : 10260
 },
 {
@@ -2626,7 +2625,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "冷嘲熱諷的,憤世嫉俗的",
+	"translation" : "冷嘲热讽的,愤世嫉俗的",
 	"id" : 10262
 },
 {
@@ -2636,7 +2635,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "荒廢(時日)",
+	"translation" : "荒废(时日)",
 	"id" : 10263
 },
 {
@@ -2646,7 +2645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "搖晃",
+	"translation" : "摇晃",
 	"id" : 10264
 },
 {
@@ -2656,7 +2655,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "標,鏢;投擲;急衝",
+	"translation" : "标,镖;投掷;急冲",
 	"id" : 10265
 },
 {
@@ -2666,7 +2665,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "遊蕩",
+	"translation" : "游荡",
 	"id" : 10266
 },
 {
@@ -2686,7 +2685,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使墮落",
+	"translation" : "使堕落",
 	"id" : 10268
 },
 {
@@ -2706,7 +2705,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "遣責",
+	"translation" : "遣责",
 	"id" : 10270
 },
 {
@@ -2716,7 +2715,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "奉獻,供奉;題獻(著作)",
+	"translation" : "奉献,供奉;题献(著作)",
 	"id" : 10271
 },
 {
@@ -2726,7 +2725,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "傷毀(外表或美觀)",
+	"translation" : "伤毁(外表或美观)",
 	"id" : 10272
 },
 {
@@ -2736,7 +2735,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "誹謗",
+	"translation" : "诽谤",
 	"id" : 10273
 },
 {
@@ -2746,7 +2745,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "弄髒,污損",
+	"translation" : "弄脏,污损",
 	"id" : 10274
 },
 {
@@ -2766,7 +2765,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使變形",
+	"translation" : "使变形",
 	"id" : 10276
 },
 {
@@ -2776,7 +2775,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "欺詐(個人或公司財產)",
+	"translation" : "欺诈(个人或公司财产)",
 	"id" : 10277
 },
 {
@@ -2786,7 +2785,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "墮落(的),頽廢(的);墮落,退化",
+	"translation" : "堕落(的),颓废(的);堕落,退化",
 	"id" : 10278
 },
 {
@@ -2796,7 +2795,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "貶低;惡化;分解,降解",
+	"translation" : "贬低;恶化;分解,降解",
 	"id" : 10279
 },
 {
@@ -2806,7 +2805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "欺騙",
+	"translation" : "欺骗",
 	"id" : 10280
 },
 {
@@ -2816,7 +2815,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "反對",
+	"translation" : "反对",
 	"id" : 10281
 },
 {
@@ -2826,7 +2825,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "描繪,描寫",
+	"translation" : "描绘,描写",
 	"id" : 10282
 },
 {
@@ -2836,7 +2835,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "譴責,強烈反對",
+	"translation" : "谴责,强烈反对",
 	"id" : 10283
 },
 {
@@ -2846,7 +2845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "免職；宣誓作證",
+	"translation" : "免职；宣誓作证",
 	"id" : 10284
 },
 {
@@ -2856,7 +2855,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不贊成,反對",
+	"translation" : "不赞成,反对",
 	"id" : 10285
 },
 {
@@ -2866,7 +2865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使錯亂",
+	"translation" : "使错乱",
 	"id" : 10286
 },
 {
@@ -2886,7 +2885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "把…定名為,指派,標出",
+	"translation" : "把…定名为,指派,标出",
 	"id" : 10288
 },
 {
@@ -2896,7 +2895,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "派遣;發送;匆匆做完",
+	"translation" : "派遣;发送;匆匆做完",
 	"id" : 10289
 },
 {
@@ -2906,7 +2905,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "搶劫",
+	"translation" : "抢劫",
 	"id" : 10290
 },
 {
@@ -2916,7 +2915,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "指定；命運注定",
+	"translation" : "指定；命运注定",
 	"id" : 10291
 },
 {
@@ -2926,7 +2925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使分開,拆卸;派遣",
+	"translation" : "使分开,拆卸;派遣",
 	"id" : 10292
 },
 {
@@ -2936,7 +2935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "耽擱,延遲;拘留,扣押",
+	"translation" : "耽搁,延迟;拘留,扣押",
 	"id" : 10293
 },
 {
@@ -2946,7 +2945,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "痛恨,憎惡",
+	"translation" : "痛恨,憎恶",
 	"id" : 10294
 },
 {
@@ -2956,7 +2955,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "廢(君)",
+	"translation" : "废(君)",
 	"id" : 10295
 },
 {
@@ -2966,7 +2965,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "破壞,蹂躪",
+	"translation" : "破坏,蹂躏",
 	"id" : 10296
 },
 {
@@ -2976,7 +2975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "偏離,背離",
+	"translation" : "偏离,背离",
 	"id" : 10297
 },
 {
@@ -2986,7 +2985,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使有尊嚴",
+	"translation" : "使有尊严",
 	"id" : 10298
 },
 {
@@ -2996,7 +2995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "離題",
+	"translation" : "离题",
 	"id" : 10299
 },
 {
@@ -3006,7 +3005,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "使膨脹",
+	"translation" : "使膨胀",
 	"id" : 10300
 },
 {
@@ -3016,7 +3015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "使變淡,稀釋;稀釋的",
+	"translation" : "使变淡,稀释;稀释的",
 	"id" : 10301
 },
 {
@@ -3026,7 +3025,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "減小,減少,縮小",
+	"translation" : "减小,减少,缩小",
 	"id" : 10302
 },
 {
@@ -3036,7 +3035,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不允；拒絶",
+	"translation" : "不允；拒绝",
 	"id" : 10303
 },
 {
@@ -3046,7 +3045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "解除武裝,緩和放下武器",
+	"translation" : "解除武装,缓和放下武器",
 	"id" : 10304
 },
 {
@@ -3056,7 +3055,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "擾亂",
+	"translation" : "扰乱",
 	"id" : 10305
 },
 {
@@ -3076,7 +3075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "否認",
+	"translation" : "否认",
 	"id" : 10307
 },
 {
@@ -3086,7 +3085,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "挫敗；使混亂",
+	"translation" : "挫败；使混乱",
 	"id" : 10308
 },
 {
@@ -3106,7 +3105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使倉皇失措",
+	"translation" : "使仓皇失措",
 	"id" : 10310
 },
 {
@@ -3116,7 +3115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "否認,斷絶關係",
+	"translation" : "否认,断绝关系",
 	"id" : 10311
 },
 {
@@ -3126,7 +3125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "貶低",
+	"translation" : "贬低",
 	"id" : 10312
 },
 {
@@ -3156,7 +3155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使分離",
+	"translation" : "使分离",
 	"id" : 10315
 },
 {
@@ -3176,7 +3175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "多樣化",
+	"translation" : "多样化",
 	"id" : 10317
 },
 {
@@ -3186,7 +3185,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "洩漏",
+	"translation" : "泄漏",
 	"id" : 10318
 },
 {
@@ -3196,7 +3195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "躲閃,躲開;搪塞;逃避",
+	"translation" : "躲闪,躲开;搪塞;逃避",
 	"id" : 10319
 },
 {
@@ -3216,7 +3215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "下細雨",
+	"translation" : "下细雨",
 	"id" : 10321
 },
 {
@@ -3236,7 +3235,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "衰落,頽廢,墮落",
+	"translation" : "衰落,颓废,堕落",
 	"id" : 10323
 },
 {
@@ -3246,7 +3245,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "下傾的斜面",
+	"translation" : "下倾的斜面",
 	"id" : 10324
 },
 {
@@ -3256,7 +3255,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "&拖欠，違約，欠缺，默認，預設",
+	"translation" : "&拖欠，违约，欠缺，默认，缺省",
 	"id" : 10325
 },
 {
@@ -3296,7 +3295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "描寫",
+	"translation" : "描写",
 	"id" : 10329
 },
 {
@@ -3316,7 +3315,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "獸穴",
+	"translation" : "兽穴",
 	"id" : 10331
 },
 {
@@ -3326,7 +3325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "證明；革職",
+	"translation" : "证明；革职",
 	"id" : 10332
 },
 {
@@ -3336,7 +3335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "誹謗",
+	"translation" : "诽谤",
 	"id" : 10333
 },
 {
@@ -3346,7 +3345,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "損害",
+	"translation" : "损害",
 	"id" : 10334
 },
 {
@@ -3366,7 +3365,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "飲食,食物",
+	"translation" : "饮食,食物",
 	"id" : 10336
 },
 {
@@ -3376,7 +3375,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "流傳；擴散",
+	"translation" : "流传；扩散",
 	"id" : 10337
 },
 {
@@ -3386,7 +3385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "進退兩難的境地,困境",
+	"translation" : "进退两难的境地,困境",
 	"id" : 10338
 },
 {
@@ -3396,7 +3395,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "謹慎；隨意處理",
+	"translation" : "谨慎；随意处理",
 	"id" : 10339
 },
 {
@@ -3406,7 +3405,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "衝突；紛爭",
+	"translation" : "冲突；纷争",
 	"id" : 10340
 },
 {
@@ -3416,7 +3415,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不調和",
+	"translation" : "不调和",
 	"id" : 10341
 },
 {
@@ -3426,7 +3425,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "給予者",
+	"translation" : "给予者",
 	"id" : 10342
 },
 {
@@ -3456,7 +3455,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "陰濕的",
+	"translation" : "阴湿的",
 	"id" : 10345
 },
 {
@@ -3476,7 +3475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "騙人的",
+	"translation" : "骗人的",
 	"id" : 10347
 },
 {
@@ -3486,7 +3485,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "落葉的",
+	"translation" : "落叶的",
 	"id" : 10348
 },
 {
@@ -3526,7 +3525,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "沮喪的",
+	"translation" : "沮丧的",
 	"id" : 10352
 },
 {
@@ -3556,7 +3555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "迂迴的；不正直的",
+	"translation" : "迂回的；不正直的",
 	"id" : 10355
 },
 {
@@ -3576,7 +3575,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "虔誠的",
+	"translation" : "虔诚的",
 	"id" : 10357
 },
 {
@@ -3586,7 +3585,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "機靈的",
+	"translation" : "机灵的",
 	"id" : 10358
 },
 {
@@ -3606,7 +3605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "髒的,邋遢的",
+	"translation" : "脏的,邋遢的",
 	"id" : 10360
 },
 {
@@ -3616,7 +3615,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "謹慎的,思慮兩全的",
+	"translation" : "谨慎的,思虑两全的",
 	"id" : 10361
 },
 {
@@ -3626,7 +3625,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "分離的,不相關聯的",
+	"translation" : "分离的,不相关联的",
 	"id" : 10362
 },
 {
@@ -3636,7 +3635,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "憂鬱的",
+	"translation" : "忧郁的",
 	"id" : 10363
 },
 {
@@ -3646,7 +3645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "溫馴的",
+	"translation" : "温驯的",
 	"id" : 10364
 },
 {
@@ -3666,7 +3665,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "休眠的,暫死的",
+	"translation" : "休眠的,暂死的",
 	"id" : 10366
 },
 {
@@ -3686,7 +3685,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "沮喪的",
+	"translation" : "沮丧的",
 	"id" : 10368
 },
 {
@@ -3716,7 +3715,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "教誨",
+	"translation" : "教诲",
 	"id" : 10371
 },
 {
@@ -3726,7 +3725,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "引出；推斷",
+	"translation" : "引出；推断",
 	"id" : 10372
 },
 {
@@ -3746,7 +3745,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使實現",
+	"translation" : "使实现",
 	"id" : 10374
 },
 {
@@ -3756,7 +3755,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "沸騰；冒泡",
+	"translation" : "沸腾；冒泡",
 	"id" : 10375
 },
 {
@@ -3766,7 +3765,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "開花",
+	"translation" : "开花",
 	"id" : 10376
 },
 {
@@ -3776,7 +3775,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "流出；散佈",
+	"translation" : "流出；散布",
 	"id" : 10377
 },
 {
@@ -3786,7 +3785,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "噴射,排出;驅逐",
+	"translation" : "喷射,排出;驱逐",
 	"id" : 10378
 },
 {
@@ -3796,7 +3795,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "(時間)流逝",
+	"translation" : "(时间)流逝",
 	"id" : 10379
 },
 {
@@ -3826,7 +3825,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "銘記；使彌香氣",
+	"translation" : "铭记；使弥香气",
 	"id" : 10382
 },
 {
@@ -3836,7 +3835,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "裝飾",
+	"translation" : "装饰",
 	"id" : 10383
 },
 {
@@ -3846,7 +3845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "貪污，盜用；挪用(公款；公物等)",
+	"translation" : "贪污，盗用；挪用(公款；公物等)",
 	"id" : 10384
 },
 {
@@ -3866,7 +3865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "包圍；納於懷中,珍愛",
+	"translation" : "包围；纳于怀中,珍爱",
 	"id" : 10386
 },
 {
@@ -3876,7 +3875,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "修訂",
+	"translation" : "修订",
 	"id" : 10387
 },
 {
@@ -3886,7 +3885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "竭立倣傚",
+	"translation" : "竭立仿效",
 	"id" : 10388
 },
 {
@@ -3896,7 +3895,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "通過(法案等)，扮演角色",
+	"translation" : "通过(法案等)，扮演角色",
 	"id" : 10389
 },
 {
@@ -3906,7 +3905,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "包圍，包含或包括某事物",
+	"translation" : "包围，包含或包括某事物",
 	"id" : 10390
 },
 {
@@ -3926,7 +3925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "(支票、匯票等)背書，背署；批註；同意",
+	"translation" : "(支票、汇票等)背书，背署；批注；同意",
 	"id" : 10392
 },
 {
@@ -3936,7 +3935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "賦予",
+	"translation" : "赋予",
 	"id" : 10393
 },
 {
@@ -3946,7 +3945,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "給與精力；用力",
+	"translation" : "给与精力；用力",
 	"id" : 10394
 },
 {
@@ -3966,7 +3965,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "產生",
+	"translation" : "产生",
 	"id" : 10396
 },
 {
@@ -3976,7 +3975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "(使)入伍；爭取",
+	"translation" : "(使)入伍；争取",
 	"id" : 10397
 },
 {
@@ -4016,7 +4015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "迷惑；使服從",
+	"translation" : "迷惑；使服从",
 	"id" : 10401
 },
 {
@@ -4026,7 +4025,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "誘使",
+	"translation" : "诱使",
 	"id" : 10402
 },
 {
@@ -4036,7 +4035,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使入陷阱",
+	"translation" : "使入陷井",
 	"id" : 10403
 },
 {
@@ -4046,7 +4045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "列舉",
+	"translation" : "列举",
 	"id" : 10404
 },
 {
@@ -4056,7 +4055,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使相等；視為同等",
+	"translation" : "使相等；视为同等",
 	"id" : 10405
 },
 {
@@ -4066,7 +4065,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "蝕；腐蝕",
+	"translation" : "蚀；腐蚀",
 	"id" : 10406
 },
 {
@@ -4076,7 +4075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "避開",
+	"translation" : "避开",
 	"id" : 10407
 },
 {
@@ -4096,7 +4095,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "引起,喚起",
+	"translation" : "引起,唤起",
 	"id" : 10409
 },
 {
@@ -4106,7 +4105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "辯白；使無罪",
+	"translation" : "辩白；使无罪",
 	"id" : 10410
 },
 {
@@ -4116,7 +4115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "從墓中掘出",
+	"translation" : "从墓中掘出",
 	"id" : 10411
 },
 {
@@ -4126,7 +4125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "減輕",
+	"translation" : "减轻",
 	"id" : 10412
 },
 {
@@ -4136,7 +4135,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "頌揚",
+	"translation" : "颂扬",
 	"id" : 10413
 },
 {
@@ -4146,7 +4145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "強取,勒索",
+	"translation" : "强取,勒索",
 	"id" : 10414
 },
 {
@@ -4156,7 +4155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使解脫",
+	"translation" : "使解脱",
 	"id" : 10415
 },
 {
@@ -4166,7 +4165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "擠出；逐出",
+	"translation" : "挤出；逐出",
 	"id" : 10416
 },
 {
@@ -4176,7 +4175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "滲出；流出",
+	"translation" : "渗出；流出",
 	"id" : 10417
 },
 {
@@ -4186,7 +4185,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "榮譽；輝煌的成就",
+	"translation" : "荣誉；辉煌的成就",
 	"id" : 10418
 },
 {
@@ -4226,7 +4225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "厚顏無恥",
+	"translation" : "厚颜无耻",
 	"id" : 10422
 },
 {
@@ -4236,7 +4235,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "自負",
+	"translation" : "自负",
 	"id" : 10423
 },
 {
@@ -4266,7 +4265,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "雄辯",
+	"translation" : "雄辩",
 	"id" : 10426
 },
 {
@@ -4276,7 +4275,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "報酬",
+	"translation" : "报酬",
 	"id" : 10427
 },
 {
@@ -4286,7 +4285,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "謎",
+	"translation" : "谜",
 	"id" : 10428
 },
 {
@@ -4296,7 +4295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "敵意",
+	"translation" : "敌意",
 	"id" : 10429
 },
 {
@@ -4316,7 +4315,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "殘暴,巨大,極大,窮凶極惡",
+	"translation" : "残暴,巨大,极大,穷凶极恶",
 	"id" : 10431
 },
 {
@@ -4326,7 +4325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "存在,實體",
+	"translation" : "存在,实体",
 	"id" : 10432
 },
 {
@@ -4336,7 +4335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "一系列事件中的一個事件",
+	"translation" : "一系列事件中的一个事件",
 	"id" : 10433
 },
 {
@@ -4346,7 +4345,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "頌詞，頌歌",
+	"translation" : "颂词，颂歌",
 	"id" : 10434
 },
 {
@@ -4356,7 +4355,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "悅耳之音",
+	"translation" : "悦耳之音",
 	"id" : 10435
 },
 {
@@ -4366,7 +4365,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "逃避，偷漏(稅)，迴避真相的說法，藉口",
+	"translation" : "逃避，偷漏(税)，回避真相的说法，借口",
 	"id" : 10436
 },
 {
@@ -4386,7 +4385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "大批離去",
+	"translation" : "大批离去",
 	"id" : 10438
 },
 {
@@ -4396,7 +4395,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "開拓，開採，剝削,利用，開發",
+	"translation" : "开拓，开采，剥削,利用，开发",
 	"id" : 10439
 },
 {
@@ -4406,7 +4405,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./a.",
-	"translation" : "古怪(的),偏執(的);不同心(的)",
+	"translation" : "古怪(的),偏执(的);不同心(的)",
 	"id" : 10440
 },
 {
@@ -4456,7 +4455,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "古怪的,反覆無常的,不穩定的",
+	"translation" : "古怪的,反复无常的,不稳定的",
 	"id" : 10445
 },
 {
@@ -4466,7 +4465,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "錯誤的,不正確的",
+	"translation" : "错误的,不正确的",
 	"id" : 10446
 },
 {
@@ -4476,7 +4475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "博學的",
+	"translation" : "博学的",
 	"id" : 10447
 },
 {
@@ -4486,7 +4485,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "必要的,本質的",
+	"translation" : "必要的,本质的",
 	"id" : 10448
 },
 {
@@ -4496,7 +4495,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "可估計的,值得尊敬的",
+	"translation" : "可估计的,值得尊敬的",
 	"id" : 10449
 },
 {
@@ -4506,7 +4505,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "種族的,人種學的",
+	"translation" : "种族的,人种学的",
 	"id" : 10450
 },
 {
@@ -4516,7 +4515,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "易激動的",
+	"translation" : "易激动的",
 	"id" : 10451
 },
 {
@@ -4526,7 +4525,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "有用的,有利的;緊急的辦法,權宜之計",
+	"translation" : "有用的,有利的;紧急的办法,权宜之计",
 	"id" : 10452
 },
 {
@@ -4546,7 +4545,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "優美的,精巧的",
+	"translation" : "优美的,精巧的",
 	"id" : 10454
 },
 {
@@ -4556,7 +4555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "現存的",
+	"translation" : "现存的",
 	"id" : 10455
 },
 {
@@ -4566,7 +4565,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "巨大的；嚴重的；廣闊的；廣大的",
+	"translation" : "巨大的；严重的；广阔的；广大的",
 	"id" : 10456
 },
 {
@@ -4576,7 +4575,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "狂歡的",
+	"translation" : "狂欢的",
 	"id" : 10457
 },
 {
@@ -4586,7 +4585,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "製造；捏造",
+	"translation" : "制造；捏造",
 	"id" : 10458
 },
 {
@@ -4596,7 +4595,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "蹣跚;(聲音)發抖;支吾",
+	"translation" : "蹒跚;(声音)发抖;支吾",
 	"id" : 10459
 },
 {
@@ -4606,7 +4605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使挨餓",
+	"translation" : "使挨饿",
 	"id" : 10460
 },
 {
@@ -4616,7 +4615,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "假裝",
+	"translation" : "假装",
 	"id" : 10461
 },
 {
@@ -4636,7 +4635,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "膿瘡;(怨恨等)鬱積,惡化",
+	"translation" : "脓疮;(怨恨等)郁积,恶化",
 	"id" : 10463
 },
 {
@@ -4646,7 +4645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "慶祝",
+	"translation" : "庆祝",
 	"id" : 10464
 },
 {
@@ -4656,7 +4655,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./vt.",
-	"translation" : "腳鐐,束縛",
+	"translation" : "脚镣,束缚",
 	"id" : 10465
 },
 {
@@ -4676,7 +4675,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v./n.",
-	"translation" : "熊熊燃燒,突然燃燒,火光;(衣裙等)張開",
+	"translation" : "熊熊燃烧,突然燃烧,火光;(衣裙等)张开",
 	"id" : 10467
 },
 {
@@ -4686,7 +4685,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "誇耀,誇飾",
+	"translation" : "夸耀,夸饰",
 	"id" : 10468
 },
 {
@@ -4696,7 +4695,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "剝皮；痛罵",
+	"translation" : "剥皮；痛骂",
 	"id" : 10469
 },
 {
@@ -4706,7 +4705,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使有斑點",
+	"translation" : "使有斑点",
 	"id" : 10470
 },
 {
@@ -4716,7 +4715,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "輕視",
+	"translation" : "轻视",
 	"id" : 10471
 },
 {
@@ -4726,7 +4725,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使驚慌失措",
+	"translation" : "使惊慌失措",
 	"id" : 10472
 },
 {
@@ -4736,7 +4735,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "把…強塞給，騙賣給",
+	"translation" : "把…强塞给，骗卖给",
 	"id" : 10473
 },
 {
@@ -4746,7 +4745,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v./n.",
-	"translation" : "煩惱,侵蝕",
+	"translation" : "烦恼,侵蚀",
 	"id" : 10474
 },
 {
@@ -4756,7 +4755,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "浪費,消耗",
+	"translation" : "浪费,消耗",
 	"id" : 10475
 },
 {
@@ -4766,7 +4765,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "大聲呵斥",
+	"translation" : "大声呵斥",
 	"id" : 10476
 },
 {
@@ -4776,7 +4775,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "刻面,(問題的)一個方面",
+	"translation" : "刻面,(问题的)一个方面",
 	"id" : 10477
 },
 {
@@ -4796,7 +4795,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "宿命論",
+	"translation" : "宿命论",
 	"id" : 10479
 },
 {
@@ -4806,7 +4805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "忠誠",
+	"translation" : "忠诚",
 	"id" : 10480
 },
 {
@@ -4816,7 +4815,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "豐富",
+	"translation" : "丰富",
 	"id" : 10481
 },
 {
@@ -4826,7 +4825,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "假裝",
+	"translation" : "假装",
 	"id" : 10482
 },
 {
@@ -4836,7 +4835,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "騷動；激動,發酵",
+	"translation" : "骚动；激动,发酵",
 	"id" : 10483
 },
 {
@@ -4846,7 +4845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "神物,迷戀物",
+	"translation" : "神物,迷恋物",
 	"id" : 10484
 },
 {
@@ -4856,7 +4855,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "虛構之事",
+	"translation" : "虚构之事",
 	"id" : 10485
 },
 {
@@ -4866,7 +4865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "瑕疵,缺點",
+	"translation" : "瑕疵,缺点",
 	"id" : 10486
 },
 {
@@ -4876,7 +4875,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "柔韌性",
+	"translation" : "柔韧性",
 	"id" : 10487
 },
 {
@@ -4896,7 +4895,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "流,流動;不斷的變化",
+	"translation" : "流,流动;不断的变化",
 	"id" : 10489
 },
 {
@@ -4906,7 +4905,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "樹葉",
+	"translation" : "树叶",
 	"id" : 10490
 },
 {
@@ -4916,7 +4915,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "淺灘",
+	"translation" : "浅滩",
 	"id" : 10491
 },
 {
@@ -4926,7 +4925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "爭吵；衝突，磨破，磨損，開始崩潰",
+	"translation" : "争吵；冲突，磨破，磨损，开始崩溃",
 	"id" : 10492
 },
 {
@@ -4936,7 +4935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "實現,完成",
+	"translation" : "实现,完成",
 	"id" : 10493
 },
 {
@@ -4946,7 +4945,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "熔解；聯合",
+	"translation" : "熔解；联合",
 	"id" : 10494
 },
 {
@@ -4966,7 +4965,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "不費力的；敏捷的；柔順的",
+	"translation" : "不费力的；敏捷的；柔顺的",
 	"id" : 10496
 },
 {
@@ -4976,7 +4975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "好搞黨派的",
+	"translation" : "好搞党派的",
 	"id" : 10497
 },
 {
@@ -4986,7 +4985,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "虛假的",
+	"translation" : "虚假的",
 	"id" : 10498
 },
 {
@@ -4996,7 +4995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "謬誤的",
+	"translation" : "谬误的",
 	"id" : 10499
 },
 {
@@ -5016,7 +5015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "極饑餓的",
+	"translation" : "极饥饿的",
 	"id" : 10501
 },
 {
@@ -5036,7 +5035,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "虛弱的,無力的",
+	"translation" : "虚弱的,无力的",
 	"id" : 10503
 },
 {
@@ -5046,7 +5045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "砍倒，打倒木材,山,山崗,沼澤地,荒野",
+	"translation" : "砍倒，打倒木材,山,山岗,沼泽地,荒野",
 	"id" : 10504
 },
 {
@@ -5056,7 +5055,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "兇猛的,兇殘的",
+	"translation" : "凶猛的,凶残的",
 	"id" : 10505
 },
 {
@@ -5066,7 +5065,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "熱情的,熱烈的",
+	"translation" : "热情的,热烈的",
 	"id" : 10506
 },
 {
@@ -5076,7 +5075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "熱情的；灼熱的",
+	"translation" : "热情的；灼热的",
 	"id" : 10507
 },
 {
@@ -5086,7 +5085,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "感情易變的,無常的",
+	"translation" : "感情易变的,无常的",
 	"id" : 10508
 },
 {
@@ -5096,7 +5095,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "鬆弛的",
+	"translation" : "松驰的",
 	"id" : 10509
 },
 {
@@ -5106,7 +5105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "陣發的",
+	"translation" : "阵发的",
 	"id" : 10510
 },
 {
@@ -5116,7 +5115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "輕而薄的；易損壞的",
+	"translation" : "轻而薄的；易损坏的",
 	"id" : 10511
 },
 {
@@ -5126,7 +5125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "華麗的；紅潤的",
+	"translation" : "华丽的；红润的",
 	"id" : 10512
 },
 {
@@ -5136,7 +5135,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "絨毛的",
+	"translation" : "绒毛的",
 	"id" : 10513
 },
 {
@@ -5146,7 +5145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "易怒的；脾氣壞的,強迫的,用暴力的",
+	"translation" : "易怒的；脾气坏的,强迫的,用暴力的",
 	"id" : 10514
 },
 {
@@ -5156,7 +5155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "乖張的",
+	"translation" : "乖张的",
 	"id" : 10515
 },
 {
@@ -5166,7 +5165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "緊張紛亂的;發瘋似的",
+	"translation" : "紧张纷乱的;发疯似的",
 	"id" : 10516
 },
 {
@@ -5176,7 +5175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "欺詐的",
+	"translation" : "欺诈的",
 	"id" : 10517
 },
 {
@@ -5196,7 +5195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不整潔的；臭的",
+	"translation" : "不整洁的；臭的",
 	"id" : 10519
 },
 {
@@ -5216,7 +5215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "可厭的；令人作嘔的",
+	"translation" : "可厌的；令人作呕的",
 	"id" : 10521
 },
 {
@@ -5226,7 +5225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "葬禮的；憂鬱的",
+	"translation" : "葬礼的；忧郁的",
 	"id" : 10522
 },
 {
@@ -5236,7 +5235,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "閒逛",
+	"translation" : "闲逛",
 	"id" : 10523
 },
 {
@@ -5256,7 +5255,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "否認",
+	"translation" : "否认",
 	"id" : 10525
 },
 {
@@ -5266,7 +5265,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "歡跳；雀躍",
+	"translation" : "欢跳；雀跃",
 	"id" : 10526
 },
 {
@@ -5276,7 +5275,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "張口,張開,裂開;目瞪口呆",
+	"translation" : "张口,张开,裂开;目瞪口呆",
 	"id" : 10527
 },
 {
@@ -5286,7 +5285,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "收藏,取得,獲得",
+	"translation" : "收藏,取得,获得",
 	"id" : 10528
 },
 {
@@ -5296,7 +5295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "裝飾",
+	"translation" : "装饰",
 	"id" : 10529
 },
 {
@@ -5306,7 +5305,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "深切,深長的傷口",
+	"translation" : "深切,深长的伤口",
 	"id" : 10530
 },
 {
@@ -5316,7 +5315,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "標準尺寸,(鐵道)軌矩;(雨量)器;(電線)直徑;測量;估計;評價(人物)",
+	"translation" : "标准尺寸,(铁道)轨矩;(雨量)器;(电线)直径;测量;估计;评价(人物)",
 	"id" : 10531
 },
 {
@@ -5326,7 +5325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "發芽",
+	"translation" : "发芽",
 	"id" : 10532
 },
 {
@@ -5336,7 +5335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "譏笑",
+	"translation" : "讥笑",
 	"id" : 10533
 },
 {
@@ -5346,7 +5345,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使光滑；變鈍",
+	"translation" : "使光滑；变钝",
 	"id" : 10534
 },
 {
@@ -5356,7 +5355,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./vi.",
-	"translation" : "微光,閃光,短暫而微弱的閃現",
+	"translation" : "微光,闪光,短暂而微弱的闪现",
 	"id" : 10535
 },
 {
@@ -5386,7 +5385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "存貨過多，供過於求狼吞虎嚥",
+	"translation" : "存货过多，供过于求狼吞虎咽",
 	"id" : 10538
 },
 {
@@ -5406,7 +5405,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "刺棒,刺痛物;激勵;激勵,刺激",
+	"translation" : "刺棒,刺痛物;激励;激励,刺激",
 	"id" : 10540
 },
 {
@@ -5416,7 +5415,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "塞飽;峽谷",
+	"translation" : "塞饱;峡谷",
 	"id" : 10541
 },
 {
@@ -5426,7 +5425,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "牢牢抓緊；強烈吸引抓緊；掌握，控制",
+	"translation" : "牢牢抓紧；强烈吸引抓紧；掌握，控制",
 	"id" : 10542
 },
 {
@@ -5446,7 +5445,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi./n.",
-	"translation" : "埋怨,發牢騷,咕噥",
+	"translation" : "埋怨,发牢骚,咕哝",
 	"id" : 10544
 },
 {
@@ -5456,7 +5455,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "急促而不清楚地說出",
+	"translation" : "急促而不清楚地说出",
 	"id" : 10545
 },
 {
@@ -5466,7 +5465,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "挑戰；抵押",
+	"translation" : "挑战；抵押",
 	"id" : 10546
 },
 {
@@ -5476,7 +5475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "步態",
+	"translation" : "步态",
 	"id" : 10547
 },
 {
@@ -5486,7 +5485,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "大風;一陣喧鬧",
+	"translation" : "大风;一阵喧闹",
 	"id" : 10548
 },
 {
@@ -5496,7 +5495,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "(一件)衣服(長袍、外套)",
+	"translation" : "(一件)衣服(长袍、外套)",
 	"id" : 10549
 },
 {
@@ -5506,7 +5505,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "報紙；公報",
+	"translation" : "报纸；公报",
 	"id" : 10550
 },
 {
@@ -5516,7 +5515,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "寶石",
+	"translation" : "宝石",
 	"id" : 10551
 },
 {
@@ -5526,7 +5525,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "有教養；文雅",
+	"translation" : "有教养；文雅",
 	"id" : 10552
 },
 {
@@ -5536,7 +5535,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "紳士,上等人",
+	"translation" : "绅士,上等人",
 	"id" : 10553
 },
 {
@@ -5546,7 +5545,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "詐術",
+	"translation" : "诈术",
 	"id" : 10554
 },
 {
@@ -5556,7 +5555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "外觀；裝束",
+	"translation" : "外观；装束",
 	"id" : 10555
 },
 {
@@ -5576,7 +5575,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "笨拙的；粗魯的",
+	"translation" : "笨拙的；粗鲁的",
 	"id" : 10557
 },
 {
@@ -5586,7 +5585,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "相關的",
+	"translation" : "相关的",
 	"id" : 10558
 },
 {
@@ -5606,7 +5605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "口齒伶利的",
+	"translation" : "口齿伶利的",
 	"id" : 10560
 },
 {
@@ -5616,7 +5615,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "幽暗的；憂鬱的；憂悶的；愁苦的",
+	"translation" : "幽暗的；忧郁的；忧闷的；愁苦的",
 	"id" : 10561
 },
 {
@@ -5626,7 +5625,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : ""貪吃的，貪婪的；(for,after,of)渴望的",
+	"translation" : ""贪吃的，贪婪的；(for,after,of)渴望的",
 	"id" : 10562
 },
 {
@@ -5636,7 +5635,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "慍怒的",
+	"translation" : "愠怒的",
 	"id" : 10563
 },
 {
@@ -5646,7 +5645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "嚴酷的;討厭的;嚴厲的",
+	"translation" : "严酷的;讨厌的;严厉的",
 	"id" : 10564
 },
 {
@@ -5656,7 +5655,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "粗魯的",
+	"translation" : "粗鲁的",
 	"id" : 10565
 },
 {
@@ -5676,7 +5675,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "起大風的",
+	"translation" : "起大风的",
 	"id" : 10567
 },
 {
@@ -5686,7 +5685,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "爭論不休，討價還價",
+	"translation" : "争论不休，讨价还价",
 	"id" : 10568
 },
 {
@@ -5696,7 +5695,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "止步，停步，停止前進止步，(使)停止",
+	"translation" : "止步，停步，停止前进止步，(使)停止",
 	"id" : 10569
 },
 {
@@ -5706,7 +5705,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使煩惱,折磨,騷擾",
+	"translation" : "使烦恼,折磨,骚扰",
 	"id" : 10570
 },
 {
@@ -5726,7 +5725,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "騷擾",
+	"translation" : "骚扰",
 	"id" : 10572
 },
 {
@@ -5736,7 +5735,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v./n.",
-	"translation" : "用力拉,拖;捕獲量;拖運的距離",
+	"translation" : "用力拉,拖;捕获量;拖运的距离",
 	"id" : 10573
 },
 {
@@ -5746,7 +5745,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "用力舉起;說出;擲扔;舉,拉,扔",
+	"translation" : "用力举起;说出;掷扔;举,拉,扔",
 	"id" : 10574
 },
 {
@@ -5756,7 +5755,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "鉸鏈,合頁,關鍵;給…安鉸鏈;隨…而定",
+	"translation" : "铰链,合页,关键;给…安铰链;随…而定",
 	"id" : 10575
 },
 {
@@ -5786,7 +5785,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "幸運；偶然發生之事",
+	"translation" : "幸运；偶然发生之事",
 	"id" : 10578
 },
 {
@@ -5796,7 +5795,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "手斧,惡毒攻擊,誹謗,休戰,和解",
+	"translation" : "手斧,恶毒攻击,诽谤,休战,和解",
 	"id" : 10579
 },
 {
@@ -5806,7 +5805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "異端；邪說",
+	"translation" : "异端；邪说",
 	"id" : 10580
 },
 {
@@ -5816,7 +5815,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "歡樂",
+	"translation" : "欢乐",
 	"id" : 10581
 },
 {
@@ -5826,7 +5825,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "大破壞;大屠殺",
+	"translation" : "大破坏;大屠杀",
 	"id" : 10582
 },
 {
@@ -5836,7 +5835,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "講道",
+	"translation" : "讲道",
 	"id" : 10583
 },
 {
@@ -5846,7 +5845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "吵鬧,喧嘩",
+	"translation" : "吵闹,喧哗",
 	"id" : 10584
 },
 {
@@ -5856,7 +5855,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "耕種；畜牧業",
+	"translation" : "耕种；畜牧业",
 	"id" : 10585
 },
 {
@@ -5866,7 +5865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "雜種；混血兒",
+	"translation" : "杂种；混血儿",
 	"id" : 10586
 },
 {
@@ -5876,7 +5875,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a./ad.",
-	"translation" : "雜亂的(地),任意的(地)",
+	"translation" : "杂乱的(地),任意的(地)",
 	"id" : 10587
 },
 {
@@ -5886,7 +5885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "薄霧的；模糊的",
+	"translation" : "薄雾的；模糊的",
 	"id" : 10588
 },
 {
@@ -5896,7 +5895,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "鬧哄哄的,興奮的",
+	"translation" : "闹哄哄的,兴奋的",
 	"id" : 10589
 },
 {
@@ -5906,7 +5905,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "狂歡的,熱鬧的",
+	"translation" : "狂欢的,热闹的",
 	"id" : 10590
 },
 {
@@ -5916,7 +5915,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "多毛的,毛髮蓬亂的",
+	"translation" : "多毛的,毛发蓬乱的",
 	"id" : 10591
 },
 {
@@ -5926,7 +5925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "點燃;引發",
+	"translation" : "点燃;引发",
 	"id" : 10592
 },
 {
@@ -5936,7 +5935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "飲,吸取,吸氣",
+	"translation" : "饮,吸取,吸气",
 	"id" : 10593
 },
 {
@@ -5956,7 +5955,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "犧牲",
+	"translation" : "牺牲",
 	"id" : 10595
 },
 {
@@ -5966,7 +5965,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "損害",
+	"translation" : "损害",
 	"id" : 10596
 },
 {
@@ -5976,7 +5975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "圍以木樁；剌穿",
+	"translation" : "围以木桩；剌穿",
 	"id" : 10597
 },
 {
@@ -5986,7 +5985,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "非難；指責",
+	"translation" : "非难；指责",
 	"id" : 10598
 },
 {
@@ -5996,7 +5995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使牽連",
+	"translation" : "使牵连",
 	"id" : 10599
 },
 {
@@ -6006,7 +6005,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不斷地請求",
+	"translation" : "不断地请求",
 	"id" : 10600
 },
 {
@@ -6016,7 +6015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "詛咒",
+	"translation" : "诅咒",
 	"id" : 10601
 },
 {
@@ -6026,7 +6025,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "即席創作,臨時湊成",
+	"translation" : "即席创作,临时凑成",
 	"id" : 10602
 },
 {
@@ -6046,7 +6045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "監禁",
+	"translation" : "监禁",
 	"id" : 10604
 },
 {
@@ -6056,7 +6055,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "控告；使負罪",
+	"translation" : "控告；使负罪",
 	"id" : 10605
 },
 {
@@ -6066,7 +6065,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "諄諄教誨",
+	"translation" : "谆谆教诲",
 	"id" : 10606
 },
 {
@@ -6076,7 +6075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使安全；償付",
+	"translation" : "使安全；偿付",
 	"id" : 10607
 },
 {
@@ -6086,7 +6085,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "訂單,委託採購,國外商品訂貨單,代購訂單",
+	"translation" : "订单,委托采购,国外商品订货单,代购订单",
 	"id" : 10608
 },
 {
@@ -6106,7 +6105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "違反,觸犯,侵害",
+	"translation" : "违反,触犯,侵害",
 	"id" : 10610
 },
 {
@@ -6116,7 +6115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "含沙射影地說，暗示",
+	"translation" : "含沙射影地说，暗示",
 	"id" : 10611
 },
 {
@@ -6126,7 +6125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "煽動",
+	"translation" : "煽动",
 	"id" : 10612
 },
 {
@@ -6136,7 +6135,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "加強,加劇",
+	"translation" : "加强,加剧",
 	"id" : 10613
 },
 {
@@ -6156,7 +6155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使習慣於",
+	"translation" : "使习惯于",
 	"id" : 10615
 },
 {
@@ -6166,7 +6165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "倒轉,上下倒置",
+	"translation" : "倒转,上下倒置",
 	"id" : 10616
 },
 {
@@ -6176,17 +6175,17 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "懇求",
+	"translation" : "恳求",
 	"id" : 10617
 },
 {
 	"spell" : "isolate",
 	"cnSentence" : ["未定義例句"],
-	"phonetic" : "['aisәleit]vt.[常被動]",
+	"phonetic" : "['aisәleit]vt.[常被动]",
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "使孤立；使脫離；使隔離",
+	"translation" : "使孤立；使脱离；使隔离",
 	"id" : 10618
 },
 {
@@ -6196,7 +6195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "思想,思想體系,意識形態",
+	"translation" : "思想,思想体系,意识形态",
 	"id" : 10619
 },
 {
@@ -6206,7 +6205,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "個人心理上的特點",
+	"translation" : "个人心理上的特点",
 	"id" : 10620
 },
 {
@@ -6216,7 +6215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "固定；靜止",
+	"translation" : "固定；静止",
 	"id" : 10621
 },
 {
@@ -6226,7 +6225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "無禮",
+	"translation" : "无礼",
 	"id" : 10622
 },
 {
@@ -6236,7 +6235,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "推動力,促進,刺激",
+	"translation" : "推动力,促进,刺激",
 	"id" : 10623
 },
 {
@@ -6246,7 +6245,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不適當,不正確",
+	"translation" : "不适当,不正确",
 	"id" : 10624
 },
 {
@@ -6256,7 +6255,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不純",
+	"translation" : "不纯",
 	"id" : 10625
 },
 {
@@ -6266,7 +6265,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "獎勵，刺激",
+	"translation" : "奖励，刺激",
 	"id" : 10626
 },
 {
@@ -6276,7 +6275,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不和諧(之物)",
+	"translation" : "不和谐(之物)",
 	"id" : 10627
 },
 {
@@ -6296,7 +6295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "起訴",
+	"translation" : "起诉",
 	"id" : 10629
 },
 {
@@ -6316,7 +6315,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "虛弱,疾病,病症",
+	"translation" : "虚弱,疾病,病症",
 	"id" : 10631
 },
 {
@@ -6326,7 +6325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "暗示,想法,跡象",
+	"translation" : "暗示,想法,迹象",
 	"id" : 10632
 },
 {
@@ -6336,7 +6335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "暗指,影射的話,諷刺的話",
+	"translation" : "暗指,影射的话,讽刺的话",
 	"id" : 10633
 },
 {
@@ -6356,7 +6355,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "智力，聰明；理解力；情報，消息，報導",
+	"translation" : "智力，聪明；理解力；情报，消息，报导",
 	"id" : 10635
 },
 {
@@ -6366,7 +6365,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "熟悉；親近,親密的言語",
+	"translation" : "熟悉；亲近,亲密的言语",
 	"id" : 10636
 },
 {
@@ -6376,7 +6375,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "脅迫,恐嚇",
+	"translation" : "胁迫,恐吓",
 	"id" : 10637
 },
 {
@@ -6386,7 +6385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "直覺,直覺知識",
+	"translation" : "直觉,直觉知识",
 	"id" : 10638
 },
 {
@@ -6406,7 +6405,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "字跡模糊的",
+	"translation" : "字迹模糊的",
 	"id" : 10640
 },
 {
@@ -6426,7 +6425,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "法律所不許的；違禁的",
+	"translation" : "法律所不许的；违禁的",
 	"id" : 10642
 },
 {
@@ -6436,7 +6435,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "adj.",
-	"translation" : "無知覺的,不覺痛苦的",
+	"translation" : "无知觉的,不觉痛苦的",
 	"id" : 10643
 },
 {
@@ -6446,17 +6445,17 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "無瑕疵的",
+	"translation" : "无瑕疵的",
 	"id" : 10644
 },
 {
 	"spell" : "imperative",
 	"cnSentence" : ["未定義例句"],
-	"phonetic" : "[im'perәtiv]a. 緊急的,必要的;強制的,[語]",
+	"phonetic" : "[im'perәtiv]a. 紧急的,必要的;强制的,[语]",
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "祈使語氣",
+	"translation" : "祈使语气",
 	"id" : 10645
 },
 {
@@ -6466,7 +6465,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "無禮的；不相干的",
+	"translation" : "无礼的；不相干的",
 	"id" : 10646
 },
 {
@@ -6476,7 +6475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "衝動的",
+	"translation" : "冲动的",
 	"id" : 10647
 },
 {
@@ -6486,7 +6485,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "adj.",
-	"translation" : "不虔誠的,不尊敬的,無信仰的,不虔誠的",
+	"translation" : "不虔诚的,不尊敬的,无信仰的,不虔诚的",
 	"id" : 10648
 },
 {
@@ -6496,7 +6495,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a./ad.",
-	"translation" : "無準備的(地),即興的(地)",
+	"translation" : "无准备的(地),即兴的(地)",
 	"id" : 10649
 },
 {
@@ -6506,7 +6505,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "開始的,早期的",
+	"translation" : "开始的,早期的",
 	"id" : 10650
 },
 {
@@ -6516,7 +6515,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "不連貫的",
+	"translation" : "不连贯的",
 	"id" : 10651
 },
 {
@@ -6526,7 +6525,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "不屈不撓的",
+	"translation" : "不屈不挠的",
 	"id" : 10652
 },
 {
@@ -6536,7 +6535,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "無資格的",
+	"translation" : "无资格的",
 	"id" : 10653
 },
 {
@@ -6546,7 +6545,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "不適當的;不勝任的",
+	"translation" : "不适当的;不胜任的",
 	"id" : 10654
 },
 {
@@ -6556,7 +6555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "詭詐的",
+	"translation" : "诡诈的",
 	"id" : 10655
 },
 {
@@ -6566,7 +6565,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "認真的，專注的；強烈的；緊張的；熱情的",
+	"translation" : "认真的，专注的；强烈的；紧张的；热情的",
 	"id" : 10656
 },
 {
@@ -6576,7 +6575,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "內部的，內的；國內的，內政的",
+	"translation" : "内部的，内的；国内的，内政的",
 	"id" : 10657
 },
 {
@@ -6586,7 +6585,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "複雜的,錯綜的",
+	"translation" : "复杂的,错综的",
 	"id" : 10658
 },
 {
@@ -6596,7 +6595,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "固有的,內在的",
+	"translation" : "固有的,内在的",
 	"id" : 10659
 },
 {
@@ -6606,7 +6605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "鐵器碰撞聲,煩擾,刺激神經",
+	"translation" : "铁器碰撞声,烦扰,刺激神经",
 	"id" : 10660
 },
 {
@@ -6616,7 +6615,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "震動,罐子,廣口瓶,啤酒杯發出刺耳的聲音,不和諧,不一致",
+	"translation" : "震动,罐子,广口瓶,啤酒杯发出刺耳的声音,不和谐,不一致",
 	"id" : 10661
 },
 {
@@ -6626,7 +6625,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "嘲笑;譏笑的言語",
+	"translation" : "嘲笑;讥笑的言语",
 	"id" : 10662
 },
 {
@@ -6646,7 +6645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "拋棄",
+	"translation" : "抛弃",
 	"id" : 10664
 },
 {
@@ -6656,7 +6655,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v./n.",
-	"translation" : "輕推,輕撞;緩步前進,慢跑",
+	"translation" : "轻推,轻撞;缓步前进,慢跑",
 	"id" : 10665
 },
 {
@@ -6666,7 +6665,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "顛簸,顛簸而行",
+	"translation" : "颠簸,颠簸而行",
 	"id" : 10666
 },
 {
@@ -6676,7 +6675,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v./n.",
-	"translation" : "混雜,混亂,雜亂",
+	"translation" : "混杂,混乱,杂乱",
 	"id" : 10667
 },
 {
@@ -6686,7 +6685,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "壺",
+	"translation" : "壶",
 	"id" : 10668
 },
 {
@@ -6696,7 +6695,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "司法權,管轄區域,管轄範圍",
+	"translation" : "司法权,管辖区域,管辖范围",
 	"id" : 10669
 },
 {
@@ -6726,7 +6725,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "知識範圍",
+	"translation" : "知识范围",
 	"id" : 10672
 },
 {
@@ -6736,7 +6735,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "喪鐘聲,某事物結束的象徵",
+	"translation" : "丧钟声,某事物结束的象征",
 	"id" : 10673
 },
 {
@@ -6746,7 +6745,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "嘲諷",
+	"translation" : "嘲讽",
 	"id" : 10674
 },
 {
@@ -6766,7 +6765,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./v.",
-	"translation" : "鞭打,責罵;眼睫毛",
+	"translation" : "鞭打,责骂;眼睫毛",
 	"id" : 10676
 },
 {
@@ -6776,7 +6775,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "讚美",
+	"translation" : "赞美",
 	"id" : 10677
 },
 {
@@ -6786,7 +6785,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "租賃，(土地等的)租約",
+	"translation" : "租赁，(土地等的)租约",
 	"id" : 10678
 },
 {
@@ -6806,7 +6805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "解放，使獲得自由；釋出，放出",
+	"translation" : "解放，使获得自由；释出，放出",
 	"id" : 10680
 },
 {
@@ -6816,7 +6815,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "厭惡",
+	"translation" : "厌恶",
 	"id" : 10681
 },
 {
@@ -6826,7 +6825,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "掠奪品洗劫",
+	"translation" : "掠夺品洗劫",
 	"id" : 10682
 },
 {
@@ -6846,7 +6845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "突然傾斜",
+	"translation" : "突然倾斜",
 	"id" : 10684
 },
 {
@@ -6856,7 +6855,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./vt.",
-	"translation" : "誘惑(力);引誘,吸引",
+	"translation" : "诱惑(力);引诱,吸引",
 	"id" : 10685
 },
 {
@@ -6866,7 +6865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "潛伏,埋伏",
+	"translation" : "潜伏,埋伏",
 	"id" : 10686
 },
 {
@@ -6876,7 +6875,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "迷宮；錯綜複雜之事件",
+	"translation" : "迷宫；错综复杂之事件",
 	"id" : 10687
 },
 {
@@ -6886,7 +6885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "男僕；跟班",
+	"translation" : "男仆；跟班",
 	"id" : 10688
 },
 {
@@ -6906,7 +6905,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "軍團；大批",
+	"translation" : "军团；大批",
 	"id" : 10690
 },
 {
@@ -6926,7 +6925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "礦脈",
+	"translation" : "矿脉",
 	"id" : 10692
 },
 {
@@ -6936,7 +6935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "adj.",
-	"translation" : "細長的(人),平直的,稀疏的(頭髮)",
+	"translation" : "细长的(人),平直的,稀疏的(头发)",
 	"id" : 10693
 },
 {
@@ -6946,7 +6945,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "無精打采的",
+	"translation" : "无精打采的",
 	"id" : 10694
 },
 {
@@ -6956,7 +6955,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使有污點",
+	"translation" : "使有污点",
 	"id" : 10695
 },
 {
@@ -6966,7 +6965,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "殘害,使殘廢",
+	"translation" : "残害,使残废",
 	"id" : 10696
 },
 {
@@ -6976,7 +6975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "操縱，篡改、偽造(賬目等)",
+	"translation" : "操纵，篡改、伪造(账目等)",
 	"id" : 10697
 },
 {
@@ -6986,7 +6985,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "&拒絶,粉碎,磨爛",
+	"translation" : "&拒绝,粉碎,磨烂",
 	"id" : 10698
 },
 {
@@ -6996,7 +6995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "迷宮",
+	"translation" : "迷宫",
 	"id" : 10699
 },
 {
@@ -7016,7 +7015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "干涉,干預",
+	"translation" : "干涉,干预",
 	"id" : 10701
 },
 {
@@ -7026,7 +7025,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "調停;斡旋",
+	"translation" : "调停;斡旋",
 	"id" : 10702
 },
 {
@@ -7036,7 +7035,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "價值，優點，功績值得，應收",
+	"translation" : "价值，优点，功绩值得，应收",
 	"id" : 10703
 },
 {
@@ -7046,7 +7045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "給予",
+	"translation" : "给予",
 	"id" : 10704
 },
 {
@@ -7076,7 +7075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "(使)混亂,弄糟;糊塗,雜亂",
+	"translation" : "(使)混乱,弄糟;糊涂,杂乱",
 	"id" : 10707
 },
 {
@@ -7096,7 +7095,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "詛咒；咒罵",
+	"translation" : "诅咒；咒骂",
 	"id" : 10709
 },
 {
@@ -7106,7 +7105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "履行嚴格紀律的人",
+	"translation" : "履行严格纪律的人",
 	"id" : 10710
 },
 {
@@ -7126,7 +7125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "良師",
+	"translation" : "良师",
 	"id" : 10712
 },
 {
@@ -7136,7 +7135,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "疑慮,懷疑",
+	"translation" : "疑虑,怀疑",
 	"id" : 10713
 },
 {
@@ -7146,7 +7145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "不幸的事,不幸,災禍",
+	"translation" : "不幸的事,不幸,灾祸",
 	"id" : 10714
 },
 {
@@ -7156,7 +7155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "一半,兩個組成部分中的一部分",
+	"translation" : "一半,两个组成部分中的一部分",
 	"id" : 10715
 },
 {
@@ -7166,7 +7165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "微粒,塵埃,斑點",
+	"translation" : "微粒,尘埃,斑点",
 	"id" : 10716
 },
 {
@@ -7176,7 +7175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "惡意的,惡毒的;(疾病)惡性的",
+	"translation" : "恶意的,恶毒的;(疾病)恶性的",
 	"id" : 10717
 },
 {
@@ -7186,7 +7185,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "adj.",
-	"translation" : "剛毅的；勇敢的",
+	"translation" : "刚毅的；勇敢的",
 	"id" : 10718
 },
 {
@@ -7216,7 +7215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "adj.",
-	"translation" : "切碎裝腔作勢的",
+	"translation" : "切碎装腔作势的",
 	"id" : 10721
 },
 {
@@ -7236,7 +7235,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "病態的;疾病的,致病的",
+	"translation" : "病态的;疾病的,致病的",
 	"id" : 10723
 },
 {
@@ -7256,7 +7255,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "(使)噁心",
+	"translation" : "(使)恶心",
 	"id" : 10725
 },
 {
@@ -7276,7 +7275,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./vt.",
-	"translation" : "養育,教養,教育(兒童);培育;扶植,支持",
+	"translation" : "养育,教养,教育(儿童);培育;扶植,支持",
 	"id" : 10727
 },
 {
@@ -7286,7 +7285,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "角落；隱匿處",
+	"translation" : "角落；隐匿处",
 	"id" : 10728
 },
 {
@@ -7296,7 +7295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "懷鄉病,留戀過去懷舊",
+	"translation" : "怀乡病,留恋过去怀旧",
 	"id" : 10729
 },
 {
@@ -7306,7 +7305,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "新手,初學者",
+	"translation" : "新手,初学者",
 	"id" : 10730
 },
 {
@@ -7316,7 +7315,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "海軍的，軍艦的，船的",
+	"translation" : "海军的，军舰的，船的",
 	"id" : 10731
 },
 {
@@ -7326,7 +7325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "夜間的",
+	"translation" : "夜间的",
 	"id" : 10732
 },
 {
@@ -7336,7 +7335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "麻木的,失去知覺的",
+	"translation" : "麻木的,失去知觉的",
 	"id" : 10733
 },
 {
@@ -7356,7 +7355,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "打擾",
+	"translation" : "打扰",
 	"id" : 10735
 },
 {
@@ -7376,7 +7375,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./vi.",
-	"translation" : "發生,發起;發明",
+	"translation" : "发生,发起;发明",
 	"id" : 10737
 },
 {
@@ -7386,7 +7385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "辱罵,譴責",
+	"translation" : "辱骂,谴责",
 	"id" : 10738
 },
 {
@@ -7406,7 +7405,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "神諭,聖賢,聖人",
+	"translation" : "神谕,圣贤,圣人",
 	"id" : 10740
 },
 {
@@ -7416,7 +7415,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "演說",
+	"translation" : "演说",
 	"id" : 10741
 },
 {
@@ -7426,7 +7425,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "(對品格或忍耐力的)嚴格考驗",
+	"translation" : "(对品格或忍耐力的)严格考验",
 	"id" : 10742
 },
 {
@@ -7436,7 +7435,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "減輕",
+	"translation" : "减轻",
 	"id" : 10743
 },
 {
@@ -7446,7 +7445,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "心臟急速跳動;(人)顫抖",
+	"translation" : "心脏急速跳动;(人)颤抖",
 	"id" : 10744
 },
 {
@@ -7456,7 +7455,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "烤乾",
+	"translation" : "烤干",
 	"id" : 10745
 },
 {
@@ -7466,7 +7465,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "&躲開,閃開,避開",
+	"translation" : "&躲开,闪开,避开",
 	"id" : 10746
 },
 {
@@ -7476,7 +7475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "挪用公款；盜用；貪污",
+	"translation" : "挪用公款；盗用；贪污",
 	"id" : 10747
 },
 {
@@ -7486,7 +7485,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使不安,煩擾",
+	"translation" : "使不安,烦扰",
 	"id" : 10748
 },
 {
@@ -7496,7 +7495,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "煩擾,糾纏",
+	"translation" : "烦扰,纠缠",
 	"id" : 10749
 },
 {
@@ -7506,7 +7505,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使發呆；使…變成化石",
+	"translation" : "使发呆；使…变成化石",
 	"id" : 10750
 },
 {
@@ -7516,7 +7515,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "抓住(雙臂)小齒輪",
+	"translation" : "抓住(双臂)小齿轮",
 	"id" : 10751
 },
 {
@@ -7526,7 +7525,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "安撫",
+	"translation" : "安抚",
 	"id" : 10752
 },
 {
@@ -7536,7 +7535,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "積水坑激濺",
+	"translation" : "积水坑激溅",
 	"id" : 10753
 },
 {
@@ -7546,7 +7545,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "耕作,費力穿過犁",
+	"translation" : "耕作,费力穿过犁",
 	"id" : 10754
 },
 {
@@ -7556,7 +7555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "扯，拉勇氣",
+	"translation" : "扯，拉勇气",
 	"id" : 10755
 },
 {
@@ -7566,7 +7565,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./vi.",
-	"translation" : "搶劫,掠奪",
+	"translation" : "抢劫,掠夺",
 	"id" : 10756
 },
 {
@@ -7596,7 +7595,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "弄髒，污染；使…墮落",
+	"translation" : "弄脏，污染；使…堕落",
 	"id" : 10759
 },
 {
@@ -7606,7 +7605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "喋喋不休,嘮叨,囉嗦",
+	"translation" : "喋喋不休,唠叨,啰嗦",
 	"id" : 10760
 },
 {
@@ -7616,7 +7615,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "猛然拋下;突然發生;加速;使沉澱;沉澱物",
+	"translation" : "猛然抛下;突然发生;加速;使沉淀;沉淀物",
 	"id" : 10761
 },
 {
@@ -7646,7 +7645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "預示",
+	"translation" : "预示",
 	"id" : 10764
 },
 {
@@ -7656,7 +7655,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "支吾其詞,說謊搪塞,撒謊的人",
+	"translation" : "支吾其词,说谎搪塞,撒谎的人",
 	"id" : 10765
 },
 {
@@ -7666,7 +7665,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "瀆神的,褻瀆的;褻瀆,玷污",
+	"translation" : "渎神的,亵渎的;亵渎,玷污",
 	"id" : 10766
 },
 {
@@ -7676,7 +7675,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "公佈",
+	"translation" : "公布",
 	"id" : 10767
 },
 {
@@ -7686,7 +7685,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./vi.",
-	"translation" : "繁殖,增殖,傳播,宣傳",
+	"translation" : "繁殖,增殖,传播,宣传",
 	"id" : 10768
 },
 {
@@ -7706,7 +7705,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "提議",
+	"translation" : "提议",
 	"id" : 10770
 },
 {
@@ -7716,7 +7715,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "休會",
+	"translation" : "休会",
 	"id" : 10771
 },
 {
@@ -7736,7 +7735,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "延長,拖延",
+	"translation" : "延长,拖延",
 	"id" : 10773
 },
 {
@@ -7766,7 +7765,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "跳動；顫動",
+	"translation" : "跳动；颤动",
 	"id" : 10776
 },
 {
@@ -7776,7 +7775,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "淨化",
+	"translation" : "净化",
 	"id" : 10777
 },
 {
@@ -7786,7 +7785,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "殺父者",
+	"translation" : "杀父者",
 	"id" : 10778
 },
 {
@@ -7796,7 +7795,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "貧窮",
+	"translation" : "贫穷",
 	"id" : 10779
 },
 {
@@ -7806,7 +7805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "偽證",
+	"translation" : "伪证",
 	"id" : 10780
 },
 {
@@ -7816,7 +7815,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "尖塔,尖頂,山峰;(喻)頂峰",
+	"translation" : "尖塔,尖顶,山峰;(喻)顶峰",
 	"id" : 10781
 },
 {
@@ -7826,7 +7825,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "瘟疫;麻煩,禍患",
+	"translation" : "瘟疫;麻烦,祸患",
 	"id" : 10782
 },
 {
@@ -7836,7 +7835,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "假設；放肆",
+	"translation" : "假设；放肆",
 	"id" : 10783
 },
 {
@@ -7856,7 +7855,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "傾向",
+	"translation" : "倾向",
 	"id" : 10785
 },
 {
@@ -7876,7 +7875,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "後代",
+	"translation" : "后代",
 	"id" : 10787
 },
 {
@@ -7886,7 +7885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "預兆",
+	"translation" : "预兆",
 	"id" : 10788
 },
 {
@@ -7896,7 +7895,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "代理權，代表權；委託書；代理人",
+	"translation" : "代理权，代表权；委托书；代理人",
 	"id" : 10789
 },
 {
@@ -7906,7 +7905,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "心靈",
+	"translation" : "心灵",
 	"id" : 10790
 },
 {
@@ -7926,7 +7925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "聲稱主旨",
+	"translation" : "声称主旨",
 	"id" : 10792
 },
 {
@@ -7936,7 +7935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "可口的,美味的;愜意的",
+	"translation" : "可口的,美味的;惬意的",
 	"id" : 10793
 },
 {
@@ -7946,7 +7945,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "許可的,容許的",
+	"translation" : "许可的,容许的",
 	"id" : 10794
 },
 {
@@ -7966,7 +7965,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "平靜的,安靜的",
+	"translation" : "平静的,安静的",
 	"id" : 10796
 },
 {
@@ -7976,7 +7975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "無益的",
+	"translation" : "无益的",
 	"id" : 10797
 },
 {
@@ -7996,7 +7995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "模棱兩可地說",
+	"translation" : "模棱两可地说",
 	"id" : 10799
 },
 {
@@ -8006,7 +8005,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./vi.",
-	"translation" : "顫動,抖動",
+	"translation" : "颤动,抖动",
 	"id" : 10800
 },
 {
@@ -8026,7 +8025,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "詢問",
+	"translation" : "询问",
 	"id" : 10802
 },
 {
@@ -8036,7 +8035,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n./v.",
-	"translation" : "價格止跌；回升",
+	"translation" : "价格止跌；回升",
 	"id" : 10803
 },
 {
@@ -8046,7 +8045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "大聲叫喊；咆哮",
+	"translation" : "大声叫喊；咆哮",
 	"id" : 10804
 },
 {
@@ -8066,7 +8065,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./vi./n.",
-	"translation" : "毀壞,蹂躪;搶劫,掠奪",
+	"translation" : "毁坏,蹂躏;抢劫,掠夺",
 	"id" : 10806
 },
 {
@@ -8076,7 +8075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "剷平",
+	"translation" : "铲平",
 	"id" : 10807
 },
 {
@@ -8086,7 +8085,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "指責",
+	"translation" : "指责",
 	"id" : 10808
 },
 {
@@ -8096,7 +8095,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "反駁",
+	"translation" : "反驳",
 	"id" : 10809
 },
 {
@@ -8116,7 +8115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "簡述要旨；總結",
+	"translation" : "简述要旨；总结",
 	"id" : 10811
 },
 {
@@ -8126,7 +8125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "對賬,使和諧,使一致",
+	"translation" : "对账,使和谐,使一致",
 	"id" : 10812
 },
 {
@@ -8146,7 +8145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "收(帆)；收縮n,暗礁",
+	"translation" : "收(帆)；收缩n,暗礁",
 	"id" : 10814
 },
 {
@@ -8156,7 +8155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "發出水氣；發出臭氣臭氣",
+	"translation" : "发出水汽；发出臭气臭气",
 	"id" : 10815
 },
 {
@@ -8166,7 +8165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "恢復…地位;使殘疾者恢復正常的生活",
+	"translation" : "恢复…地位;使残疾者恢复正常的生活",
 	"id" : 10816
 },
 {
@@ -8176,7 +8175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "償還,付還",
+	"translation" : "偿还,付还",
 	"id" : 10817
 },
 {
@@ -8196,7 +8195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "放棄;撤回",
+	"translation" : "放弃;撤回",
 	"id" : 10819
 },
 {
@@ -8216,7 +8215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "提供,報答;表演,演奏;翻譯",
+	"translation" : "提供,报答;表演,演奏;翻译",
 	"id" : 10821
 },
 {
@@ -8226,7 +8225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "與…脫離關係；放棄",
+	"translation" : "与…脱离关系；放弃",
 	"id" : 10822
 },
 {
@@ -8246,7 +8245,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "補充,重新裝滿",
+	"translation" : "补充,重新装满",
 	"id" : 10824
 },
 {
@@ -8256,7 +8255,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "否認",
+	"translation" : "否认",
 	"id" : 10825
 },
 {
@@ -8266,7 +8265,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "adj.",
-	"translation" : "退後,退化,衰退向後的,後退的,退化的,惡化的",
+	"translation" : "退后,退化,衰退向后的,后退的,退化的,恶化的",
 	"id" : 10826
 },
 {
@@ -8276,7 +8275,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "迴響",
+	"translation" : "回响",
 	"id" : 10827
 },
 {
@@ -8286,7 +8285,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "辱罵謾罵者",
+	"translation" : "辱骂谩骂者",
 	"id" : 10828
 },
 {
@@ -8296,7 +8295,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "謎",
+	"translation" : "谜",
 	"id" : 10829
 },
 {
@@ -8306,7 +8305,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./vi.",
-	"translation" : "擾亂,打擾",
+	"translation" : "扰乱,打扰",
 	"id" : 10830
 },
 {
@@ -8336,7 +8335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "狂暴，大怒大怒；(天氣)等狂暴，肆虐",
+	"translation" : "狂暴，大怒大怒；(天气)等狂暴，肆虐",
 	"id" : 10833
 },
 {
@@ -8366,7 +8365,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "贖金，贖身贖回，解救",
+	"translation" : "赎金，赎身赎回，解救",
 	"id" : 10836
 },
 {
@@ -8386,7 +8385,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "惡棍",
+	"translation" : "恶棍",
 	"id" : 10838
 },
 {
@@ -8396,7 +8395,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "折扣；回扣；退款給...回扣",
+	"translation" : "折扣；回扣；退款给...回扣",
 	"id" : 10839
 },
 {
@@ -8416,7 +8415,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "隱居者",
+	"translation" : "隐居者",
 	"id" : 10841
 },
 {
@@ -8426,7 +8425,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "認識；承認",
+	"translation" : "认识；承认",
 	"id" : 10842
 },
 {
@@ -8436,7 +8435,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "記憶",
+	"translation" : "记忆",
 	"id" : 10843
 },
 {
@@ -8446,7 +8445,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "求助；賴以幫助的人",
+	"translation" : "求助；赖以帮助的人",
 	"id" : 10844
 },
 {
@@ -8456,7 +8455,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "養生之道",
+	"translation" : "养生之道",
 	"id" : 10845
 },
 {
@@ -8466,7 +8465,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "復發",
+	"translation" : "复发",
 	"id" : 10846
 },
 {
@@ -8476,7 +8475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "殘餘,剩餘",
+	"translation" : "残余,剩余",
 	"id" : 10847
 },
 {
@@ -8486,7 +8485,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "酬勞,報復",
+	"translation" : "酬劳,报复",
 	"id" : 10848
 },
 {
@@ -8506,7 +8505,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "緘默",
+	"translation" : "缄默",
 	"id" : 10850
 },
 {
@@ -8516,7 +8515,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "報應",
+	"translation" : "报应",
 	"id" : 10851
 },
 {
@@ -8536,7 +8535,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v./n.",
-	"translation" : "腐爛",
+	"translation" : "腐烂",
 	"id" : 10853
 },
 {
@@ -8546,7 +8545,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "嚴峻",
+	"translation" : "严峻",
 	"id" : 10854
 },
 {
@@ -8556,7 +8555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "革命，大變革；旋轉；週期，循環",
+	"translation" : "革命，大变革；旋转；周期，循环",
 	"id" : 10855
 },
 {
@@ -8586,7 +8585,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "有名望的,聲譽鵲起的",
+	"translation" : "有名望的,声誉鹊起的",
 	"id" : 10858
 },
 {
@@ -8596,7 +8595,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "毀滅性的,破壞性的",
+	"translation" : "毁灭性的,破坏性的",
 	"id" : 10859
 },
 {
@@ -8606,7 +8605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "鄉村的；粗野的",
+	"translation" : "乡村的；粗野的",
 	"id" : 10860
 },
 {
@@ -8616,7 +8615,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "生鏽的；荒疏的",
+	"translation" : "生锈的；荒疏的",
 	"id" : 10861
 },
 {
@@ -8626,7 +8625,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "馬鞍,鞍座,鞍狀山脊",
+	"translation" : "马鞍,鞍座,鞍状山脊",
 	"id" : 10862
 },
 {
@@ -8636,7 +8635,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使過飽",
+	"translation" : "使过饱",
 	"id" : 10863
 },
 {
@@ -8646,7 +8645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使充滿,使飽和;使濕透",
+	"translation" : "使充满,使饱和;使湿透",
 	"id" : 10864
 },
 {
@@ -8656,7 +8655,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "品嚐",
+	"translation" : "品尝",
 	"id" : 10865
 },
 {
@@ -8666,7 +8665,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "&損傷",
+	"translation" : "&损伤",
 	"id" : 10866
 },
 {
@@ -8686,7 +8685,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "勺,鏟子;獨家新聞挖,掘",
+	"translation" : "勺,铲子;独家新闻挖,掘",
 	"id" : 10868
 },
 {
@@ -8706,7 +8705,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "抓痕,擦傷;抓,搔,撓",
+	"translation" : "抓痕,擦伤;抓,搔,挠",
 	"id" : 10870
 },
 {
@@ -8716,7 +8715,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "潦草地寫",
+	"translation" : "潦草地写",
 	"id" : 10871
 },
 {
@@ -8736,7 +8735,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "細察",
+	"translation" : "细察",
 	"id" : 10873
 },
 {
@@ -8756,7 +8755,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "&混戰",
+	"translation" : "&混战",
 	"id" : 10875
 },
 {
@@ -8776,7 +8775,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "疾走天窗使船沉沒",
+	"translation" : "疾走天窗使船沉没",
 	"id" : 10877
 },
 {
@@ -8786,7 +8785,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "沸騰",
+	"translation" : "沸腾",
 	"id" : 10878
 },
 {
@@ -8796,7 +8795,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "束縛",
+	"translation" : "束缚",
 	"id" : 10879
 },
 {
@@ -8806,7 +8805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "包，蓋",
+	"translation" : "包，盖",
 	"id" : 10880
 },
 {
@@ -8846,7 +8845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "避開",
+	"translation" : "避开",
 	"id" : 10884
 },
 {
@@ -8856,7 +8855,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "撇去(液體表面)之漂浮物輕輕掠過",
+	"translation" : "撇去(液体表面)之漂浮物轻轻掠过",
 	"id" : 10885
 },
 {
@@ -8866,7 +8865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "潛伏，躲躲閃閃",
+	"translation" : "潜伏，躲躲闪闪",
 	"id" : 10886
 },
 {
@@ -8886,7 +8885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "傾斜；傾向",
+	"translation" : "倾斜；倾向",
 	"id" : 10888
 },
 {
@@ -8896,7 +8895,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "狹長的切口;裂縫;切開;撕裂",
+	"translation" : "狭长的切口;裂缝;切开;撕裂",
 	"id" : 10889
 },
 {
@@ -8916,7 +8915,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./vi.",
-	"translation" : "打碎,打破;擊潰",
+	"translation" : "打碎,打破;击溃",
 	"id" : 10891
 },
 {
@@ -8926,7 +8925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "斑點涂髒",
+	"translation" : "斑点涂脏",
 	"id" : 10892
 },
 {
@@ -8956,7 +8955,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "&以鼻吸氣",
+	"translation" : "&以鼻吸气",
 	"id" : 10895
 },
 {
@@ -8976,7 +8975,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "&產卵,大量生產,引發卵",
+	"translation" : "&产卵,大量生产,引发卵",
 	"id" : 10897
 },
 {
@@ -8986,7 +8985,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "尖叫嚎啕,大聲喊叫",
+	"translation" : "尖叫嚎啕,大声喊叫",
 	"id" : 10898
 },
 {
@@ -8996,7 +8995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "浪費",
+	"translation" : "浪费",
 	"id" : 10899
 },
 {
@@ -9006,7 +9005,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "搖晃;蹣跚;使吃驚;使錯開,使交錯",
+	"translation" : "摇晃;蹒跚;使吃惊;使错开,使交错",
 	"id" : 10900
 },
 {
@@ -9016,7 +9015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "&高視闊步；跟蹤主莖",
+	"translation" : "&高视阔步；跟踪主茎",
 	"id" : 10901
 },
 {
@@ -9026,7 +9025,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "盯，凝視，目不轉睛地看",
+	"translation" : "盯，凝视，目不转睛地看",
 	"id" : 10902
 },
 {
@@ -9036,7 +9035,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使昇華",
+	"translation" : "使升华",
 	"id" : 10903
 },
 {
@@ -9046,7 +9045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "佈滿",
+	"translation" : "布满",
 	"id" : 10904
 },
 {
@@ -9076,7 +9075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "猜測",
+	"translation" : "猜测",
 	"id" : 10907
 },
 {
@@ -9086,7 +9085,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "(使)腫脹；漲大，膨脹；(使)增長，加大",
+	"translation" : "(使)肿胀；涨大，膨胀；(使)增长，加大",
 	"id" : 10908
 },
 {
@@ -9096,7 +9095,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "酷熱",
+	"translation" : "酷热",
 	"id" : 10909
 },
 {
@@ -9106,7 +9105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使同時發生,使同步發生",
+	"translation" : "使同时发生,使同步发生",
 	"id" : 10910
 },
 {
@@ -9116,7 +9115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "心智健全,神智正常;判斷正確",
+	"translation" : "心智健全,神智正常;判断正确",
 	"id" : 10911
 },
 {
@@ -9136,7 +9135,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "諷刺,挖苦,嘲笑",
+	"translation" : "讽刺,挖苦,嘲笑",
 	"id" : 10913
 },
 {
@@ -9146,7 +9145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "諷刺",
+	"translation" : "讽刺",
 	"id" : 10914
 },
 {
@@ -9156,7 +9155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "冒犯或引起反感的行動,流言,誹謗",
+	"translation" : "冒犯或引起反感的行动,流言,诽谤",
 	"id" : 10915
 },
 {
@@ -9186,7 +9185,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "(活動/影響的)範圍；(發揮能力)餘地,機會",
+	"translation" : "(活动/影响的)范围；(发挥能力)余地,机会",
 	"id" : 10918
 },
 {
@@ -9196,7 +9195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "長篇大論,勻泥尺,樣板",
+	"translation" : "长篇大论,匀泥尺,样板",
 	"id" : 10919
 },
 {
@@ -9206,7 +9205,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "經文",
+	"translation" : "经文",
 	"id" : 10920
 },
 {
@@ -9216,7 +9215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "捲軸,紙卷;(石刻上的)漩渦",
+	"translation" : "卷轴,纸卷;(石刻上的)漩涡",
 	"id" : 10921
 },
 {
@@ -9226,7 +9225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "顧慮",
+	"translation" : "顾虑",
 	"id" : 10922
 },
 {
@@ -9236,7 +9235,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "細察;調查",
+	"translation" : "细察;调查",
 	"id" : 10923
 },
 {
@@ -9266,7 +9265,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "隱居",
+	"translation" : "隐居",
 	"id" : 10926
 },
 {
@@ -9276,7 +9275,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "部分,切片;段,節;分割",
+	"translation" : "部分,切片;段,节;分割",
 	"id" : 10927
 },
 {
@@ -9286,7 +9285,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "自我中心,利己主義,自私",
+	"translation" : "自我中心,利己主义,自私",
 	"id" : 10928
 },
 {
@@ -9316,7 +9315,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "安靜",
+	"translation" : "安静",
 	"id" : 10931
 },
 {
@@ -9326,7 +9325,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "蔭涼；(色彩)濃淡；遮光物遮蔽，遮光",
+	"translation" : "荫凉；(色彩)浓淡；遮光物遮蔽，遮光",
 	"id" : 10932
 },
 {
@@ -9336,7 +9335,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "圍困;圍城",
+	"translation" : "围困;围城",
 	"id" : 10933
 },
 {
@@ -9346,7 +9345,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "礦渣,爐渣,熔渣",
+	"translation" : "矿渣,炉渣,熔渣",
 	"id" : 10934
 },
 {
@@ -9356,7 +9355,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "掌擊,拍打",
+	"translation" : "掌击,拍打",
 	"id" : 10935
 },
 {
@@ -9366,7 +9365,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "咆哮；纏結",
+	"translation" : "咆哮；缠结",
 	"id" : 10936
 },
 {
@@ -9376,7 +9375,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "大釘,跑鞋,穗狀花序釘釘子,打亂某人的計劃",
+	"translation" : "大钉,跑鞋,穗状花序钉钉子,打乱某人的计划",
 	"id" : 10937
 },
 {
@@ -9396,7 +9395,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v./n.",
-	"translation" : "濺水,潑水;顯示,鼓吹",
+	"translation" : "溅水,泼水;显示,鼓吹",
 	"id" : 10939
 },
 {
@@ -9406,7 +9405,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "壯麗",
+	"translation" : "壮丽",
 	"id" : 10940
 },
 {
@@ -9426,7 +9425,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./n.",
-	"translation" : "水花;飛沫;噴射",
+	"translation" : "水花;飞沫;喷射",
 	"id" : 10942
 },
 {
@@ -9436,7 +9435,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "小隊；班",
+	"translation" : "小队；班",
 	"id" : 10943
 },
 {
@@ -9446,7 +9445,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "分隔欄;售貨攤;前排座位,畜欄,廄",
+	"translation" : "分隔栏;售货摊;前排座位,畜栏,厩",
 	"id" : 10944
 },
 {
@@ -9456,7 +9455,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "體力；精力,耐力",
+	"translation" : "体力；精力,耐力",
 	"id" : 10945
 },
 {
@@ -9466,7 +9465,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "訂書釘,U形釘;主食;主要產品;用訂書釘訂;主要的;基本的;標準的",
+	"translation" : "订书钉,U形钉;主食;主要产品;用订书钉订;主要的;基本的;标准的",
 	"id" : 10946
 },
 {
@@ -9476,7 +9475,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "塑像，雕像，鑄像",
+	"translation" : "塑像，雕像，铸像",
 	"id" : 10947
 },
 {
@@ -9486,7 +9485,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "拉緊,儘力;過勞;扭傷極度緊張,過渡疲勞",
+	"translation" : "拉紧,尽力;过劳;扭伤极度紧张,过渡疲劳",
 	"id" : 10948
 },
 {
@@ -9496,7 +9495,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "海峽;困難,窘迫",
+	"translation" : "海峡;困难,窘迫",
 	"id" : 10949
 },
 {
@@ -9506,7 +9505,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "帶;皮帶;用帶束住;捆紮",
+	"translation" : "带;皮带;用带束住;捆扎",
 	"id" : 10950
 },
 {
@@ -9516,7 +9515,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "條紋；性格；一連串",
+	"translation" : "条纹；性格；一连串",
 	"id" : 10951
 },
 {
@@ -9536,7 +9535,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "屈服；服從",
+	"translation" : "屈服；服从",
 	"id" : 10953
 },
 {
@@ -9556,7 +9555,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "(新聞、決定)不確定,懸而未決",
+	"translation" : "(新闻、决定)不确定,悬而未决",
 	"id" : 10955
 },
 {
@@ -9566,7 +9565,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "食物,營養",
+	"translation" : "食物,营养",
 	"id" : 10956
 },
 {
@@ -9576,7 +9575,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "(昆蟲等)一大群;成群飛舞;蜂擁而入",
+	"translation" : "(昆虫等)一大群;成群飞舞;蜂拥而入",
 	"id" : 10957
 },
 {
@@ -9606,7 +9605,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "強健的,堅實的",
+	"translation" : "强健的,坚实的",
 	"id" : 10960
 },
 {
@@ -9616,7 +9615,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "不活潑的，行動遲緩的，緩慢的",
+	"translation" : "不活泼的，行动迟缓的，缓慢的",
 	"id" : 10961
 },
 {
@@ -9626,7 +9625,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "友好的,喜好交際的",
+	"translation" : "友好的,喜好交际的",
 	"id" : 10962
 },
 {
@@ -9636,7 +9635,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "漫遊的，迷路的",
+	"translation" : "漫游的，迷路的",
 	"id" : 10963
 },
 {
@@ -9646,7 +9645,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "慍怒的",
+	"translation" : "愠怒的",
 	"id" : 10964
 },
 {
@@ -9656,7 +9655,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "悶熱的",
+	"translation" : "闷热的",
 	"id" : 10965
 },
 {
@@ -9666,7 +9665,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "過剩的,多餘的,不必要的",
+	"translation" : "过剩的,多余的,不必要的",
 	"id" : 10966
 },
 {
@@ -9676,7 +9675,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "記分符合",
+	"translation" : "记分符合",
 	"id" : 10967
 },
 {
@@ -9686,7 +9685,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "干預,亂弄",
+	"translation" : "干预,乱弄",
 	"id" : 10968
 },
 {
@@ -9706,7 +9705,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "大量出現,湧現",
+	"translation" : "大量出现,涌现",
 	"id" : 10970
 },
 {
@@ -9716,7 +9715,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "見風使舵,敷衍,應付,拖延",
+	"translation" : "见风使舵,敷衍,应付,拖延",
 	"id" : 10971
 },
 {
@@ -9726,7 +9725,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt./vi.",
-	"translation" : "終止,結束",
+	"translation" : "终止,结束",
 	"id" : 10972
 },
 {
@@ -9736,7 +9735,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "控制閥門,喉嚨,氣管&勒死,減速",
+	"translation" : "控制阀门,喉咙,气管&勒死,减速",
 	"id" : 10973
 },
 {
@@ -9746,7 +9745,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "猛推;衝鋒,突擊;推力",
+	"translation" : "猛推;冲锋,突击;推力",
 	"id" : 10974
 },
 {
@@ -9756,7 +9755,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "重擊",
+	"translation" : "重击",
 	"id" : 10975
 },
 {
@@ -9766,7 +9765,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "常飲；酗酒烈酒",
+	"translation" : "常饮；酗酒烈酒",
 	"id" : 10976
 },
 {
@@ -9776,7 +9775,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "忍受，容忍，容許，寬恕",
+	"translation" : "忍受，容忍，容许，宽恕",
 	"id" : 10977
 },
 {
@@ -9786,7 +9785,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "(道路、橋等的)通行費；（重大）損失",
+	"translation" : "(道路、桥等的)通行费；（重大）损失",
 	"id" : 10978
 },
 {
@@ -9796,7 +9795,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "拖曳牽拉",
+	"translation" : "拖曳牵拉",
 	"id" : 10979
 },
 {
@@ -9806,7 +9805,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "中傷",
+	"translation" : "中伤",
 	"id" : 10980
 },
 {
@@ -9816,7 +9815,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "處理；做交易；談判",
+	"translation" : "处理；做交易；谈判",
 	"id" : 10981
 },
 {
@@ -9826,7 +9825,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "超出,超過",
+	"translation" : "超出,超过",
 	"id" : 10982
 },
 {
@@ -9836,7 +9835,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "(使)變形，(使)轉變；改造；改善，改革",
+	"translation" : "(使)变形，(使)转变；改造；改善，改革",
 	"id" : 10983
 },
 {
@@ -9846,7 +9845,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使變形",
+	"translation" : "使变形",
 	"id" : 10984
 },
 {
@@ -9856,7 +9855,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "蒸發",
+	"translation" : "蒸发",
 	"id" : 10985
 },
 {
@@ -9866,7 +9865,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "橫越,穿過",
+	"translation" : "横越,穿过",
 	"id" : 10986
 },
 {
@@ -9886,7 +9885,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "老練",
+	"translation" : "老练",
 	"id" : 10988
 },
 {
@@ -9896,7 +9895,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "戰術,策略,手段",
+	"translation" : "战术,策略,手段",
 	"id" : 10989
 },
 {
@@ -9926,7 +9925,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "證詞",
+	"translation" : "证词",
 	"id" : 10992
 },
 {
@@ -9936,7 +9935,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "奴隷,受...影響,束縛",
+	"translation" : "奴隶,受...影响,束缚",
 	"id" : 10993
 },
 {
@@ -9946,7 +9945,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "人群,群眾;群集,擁擠",
+	"translation" : "人群,群众;群集,拥挤",
 	"id" : 10994
 },
 {
@@ -9956,7 +9955,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "劇烈痛苦;折磨,煩擾;折磨;糾纏",
+	"translation" : "剧烈痛苦;折磨,烦扰;折磨;纠缠",
 	"id" : 10995
 },
 {
@@ -9986,7 +9985,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "顫抖",
+	"translation" : "颤抖",
 	"id" : 10998
 },
 {
@@ -9996,7 +9995,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "傾向，趨勢伸向，傾向",
+	"translation" : "倾向，趋势伸向，倾向",
 	"id" : 10999
 },
 {
@@ -10006,7 +10005,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "試驗;審判",
+	"translation" : "试验;审判",
 	"id" : 11000
 },
 {
@@ -10016,7 +10015,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "",
-	"translation" : "苦難",
+	"translation" : "苦难",
 	"id" : 11001
 },
 {
@@ -10026,7 +10025,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "喧囂",
+	"translation" : "喧嚣",
 	"id" : 11002
 },
 {
@@ -10036,7 +10035,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "騷動,騷亂",
+	"translation" : "骚动,骚乱",
 	"id" : 11003
 },
 {
@@ -10046,7 +10045,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "細枝",
+	"translation" : "细枝",
 	"id" : 11004
 },
 {
@@ -10056,7 +10055,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "試驗性的;暫時的",
+	"translation" : "试验性的;暂时的",
 	"id" : 11005
 },
 {
@@ -10066,7 +10065,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "a.",
-	"translation" : "治療的",
+	"translation" : "治疗的",
 	"id" : 11006
 },
 {
@@ -10076,7 +10075,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "暫時的",
+	"translation" : "暂时的",
 	"id" : 11007
 },
 {
@@ -10086,7 +10085,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "adj.",
-	"translation" : "腫脹的,浮誇的",
+	"translation" : "肿胀的,浮夸的",
 	"id" : 11008
 },
 {
@@ -10096,7 +10095,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "adj.",
-	"translation" : "起伏,呈波浪形波狀的",
+	"translation" : "起伏,呈波浪形波状的",
 	"id" : 11009
 },
 {
@@ -10106,7 +10105,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "發掘",
+	"translation" : "发掘",
 	"id" : 11010
 },
 {
@@ -10116,7 +10115,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "責備",
+	"translation" : "责备",
 	"id" : 11011
 },
 {
@@ -10126,7 +10125,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "支撐；支持，擁護；舉起；確認，肯定",
+	"translation" : "支撑；支持，拥护；举起；确认，肯定",
 	"id" : 11012
 },
 {
@@ -10146,7 +10145,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "v.",
-	"translation" : "消失；消散；消滅",
+	"translation" : "消失；消散；消灭",
 	"id" : 11014
 },
 {
@@ -10156,7 +10155,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vi.",
-	"translation" : "轉向",
+	"translation" : "转向",
 	"id" : 11015
 },
 {
@@ -10166,7 +10165,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "使煩惱,使苦惱",
+	"translation" : "使烦恼,使苦恼",
 	"id" : 11016
 },
 {
@@ -10176,7 +10175,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "vt.",
-	"translation" : "為…辯白;證明…正確",
+	"translation" : "为…辩白;证明…正确",
 	"id" : 11017
 },
 {
@@ -10186,7 +10185,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "優柔寡斷",
+	"translation" : "优柔寡断",
 	"id" : 11018
 },
 {
@@ -10196,7 +10195,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "勇氣",
+	"translation" : "勇气",
 	"id" : 11019
 },
 {
@@ -10206,7 +10205,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "自大,虛榮;無價值,空虛",
+	"translation" : "自大,虚荣;无价值,空虚",
 	"id" : 11020
 },
 {
@@ -10216,7 +10215,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "變化",
+	"translation" : "变化",
 	"id" : 11021
 },
 {
@@ -10226,7 +10225,7 @@
 	"enSentence" : ["default sentence"],
 	"level" : 0,
 	"partOfSpeech" : "n.",
-	"translation" : "拱形圓屋頂；地窖,撐桿跳",
+	"translation" : "拱形圆屋顶；地窖,撑杆跳",
 	"id" : 11022
 },
 {
@@ -10238,4 +10237,4 @@
 	"partOfSpeech" : "",
 	"translation" : "",
 	"id" : 11023
-}]
+},
