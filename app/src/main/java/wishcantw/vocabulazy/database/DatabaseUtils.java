@@ -12,6 +12,9 @@ import wishcantw.vocabulazy.database.object.Vocabulary;
 
 public class DatabaseUtils {
 
+    // the maximum size of the search list
+    private static final int MAXIMUM_LIST_SIZE = 50;
+
     // the singleton
     private DatabaseUtils databaseUtils = new DatabaseUtils();
 
@@ -60,8 +63,6 @@ public class DatabaseUtils {
                     ? context.getString(R.string.textbook_group_subtitle)
                     : textbooks.get(bookIndex).getTextbookTitle();
     }
-
-
 
     /**
      * Get the title of the lesson
@@ -171,38 +172,57 @@ public class DatabaseUtils {
                     ? new ArrayList<Integer>()
                     : notes.get(noteIndex).getNoteContent();
     }
-    
-    public ArrayList<String> getNoteNames() {
+
+    /**
+     * Get the names of the notes
+     *
+     * @param notes the array list notes
+     *
+     * @return the array list of note names
+     */
+    public ArrayList<String> getNoteNames(@NonNull ArrayList<Note> notes) {
         ArrayList<String> noteNames = new ArrayList<>();
-        if (mNotes != null) {
-            for (Note note : mNotes) {
-                noteNames.add(note.getNoteTitle());
-            }
+        for (Note note : notes) {
+            noteNames.add(note.getNoteTitle());
         }
         return noteNames;
     }
 
-    public ArrayList<Vocabulary> getVocabulariesByIDs(@NonNull final ArrayList<Integer> vocIDs) {
-        ArrayList<Vocabulary> vocabularies = new ArrayList<>();
-        if (mVocabularies != null) {
-            for (int index = 0; index < vocIDs.size(); index++) {
-                for (int index2 = 0; index2 < mVocabularies.size(); index2++) {
-                    Vocabulary vocabulary = mVocabularies.get(index2);
-                    if (vocIDs.get(index).equals(vocabulary.getId())) {
-                        vocabularies.add(vocabulary);
-                    }
+    /**
+     * Get the array list of the vocabularies based on the given ids
+     *
+     * @param vocabularies the array list of vocabularies
+     * @param ids the array list of the desired vocabulary ids
+     *
+     * @return the array list of desired vocabularies
+     */
+    public ArrayList<Vocabulary> getVocabulariesByIDs(@NonNull ArrayList<Vocabulary> vocabularies,
+                                                      @NonNull final ArrayList<Integer> ids) {
+        ArrayList<Vocabulary> matchedVocabularies = new ArrayList<>();
+        for (Integer id : ids) {
+            for (Vocabulary vocabulary : vocabularies) {
+                if (vocabulary != null && id.equals(vocabulary.getId())) {
+                    matchedVocabularies.add(vocabulary);
                 }
             }
         }
-        return vocabularies;
+        return matchedVocabularies;
     }
 
     /* Search operation */
-    public ArrayList<Vocabulary> readSuggestVocabularyBySpell(String queryString) {
+    /**
+     * Get the vocabularies based on the query
+     *
+     * @param vocabularies the array list of vocabularies
+     * @param queryString the string of the query
+     *
+     * @return the array list of the matched vocabularies
+     */
+    public ArrayList<Vocabulary> readSuggestVocabularyBySpell(@NonNull ArrayList<Vocabulary> vocabularies,
+                                                              @NonNull String queryString) {
         ArrayList<Vocabulary> resultVocabularies = new ArrayList<>();
-        if (mVocabularies != null) {
-            for (int index = 0; index < mVocabularies.size(); index++) {
-                Vocabulary vocabulary = mVocabularies.get(index);
+        for (Vocabulary vocabulary : vocabularies) {
+            if (vocabulary != null) {
                 String spell = vocabulary.getSpell();
                 int queryStringLength = queryString.length();
                 if (spell.length() < queryStringLength) {
@@ -220,72 +240,83 @@ public class DatabaseUtils {
     }
 
     /* Note operations */
-    public void createNewNote(String name) {
-        if (mNotes == null) mNotes = new ArrayList<>();
-        int index = mNotes.size();
-        mNotes.add(index, new Note(index, name, new ArrayList<Integer>()));
+
+    /**
+     * Create a new note with the given name
+     *
+     * @param notes the array list of notes
+     * @param name the name of new note
+     */
+    public void createNewNote(@NonNull ArrayList<Note> notes,
+                              @NonNull String name) {
+        int index = notes.size();
+        notes.add(index, new Note(index, name, new ArrayList<Integer>()));
     }
 
     /**
      * Add vocabulary to a note.
      *
-     * @param vocId the id of the vocabulary that will be added.
+     * @param id the id of the vocabulary that will be added.
      * @param noteIndex the index of the note
      */
-    public void addVocToNote(int vocId, int noteIndex) {
+    public void addVocToNote(@NonNull ArrayList<Note> notes,
+                             int id,
+                             int noteIndex) {
         // check noteIndex validity
-        if (noteIndex >= mNotes.size() || noteIndex == -1) {
+        if (noteIndex == -1 || noteIndex >= notes.size() || notes.get(noteIndex) == null) {
             return;
         }
 
         // if the selected note doesn't have the vocabulary, then add the vocabulary to note
-        ArrayList<Integer> content = mNotes.get(noteIndex).getNoteContent();
-        if (!content.contains(vocId)) {
-            content.add(vocId);
+        ArrayList<Integer> content = notes.get(noteIndex).getNoteContent();
+        if (content != null && !content.contains(id)) {
+            content.add(id);
         }
     }
 
-    public void renameNoteAt(int noteIndex, String name) {
-        if (mNotes == null || noteIndex == -1
-                || noteIndex >= mNotes.size() || mNotes.get(noteIndex) == null) {
+    /**
+     * Rename the note at the given index with new name
+     *
+     * @param notes the array list of notes
+     * @param noteIndex the index of note which will be renamed
+     * @param name the new name of the note
+     */
+    public void renameNoteAt(@NonNull ArrayList<Note> notes,
+                             int noteIndex,
+                             @NonNull String name) {
+        if (noteIndex == -1 || noteIndex >= notes.size() || notes.get(noteIndex) == null) {
             return;
         }
-        int id = mNotes.get(noteIndex).getNoteId();
-        renameNote(mNotes, id, name);
-    }
 
-    private void renameNote(@NonNull ArrayList<Note> notes, int noteId, String newName) {
-        for (int index = 0; index < notes.size(); index++) {
-            Note note = notes.get(index);
-            if (noteId == note.getNoteId()) {
-                note.setNoteTitle(newName);
+        int id = notes.get(noteIndex).getNoteId();
+
+        for (Note note : notes) {
+            if (note != null && id == note.getNoteId()) {
+                note.setNoteTitle(name);
                 return;
             }
         }
     }
 
-    public void deleteNoteAt(int noteIndex) {
-        if (mNotes == null|| noteIndex == -1
-                || noteIndex >= mNotes.size() || mNotes.get(noteIndex) == null) {
+    /**
+     * Delete the note at given index
+     *
+     * @param notes the array list of notes
+     * @param noteIndex the index of the note to be deleted
+     */
+    public void deleteNoteAt(@NonNull ArrayList<Note> notes,
+                             int noteIndex) {
+        if (noteIndex == -1 || noteIndex >= notes.size() || notes.get(noteIndex) == null) {
             return;
         }
-        int id = mNotes.get(noteIndex).getNoteId();
-        deleteNote(mNotes, id);
-    }
 
-    private void deleteNote(@NonNull ArrayList<Note> notes, int noteId) {
-        Note noteToBeDelete = null;
-        for (int index = 0; index < notes.size(); index++) {
-            Note note = notes.get(index);
-            if (noteId == note.getNoteId()) {
-                noteToBeDelete = note;
+        int id = notes.get(noteIndex).getNoteId();
+
+        for (Note note : notes) {
+            if (note != null && id == note.getNoteId()) {
+                notes.remove(note);
             }
         }
-
-        if (noteToBeDelete == null)
-            return;
-
-        notes.remove(noteToBeDelete);
 
         // refresh IDs
         for (int index = 0; index < notes.size(); index++) {
