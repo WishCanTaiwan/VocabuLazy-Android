@@ -16,13 +16,13 @@ public class DatabaseUtils {
     private static final int MAXIMUM_LIST_SIZE = 50;
 
     // the singleton
-    private DatabaseUtils databaseUtils = new DatabaseUtils();
+    private static DatabaseUtils databaseUtils = new DatabaseUtils();
 
     // make constructor private to prevent others from instantiate
     private DatabaseUtils() {}
 
     // getting the singleton
-    public synchronized DatabaseUtils getInstance() {
+    public static synchronized DatabaseUtils getInstance() {
         return databaseUtils;
     }
 
