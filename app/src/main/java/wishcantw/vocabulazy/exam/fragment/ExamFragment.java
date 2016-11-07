@@ -95,6 +95,11 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
     }
 
     @Override
+    public void onExamPlayerClick() {
+        // TODO: Beibei please add the function when player button is clicked
+    }
+
+    @Override
     public void onExamAnswerClick(int index) {
         if (mAnswerState == STATE_ANSWERED) {
             return;
