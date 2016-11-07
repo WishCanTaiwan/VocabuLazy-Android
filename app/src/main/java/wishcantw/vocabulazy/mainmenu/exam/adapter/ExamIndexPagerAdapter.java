@@ -64,10 +64,10 @@ public class ExamIndexPagerAdapter extends PagerAdapter {
         // update view content with items
         switch (position) {
             case VIEW_INDEX_TEXTBOOK:
-                ((ExamIndexTextbookView) view).setAdapter(new TextbookContentAdapter(context, textbookGroupItems, textbookChildItemsMap));
+                ((ExamIndexTextbookView) view).setAdapter(new TextbookContentAdapter(textbookGroupItems, textbookChildItemsMap));
                 break;
             case VIEW_INDEX_NOTE:
-                ((ExamIndexNoteView) view).setAdapter(new NoteContentAdapter(context, noteGroupItems, noteChildItemsMap));
+                ((ExamIndexNoteView) view).setAdapter(new NoteContentAdapter(noteGroupItems, noteChildItemsMap));
                 break;
             default:
                 break;

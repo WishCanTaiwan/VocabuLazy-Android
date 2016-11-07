@@ -124,8 +124,8 @@ public class ExamIndexView extends LinearLayout implements TextView.OnClickListe
     }
 
     public void refresh() {
-        mExamIndexTextbookView.setAdapter(new TextbookContentAdapter(getContext(), textbookGroupItems, textbookChildItemsMap));
-        mExamIndexNoteView.setAdapter(new NoteContentAdapter(getContext(), noteGroupItems, noteChildItemsMap));
+        mExamIndexTextbookView.setAdapter(new TextbookContentAdapter(textbookGroupItems, textbookChildItemsMap));
+        mExamIndexNoteView.setAdapter(new NoteContentAdapter(noteGroupItems, noteChildItemsMap));
     }
 
     public void addOnExamIndexClickListener(OnExamIndexClickListener listener) {

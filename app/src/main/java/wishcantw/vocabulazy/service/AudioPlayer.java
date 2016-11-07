@@ -75,17 +75,18 @@ public class AudioPlayer implements AudioPlayerListener {
 
     public AudioPlayer(GlobalVariable application) {
         mGlobalVariable = application;
-        mContext = application.getApplicationContext();
 //        mPreferences = application.getPreferences();
         mDatabase = Database.getInstance();
         mHandler = new Handler();
         mTimerRunnable = new Runnable() {
             @Override
             public void run() {
-                if (vlTextToSpeech == null)
+                if (vlTextToSpeech == null) {
                     return;
-                if (isTimeOut)
+                }
+                if (isTimeOut) {
                     return;
+                }
                 isTimeOut = true;
                 vlTextToSpeech.pause();
                 updatePlayerInfo(mItemIndex, mSentenceIndex, mPlayingField, PAUSE);
@@ -93,8 +94,8 @@ public class AudioPlayer implements AudioPlayerListener {
         };
     }
 
-    public void bondToTTSEngine() {
-        vlTextToSpeech = new VLTextToSpeech(mContext);
+    public void bondToTTSEngine(Context context) {
+        vlTextToSpeech = new VLTextToSpeech(context);
         vlTextToSpeech.setOnEngineStatusListener(this);
         vlTextToSpeech.initTTS();
         vlTextToSpeech.setOnUtteranceFinishListener(this);
@@ -102,20 +103,21 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void releaseTTSResource() {
-        if (vlTextToSpeech == null)
+        if (vlTextToSpeech == null) {
             return;
+        }
         vlTextToSpeech.release();
         vlTextToSpeech = null;
     }
 
-    public void getAudioFocus() {
-        AudioManager audioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+    public void getAudioFocus(Context context) {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         isAudioFocused = (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
     }
 
-    public void releaseAudioFocus() {
-        AudioManager audioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+    public void releaseAudioFocus(Context context) {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         audioManager.abandonAudioFocus(this);
         isAudioFocused = false;
     }
@@ -129,6 +131,10 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void setOptionSettings(OptionSettings optionSettings) {
+        if (optionSettings == null) {
+            return;
+        }
+
         mOptionSettings = optionSettings;
         itemLoopCountDown = optionSettings.getItemLoop();
         listLoopCountDown = optionSettings.getListLoop();
@@ -142,6 +148,10 @@ public class AudioPlayer implements AudioPlayerListener {
         int oldItemLoop = mGlobalVariable.playerItemLoop;
         int oldListLoop = mGlobalVariable.playerListLoop;
         int oldPlayTime = mGlobalVariable.playerPlayTime;
+
+        if (optionSettings == null) {
+            return;
+        }
 
         int newItemLoop = optionSettings.getItemLoop();
         int newListLoop = optionSettings.getListLoop();
@@ -157,6 +167,9 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void play(String utterance) {
+        if (vlTextToSpeech == null) {
+            return;
+        }
         isTriggeredFromExam = true;
         vlTextToSpeech.stop();
         vlTextToSpeech.setLanguage(Locale.ENGLISH);
@@ -173,12 +186,7 @@ public class AudioPlayer implements AudioPlayerListener {
     void playItemAt(final int itemIndex, final int sentenceIndex, final String playingField) {
 
         // check vocabulary validity
-        if (mVocabularies == null) {
-            return;
-        }
-
-        // check size of vocabulary
-        if (mVocabularies.isEmpty()) {
+        if (mVocabularies == null || mVocabularies.isEmpty() || vlTextToSpeech == null || mOptionSettings == null) {
             return;
         }
 
@@ -215,13 +223,15 @@ public class AudioPlayer implements AudioPlayerListener {
         playItemAt(mItemIndex, newSentenceIndex, EnSENTENCE);
     }
 
-    public void playButtonClick() {
+    public void playButtonClick(Context context) {
         String playerState = mPlayerState;
         if (playerState.equals(PLAYING)) {
             playerState = PAUSE;
-            vlTextToSpeech.pause();
+            if (vlTextToSpeech != null) {
+                vlTextToSpeech.pause();
+            }
         } else {
-            if (!isAudioFocused) getAudioFocus();
+            if (!isAudioFocused) getAudioFocus(context);
             playerState = PLAYING;
             playItemAt(mItemIndex, mSentenceIndex, mPlayingField);
         }
@@ -229,17 +239,25 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void haltPlayer() {
-        vlTextToSpeech.stop();
+        if (vlTextToSpeech != null) {
+            vlTextToSpeech.stop();
+        }
         updatePlayerInfo(mItemIndex, mSentenceIndex, mPlayingField, HALT_BY_SCROLLING);
     }
 
     public void startTimer() {
+        if (mOptionSettings == null) {
+            return;
+        }
         int playTime = mOptionSettings.getPlayTime() * 1000 * 60;
         mHandler.postDelayed(mTimerRunnable, playTime);
         isTimeOut = false;
     }
 
     public void resetTimer() {
+        if (mOptionSettings == null) {
+            return;
+        }
         mGlobalVariable.playerPlayTime = mOptionSettings.getPlayTime();
         mHandler.removeCallbacks(mTimerRunnable);
         startTimer();
@@ -250,6 +268,9 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void resetItemLoop() {
+        if (mOptionSettings == null) {
+            return;
+        }
         int itemLoop = mOptionSettings.getItemLoop();
         mGlobalVariable.playerItemLoop = itemLoop;
         itemLoopCountDown = itemLoop;
@@ -263,8 +284,9 @@ public class AudioPlayer implements AudioPlayerListener {
 
     @Override
     public void onEngineInit() {
-        if (mBroadcastTrigger == null)
+        if (mBroadcastTrigger == null) {
             return;
+        }
         mBroadcastTrigger.checkVoiceData();
     }
 
@@ -284,6 +306,10 @@ public class AudioPlayer implements AudioPlayerListener {
         String playerState = mPlayerState;
 
         if (playerState.equals(HALT_BY_SCROLLING) || playerState.equals(PAUSE)) return;
+
+        if (mOptionSettings == null || mBroadcastTrigger == null) {
+            return;
+        }
 
         switch (playingField) {
             case SPELL:
@@ -386,7 +412,9 @@ public class AudioPlayer implements AudioPlayerListener {
             isAudioFocused = false;
             if (playerState.equals(PLAYING)) {
                 playerState = HALT_BY_FOCUS_LOSS;
-                vlTextToSpeech.pause();
+                if (vlTextToSpeech != null) {
+                    vlTextToSpeech.pause();
+                }
                 mPlayerState = playerState; /* the player is halted by focus loss */
             }
         }
@@ -394,7 +422,7 @@ public class AudioPlayer implements AudioPlayerListener {
 
     private int isItemFinishing(int itemIndex, int sentenceIndex, String playingField, int stopPeriod) {
         int lengthOfPause = 400;
-        boolean isSentence = mOptionSettings.isSentence();
+        boolean isSentence = mOptionSettings != null && mOptionSettings.isSentence();
         if (isSentence && playingField.equals(CnSENTENCE) && isLastSentence(itemIndex, sentenceIndex)
                 || !isSentence && playingField.equals(TRANSLATION))
             lengthOfPause = 400 + stopPeriod * 1000;
@@ -402,8 +430,9 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     private void updatePlayerInfo(int itemIndex, int sentenceIndex, String playingField, String playerState) {
-        if (!playerState.equals(mPlayerState))
+        if (!playerState.equals(mPlayerState) && mBroadcastTrigger != null) {
             mBroadcastTrigger.onPlayerStateChanged(playerState);
+        }
 
         mGlobalVariable.playerItemIndex = itemIndex;
         mGlobalVariable.playerSentenceIndex = sentenceIndex;
@@ -418,8 +447,8 @@ public class AudioPlayer implements AudioPlayerListener {
 
     private int pickNextItem(int oldItemIndex) {
         int next;
-        int itemAmount = mVocabularies.size();
-        if (mOptionSettings.isRandom()) {
+        int itemAmount = (mVocabularies == null ? 0 : mVocabularies.size());
+        if (mOptionSettings != null && mOptionSettings.isRandom()) {
             Random random = new Random(System.currentTimeMillis());
             do {
                 next = random.nextInt(itemAmount);
@@ -431,6 +460,9 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     private ArrayList<Vocabulary> loadNewContent() {
+        if (mGlobalVariable == null || mDatabase == null) {
+            return new ArrayList<>();
+        }
         int bookIndex = mGlobalVariable.playerTextbookIndex;
         int numOfLesson = mDatabase.getNumOfLesson(bookIndex);
         int oldLessonIndex = mGlobalVariable.playerLessonIndex;
@@ -443,12 +475,15 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     private boolean isLastItem(int itemIndex) {
-        int itemAmount = mVocabularies.size();
+        int itemAmount = (mVocabularies == null ? 0 : mVocabularies.size());
         return (itemIndex == itemAmount-1);
     }
 
     private boolean isLastSentence(int itemIndex, int sentenceIndex) {
-        int sentenceAmount = mVocabularies.get(itemIndex).getSentenceAmount();
+        int sentenceAmount = 0;
+        if (mVocabularies != null && itemIndex < mVocabularies.size() && itemIndex > -1 && mVocabularies.get(itemIndex) != null) {
+            sentenceAmount = mVocabularies.get(itemIndex).getSentenceAmount();
+        }
         return (sentenceIndex == sentenceAmount-1);
     }
 
