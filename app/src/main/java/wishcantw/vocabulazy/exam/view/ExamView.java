@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,12 +20,16 @@ import java.util.HashMap;
 /**
  * Created by SwallowChen on 8/25/16.
  */
-public class ExamView extends LinearLayout implements FloatingActionButton.OnClickListener{
+public class ExamView extends LinearLayout implements FloatingActionButton.OnClickListener {
 
     /**
      * The listener contains all events of Exam's children
      * */
     public interface ExamEventListener {
+        /*
+         * The callback function when ExamPlayerClick
+         * */
+        void onExamPlayerClick();
         /**
          * The callback function when ExamAnswerView is clicked
          * @see ExamAnswerView
@@ -39,6 +44,8 @@ public class ExamView extends LinearLayout implements FloatingActionButton.OnCli
 
     private static final int PROGRESSBAR_RES_ID = R.id.exam_progressbar;
 
+    private static final int VIEW_PLAYER_ICON_RES_ID = R.id.exam_player;
+
     private static final int VIEW_QUESTION_RES_ID = R.id.exam_question;
     private static final int VIEW_ANSWER_1_RES_ID = R.id.exam_answer_1;
     private static final int VIEW_ANSWER_2_RES_ID = R.id.exam_answer_2;
@@ -49,6 +56,7 @@ public class ExamView extends LinearLayout implements FloatingActionButton.OnCli
 
     private ProgressBar mExamProgressBar;
     private TextView mExamQuestion;
+    private ImageView mExamPlayerIcon;
     private ExamAnswerView mExamAnswer1, mExamAnswer2, mExamAnswer3, mExamAnswer4;
     private ExamAnswerView EXAM_ANSWER_VIEW_s[] = new ExamAnswerView[5];
     private FloatingActionButton mNextIconFab;
@@ -74,6 +82,7 @@ public class ExamView extends LinearLayout implements FloatingActionButton.OnCli
         EXAM_ANSWER_VIEW_s[4] = mExamAnswer4 = (ExamAnswerView) findViewById(VIEW_ANSWER_4_RES_ID);
 
         mNextIconFab = (FloatingActionButton) findViewById(VIEW_NEXT_ICON_RES_ID);
+        mExamPlayerIcon = (ImageView) findViewById(VIEW_PLAYER_ICON_RES_ID);
 
         registerEventListener();
     }
@@ -184,6 +193,14 @@ public class ExamView extends LinearLayout implements FloatingActionButton.OnCli
             });
         }
         mNextIconFab.setOnClickListener(this);
+        mExamPlayerIcon.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mExamEventListener != null) {
+                    mExamEventListener.onExamPlayerClick();
+                }
+            }
+        });
     }
 
     public void hideNextIcon() {
