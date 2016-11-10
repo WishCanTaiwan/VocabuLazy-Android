@@ -44,7 +44,8 @@ public class AudioPlayer implements AudioPlayerListener {
     public static final String IDLE = "idle";
     public static final String PLAYING = "playing";
     public static final String PAUSE = "pause";
-    public static final String HALT_BY_SCROLLING = "halt-by-scrolling";
+    public static final String HALT_FROM_PLAYING_BY_SCROLLING = "halt-from-playing-by-scrolling";
+    public static final String HALT_FROM_PAUSE_BY_SCROLLING = "halt-from-pause-by-scrolling";
     public static final String HALT_BY_FOCUS_LOSS = "halt-by-focus-loss";
 
     private Context mContext;
@@ -114,6 +115,10 @@ public class AudioPlayer implements AudioPlayerListener {
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         isAudioFocused = (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
+    }
+
+    public String getPlayerState() {
+        return mPlayerState;
     }
 
     public void releaseAudioFocus(Context context) {
@@ -239,10 +244,15 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void haltPlayer() {
+        String playerState = mPlayerState;
         if (vlTextToSpeech != null) {
             vlTextToSpeech.stop();
         }
-        updatePlayerInfo(mItemIndex, mSentenceIndex, mPlayingField, HALT_BY_SCROLLING);
+        if (playerState.equals(PLAYING)) {
+            updatePlayerInfo(mItemIndex, mSentenceIndex, mPlayingField, HALT_FROM_PLAYING_BY_SCROLLING);
+        } else {
+            updatePlayerInfo(mItemIndex, mSentenceIndex, mPlayingField, HALT_FROM_PAUSE_BY_SCROLLING);
+        }
     }
 
     public void startTimer() {
@@ -305,7 +315,7 @@ public class AudioPlayer implements AudioPlayerListener {
         String playingField = mPlayingField;
         String playerState = mPlayerState;
 
-        if (playerState.equals(HALT_BY_SCROLLING) || playerState.equals(PAUSE)) return;
+        if (playerState.equals(HALT_FROM_PLAYING_BY_SCROLLING) || playerState.equals(HALT_FROM_PAUSE_BY_SCROLLING) || playerState.equals(PAUSE)) return;
 
         if (mOptionSettings == null || mBroadcastTrigger == null) {
             return;
