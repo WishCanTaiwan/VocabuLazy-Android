@@ -22,6 +22,10 @@
     <dimen name="cover_dialog_ox_padding">5dp</dimen>
     <dimen name="cover_dialog_input_text_size">23sp</dimen>
     <!-- main_menu -->
+    <dimen name="main_menu_fragment_tab_default_text_size">15dp</dimen>
+    <dimen name="textbook_group_title_text_size">40dp</dimen>
+    <dimen name="textbook_group_subtitle_text_size">22dp</dimen>
+    <dimen name="textbook_child_text_size">20dp</dimen>
     <dimen name="note_dialog_rename_translation_z">@dimen/dialog_z</dimen>
     <!-- exam -->
     <dimen name="exam_result_parent_margin_top">47dp</dimen>
@@ -102,9 +106,6 @@
     <dimen name="search_dialog_new_note_content_yes_no_container_height">53dp</dimen>
     <dimen name="search_dialog_new_note_content_translation_z">@dimen/dialog_z</dimen>
     <dimen name="search_dialog_new_note_content_yes_no_container_translation_z">10dp</dimen>
-
-    <!-- main menu -->
-    <dimen name="textbook_group_text_size">40sp</dimen>
 
     <!-- player -->
     <dimen name="player_option_level_image_padding">33dp</dimen>

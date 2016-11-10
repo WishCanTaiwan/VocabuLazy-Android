@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:background="@color/theme_color_green"
         app:tabIndicatorHeight="7dp"
-        app:tabTextColor="@color/main_menu_fragment_tab_default_text_color"
-        app:tabSelectedTextColor="@color/main_menu_fragment_tab_selected_text_color"/>
+        app:tabSelectedTextColor="@color/main_menu_fragment_tab_selected_text_color"
+        app:tabTextAppearance="@style/AppTheme.MainMenuActivity.TextAppearance"/>
 
     <wishcantw.vocabulazy.mainmenu.view.MainMenuViewPager
         android:id="@+id/main_menu_viewpager"

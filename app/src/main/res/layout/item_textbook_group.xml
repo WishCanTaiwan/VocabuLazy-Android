@@ -11,7 +11,7 @@
         android:layout_height="115dp"
         android:background="@drawable/expandable_group_background"
         android:text="@string/textbook_group_title"
-        android:textSize="@dimen/textbook_group_text_size"
+        android:textSize="@dimen/textbook_group_title_text_size"
         android:textColor="@color/textbook_group_title_text_color"
         android:paddingLeft="22dp"
         android:paddingRight="22dp"/>
@@ -23,7 +23,7 @@
         android:layout_height="40dp"
         android:background="@drawable/expandable_child_background"
         android:text="@string/textbook_group_subtitle"
-        android:textSize="22sp"
+        android:textSize="@dimen/textbook_group_subtitle_text_size"
         android:textColor="@color/textbook_group_subtitle_text_color"
         android:textAllCaps="false"
         android:paddingLeft="20dp"
