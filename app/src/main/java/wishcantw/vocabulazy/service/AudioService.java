@@ -143,6 +143,10 @@ public class AudioService extends IntentService {
                 mAudioPlayer.resetItemLoop();
                 mAudioPlayer.resetListLoop();
                 mAudioPlayer.resetTimer();
+                // DO NOT change the playing state to PLAYING if current state is PAUSE
+                if (mAudioPlayer.getPlayerState().equals(AudioPlayer.HALT_FROM_PAUSE_BY_SCROLLING)) {
+                    break;
+                }
             case START_PLAYING:
                 if (intent == null)
                     break;
