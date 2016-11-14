@@ -43,6 +43,7 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
         // get data model
         if (mExamModel == null) {
             mExamModel = ExamModel.getInstance();
+            mExamModel.init();
         }
 
         // set up views
@@ -111,6 +112,14 @@ public class ExamActivity extends AppCompatActivity implements ExamFragment.OnEx
     public void onExamAlertDone() {
         Logger.d(TAG, "onExamAlertDone");
         finish();
+    }
+
+    public ExamModel getExamModel() {
+        if (mExamModel == null) {
+            mExamModel = ExamModel.getInstance();
+            mExamModel.init();
+        }
+        return mExamModel;
     }
 
     private void setActionBarTitle(String title) {

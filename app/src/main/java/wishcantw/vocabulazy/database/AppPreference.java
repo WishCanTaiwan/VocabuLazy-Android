@@ -2,10 +2,6 @@ package wishcantw.vocabulazy.database;
 
 import wishcantw.vocabulazy.audio.AudioPlayerUtils;
 
-/**
- * Created by allencheng07 on 2016/11/13.
- */
-
 public class AppPreference {
 
     private static AppPreference appPreference = new AppPreference();

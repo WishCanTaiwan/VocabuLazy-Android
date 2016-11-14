@@ -33,8 +33,13 @@ public class ExamModel {
     private DatabaseUtils databaseUtils;
 
     public void init() {
-        database = Database.getInstance();
-        databaseUtils = DatabaseUtils.getInstance();
+        if (database == null) {
+            database = Database.getInstance();
+        }
+
+        if (databaseUtils == null) {
+            databaseUtils = DatabaseUtils.getInstance();
+        }
     }
 
     public String getTitle(@NonNull Context context,

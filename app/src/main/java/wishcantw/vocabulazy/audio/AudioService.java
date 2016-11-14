@@ -136,10 +136,10 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
                 mAudioPlayer.resetItemLoopCountDown();
                 mAudioPlayer.resetSpellLoopCountDown();
                 switch (appPreference.getPlayerState()) {
-                    case PLAYING:
+                    case PLAYING: case SCROLLING_WHILE_PLAYING:
                         mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
                         break;
-                    case STOP: case STOP_BY_SCROLLING: case STOP_BY_FOCUS_CHANGE:
+                    case STOPPED: case SCROLLING_WHILE_STOPPED: case STOPPED_BY_FOCUS_CHANGE:
                         break;
                 }
                 break;
@@ -166,7 +166,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
             case PLAY_BUTTON_CLICKED:
                 if (appPreference.getPlayerState().equals(AudioPlayerUtils.PlayerState.PLAYING)) {
                     mAudioPlayer.stop();
-                    appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOP);
+                    appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOPPED);
                     audioServiceBroadcaster.onPlayerStateChanged();
 
                 } else {
@@ -182,7 +182,9 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
 
             case PLAYERVIEW_SCROLLING:
                 mAudioPlayer.stop();
-                AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.STOP_BY_SCROLLING);
+                appPreference.setPlayerState((appPreference.getPlayerState().equals(AudioPlayerUtils.PlayerState.PLAYING))
+                        ? AudioPlayerUtils.PlayerState.SCROLLING_WHILE_PLAYING
+                        : AudioPlayerUtils.PlayerState.SCROLLING_WHILE_STOPPED);
                 audioServiceBroadcaster.onPlayerStateChanged();
                 break;
 
@@ -203,7 +205,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
         AudioPlayerUtils.PlayerState playerState = appPreference.getPlayerState();
 
         if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-            if (playerState.equals(AudioPlayerUtils.PlayerState.STOP_BY_FOCUS_CHANGE)) {
+            if (playerState.equals(AudioPlayerUtils.PlayerState.STOPPED_BY_FOCUS_CHANGE)) {
                 appPreference.setPlayerState(AudioPlayerUtils.PlayerState.PLAYING);
                 audioServiceBroadcaster.onPlayerStateChanged();
                 mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
@@ -215,7 +217,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
                 focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
             appPreference.setAudioFocused(false);
             if (playerState.equals(AudioPlayerUtils.PlayerState.PLAYING)) {
-                appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOP_BY_FOCUS_CHANGE);
+                appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOPPED_BY_FOCUS_CHANGE);
                 audioServiceBroadcaster.onPlayerStateChanged();
                 // todo: release vl text to speech
             }

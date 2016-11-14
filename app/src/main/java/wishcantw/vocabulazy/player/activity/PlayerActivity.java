@@ -55,7 +55,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
         // set indices to player model
         mPlayerModel.setBookIndex(bookIndex);
-        mPlayerModel.setLessonIndex(bookIndex);
+        mPlayerModel.setLessonIndex(lessonIndex);
 
         // set content view
         setContentView(VIEW_RES_ID);

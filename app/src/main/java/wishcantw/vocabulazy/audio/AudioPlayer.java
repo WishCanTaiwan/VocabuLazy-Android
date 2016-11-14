@@ -120,8 +120,9 @@ public class AudioPlayer {
         AudioPlayerUtils.PlayerField playingField = appPreference.getPlayerField();
         AudioPlayerUtils.PlayerState playerState = appPreference.getPlayerState();
 
-        if (playerState.equals(AudioPlayerUtils.PlayerState.STOP_BY_SCROLLING)
-                || playerState.equals(AudioPlayerUtils.PlayerState.STOP)) {
+        if (playerState.equals(AudioPlayerUtils.PlayerState.SCROLLING_WHILE_PLAYING)
+                || playerState.equals(AudioPlayerUtils.PlayerState.SCROLLING_WHILE_STOPPED)
+                || playerState.equals(AudioPlayerUtils.PlayerState.STOPPED)) {
             return;
         }
 
@@ -229,7 +230,7 @@ public class AudioPlayer {
                     super.timeUp();
                     isTimeUp = true;
                     vlTextToSpeech.stop();
-                    AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.STOP);
+                    AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.STOPPED);
                     audioServiceBroadcaster.onPlayerStateChanged();
                 }
             });

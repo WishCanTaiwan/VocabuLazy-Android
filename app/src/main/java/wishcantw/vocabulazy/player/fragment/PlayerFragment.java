@@ -402,37 +402,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         mOnPlayerOptionFavoriteClickListener = listener;
     }
 
-//    /**
-//     * When entering {@link PlayerFragment}, we need to tell the fragment which book and lesson is
-//     * selected for creating corresponding views. By calling this method, we are able to assign the
-//     * book index and lesson index to the fragment.
-//     * @param bookIndex The index of the selected book.
-//     * @param lessonIndex The index of the selected lesson.
-//     */
-//    public void setBookAndLesson(int bookIndex, int lessonIndex) {
-//        argBookIndex = bookIndex;
-//        argLessonIndex = lessonIndex;
-//    }
-
     /** Private methods **/
-
-//    private boolean checkIndicesMatch() {
-//        GlobalVariable globalVariable = (GlobalVariable) getActivity().getApplication();
-//        int restoredBookIndex = globalVariable.playerTextbookIndex;
-//        int restoredLessonIndex = globalVariable.playerLessonIndex;
-//        int restoredItemIndex = globalVariable.playerItemIndex;
-//        int restoredSentenceIndex = globalVariable.playerSentenceIndex;
-//        updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
-//        return (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
-//    }
-
-//    private void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
-//        mBookIndex = bookIndex;
-//        mLessonIndex = lessonIndex;
-//        mItemIndex = itemIndex;
-//        mSentenceIndex = sentenceIndex;
-//        mPlayerModel.updateIndices(bookIndex, lessonIndex, itemIndex, sentenceIndex);
-//    }
 
     private void setupOptions() {
 

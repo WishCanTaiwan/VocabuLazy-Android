@@ -26,9 +26,11 @@ public class AudioPlayerUtils {
     public enum PlayerState {
         IDLE,
         PLAYING,
-        STOP,
+        STOPPED,
         STOP_BY_SCROLLING,
-        STOP_BY_FOCUS_CHANGE
+        STOPPED_BY_FOCUS_CHANGE,
+        SCROLLING_WHILE_PLAYING,
+        SCROLLING_WHILE_STOPPED
     }
 
     public enum PlayerField {

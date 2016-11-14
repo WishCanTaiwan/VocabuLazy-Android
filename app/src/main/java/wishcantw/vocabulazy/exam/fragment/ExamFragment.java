@@ -1,5 +1,6 @@
 package wishcantw.vocabulazy.exam.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.analytics.Analytics;
+import wishcantw.vocabulazy.audio.AudioService;
+import wishcantw.vocabulazy.exam.activity.ExamActivity;
 import wishcantw.vocabulazy.exam.model.ExamModel;
 import wishcantw.vocabulazy.exam.view.ExamAnswerView;
 import wishcantw.vocabulazy.exam.view.ExamView;
@@ -64,7 +67,7 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
         } else {
             mCurrentBookIndex = mCurrentLessonIndex = 0;
         }
-        mPuzzleSetter = ExamModel.getInstance().createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
+        mPuzzleSetter = ((ExamActivity) getActivity()).getExamModel().createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
     }
 
     @Override
@@ -93,8 +96,14 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
     }
 
     @Override
-    public void onExamPlayerClick() {
+    public void onExamPlayerClick(String questionString) {
         // TODO: Beibei please add the function when player button is clicked
+
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.START_SINGLE_ITEM);
+        intent.putExtra(AudioService.EXAM_UTTERANCE, questionString);
+        getActivity().startService(intent);
+
     }
 
     @Override
