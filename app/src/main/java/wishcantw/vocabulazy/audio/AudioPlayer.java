@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.service;
+package wishcantw.vocabulazy.audio;
 
 import android.content.Context;
 import android.os.Handler;
@@ -14,17 +14,17 @@ import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.database.object.Vocabulary;
 import wishcantw.vocabulazy.utility.Logger;
 
-public class NewAudioPlayer {
+public class AudioPlayer {
 
     // singleton
-    private static NewAudioPlayer newAudioPlayer = new NewAudioPlayer();
+    private static AudioPlayer audioPlayer = new AudioPlayer();
 
     // private constructor
-    private NewAudioPlayer() {}
+    private AudioPlayer() {}
 
     // singleton getter
-    public static NewAudioPlayer getInstance() {
-        return newAudioPlayer;
+    public static AudioPlayer getInstance() {
+        return audioPlayer;
     }
 
     private Database database;
@@ -32,7 +32,7 @@ public class NewAudioPlayer {
 
     private VLTextToSpeech vlTextToSpeech;
     private AudioPlayerUtils audioPlayerUtils;
-    private AudioPlayerBroadcaster audioPlayerBroadcaster;
+    private AudioServiceBroadcaster audioServiceBroadcaster;
     private Timer timer;
 
     private int itemLoop;
@@ -50,7 +50,7 @@ public class NewAudioPlayer {
     private boolean isFromExam;
 
     public void init(@NonNull Context context,
-                     @NonNull AudioPlayerBroadcaster audioPlayerBroadcaster) {
+                     @NonNull AudioServiceBroadcaster audioServiceBroadcaster) {
         if (database == null) {
             database = Database.getInstance();
         }
@@ -79,7 +79,7 @@ public class NewAudioPlayer {
             timer.init(new Handler());
         }
 
-        this.audioPlayerBroadcaster = audioPlayerBroadcaster;
+        this.audioServiceBroadcaster = audioServiceBroadcaster;
         updateOptionSettings(database.getPlayerOptionSettings());
     }
 
@@ -125,7 +125,7 @@ public class NewAudioPlayer {
             return;
         }
 
-        if (audioPlayerBroadcaster == null) {
+        if (audioServiceBroadcaster == null) {
             return;
         }
 
@@ -147,7 +147,7 @@ public class NewAudioPlayer {
                     break;
                 }
 
-                audioPlayerBroadcaster.onItemComplete();
+                audioServiceBroadcaster.onItemComplete();
                 resetItemLoopCountDown();
 
                 // pick up next item index
@@ -158,16 +158,16 @@ public class NewAudioPlayer {
                     newItemIndex = 0;
                     listLoopCountDown--;
                     if (listLoopCountDown == 0) {
-                        audioPlayerBroadcaster.onListComplete();
+                        audioServiceBroadcaster.onListComplete();
                         resetListLoopCountDown();
                         audioPlayerUtils.loadNewContent(database, databaseUtils);
-                        audioPlayerBroadcaster.toNextList();
+                        audioServiceBroadcaster.toNextList();
                         AudioPlayerUtils.getInstance().sleep(1500);
                     }
                 }
 
                 playingField = AudioPlayerUtils.PlayerField.SPELL;
-                audioPlayerBroadcaster.toItem(newItemIndex);
+                audioServiceBroadcaster.toItem(newItemIndex);
                 break;
 
             default:
@@ -215,7 +215,7 @@ public class NewAudioPlayer {
         AppPreference.getInstance().setPlayerItemIndex(itemIndex);
         AppPreference.getInstance().setPlayerField(playerField);
         AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.PLAYING);
-        audioPlayerBroadcaster.onPlayerStateChanged();
+        audioServiceBroadcaster.onPlayerStateChanged();
 
         vlTextToSpeech.speak(string, speed);
         vlTextToSpeech.speakSilence(audioPlayerUtils.decidePeriodLength(playerField, stopPeriod));
@@ -223,14 +223,14 @@ public class NewAudioPlayer {
         // set up timer
         if (isTimeUp) {
             isTimeUp = false;
-            timer.startTimer(playTime, new Timer.TimerCallback() {
+            timer.startTimer(playTime, new Timer.Callback() {
                 @Override
                 public void timeUp() {
                     super.timeUp();
                     isTimeUp = true;
                     vlTextToSpeech.stop();
                     AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.STOP);
-                    audioPlayerBroadcaster.onPlayerStateChanged();
+                    audioServiceBroadcaster.onPlayerStateChanged();
                 }
             });
         }

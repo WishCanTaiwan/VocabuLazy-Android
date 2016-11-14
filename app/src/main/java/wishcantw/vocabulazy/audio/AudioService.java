@@ -1,19 +1,13 @@
-package wishcantw.vocabulazy.service;
+package wishcantw.vocabulazy.audio;
 
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.support.v4.content.LocalBroadcastManager;
 
-import wishcantw.vocabulazy.application.GlobalVariable;
 import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.utility.Logger;
-import wishcantw.vocabulazy.database.object.OptionSettings;
-import wishcantw.vocabulazy.database.object.Vocabulary;
-
-import java.util.ArrayList;
 
 public class AudioService extends IntentService implements AudioManager.OnAudioFocusChangeListener {
 
@@ -24,7 +18,6 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
     public static final String STOP_SERVICE = "stop-service";
     public static final String GET_AUDIO_FOCUS = "get-audio-focus";
     public static final String RELEASE_AUDIO_FOCUS = "release-audio-focus";
-    public static final String SET_CONTENT = "set-content";
     public static final String START_SINGLE_ITEM = "start-single-item";
     public static final String START_PLAYING = "start-playing";
     public static final String NEW_ITEM_FOCUSED = "new-item-focused";
@@ -36,7 +29,6 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
     public static final String START_TIMER = "start-timer";
 
     /* Action to be broadcast to activity or fragment */
-    public static final String CHECK_VOICE_DATA = "check-voice-data";
     public static final String ITEM_COMPLETE = "item-complete";
     public static final String LIST_COMPLETE = "list-complete";
     public static final String SHOW_DETAIL = "show-detail";
@@ -49,16 +41,13 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
     /* Key used for intent among service, activity and fragment */
     public static final String ITEM_INDEX = "item-index";
     public static final String SENTENCE_INDEX = "sentence-index";
-    public static final String PLAYING_FIELD = "playing-field";
     public static final String EXAM_UTTERANCE = "exam-utterance";
-    public static final String PLAYER_STATE = "player-state";
 
-    private GlobalVariable mGlobalVariable;
-//    private Preferences mPreferences;
-    private NewAudioPlayer mAudioPlayer;
+    private AudioPlayer mAudioPlayer;
     private AudioPlayerUtils audioPlayerUtils;
-    private AudioPlayerBroadcaster audioPlayerBroadcaster;
+    private AudioServiceBroadcaster audioServiceBroadcaster;
 
+    @SuppressWarnings("unused")
     public AudioService() {
         super(null);
     }
@@ -68,6 +57,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
+    @SuppressWarnings("unused")
     public AudioService(String name) {
         super(name);
     }
@@ -81,9 +71,9 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
      * the purpose of overriding the method startcommand(intent, flags, startid) is to return START_STICKY
      * rather than default return value.
      *
-     * @param intent
-     * @param flags
-     * @param startId
+     * @param intent the intent
+     * @param flags the flag
+     * @param startId the start id
      * @return START_STICKY: representing that the service object will last after each command has
      *                       been executed.
      */
@@ -94,13 +84,13 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
             return START_STICKY;
         }
 
-        if (audioPlayerBroadcaster == null) {
-            audioPlayerBroadcaster = new Broadcaster(getApplicationContext());
+        if (audioServiceBroadcaster == null) {
+            audioServiceBroadcaster = new AudioServiceBroadcaster(getApplicationContext());
         }
 
         if (mAudioPlayer == null) {
-            mAudioPlayer = NewAudioPlayer.getInstance();
-            mAudioPlayer.init(getApplicationContext(), audioPlayerBroadcaster);
+            mAudioPlayer = AudioPlayer.getInstance();
+            mAudioPlayer.init(getApplicationContext(), audioServiceBroadcaster);
         }
 
         AppPreference appPreference = AppPreference.getInstance();
@@ -153,7 +143,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
                         break;
                 }
                 break;
-            
+
             case START_PLAYING:
                 mAudioPlayer.resetItemLoopCountDown();
                 mAudioPlayer.resetSpellLoopCountDown();
@@ -177,7 +167,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
                 if (appPreference.getPlayerState().equals(AudioPlayerUtils.PlayerState.PLAYING)) {
                     mAudioPlayer.stop();
                     appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOP);
-                    audioPlayerBroadcaster.onPlayerStateChanged();
+                    audioServiceBroadcaster.onPlayerStateChanged();
 
                 } else {
                     if (!appPreference.isAudioFocused()) {
@@ -186,14 +176,14 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
                         appPreference.setAudioFocused(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
                     }
                     mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
-                    audioPlayerBroadcaster.onPlayerStateChanged();
+                    audioServiceBroadcaster.onPlayerStateChanged();
                 }
                 break;
 
             case PLAYERVIEW_SCROLLING:
                 mAudioPlayer.stop();
                 AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.STOP_BY_SCROLLING);
-                audioPlayerBroadcaster.onPlayerStateChanged();
+                audioServiceBroadcaster.onPlayerStateChanged();
                 break;
 
             case START_TIMER:
@@ -215,7 +205,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
         if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
             if (playerState.equals(AudioPlayerUtils.PlayerState.STOP_BY_FOCUS_CHANGE)) {
                 appPreference.setPlayerState(AudioPlayerUtils.PlayerState.PLAYING);
-                audioPlayerBroadcaster.onPlayerStateChanged();
+                audioServiceBroadcaster.onPlayerStateChanged();
                 mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
             }
         }
@@ -226,85 +216,9 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
             appPreference.setAudioFocused(false);
             if (playerState.equals(AudioPlayerUtils.PlayerState.PLAYING)) {
                 appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOP_BY_FOCUS_CHANGE);
-                audioPlayerBroadcaster.onPlayerStateChanged();
-                // TODO: 2016/11/13 release vl text to speech
+                audioServiceBroadcaster.onPlayerStateChanged();
+                // todo: release vl text to speech
             }
-        }
-    }
-
-    private class Broadcaster extends AudioPlayerBroadcaster {
-        private Context context;
-
-        private String broadcastIntent = GlobalVariable.PLAYER_BROADCAST_INTENT;
-        private String broadcastAction = GlobalVariable.PLAYER_BROADCAST_ACTION;
-
-        public Broadcaster(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public void checkVoiceData() {
-            Intent intent = new Intent(GlobalVariable.PLAYER_BROADCAST_INTENT)
-                    .putExtra(broadcastAction, CHECK_VOICE_DATA);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        }
-
-        @Override
-        public void onItemComplete() {
-            Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, ITEM_COMPLETE);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        }
-
-        @Override
-        public void onListComplete() {
-            Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, LIST_COMPLETE);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        }
-
-//        @Override
-//        public void showDetail() {
-//            Intent intent = new Intent(broadcastIntent)
-//                    .putExtra(broadcastAction, SHOW_DETAIL);
-//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-//        }
-
-//        @Override
-//        public void hideDetail() {
-//            Intent intent = new Intent(broadcastIntent)
-//                    .putExtra(broadcastAction, HIDE_DETAIL);
-//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-//        }
-
-        @Override
-        public void toItem(int nextItemIndex) {
-            Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, TO_ITEM)
-                    .putExtra(ITEM_INDEX, nextItemIndex);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        }
-
-//        @Override
-//        public void toSentence(int sentenceIndex) {
-//            Intent intent = new Intent(broadcastIntent)
-//                    .putExtra(broadcastAction, TO_SENTENCE)
-//                    .putExtra(SENTENCE_INDEX, sentenceIndex);
-//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-//        }
-
-        @Override
-        public void toNextList() {
-            Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, TO_NEXT_LIST);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        }
-
-        @Override
-        public void onPlayerStateChanged() {
-            Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, PLAYER_STATE_CHANGED);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }
     }
 }

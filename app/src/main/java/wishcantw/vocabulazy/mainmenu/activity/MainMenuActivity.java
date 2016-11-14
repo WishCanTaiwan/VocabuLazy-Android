@@ -2,7 +2,6 @@ package wishcantw.vocabulazy.mainmenu.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import wishcantw.vocabulazy.R;
-import wishcantw.vocabulazy.application.GlobalVariable;
 import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.exam.activity.ExamActivity;
 import wishcantw.vocabulazy.mainmenu.fragment.MainMenuFragment;
@@ -27,7 +25,7 @@ import wishcantw.vocabulazy.mainmenu.note.fragment.NoteDeleteDialogFragment;
 import wishcantw.vocabulazy.mainmenu.note.fragment.NoteRenameDialogFragment;
 import wishcantw.vocabulazy.player.activity.PlayerActivity;
 import wishcantw.vocabulazy.search.activity.SearchActivity;
-import wishcantw.vocabulazy.service.AudioService;
+import wishcantw.vocabulazy.audio.AudioService;
 import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.utility.Logger;
 

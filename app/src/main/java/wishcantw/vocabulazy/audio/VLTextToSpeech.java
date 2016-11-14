@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.service;
+package wishcantw.vocabulazy.audio;
 
 import android.content.Context;
 import android.os.Build;
@@ -8,6 +8,11 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class VLTextToSpeech extends VLTextToSpeechListener {
+
+    // callback interface
+    interface OnUtteranceFinishListener {
+        void onUtteranceFinished(String utterance);
+    }
 
     public static final String TAG = VLTextToSpeech.class.getSimpleName();
 
@@ -19,40 +24,37 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
     private boolean isEngineInit = false;
     private String currentUtterance;
 
+    // singleton
     private static VLTextToSpeech vlTextToSpeech = new VLTextToSpeech();
 
+    // private constructor
     private VLTextToSpeech () {}
 
+    // singleton getter
     public static VLTextToSpeech getInstance() {
         return vlTextToSpeech;
     }
 
-    @Override
-    protected void onEngineInit(int status) {
-        switch (status) {
-            case TextToSpeech.SUCCESS:
-                isEngineInit = true ;
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    protected void onUtteranceFinished(String utteranceId) {
-        String utteranceAfterSilence = currentUtterance + UTTERANCE_SILENCE;
-        if (!utteranceId.equals(utteranceAfterSilence))
-            return;
-        mOnUtteranceFinishListener.onUtteranceFinished(currentUtterance);
-    }
-
     public void init(Context context) {
         if (mTextToSpeech == null) {
-            mTextToSpeech = new TextToSpeech(context, this, "com.google.android.tts");
+            mTextToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    switch (status) {
+                        case TextToSpeech.SUCCESS:
+                            isEngineInit = true ;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }, "com.google.android.tts");
         }
     }
 
-    public void setOnUtteranceFinishListener(OnUtteranceFinishListener listener) {
+    @SuppressWarnings("deprecation")
+    void setOnUtteranceFinishListener(OnUtteranceFinishListener listener) {
         mOnUtteranceFinishListener = listener;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mTextToSpeech.setOnUtteranceProgressListener(this);
@@ -61,7 +63,7 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         }
     }
 
-    public void speak(String utterance, int rate) {
+    void speak(String utterance, int rate) {
         currentUtterance = utterance;
 
         if (!isEngineInit) {
@@ -80,7 +82,7 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         }
     }
 
-    public void speakSilence(long time) {
+    void speakSilence(long time) {
         if (!isEngineInit) {
             return;
         }
@@ -96,14 +98,15 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         }
     }
 
-    public void stop() {
+    void stop() {
         if (mTextToSpeech == null)
             return;
 
         mTextToSpeech.stop();
     }
 
-    public void release() { // releasing TTS resources
+    @SuppressWarnings("unused")
+    void release() { // releasing TTS resources
         if (mTextToSpeech == null)
             return;
 
@@ -113,22 +116,23 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         mTextToSpeech.shutdown();
     }
 
-    public void setLanguage(Locale locale) {
+    void setLanguage(Locale locale) {
         if (!isEngineInit)
             return;
 
         mTextToSpeech.setLanguage(locale);
     }
 
-    private boolean isLanguageAvailable() {
+    @SuppressWarnings("unused")
+    boolean isLanguageAvailable() {
         return (mTextToSpeech.isLanguageAvailable(Locale.ENGLISH) >= 0 && mTextToSpeech.isLanguageAvailable(Locale.TAIWAN) >= 0);
     }
 
-    public interface OnEngineStatusListener {
-        void onEngineInit();
-    }
-
-    public interface OnUtteranceFinishListener {
-        void onUtteranceFinished(String utterance);
+    @Override
+    protected void onUtteranceFinished(String utteranceId) {
+        String utteranceAfterSilence = currentUtterance + UTTERANCE_SILENCE;
+        if (!utteranceId.equals(utteranceAfterSilence))
+            return;
+        mOnUtteranceFinishListener.onUtteranceFinished(currentUtterance);
     }
 }

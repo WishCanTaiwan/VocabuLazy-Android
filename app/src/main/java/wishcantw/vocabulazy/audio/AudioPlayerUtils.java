@@ -1,7 +1,5 @@
-package wishcantw.vocabulazy.service;
+package wishcantw.vocabulazy.audio;
 
-import android.content.Context;
-import android.media.AudioManager;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -13,10 +11,6 @@ import wishcantw.vocabulazy.database.DatabaseUtils;
 import wishcantw.vocabulazy.database.object.Vocabulary;
 
 public class AudioPlayerUtils {
-
-    public abstract static class Callback {
-        public void succeed(ArrayList<Vocabulary> playerContent, int newLessonIndex) {}
-    }
 
     // singleton
     private static AudioPlayerUtils audioPlayerUtils = new AudioPlayerUtils();
@@ -128,7 +122,7 @@ public class AudioPlayerUtils {
      *
      * @return the length of stopping period
      */
-    public int decidePeriodLength(AudioPlayerUtils.PlayerField playerField,
+    public int decidePeriodLength(@NonNull AudioPlayerUtils.PlayerField playerField,
                                   int stopPeriod) {
         int defaultPeriodLength = 400;
         return (playerField.equals(PlayerField.TRANSLATE))

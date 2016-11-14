@@ -1,15 +1,13 @@
-package wishcantw.vocabulazy.service;
+package wishcantw.vocabulazy.audio;
 
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
-public class Timer {
+class Timer {
 
     // callback interface
-    public abstract static class TimerCallback {
-        public void timeUp() {
-
-        }
+    public abstract static class Callback {
+        public void timeUp() {}
     }
 
     // singleton
@@ -37,7 +35,7 @@ public class Timer {
      *
      * @param handler the handler
      */
-    public void init(@NonNull Handler handler) {
+    void init(@NonNull Handler handler) {
         this.handler = handler;
     }
 
@@ -45,10 +43,10 @@ public class Timer {
      * Start timer
      *
      * @param minute the timer time
-     * @param timerCallback the timer callback
+     * @param callback the timer callback
      */
-    public void startTimer(int minute,
-                           final @NonNull TimerCallback timerCallback) {
+    void startTimer(int minute,
+                           final @NonNull Callback callback) {
         if (minute < 0) {
             return;
         }
@@ -58,7 +56,7 @@ public class Timer {
         runnable = new Runnable() {
             @Override
             public void run() {
-                timerCallback.timeUp();
+                callback.timeUp();
                 handler.removeCallbacks(runnable);
             }
         };
@@ -69,14 +67,16 @@ public class Timer {
     /**
      * Stop timer
      */
-    public void stopTimer() {
+    @SuppressWarnings("unused")
+    void stopTimer() {
         handler.removeCallbacks(runnable);
     }
 
     /**
      * Rest timer
      */
-    public void resetTimer() {
+    @SuppressWarnings("unused")
+    void resetTimer() {
 
         // remove timer runnable
         handler.removeCallbacks(runnable);

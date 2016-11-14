@@ -48,7 +48,7 @@
             android:screenOrientation="portrait" />
 
         <service
-            android:name="wishcantw.vocabulazy.service.AudioService"
+            android:name="wishcantw.vocabulazy.audio.AudioService"
             android:exported="false" />
 
         <meta-data

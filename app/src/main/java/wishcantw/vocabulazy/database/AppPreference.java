@@ -1,6 +1,6 @@
 package wishcantw.vocabulazy.database;
 
-import wishcantw.vocabulazy.service.AudioPlayerUtils;
+import wishcantw.vocabulazy.audio.AudioPlayerUtils;
 
 /**
  * Created by allencheng07 on 2016/11/13.

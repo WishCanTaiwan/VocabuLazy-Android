@@ -21,20 +21,25 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
                                                                  PlayerAddVocToNoteDialogFragment.OnAddVocToNoteDialogFinishListener,
                                                                  PlayerNewNoteDialogFragment.OnNewNoteDialogFinishListener,
                                                                  PlayerVocTooLessDialogFragment.OnPlayerAlertDoneListener {
+    // layout ids
     private static final int VIEW_RES_ID = R.layout.activity_player;
     private static final int VIEW_MAIN_RES_ID = R.id.activity_player_container;
 
+    // tag for debugging
     public static final String TAG = "PlayerActivity";
 
+    // args for bundle
     public static final String ARG_BOOK_INDEX = "arg-book-index";
     public static final String ARG_LESSON_INDEX = "arg-lesson-index";
 
+    // tag for lesson change
     private boolean isLessonChanged = true;
+
+    // player model
     private PlayerModel mPlayerModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Logger.d(TAG, "Create");
         super.onCreate(savedInstanceState);
 
         // receive indices from intent
@@ -43,9 +48,12 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
         // create model for player
         mPlayerModel = PlayerModel.getInstance();
-        mPlayerModel.init(getApplicationContext());
+        mPlayerModel.init();
 
+        // check lesson changed
         isLessonChanged = (bookIndex != mPlayerModel.getBookIndex()) || (lessonIndex != mPlayerModel.getLessonIndex());
+
+        // set indices to player model
         mPlayerModel.setBookIndex(bookIndex);
         mPlayerModel.setLessonIndex(bookIndex);
 
@@ -65,7 +73,6 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
             PlayerFragment mPlayerFragment = (PlayerFragment) fragment;
             mPlayerFragment.addOnPlayerLessonChangeListener(this);
             mPlayerFragment.setOnPlayerOptionFavoriteClickListener(this);
-//            mPlayerFragment.setBookAndLesson(mPlayerModel.getBookIndex(), mPlayerModel.getLessonIndex());
 
         } else if (fragment instanceof PlayerAddVocToNoteDialogFragment) {
             PlayerAddVocToNoteDialogFragment mPlayerAddVocToNoteDialogFragment = (PlayerAddVocToNoteDialogFragment) fragment;
@@ -97,22 +104,26 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         super.onBackPressed();
     }
 
+    /**
+     * Get the player model instance
+     *
+     * @return player model instance
+     */
     public PlayerModel getPlayerModel() {
         if (mPlayerModel == null) {
             mPlayerModel = PlayerModel.getInstance();
-            mPlayerModel.init(PlayerActivity.this);
+            mPlayerModel.init();
         }
         return mPlayerModel;
     }
 
+    /**
+     * Get whether is the lesson playing changed from last time
+     *
+     * @return boolean tag for lesson change
+     */
     public boolean isLessonChanged() {
         return isLessonChanged;
-    }
-
-    private void setActionBarTitle(String title) {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(title);
-        }
     }
 
     /**-- PlayerFragment callback --**/
@@ -161,6 +172,12 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
     public void onPlayerAlertDone() {
         Logger.d(TAG, "onPlayerAlertDone");
         finish();
+    }
+
+    private void setActionBarTitle(String title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
     }
 
     private void setPlayerStateResult() {
