@@ -14,9 +14,6 @@ import wishcantw.vocabulazy.mainmenu.note.view.NoteCreateDialogView;
 import wishcantw.vocabulazy.widget.DialogFragmentNew;
 import wishcantw.vocabulazy.widget.DialogViewNew;
 
-/**
- * Created by allencheng07 on 2016/9/15.
- */
 public class NoteCreateDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
 
     @Override
@@ -42,8 +39,7 @@ public class NoteCreateDialogFragment extends DialogFragmentNew implements Dialo
     @Override
     public void onYesClick() {
         String newTitle = mNoteCreateDialogView.getNewString();
-        MainMenuActivity activity = (MainMenuActivity) getActivity();
-        MainMenuModel mainMenuModel = activity.getModel();
+        MainMenuModel mainMenuModel = ((MainMenuActivity) getActivity()).getModel();
         mainMenuModel.createNote(newTitle);
         mOnNoteCreateListener.onNoteCreated();
         getActivity().onBackPressed();

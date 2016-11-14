@@ -21,21 +21,6 @@ public class GlobalVariable extends Application {
     public static final String PLAYER_BROADCAST_INTENT = "player-broadcast-intent";
     public static final String PLAYER_BROADCAST_ACTION = "player-broadcast-action";
 
-    public static int playerTextbookIndex = 1359;
-    public static int playerLessonIndex = 1359;
-
-    public static ArrayList<Vocabulary> playerContent;
-    public static ArrayList<OptionSettings> optionSettings;
-    public static int optionMode = 0;
-    public static int playerItemIndex = -1;
-    public static int playerSentenceIndex = -1;
-    public static String playerState;
-    public static String playingField;
-
-    public static int playerItemLoop;
-    public static int playerListLoop;
-    public static int playerPlayTime;
-
     @Override
     public void onCreate() {
         super.onCreate();

@@ -16,11 +16,13 @@ import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.application.GlobalVariable;
+import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.ga.GABaseFragment;
 import wishcantw.vocabulazy.player.activity.PlayerActivity;
 import wishcantw.vocabulazy.player.model.PlayerModel;
 import wishcantw.vocabulazy.player.view.PlayerView;
 import wishcantw.vocabulazy.service.AudioPlayer;
+import wishcantw.vocabulazy.service.AudioPlayerUtils;
 import wishcantw.vocabulazy.service.AudioService;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.database.object.Vocabulary;
@@ -54,22 +56,8 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     // TAG for debugging
     private static final String TAG = PlayerFragment.class.getSimpleName();
 
-    // indices
-    private int argBookIndex;
-    private int argLessonIndex;
-    private int mBookIndex;
-    private int mLessonIndex;
-    private int mItemIndex;
-    private int mSentenceIndex;
-
-    // flag to identify whether user enter the same unit/note
-    private boolean mIsSameAsLastEntrance;
-
     // flag for solving changing play list after onStop()
     private boolean mIsWaitingAddNewPlayer = false;
-
-    // the context of the application/activity
-    private Context mContext;
 
     // data model
     private PlayerModel mPlayerModel;
@@ -103,12 +91,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     /** Life cycle **/
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -135,16 +117,16 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         super.onActivityCreated(savedInstanceState);
 
         // get model instance from activity
-        mPlayerModel = ((PlayerActivity) getActivity()).getModel();
+        mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
 
         // set listener listening to data loading progress
         mPlayerModel.setDataProcessListener(this);
 
         // check whether the user is entering the same lesson as last time did
-        mIsSameAsLastEntrance = checkIndicesMatch();
+//        mIsSameAsLastEntrance = checkIndicesMatch();
 
         // get the vocabularies according to the given book and lesson
-        mPlayerModel.getVocabulariesIn(mBookIndex, mLessonIndex);
+        mPlayerModel.getVocabulariesIn(mPlayerModel.getBookIndex(), mPlayerModel.getLessonIndex());
     }
 
     @Override
@@ -163,20 +145,26 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         // register broadcast receiver
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mServiceBroadcastReceiver, new IntentFilter(GlobalVariable.PLAYER_BROADCAST_INTENT));
 
-        if (mPlayerModel == null || mPlayerView == null) {
+        if (mPlayerView == null) {
             return;
         }
 
+        if (mPlayerModel == null) {
+            mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
+        }
+
+        int itemIndex = mPlayerModel.getItemIndex();
+
         // move the focus to current playing item and set icon state
-        mPlayerView.moveToPosition(mItemIndex);
+        mPlayerView.moveToPosition(itemIndex);
         mPlayerView.setIconState(false, mPlayerModel.isPlaying(), false);
 
         if (mIsWaitingAddNewPlayer) {
-            mPlayerModel.createPlayerContent(mPlayerModel.getCurrentContent());
-            if (!mPlayerModel.getCurrentContent().isEmpty()
-                    && mPlayerModel.getCurrentContent().size() > mItemIndex
-                    && mItemIndex > -1) {
-                mPlayerModel.createPlayerDetailContent(mPlayerModel.getCurrentContent().get(mItemIndex));
+            mPlayerModel.createPlayerContent(mPlayerModel.getPlayerContent());
+            if (!mPlayerModel.getPlayerContent().isEmpty()
+                    && mPlayerModel.getPlayerContent().size() > itemIndex
+                    && itemIndex > -1) {
+                mPlayerModel.createPlayerDetailContent(mPlayerModel.getPlayerContent().get(itemIndex));
             }
             mIsWaitingAddNewPlayer = false;
         }
@@ -210,7 +198,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         mPlayerView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mPlayerView.addNewPlayer(playerDataContent, mItemIndex);
+                mPlayerView.addNewPlayer(playerDataContent, mPlayerModel.getItemIndex());
             }
         }, 600);
     }
@@ -227,20 +215,27 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     public void onVocabulariesGet(ArrayList<Vocabulary> vocabularies) {
         mVocabularies = vocabularies;
 
-        if ( vocabularies == null || vocabularies.isEmpty())
+        if ( vocabularies == null || vocabularies.isEmpty()) {
             return;
+        }
 
-        int itemIndex = mIsSameAsLastEntrance ? mItemIndex : 0;
+        if (mPlayerModel == null) {
+            mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
+        }
+
+        boolean isLessonChanged = ((PlayerActivity) getActivity()).isLessonChanged();
+        int itemIndex = isLessonChanged ? 0 : mPlayerModel.getItemIndex();
         mPlayerModel.createPlayerContent(vocabularies);
+
         if (vocabularies.size() > itemIndex) {
             mPlayerModel.createPlayerDetailContent(vocabularies.get(itemIndex));
         }
-        if (vocabularies.size() > 0 && !mIsSameAsLastEntrance) {
+
+        if (vocabularies.size() > 0 && isLessonChanged) {
             Logger.d(TAG, "set content and start playing");
             setContent(vocabularies);
-            updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
-            startPlayingAt(0, -1, AudioPlayer.SPELL);
-            startAudioTimer();
+//            updateIndices(mBookIndex, mLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
+            startPlayingAt(0, AudioPlayerUtils.PlayerField.SPELL);
         }
     }
 
@@ -252,7 +247,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     /**----------------- Implement PlayerView.PlayerEventListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
-        updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
+//        updateIndices(mBookIndex, mLessonIndex, currentPosition, (mSentenceIndex < 0 ? -1 : 0));
         if (isViewTouchedDown) {
             newItemFocused(currentPosition);
             if (mPlayerModel != null
@@ -274,12 +269,16 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
         // if the order of Infinite3View has not changed, the player should remain the same
         if (!isOrderChanged) {
-            startPlayingAt(mItemIndex, mSentenceIndex, AudioPlayer.SPELL);
+            startPlayingAt(mPlayerModel.getItemIndex(), AudioPlayerUtils.PlayerField.SPELL);
             return;
         }
 
-        if (mPlayerModel == null || mPlayerView == null || mOnPlayerLessonChangeListener == null) {
+        if (mPlayerView == null || mOnPlayerLessonChangeListener == null) {
             return;
+        }
+
+        if (mPlayerModel == null) {
+            mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
         }
 
         // if the order of Infinite3View has changed
@@ -292,7 +291,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
             int newLessonIndex = (oldLessonIndex + (direction == Infinite3View.MOVE_TO_RIGHT ? -1 : 1) + numOfLesson) % numOfLesson;
 
             // update indices
-            updateIndices(bookIndex, newLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
+//            updateIndices(bookIndex, newLessonIndex, 0, (mSentenceIndex < 0 ? -1 : 0));
 
             // get new content from database
             mPlayerModel.getVocabulariesIn(bookIndex, newLessonIndex);
@@ -307,7 +306,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
             // since the event triggered by service, therefore new content will be fetched from service,
             // therefore we only need to get content from model.
-            ArrayList<Vocabulary> vocabularies = mPlayerModel.getCurrentContent();
+            ArrayList<Vocabulary> vocabularies = mPlayerModel.getPlayerContent();
 
             if (vocabularies == null || vocabularies.isEmpty()) {
                 return;
@@ -331,7 +330,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     @Override
     public void onPlayerDetailScrollStop(int index, boolean isViewTouchedDown) {
-        updateIndices(mBookIndex, mLessonIndex, mItemIndex, index);
         if (isViewTouchedDown) {
             newSentenceFocused(index);
         }
@@ -359,9 +357,10 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
             return;
         }
 
+        int itemIndex = mPlayerModel. getItemIndex();
 
-        if (mVocabularies.size() > mItemIndex && mItemIndex > -1) {
-            int vocId = mVocabularies.get(mItemIndex).getId();
+        if (mVocabularies.size() > itemIndex && itemIndex > -1) {
+            int vocId = mVocabularies.get(itemIndex).getId();
             if (mOnPlayerOptionFavoriteClickListener != null) {
                 mOnPlayerOptionFavoriteClickListener.onFavoriteClick(vocId);
             }
@@ -377,8 +376,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     public void onPlayerPanelOptionClick() {
 
         // TODO: (swallow) please use the parameter mode to set option tab
-        GlobalVariable globalVariable = (GlobalVariable) getActivity().getApplication();
-        int mode = globalVariable.optionMode;
+        int mode = AppPreference.getInstance().getPlayerOptionMode();
 
         if (mPlayerView == null) {
             return;
@@ -411,42 +409,46 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         mOnPlayerOptionFavoriteClickListener = listener;
     }
 
-    /**
-     * When entering {@link PlayerFragment}, we need to tell the fragment which book and lesson is
-     * selected for creating corresponding views. By calling this method, we are able to assign the
-     * book index and lesson index to the fragment.
-     * @param bookIndex The index of the selected book.
-     * @param lessonIndex The index of the selected lesson.
-     */
-    public void setBookAndLesson(int bookIndex, int lessonIndex) {
-        argBookIndex = bookIndex;
-        argLessonIndex = lessonIndex;
-    }
+//    /**
+//     * When entering {@link PlayerFragment}, we need to tell the fragment which book and lesson is
+//     * selected for creating corresponding views. By calling this method, we are able to assign the
+//     * book index and lesson index to the fragment.
+//     * @param bookIndex The index of the selected book.
+//     * @param lessonIndex The index of the selected lesson.
+//     */
+//    public void setBookAndLesson(int bookIndex, int lessonIndex) {
+//        argBookIndex = bookIndex;
+//        argLessonIndex = lessonIndex;
+//    }
 
     /** Private methods **/
 
-    private boolean checkIndicesMatch() {
-        GlobalVariable globalVariable = (GlobalVariable) getActivity().getApplication();
-        int restoredBookIndex = globalVariable.playerTextbookIndex;
-        int restoredLessonIndex = globalVariable.playerLessonIndex;
-        int restoredItemIndex = globalVariable.playerItemIndex;
-        int restoredSentenceIndex = globalVariable.playerSentenceIndex;
-        updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
-        return (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
-    }
+//    private boolean checkIndicesMatch() {
+//        GlobalVariable globalVariable = (GlobalVariable) getActivity().getApplication();
+//        int restoredBookIndex = globalVariable.playerTextbookIndex;
+//        int restoredLessonIndex = globalVariable.playerLessonIndex;
+//        int restoredItemIndex = globalVariable.playerItemIndex;
+//        int restoredSentenceIndex = globalVariable.playerSentenceIndex;
+//        updateIndices(argBookIndex, argLessonIndex, restoredItemIndex, restoredSentenceIndex);
+//        return (argBookIndex == restoredBookIndex && argLessonIndex == restoredLessonIndex);
+//    }
 
-    private void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
-        mBookIndex = bookIndex;
-        mLessonIndex = lessonIndex;
-        mItemIndex = itemIndex;
-        mSentenceIndex = sentenceIndex;
-        mPlayerModel.updateIndices(bookIndex, lessonIndex, itemIndex, sentenceIndex);
-    }
+//    private void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
+//        mBookIndex = bookIndex;
+//        mLessonIndex = lessonIndex;
+//        mItemIndex = itemIndex;
+//        mSentenceIndex = sentenceIndex;
+//        mPlayerModel.updateIndices(bookIndex, lessonIndex, itemIndex, sentenceIndex);
+//    }
 
     private void setupOptions() {
 
-        if (mPlayerModel == null || mPlayerView == null) {
+        if (mPlayerView == null) {
             return;
+        }
+
+        if (mPlayerModel == null) {
+            mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
         }
 
         ArrayList<OptionSettings> options = mPlayerModel.getOptionSettings();
@@ -456,7 +458,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         if (options != null && !options.isEmpty()) {
             sentenceIndex = options.get(0).isSentence() ? 0 : -1;
         }
-        updateIndices(mBookIndex, mLessonIndex, mItemIndex, sentenceIndex);
+//        updateIndices(mBookIndex, mLessonIndex, mItemIndex, sentenceIndex);
     }
 
     private void requestAudioFocus() {
@@ -467,20 +469,18 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     private void setContent(ArrayList<Vocabulary> vocabularies) {
         if (mPlayerModel == null) {
-            return;
+            mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
         }
-        mPlayerModel.setCurrentContent(vocabularies);
-        Intent intent = new Intent(getActivity(), AudioService.class);
-        intent.setAction(AudioService.SET_CONTENT);
-        getActivity().startService(intent);
+        mPlayerModel.setPlayerContent(vocabularies);
     }
 
-    private void startPlayingAt(int itemIndex, int sentenceIndex, String playingField) {
+    private void startPlayingAt(int itemIndex, AudioPlayerUtils.PlayerField playerField) {
+
+        mPlayerModel.setItemIndex(itemIndex);
+        mPlayerModel.setPlayerField(playerField);
+
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.START_PLAYING);
-        intent.putExtra(AudioService.ITEM_INDEX, itemIndex);
-        intent.putExtra(AudioService.SENTENCE_INDEX, sentenceIndex);
-        intent.putExtra(AudioService.PLAYING_FIELD, playingField);
         getActivity().startService(intent);
     }
 
@@ -491,11 +491,13 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     }
 
     private void newItemFocused(int newItemIndex) {
+
+        AppPreference appPreference = AppPreference.getInstance();
+        appPreference.setPlayerItemIndex(newItemIndex);
+        appPreference.setPlayerField(AudioPlayerUtils.PlayerField.SPELL);
+
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.NEW_ITEM_FOCUSED);
-        intent.putExtra(AudioService.ITEM_INDEX, newItemIndex);
-        intent.putExtra(AudioService.SENTENCE_INDEX, 0);
-        intent.putExtra(AudioService.PLAYING_FIELD, AudioPlayer.SPELL);
         getActivity().startService(intent);
     }
 
@@ -515,12 +517,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     private void playerViewScrolling() {
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.PLAYERVIEW_SCROLLING);
-        getActivity().startService(intent);
-    }
-
-    private void startAudioTimer() {
-        Intent intent = new Intent(getActivity(), AudioService.class);
-        intent.setAction(AudioService.START_TIMER);
         getActivity().startService(intent);
     }
 
@@ -548,7 +544,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                     if (newItemIndex == -1) {
                         break;
                     }
-                    updateIndices(mBookIndex, mLessonIndex, newItemIndex, (mSentenceIndex < 0 ? -1 : 0));
                     mPlayerView.moveToPosition(newItemIndex);
                     mPlayerModel.createPlayerDetailContent(mVocabularies.get(newItemIndex));
                     break;
@@ -567,17 +562,13 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                         mPlayerView.removeOldPlayer(Infinite3View.CENTER_VIEW_INDEX);
                         mIsWaitingAddNewPlayer = true;
                     }
-                    mVocabularies = mPlayerModel.getCurrentContent();
-                    mBookIndex = mPlayerModel.getBookIndex();
-                    mLessonIndex = mPlayerModel.getLessonIndex();
+                    mVocabularies = mPlayerModel.getPlayerContent();
                     break;
 
                 case AudioService.SHOW_DETAIL:
-//                    mPlayerView.showDetail();
                     break;
 
                 case AudioService.HIDE_DETAIL:
-//                    mPlayerView.hideDetail();
                     break;
 
                 case AudioService.TO_SENTENCE:
@@ -588,7 +579,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                     if (sentenceIndex == -1) {
                         break;
                     }
-                    updateIndices(mBookIndex, mLessonIndex, mItemIndex, sentenceIndex);
                     mPlayerView.moveDetailPage(sentenceIndex);
                     break;
 
@@ -596,8 +586,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
                     if (mPlayerView == null) {
                         break;
                     }
-                    String state = intent.getStringExtra(AudioService.PLAYER_STATE);
-                    mPlayerView.setIconState(false, state.equals(AudioPlayer.PLAYING), false);
+                    mPlayerView.setIconState(false, AppPreference.getInstance().getPlayerState().equals(AudioPlayerUtils.PlayerState.PLAYING), false);
                     break;
 
                 default:

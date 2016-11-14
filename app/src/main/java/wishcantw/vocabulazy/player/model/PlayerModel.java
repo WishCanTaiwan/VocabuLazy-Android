@@ -2,9 +2,13 @@ package wishcantw.vocabulazy.player.model;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import wishcantw.vocabulazy.application.GlobalVariable;
+import wishcantw.vocabulazy.database.AppPreference;
+import wishcantw.vocabulazy.database.DatabaseUtils;
 import wishcantw.vocabulazy.player.view.PlayerMainView;
 import wishcantw.vocabulazy.player.view.PlayerOptionContentView;
 import wishcantw.vocabulazy.player.view.PlayerOptionView;
@@ -12,6 +16,7 @@ import wishcantw.vocabulazy.service.AudioPlayer;
 import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.database.object.Vocabulary;
+import wishcantw.vocabulazy.service.AudioPlayerUtils;
 
 import java.util.LinkedList;
 import java.util.ArrayList;
@@ -25,20 +30,41 @@ public class PlayerModel {
         void onVocabulariesGet(ArrayList<Vocabulary> vocabularies);
     }
 
-    /**
-     * The TAG string for debugging.
-     */
+    // tag for debugging
     public static final String TAG = PlayerModel.class.getSimpleName();
+
+    // singleton
+    private static PlayerModel playerModel = new PlayerModel();
+
+    // private constructor
+    private PlayerModel() {}
+
+    public static PlayerModel getInstance() {
+        return playerModel;
+    }
 
     private GlobalVariable mGlobalVariable;
     private Database mDatabase;
-    private ArrayList<Vocabulary> mVocabularies;
+    private DatabaseUtils mDatabaseUtils;
+    private AppPreference appPreference;
     private PlayerModelDataProcessListener wDataProcessListener;
 
-	public PlayerModel(Context context) {
+
+    public void init(Context context) {
         mGlobalVariable = (GlobalVariable) context;
-        mDatabase = Database.getInstance();
-	}
+
+        if (mDatabase == null) {
+            mDatabase = Database.getInstance();
+        }
+
+        if (mDatabaseUtils == null) {
+            mDatabaseUtils = DatabaseUtils.getInstance();
+        }
+
+        if (appPreference == null) {
+            appPreference = AppPreference.getInstance();
+        }
+    }
 
     public void setDataProcessListener(PlayerModelDataProcessListener listener) {
         wDataProcessListener = listener;
@@ -46,38 +72,73 @@ public class PlayerModel {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
+    public String getTitle(@NonNull Context context,
+                           int bookIndex,
+                           int lessonIndex) {
+        return (bookIndex == -1)
+                ? mDatabaseUtils.getNoteTitle(context, mDatabase.getNotes(), lessonIndex)
+                : mDatabaseUtils.getLessonTitle(context, mDatabase.getTextbooks(), bookIndex, lessonIndex);
+    }
+
     public int getBookIndex() {
-        return mGlobalVariable.playerTextbookIndex;
+        return appPreference.getPlayerBookIndex();
+    }
+
+    public void setBookIndex(int bookIndex) {
+        appPreference.setPlayerBookIndex(bookIndex);
     }
 
     public int getLessonIndex() {
-        return mGlobalVariable.playerLessonIndex;
+        return appPreference.getPlayerLessonIndex();
+    }
+
+    public void setLessonIndex(int lessonIndex) {
+        appPreference.setPlayerLessonIndex(lessonIndex);
+    }
+
+    public int getItemIndex() {
+        return appPreference.getPlayerItemIndex();
+    }
+
+    public void setItemIndex(int itemIndex) {
+        appPreference.setPlayerItemIndex(itemIndex);
+    }
+
+    public AudioPlayerUtils.PlayerField getPlayerField() {
+        return appPreference.getPlayerField();
+    }
+
+    public void setPlayerField(AudioPlayerUtils.PlayerField playerField) {
+        appPreference.setPlayerField(playerField);
     }
 
     public int getNumOfLessons(int bookIndex) {
-        return mDatabase.getNumOfLesson(bookIndex);
+        return (bookIndex == -1)
+                ? mDatabaseUtils.getNoteAmount(mDatabase.getNotes())
+                : mDatabaseUtils.getLessonAmount(mDatabase.getTextbooks(), bookIndex);
     }
 
-    public ArrayList<Vocabulary> getCurrentContent() {
-        return mGlobalVariable.playerContent;
+    public ArrayList<Vocabulary> getPlayerContent() {
+        return mDatabase.getPlayerContent();
     }
 
-    public void setCurrentContent(ArrayList<Vocabulary> vocabularies) {
-        mGlobalVariable.playerContent = vocabularies;
+    public void setPlayerContent(@NonNull ArrayList<Vocabulary> vocabularies) {
+        mDatabase.setPlayerContent(vocabularies);
+    }
+
+    public int getContentAmount(int bookIndex, int lessonIndex) {
+        return (bookIndex == -1)
+                ? mDatabaseUtils.getNoteContent(mDatabase.getNotes(), lessonIndex).size()
+                : mDatabaseUtils.getLessonContent(mDatabase.getTextbooks(), bookIndex, lessonIndex).size();
     }
 
     public ArrayList<OptionSettings> getOptionSettings() {
-        return Database.getInstance().getOptionSettings();
-    }
-
-    public void setOptionSettingsAndMode(ArrayList<OptionSettings> optionSettings, int optionMode) {
-        mGlobalVariable.optionSettings = optionSettings;
-        mGlobalVariable.optionMode = optionMode;
+        return mDatabase.getOptionSettings();
     }
 
     public void updateOptionSettings(int optionItemId, int mode, View v, int leftOrRight) {
 
-        OptionSettings optionSettings = mGlobalVariable.optionSettings.get(mode);
+        OptionSettings optionSettings = mDatabase.getPlayerOptionSettings();
         switch (optionItemId) {
             case PlayerOptionContentView.IDX_OPTION_RANDOM:
                 boolean oldRandom = optionSettings.isRandom();
@@ -121,30 +182,23 @@ public class PlayerModel {
             default:
                 break;
         }
-        mGlobalVariable.optionMode = mode;
-    }
-
-    public void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
-        mGlobalVariable.playerTextbookIndex = bookIndex;
-        mGlobalVariable.playerLessonIndex = lessonIndex;
-        mGlobalVariable.playerItemIndex = itemIndex;
-        mGlobalVariable.playerSentenceIndex = sentenceIndex;
+        appPreference.setPlayerOptionMode(mode);
     }
 
     public boolean isPlaying() {
-        return mGlobalVariable.playerState != null && mGlobalVariable.playerState.equals(AudioPlayer.PLAYING);
+        return (appPreference.getPlayerState().equals(AudioPlayerUtils.PlayerState.PLAYING));
     }
 
     public void addVocToNote(int vocId, int noteIndex) {
-        mDatabase.addVocToNote(vocId, noteIndex);
+        mDatabaseUtils.addVocToNote(mDatabase.getNotes(), vocId, noteIndex);
     }
 
     public void addNewNote(String newNote) {
-        mDatabase.createNewNote(newNote);
+        mDatabaseUtils.createNewNote(mDatabase.getNotes(), newNote);
     }
 
     public LinkedList<String> getNoteNameList() {
-        return toLinkedList(mDatabase.getNoteNames());
+        return toLinkedList(mDatabaseUtils.getNoteNames(mDatabase.getNotes()));
     }
 
     private <T> LinkedList<T> toLinkedList(ArrayList<T> arrayList) {
@@ -185,7 +239,7 @@ public class PlayerModel {
     /**
      *
      */
-        private class PlayerModelAsyncTask extends AsyncTask<Object, Void, Object> {
+    private class PlayerModelAsyncTask extends AsyncTask<Object, Void, Object> {
         @SuppressWarnings("unchecked")
         @Override
         protected Object doInBackground(Object... params) {
@@ -229,9 +283,10 @@ public class PlayerModel {
             if (params[0] instanceof Integer) {
                 int bookIndex = (Integer) params[0];
                 int lessonIndex = (Integer) params[1];
-                ArrayList<Integer> contentIDs = mDatabase.getContentIds(bookIndex, lessonIndex);
-                mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
-                return mVocabularies;
+                ArrayList<Integer> contentIDs = (bookIndex == -1)
+                        ? mDatabaseUtils.getNoteContent(mDatabase.getNotes(), lessonIndex)
+                        : mDatabaseUtils.getLessonContent(mDatabase.getTextbooks(), bookIndex, lessonIndex);
+                return mDatabaseUtils.getVocabulariesByIDs(mDatabase.getVocabularies(), contentIDs);
             }
 
             return null;
@@ -260,5 +315,4 @@ public class PlayerModel {
             }
         }
     }
-
 }

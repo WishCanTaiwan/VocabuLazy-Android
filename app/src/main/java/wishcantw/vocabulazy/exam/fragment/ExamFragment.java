@@ -39,7 +39,6 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
     private static final int LAYOUT_RES_ID = R.layout.view_exam;
 
     private ExamView mExamView;
-    private ExamModel mExamModel;
     private ExamModel.PuzzleSetter mPuzzleSetter;
 
     private int mCurrentBookIndex, mCurrentLessonIndex;
@@ -65,8 +64,7 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
         } else {
             mCurrentBookIndex = mCurrentLessonIndex = 0;
         }
-        mExamModel = new ExamModel();
-        mPuzzleSetter = mExamModel.createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
+        mPuzzleSetter = ExamModel.getInstance().createPuzzleSetter(mCurrentBookIndex, mCurrentLessonIndex);
     }
 
     @Override

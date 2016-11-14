@@ -33,9 +33,6 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
     // record the id of selected vocabulary
     private int mSelectedVocId;
 
-    // the context of the application/activity
-    private Context mContext;
-
     // data model
     private PlayerModel mPlayerModel;
 
@@ -65,22 +62,11 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // get the context instance of the activity
-        mContext = context;
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // parse the context to PlayerActivity
-        PlayerActivity activity = (PlayerActivity) mContext;
-
         // step 1: get player Model
-        mPlayerModel = activity.getModel();
+        mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
 
         // step 2: get note list, remember to replace linkedlist by player model
         mNoteNameList = mPlayerModel.getNoteNameList();

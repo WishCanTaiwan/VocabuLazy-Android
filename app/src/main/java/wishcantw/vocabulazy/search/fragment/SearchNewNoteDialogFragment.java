@@ -2,6 +2,7 @@ package wishcantw.vocabulazy.search.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +29,8 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
     // layout resource id
     private static final int LAYOUT_RES_ID = R.layout.view_search_new_note_dialog;
 
-    // the context of the application/activity
-    private Context mContext;
+    // data model
+    private SearchModel mSearchModel;
 
     // views
     private SearchNewNoteDialogView mSearchNewNoteDialogView;
@@ -40,18 +41,18 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
     /** Life cycles **/
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // get the instance of activity
-        mContext = context;
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mSearchNewNoteDialogView = (SearchNewNoteDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
         mSearchNewNoteDialogView.setOnYesOrNoClickListener(this);
         return mSearchNewNoteDialogView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        // get search model
+        mSearchModel = ((SearchActivity) getActivity()).getSearchModel();
     }
 
     @Override
@@ -79,8 +80,7 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
         String newNoteString = mSearchNewNoteDialogView.getNewNoteString();
 
         // access search model and add new note to database
-        SearchModel searchModel = ((SearchActivity) mContext).getModel();
-        searchModel.addNewNote(newNoteString);
+        mSearchModel.addNewNote(newNoteString);
 
         // notify new note has been added
         if (mOnDialogFinishListener != null) {

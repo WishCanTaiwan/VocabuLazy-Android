@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.application.GlobalVariable;
+import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.exam.activity.ExamActivity;
 import wishcantw.vocabulazy.mainmenu.fragment.MainMenuFragment;
 import wishcantw.vocabulazy.mainmenu.info.ReportPageFragment;
@@ -42,6 +43,8 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     public static final int REQUEST_CODE_PLAYER_STATE = 0x1;
 
     private MainMenuFragment mMainMenuFragment;
+
+    // data model
     private MainMenuModel mMainMenuModel;
 
     // tag to record the player state
@@ -56,7 +59,8 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         setActionBar();
 
         if (mMainMenuModel == null) {
-            mMainMenuModel = new MainMenuModel(getApplicationContext());
+            mMainMenuModel = MainMenuModel.getInstance();
+            mMainMenuModel.init();
         }
 
         startAudioService();
@@ -72,13 +76,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     @Override
     protected void onPause() {
         super.onPause();
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                Database.getInstance().writeToFile(getApplicationContext());
-                return null;
-            }
-        }.execute();
+        Database.getInstance().storeData(getApplicationContext());
     }
 
     @Override
@@ -107,8 +105,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
                 navigateToSearch();
                 return true;
             case R.id.action_back_to_player:
-                GlobalVariable globalVariable = (GlobalVariable) getApplication();
-                navigateToPlayer(globalVariable.playerTextbookIndex, globalVariable.playerLessonIndex);
+                navigateToPlayer(AppPreference.getInstance().getPlayerBookIndex(), AppPreference.getInstance().getPlayerLessonIndex());
                 break;
             default:
                 break;

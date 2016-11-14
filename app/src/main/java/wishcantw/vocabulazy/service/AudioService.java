@@ -3,16 +3,19 @@ package wishcantw.vocabulazy.service;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.support.v4.content.LocalBroadcastManager;
 
 import wishcantw.vocabulazy.application.GlobalVariable;
+import wishcantw.vocabulazy.database.AppPreference;
+import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.utility.Logger;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.database.object.Vocabulary;
 
 import java.util.ArrayList;
 
-public class AudioService extends IntentService {
+public class AudioService extends IntentService implements AudioManager.OnAudioFocusChangeListener {
 
     public static final String TAG = AudioService.class.getSimpleName();
 
@@ -52,7 +55,9 @@ public class AudioService extends IntentService {
 
     private GlobalVariable mGlobalVariable;
 //    private Preferences mPreferences;
-    private AudioPlayer mAudioPlayer;
+    private NewAudioPlayer mAudioPlayer;
+    private AudioPlayerUtils audioPlayerUtils;
+    private AudioPlayerBroadcaster audioPlayerBroadcaster;
 
     public AudioService() {
         super(null);
@@ -85,120 +90,113 @@ public class AudioService extends IntentService {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        String action = (intent != null) ? intent.getAction() : "";
+        if (intent == null) {
+            return START_STICKY;
+        }
+
+        if (audioPlayerBroadcaster == null) {
+            audioPlayerBroadcaster = new Broadcaster(getApplicationContext());
+        }
+
+        if (mAudioPlayer == null) {
+            mAudioPlayer = NewAudioPlayer.getInstance();
+            mAudioPlayer.init(getApplicationContext(), audioPlayerBroadcaster);
+        }
+
+        AppPreference appPreference = AppPreference.getInstance();
+
+        String action = intent.getAction();
         Logger.d(TAG, action);
+
         /**
          * switch-case block for deciding the corresponding tasks for each action
          */
         switch (action) {
 
             case START_SERVICE:
-                mGlobalVariable = (GlobalVariable) getApplication();
-                mAudioPlayer = new AudioPlayer(mGlobalVariable);
-                mAudioPlayer.bondToTTSEngine(getApplicationContext());
-                mAudioPlayer.setBroadcastTrigger(new Broadcaster(getApplicationContext()));
+                if (audioPlayerUtils == null) {
+                    audioPlayerUtils = AudioPlayerUtils.getInstance();
+                }
                 break;
 
             case STOP_SERVICE:
-                if (mAudioPlayer == null)
-                    break;
-                mAudioPlayer.releaseAudioFocus(getApplicationContext());
-                mAudioPlayer.releaseTTSResource();
+                ((AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE))
+                        .abandonAudioFocus(this);
+                appPreference.setAudioFocused(false);
                 break;
 
             case GET_AUDIO_FOCUS:
-                if (mAudioPlayer == null)
-                    break;
-                mAudioPlayer.getAudioFocus(getApplicationContext());
+                int result = ((AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE))
+                        .requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+                appPreference.setAudioFocused(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
                 break;
 
             case RELEASE_AUDIO_FOCUS:
-                if (mAudioPlayer == null)
-                    break;
-                mAudioPlayer.releaseAudioFocus(getApplicationContext());
-                break;
-
-            case SET_CONTENT:
-                if (mAudioPlayer == null)
-                    break;
-                ArrayList<Vocabulary> vocabularies = mGlobalVariable.playerContent;
-                OptionSettings optionSetting = mGlobalVariable.optionSettings.get(mGlobalVariable.optionMode);
-                mAudioPlayer.setContent(vocabularies);
-                mAudioPlayer.setOptionSettings(optionSetting);
+                ((AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE))
+                        .abandonAudioFocus(this);
+                appPreference.setAudioFocused(false);
                 break;
 
             case START_SINGLE_ITEM:
-                if (intent == null)
-                    break;
-                if (mAudioPlayer == null)
-                    break;
                 String utterance = intent.getStringExtra(EXAM_UTTERANCE);
                 mAudioPlayer.play(utterance);
                 break;
 
             case NEW_ITEM_FOCUSED:
-                if (mAudioPlayer == null)
-                    break;
-                mAudioPlayer.resetSpellCountDown();
-                mAudioPlayer.resetItemLoop();
-                mAudioPlayer.resetListLoop();
-                mAudioPlayer.resetTimer();
+                mAudioPlayer.resetItemLoopCountDown();
+                mAudioPlayer.resetSpellLoopCountDown();
+                switch (appPreference.getPlayerState()) {
+                    case PLAYING:
+                        mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
+                        break;
+                    case STOP: case STOP_BY_SCROLLING: case STOP_BY_FOCUS_CHANGE:
+                        break;
+                }
+                break;
+
             case START_PLAYING:
-                if (intent == null)
-                    break;
-                if (mAudioPlayer == null)
-                    break;
-                int itemIndex = intent.getIntExtra(ITEM_INDEX, -1);
-                int sentenceIndex = intent.getIntExtra(SENTENCE_INDEX, -1);
-                String playingField = intent.getStringExtra(PLAYING_FIELD);
-                mAudioPlayer.playItemAt(itemIndex, sentenceIndex, playingField);
-                mAudioPlayer.resetSpellCountDown();
-                mAudioPlayer.resetItemLoop();
-                mAudioPlayer.resetListLoop();
-                mAudioPlayer.resetTimer();
+                mAudioPlayer.resetItemLoopCountDown();
+                mAudioPlayer.resetSpellLoopCountDown();
+                mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
                 break;
 
             case NEW_LIST_FOCUSED:
-                if (mAudioPlayer == null)
-                    break;
-                mAudioPlayer.resetSpellCountDown();
-                mAudioPlayer.resetItemLoop();
-                mAudioPlayer.resetListLoop();
-                mAudioPlayer.resetTimer();
+                mAudioPlayer.resetItemLoopCountDown();
+                mAudioPlayer.resetListLoopCountDown();
+                mAudioPlayer.resetSpellLoopCountDown();
                 break;
 
             case NEW_SENTENCE_FOCUSED:
-                if (intent == null)
-                    break;
-                if (mAudioPlayer == null)
-                    break;
-                int newSentenceIndex = intent.getIntExtra(SENTENCE_INDEX, -1);
-                mAudioPlayer.playNewSentence(newSentenceIndex);
                 break;
 
             case OPTION_SETTINGS_CHANGED:
-                if (mAudioPlayer == null)
-                    break;
-                OptionSettings optionSettings = mGlobalVariable.optionSettings.get(mGlobalVariable.optionMode);
-                mAudioPlayer.updateOptionSettings(optionSettings);
+                mAudioPlayer.updateOptionSettings(Database.getInstance().getPlayerOptionSettings());
                 break;
 
             case PLAY_BUTTON_CLICKED:
-                if (mAudioPlayer == null)
-                    break;
-                mAudioPlayer.playButtonClick(getApplicationContext());
+                if (appPreference.getPlayerState().equals(AudioPlayerUtils.PlayerState.PLAYING)) {
+                    mAudioPlayer.stop();
+                    appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOP);
+                    audioPlayerBroadcaster.onPlayerStateChanged();
+
+                } else {
+                    if (!appPreference.isAudioFocused()) {
+                        result = ((AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE))
+                                .requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+                        appPreference.setAudioFocused(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
+                    }
+                    mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
+                    audioPlayerBroadcaster.onPlayerStateChanged();
+                }
                 break;
 
             case PLAYERVIEW_SCROLLING:
-                if (mAudioPlayer == null)
-                    break;
-                mAudioPlayer.haltPlayer();
+                mAudioPlayer.stop();
+                AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.STOP_BY_SCROLLING);
+                audioPlayerBroadcaster.onPlayerStateChanged();
                 break;
 
             case START_TIMER:
-                if (mAudioPlayer == null)
-                    break;
-                mAudioPlayer.startTimer();
                 break;
 
             default:
@@ -209,7 +207,32 @@ public class AudioService extends IntentService {
         return START_STICKY;
     }
 
-    private class Broadcaster implements AudioPlayer.BroadcastTrigger {
+    @Override
+    public void onAudioFocusChange(int focusChange) {
+        AppPreference appPreference = AppPreference.getInstance();
+        AudioPlayerUtils.PlayerState playerState = appPreference.getPlayerState();
+
+        if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+            if (playerState.equals(AudioPlayerUtils.PlayerState.STOP_BY_FOCUS_CHANGE)) {
+                appPreference.setPlayerState(AudioPlayerUtils.PlayerState.PLAYING);
+                audioPlayerBroadcaster.onPlayerStateChanged();
+                mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
+            }
+        }
+
+        if (focusChange == AudioManager.AUDIOFOCUS_LOSS ||
+                focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+            appPreference.setAudioFocused(false);
+            if (playerState.equals(AudioPlayerUtils.PlayerState.PLAYING)) {
+                appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOP_BY_FOCUS_CHANGE);
+                audioPlayerBroadcaster.onPlayerStateChanged();
+                // TODO: 2016/11/13 release vl text to speech
+            }
+        }
+    }
+
+    private class Broadcaster extends AudioPlayerBroadcaster {
         private Context context;
 
         private String broadcastIntent = GlobalVariable.PLAYER_BROADCAST_INTENT;
@@ -240,19 +263,19 @@ public class AudioService extends IntentService {
             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }
 
-        @Override
-        public void showDetail() {
-            Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, SHOW_DETAIL);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        }
+//        @Override
+//        public void showDetail() {
+//            Intent intent = new Intent(broadcastIntent)
+//                    .putExtra(broadcastAction, SHOW_DETAIL);
+//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+//        }
 
-        @Override
-        public void hideDetail() {
-            Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, HIDE_DETAIL);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        }
+//        @Override
+//        public void hideDetail() {
+//            Intent intent = new Intent(broadcastIntent)
+//                    .putExtra(broadcastAction, HIDE_DETAIL);
+//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+//        }
 
         @Override
         public void toItem(int nextItemIndex) {
@@ -262,13 +285,13 @@ public class AudioService extends IntentService {
             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }
 
-        @Override
-        public void toSentence(int sentenceIndex) {
-            Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, TO_SENTENCE)
-                    .putExtra(SENTENCE_INDEX, sentenceIndex);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        }
+//        @Override
+//        public void toSentence(int sentenceIndex) {
+//            Intent intent = new Intent(broadcastIntent)
+//                    .putExtra(broadcastAction, TO_SENTENCE)
+//                    .putExtra(SENTENCE_INDEX, sentenceIndex);
+//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+//        }
 
         @Override
         public void toNextList() {
@@ -278,10 +301,9 @@ public class AudioService extends IntentService {
         }
 
         @Override
-        public void onPlayerStateChanged(String state) {
+        public void onPlayerStateChanged() {
             Intent intent = new Intent(broadcastIntent)
-                    .putExtra(broadcastAction, PLAYER_STATE_CHANGED)
-                    .putExtra(PLAYER_STATE, state);
+                    .putExtra(broadcastAction, PLAYER_STATE_CHANGED);
             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
         }
     }

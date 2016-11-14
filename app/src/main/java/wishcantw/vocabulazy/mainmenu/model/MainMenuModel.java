@@ -1,8 +1,10 @@
 package wishcantw.vocabulazy.mainmenu.model;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.database.DatabaseUtils;
 import wishcantw.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import wishcantw.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
@@ -17,37 +19,56 @@ import java.util.HashMap;
 
 public class MainMenuModel {
 
+    // tag for debugging
     public static final String TAG = "MainMenuModel";
 
-    private Context mContext;
     private Database mDatabase;
+    private DatabaseUtils mDatabaseUtils;
 
-    private ArrayList<TextbookExpandableGroupItem> textbookGroupItems;
-    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap;
+    // textbook items
+    private ArrayList<TextbookExpandableGroupItem> textbookGroupItems = new ArrayList<>();
+    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap = new HashMap<>();
 
-    private ArrayList<NoteExpandableGroupItem> noteGroupItems;
-    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap;
+    // note items
+    private ArrayList<NoteExpandableGroupItem> noteGroupItems = new ArrayList<>();
+    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap = new HashMap<>();
 
-    private ArrayList<TextbookExpandableGroupItem> examIndexTextbookGroupItems;
-    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> examIndexTextbookChildItemsMap;
-    private ArrayList<NoteExpandableGroupItem> examIndexNoteGroupItems;
-    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> examIndexNoteChildItemsMap;
+    // exam items
+    private ArrayList<TextbookExpandableGroupItem> examIndexTextbookGroupItems = new ArrayList<>();
+    private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> examIndexTextbookChildItemsMap = new HashMap<>();
+    private ArrayList<NoteExpandableGroupItem> examIndexNoteGroupItems = new ArrayList<>();
+    private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> examIndexNoteChildItemsMap = new HashMap<>();
 
-    private ArrayList<Textbook> texbooks;
-    private ArrayList<Note> notes;
+    // singleton
+    private static MainMenuModel mainMenuModel = new MainMenuModel();
 
-    public MainMenuModel(Context context) {
-        mContext = context;
-        getDataFromDatabase();
+    // private constructor
+    private MainMenuModel() {}
+
+    // singleton getter
+    public static MainMenuModel getInstance() {
+        return mainMenuModel;
+    }
+
+    public void init() {
+        if (mDatabase == null) {
+            mDatabase = Database.getInstance();
+        }
+
+        if (mDatabaseUtils == null) {
+            mDatabaseUtils = DatabaseUtils.getInstance();
+        }
     }
 
     public void generateBookItems() {
+        ArrayList<Textbook> textbooks = mDatabase.getTextbooks();
+
         textbookGroupItems = new ArrayList<>();
         textbookChildItemsMap = new HashMap<>();
-        for (int bookIndex = 0; bookIndex < texbooks.size(); bookIndex++) {
-            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(texbooks.get(bookIndex).getTextbookTitle());
+        for (int bookIndex = 0; bookIndex < textbooks.size(); bookIndex++) {
+            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(textbooks.get(bookIndex).getTextbookTitle());
 
-            ArrayList<Lesson> lessons = texbooks.get(bookIndex).getTextbookContent();
+            ArrayList<Lesson> lessons = textbooks.get(bookIndex).getTextbookContent();
             ArrayList<TextbookExpandableChildItem> childItems = new ArrayList<>();
             for (int lessonIndex = 0; lessonIndex < lessons.size(); lessonIndex++) {
                 TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(lessons.get(lessonIndex).getLessonTitle());
@@ -67,8 +88,10 @@ public class MainMenuModel {
         return textbookChildItemsMap;
     }
 
-    public void generateNoteItems() {
-        String[] childStrings = mContext.getResources().getStringArray(R.array.note_child);
+    public void generateNoteItems(Context context) {
+        ArrayList<Note> notes = mDatabase.getNotes();
+
+        String[] childStrings = context.getResources().getStringArray(R.array.note_child);
         noteGroupItems = new ArrayList<>();
         noteChildItemsMap = new HashMap<>();
         for (int noteIndex = 0; noteIndex < notes.size(); noteIndex++) {
@@ -94,14 +117,16 @@ public class MainMenuModel {
     }
 
     public void generateExamIndexItems() {
+        ArrayList<Textbook> textbooks = mDatabase.getTextbooks();
+        ArrayList<Note> notes = mDatabase.getNotes();
 
         // generate textbook items for exam index
         examIndexTextbookGroupItems = new ArrayList<>();
         examIndexTextbookChildItemsMap = new HashMap<>();
-        for (int bookIndex = 0; bookIndex < texbooks.size(); bookIndex++) {
-            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(texbooks.get(bookIndex).getTextbookTitle());
+        for (int bookIndex = 0; bookIndex < textbooks.size(); bookIndex++) {
+            TextbookExpandableGroupItem groupItem = new TextbookExpandableGroupItem(textbooks.get(bookIndex).getTextbookTitle());
 
-            ArrayList<Lesson> lessons = texbooks.get(bookIndex).getTextbookContent();
+            ArrayList<Lesson> lessons = textbooks.get(bookIndex).getTextbookContent();
             ArrayList<TextbookExpandableChildItem> childItems = new ArrayList<>();
             for (int lessonIndex = 0; lessonIndex < lessons.size(); lessonIndex++) {
                 TextbookExpandableChildItem childItem = new TextbookExpandableChildItem(lessons.get(lessonIndex).getLessonTitle());
@@ -120,8 +145,8 @@ public class MainMenuModel {
             NoteExpandableGroupItem groupItem = new NoteExpandableGroupItem(notes.get(noteIndex).getNoteTitle());
 
             ArrayList<NoteExpandableChildItem> childItems = new ArrayList<>();
-            for (int index = 0; index < childs.length; index++) {
-                NoteExpandableChildItem childItem = new NoteExpandableChildItem(childs[index]);
+            for (String child : childs) {
+                NoteExpandableChildItem childItem = new NoteExpandableChildItem(child);
                 childItems.add(childItem);
             }
 
@@ -146,25 +171,21 @@ public class MainMenuModel {
         return examIndexNoteChildItemsMap;
     }
 
-    public void getDataFromDatabase() {
-        mDatabase = Database.getInstance();
-        texbooks = mDatabase.getTextbooks();
-        notes = mDatabase.getNotes();
+    public String getNoteTitle(@NonNull Context context,
+                               int noteIndex) {
+        return mDatabaseUtils.getNoteTitle(context, mDatabase.getNotes(), noteIndex);
     }
 
-    public String getNoteTitle(int noteIndex) {
-        return mDatabase.getLessonTitle(-1, noteIndex);
-    }
-
-    public void renameNote(int noteIndex, String name) {
-        mDatabase.renameNoteAt(noteIndex, name);
+    public void renameNote(int noteIndex,
+                           @NonNull String name) {
+        mDatabaseUtils.renameNoteAt(mDatabase.getNotes(), noteIndex, name);
     }
 
     public void deleteNote(int noteIndex) {
-        mDatabase.deleteNoteAt(noteIndex);
+        mDatabaseUtils.deleteNoteAt(mDatabase.getNotes(), noteIndex);
     }
 
     public void createNote(String noteTitle) {
-        mDatabase.createNewNote(noteTitle);
+        mDatabaseUtils.createNewNote(mDatabase.getNotes(), noteTitle);
     }
 }

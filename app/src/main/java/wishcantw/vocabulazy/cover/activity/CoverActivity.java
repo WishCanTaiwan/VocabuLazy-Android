@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 import java.util.Locale;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.database.DatabaseCallback;
 import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.database.VersionCode;
@@ -51,8 +52,6 @@ public class CoverActivity extends FragmentActivity {
 
         // check version code
         checkVersion();
-
-
     }
 
     /** Private methods **/
@@ -74,22 +73,20 @@ public class CoverActivity extends FragmentActivity {
     }
 
     private void loadDatabase() {
-        new AsyncTask<Void, Void, Void>() {
+        Database.getInstance().init(getApplicationContext(), new DatabaseCallback() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                Logger.d(TAG, "Start loading database");
-                Database database = Database.getInstance();
-                database.init(getApplicationContext());
-                return null;
+            public void succeed() {
+                super.succeed();
+                // navigate to main menu
+                navigateToMainMenu();
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                Logger.d(TAG, "Finish loading database");
-                super.onPostExecute(aVoid);
-                navigateToMainMenu();
+            public void failed() {
+                super.failed();
+                // should show some information
             }
-        }.execute();
+        });
     }
 
     private void askUserToInstallTTS() {

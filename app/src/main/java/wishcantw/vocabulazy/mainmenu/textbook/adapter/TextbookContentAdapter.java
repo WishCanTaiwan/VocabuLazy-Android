@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.DatabaseUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,7 +69,7 @@ public class TextbookContentAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
         // get group texts
-        String textbookType = Database.getInstance().getTextbookType(groupPosition);
+        String textbookType = DatabaseUtils.getInstance().getTextbookType(parent.getContext(), Database.getInstance().getTextbooks(), groupPosition);
         String groupTitle = ((TextbookExpandableGroupItem) getGroup(groupPosition)).getGroupStr();
 
         // if convert view is null, inflate a new one

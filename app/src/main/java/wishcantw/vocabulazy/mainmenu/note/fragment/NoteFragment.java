@@ -73,8 +73,8 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        MainMenuActivity activity = (MainMenuActivity) getActivity();
-        mMainMenuModel = activity.getModel();
+        // get data model
+        mMainMenuModel = ((MainMenuActivity) getActivity()).getModel();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
 
     @Override
     public void onNoteChildClicked(int groupPosition, int childPosition) {
-        String name = mMainMenuModel.getNoteTitle(groupPosition);
+        String name = mMainMenuModel.getNoteTitle(getContext(), groupPosition);
         switch (childPosition) {
             case PLAY:
                 // TODO: prevent from entering if there's no vocabulary

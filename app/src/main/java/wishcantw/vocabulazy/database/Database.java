@@ -1,72 +1,137 @@
 package wishcantw.vocabulazy.database;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import com.google.gson.Gson;
-import wishcantw.vocabulazy.R;
-import wishcantw.vocabulazy.application.GlobalVariable;
 import wishcantw.vocabulazy.database.object.Note;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.database.object.Textbook;
 import wishcantw.vocabulazy.database.object.Vocabulary;
-import wishcantw.vocabulazy.utility.Logger;
 
 public class Database {
+
+    // tag for debugging
     public static final String TAG = Database.class.getSimpleName();
 
-    public static final String FILENAME_NOTE = "note";
-    public static final String FILENAME_OPTION = "optionSetting";
-
-    private GlobalVariable mGlobalVariable;
-
+    // singleton
     private static Database database = new Database();
 
-    private ArrayList<Vocabulary> mVocabularies = new ArrayList<>();
-    private ArrayList<Textbook> mTextbooks = new ArrayList<>();
-    private ArrayList<Note> mNotes = new ArrayList<>();
+    // private constructor
+    private Database() {}
 
-    private static final int MAXIMUM_LIST_SIZE = 50;
-
+    // getter of singleton
     public static Database getInstance() {
         return database;
     }
 
-    public void init(Context context) {
+    // datas
+    private ArrayList<Vocabulary> mVocabularies = new ArrayList<>();
+    private ArrayList<Textbook> mTextbooks = new ArrayList<>();
+    private ArrayList<Note> mNotes = new ArrayList<>();
+    private ArrayList<OptionSettings> mOptionSettings = new ArrayList<>();
+    private ArrayList<Vocabulary> mPlayerContent = new ArrayList<>();
+
+    public void init(@NonNull final Context context, final DatabaseCallback callback) {
+        final FileLoader fileLoader = FileLoader.getInstance();
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                mVocabularies = fileLoader.loadVocabularies(context);
+                mTextbooks = fileLoader.loadTextbook(context);
+                mNotes = fileLoader.loadNote(context);
+                mOptionSettings = fileLoader.loadOptionSettings(context);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                if (mVocabularies.isEmpty() || mTextbooks.isEmpty() || mOptionSettings.isEmpty()) {
+                    callback.failed();
+                } else {
+                    callback.succeed();
+                }
+            }
+        }.execute();
+
     }
 
-
-
-    public synchronized void writeToFile(Context context) {
-        Logger.d(TAG, "Write database");
-        write(context, FILENAME_NOTE, mNotes.toArray());
-        write(context, FILENAME_OPTION, mGlobalVariable.optionSettings.toArray());
+    public void storeData(@NonNull final Context context) {
+        final FileWriter fileWriter = FileWriter.getInstance();
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                fileWriter.writeNote(context, mNotes);
+                fileWriter.writeOptionSettings(context, mOptionSettings);
+                return null;
+            }
+        }.execute();
     }
 
+    /**
+     * Get the vocabularies
+     *
+     * @return the array list of vocabularies
+     */
+    public ArrayList<Vocabulary> getVocabularies() {
+        return (mVocabularies == null)
+                ? new ArrayList<Vocabulary>()
+                : mVocabularies;
+    }
+
+    /**
+     * Get the textbooks
+     *
+     * @return the array list of textbooks
+     */
     public ArrayList<Textbook> getTextbooks() {
-        return mTextbooks;
+        return (mTextbooks == null)
+                ? new ArrayList<Textbook>()
+                : mTextbooks;
     }
 
+    /**
+     * Get the notes
+     *
+     * @return the array list of notes
+     */
     public ArrayList<Note> getNotes() {
-        return mNotes;
+        return (mNotes == null)
+                ? new ArrayList<Note>()
+                : mNotes;
     }
 
-    private <T> void write(Context context, String filename, T[] array) {
-        try {
-            FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
-            fos.write(new Gson().toJson(array).getBytes());
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    /**
+     * Get the option settings
+     *
+     * @return the array list of option settings
+     */
+    public ArrayList<OptionSettings> getOptionSettings() {
+        return (mOptionSettings == null)
+                ? new ArrayList<OptionSettings>()
+                : mOptionSettings;
+    }
+
+    public ArrayList<Vocabulary> getPlayerContent() {
+        return (mPlayerContent == null)
+                ? new ArrayList<Vocabulary>()
+                : mPlayerContent;
+    }
+
+    public void setPlayerContent(@NonNull ArrayList<Vocabulary> playerContent) {
+        this.mPlayerContent = playerContent;
+    }
+
+    public OptionSettings getPlayerOptionSettings() {
+        int mode = AppPreference.getInstance().getPlayerOptionMode();
+        return mOptionSettings.get(mode);
+    }
+
+    public void setPlayerOptionSettings(OptionSettings optionSettings) {
+        int mode = AppPreference.getInstance().getPlayerOptionMode();
+        mOptionSettings.set(mode, optionSettings);
     }
 }

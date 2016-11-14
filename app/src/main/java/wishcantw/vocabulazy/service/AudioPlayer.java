@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.os.Handler;
 
 import wishcantw.vocabulazy.application.GlobalVariable;
+import wishcantw.vocabulazy.database.DatabaseUtils;
 import wishcantw.vocabulazy.utility.Logger;
 import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.database.object.OptionSettings;
@@ -43,15 +44,13 @@ public class AudioPlayer implements AudioPlayerListener {
     public static final String HALT_BY_SCROLLING = "halt-by-scrolling";
     public static final String HALT_BY_FOCUS_LOSS = "halt-by-focus-loss";
 
-    private Context mContext;
     private GlobalVariable mGlobalVariable;
-//    private Preferences mPreferences;
     private Database mDatabase;
+    private DatabaseUtils mDatabaseUtils;
     private BroadcastTrigger mBroadcastTrigger;
     private Handler mHandler;
     private Runnable mTimerRunnable;
 
-    private ArrayList<Vocabulary> mVocabularies;
     private OptionSettings mOptionSettings;
 
     private int mItemIndex;
@@ -69,10 +68,25 @@ public class AudioPlayer implements AudioPlayerListener {
     private int itemLoopCountDown;
     private int listLoopCountDown;
 
-    public AudioPlayer(GlobalVariable application) {
-        mGlobalVariable = application;
-//        mPreferences = application.getPreferences();
-        mDatabase = Database.getInstance();
+    private static AudioPlayer audioPlayer = new AudioPlayer();
+
+    private AudioPlayer() {}
+
+    public static AudioPlayer getInstance() {
+        return audioPlayer;
+    }
+
+    public void init(Context context) {
+        mGlobalVariable = (GlobalVariable) context;
+
+        if (mDatabase == null) {
+            mDatabase = Database.getInstance();
+        }
+
+        if (mDatabaseUtils == null) {
+            mDatabaseUtils = DatabaseUtils.getInstance();
+        }
+
         mHandler = new Handler();
         mTimerRunnable = new Runnable() {
             @Override
@@ -84,16 +98,15 @@ public class AudioPlayer implements AudioPlayerListener {
                     return;
                 }
                 isTimeOut = true;
-                vlTextToSpeech.pause();
+                vlTextToSpeech.stop();
                 updatePlayerInfo(mItemIndex, mSentenceIndex, mPlayingField, PAUSE);
             }
         };
     }
 
     public void bondToTTSEngine(Context context) {
-        vlTextToSpeech = new VLTextToSpeech(context);
-        vlTextToSpeech.setOnEngineStatusListener(this);
-        vlTextToSpeech.initTTS();
+        vlTextToSpeech = VLTextToSpeech.getInstance();
+        vlTextToSpeech.init(context);
         vlTextToSpeech.setOnUtteranceFinishListener(this);
         mPlayerState = IDLE;
     }
@@ -122,44 +135,36 @@ public class AudioPlayer implements AudioPlayerListener {
         mBroadcastTrigger = trigger;
     }
 
-    public void setContent(ArrayList<Vocabulary> vocabularies) {
-        mVocabularies = vocabularies;
-    }
-
     public void setOptionSettings(OptionSettings optionSettings) {
         if (optionSettings == null) {
             return;
         }
 
-        mOptionSettings = optionSettings;
         itemLoopCountDown = optionSettings.getItemLoop();
         listLoopCountDown = optionSettings.getListLoop();
-
-        mGlobalVariable.playerItemLoop = optionSettings.getItemLoop();
-        mGlobalVariable.playerListLoop = optionSettings.getListLoop();
-        mGlobalVariable.playerPlayTime = optionSettings.getPlayTime();
     }
 
     public void updateOptionSettings(OptionSettings optionSettings) {
-        int oldItemLoop = mGlobalVariable.playerItemLoop;
-        int oldListLoop = mGlobalVariable.playerListLoop;
-        int oldPlayTime = mGlobalVariable.playerPlayTime;
-
-        if (optionSettings == null) {
-            return;
-        }
-
-        int newItemLoop = optionSettings.getItemLoop();
-        int newListLoop = optionSettings.getListLoop();
-        int newPlayTime = optionSettings.getPlayTime();
-
-        mOptionSettings = optionSettings;
-        if (newItemLoop != oldItemLoop)
-            resetItemLoop();
-        if (newListLoop != oldListLoop)
-            resetListLoop();
-        if (newPlayTime != oldPlayTime)
-            resetTimer();
+//        int oldItemLoop = mGlobalVariable.playerItemLoop;
+//        int oldListLoop = mGlobalVariable.playerListLoop;
+//        int oldPlayTime = mGlobalVariable.playerPlayTime;
+//
+//        if (optionSettings == null) {
+//            return;
+//        }
+//
+//        int newItemLoop = optionSettings.getItemLoop();
+//        int newListLoop = optionSettings.getListLoop();
+//        int newPlayTime = optionSettings.getPlayTime();
+//
+////        mDatabase.setPlayerOptionSettings(optionSettings);
+//
+//        if (newItemLoop != oldItemLoop)
+//            resetItemLoop();
+//        if (newListLoop != oldListLoop)
+//            resetListLoop();
+//        if (newPlayTime != oldPlayTime)
+//            resetTimer();
     }
 
     public void play(String utterance) {
@@ -182,26 +187,29 @@ public class AudioPlayer implements AudioPlayerListener {
     void playItemAt(final int itemIndex, final int sentenceIndex, final String playingField) {
 
         // check vocabulary validity
-        if (mVocabularies == null || mVocabularies.isEmpty() || vlTextToSpeech == null || mOptionSettings == null) {
+        if (vlTextToSpeech == null || mOptionSettings == null) {
             return;
         }
+
+        // get player content
+        ArrayList<Vocabulary> content = mDatabase.getPlayerContent();
 
         String string = "";
         switch (playingField) {
             case SPELL:
-                string = mVocabularies.get(itemIndex).getSpell();
+                string = content.get(itemIndex).getSpell();
                 vlTextToSpeech.setLanguage(Locale.ENGLISH);
                 break;
             case TRANSLATION:
-                string = mVocabularies.get(itemIndex).getTranslation();
+                string = content.get(itemIndex).getTranslation();
                 vlTextToSpeech.setLanguage(Locale.TAIWAN);
                 break;
             case EnSENTENCE:
-                string = mVocabularies.get(itemIndex).getEnSentence().get(sentenceIndex);
+                string = content.get(itemIndex).getEnSentence().get(sentenceIndex);
                 vlTextToSpeech.setLanguage(Locale.ENGLISH);
                 break;
             case CnSENTENCE:
-                string = mVocabularies.get(itemIndex).getCnSentence().get(sentenceIndex);
+                string = content.get(itemIndex).getCnSentence().get(sentenceIndex);
                 vlTextToSpeech.setLanguage(Locale.TAIWAN);
                 break;
             default:
@@ -216,7 +224,7 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void playNewSentence(int newSentenceIndex) {
-        playItemAt(mItemIndex, newSentenceIndex, EnSENTENCE);
+//        playItemAt(mItemIndex, newSentenceIndex, EnSENTENCE);
     }
 
     public void playButtonClick(Context context) {
@@ -224,7 +232,7 @@ public class AudioPlayer implements AudioPlayerListener {
         if (playerState.equals(PLAYING)) {
             playerState = PAUSE;
             if (vlTextToSpeech != null) {
-                vlTextToSpeech.pause();
+                vlTextToSpeech.stop();
             }
         } else {
             if (!isAudioFocused) getAudioFocus(context);
@@ -251,12 +259,12 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void resetTimer() {
-        if (mOptionSettings == null) {
-            return;
-        }
-        mGlobalVariable.playerPlayTime = mOptionSettings.getPlayTime();
-        mHandler.removeCallbacks(mTimerRunnable);
-        startTimer();
+//        if (mOptionSettings == null) {
+//            return;
+//        }
+//        mGlobalVariable.playerPlayTime = mOptionSettings.getPlayTime();
+//        mHandler.removeCallbacks(mTimerRunnable);
+//        startTimer();
     }
 
     public void resetSpellCountDown() {
@@ -264,18 +272,18 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     public void resetItemLoop() {
-        if (mOptionSettings == null) {
-            return;
-        }
-        int itemLoop = mOptionSettings.getItemLoop();
-        mGlobalVariable.playerItemLoop = itemLoop;
-        itemLoopCountDown = itemLoop;
+//        if (mOptionSettings == null) {
+//            return;
+//        }
+//        int itemLoop = mOptionSettings.getItemLoop();
+//        mGlobalVariable.playerItemLoop = itemLoop;
+//        itemLoopCountDown = itemLoop;
     }
 
     public void resetListLoop() {
-        int listLoop = mOptionSettings.getListLoop();
-        mGlobalVariable.playerListLoop = listLoop;
-        listLoopCountDown = listLoop;
+//        int listLoop = mOptionSettings.getListLoop();
+//        mGlobalVariable.playerListLoop = listLoop;
+//        listLoopCountDown = listLoop;
     }
 
     @Override
@@ -337,7 +345,7 @@ public class AudioPlayer implements AudioPlayerListener {
                     if (listLoopCountDown == 0) {
                         mBroadcastTrigger.onListComplete();
                         resetListLoop();
-                        mVocabularies = loadNewContent();
+                        loadNewContent();
                         mBroadcastTrigger.toNextList();
                         sleep(1500);
                     }
@@ -375,7 +383,7 @@ public class AudioPlayer implements AudioPlayerListener {
                     if (listLoopCountDown == 0) {
                         mBroadcastTrigger.onListComplete();
                         resetListLoop();
-                        mVocabularies = loadNewContent();
+                        loadNewContent();
                         mBroadcastTrigger.toNextList();
                         sleep(1500);
                     }
@@ -409,7 +417,7 @@ public class AudioPlayer implements AudioPlayerListener {
             if (playerState.equals(PLAYING)) {
                 playerState = HALT_BY_FOCUS_LOSS;
                 if (vlTextToSpeech != null) {
-                    vlTextToSpeech.pause();
+                    vlTextToSpeech.stop();
                 }
                 mPlayerState = playerState; /* the player is halted by focus loss */
             }
@@ -426,24 +434,24 @@ public class AudioPlayer implements AudioPlayerListener {
     }
 
     private void updatePlayerInfo(int itemIndex, int sentenceIndex, String playingField, String playerState) {
-        if (!playerState.equals(mPlayerState) && mBroadcastTrigger != null) {
-            mBroadcastTrigger.onPlayerStateChanged(playerState);
-        }
-
-        mGlobalVariable.playerItemIndex = itemIndex;
-        mGlobalVariable.playerSentenceIndex = sentenceIndex;
-        mGlobalVariable.playerState = playerState;
-        mGlobalVariable.playingField = playingField;
-
-        mItemIndex = itemIndex;
-        mSentenceIndex = sentenceIndex;
-        mPlayingField = playingField;
-        mPlayerState = playerState;
+//        if (!playerState.equals(mPlayerState) && mBroadcastTrigger != null) {
+//            mBroadcastTrigger.onPlayerStateChanged(playerState);
+//        }
+//
+//        mGlobalVariable.playerItemIndex = itemIndex;
+//        mGlobalVariable.playerSentenceIndex = sentenceIndex;
+//        mGlobalVariable.playerState = playerState;
+//        mGlobalVariable.playingField = playingField;
+//
+//        mItemIndex = itemIndex;
+//        mSentenceIndex = sentenceIndex;
+//        mPlayingField = playingField;
+//        mPlayerState = playerState;
     }
 
     private int pickNextItem(int oldItemIndex) {
         int next;
-        int itemAmount = (mVocabularies == null ? 0 : mVocabularies.size());
+        int itemAmount = mDatabase.getPlayerContent().size();
         if (mOptionSettings != null && mOptionSettings.isRandom()) {
             Random random = new Random(System.currentTimeMillis());
             do {
@@ -455,30 +463,31 @@ public class AudioPlayer implements AudioPlayerListener {
         return next;
     }
 
-    private ArrayList<Vocabulary> loadNewContent() {
-        if (mGlobalVariable == null || mDatabase == null) {
-            return new ArrayList<>();
-        }
-        int bookIndex = mGlobalVariable.playerTextbookIndex;
-        int numOfLesson = mDatabase.getNumOfLesson(bookIndex);
-        int oldLessonIndex = mGlobalVariable.playerLessonIndex;
-        int newLessonIndex = (oldLessonIndex+1) % numOfLesson;
-        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIds(bookIndex, newLessonIndex));
-        mGlobalVariable.playerContent = vocabularies;
-        mGlobalVariable.playerTextbookIndex = bookIndex;
-        mGlobalVariable.playerLessonIndex = newLessonIndex;
-        return vocabularies;
+    private void loadNewContent() {
+//        if (mGlobalVariable == null || mDatabase == null) {
+//            return;
+//        }
+//        int bookIndex =
+//        int numOfLesson = DatabaseUtils.getInstance().getLessonAmount(Database.getInstance().getTextbooks(), bookIndex);
+//        int oldLessonIndex = mGlobalVariable.playerLessonIndex;
+//        int newLessonIndex = (oldLessonIndex+1) % numOfLesson;
+//        mGlobalVariable.playerTextbookIndex = bookIndex;
+//        mGlobalVariable.playerLessonIndex = newLessonIndex;
+//
+//        mDatabase.setPlayerContent(mDatabaseUtils.getVocabulariesByIDs(mDatabase.getVocabularies(), (bookIndex == -1)
+//                ? mDatabaseUtils.getNoteContent(mDatabase.getNotes(), newLessonIndex)
+//                : mDatabaseUtils.getLessonContent(mDatabase.getTextbooks(), bookIndex, newLessonIndex)));
     }
 
     private boolean isLastItem(int itemIndex) {
-        int itemAmount = (mVocabularies == null ? 0 : mVocabularies.size());
-        return (itemIndex == itemAmount-1);
+        return (itemIndex == mDatabase.getPlayerContent().size()-1);
     }
 
     private boolean isLastSentence(int itemIndex, int sentenceIndex) {
         int sentenceAmount = 0;
-        if (mVocabularies != null && itemIndex < mVocabularies.size() && itemIndex > -1 && mVocabularies.get(itemIndex) != null) {
-            sentenceAmount = mVocabularies.get(itemIndex).getSentenceAmount();
+        ArrayList<Vocabulary> content = mDatabase.getPlayerContent();
+        if (itemIndex < content.size() && itemIndex > -1 && content.get(itemIndex) != null) {
+            sentenceAmount = content.get(itemIndex).getSentenceAmount();
         }
         return (sentenceIndex == sentenceAmount-1);
     }

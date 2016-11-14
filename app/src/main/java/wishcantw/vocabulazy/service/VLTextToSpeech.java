@@ -13,16 +13,18 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
 
     private static final String UTTERANCE_SILENCE = "-silence";
 
-    private Context mContext;
     private TextToSpeech mTextToSpeech;
     private OnUtteranceFinishListener mOnUtteranceFinishListener;
-    private OnEngineStatusListener mOnEngineStatusListener;
 
     private boolean isEngineInit = false;
     private String currentUtterance;
 
-    public VLTextToSpeech (Context context) {
-        mContext = context;
+    private static VLTextToSpeech vlTextToSpeech = new VLTextToSpeech();
+
+    private VLTextToSpeech () {}
+
+    public static VLTextToSpeech getInstance() {
+        return vlTextToSpeech;
     }
 
     @Override
@@ -30,8 +32,6 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         switch (status) {
             case TextToSpeech.SUCCESS:
                 isEngineInit = true ;
-                // check if languages are available
-                mOnEngineStatusListener.onEngineInit();
                 break;
             default:
                 break;
@@ -46,14 +46,10 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         mOnUtteranceFinishListener.onUtteranceFinished(currentUtterance);
     }
 
-    public void initTTS() {
-        if (mTextToSpeech != null)
-            return;
-        mTextToSpeech = new TextToSpeech(mContext, this, "com.google.android.tts");
-    }
-
-    public void setOnEngineStatusListener(OnEngineStatusListener listener) {
-        mOnEngineStatusListener = listener;
+    public void init(Context context) {
+        if (mTextToSpeech == null) {
+            mTextToSpeech = new TextToSpeech(context, this, "com.google.android.tts");
+        }
     }
 
     public void setOnUtteranceFinishListener(OnUtteranceFinishListener listener) {
@@ -98,10 +94,6 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
             params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, silenceUtterance);
             mTextToSpeech.playSilence(time, TextToSpeech.QUEUE_ADD, params);
         }
-    }
-
-    public void pause() {
-        stop();
     }
 
     public void stop() {
