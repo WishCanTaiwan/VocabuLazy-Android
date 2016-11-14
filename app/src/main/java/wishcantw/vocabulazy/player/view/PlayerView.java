@@ -8,7 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 
-import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
+import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.R;
 
 import java.util.ArrayList;

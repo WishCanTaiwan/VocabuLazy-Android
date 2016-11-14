@@ -30,9 +30,6 @@ public class SearchFragment extends GABaseFragment implements SearchView.SearchE
     // layout resource id
     private static final int LAYOUT_RES_ID = R.layout.view_search;
 
-    // the context of the application/activity
-    private Context mContext;
-
     // views
     private SearchView mSearchView;
 
@@ -46,14 +43,6 @@ public class SearchFragment extends GABaseFragment implements SearchView.SearchE
     private LinkedList<HashMap> mDataList;
 
     /** Life cycles **/
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // get the context of activity
-        mContext = context;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +62,7 @@ public class SearchFragment extends GABaseFragment implements SearchView.SearchE
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mSearchModel = ((SearchActivity) mContext).getModel();
+        mSearchModel = ((SearchActivity) getActivity()).getSearchModel();
     }
 
     /** Abstracts and Interfaces **/

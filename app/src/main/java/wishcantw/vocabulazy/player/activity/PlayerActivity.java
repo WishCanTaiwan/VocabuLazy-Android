@@ -14,7 +14,6 @@ import wishcantw.vocabulazy.player.fragment.PlayerFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerNewNoteDialogFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerVocTooLessDialogFragment;
 import wishcantw.vocabulazy.player.model.PlayerModel;
-import wishcantw.vocabulazy.storage.Database;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class PlayerActivity extends AppCompatActivity implements PlayerFragment.OnPlayerLessonChangeListener,
@@ -22,49 +21,48 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
                                                                  PlayerAddVocToNoteDialogFragment.OnAddVocToNoteDialogFinishListener,
                                                                  PlayerNewNoteDialogFragment.OnNewNoteDialogFinishListener,
                                                                  PlayerVocTooLessDialogFragment.OnPlayerAlertDoneListener {
+    // layout ids
     private static final int VIEW_RES_ID = R.layout.activity_player;
     private static final int VIEW_MAIN_RES_ID = R.id.activity_player_container;
 
+    // tag for debugging
     public static final String TAG = "PlayerActivity";
 
+    // args for bundle
     public static final String ARG_BOOK_INDEX = "arg-book-index";
     public static final String ARG_LESSON_INDEX = "arg-lesson-index";
 
-    private int bookIndex;
-    private int lessonIndex;
+    // tag for lesson change
+    private boolean isLessonChanged = true;
 
-    private boolean isPlaying;
-
-    private Database mDatabase;
+    // player model
     private PlayerModel mPlayerModel;
-
-    private PlayerFragment mPlayerFragment;
-    private PlayerAddVocToNoteDialogFragment mPlayerAddVocToNoteDialogFragment;
-    private PlayerNewNoteDialogFragment mPlayerNewNoteDialogFragment;
-    private PlayerVocTooLessDialogFragment mPlayerVocTooLessDialogFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Logger.d(TAG, "Create");
         super.onCreate(savedInstanceState);
 
         // receive indices from intent
-        bookIndex = getIntent().getIntExtra(ARG_BOOK_INDEX, 1359);
-        lessonIndex = getIntent().getIntExtra(ARG_LESSON_INDEX, 1359);
+        int bookIndex = getIntent().getIntExtra(ARG_BOOK_INDEX, 1359);
+        int lessonIndex = getIntent().getIntExtra(ARG_LESSON_INDEX, 1359);
+
+        // create model for player
+        mPlayerModel = PlayerModel.getInstance();
+        mPlayerModel.init();
+
+        // check lesson changed
+        isLessonChanged = (bookIndex != mPlayerModel.getBookIndex()) || (lessonIndex != mPlayerModel.getLessonIndex());
+
+        // set indices to player model
+        mPlayerModel.setBookIndex(bookIndex);
+        mPlayerModel.setLessonIndex(lessonIndex);
 
         // set content view
         setContentView(VIEW_RES_ID);
 
-        // get Database instance
-        mDatabase = Database.getInstance();
-
         // set up tool bar as support actionbar, and set up title
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setActionBarTitle(mDatabase.getLessonTitle(bookIndex, lessonIndex));
-
-        // create model for player
-        mPlayerModel = new PlayerModel(getApplicationContext());
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setActionBarTitle(mPlayerModel.getTitle(PlayerActivity.this, bookIndex, lessonIndex));
     }
 
     @Override
@@ -72,18 +70,20 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         super.onAttachFragment(fragment);
 
         if (fragment instanceof PlayerFragment) {
-            mPlayerFragment = (PlayerFragment) fragment;
+            PlayerFragment mPlayerFragment = (PlayerFragment) fragment;
             mPlayerFragment.addOnPlayerLessonChangeListener(this);
             mPlayerFragment.setOnPlayerOptionFavoriteClickListener(this);
-            mPlayerFragment.setBookAndLesson(bookIndex, lessonIndex);
+
         } else if (fragment instanceof PlayerAddVocToNoteDialogFragment) {
-            mPlayerAddVocToNoteDialogFragment = (PlayerAddVocToNoteDialogFragment) fragment;
+            PlayerAddVocToNoteDialogFragment mPlayerAddVocToNoteDialogFragment = (PlayerAddVocToNoteDialogFragment) fragment;
             mPlayerAddVocToNoteDialogFragment.setOnAddVocToNoteDialogFinishListener(this);
+
         } else if (fragment instanceof PlayerNewNoteDialogFragment) {
-            mPlayerNewNoteDialogFragment = (PlayerNewNoteDialogFragment) fragment;
+            PlayerNewNoteDialogFragment mPlayerNewNoteDialogFragment = (PlayerNewNoteDialogFragment) fragment;
             mPlayerNewNoteDialogFragment.setOnNewNoteDialogFinishListener(this);
+
         } else if (fragment instanceof PlayerVocTooLessDialogFragment) {
-            mPlayerVocTooLessDialogFragment = (PlayerVocTooLessDialogFragment) fragment;
+            PlayerVocTooLessDialogFragment mPlayerVocTooLessDialogFragment = (PlayerVocTooLessDialogFragment) fragment;
             mPlayerVocTooLessDialogFragment.setOnExamAlertDoneListener(this);
         }
     }
@@ -91,9 +91,9 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
     @Override
     protected void onResume() {
         super.onResume();
-        if (mDatabase.getContentIds(bookIndex, lessonIndex).size() <= 0) {
-            onVocToLessAlert();
-        }
+
+        // check the amount of vocabularies
+        checkContentAmount(mPlayerModel.getBookIndex(), mPlayerModel.getLessonIndex());
     }
 
     @Override
@@ -104,21 +104,34 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         super.onBackPressed();
     }
 
-    public PlayerModel getModel() {
+    /**
+     * Get the player model instance
+     *
+     * @return player model instance
+     */
+    public PlayerModel getPlayerModel() {
+        if (mPlayerModel == null) {
+            mPlayerModel = PlayerModel.getInstance();
+            mPlayerModel.init();
+        }
         return mPlayerModel;
     }
 
-    private void setActionBarTitle(String title) {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(title);
-        }
+    /**
+     * Get whether is the lesson playing changed from last time
+     *
+     * @return boolean tag for lesson change
+     */
+    public boolean isLessonChanged() {
+        return isLessonChanged;
     }
 
     /**-- PlayerFragment callback --**/
     @Override
     public void onLessonChange(int lesson) {
-        setActionBarTitle(mDatabase.getLessonTitle(bookIndex, lesson));
-        lessonIndex = lesson;
+        isLessonChanged = true;
+        mPlayerModel.setLessonIndex(lesson);
+        setActionBarTitle(mPlayerModel.getTitle(PlayerActivity.this, mPlayerModel.getBookIndex(), mPlayerModel.getLessonIndex()));
     }
 
     @Override
@@ -161,10 +174,22 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         finish();
     }
 
+    private void setActionBarTitle(String title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+    }
+
     private void setPlayerStateResult() {
         Intent intent = new Intent(PlayerActivity.this, MainMenuActivity.class);
         intent.putExtra(MainMenuActivity.KEY_IS_PLAYING, mPlayerModel.isPlaying());
         setResult(RESULT_OK, intent);
+    }
+
+    private void checkContentAmount(int bookIndex, int lessonIndex) {
+        if (mPlayerModel.getContentAmount(bookIndex, lessonIndex) <= 0) {
+            onVocToLessAlert();
+        }
     }
 
     private void onVocToLessAlert() {

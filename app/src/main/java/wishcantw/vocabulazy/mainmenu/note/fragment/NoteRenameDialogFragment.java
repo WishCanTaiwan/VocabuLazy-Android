@@ -1,6 +1,5 @@
 package wishcantw.vocabulazy.mainmenu.note.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -31,7 +30,6 @@ public class NoteRenameDialogFragment extends DialogFragmentNew implements Dialo
 
     public static final String TAG = "NoteRenameDialogFrag";
 
-    private Context mContext;
     private MainMenuModel mMainMenuModel;
     private NoteRenameDialogView mNoteRenameDialogView;
     private OnRenameCompleteListener mOnRenameCompleteListener;
@@ -50,8 +48,8 @@ public class NoteRenameDialogFragment extends DialogFragmentNew implements Dialo
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        MainMenuActivity activity = (MainMenuActivity) getActivity();
-        mMainMenuModel = activity.getModel();
+        // get data model
+        mMainMenuModel = ((MainMenuActivity) getActivity()).getModel();
     }
 
     @Override

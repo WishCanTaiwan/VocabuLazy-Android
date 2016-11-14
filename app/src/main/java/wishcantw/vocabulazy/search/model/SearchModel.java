@@ -1,9 +1,13 @@
 package wishcantw.vocabulazy.search.model;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import wishcantw.vocabulazy.database.DatabaseUtils;
 import wishcantw.vocabulazy.search.view.SearchDetailView;
 import wishcantw.vocabulazy.search.view.SearchListView;
-import wishcantw.vocabulazy.storage.Database;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.object.Vocabulary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,23 +15,41 @@ import java.util.LinkedList;
 
 public class SearchModel {
 
-    private Database mDatabase;
+    // singleton
+    private static SearchModel searchModel = new SearchModel();
 
-    public SearchModel() {
-        mDatabase = Database.getInstance();
+    // private constructor
+    private SearchModel() {}
+
+    // getter of the singleton
+    public static SearchModel getInstance() {
+        return searchModel;
+    }
+
+    private Database database;
+    private DatabaseUtils databaseUtils;
+
+    public void init() {
+        if (database == null) {
+            database = Database.getInstance();
+        }
+
+        if (databaseUtils == null) {
+            databaseUtils = DatabaseUtils.getInstance();
+        }
     }
 
     public void addVocToNote(int id, int index) {
-        mDatabase.addVocToNote(id, index);
+        databaseUtils.addVocToNote(database.getNotes(), id, index);
     }
 
     public void addNewNote(String newNote) {
-        mDatabase.createNewNote(newNote);
+        databaseUtils.createNewNote(database.getNotes(), newNote);
     }
 
     public LinkedList<HashMap> createSearchResultMap(String searchStr) {
 
-        ArrayList<Vocabulary> vocabularies = mDatabase.readSuggestVocabularyBySpell(searchStr);
+        ArrayList<Vocabulary> vocabularies = databaseUtils.readSuggestVocabularyBySpell(database.getVocabularies(), searchStr);
 
         if (vocabularies == null)
             return null;
@@ -58,15 +80,15 @@ public class SearchModel {
     }
 
     public LinkedList<String> getNoteNameList() {
-        ArrayList<String> noteNameArrayList = mDatabase.getNoteNames();
-        return toLinkedList(noteNameArrayList);
-    }
-
-    private <T> LinkedList<T> toLinkedList(ArrayList<T> arrayList) {
-        LinkedList<T> linkedList = new LinkedList<>();
-        for (T t : arrayList) {
-            linkedList.add(t);
+        ArrayList<String> noteNameArrayList = databaseUtils.getNoteNames(database.getNotes());
+        LinkedList<String> linkedList = new LinkedList<>();
+        for (String string : noteNameArrayList) {
+            linkedList.add(string);
         }
         return linkedList;
+    }
+
+    public void storeData(@NonNull Context context) {
+        database.storeData(context);
     }
 }

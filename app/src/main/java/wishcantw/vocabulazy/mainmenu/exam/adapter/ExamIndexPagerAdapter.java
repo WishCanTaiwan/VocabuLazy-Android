@@ -24,7 +24,6 @@ public class ExamIndexPagerAdapter extends PagerAdapter {
     private static final int VIEW_INDEX_TEXTBOOK = 0x0;
     private static final int VIEW_INDEX_NOTE = 0x1;
 
-    private Context context;
     private View[] views;
     private ArrayList<TextbookExpandableGroupItem> textbookGroupItems;
     private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap;
@@ -41,7 +40,6 @@ public class ExamIndexPagerAdapter extends PagerAdapter {
                                  HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> textbookChildItemsMap,
                                  ArrayList<NoteExpandableGroupItem> noteGroupItems,
                                  HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> noteChildItemsMap) {
-        this.context = context;
         this.views = views;
         this.textbookGroupItems = textbookGroupItems;
         this.textbookChildItemsMap = textbookChildItemsMap;

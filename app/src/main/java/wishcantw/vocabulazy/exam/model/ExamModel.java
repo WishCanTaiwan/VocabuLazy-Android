@@ -1,7 +1,11 @@
 package wishcantw.vocabulazy.exam.model;
 
-import wishcantw.vocabulazy.storage.Database;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.DatabaseUtils;
+import wishcantw.vocabulazy.database.object.Vocabulary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,15 +18,50 @@ public class ExamModel {
 
     public static final String TAG = ExamModel.class.getSimpleName();
 
-    private Database mDatabase;
+    // singleton
+    private static ExamModel examModel = new ExamModel();
 
-    public ExamModel(){
-        mDatabase = Database.getInstance();
+    // private constructor
+    private ExamModel() {}
+
+    // getter of singleton
+    public static ExamModel getInstance() {
+        return examModel;
+    }
+
+    private Database database;
+    private DatabaseUtils databaseUtils;
+
+    public void init() {
+        if (database == null) {
+            database = Database.getInstance();
+        }
+
+        if (databaseUtils == null) {
+            databaseUtils = DatabaseUtils.getInstance();
+        }
+    }
+
+    public String getTitle(@NonNull Context context,
+                           int bookIndex,
+                           int lessonIndex) {
+        return (bookIndex == -1)
+                ? databaseUtils.getNoteTitle(context, database.getNotes(), lessonIndex)
+                : databaseUtils.getLessonTitle(context, database.getTextbooks(), bookIndex, lessonIndex);
+    }
+
+    public int getContentAmount(int bookIndex,
+                                int lessonIndex) {
+        return (bookIndex == -1)
+                ? databaseUtils.getNoteContent(database.getNotes(), lessonIndex).size()
+                : databaseUtils.getLessonContent(database.getTextbooks(), bookIndex, lessonIndex).size();
     }
 
     public PuzzleSetter createPuzzleSetter(int bookIndex, int lessonIndex) {
-        ArrayList<Vocabulary> vocabularies = mDatabase.getVocabulariesByIDs(mDatabase.getContentIds(bookIndex, lessonIndex));
-        return new PuzzleSetter(vocabularies);
+        ArrayList<Vocabulary> vocabularies = database.getVocabularies();
+        return (bookIndex == -1)
+                ? new PuzzleSetter(databaseUtils.getVocabulariesByIDs(vocabularies, databaseUtils.getNoteContent(database.getNotes(), lessonIndex)))
+                : new PuzzleSetter(databaseUtils.getVocabulariesByIDs(vocabularies, databaseUtils.getLessonContent(database.getTextbooks(), bookIndex, lessonIndex)));
     }
 
     public class PuzzleSetter {

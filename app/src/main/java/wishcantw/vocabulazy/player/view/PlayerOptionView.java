@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
 
-import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
+import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.widget.LinkedListPagerAdapter;
 
 import java.util.ArrayList;

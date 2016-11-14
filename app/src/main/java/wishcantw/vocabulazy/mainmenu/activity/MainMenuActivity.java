@@ -2,7 +2,6 @@ package wishcantw.vocabulazy.mainmenu.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import wishcantw.vocabulazy.R;
-import wishcantw.vocabulazy.application.GlobalVariable;
+import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.exam.activity.ExamActivity;
 import wishcantw.vocabulazy.mainmenu.fragment.MainMenuFragment;
 import wishcantw.vocabulazy.mainmenu.info.ReportPageFragment;
@@ -26,8 +25,8 @@ import wishcantw.vocabulazy.mainmenu.note.fragment.NoteDeleteDialogFragment;
 import wishcantw.vocabulazy.mainmenu.note.fragment.NoteRenameDialogFragment;
 import wishcantw.vocabulazy.player.activity.PlayerActivity;
 import wishcantw.vocabulazy.search.activity.SearchActivity;
-import wishcantw.vocabulazy.service.AudioService;
-import wishcantw.vocabulazy.storage.Database;
+import wishcantw.vocabulazy.audio.AudioService;
+import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class MainMenuActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuEventListener, NoteRenameDialogFragment.OnRenameCompleteListener, NoteDeleteDialogFragment.OnNoteDeleteListener, NoteCreateDialogFragment.OnNoteCreateListener {
@@ -42,6 +41,8 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     public static final int REQUEST_CODE_PLAYER_STATE = 0x1;
 
     private MainMenuFragment mMainMenuFragment;
+
+    // data model
     private MainMenuModel mMainMenuModel;
 
     // tag to record the player state
@@ -56,7 +57,8 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         setActionBar();
 
         if (mMainMenuModel == null) {
-            mMainMenuModel = new MainMenuModel(getApplicationContext());
+            mMainMenuModel = MainMenuModel.getInstance();
+            mMainMenuModel.init();
         }
 
         startAudioService();
@@ -72,13 +74,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     @Override
     protected void onPause() {
         super.onPause();
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                Database.getInstance().writeToFile(getApplicationContext());
-                return null;
-            }
-        }.execute();
+        Database.getInstance().storeData(getApplicationContext());
     }
 
     @Override
@@ -107,8 +103,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
                 navigateToSearch();
                 return true;
             case R.id.action_back_to_player:
-                GlobalVariable globalVariable = (GlobalVariable) getApplication();
-                navigateToPlayer(globalVariable.playerTextbookIndex, globalVariable.playerLessonIndex);
+                navigateToPlayer(AppPreference.getInstance().getPlayerBookIndex(), AppPreference.getInstance().getPlayerLessonIndex());
                 break;
             default:
                 break;

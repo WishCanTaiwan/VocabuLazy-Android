@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.widget.LevelImageView;
 import wishcantw.vocabulazy.widget.NumeralPicker;
-import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
+import wishcantw.vocabulazy.database.object.OptionSettings;
 
 public class PlayerOptionContentView extends LinearLayout {
     /**

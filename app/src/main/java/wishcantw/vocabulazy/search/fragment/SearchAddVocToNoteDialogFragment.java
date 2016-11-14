@@ -70,11 +70,8 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // parse the context to SearchActivity
-        SearchActivity activity = (SearchActivity) mContext;
-
         // step 1: get Search Model
-        mSearchModel = activity.getModel();
+        mSearchModel = ((SearchActivity) getActivity()).getSearchModel();
 
         // step 2: get note list, remember to replace linkedlist by search model
         mNoteNameList = mSearchModel.getNoteNameList();

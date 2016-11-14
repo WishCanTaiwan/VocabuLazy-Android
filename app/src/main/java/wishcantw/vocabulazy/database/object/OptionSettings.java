@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.storage.databaseObjects;
+package wishcantw.vocabulazy.database.object;
 
 /**
  * Using this class to represent OptionSetting objects which are read from the database.\n

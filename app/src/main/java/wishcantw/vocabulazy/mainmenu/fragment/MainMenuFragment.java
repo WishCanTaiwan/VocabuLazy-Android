@@ -249,7 +249,7 @@ public class MainMenuFragment extends GABaseFragment implements TextbookFragment
      */
     public void updateFragmentsContent() {
         mMainMenuModel.generateBookItems();
-        mMainMenuModel.generateNoteItems();
+        mMainMenuModel.generateNoteItems(getActivity());
         mMainMenuModel.generateExamIndexItems();
         mTextbookFragment.updateBookContent(mMainMenuModel.getTextbookGroupItems(), mMainMenuModel.getTextbookChildItemsMap());
         mNoteFragment.updateNoteContent(mMainMenuModel.getNoteGroupItems(), mMainMenuModel.getNoteChildItemsMap());

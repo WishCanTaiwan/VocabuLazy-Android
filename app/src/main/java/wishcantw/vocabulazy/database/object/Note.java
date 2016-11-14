@@ -1,6 +1,4 @@
-package wishcantw.vocabulazy.storage.databaseObjects;
-
-import android.util.Log;
+package wishcantw.vocabulazy.database.object;
 
 import java.util.ArrayList;
 
@@ -10,7 +8,7 @@ public class Note {
 
     private int noteId;
     private String noteTitle;
-    private ArrayList<Integer> noteContent;
+    private ArrayList<Integer> noteContent = new ArrayList<>();
 
     public Note(int noteId, String noteTitle, ArrayList<Integer> noteContent) {
         this.noteId = noteId;

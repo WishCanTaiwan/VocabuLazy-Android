@@ -28,9 +28,6 @@ public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements Di
     // layout resource id
     private static final int LAYOUT_RES_ID = R.layout.view_player_new_note_dialog;
 
-    // the context of application/activity
-    private Context mContext;
-
     // views
     private PlayerNewNoteDialogView mPlayerNewNoteDialogView;
 
@@ -38,14 +35,6 @@ public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements Di
     private OnNewNoteDialogFinishListener mOnDialogFinishListener;
 
     /** Life cycles **/
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // get the instance of activity
-        mContext = context;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -77,7 +66,7 @@ public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements Di
         String newNoteString = mPlayerNewNoteDialogView.getNewNoteString();
 
         // access search model and add new note to database
-        PlayerModel playerModel = ((PlayerActivity) mContext).getModel();
+        PlayerModel playerModel = ((PlayerActivity) getActivity()).getPlayerModel();
         playerModel.addNewNote(newNoteString);
 
         if (mOnDialogFinishListener != null) {

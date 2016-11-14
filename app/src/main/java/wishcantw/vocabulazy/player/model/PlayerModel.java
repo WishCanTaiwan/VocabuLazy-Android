@@ -1,83 +1,98 @@
 package wishcantw.vocabulazy.player.model;
 
 import android.content.Context;
-import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.view.View;
 
-import wishcantw.vocabulazy.application.GlobalVariable;
-import wishcantw.vocabulazy.player.view.PlayerMainView;
+import wishcantw.vocabulazy.database.AppPreference;
+import wishcantw.vocabulazy.database.DatabaseUtils;
 import wishcantw.vocabulazy.player.view.PlayerOptionContentView;
 import wishcantw.vocabulazy.player.view.PlayerOptionView;
-import wishcantw.vocabulazy.service.AudioPlayer;
-import wishcantw.vocabulazy.storage.Database;
-import wishcantw.vocabulazy.storage.databaseObjects.OptionSettings;
-import wishcantw.vocabulazy.storage.databaseObjects.Vocabulary;
+import wishcantw.vocabulazy.database.Database;
+import wishcantw.vocabulazy.database.object.OptionSettings;
+import wishcantw.vocabulazy.database.object.Vocabulary;
+import wishcantw.vocabulazy.audio.AudioPlayerUtils;
 
 import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PlayerModel {
 
-    public interface PlayerModelDataProcessListener {
-        void onPlayerContentCreated(LinkedList<HashMap> playerDataContent);
-        void onDetailPlayerContentCreated(HashMap<String, Object> playerDetailDataContent);
-        void onVocabulariesGet(ArrayList<Vocabulary> vocabularies);
+    // tag for debugging
+    public static final String TAG = PlayerModel.class.getSimpleName();
+
+    // singleton
+    private static PlayerModel playerModel = new PlayerModel();
+
+    // private constructor
+    private PlayerModel() {}
+
+    // singleton getter
+    public static PlayerModel getInstance() {
+        return playerModel;
+    }
+
+    // data instances
+    private Database mDatabase;
+    private DatabaseUtils mDatabaseUtils;
+    private AppPreference appPreference;
+    private PlayerModelDataProcessListener wDataProcessListener;
+
+    // --------------------------------------------------------------- Player //
+
+    /**
+     * Initialize the data instances
+     */
+    public void init() {
+
+        if (mDatabase == null) {
+            mDatabase = Database.getInstance();
+        }
+
+        if (mDatabaseUtils == null) {
+            mDatabaseUtils = DatabaseUtils.getInstance();
+        }
+
+        if (appPreference == null) {
+            appPreference = AppPreference.getInstance();
+        }
     }
 
     /**
-     * The TAG string for debugging.
+     * Set data process listener
+     *
+     * @param listener the instance of data process listener
      */
-    public static final String TAG = PlayerModel.class.getSimpleName();
-
-    private GlobalVariable mGlobalVariable;
-    private Database mDatabase;
-    private ArrayList<Vocabulary> mVocabularies;
-    private PlayerModelDataProcessListener wDataProcessListener;
-
-	public PlayerModel(Context context) {
-        mGlobalVariable = (GlobalVariable) context;
-        mDatabase = Database.getInstance();
-	}
-
-    public void setDataProcessListener(PlayerModelDataProcessListener listener) {
+    public void setDataProcessListener(@NonNull PlayerModelDataProcessListener listener) {
         wDataProcessListener = listener;
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public int getBookIndex() {
-        return mGlobalVariable.playerTextbookIndex;
+    /**
+     * Check whether the player is playing
+     *
+     * @return is player playing
+     */
+    public boolean isPlaying() {
+        return (appPreference.getPlayerState().equals(AudioPlayerUtils.PlayerState.PLAYING));
     }
 
-    public int getLessonIndex() {
-        return mGlobalVariable.playerLessonIndex;
-    }
+    // --------------------------------------------------------------- Options //
 
-    public int getNumOfLessons(int bookIndex) {
-        return mDatabase.getNumOfLesson(bookIndex);
-    }
+    /**
+     * Update the option settings triggered from view
+     *
+     * @param optionItemId the id of the option item
+     * @param mode the mode of the option
+     * @param v the view that has been changed
+     * @param leftOrRight which arrow of a picker is pressed
+     */
+    @SuppressWarnings("unused")
+    public void updateOptionSettings(int optionItemId,
+                                     int mode,
+                                     @NonNull View v,
+                                     int leftOrRight) {
 
-    public ArrayList<Vocabulary> getCurrentContent() {
-        return mGlobalVariable.playerContent;
-    }
-
-    public void setCurrentContent(ArrayList<Vocabulary> vocabularies) {
-        mGlobalVariable.playerContent = vocabularies;
-    }
-
-    public ArrayList<OptionSettings> getOptionSettings() {
-        return Database.getInstance().getOptionSettings();
-    }
-
-    public void setOptionSettingsAndMode(ArrayList<OptionSettings> optionSettings, int optionMode) {
-        mGlobalVariable.optionSettings = optionSettings;
-        mGlobalVariable.optionMode = optionMode;
-    }
-
-    public void updateOptionSettings(int optionItemId, int mode, View v, int leftOrRight) {
-
-        OptionSettings optionSettings = mGlobalVariable.optionSettings.get(mode);
+        OptionSettings optionSettings = mDatabase.getPlayerOptionSettings();
         switch (optionItemId) {
             case PlayerOptionContentView.IDX_OPTION_RANDOM:
                 boolean oldRandom = optionSettings.isRandom();
@@ -121,144 +136,146 @@ public class PlayerModel {
             default:
                 break;
         }
-        mGlobalVariable.optionMode = mode;
+        appPreference.setPlayerOptionMode(mode);
     }
 
-    public void updateIndices(int bookIndex, int lessonIndex, int itemIndex, int sentenceIndex) {
-        mGlobalVariable.playerTextbookIndex = bookIndex;
-        mGlobalVariable.playerLessonIndex = lessonIndex;
-        mGlobalVariable.playerItemIndex = itemIndex;
-        mGlobalVariable.playerSentenceIndex = sentenceIndex;
-    }
-
-    public boolean isPlaying() {
-        return mGlobalVariable.playerState != null && mGlobalVariable.playerState.equals(AudioPlayer.PLAYING);
-    }
-
-    public void addVocToNote(int vocId, int noteIndex) {
-        mDatabase.addVocToNote(vocId, noteIndex);
-    }
-
-    public void addNewNote(String newNote) {
-        mDatabase.createNewNote(newNote);
-    }
-
-    public LinkedList<String> getNoteNameList() {
-        return toLinkedList(mDatabase.getNoteNames());
-    }
-
-    private <T> LinkedList<T> toLinkedList(ArrayList<T> arrayList) {
-        LinkedList<T> linkedList = new LinkedList<>();
-        for (T t : arrayList) {
-            linkedList.add(t);
-        }
-        return linkedList;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // --------------------------------------------------------------- Note //
 
     /**
+     * Add a vocabulary to a note
      *
-     * @param vocabularyArrayList
+     * @param vocId the id of the vocabulary
+     * @param noteIndex the index of the note
+     */
+    public void addVocToNote(int vocId,
+                             int noteIndex) {
+        mDatabaseUtils.addVocToNote(mDatabase.getNotes(), vocId, noteIndex);
+    }
+
+    /**
+     * Create a new note
+     *
+     * @param newNote the name of the new note
+     */
+    public void addNewNote(@NonNull String newNote) {
+        mDatabaseUtils.createNewNote(mDatabase.getNotes(), newNote);
+    }
+
+    /**
+     * Get the linked list of the notes' name
+     *
+     * @return the linked list of note names
+     */
+    public LinkedList<String> getNoteNameList() {
+
+        ArrayList<String> nameArrayList = mDatabaseUtils.getNoteNames(mDatabase.getNotes());
+        LinkedList<String> nameLinkedList = new LinkedList<>();
+
+        for (String name : nameArrayList) {
+            nameLinkedList.add(name);
+        }
+
+        return nameLinkedList;
+    }
+
+    // --------------------------------------------------------------- Data Process //
+
+    /**
+     * Create player content
+     *
+     * @param vocabularyArrayList the array list of vocabularies
      */
     public void createPlayerContent(ArrayList<Vocabulary> vocabularyArrayList) {
-        new PlayerModelAsyncTask().execute(vocabularyArrayList);
+        new PlayerModelAsyncTask(wDataProcessListener).execute(vocabularyArrayList);
     }
 
     /**
+     * Create the detail content of a vocabulary
      *
-     * @param vocabulary
+     * @param vocabulary the vocabulary
      */
     public void createPlayerDetailContent(Vocabulary vocabulary) {
-        new PlayerModelAsyncTask().execute(vocabulary);
+        new PlayerModelAsyncTask(wDataProcessListener).execute(vocabulary);
     }
 
     /**
+     * Get the vocabularies of a certain lesson/note
      *
-     * @param bookIndex
-     * @param lessonIndex
+     * @param bookIndex the index of the book
+     * @param lessonIndex the index of the lesson/note
      */
     public void getVocabulariesIn(int bookIndex, int lessonIndex) {
-        new PlayerModelAsyncTask().execute(bookIndex, lessonIndex);
+        new PlayerModelAsyncTask(wDataProcessListener).execute(bookIndex, lessonIndex);
     }
 
-    /**
-     *
-     */
-        private class PlayerModelAsyncTask extends AsyncTask<Object, Void, Object> {
-        @SuppressWarnings("unchecked")
-        @Override
-        protected Object doInBackground(Object... params) {
+    // --------------------------------------------------------------- Getter and Setter //
 
-            if (params[0] instanceof ArrayList) {
-                ArrayList<Vocabulary> vocArrayList = (ArrayList<Vocabulary>) params[0];
-                LinkedList<HashMap> playerDataContent = new LinkedList<>();
-                for(Vocabulary voc : vocArrayList) {
-                    HashMap<String, String> hm = new HashMap<>();
-                    hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[0], voc.getSpell());
-                    hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[1], "[" + voc.getPartOfSpeech() + "] " + voc.getTranslation());
-                    hm.put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_CONTENT_FROM[2], voc.getPhonetic());
-                    playerDataContent.add(hm);
-                }
-                return playerDataContent;
-            }
-
-            if (params[0] instanceof Vocabulary) {
-                Vocabulary voc = (Vocabulary) params[0];
-                HashMap<String, Object> playerDetailDataContent = new HashMap<>();
-                if (voc != null) {
-                    playerDetailDataContent
-                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[0],
-                                    voc.getSpell());
-                    playerDetailDataContent
-                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[1],
-                                    voc.getTranslation());
-                    playerDetailDataContent
-                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[2],
-                                    voc.getPhonetic());
-                    playerDetailDataContent
-                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[3],
-                                    voc.getEnSentence());
-                    playerDetailDataContent
-                            .put(PlayerMainView.PlayerScrollView.PLAYER_ITEM_DETAIL_CONTENT_FROM[4],
-                                    voc.getCnSentence());
-                }
-                return playerDetailDataContent;
-            }
-
-            if (params[0] instanceof Integer) {
-                int bookIndex = (Integer) params[0];
-                int lessonIndex = (Integer) params[1];
-                ArrayList<Integer> contentIDs = mDatabase.getContentIds(bookIndex, lessonIndex);
-                mVocabularies = mDatabase.getVocabulariesByIDs(contentIDs);
-                return mVocabularies;
-            }
-
-            return null;
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        protected void onPostExecute(Object result) {
-            super.onPostExecute(result);
-
-            if (result instanceof LinkedList) {
-                LinkedList<HashMap> playerDataContent = (LinkedList<HashMap>) result;
-                wDataProcessListener.onPlayerContentCreated(playerDataContent);
-                return;
-            }
-
-            if (result instanceof HashMap) {
-                HashMap<String, Object> playerDetailDataContent = (HashMap<String, Object>) result;
-                wDataProcessListener.onDetailPlayerContentCreated(playerDetailDataContent);
-                return;
-            }
-
-            if (result instanceof ArrayList) {
-                ArrayList<Vocabulary> vocabularies = (ArrayList<Vocabulary>) result;
-                wDataProcessListener.onVocabulariesGet(vocabularies);
-            }
-        }
+    public String getTitle(@NonNull Context context,
+                           int bookIndex,
+                           int lessonIndex) {
+        return (bookIndex == -1)
+                ? mDatabaseUtils.getNoteTitle(context, mDatabase.getNotes(), lessonIndex)
+                : mDatabaseUtils.getLessonTitle(context, mDatabase.getTextbooks(), bookIndex, lessonIndex);
     }
 
+    public int getBookIndex() {
+        return appPreference.getPlayerBookIndex();
+    }
+
+    public void setBookIndex(int bookIndex) {
+        appPreference.setPlayerBookIndex(bookIndex);
+    }
+
+    public int getLessonIndex() {
+        return appPreference.getPlayerLessonIndex();
+    }
+
+    public void setLessonIndex(int lessonIndex) {
+        appPreference.setPlayerLessonIndex(lessonIndex);
+    }
+
+    public int getItemIndex() {
+        return appPreference.getPlayerItemIndex();
+    }
+
+    public void setItemIndex(int itemIndex) {
+        appPreference.setPlayerItemIndex(itemIndex);
+    }
+
+    @SuppressWarnings("unused")
+    @NonNull
+    public AudioPlayerUtils.PlayerField getPlayerField() {
+        return appPreference.getPlayerField();
+    }
+
+    public void setPlayerField(@NonNull AudioPlayerUtils.PlayerField playerField) {
+        appPreference.setPlayerField(playerField);
+    }
+
+    public int getNumOfLessons(int bookIndex) {
+        return (bookIndex == -1)
+                ? mDatabaseUtils.getNoteAmount(mDatabase.getNotes())
+                : mDatabaseUtils.getLessonAmount(mDatabase.getTextbooks(), bookIndex);
+    }
+
+    @NonNull
+    public ArrayList<Vocabulary> getPlayerContent() {
+        return mDatabase.getPlayerContent();
+    }
+
+    public void setPlayerContent(@NonNull ArrayList<Vocabulary> vocabularies) {
+        mDatabase.setPlayerContent(vocabularies);
+    }
+
+    public int getContentAmount(int bookIndex,
+                                int lessonIndex) {
+        return (bookIndex == -1)
+                ? mDatabaseUtils.getNoteContent(mDatabase.getNotes(), lessonIndex).size()
+                : mDatabaseUtils.getLessonContent(mDatabase.getTextbooks(), bookIndex, lessonIndex).size();
+    }
+
+    @NonNull
+    public ArrayList<OptionSettings> getOptionSettings() {
+        return mDatabase.getOptionSettings();
+    }
 }

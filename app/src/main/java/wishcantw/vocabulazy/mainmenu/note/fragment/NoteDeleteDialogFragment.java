@@ -13,9 +13,6 @@ import wishcantw.vocabulazy.mainmenu.note.view.NoteDeleteDialogView;
 import wishcantw.vocabulazy.widget.DialogFragmentNew;
 import wishcantw.vocabulazy.widget.DialogViewNew;
 
-/**
- * Created by allencheng07 on 2016/9/15.
- */
 public class NoteDeleteDialogFragment extends DialogFragmentNew implements DialogViewNew.OnYesOrNoClickListener, DialogViewNew.OnBackgroundClickListener {
 
     @Override
@@ -43,8 +40,7 @@ public class NoteDeleteDialogFragment extends DialogFragmentNew implements Dialo
 
     @Override
     public void onYesClick() {
-        MainMenuActivity activity = (MainMenuActivity) getActivity();
-        MainMenuModel mainMenuModel =  activity.getModel();
+        MainMenuModel mainMenuModel =  ((MainMenuActivity) getActivity()).getModel();
         mainMenuModel.deleteNote(noteIndex);
         mOnNoteDeleteListener.onNoteDeleted();
         getActivity().onBackPressed();

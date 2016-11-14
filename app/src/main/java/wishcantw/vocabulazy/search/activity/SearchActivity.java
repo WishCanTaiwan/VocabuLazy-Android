@@ -1,10 +1,8 @@
 package wishcantw.vocabulazy.search.activity;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +12,6 @@ import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.search.fragment.SearchAddVocToNoteDialogFragment;
 import wishcantw.vocabulazy.search.fragment.SearchFragment;
 import wishcantw.vocabulazy.search.model.SearchModel;
-import wishcantw.vocabulazy.storage.Database;
 import wishcantw.vocabulazy.search.fragment.SearchNewNoteDialogFragment;
 import wishcantw.vocabulazy.utility.Logger;
 
@@ -33,27 +30,25 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private static final int MENU_ITEM_SEARCH_RES_ID = R.id.menu_item_search;
     private static final int TOOLBAR_RES_ID = R.id.toolbar;
 
-    private SearchView mSearchActionView;
-    private Toolbar mToolbar;
     private SearchFragment mSearchFragment;
-    private SearchAddVocToNoteDialogFragment mSearchAddVocToNoteDialogFragment;
-    private SearchNewNoteDialogFragment mSearchNewNoteDialogFragment;
     private SearchModel mSearchModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // set up views
         setContentView(VIEW_RES_ID);
-        mToolbar = (Toolbar) findViewById(TOOLBAR_RES_ID);
-        setSupportActionBar(mToolbar);
+        setSupportActionBar((Toolbar) findViewById(TOOLBAR_RES_ID));
 
         // enabling HomeAsUp button
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        // data model
         if (mSearchModel == null) {
-            mSearchModel = new SearchModel();
+            mSearchModel = SearchModel.getInstance();
+            mSearchModel.init();
         }
     }
 
@@ -63,11 +58,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         if (fragment instanceof SearchFragment) {
             mSearchFragment = (SearchFragment) fragment;
             mSearchFragment.setOnSearchItemEventListener(this);
+
         } else if (fragment instanceof SearchAddVocToNoteDialogFragment) {
-            mSearchAddVocToNoteDialogFragment = (SearchAddVocToNoteDialogFragment) fragment;
+            SearchAddVocToNoteDialogFragment mSearchAddVocToNoteDialogFragment = (SearchAddVocToNoteDialogFragment) fragment;
             mSearchAddVocToNoteDialogFragment.setOnAddVocToNoteDialogFinishListener(this);
+
         } else if (fragment instanceof SearchNewNoteDialogFragment) {
-            mSearchNewNoteDialogFragment = (SearchNewNoteDialogFragment) fragment;
+            SearchNewNoteDialogFragment mSearchNewNoteDialogFragment = (SearchNewNoteDialogFragment) fragment;
             mSearchNewNoteDialogFragment.setOnNewNoteDialogFinishListener(this);
         }
     }
@@ -75,20 +72,17 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     protected void onPause() {
         super.onPause();
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                Database.getInstance().writeToFile(getApplicationContext());
-                return null;
-            }
-        }.execute();
+
+        // todo: we should show a storing dialog 
+        // store the data
+        mSearchModel.storeData(SearchActivity.this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /** Inflate the menu; this adds items to the action bar if it is present. */
         getMenuInflater().inflate(MENU_RES_ID, menu);
-        mSearchActionView = (SearchView) menu.findItem(MENU_ITEM_SEARCH_RES_ID).getActionView();
+        SearchView mSearchActionView = (SearchView) menu.findItem(MENU_ITEM_SEARCH_RES_ID).getActionView();
 
         mSearchActionView.onActionViewExpanded();          // Important, make ActionView expand initially
         mSearchActionView.setOnQueryTextListener(this);
@@ -101,7 +95,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         return super.onSupportNavigateUp();
     }
 
-    public SearchModel getModel() {
+    public SearchModel getSearchModel() {
+        if (mSearchModel == null) {
+            mSearchModel = SearchModel.getInstance();
+            mSearchModel.init();
+        }
         return mSearchModel;
     }
 

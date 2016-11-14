@@ -29,7 +29,7 @@ public class ExamView extends LinearLayout implements FloatingActionButton.OnCli
         /*
          * The callback function when ExamPlayerClick
          * */
-        void onExamPlayerClick();
+        void onExamPlayerClick(String questionString);
         /**
          * The callback function when ExamAnswerView is clicked
          * @see ExamAnswerView
@@ -196,8 +196,8 @@ public class ExamView extends LinearLayout implements FloatingActionButton.OnCli
         mExamPlayerIcon.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mExamEventListener != null) {
-                    mExamEventListener.onExamPlayerClick();
+                if (mExamEventListener != null && mExamQuestion != null) {
+                    mExamEventListener.onExamPlayerClick(mExamQuestion.getText().toString());
                 }
             }
         });

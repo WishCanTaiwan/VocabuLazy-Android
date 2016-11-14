@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.storage.databaseObjects;
+package wishcantw.vocabulazy.database.object;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class Lesson {
     /**
      * Content of the lesson, containing a list of {@link Vocabulary} ids.
      */
-    private ArrayList<Integer> lessonContent;
+    private ArrayList<Integer> lessonContent = new ArrayList<>();
 
     /**
      * Call constructor to create a {@link Lesson} object.
