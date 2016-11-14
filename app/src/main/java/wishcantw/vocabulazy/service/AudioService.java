@@ -153,7 +153,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
                         break;
                 }
                 break;
-
+            
             case START_PLAYING:
                 mAudioPlayer.resetItemLoopCountDown();
                 mAudioPlayer.resetSpellLoopCountDown();
