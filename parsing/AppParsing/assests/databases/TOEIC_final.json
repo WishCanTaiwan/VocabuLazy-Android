@@ -2953,11 +2953,11 @@
 }, {
 	"spell": "forward ",
 	"cnSentence": ["未定義例句"],
-	"phonetic": "['fɔ:wəd]轉寄；發送 11.inquire[in'kwaiə]",
+	"phonetic": "['fɔ:wəd]",
 	"enSentence": ["default sentence"],
 	"level": 0,
 	"partOfSpeech": "",
-	"translation": "調查；詢問",
+	"translation": "轉寄；發送",
 	"id": 20328
 }, {
 	"spell": "jot down ",
