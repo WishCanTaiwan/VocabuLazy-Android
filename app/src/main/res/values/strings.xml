@@ -12,6 +12,8 @@
     <string name="label_player_activity">PlayerActivity</string>
     <string name="label_search_activity">SearchActivity</string>
 
+    <string name="flurry_api_key">8FFFFCV6XB4K9DGY4FS5</string>
+
     <!-- Fragment Label for Google Analytics -->
     <string name="ga_tag_cover_dialog">C.DIALOG</string>
     <string name="ga_tag_cover">COVER</string>
