@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.ga.GABaseFragment;
+import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.mainmenu.exam.view.ExamIndexView;
 import wishcantw.vocabulazy.mainmenu.note.adapter.NoteExpandableChildItem;
 import wishcantw.vocabulazy.mainmenu.note.adapter.NoteExpandableGroupItem;
@@ -53,7 +54,11 @@ public class ExamIndexFragment extends GABaseFragment implements ExamIndexView.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_exam_index, container, false);
         mExamIndexView = (ExamIndexView) rootView.findViewById(R.id.exam_index_view);
-        mExamIndexView.updateContent(mTextbookGroupItems, mTextbookChildItemsMap, mNoteGroupItems, mNoteChildItemsMap);
+        mExamIndexView.updateContent(
+                ((MainMenuActivity) getActivity()).getMainMenuModel().getTextbookGroupItems(),
+                ((MainMenuActivity) getActivity()).getMainMenuModel().getTextbookChildItemsMap(),
+                ((MainMenuActivity) getActivity()).getMainMenuModel().getNoteGroupItems(),
+                ((MainMenuActivity) getActivity()).getMainMenuModel().getNoteChildItemsMap());
         mExamIndexView.refresh();
         mExamIndexView.addOnExamIndexClickListener(this);
         return rootView;

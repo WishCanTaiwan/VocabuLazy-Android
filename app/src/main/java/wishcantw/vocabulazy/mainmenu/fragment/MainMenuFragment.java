@@ -121,7 +121,7 @@ public class MainMenuFragment extends GABaseFragment implements TextbookFragment
         super.onActivityCreated(savedInstanceState);
 
         // get the model from activity
-        mMainMenuModel = ((MainMenuActivity) getActivity()).getModel();
+        mMainMenuModel = ((MainMenuActivity) getActivity()).getMainMenuModel();
     }
 
     @Override

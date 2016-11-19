@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.ga.GABaseFragment;
+import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookContentAdapter;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableChildItem;
 import wishcantw.vocabulazy.mainmenu.textbook.adapter.TextbookExpandableGroupItem;
@@ -49,7 +50,9 @@ public class TextbookFragment extends GABaseFragment implements TextbookView.OnT
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_textbook, container, false);
         mTextbookView = (TextbookView) rootView.findViewById(R.id.textbook_view);
-        mTextbookView.setAdapter(new TextbookContentAdapter(mGroupItems, mChildItemsMap));
+        mTextbookView.setAdapter(new TextbookContentAdapter(
+                ((MainMenuActivity) getActivity()).getMainMenuModel().getTextbookGroupItems(),
+                ((MainMenuActivity) getActivity()).getMainMenuModel().getTextbookChildItemsMap()));
         mTextbookView.addOnTextBookClickListener(this);
         return rootView;
     }

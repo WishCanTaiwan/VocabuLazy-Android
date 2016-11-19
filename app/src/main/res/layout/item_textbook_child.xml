@@ -16,6 +16,8 @@
         android:textSize="@dimen/textbook_child_text_size"
         android:textColor="@color/textbook_child_text_color"
         android:textAllCaps="false"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:drawableRight="@drawable/ic_play_circle_outline_white_36dp"

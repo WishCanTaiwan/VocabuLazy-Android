@@ -22,6 +22,18 @@ public class MainMenuModel {
     // tag for debugging
     public static final String TAG = "MainMenuModel";
 
+    // singleton
+    private static MainMenuModel mainMenuModel = new MainMenuModel();
+
+    // private constructor
+    private MainMenuModel() {}
+
+    // singleton getter
+    public static MainMenuModel getInstance() {
+        return mainMenuModel;
+    }
+
+    // database instances
     private Database mDatabase;
     private DatabaseUtils mDatabaseUtils;
 
@@ -38,17 +50,6 @@ public class MainMenuModel {
     private HashMap<TextbookExpandableGroupItem, ArrayList<TextbookExpandableChildItem>> examIndexTextbookChildItemsMap = new HashMap<>();
     private ArrayList<NoteExpandableGroupItem> examIndexNoteGroupItems = new ArrayList<>();
     private HashMap<NoteExpandableGroupItem, ArrayList<NoteExpandableChildItem>> examIndexNoteChildItemsMap = new HashMap<>();
-
-    // singleton
-    private static MainMenuModel mainMenuModel = new MainMenuModel();
-
-    // private constructor
-    private MainMenuModel() {}
-
-    // singleton getter
-    public static MainMenuModel getInstance() {
-        return mainMenuModel;
-    }
 
     public void init() {
         if (mDatabase == null) {
