@@ -3,7 +3,10 @@ package wishcantw.vocabulazy.application;
 import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
+import com.flurry.android.FlurryAgent;
+
 import io.fabric.sdk.android.Fabric;
+import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.database.object.Vocabulary;
@@ -28,5 +31,10 @@ public class GlobalVariable extends Application {
 
         // init firebase analytics service
         FirebaseManager.getInstance().init(GlobalVariable.this);
+
+        // init flurry
+        new FlurryAgent.Builder()
+                .withLogEnabled(false)
+                .build(GlobalVariable.this, getString(R.string.flurry_api_key));
     }
 }
