@@ -40,7 +40,7 @@ public class NoteDeleteDialogFragment extends DialogFragmentNew implements Dialo
 
     @Override
     public void onYesClick() {
-        MainMenuModel mainMenuModel =  ((MainMenuActivity) getActivity()).getModel();
+        MainMenuModel mainMenuModel =  ((MainMenuActivity) getActivity()).getMainMenuModel();
         mainMenuModel.deleteNote(noteIndex);
         mOnNoteDeleteListener.onNoteDeleted();
         getActivity().onBackPressed();

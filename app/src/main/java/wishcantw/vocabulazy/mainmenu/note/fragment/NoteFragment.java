@@ -38,7 +38,6 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
     private static final int COPY = 0x2;
     private static final int DELETE = 0x3;
 
-    private MainMenuModel mMainMenuModel;
     private NoteView mNoteView;
     private ImageView imageView;
     private ArrayList<NoteExpandableGroupItem> mGroupItems;
@@ -70,14 +69,6 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // get data model
-        mMainMenuModel = ((MainMenuActivity) getActivity()).getModel();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         refresh();
@@ -90,7 +81,7 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
 
     @Override
     public void onNoteChildClicked(int groupPosition, int childPosition) {
-        String name = mMainMenuModel.getNoteTitle(getContext(), groupPosition);
+        String name = ((MainMenuActivity) getActivity()).getMainMenuModel().getNoteTitle(getContext(), groupPosition);
         switch (childPosition) {
             case PLAY:
                 // TODO: prevent from entering if there's no vocabulary
@@ -125,7 +116,9 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
     }
 
     public void refresh() {
-        mNoteView.setAdapter(new NoteContentAdapter(mGroupItems, mChildItemsMap));
+        mNoteView.setAdapter(new NoteContentAdapter(
+                ((MainMenuActivity) getActivity()).getMainMenuModel().getNoteGroupItems(),
+                ((MainMenuActivity) getActivity()).getMainMenuModel().getNoteChildItemsMap()));
         if (mGroupItems.size() > 0) {
             imageView.setVisibility(View.INVISIBLE);
         } else {

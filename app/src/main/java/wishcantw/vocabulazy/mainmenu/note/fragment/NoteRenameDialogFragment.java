@@ -49,7 +49,7 @@ public class NoteRenameDialogFragment extends DialogFragmentNew implements Dialo
         super.onActivityCreated(savedInstanceState);
 
         // get data model
-        mMainMenuModel = ((MainMenuActivity) getActivity()).getModel();
+        mMainMenuModel = ((MainMenuActivity) getActivity()).getMainMenuModel();
     }
 
     @Override

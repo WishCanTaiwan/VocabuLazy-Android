@@ -39,7 +39,7 @@ public class NoteCreateDialogFragment extends DialogFragmentNew implements Dialo
     @Override
     public void onYesClick() {
         String newTitle = mNoteCreateDialogView.getNewString();
-        MainMenuModel mainMenuModel = ((MainMenuActivity) getActivity()).getModel();
+        MainMenuModel mainMenuModel = ((MainMenuActivity) getActivity()).getMainMenuModel();
         mainMenuModel.createNote(newTitle);
         mOnNoteCreateListener.onNoteCreated();
         getActivity().onBackPressed();

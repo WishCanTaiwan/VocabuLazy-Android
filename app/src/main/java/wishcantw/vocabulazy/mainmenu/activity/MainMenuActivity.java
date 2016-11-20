@@ -116,14 +116,10 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == REQUEST_CODE_PLAYER_STATE) {
-
-            Logger.d(TAG, "result code " + resultCode);
             if (resultCode == RESULT_OK){
 
                 // enable the express way returning to player
                 enableBackToPlayerMenuItem(data.getBooleanExtra(KEY_IS_PLAYING, false));
-
-                Logger.d(TAG, "result ok");
             }
 
         }
@@ -210,7 +206,10 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuFragm
         startActivity(intent);
     }
 
-    public MainMenuModel getModel() {
+    public MainMenuModel getMainMenuModel() {
+        if (mMainMenuModel == null) {
+            mMainMenuModel = MainMenuModel.getInstance();
+        }
         return mMainMenuModel;
     }
 
