@@ -121,7 +121,6 @@ public class PlayerAddVocToNoteRadioGroup extends RadioGroup {
                 RadioButton radioButton = (RadioButton) v;
                 if (position == mDataList.size()) {
                     radioButton.setText("新增筆記清單");
-                    // TODO: change RadioButton color
                 } else {
                     radioButton.setText(mDataList.get(position));
                 }

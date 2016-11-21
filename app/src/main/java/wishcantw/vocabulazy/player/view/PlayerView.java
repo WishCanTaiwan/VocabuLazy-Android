@@ -115,7 +115,6 @@ public class PlayerView extends RelativeLayout {
 	
 	public PlayerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO: Apply the adding child animation to replace showPlayerOptionView and exitPlayerOptionView
 	}
 	
 	@Override
