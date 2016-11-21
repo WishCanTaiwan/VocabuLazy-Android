@@ -52,8 +52,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     }
 
     // callback interface
-    public interface OnPlayerOptionFavoriteClickListener {
+    public interface OnPlayerPanelClickListener {
         void onFavoriteClick(int vocId);
+        void onOptionClick();
     }
 
     // TAG for debugging
@@ -70,7 +71,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     // listeners
     private OnPlayerLessonChangeListener mOnPlayerLessonChangeListener;
-    private OnPlayerOptionFavoriteClickListener mOnPlayerOptionFavoriteClickListener;
+    private OnPlayerPanelClickListener mOnPlayerPanelClickListener;
 
     // broadcast receiver
     private ServiceBroadcastReceiver mServiceBroadcastReceiver;
@@ -126,9 +127,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         // get the vocabularies according to the given book and lesson
         mPlayerModel.getVocabulariesIn(mPlayerModel.getBookIndex(), mPlayerModel.getLessonIndex());
 
-        // init options
-        optionSettings = mPlayerModel.getPlayerOptionSettings();
-        mPlayerView.setPlayerOptionModeContent(optionSettings, true);
     }
 
     @Override
@@ -232,7 +230,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         }
     }
 
-    /**----------------- Implement PlayerView.PlayerEventListener ------------------------**/
+    /**------------------------ Implement PlayerView.PlayerEventListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
         if (isViewTouchedDown) {
@@ -353,8 +351,8 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
             return;
         }
 
-        if (mOnPlayerOptionFavoriteClickListener != null) {
-            mOnPlayerOptionFavoriteClickListener.onFavoriteClick(playerContent.get(itemIndex).getId());
+        if (mOnPlayerPanelClickListener != null) {
+            mOnPlayerPanelClickListener.onFavoriteClick(playerContent.get(itemIndex).getId());
         }
     }
 
@@ -365,28 +363,12 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     @Override
     public void onPlayerPanelOptionClick() {
-        if (mPlayerView == null) {
-            return;
+        if (mOnPlayerPanelClickListener != null) {
+            mOnPlayerPanelClickListener.onOptionClick();
         }
-        mPlayerView.showPlayerOptionView();
     }
 
-    @Override
-    public void onPlayerOptionChanged(int optionID, int mode, View v, int value) {
-        Log.d("PlayerFragment", "onPlayerOptionChanged");
-        if (optionID == PlayerOptionView.IDX_OPTION_MODE) {
-            // The value is the mode option index that is selected
-            int newMode = value;
-            OptionSettings optionSettings = mPlayerModel.getOptionSettings().get(newMode);
-            mPlayerView.setPlayerOptionModeContent(optionSettings, false);
-        }
-        // Refresh option settings
-        mPlayerModel.updateOptionSettings(optionID, mode, v, value);
-        // notify the service that option settings has changed
-        optionChanged();
-    }
-
-    /** Public methods **/
+    /**------------------------------------- Public methods -------------------------------------**/
 
     /**
      * Add a {@link OnPlayerLessonChangeListener} to {@link PlayerFragment}.
@@ -396,11 +378,11 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         mOnPlayerLessonChangeListener = listener;
     }
 
-    public void setOnPlayerOptionFavoriteClickListener(OnPlayerOptionFavoriteClickListener listener) {
-        mOnPlayerOptionFavoriteClickListener = listener;
+    public void setOnPlayerPanelClickListener(OnPlayerPanelClickListener listener) {
+        mOnPlayerPanelClickListener = listener;
     }
 
-    /** Private methods **/
+    /**------------------------------------- Private methods ------------------------------------**/
 
     private void requestAudioFocus() {
         Intent intent = new Intent(getActivity(), AudioService.class);

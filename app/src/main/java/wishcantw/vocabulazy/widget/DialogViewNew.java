@@ -34,6 +34,7 @@ public class DialogViewNew extends LinearLayout {
 
     public DialogViewNew(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContentYesViewId = mContentNoViewId = -1;
     }
 
     @Override

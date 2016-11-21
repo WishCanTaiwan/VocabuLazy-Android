@@ -12,12 +12,13 @@ import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.player.fragment.PlayerAddVocToNoteDialogFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerNewNoteDialogFragment;
+import wishcantw.vocabulazy.player.fragment.PlayerOptionDialogFragment;
 import wishcantw.vocabulazy.player.fragment.PlayerVocTooLessDialogFragment;
 import wishcantw.vocabulazy.player.model.PlayerModel;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class PlayerActivity extends AppCompatActivity implements PlayerFragment.OnPlayerLessonChangeListener,
-                                                                 PlayerFragment.OnPlayerOptionFavoriteClickListener,
+                                                                 PlayerFragment.OnPlayerPanelClickListener,
                                                                  PlayerAddVocToNoteDialogFragment.OnAddVocToNoteDialogFinishListener,
                                                                  PlayerNewNoteDialogFragment.OnNewNoteDialogFinishListener,
                                                                  PlayerVocTooLessDialogFragment.OnPlayerAlertDoneListener {
@@ -72,7 +73,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         if (fragment instanceof PlayerFragment) {
             PlayerFragment mPlayerFragment = (PlayerFragment) fragment;
             mPlayerFragment.addOnPlayerLessonChangeListener(this);
-            mPlayerFragment.setOnPlayerOptionFavoriteClickListener(this);
+            mPlayerFragment.setOnPlayerPanelClickListener(this);
 
         } else if (fragment instanceof PlayerAddVocToNoteDialogFragment) {
             PlayerAddVocToNoteDialogFragment mPlayerAddVocToNoteDialogFragment = (PlayerAddVocToNoteDialogFragment) fragment;
@@ -85,6 +86,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         } else if (fragment instanceof PlayerVocTooLessDialogFragment) {
             PlayerVocTooLessDialogFragment mPlayerVocTooLessDialogFragment = (PlayerVocTooLessDialogFragment) fragment;
             mPlayerVocTooLessDialogFragment.setOnExamAlertDoneListener(this);
+        } else if (fragment instanceof PlayerOptionDialogFragment) {
         }
     }
 
@@ -126,7 +128,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         return isLessonChanged;
     }
 
-    /**-- PlayerFragment callback --**/
+    /**-------------------------------- PlayerFragment callback ---------------------------------**/
     @Override
     public void onLessonChange(int lesson) {
         isLessonChanged = true;
@@ -136,7 +138,6 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
     @Override
     public void onFavoriteClick(int vocId) {
-        Logger.d(TAG, "onNewNote");
         PlayerAddVocToNoteDialogFragment dialogFragment = new PlayerAddVocToNoteDialogFragment();
         dialogFragment.setSelectedVocId(vocId);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -145,7 +146,16 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         fragmentTransaction.commit();
     }
 
-    /**-- PlayerAddVocToNoteDialogFragment callback --**/
+    @Override
+    public void onOptionClick() {
+        PlayerOptionDialogFragment playerOptionDialogFragment = new PlayerOptionDialogFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(PlayerActivity.VIEW_MAIN_RES_ID, playerOptionDialogFragment, "PlayerOptionDialogFragment");
+        fragmentTransaction.addToBackStack("PlayerOptionDialogFragment");
+        fragmentTransaction.commit();
+    }
+
+    /**-------------------------- PlayerAddVocToNoteDialogFragment callback ---------------------**/
     @Override
     public void onNeedNewNote() {
         Logger.d(TAG, "onNeedNewNote");
@@ -156,7 +166,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         fragmentTransaction.commit();
     }
 
-    /**-- PlayerNewNoteDialogFragment callback --**/
+    /**-------------------------- PlayerNewNoteDialogFragment callback --------------------------**/
     @Override
     public void onNewNoteDone(String string) {
         Logger.d(TAG, "onNewNote" + string);
@@ -167,13 +177,14 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         fragmentTransaction.commit();
     }
 
-    /**-- PlayerVocTooLessDialogFragment callback --**/
+    /**------------------------ PlayerVocTooLessDialogFragment callback -------------------------**/
     @Override
     public void onPlayerAlertDone() {
         Logger.d(TAG, "onPlayerAlertDone");
         finish();
     }
 
+    /**------------------------------------ private function ------------------------------------**/
     private void setActionBarTitle(String title) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);

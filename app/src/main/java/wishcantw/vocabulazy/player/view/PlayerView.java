@@ -99,30 +99,13 @@ public class PlayerView extends RelativeLayout {
 		 * @see PlayerPanelView
 		 * */
 		void onPlayerPanelOptionClick();
-
-		/**
-		 * The callback function when any one of Option in PlayerOptionContent changed
-		 * @param optionID indicate which option is changed by user
-		 * @param mode indicate which mode is currently being changed
-		 * @param v the changed view
-		 * @param leftOrRight left/right arrow of pickers
-		 * @see PlayerOptionView
-		 * */
-        void onPlayerOptionChanged(int optionID, int mode, View v, int leftOrRight);
-
 	}
 
 	private static final int VIEW_PLAYER_MAIN_RES_ID = R.id.player_main_view;
 	private static final int VIEW_PLAYER_PANEL_RES_ID = R.id.player_panel;
-	private static final int VIEW_PLAYER_OPTION_RES_ID = R.id.player_option_view;
-	private static final int VIEW_PLAYER_OPTION_PARENT_RES_ID = R.id.player_option_parent;
-	private static final int ANIMATE_TRANSLATE_BOTTOM_UP = R.anim.translate_bottom_up;
-	private static final int ANIMATE_TRANSLATE_UP_BOTTOM = R.anim.translate_up_bottom;
 	
 	private PlayerMainView mPlayerMainView;
 	private PlayerPanelView mPlayerPanelView;
-	private PlayerOptionView mPlayerOptionView;
-	private ViewGroup mPlayerOptionGrayBack;
 	
 	private PlayerEventListener mPlayerEventListener;
 	
@@ -140,8 +123,6 @@ public class PlayerView extends RelativeLayout {
 		super.onFinishInflate();
         mPlayerMainView = (PlayerMainView) findViewById(VIEW_PLAYER_MAIN_RES_ID);
 		mPlayerPanelView = (PlayerPanelView) findViewById(VIEW_PLAYER_PANEL_RES_ID);
-        mPlayerOptionView = (PlayerOptionView) findViewById(VIEW_PLAYER_OPTION_RES_ID);
-        mPlayerOptionGrayBack = (ViewGroup) findViewById(VIEW_PLAYER_OPTION_PARENT_RES_ID);
         
         registerEventListener();
     }
@@ -232,17 +213,6 @@ public class PlayerView extends RelativeLayout {
                     mPlayerEventListener.onPlayerPanelOptionClick();
     			}
 			}
-    	});
-    	
-    	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener(){
-    		@Override
-    		public void onOptionChanged(int optionID, int mode, View v, int value) {
-    			if (mPlayerEventListener != null) {
-                    Log.d("PlayerView", "optionID " + optionID + " mode " + mode + " value " + value);
-    				mPlayerEventListener.onPlayerOptionChanged(optionID, mode, v, value);
-                }
-    		}
-
     	});
     }
     
@@ -339,55 +309,5 @@ public class PlayerView extends RelativeLayout {
 	 */
 	public void setIconState(boolean favorite, boolean play, boolean option) {
 		mPlayerPanelView.setIconState(favorite, play, option);
-	}
-	
-	/**------------------------------ PlayerOptionVie related action ---------------------------**/
-	
-	/**
-	 * The api for showing PlayerOptionView, using animation instead of Dialog
-	 * TODO: Change the View into DialogView
-	 * @see PlayerOptionView
-	 */
-	public void showPlayerOptionView() {
-		if (mPlayerOptionGrayBack.getVisibility() == View.INVISIBLE) {
-			mPlayerOptionGrayBack.setVisibility(View.VISIBLE);
-		}
-
-		Animation comeInAnimation = AnimationUtils.loadAnimation(getContext(), ANIMATE_TRANSLATE_BOTTOM_UP);
-		mPlayerOptionView.startAnimation(comeInAnimation);
-
-		mPlayerOptionGrayBack.invalidate();
-	}
-	
-	/**
-	 * The api for hiding PlayerOptionView, using animation instead of Dialog
-	 * TODO: Change the View into DialogView
-	 * @see PlayerOptionView
-	 */
-	public void exitPlayerOptionView() {
-		if (mPlayerOptionGrayBack.getVisibility() != View.VISIBLE) {
-			return;
-		}
-		Animation goOutAnimation = AnimationUtils.loadAnimation(getContext(), ANIMATE_TRANSLATE_UP_BOTTOM);
-		mPlayerOptionView.startAnimation(goOutAnimation);
-		goOutAnimation.setAnimationListener(new Animation.AnimationListener() {
-			@Override
-			public void onAnimationStart(Animation animation) {}
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				mPlayerOptionGrayBack.setVisibility(View.INVISIBLE);
-				mPlayerOptionGrayBack.invalidate();
-			}
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-		});
-	}
-
-    /**
-     * The api for setting PlayerOptionView content by OptionSettings
-     * @param option
-     */
-	public void setPlayerOptionModeContent(OptionSettings option, boolean init) {
-        mPlayerOptionView.setOptionInModeContent(option, init);
 	}
 }
