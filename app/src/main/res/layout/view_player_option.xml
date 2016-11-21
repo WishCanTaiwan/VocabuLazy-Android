@@ -1,57 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
 <wishcantw.vocabulazy.player.view.PlayerOptionView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    
-    <!-- TabLayout -->
+    android:background="@color/green_2">
+
+<!-- voice play enable or not -->
     <LinearLayout
-        android:id="@+id/player_option_tab_layout"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        
-        <view class="wishcantw.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:background="@color/green_1">
+
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:elevation="50px"
-            custom:setPlayerTabBackgroundColor="@color/player_option_tab0"
-            custom:setPlayerTabString="@string/player_option_tab_0"
-            custom:setPlayerTabStringSize="@dimen/player_option_tab_text"/>
-            
-        <view class="wishcantw.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
+            android:gravity="center"
+            android:text="聲音播放"
+            android:textSize="20dp"
+            android:textColor="@color/white_1"/>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:elevation="20px"
-            custom:setPlayerTabBackgroundColor="@color/player_option_tab1"
-            custom:setPlayerTabString="@string/player_option_tab_1"
-            custom:setPlayerTabStringSize="@dimen/player_option_tab_text"/>
-            
-        <view class="wishcantw.vocabulazy.player.view.PlayerOptionView$PlayerOptionTabView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:elevation="10px"
-            custom:setPlayerTabBackgroundColor="@color/player_option_tab2"
-            custom:setPlayerTabString="@string/player_option_tab_2"
-            custom:setPlayerTabStringSize="@dimen/player_option_tab_text"/>
+            android:gravity="center">
+
+            <Switch
+                android:id="@+id/player_option_voice_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
         
     </LinearLayout>
-    
-    <view class="wishcantw.vocabulazy.player.view.PlayerOptionView$WrapContentViewPager"
-        android:id="@+id/player_option_tab_pager"
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="1dp"
+        android:background="@color/green_1">
 
-        <include layout="@layout/view_player_option_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="例句播放"
+            android:textSize="20dp"
+            android:textColor="@color/white_1"/>
 
-        <include layout="@layout/view_player_option_content" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
 
-        <include layout="@layout/view_player_option_content" />
+            <Switch
+                android:id="@+id/player_option_sentence_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-    </view>
-    
+        </LinearLayout>
+
+    </LinearLayout>
+
+<!-- circumstance -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="38dp"
+        android:paddingRight="38dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你可以自訂播放的情境"
+            android:textSize="12dp"
+            android:textColor="@color/white_1"/>
+
+        <RadioGroup
+            android:id="@+id/player_option_mode_radio_group"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <wishcantw.vocabulazy.player.view.PlayerOptionRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/player_radio_button"
+                android:text="自訂模式"
+                android:textColor="@color/grey_2"/>
+
+            <wishcantw.vocabulazy.player.view.PlayerOptionRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/player_radio_button"
+                android:text="通勤模式"
+                android:textColor="@color/grey_2"/>
+
+            <wishcantw.vocabulazy.player.view.PlayerOptionRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/player_radio_button"
+                android:text="運動模式"
+                android:textColor="@color/grey_2"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="38dp"
+        android:paddingRight="38dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你可以調整清單的播放順序"
+            android:textSize="12dp"
+            android:textColor="@color/white_1"/>
+
+        <RadioGroup
+            android:id="@+id/player_option_list_order_radio_group"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <wishcantw.vocabulazy.player.view.PlayerOptionRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/player_radio_button"
+                android:text="重複清單"
+                android:textColor="@color/grey_2"/>
+
+            <wishcantw.vocabulazy.player.view.PlayerOptionRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/player_radio_button"
+                android:text="隨機清單"
+                android:textColor="@color/grey_2"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="38dp"
+        android:paddingRight="38dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你可以調整單字的播放順序"
+            android:textSize="12dp"
+            android:textColor="@color/white_1"/>
+
+        <RadioGroup
+            android:id="@+id/player_option_voc_order_radio_group"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <wishcantw.vocabulazy.player.view.PlayerOptionRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/player_radio_button"
+                android:text="順序播放"
+                android:textColor="@color/grey_2"/>
+
+            <wishcantw.vocabulazy.player.view.PlayerOptionRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/player_radio_button"
+                android:text="隨機播放"
+                android:textColor="@color/grey_2"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="38dp"
+        android:paddingRight="38dp">
+        
+        <SeekBar
+            android:id="@+id/player_option_repeat_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="組合單字（中文＋英文）播放次數"
+            android:textColor="@color/black_2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="38dp"
+        android:paddingRight="38dp">
+
+        <SeekBar
+            android:id="@+id/player_option_speed_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="單字播放速度"
+            android:textColor="@color/black_2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="38dp"
+        android:paddingRight="38dp">
+
+        <SeekBar
+            android:id="@+id/player_option_playing_time_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="播放時間（單位／小時）"
+            android:textColor="@color/black_2"/>
+
+    </LinearLayout>
+
+
+
 </wishcantw.vocabulazy.player.view.PlayerOptionView>

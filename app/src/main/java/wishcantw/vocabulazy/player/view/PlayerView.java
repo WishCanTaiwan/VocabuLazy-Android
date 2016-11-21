@@ -2,6 +2,7 @@ package wishcantw.vocabulazy.player.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -11,7 +12,6 @@ import android.widget.RelativeLayout;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -26,11 +26,6 @@ public class PlayerView extends RelativeLayout {
 	 * The fragment contains the Player should implement to maintain MVC structure
 	 */
 	public interface PlayerEventListener {
-		/**
-		 * The callback function when gray back clicked
-		 * */
-		void onGrayBackClick();
-
 		/**
 		 * The callback function when vertical scroll stopped
 		 * @param index indicate which player item is in the center
@@ -241,23 +236,14 @@ public class PlayerView extends RelativeLayout {
     	
     	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener(){
     		@Override
-    		public void onOptionChanged(int optionID, int mode, View v, int leftOrRight) {
+    		public void onOptionChanged(int optionID, int mode, View v, int value) {
     			if (mPlayerEventListener != null) {
-    				mPlayerEventListener.onPlayerOptionChanged(optionID, mode, v, leftOrRight);
-    			}
+                    Log.d("PlayerView", "optionID " + optionID + " mode " + mode + " value " + value);
+    				mPlayerEventListener.onPlayerOptionChanged(optionID, mode, v, value);
+                }
     		}
 
     	});
-
-    	mPlayerOptionGrayBack.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (mPlayerEventListener != null) {
-					mPlayerEventListener.onGrayBackClick();
-				}
-				exitPlayerOptionView();
-			}
-        });
     }
     
 	/**------------------------------  PlayerMainView related action  ---------------------------**/
@@ -396,14 +382,12 @@ public class PlayerView extends RelativeLayout {
 			public void onAnimationRepeat(Animation animation) {}
 		});
 	}
-	
-	/**
-	 * The api for setting PlayerOptionView content by list of OptionSettings
-	 * @param options The ArrayList of OptionSettings, the length of ArrayList should be only 3
-	 * @see PlayerOptionView
-	 * @see OptionSettings
-	 */
-	public void setPlayerOptionTabContent(ArrayList<OptionSettings> options) {
-        mPlayerOptionView.setOptionsInTabContent(options);
+
+    /**
+     * The api for setting PlayerOptionView content by OptionSettings
+     * @param option
+     */
+	public void setPlayerOptionModeContent(OptionSettings option, boolean init) {
+        mPlayerOptionView.setOptionInModeContent(option, init);
 	}
 }
