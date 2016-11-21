@@ -23,7 +23,6 @@ import wishcantw.vocabulazy.ga.GABaseFragment;
 import wishcantw.vocabulazy.player.activity.PlayerActivity;
 import wishcantw.vocabulazy.player.model.PlayerModel;
 import wishcantw.vocabulazy.player.model.PlayerModelDataProcessListener;
-import wishcantw.vocabulazy.player.view.PlayerOptionView;
 import wishcantw.vocabulazy.player.view.PlayerView;
 import wishcantw.vocabulazy.audio.AudioPlayerUtils;
 import wishcantw.vocabulazy.audio.AudioService;
@@ -425,12 +424,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.NEW_SENTENCE_FOCUSED);
         intent.putExtra(AudioService.SENTENCE_INDEX, sentenceIndex);
-        getActivity().startService(intent);
-    }
-
-    private void optionChanged() {
-        Intent intent = new Intent(getActivity(), AudioService.class);
-        intent.setAction(AudioService.OPTION_SETTINGS_CHANGED);
         getActivity().startService(intent);
     }
 

@@ -87,6 +87,9 @@ public class PlayerOptionView extends LinearLayout {
                 mVocOrderRadioGroup.getChildAt(i).setId(i);
             }
         }
+        mRepeatSeekBar.setMax(5);
+        mSpeedSeekBar.setMax(2);
+        mPlayingSeekBar.setMax(40);
         registerOptionListener();
     }
 
@@ -104,31 +107,38 @@ public class PlayerOptionView extends LinearLayout {
      */
     public void setOptionInModeContent(OptionSettings option, boolean init) {
         // unregister listener first to prevent from dependency
+        boolean voiceEnable, sentenceEnable;
+        int modeIdx, listOrderIdx, vocOrderIdx;
+
         unregisterListener();
+        voiceEnable = true;
+        sentenceEnable = option.isSentence();
+        modeIdx = option.getMode();
+        listOrderIdx = option.isRandom() ? 1 : 0;
+        vocOrderIdx = option.isRandom() ? 1 : 0;
 
         // Only when init state need to setup mode option
         if (init) {
             // Use input option to determined the initial (or last time saved) mode
-            mModeRadioGroup.check(option.getMode());
+            mModeRadioGroup.check(modeIdx);
         }
         // Force voice to turned on
-        mVoiceSwitch.setChecked(true);
+        mVoiceSwitch.setChecked(voiceEnable);
         // Force sentence to turned off (currently database is not supported)
-        mSentenceSwitch.setChecked(false);
+        mSentenceSwitch.setChecked(sentenceEnable);
         // Force list order to be serial order (1 is random order)
-        mListOrderRadioGroup.check(0);
+        mListOrderRadioGroup.check(listOrderIdx);
         // Force voc order to be serial and not repeat the list
-        mVocOrderRadioGroup.check(0);
+        mVocOrderRadioGroup.check(vocOrderIdx);
         // TODO : Fine tuning the seek bar to increase 1 a time, but layout increase 1/5 seek bar
-        Log.d("PlayerOptionViewNew", "setProgress");
         if (Build.VERSION.SDK_INT >= 24) {
-            mRepeatSeekBar.setProgress(option.getItemLoop() * 10, true);
-            mSpeedSeekBar.setProgress(option.getSpeed() * 10, true);
-            mPlayingSeekBar.setProgress(option.getPlayTime() * 10 , true);
+            mRepeatSeekBar.setProgress(option.getItemLoop(), true);
+            mSpeedSeekBar.setProgress(option.getSpeed(), true);
+            mPlayingSeekBar.setProgress(option.getPlayTime(), true);
         } else {
-            mRepeatSeekBar.setProgress(option.getItemLoop() * 10);
-            mSpeedSeekBar.setProgress(option.getSpeed() * 10);
-            mPlayingSeekBar.setProgress(option.getPlayTime() * 10);
+            mRepeatSeekBar.setProgress(option.getItemLoop());
+            mSpeedSeekBar.setProgress(option.getSpeed());
+            mPlayingSeekBar.setProgress(option.getPlayTime());
         }
 
         // register back

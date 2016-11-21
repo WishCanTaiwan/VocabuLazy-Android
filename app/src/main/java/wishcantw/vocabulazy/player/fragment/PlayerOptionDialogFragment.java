@@ -1,12 +1,15 @@
 package wishcantw.vocabulazy.player.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.audio.AudioService;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.player.activity.PlayerActivity;
 import wishcantw.vocabulazy.player.model.PlayerModel;
@@ -56,6 +59,8 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
         return null;
     }
 
+    /**--------------------- PlayerOptionDialogView.PlayerOptionEventListener -------------------**/
+
     @Override
     public void onPlayerOptionChanged(int optionID, int mode, View v, int value) {
         if (optionID == PlayerOptionView.IDX_OPTION_MODE) {
@@ -67,6 +72,14 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
         // Refresh option settings
         mPlayerModel.updateOptionSettings(optionID, mode, v, value);
         // TODO : notify the service that option settings has changed
-        // optionChanged();
+         optionChanged();
+    }
+
+    /**------------------------------------- private method -------------------------------------**/
+
+    private void optionChanged() {
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.OPTION_SETTINGS_CHANGED);
+        getActivity().startService(intent);
     }
 }
