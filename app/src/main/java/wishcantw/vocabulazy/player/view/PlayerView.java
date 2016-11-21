@@ -2,6 +2,7 @@ package wishcantw.vocabulazy.player.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -11,7 +12,6 @@ import android.widget.RelativeLayout;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -26,11 +26,6 @@ public class PlayerView extends RelativeLayout {
 	 * The fragment contains the Player should implement to maintain MVC structure
 	 */
 	public interface PlayerEventListener {
-		/**
-		 * The callback function when gray back clicked
-		 * */
-		void onGrayBackClick();
-
 		/**
 		 * The callback function when vertical scroll stopped
 		 * @param index indicate which player item is in the center
@@ -104,30 +99,13 @@ public class PlayerView extends RelativeLayout {
 		 * @see PlayerPanelView
 		 * */
 		void onPlayerPanelOptionClick();
-
-		/**
-		 * The callback function when any one of Option in PlayerOptionContent changed
-		 * @param optionID indicate which option is changed by user
-		 * @param mode indicate which mode is currently being changed
-		 * @param v the changed view
-		 * @param leftOrRight left/right arrow of pickers
-		 * @see PlayerOptionView
-		 * */
-        void onPlayerOptionChanged(int optionID, int mode, View v, int leftOrRight);
-
 	}
 
 	private static final int VIEW_PLAYER_MAIN_RES_ID = R.id.player_main_view;
 	private static final int VIEW_PLAYER_PANEL_RES_ID = R.id.player_panel;
-	private static final int VIEW_PLAYER_OPTION_RES_ID = R.id.player_option_view;
-	private static final int VIEW_PLAYER_OPTION_PARENT_RES_ID = R.id.player_option_parent;
-	private static final int ANIMATE_TRANSLATE_BOTTOM_UP = R.anim.translate_bottom_up;
-	private static final int ANIMATE_TRANSLATE_UP_BOTTOM = R.anim.translate_up_bottom;
 	
 	private PlayerMainView mPlayerMainView;
 	private PlayerPanelView mPlayerPanelView;
-	private PlayerOptionView mPlayerOptionView;
-	private ViewGroup mPlayerOptionGrayBack;
 	
 	private PlayerEventListener mPlayerEventListener;
 	
@@ -137,7 +115,6 @@ public class PlayerView extends RelativeLayout {
 	
 	public PlayerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO: Apply the adding child animation to replace showPlayerOptionView and exitPlayerOptionView
 	}
 	
 	@Override
@@ -145,8 +122,6 @@ public class PlayerView extends RelativeLayout {
 		super.onFinishInflate();
         mPlayerMainView = (PlayerMainView) findViewById(VIEW_PLAYER_MAIN_RES_ID);
 		mPlayerPanelView = (PlayerPanelView) findViewById(VIEW_PLAYER_PANEL_RES_ID);
-        mPlayerOptionView = (PlayerOptionView) findViewById(VIEW_PLAYER_OPTION_RES_ID);
-        mPlayerOptionGrayBack = (ViewGroup) findViewById(VIEW_PLAYER_OPTION_PARENT_RES_ID);
         
         registerEventListener();
     }
@@ -238,26 +213,6 @@ public class PlayerView extends RelativeLayout {
     			}
 			}
     	});
-    	
-    	mPlayerOptionView.setOnOptionChangedListener(new PlayerOptionView.OnOptionChangedListener(){
-    		@Override
-    		public void onOptionChanged(int optionID, int mode, View v, int leftOrRight) {
-    			if (mPlayerEventListener != null) {
-    				mPlayerEventListener.onPlayerOptionChanged(optionID, mode, v, leftOrRight);
-    			}
-    		}
-
-    	});
-
-    	mPlayerOptionGrayBack.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (mPlayerEventListener != null) {
-					mPlayerEventListener.onGrayBackClick();
-				}
-				exitPlayerOptionView();
-			}
-        });
     }
     
 	/**------------------------------  PlayerMainView related action  ---------------------------**/
@@ -353,57 +308,5 @@ public class PlayerView extends RelativeLayout {
 	 */
 	public void setIconState(boolean favorite, boolean play, boolean option) {
 		mPlayerPanelView.setIconState(favorite, play, option);
-	}
-	
-	/**------------------------------ PlayerOptionVie related action ---------------------------**/
-	
-	/**
-	 * The api for showing PlayerOptionView, using animation instead of Dialog
-	 * TODO: Change the View into DialogView
-	 * @see PlayerOptionView
-	 */
-	public void showPlayerOptionView() {
-		if (mPlayerOptionGrayBack.getVisibility() == View.INVISIBLE) {
-			mPlayerOptionGrayBack.setVisibility(View.VISIBLE);
-		}
-
-		Animation comeInAnimation = AnimationUtils.loadAnimation(getContext(), ANIMATE_TRANSLATE_BOTTOM_UP);
-		mPlayerOptionView.startAnimation(comeInAnimation);
-
-		mPlayerOptionGrayBack.invalidate();
-	}
-	
-	/**
-	 * The api for hiding PlayerOptionView, using animation instead of Dialog
-	 * TODO: Change the View into DialogView
-	 * @see PlayerOptionView
-	 */
-	public void exitPlayerOptionView() {
-		if (mPlayerOptionGrayBack.getVisibility() != View.VISIBLE) {
-			return;
-		}
-		Animation goOutAnimation = AnimationUtils.loadAnimation(getContext(), ANIMATE_TRANSLATE_UP_BOTTOM);
-		mPlayerOptionView.startAnimation(goOutAnimation);
-		goOutAnimation.setAnimationListener(new Animation.AnimationListener() {
-			@Override
-			public void onAnimationStart(Animation animation) {}
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				mPlayerOptionGrayBack.setVisibility(View.INVISIBLE);
-				mPlayerOptionGrayBack.invalidate();
-			}
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-		});
-	}
-	
-	/**
-	 * The api for setting PlayerOptionView content by list of OptionSettings
-	 * @param options The ArrayList of OptionSettings, the length of ArrayList should be only 3
-	 * @see PlayerOptionView
-	 * @see OptionSettings
-	 */
-	public void setPlayerOptionTabContent(ArrayList<OptionSettings> options) {
-        mPlayerOptionView.setOptionsInTabContent(options);
 	}
 }

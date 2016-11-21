@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,8 +51,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     }
 
     // callback interface
-    public interface OnPlayerOptionFavoriteClickListener {
+    public interface OnPlayerPanelClickListener {
         void onFavoriteClick(int vocId);
+        void onOptionClick();
     }
 
     // TAG for debugging
@@ -68,7 +70,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     // listeners
     private OnPlayerLessonChangeListener mOnPlayerLessonChangeListener;
-    private OnPlayerOptionFavoriteClickListener mOnPlayerOptionFavoriteClickListener;
+    private OnPlayerPanelClickListener mOnPlayerPanelClickListener;
 
     // broadcast receiver
     private ServiceBroadcastReceiver mServiceBroadcastReceiver;
@@ -105,7 +107,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         if (mPlayerView == null) {
             mPlayerView = (PlayerView) inflater.inflate(R.layout.view_player, container, false);
             mPlayerView.setPlayerEventListener(this);
-            mPlayerView.setPlayerOptionTabContent(null);
         }
 
         return mPlayerView;
@@ -114,6 +115,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        OptionSettings optionSettings;
 
         // get model instance from activity
         mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
@@ -123,6 +125,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
         // get the vocabularies according to the given book and lesson
         mPlayerModel.getVocabulariesIn(mPlayerModel.getBookIndex(), mPlayerModel.getLessonIndex());
+
     }
 
     @Override
@@ -134,9 +137,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
         // request audio focus when the fragment is on
         requestAudioFocus();
-
-        // setup options view
-        setupOptions();
 
         // register broadcast receiver
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mServiceBroadcastReceiver, new IntentFilter(GlobalVariable.PLAYER_BROADCAST_INTENT));
@@ -229,12 +229,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         }
     }
 
-    @Override
-    public void onGrayBackClick() {
-
-    }
-
-    /**----------------- Implement PlayerView.PlayerEventListener ------------------------**/
+    /**------------------------ Implement PlayerView.PlayerEventListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
         if (isViewTouchedDown) {
@@ -355,8 +350,8 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
             return;
         }
 
-        if (mOnPlayerOptionFavoriteClickListener != null) {
-            mOnPlayerOptionFavoriteClickListener.onFavoriteClick(playerContent.get(itemIndex).getId());
+        if (mOnPlayerPanelClickListener != null) {
+            mOnPlayerPanelClickListener.onFavoriteClick(playerContent.get(itemIndex).getId());
         }
     }
 
@@ -367,28 +362,12 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
     @Override
     public void onPlayerPanelOptionClick() {
-
-        // todo: (swallow) please use the parameter mode to set option tab
-//        int mode = AppPreference.getInstance().getPlayerOptionMode();
-
-        if (mPlayerView == null) {
-            return;
+        if (mOnPlayerPanelClickListener != null) {
+            mOnPlayerPanelClickListener.onOptionClick();
         }
-        mPlayerView.showPlayerOptionView();
     }
 
-    @Override
-    public void onPlayerOptionChanged(int optionID, int mode, View v, int leftOrRight) {
-
-        if (mPlayerModel != null) {
-            /** Refresh option setting */
-            mPlayerModel.updateOptionSettings(optionID, mode, v, leftOrRight);
-        }
-        // notify the service that option settings has changed
-        optionChanged();
-    }
-
-    /** Public methods **/
+    /**------------------------------------- Public methods -------------------------------------**/
 
     /**
      * Add a {@link OnPlayerLessonChangeListener} to {@link PlayerFragment}.
@@ -398,25 +377,11 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         mOnPlayerLessonChangeListener = listener;
     }
 
-    public void setOnPlayerOptionFavoriteClickListener(OnPlayerOptionFavoriteClickListener listener) {
-        mOnPlayerOptionFavoriteClickListener = listener;
+    public void setOnPlayerPanelClickListener(OnPlayerPanelClickListener listener) {
+        mOnPlayerPanelClickListener = listener;
     }
 
-    /** Private methods **/
-
-    private void setupOptions() {
-
-        if (mPlayerView == null) {
-            return;
-        }
-
-        if (mPlayerModel == null) {
-            mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
-        }
-
-        ArrayList<OptionSettings> options = mPlayerModel.getOptionSettings();
-        mPlayerView.setPlayerOptionTabContent(options);
-    }
+    /**------------------------------------- Private methods ------------------------------------**/
 
     private void requestAudioFocus() {
         Intent intent = new Intent(getActivity(), AudioService.class);
@@ -459,12 +424,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.NEW_SENTENCE_FOCUSED);
         intent.putExtra(AudioService.SENTENCE_INDEX, sentenceIndex);
-        getActivity().startService(intent);
-    }
-
-    private void optionChanged() {
-        Intent intent = new Intent(getActivity(), AudioService.class);
-        intent.setAction(AudioService.OPTION_SETTINGS_CHANGED);
         getActivity().startService(intent);
     }
 

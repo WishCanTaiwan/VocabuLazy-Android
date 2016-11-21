@@ -17,18 +17,4 @@
         android:layout_height="match_parent"
         android:layout_above="@id/player_panel" />
 
-    <RelativeLayout
-        android:id="@+id/player_option_parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/player_grey_background"
-        android:visibility="invisible" >
-
-        <include layout="@layout/view_player_option"
-            android:id="@+id/player_option_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
-
-    </RelativeLayout>
 </wishcantw.vocabulazy.player.view.PlayerView>
