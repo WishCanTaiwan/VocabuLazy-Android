@@ -18,8 +18,12 @@
     </style>
 
     <style name="AppTheme.MainMenuActivity" parent="AppTheme">
-        <item name="android:textAppearance">@color/white_1</item>
         <item name="android:actionBarTabBarStyle">@style/Base.Widget.AppCompat.ActionBar.TabBar</item>
+    </style>
+
+    <style name="AppTheme.MainMenuActivity.TextAppearance" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/main_menu_fragment_tab_default_text_size</item>
+        <item name="android:textColor">@color/main_menu_fragment_tab_default_text_color</item>
     </style>
 
     <style name="InfoAlertDialog" parent="AppTheme">
@@ -76,7 +80,7 @@
 
 
     <style name="AppTextStyle">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">20dp</item>
         <item name="android:textColor">@color/white_1</item>
     </style>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wishcantw.vocabulazy.cover.view.CoverView
+<wishcantw.vocabulazy.activities.cover.view.CoverView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,4 +31,4 @@
         android:drawablePadding="10dp"
         android:textStyle="bold"/>
 
-</wishcantw.vocabulazy.cover.view.CoverView>
+</wishcantw.vocabulazy.activities.cover.view.CoverView>

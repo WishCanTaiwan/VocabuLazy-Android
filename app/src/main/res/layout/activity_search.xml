@@ -14,7 +14,7 @@
         android:id="@+id/search_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="wishcantw.vocabulazy.search.fragment.SearchFragment"
+        android:name="wishcantw.vocabulazy.activities.search.fragment.SearchFragment"
         android:layout_below="@+id/toolbar"/>
 
 </RelativeLayout>

@@ -1,0 +1,7552 @@
+[{
+	"spell": "appointment ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'pɔintmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "約會；約定",
+	"id": 20000
+}, {
+	"spell": "attendance ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'tendəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "出席人數；出席",
+	"id": 20001
+}, {
+	"spell": "cabinet ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ 'kæbinit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "櫥櫃",
+	"id": 20002
+}, {
+	"spell": "calendar ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kælində]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "日曆；月曆；行事曆",
+	"id": 20003
+}, {
+	"spell": "clerk ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[klɑ:k]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "辦事員；書記",
+	"id": 20004
+}, {
+	"spell": "directory ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'rektəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "人名住址薄",
+	"id": 20005
+}, {
+	"spell": "duplicate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dju:plikit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "複製；副本",
+	"id": 20006
+}, {
+	"spell": "filing ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['failiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "歸檔",
+	"id": 20007
+}, {
+	"spell": "in-tray ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[trei]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "待處理文件盒",
+	"id": 20008
+}, {
+	"spell": "monitor ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mɔnitə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "檢測；監視；追蹤",
+	"id": 20009
+}, {
+	"spell": "out-tray ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "已處理文件盒",
+	"id": 20010
+}, {
+	"spell": "partition",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pɑ:'tiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "分隔；分隔物（如牆壁等）",
+	"id": 20011
+}, {
+	"spell": "postage ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pəustidʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "郵費",
+	"id": 20012
+}, {
+	"spell": "punctualit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,pʌŋktju'ælit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "準時；守時",
+	"id": 20013
+}, {
+	"spell": "schedule ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['skedʒul]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "時間表；計劃表",
+	"id": 20014
+}, {
+	"spell": "shift ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "換班；輪班；值班",
+	"id": 20015
+}, {
+	"spell": "staff ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "全體職員",
+	"id": 20016
+}, {
+	"spell": "strike ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[straik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "罷工",
+	"id": 20017
+}, {
+	"spell": "task ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[tæsk]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "工作；任務",
+	"id": 20018
+}, {
+	"spell": "work force ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "工作人員；勞動人口",
+	"id": 20019
+}, {
+	"spell": "assignment ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'sainmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "分配；工作；分派",
+	"id": 20020
+}, {
+	"spell": "bulletin ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bulitin]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "公報；告示；定期報告書",
+	"id": 20021
+}, {
+	"spell": "calculator ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kælkju,leitə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "計算器",
+	"id": 20022
+}, {
+	"spell": "carbon copy ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "用複寫紙複製的副本",
+	"id": 20023
+}, {
+	"spell": "colleague",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɑlig]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "同事；同僚",
+	"id": 20024
+}, {
+	"spell": "document ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dɔkjumənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "文件；證件",
+	"id": 20025
+}, {
+	"spell": "extension ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[iks'tenʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "分機（電話）；延期",
+	"id": 20026
+}, {
+	"spell": "intercom",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['intəkɔm]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "對講機",
+	"id": 20027
+}, {
+	"spell": "memo",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['meməu]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "便條；便箋；備忘錄",
+	"id": 20028
+}, {
+	"spell": "operator",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔpə,reitə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "接線員",
+	"id": 20029
+}, {
+	"spell": "overtime",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['əuvətaim]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "加班的時間",
+	"id": 20030
+}, {
+	"spell": "portfolio",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pɔ:t'fəuljəu]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "作品夾；公事包",
+	"id": 20031
+}, {
+	"spell": "printed matter ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "印刷品",
+	"id": 20032
+}, {
+	"spell": "receptionist ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'sepʃənist]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "接待員",
+	"id": 20033
+}, {
+	"spell": "secretary",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sekrətri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "秘書",
+	"id": 20034
+}, {
+	"spell": "shorthand ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ʃɔ:thænd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "速記；速記法",
+	"id": 20035
+}, {
+	"spell": "stapler ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['steiplə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "訂書機",
+	"id": 20036
+}, {
+	"spell": "tardy ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['tɑ:di]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "遲緩；遲到的；遲延的",
+	"id": 20037
+}, {
+	"spell": "typist ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['taipist]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "打字員",
+	"id": 20038
+}, {
+	"spell": "xerox ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ziərɔks]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "影印",
+	"id": 20039
+}, {
+	"spell": "allocate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æləkeit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "撥出；分配；配置",
+	"id": 20040
+}, {
+	"spell": "applicant",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æplikənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "申請人",
+	"id": 20041
+}, {
+	"spell": "authorize",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔ:θəraiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "授權；委託",
+	"id": 20042
+}, {
+	"spell": "bonus ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bəunəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "紅利；額外津貼；獎金",
+	"id": 20043
+}, {
+	"spell": "capability",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,keipə'biliti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "能力；才幹；潛力；性能",
+	"id": 20044
+}, {
+	"spell": "collaboration ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə,læbə'reiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "合作；通敵",
+	"id": 20045
+}, {
+	"spell": "consultation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔnsəl'teiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "諮詢；商量；商議；會議",
+	"id": 20046
+}, {
+	"spell": "curriculum vitae",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 履歷",
+	"id": 20047
+}, {
+	"spell": "eligible ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['elidʒəbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "合格的；合適的",
+	"id": 20048
+}, {
+	"spell": "employer ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[im'plɔiə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "僱主",
+	"id": 20049
+}, {
+	"spell": "executive ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ig'zekjutiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "行政或管理人員",
+	"id": 20050
+}, {
+	"spell": "income",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['in,kʌm]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "收入或所得",
+	"id": 20051
+}, {
+	"spell": "lay off ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "（暫時）解僱 ",
+	"id": 20052
+}, {
+	"spell": "occupation ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ɔkju'peiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "職業",
+	"id": 20053
+}, {
+	"spell": "part-time ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "兼任的；兼職的",
+	"id": 20054
+}, {
+	"spell": "permanent",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pə:mənənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "不變的；永久的",
+	"id": 20055
+}, {
+	"spell": "promote",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'məut]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "陞遷；促銷",
+	"id": 20056
+}, {
+	"spell": "recruit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'kru:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "吸收；徵募",
+	"id": 20057
+}, {
+	"spell": "resume ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'zju:m]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "履歷表",
+	"id": 20058
+}, {
+	"spell": "salary ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sæləri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "薪水",
+	"id": 20059
+}, {
+	"spell": "amateur",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æmətə:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "業餘技術家；外行人；非專家",
+	"id": 20060
+}, {
+	"spell": "appoint",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'pɔint]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "任命；指定",
+	"id": 20061
+}, {
+	"spell": "benefit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['benifit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有益於；受益",
+	"id": 20062
+}, {
+	"spell": "candidate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kændidit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "候選人",
+	"id": 20063
+}, {
+	"spell": "certificate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[sə'tifikit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "憑證；證書",
+	"id": 20064
+}, {
+	"spell": "competent ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɔmpitənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有能力的；勝任的",
+	"id": 20065
+}, {
+	"spell": "coordinate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kəu'ɔ:dneit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "協調；調整",
+	"id": 20066
+}, {
+	"spell": "deadline ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dedlain]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "截至期限",
+	"id": 20067
+}, {
+	"spell": "employee",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,emplɔi'i:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "受僱者",
+	"id": 20068
+}, {
+	"spell": "evaluation ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[i,vælju'eiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "評價；估價",
+	"id": 20069
+}, {
+	"spell": "expertise ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ekspə:'ti:z]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "專門技術或知識",
+	"id": 20070
+}, {
+	"spell": "interview ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['intəvju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "會面；面談",
+	"id": 20071
+}, {
+	"spell": "novice ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['nɔvis]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "生手；新手；初學者",
+	"id": 20072
+}, {
+	"spell": "overtime",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['əuvətaim]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "超時",
+	"id": 20073
+}, {
+	"spell": "pension",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['penʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "養老金；退休金",
+	"id": 20074
+}, {
+	"spell": "personnel ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,pə:sə'nel]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "全體人員；人事部門",
+	"id": 20075
+}, {
+	"spell": "recommendation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,rekəmen'deiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "推薦；推薦書；勸告",
+	"id": 20076
+}, {
+	"spell": "resign ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'zain]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "辭職",
+	"id": 20077
+}, {
+	"spell": "retire ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'taiə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "退休",
+	"id": 20078
+}, {
+	"spell": "substitute",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sʌbstitju:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "代理人；代用品",
+	"id": 20079
+}, {
+	"spell": "accrue ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'kru:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "產生；增加",
+	"id": 20080
+}, {
+	"spell": "acquisition ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ækwi'ziʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "獲得；習得",
+	"id": 20081
+}, {
+	"spell": "amplify ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æmpli,fai]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "放大；加強；擴展",
+	"id": 20082
+}, {
+	"spell": "asset ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æset]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有用的東西；優點；長處即將發生",
+	"id": 20083
+}, {
+	"spell": "corporation ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔ:pə'reiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "法人；公司",
+	"id": 20084
+}, {
+	"spell": "cutback ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kʌtbæk]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "減少；取消",
+	"id": 20085
+}, {
+	"spell": "enterprise ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['entəpraiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "企業",
+	"id": 20086
+}, {
+	"spell": "equity ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ekwiti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "公平；公正；扣除抵押",
+	"id": 20087
+}, {
+	"spell": "financier ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[fai'nænsiə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "財政家；金融業",
+	"id": 20088
+}, {
+	"spell": "franchise ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fræn,tʃaiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "經銷權；加盟權",
+	"id": 20089
+}, {
+	"spell": "launch ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[lɔ:ntʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "開辦；展開；發起；開始",
+	"id": 20090
+}, {
+	"spell": "monopoly ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[mə'nɔpəli]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "壟斷；獨占；專賣",
+	"id": 20091
+}, {
+	"spell": "preliminary",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pri'liminəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "初步的；開始",
+	"id": 20092
+}, {
+	"spell": "propose ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'pəuz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "提議；建議",
+	"id": 20093
+}, {
+	"spell": "prospect",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['prɔspekt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "期望或預見的事；展望；期望",
+	"id": 20094
+}, {
+	"spell": "prosperity ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prɔs'periti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "繁榮；成功；興稅金後的剩餘財產價值",
+	"id": 20095
+}, {
+	"spell": "scheme ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ski:m]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "計劃；設計；圖謀者；資本家；投資者",
+	"id": 20096
+}, {
+	"spell": "thrive ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[θraiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "茂盛；興旺；繁榮",
+	"id": 20097
+}, {
+	"spell": "undervalue ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ʌndə'vælju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "低估價值",
+	"id": 20098
+}, {
+	"spell": "acquire ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'kwaiə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "獲得漲落",
+	"id": 20099
+}, {
+	"spell": "affiliate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'filieit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "支部；分會；子公司",
+	"id": 20100
+}, {
+	"spell": "assess ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'ses]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "評估（財產價值）；評定",
+	"id": 20101
+}, {
+	"spell": "benchmark ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bentʃ,mɑ:k]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "基準；水準點；標脹準",
+	"id": 20102
+}, {
+	"spell": "carry out ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "執行；貫徹；完成",
+	"id": 20103
+}, {
+	"spell": "cut down ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "削減；縮短",
+	"id": 20104
+}, {
+	"spell": "embezzle ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[im'bezl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "盜用；挪用；侵佔（公款等）",
+	"id": 20105
+}, {
+	"spell": "entrepreneur ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ɔntrəprə'nə:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "企業家；主辦人",
+	"id": 20106
+}, {
+	"spell": "expand ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[iks'pænd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "擴張；擴大",
+	"id": 20107
+}, {
+	"spell": "firm ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[fə:m]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "公司；商行",
+	"id": 20108
+}, {
+	"spell": "integrate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['intigreit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "統合；整合",
+	"id": 20109
+}, {
+	"spell": "merger ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[mə:dʒə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "合併；併吞",
+	"id": 20110
+}, {
+	"spell": "pending ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pendiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "未決定的；待決定的；",
+	"id": 20111
+}, {
+	"spell": "gross ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[grəus]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "總共的；全部的",
+	"id": 20112
+}, {
+	"spell": "inflation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'fleiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "物價飛漲；通貨膨",
+	"id": 20113
+}, {
+	"spell": "overdraft",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['əuvədræft]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "透支；透支額",
+	"id": 20114
+}, {
+	"spell": "profit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['prɔfit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "利潤；收益；營利",
+	"id": 20115
+}, {
+	"spell": "revenue",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['revinju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "收益；歲入；稅收",
+	"id": 20116
+}, {
+	"spell": "stock",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[stɔk]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "公債；證券；股票",
+	"id": 20117
+}, {
+	"spell": "withdraw",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[wið'drɔ:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "收回；取回；撤回；提款",
+	"id": 20118
+}, {
+	"spell": "account ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'kaunt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "帳目；帳單；帳戶",
+	"id": 20119
+}, {
+	"spell": "balance ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bæləns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "餘額；差額",
+	"id": 20120
+}, {
+	"spell": "bond ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[bɔnd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "債券",
+	"id": 20121
+}, {
+	"spell": "chamber of commerce ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 商會",
+	"id": 20122
+}, {
+	"spell": "credit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kredit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "信任；信用；信譽；功勞；計劃榮譽；存款數額；融資；賒銷",
+	"id": 20123
+}, {
+	"spell": "debt",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[det]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "債；債務書；慕股書",
+	"id": 20124
+}, {
+	"spell": "deficit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['defisit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "赤字；虧損額",
+	"id": 20125
+}, {
+	"spell": "depreciation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di,pri:ʃi'eiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "跌價；貶值",
+	"id": 20126
+}, {
+	"spell": "devaluation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,di:vælju'eiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "貶值",
+	"id": 20127
+}, {
+	"spell": "endorse",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'dɔ:s]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "贊同；支持；簽名；背書",
+	"id": 20128
+}, {
+	"spell": "exempt ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ig'zempt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "被免除的；豁免的",
+	"id": 20129
+}, {
+	"spell": "expense ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[iks'pens]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "消耗；消費",
+	"id": 20130
+}, {
+	"spell": "fluctuation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,flʌktju'eiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "波動；起伏；",
+	"id": 20131
+}, {
+	"spell": "phase ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[feiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "階段",
+	"id": 20132
+}, {
+	"spell": "profile",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['prəufail]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "側面像；略轉；引人矚目的狀態",
+	"id": 20133
+}, {
+	"spell": "proposition ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,prɔpə'ziʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "提案；建議；",
+	"id": 20134
+}, {
+	"spell": "prospectus ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'spektəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "計劃書；說明",
+	"id": 20135
+}, {
+	"spell": "rival ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['raivəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "競爭者；對手；匹敵者；勢均力敵者；競爭的",
+	"id": 20136
+}, {
+	"spell": "subsidiary ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[səb'sidiəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "子公司",
+	"id": 20137
+}, {
+	"spell": "track record ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "過去的記錄 ",
+	"id": 20138
+}, {
+	"spell": "accountant",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'kauntənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "會計師；會計員",
+	"id": 20139
+}, {
+	"spell": "bankrupt ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bæŋkrʌpt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "破產的；倒閉的",
+	"id": 20140
+}, {
+	"spell": "capital ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kæpitl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "資金；資本",
+	"id": 20141
+}, {
+	"spell": "convert ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'və:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "轉換；改變",
+	"id": 20142
+}, {
+	"spell": "currency ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kə:rənsi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "貨幣；流通；通用",
+	"id": 20143
+}, {
+	"spell": "deduction ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'dʌkʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "扣除；扣除額",
+	"id": 20144
+}, {
+	"spell": "deposit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'pɔzit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "付押金；付保證金",
+	"id": 20145
+}, {
+	"spell": "depression ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'preʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "不景氣；憂傷；消沉；沮喪",
+	"id": 20146
+}, {
+	"spell": "discrepancy",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dis'krepənsi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "差異；不同；不一致",
+	"id": 20147
+}, {
+	"spell": "estimate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['estimeit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "估計；估價",
+	"id": 20148
+}, {
+	"spell": "expenditure ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[iks'penditʃə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "消費；開銷",
+	"id": 20149
+}, {
+	"spell": "fiscal ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fiskəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "財政的；會計的",
+	"id": 20150
+}, {
+	"spell": "fund ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[fʌnd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "基金；專款",
+	"id": 20151
+}, {
+	"spell": "holding",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['həuldiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "土地；財產（常用複數）",
+	"id": 20152
+}, {
+	"spell": "ledger",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ledʒə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "總帳；分類帳",
+	"id": 20153
+}, {
+	"spell": "overdue ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['əuvə'dju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "過期未付的",
+	"id": 20154
+}, {
+	"spell": "remuneration",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri,mju:nə'reiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "報酬；酬勞",
+	"id": 20155
+}, {
+	"spell": "shareholder ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ʃɛə,həuldə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "股東",
+	"id": 20156
+}, {
+	"spell": "stockbroker",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['stɔk,brəukə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "證券和股票經紀人",
+	"id": 20157
+}, {
+	"spell": "yield",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ji:ld]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "(1)生產量；收益(2)生產；產生",
+	"id": 20158
+}, {
+	"spell": "bid ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[bid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "出價；投標；喊價",
+	"id": 20159
+}, {
+	"spell": "commercial ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'mə:ʃəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "商業化；商用的；營利的",
+	"id": 20160
+}, {
+	"spell": "competitor ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kəm'petitə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "競爭者；對手",
+	"id": 20161
+}, {
+	"spell": "consolidate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'sɔli,deit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "結合；合併；強化；鞏固",
+	"id": 20162
+}, {
+	"spell": "contract",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɔntrækt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "契約；合同",
+	"id": 20163
+}, {
+	"spell": "corporate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɔ:pərit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "全體的；團體的；公司的；法人的",
+	"id": 20164
+}, {
+	"spell": "credible",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kredəbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "可信的；可靠的",
+	"id": 20165
+}, {
+	"spell": "debit",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[']",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "借方；借項",
+	"id": 20166
+}, {
+	"spell": "earnings",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ə:niŋz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "薪水；工資；收益",
+	"id": 20167
+}, {
+	"spell": "export ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[eks'pɔ:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "輸出；出口",
+	"id": 20168
+}, {
+	"spell": "haggle",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['hægl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "討價還價",
+	"id": 20169
+}, {
+	"spell": "import ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[im'pɔ:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "輸入；進口",
+	"id": 20170
+}, {
+	"spell": "invoice",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['invɔis]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "發票；發貨清單；完成工作的清單（明列數量和價錢）",
+	"id": 20171
+}, {
+	"spell": "long-range ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[reindʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "長期的；遠程的",
+	"id": 20172
+}, {
+	"spell": "stock",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[stɔk]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "現貨；存貨",
+	"id": 20173
+}, {
+	"spell": "payment ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['peimənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "支付；付款",
+	"id": 20174
+}, {
+	"spell": "quote ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kwəut]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "報價",
+	"id": 20175
+}, {
+	"spell": "supply ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[sə'plai]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "供應品；供應物；庫存",
+	"id": 20176
+}, {
+	"spell": "tariff ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['tærif]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "關稅",
+	"id": 20177
+}, {
+	"spell": "voucher",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vautʃə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "保證人；憑證；憑單；折價券",
+	"id": 20178
+}, {
+	"spell": "bill of lading",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 提貨單 ",
+	"id": 20179
+}, {
+	"spell": "commodity",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'mɔditi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "商品；農產品",
+	"id": 20180
+}, {
+	"spell": "consignee",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɔnsai'ni:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "收件人；受託人",
+	"id": 20181
+}, {
+	"spell": "consumer ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'sju:mə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "消費者；顧客",
+	"id": 20182
+}, {
+	"spell": "contractor ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'træktə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "立契約人；承包商",
+	"id": 20183
+}, {
+	"spell": "cost-effective",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[i'fektiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "符合成本效益的",
+	"id": 20184
+}, {
+	"spell": "dealer ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['di:lə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "商人；業者",
+	"id": 20185
+}, {
+	"spell": "due ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "應付的；到期的；該發生的",
+	"id": 20186
+}, {
+	"spell": "endorse ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'dɔ:s]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "背書；支持；贊同",
+	"id": 20187
+}, {
+	"spell": "forward",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fɔ:wəd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "送到；轉號",
+	"id": 20188
+}, {
+	"spell": "headquarters",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['hed'kwɔ:təz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "總公司；總部；司令部",
+	"id": 20189
+}, {
+	"spell": "inventory",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['invəntri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "詳細目錄；清單；存貨",
+	"id": 20190
+}, {
+	"spell": "letter of credit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "信用狀 ",
+	"id": 20191
+}, {
+	"spell": "order ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "匯單；訂貨；訂單；匯票",
+	"id": 20192
+}, {
+	"spell": "patent ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['peitənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "專利；取得...的專利",
+	"id": 20193
+}, {
+	"spell": "quota ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kwəutə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "定量；定額；配額",
+	"id": 20194
+}, {
+	"spell": "shipment",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ʃipmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "一批貨",
+	"id": 20195
+}, {
+	"spell": "surplus ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ʃipmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "(1)過剩的量；盈餘(2)過剩的；剩餘的",
+	"id": 20196
+}, {
+	"spell": "trademark ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['treidmɑ:k]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "註冊商標",
+	"id": 20197
+}, {
+	"spell": "warehouse",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['wɛəhaus]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "倉庫；貨價；大商店",
+	"id": 20198
+}, {
+	"spell": "adjourn ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'dʒə:n]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "暫時；休會；延期",
+	"id": 20199
+}, {
+	"spell": "agreement ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'gri:mənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "同意；協定",
+	"id": 20200
+}, {
+	"spell": "amendment ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'mendmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "修正",
+	"id": 20201
+}, {
+	"spell": "approval ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'pru:vəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "贊成；同意",
+	"id": 20202
+}, {
+	"spell": "attentive ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'tentiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "注意的；留心的專心的",
+	"id": 20203
+}, {
+	"spell": "board ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[bɔ:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "理事會；委員會；董事會",
+	"id": 20204
+}, {
+	"spell": "brainstorm",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['brein,stɔ:m]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "腦力激盪；集思廣益",
+	"id": 20205
+}, {
+	"spell": "concede ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'si:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "容忍；容許；讓步",
+	"id": 20206
+}, {
+	"spell": "conference",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɔnfərəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "會議；協商；討論會",
+	"id": 20207
+}, {
+	"spell": "convention",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'venʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "慣例；常規；習俗；會議；",
+	"id": 20208
+}, {
+	"spell": "convince",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'vins]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使信服",
+	"id": 20209
+}, {
+	"spell": "cross-reference ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['refərəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "前後參照；（使）前後參照",
+	"id": 20210
+}, {
+	"spell": "delegate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['deligit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "代表",
+	"id": 20211
+}, {
+	"spell": "demand",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'mɑ:nd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "要求；強求",
+	"id": 20212
+}, {
+	"spell": "dispute",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'spju:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "爭端；爭執；糾紛；",
+	"id": 20213
+}, {
+	"spell": "negotiation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ni,gəuʃi'eiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "協商；談判",
+	"id": 20214
+}, {
+	"spell": "persuade",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pə'sweid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "說服；勸服",
+	"id": 20215
+}, {
+	"spell": "postpone",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pəust'pəun]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "延遲；延期",
+	"id": 20216
+}, {
+	"spell": "reconcile",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['rekənsail]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "調和；調解",
+	"id": 20217
+}, {
+	"spell": "settlement",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['setlmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "協議；支付",
+	"id": 20218
+}, {
+	"spell": "agenda ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ədʒ'endə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "議程",
+	"id": 20219
+}, {
+	"spell": "alternative",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ɔ:l'tə:nətiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "可供選擇的事物；方式等",
+	"id": 20220
+}, {
+	"spell": "announce",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'nauns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "通告；宣佈；宣告；公諸於眾",
+	"id": 20221
+}, {
+	"spell": "articulate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ɑ:'tikjulit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "能清楚有力表達思想感情的；表達能力強的",
+	"id": 20222
+}, {
+	"spell": "attorney",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'tə:ni]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "律師",
+	"id": 20223
+}, {
+	"spell": "breakthrough ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['breik,θru:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "突破；重大進展",
+	"id": 20224
+}, {
+	"spell": "compromise",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɔmprəmaiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "妥協；折衷；和解",
+	"id": 20225
+}, {
+	"spell": "conclusive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'klu:siv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "決定性的；勿庸置疑的",
+	"id": 20226
+}, {
+	"spell": "consensus",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'sensəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "一致的意見；共識",
+	"id": 20227
+}, {
+	"spell": "converse ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'və:s]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "談話；交談",
+	"id": 20228
+}, {
+	"spell": "criterion",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[krai'tiəriən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "規範；標準",
+	"id": 20229
+}, {
+	"spell": "decline",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'klain]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "衰落；衰退；下降",
+	"id": 20230
+}, {
+	"spell": "demonstration",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,demən'streiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "示範；實證；（遊行）示威",
+	"id": 20231
+}, {
+	"spell": "diplomacy ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'pləuməsi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "外交手腕；交際手段",
+	"id": 20232
+}, {
+	"spell": "dissuade",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'sweid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "勸阻",
+	"id": 20233
+}, {
+	"spell": "on behalf of ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 代表",
+	"id": 20234
+}, {
+	"spell": "petition",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pi'tiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "請願（書）；請願",
+	"id": 20235
+}, {
+	"spell": "premise",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['premis]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "前提",
+	"id": 20236
+}, {
+	"spell": "seminar ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['seminɑ:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "研討會；討論課；講習會",
+	"id": 20237
+}, {
+	"spell": "statement",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['steitmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "聲明；陳述",
+	"id": 20238
+}, {
+	"spell": "advance ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[əd'vɑ:ns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "前進；進展",
+	"id": 20239
+}, {
+	"spell": "capacity ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'pæsiti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "容量；才能；能力",
+	"id": 20240
+}, {
+	"spell": "component",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kəm'pəunənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "構成要素；成分；零件",
+	"id": 20241
+}, {
+	"spell": "device ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'vais]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "裝置；設備；圖案；設計",
+	"id": 20242
+}, {
+	"spell": "engineer",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,endʒi'niə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "工程師",
+	"id": 20243
+}, {
+	"spell": "facilitate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[fə'siliteit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "促進；使（更）容易",
+	"id": 20244
+}, {
+	"spell": "fuel ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fjuəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "燃料",
+	"id": 20245
+}, {
+	"spell": "generator ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dʒenəreitə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "發電機；產生器",
+	"id": 20246
+}, {
+	"spell": "innovative ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['inəuveitiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "創新；革新的",
+	"id": 20247
+}, {
+	"spell": "inventor",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'ventə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "發明家",
+	"id": 20248
+}, {
+	"spell": "leading edge",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 居領先優勢的",
+	"id": 20249
+}, {
+	"spell": "malfunction",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[mæl'fʌŋkʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "故障；發生故障；機能失常",
+	"id": 20250
+}, {
+	"spell": "mode ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "樣式；模式；方式；風尚；時尚",
+	"id": 20251
+}, {
+	"spell": "operate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔpəreit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "操作；運轉；經營",
+	"id": 20252
+}, {
+	"spell": "outlet ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['autlet]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "出口；排水口；銷售店；商行；插座；銷路",
+	"id": 20253
+}, {
+	"spell": "portable",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pɔ:təbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "可攜帶的；輕便的",
+	"id": 20254
+}, {
+	"spell": "raw material",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 原料 ",
+	"id": 20255
+}, {
+	"spell": "satellite ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sætəlait]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "衛星",
+	"id": 20256
+}, {
+	"spell": "specification ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,spesifi'keiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "說明；詳述",
+	"id": 20257
+}, {
+	"spell": "substandard ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sʌb'stændəd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "標準以下的",
+	"id": 20258
+}, {
+	"spell": "automaton ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ɔ:'tɔmətən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "自動操作裝置；機器人",
+	"id": 20259
+}, {
+	"spell": "cell(ular)phone ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['seljulə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "移動電話；手機",
+	"id": 20260
+}, {
+	"spell": "consecutive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'sekjutiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "連續的；連貫的",
+	"id": 20261
+}, {
+	"spell": "devise ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'vaiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "設計；發明；策劃",
+	"id": 20262
+}, {
+	"spell": "equipment",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[i'kwipmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "裝備；設備",
+	"id": 20263
+}, {
+	"spell": "facility ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[fə'siliti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "便利的設施；設備",
+	"id": 20264
+}, {
+	"spell": "gadget",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['gædʒit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "小巧的機械裝置；小玩意",
+	"id": 20265
+}, {
+	"spell": "hands-on ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "實地操作的；親身體驗的",
+	"id": 20266
+}, {
+	"spell": "inspect",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'spekt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "檢查；審查；視察",
+	"id": 20267
+}, {
+	"spell": "laboratory ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[lə'bɔrətəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "實驗室",
+	"id": 20268
+}, {
+	"spell": "maintenance",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['meintinəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "維護；保養",
+	"id": 20269
+}, {
+	"spell": "manual",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mænjuəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使用手冊；指南；手工的",
+	"id": 20270
+}, {
+	"spell": "network ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "網絡系統；廣播、電視網；電腦網",
+	"id": 20271
+}, {
+	"spell": "outage ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['autidʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "電力中斷；斷電",
+	"id": 20272
+}, {
+	"spell": "petroleum",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pi'trəuliəm]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "石油",
+	"id": 20273
+}, {
+	"spell": "procedure ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'si:dʒə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "程序；手續",
+	"id": 20274
+}, {
+	"spell": "reverse",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'və:s]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "相反的；顛倒的",
+	"id": 20275
+}, {
+	"spell": "solar ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['səulə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "(源自)太陽的；依太陽而運行的",
+	"id": 20276
+}, {
+	"spell": "static",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['stætik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "靜電干擾；靜止的；靜態的；靜電的",
+	"id": 20277
+}, {
+	"spell": "turn down ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "關小（聲）",
+	"id": 20278
+}, {
+	"spell": "access",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ækses]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "進入；接近；使用；取得",
+	"id": 20279
+}, {
+	"spell": "automatically ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ɔ:tə'mætikəli]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "無意識的；不自覺的；自動的",
+	"id": 20280
+}, {
+	"spell": "cable",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['keibl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "纜線；電纜",
+	"id": 20281
+}, {
+	"spell": "compliance",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kəm'plaiəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "順從；服從；附和；屈從",
+	"id": 20282
+}, {
+	"spell": "cutting edge ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "尖刻；尖鋭；先鋒地位 尖端的 ",
+	"id": 20283
+}, {
+	"spell": "delete",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'li:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "刪除",
+	"id": 20284
+}, {
+	"spell": "digital ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "數位的；數字顯示的",
+	"id": 20285
+}, {
+	"spell": "download ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "下載",
+	"id": 20286
+}, {
+	"spell": "hacker",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['hækə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "熱衷電腦的人；黑客",
+	"id": 20287
+}, {
+	"spell": "input ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "輸入電腦",
+	"id": 20288
+}, {
+	"spell": "Internet ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "國際互聯網",
+	"id": 20289
+}, {
+	"spell": "laptop",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['læptɔp]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "筆記本電腦",
+	"id": 20290
+}, {
+	"spell": "multimedia",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[mʌlti'mi:diə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "多媒體",
+	"id": 20291
+}, {
+	"spell": "retrieval",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'tri:vəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "取回；恢復",
+	"id": 20292
+}, {
+	"spell": "search engine ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "搜索引擎 ",
+	"id": 20293
+}, {
+	"spell": "shut down ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "使關閉；使停業",
+	"id": 20294
+}, {
+	"spell": "state-of-the-art ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[steit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使用最先進技術的；達到最高水準的",
+	"id": 20295
+}, {
+	"spell": "terminology ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,tə:mi'nɔlədʒi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "專業術語；專有名詞",
+	"id": 20296
+}, {
+	"spell": "troubleshooting ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "檢修；解決困難的",
+	"id": 20297
+}, {
+	"spell": "up-to-date ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "最近的；最新的",
+	"id": 20298
+}, {
+	"spell": "activate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使活動；觸發；激活",
+	"id": 20299
+}, {
+	"spell": "browse ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[brauz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "瀏覽；隨便翻閲",
+	"id": 20300
+}, {
+	"spell": "command",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'mɑ:nd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "指令；命令；掌握",
+	"id": 20301
+}, {
+	"spell": "configuration",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən,figju'reiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "結構；構造；配置",
+	"id": 20302
+}, {
+	"spell": "database",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['deitə,beis]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "數據庫",
+	"id": 20303
+}, {
+	"spell": "desktop ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['desktɔp]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "桌上型的",
+	"id": 20304
+}, {
+	"spell": "downgrade",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dauw,greid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "降級；使降職",
+	"id": 20305
+}, {
+	"spell": "floppy(disk) ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['flɔpi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "軟盤",
+	"id": 20306
+}, {
+	"spell": "hyperlink ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['haipə,liŋk]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "超連結",
+	"id": 20307
+}, {
+	"spell": "install",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'stɔ:l]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "安裝；安置",
+	"id": 20308
+}, {
+	"spell": "know-how ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "技能；專業知識；竅門",
+	"id": 20309
+}, {
+	"spell": "modern",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mɔdən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "調製解調器",
+	"id": 20310
+}, {
+	"spell": "omit",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[əu'mit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "忽略；刪除；疏忽",
+	"id": 20311
+}, {
+	"spell": "scanner",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['skænə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "掃瞄儀",
+	"id": 20312
+}, {
+	"spell": "server",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sə:və]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "服務器",
+	"id": 20313
+}, {
+	"spell": "spreadsheet ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['spred,ʃi:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "電子製表軟件；電子表格",
+	"id": 20314
+}, {
+	"spell": "switch ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "開關；驟變",
+	"id": 20315
+}, {
+	"spell": "transmission",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[træns'miʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "傳輸；傳送",
+	"id": 20316
+}, {
+	"spell": "upgrade ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "升級；提升",
+	"id": 20317
+}, {
+	"spell": "virus",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vaiərəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "濾過性病毒；電腦病毒",
+	"id": 20318
+}, {
+	"spell": "advertisement ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[əd'və:tismənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "廣告",
+	"id": 20319
+}, {
+	"spell": "appendix",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'pendiks]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "附錄",
+	"id": 20320
+}, {
+	"spell": "attach",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'tætʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "貼上；附上；附加",
+	"id": 20321
+}, {
+	"spell": "campaign",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kæm'pein]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "戰役；競選活動；宣傳活動",
+	"id": 20322
+}, {
+	"spell": "cohesive ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kəu'hi:siv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有粘著力的；有結合力的；凝聚性的",
+	"id": 20323
+}, {
+	"spell": "confidential",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɑ:nfi'denʃəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "秘密的；機密的",
+	"id": 20324
+}, {
+	"spell": "correspondence",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔri'spɔndəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "通信；信件",
+	"id": 20325
+}, {
+	"spell": "dictate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dik'teit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "口述；支配；命令",
+	"id": 20326
+}, {
+	"spell": "elaborate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[i'læbərit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "詳盡說明；詳盡的；精心製作的",
+	"id": 20327
+}, {
+	"spell": "forward ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fɔ:wəd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "轉寄；發送",
+	"id": 20328
+}, {
+	"spell": "jot down ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "略記下；匆匆記下 ",
+	"id": 20329
+}, {
+	"spell": "leaflet ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['li:flit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "傳單",
+	"id": 20330
+}, {
+	"spell": "notify",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['nəutifai]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "通知；告知",
+	"id": 20331
+}, {
+	"spell": "promote ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'məut]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "發揚；晉陞；促進",
+	"id": 20332
+}, {
+	"spell": "publicity",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pʌb'lisiti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "公開；宣傳；盡人皆知",
+	"id": 20333
+}, {
+	"spell": "response ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'spɔns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "回應",
+	"id": 20334
+}, {
+	"spell": "revise ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'vaiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "修訂；修改；校訂",
+	"id": 20335
+}, {
+	"spell": "slogan ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sləugən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "口號；標語",
+	"id": 20336
+}, {
+	"spell": "urgent",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ə:dʒənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "緊急的；急迫的",
+	"id": 20337
+}, {
+	"spell": "affirm ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'fə:m]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "堅稱；聲明；斷言；確認",
+	"id": 20338
+}, {
+	"spell": "",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "abb.",
+	"translation": "",
+	"id": 20339
+}, {
+	"spell": "banner",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bænə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "標語；旗幟",
+	"id": 20340
+}, {
+	"spell": "circular ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sə:kjulə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "廣告；傳單；通告",
+	"id": 20341
+}, {
+	"spell": "composition ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔmpə'ziʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "寫作；作品；作文；作曲",
+	"id": 20342
+}, {
+	"spell": "convene",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'vi:n]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "集合；聚集；開會",
+	"id": 20343
+}, {
+	"spell": "courier",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kuriə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "遞送急件的信差；郵物專遞公司",
+	"id": 20344
+}, {
+	"spell": "draft",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dræft]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "草稿；匯票",
+	"id": 20345
+}, {
+	"spell": "enclose",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'kləuz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "裝入；放入封套",
+	"id": 20346
+}, {
+	"spell": "inform",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'fɔ:m]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "通知；告知",
+	"id": 20347
+}, {
+	"spell": "issue",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['iʃju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "流出；放出；發行；發佈",
+	"id": 20348
+}, {
+	"spell": "layout",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['leiaut]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "規劃；設計；編排",
+	"id": 20349
+}, {
+	"spell": "legible",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ledʒəbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "（字跡）可以辨認的；易讀的",
+	"id": 20350
+}, {
+	"spell": "postage ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pəustidʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "郵資",
+	"id": 20351
+}, {
+	"spell": "proofread",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pru:f,ri:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "校正；校對",
+	"id": 20352
+}, {
+	"spell": "regarding",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'gɑ:diŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "關於；有關",
+	"id": 20353
+}, {
+	"spell": "restate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri:'steit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "再聲明；重新敘述；（換一種方式）重說",
+	"id": 20354
+}, {
+	"spell": "signature ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['signitʃə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "簽字；簽名",
+	"id": 20355
+}, {
+	"spell": "stationery ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['steiʃənəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "文具；信紙；信箋",
+	"id": 20356
+}, {
+	"spell": "write-up ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "報告書",
+	"id": 20357
+}, {
+	"spell": "write up ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "詳細寫",
+	"id": 20358
+}, {
+	"spell": "accommodation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə,kɔmə'deiʃn]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "適應；住所；膳宿",
+	"id": 20359
+}, {
+	"spell": "boarding pass ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "登機牌",
+	"id": 20360
+}, {
+	"spell": "brochure ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[brəu'ʃjuə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "小冊子",
+	"id": 20361
+}, {
+	"spell": "checkout ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "結帳退房的時間",
+	"id": 20362
+}, {
+	"spell": "check out ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "辦理退房；結帳離開",
+	"id": 20363
+}, {
+	"spell": "confirmation ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔnfə'meiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "確認",
+	"id": 20364
+}, {
+	"spell": "customs ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kʌstəmz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "海關；關稅",
+	"id": 20365
+}, {
+	"spell": "departure",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'pɑ:tʃə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "離開；出發",
+	"id": 20366
+}, {
+	"spell": "en route",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 在途中",
+	"id": 20367
+}, {
+	"spell": "flight ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[flait]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "飛行；航班；航程",
+	"id": 20368
+}, {
+	"spell": "itinerary ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ai'tinərəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "行程表；旅程",
+	"id": 20369
+}, {
+	"spell": "lodge",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[lɔdʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "小屋；旅館",
+	"id": 20370
+}, {
+	"spell": "luxurious",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[lʌg'ʒu:riəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "奢華的；非常舒適的",
+	"id": 20371
+}, {
+	"spell": "motel",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[məu'tel]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "汽車旅館",
+	"id": 20372
+}, {
+	"spell": "packing ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "包裝；打包",
+	"id": 20373
+}, {
+	"spell": "peak season",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 旺季",
+	"id": 20374
+}, {
+	"spell": "reservation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,rezə'veiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "預約；預訂；保留",
+	"id": 20375
+}, {
+	"spell": "sightseeing ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sait,si:iŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "觀光；遊覽",
+	"id": 20376
+}, {
+	"spell": "suite",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[swi:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "（旅館的）套房",
+	"id": 20377
+}, {
+	"spell": "valid",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vælid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "依法有效的；有效的",
+	"id": 20378
+}, {
+	"spell": "expedition ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ekspi'diʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "探險；遠征隊",
+	"id": 20379
+}, {
+	"spell": "baggage claim ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "行李提領處 ",
+	"id": 20380
+}, {
+	"spell": "breathtaking",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['breθ,teikiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "驚人的；驚艷的；驚險的",
+	"id": 20381
+}, {
+	"spell": "carry-on ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "登機行李；手提行李",
+	"id": 20382
+}, {
+	"spell": "concierge",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔnsi'ɛəʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "管理員；門房",
+	"id": 20383
+}, {
+	"spell": "cruise",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kru:z]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "乘船遊覽",
+	"id": 20384
+}, {
+	"spell": "deluxe",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[də'lʌks]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "豪華的；高級的",
+	"id": 20385
+}, {
+	"spell": "destination",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,desti'neiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "目的地",
+	"id": 20386
+}, {
+	"spell": "exotic",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[eg'zɔtik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "異國風情的；異國的",
+	"id": 20387
+}, {
+	"spell": "fasten",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fæsn]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "繫緊；拴住；扣住",
+	"id": 20388
+}, {
+	"spell": "flight attendant",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 空中服務員 ",
+	"id": 20389
+}, {
+	"spell": "jet lag",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 時差 ",
+	"id": 20390
+}, {
+	"spell": "luggage ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['lʌgidʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "行李",
+	"id": 20391
+}, {
+	"spell": "metal detector",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "金屬探測器",
+	"id": 20392
+}, {
+	"spell": "overseas",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['əuvə'si:z]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "在海外的；國外的",
+	"id": 20393
+}, {
+	"spell": "passenger",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pæsindʒə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "乘客；旅客",
+	"id": 20394
+}, {
+	"spell": "porter",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pɔ:tə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "腳伕；門房",
+	"id": 20395
+}, {
+	"spell": "round-trip ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "來回的；雙程的",
+	"id": 20396
+}, {
+	"spell": "stopover",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['stɔp,əuvə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "中途停留",
+	"id": 20397
+}, {
+	"spell": "vacant ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['veikənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "空的；未被占用的",
+	"id": 20398
+}, {
+	"spell": "voyage ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vɔiidʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "旅行；航行",
+	"id": 20399
+}, {
+	"spell": "accelerate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[æk'seləreit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "加速；促進；前進",
+	"id": 20400
+}, {
+	"spell": "aircraft",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɛəkrɑ:ft]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "飛機；飛行器；航空器",
+	"id": 20401
+}, {
+	"spell": "arrival",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'raivəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "到達；抵達",
+	"id": 20402
+}, {
+	"spell": "buckle up ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "系安全帶 ",
+	"id": 20403
+}, {
+	"spell": "cargo",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɑ:gəu]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "貨物",
+	"id": 20404
+}, {
+	"spell": "convertible",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'və:təbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "敞篷車",
+	"id": 20405
+}, {
+	"spell": "crash landing",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 迫降 ",
+	"id": 20406
+}, {
+	"spell": "delay ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'lei]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "擔擱；延遲",
+	"id": 20407
+}, {
+	"spell": "forbid ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[fə'bid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "禁止",
+	"id": 20408
+}, {
+	"spell": "ground crew ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "地勤人員",
+	"id": 20409
+}, {
+	"spell": "jaywalk",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dʒeiwɔ:k]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "不遵守交通規則穿越馬路；闖紅燈",
+	"id": 20410
+}, {
+	"spell": "launch",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[lɔ:ntʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "發射；開始",
+	"id": 20411
+}, {
+	"spell": "navigate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['nævi,geit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "航行；駕駛",
+	"id": 20412
+}, {
+	"spell": "pilot ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pailət]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "飛行員",
+	"id": 20413
+}, {
+	"spell": "route",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ru:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "路徑；路線",
+	"id": 20414
+}, {
+	"spell": "seat belt",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 安全帶 ",
+	"id": 20415
+}, {
+	"spell": "subway ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "地鐵",
+	"id": 20416
+}, {
+	"spell": "taxicab",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['tæksikæb]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "計程車",
+	"id": 20417
+}, {
+	"spell": "transit",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['trænsit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "運輸；通過",
+	"id": 20418
+}, {
+	"spell": "vehicle",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vi:ikl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "交通工具；車輛",
+	"id": 20419
+}, {
+	"spell": "acrophobia",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ækrə'fəubiə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "恐高症",
+	"id": 20420
+}, {
+	"spell": "airliner ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɛə,lainə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "大型客機",
+	"id": 20421
+}, {
+	"spell": "aviation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,eivi'eiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "飛行；航空學",
+	"id": 20422
+}, {
+	"spell": "cabin ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kæbin]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "小屋；客艙；機艙",
+	"id": 20423
+}, {
+	"spell": "commuter ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'mju:tə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "通勤者",
+	"id": 20424
+}, {
+	"spell": "conveyance",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'veiəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "運輸；交通工具",
+	"id": 20425
+}, {
+	"spell": "crossroads",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['krɔsrəudz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "十字路口",
+	"id": 20426
+}, {
+	"spell": "ferry",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['feri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "渡輪",
+	"id": 20427
+}, {
+	"spell": "freight",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[freit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "貨運；貨物",
+	"id": 20428
+}, {
+	"spell": "intersection",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,intə'sekʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "橫斷；交叉",
+	"id": 20429
+}, {
+	"spell": "jeopardy",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dʒepədi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "風險；危險；危難",
+	"id": 20430
+}, {
+	"spell": "life vest",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 救生衣",
+	"id": 20431
+}, {
+	"spell": "pedestrian",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pi'destriən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "行人；步行者",
+	"id": 20432
+}, {
+	"spell": "restriction",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'strikʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "限制；約束",
+	"id": 20433
+}, {
+	"spell": "runway",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['rʌnwei]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "飛機跑道",
+	"id": 20434
+}, {
+	"spell": "shortcut",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ʃɔ:tkʌt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "近路；捷徑",
+	"id": 20435
+}, {
+	"spell": "take off ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "起飛",
+	"id": 20436
+}, {
+	"spell": "timetable",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['taim,teibl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "時間表；時刻表",
+	"id": 20437
+}, {
+	"spell": "transport ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[træns'pɔ:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "運輸；交通工具；運輸系",
+	"id": 20438
+}, {
+	"spell": "via",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vaiə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "經由；藉由",
+	"id": 20439
+}, {
+	"spell": "affordable",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'fɔ:dəbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "負擔的起的",
+	"id": 20440
+}, {
+	"spell": "bazaar ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[bə'zɑ:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "市場；集市",
+	"id": 20441
+}, {
+	"spell": "client",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['klaiənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "顧客；委託人",
+	"id": 20442
+}, {
+	"spell": "customer",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kʌstəmə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "顧客；客戶",
+	"id": 20443
+}, {
+	"spell": "discount",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['diskaunt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "折扣",
+	"id": 20444
+}, {
+	"spell": "distributor",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dis'tribjutə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "供應商；經銷商",
+	"id": 20445
+}, {
+	"spell": "expiration ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ekspi'reiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "終結；期滿",
+	"id": 20446
+}, {
+	"spell": "itemize",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['aitəmaiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "詳細列舉；分條列舉",
+	"id": 20447
+}, {
+	"spell": "latest",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['leitist]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "最新的",
+	"id": 20448
+}, {
+	"spell": "neon sign ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "霓虹燈招牌 ",
+	"id": 20449
+}, {
+	"spell": "pickpocket",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pik,pɔkit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "扒手",
+	"id": 20450
+}, {
+	"spell": "pushcart",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['puʃkɑ:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "手推車",
+	"id": 20451
+}, {
+	"spell": "receipt",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'si:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "收據",
+	"id": 20452
+}, {
+	"spell": "reimburse",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ri:im'bə:s]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "償還；補償",
+	"id": 20453
+}, {
+	"spell": "request ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'kwest]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "請求；要求",
+	"id": 20454
+}, {
+	"spell": "sample",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sæmpl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "樣品；樣本",
+	"id": 20455
+}, {
+	"spell": "solicit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[sə'lisit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "請求；懇求；祈求",
+	"id": 20456
+}, {
+	"spell": "trendy",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['trendi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "時髦的；流行的",
+	"id": 20457
+}, {
+	"spell": "",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "abb.",
+	"translation": "",
+	"id": 20458
+}, {
+	"spell": "wholesale",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['həulseil]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "批發的；批發地",
+	"id": 20459
+}, {
+	"spell": "bargain",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bɑ:gin]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "便宜貨；廉價品",
+	"id": 20460
+}, {
+	"spell": "cash register",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 手銀機 ",
+	"id": 20461
+}, {
+	"spell": "coupon",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ku:pɔn]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "折價券；贈獎券",
+	"id": 20462
+}, {
+	"spell": "defective ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'fektiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有毛病的；有問題的；有瑕疵的",
+	"id": 20463
+}, {
+	"spell": "display ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'splei]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "陳列；展示品",
+	"id": 20464
+}, {
+	"spell": "drugstore",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['drʌgstɔ:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "兼賣雜貨的藥房",
+	"id": 20465
+}, {
+	"spell": "flea market",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 跳蚤市場 ",
+	"id": 20466
+}, {
+	"spell": "label",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['leibl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "標籤；標記",
+	"id": 20467
+}, {
+	"spell": "modify",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mɔdifai]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "修改；變更",
+	"id": 20468
+}, {
+	"spell": "patron",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['peitrən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "顧客；贊助人",
+	"id": 20469
+}, {
+	"spell": "purchase",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pə:tʃəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "購買；購得之物",
+	"id": 20470
+}, {
+	"spell": "quantity",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kwɔntiti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "量；數量",
+	"id": 20471
+}, {
+	"spell": "refund",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'fʌnd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "退款；退還；賠償",
+	"id": 20472
+}, {
+	"spell": "replacement",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'pleismənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "代替；替換",
+	"id": 20473
+}, {
+	"spell": "retailer ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ri:teilə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "零售商",
+	"id": 20474
+}, {
+	"spell": "shopping mall ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "大型購物中心 ",
+	"id": 20475
+}, {
+	"spell": "thrift ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[θrift]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "節儉；節約",
+	"id": 20476
+}, {
+	"spell": "vender",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vendə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "小販",
+	"id": 20477
+}, {
+	"spell": "warranty",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['wɔrənti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "保證；保證書",
+	"id": 20478
+}, {
+	"spell": "workmanship",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['wə:kmənʃip]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "技巧；手藝",
+	"id": 20479
+}, {
+	"spell": "alcohol ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ælkəhɔl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "酒精",
+	"id": 20480
+}, {
+	"spell": "appetite ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æpitait]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "胃口；食慾",
+	"id": 20481
+}, {
+	"spell": "artificial",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ɑ:ti'fiʃəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "人造的；仿真的",
+	"id": 20482
+}, {
+	"spell": "bland ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[blænd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "淡而無味的；溫和的；無刺激性的",
+	"id": 20483
+}, {
+	"spell": "chef ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ʃef]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "主廚；大廚",
+	"id": 20484
+}, {
+	"spell": "crave ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kreiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "渴望",
+	"id": 20485
+}, {
+	"spell": "delicacy",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['delikəsi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "佳餚",
+	"id": 20486
+}, {
+	"spell": "digest",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dai'dʒest]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "消化",
+	"id": 20487
+}, {
+	"spell": "fragrant",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['freigrənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有香味的；芳香的",
+	"id": 20488
+}, {
+	"spell": "ingredient ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'gri:diənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "成分；配料；配方",
+	"id": 20489
+}, {
+	"spell": "liquor ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['likə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "烈酒（如威士忌）",
+	"id": 20490
+}, {
+	"spell": "munch ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[mʌntʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "用力嚼；大聲咀嚼",
+	"id": 20491
+}, {
+	"spell": "palatable",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pælətəbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美味的；順耳的；怡人的",
+	"id": 20492
+}, {
+	"spell": "pass up ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "放過；錯過",
+	"id": 20493
+}, {
+	"spell": "portion",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pɔ:ʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "部分；一份",
+	"id": 20494
+}, {
+	"spell": "ravenous ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['rævinəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "饑餓的；貪婪的",
+	"id": 20495
+}, {
+	"spell": "refreshment",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'freʃmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "茶點",
+	"id": 20496
+}, {
+	"spell": "silverware",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['silvəwɛə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "銀器；鍍銀餐具",
+	"id": 20497
+}, {
+	"spell": "specialty",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['speʃəlti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "專攻；專業；專長；特製品",
+	"id": 20498
+}, {
+	"spell": "starve",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[stɑ:v]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "餓死；挨餓",
+	"id": 20499
+}, {
+	"spell": "aperitif",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ɑperi'ti:f]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "飯前酒",
+	"id": 20500
+}, {
+	"spell": "appetizer",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æpitaizə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "開胃菜",
+	"id": 20501
+}, {
+	"spell": "beverage",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bevəridʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "飲料",
+	"id": 20502
+}, {
+	"spell": "buffet ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bʌfit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "自助餐",
+	"id": 20503
+}, {
+	"spell": "chopsticks",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['tʃɔpstiks]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "筷子",
+	"id": 20504
+}, {
+	"spell": "cuisine",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kwi'zi:n]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "烹調",
+	"id": 20505
+}, {
+	"spell": "dessert",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'zə:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "餐後甜點",
+	"id": 20506
+}, {
+	"spell": "entree",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔntrei]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "主菜",
+	"id": 20507
+}, {
+	"spell": "leftovers",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['leftəuvə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "剩飯剩菜",
+	"id": 20508
+}, {
+	"spell": "menu ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['menju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "菜單",
+	"id": 20509
+}, {
+	"spell": "napkin ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['næpkin]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "餐巾",
+	"id": 20510
+}, {
+	"spell": "parched ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pɑ:tʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "焦乾的；極渴的",
+	"id": 20511
+}, {
+	"spell": "pastry",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['peistri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "用麵糰和油酥烤成的小甜點心",
+	"id": 20512
+}, {
+	"spell": "preservative",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pri'zə:vətiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "防腐劑",
+	"id": 20513
+}, {
+	"spell": "recipe",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['resipi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "食譜；烹飪法；秘訣",
+	"id": 20514
+}, {
+	"spell": "seasoning ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['si:zəniŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "調味品；佐料",
+	"id": 20515
+}, {
+	"spell": "snack",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[snæk]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "小吃；點心吃點心",
+	"id": 20516
+}, {
+	"spell": "spice",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[spais]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "香料；調味品",
+	"id": 20517
+}, {
+	"spell": "vegetarian",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,vedʒi'tɛəriən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "素食者",
+	"id": 20518
+}, {
+	"spell": "acceptance ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ək'septəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "接受；贊同",
+	"id": 20519
+}, {
+	"spell": "acquaintance ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'kweintəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "相識但是不是很熟的人",
+	"id": 20520
+}, {
+	"spell": "anniversary ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,æni'və:səri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "週年紀念日",
+	"id": 20521
+}, {
+	"spell": "associate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'səuʃieit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "(1)同事；夥伴(2)聯想；交往",
+	"id": 20522
+}, {
+	"spell": "banquet ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bæŋkwit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "酒席；正式的宴會",
+	"id": 20523
+}, {
+	"spell": "commitment",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'mitmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "承諾；許諾",
+	"id": 20524
+}, {
+	"spell": "courtesy ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kə:tisi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "禮貌；禮儀；好意；慇勤",
+	"id": 20525
+}, {
+	"spell": "distinguished",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'stiŋgwiʃt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "卓越的；傑出的；著名的",
+	"id": 20526
+}, {
+	"spell": "embrace ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[im'breis]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "擁抱；圍繞；包括",
+	"id": 20527
+}, {
+	"spell": "etiquette",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['eti'ket]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "禮節；規範",
+	"id": 20528
+}, {
+	"spell": "farewell",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fɛə'wel]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "一路平安；再見；告別",
+	"id": 20529
+}, {
+	"spell": "get-together ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "（非正式的社交）聚會",
+	"id": 20530
+}, {
+	"spell": "greeting",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['gri:tiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "致敬；問候；（複數）致意；讚詞",
+	"id": 20531
+}, {
+	"spell": "hug ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[hʌg]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "擁抱；緊抱",
+	"id": 20532
+}, {
+	"spell": "lavish ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['læviʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "過分大方的；浪費的；豐富的",
+	"id": 20533
+}, {
+	"spell": "nosy ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['nəuzi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "好管閒事的；愛打聽的",
+	"id": 20534
+}, {
+	"spell": "offensive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'fensiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "令人不快的；討厭的；冒犯的",
+	"id": 20535
+}, {
+	"spell": "protocol",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['prəutəkɔl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "外交禮儀；草約",
+	"id": 20536
+}, {
+	"spell": "regards ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'gɑ:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "問候；致意",
+	"id": 20537
+}, {
+	"spell": "salute",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[sə'lu:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "向...打招呼；向...行軍禮；向...表示敬意",
+	"id": 20538
+}, {
+	"spell": "acknowledge",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ək'nɔlidʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "承認；承認...之存在、權力；表示感謝",
+	"id": 20539
+}, {
+	"spell": "aggressive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'gresiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "挑釁的；有侵略性的；有進取心的；積極的",
+	"id": 20540
+}, {
+	"spell": "apologize",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'pɔlədʒaiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "道歉",
+	"id": 20541
+}, {
+	"spell": "attractive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'træktiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "引人入勝；有吸引力的；迷人的",
+	"id": 20542
+}, {
+	"spell": "barrier ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bæriə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "障礙；障礙物；隔閡",
+	"id": 20543
+}, {
+	"spell": "compliment",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɔmplimənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "讚揚；恭維",
+	"id": 20544
+}, {
+	"spell": "criticize",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kritisaiz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "批評；評論",
+	"id": 20545
+}, {
+	"spell": "eloquent",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['eləkwənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "口才好的；雄辯的",
+	"id": 20546
+}, {
+	"spell": "encounter",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'kauntə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "相遇；遭遇偶然碰見；面臨",
+	"id": 20547
+}, {
+	"spell": "extend",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[iks'tend]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "延伸延續；擴大；延長；給予；提供",
+	"id": 20548
+}, {
+	"spell": "favorable",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['feivərəbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "令人滿意的；博得讚許的；有幫助的；有利的",
+	"id": 20549
+}, {
+	"spell": "gossip",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['gɔsip]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "閒話；流言；說閒話",
+	"id": 20550
+}, {
+	"spell": "hilarious",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[hi'lɛəriəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "狂歡的；令人捧腹",
+	"id": 20551
+}, {
+	"spell": "intrude",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'tru:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "闖入；侵入；把...強加諸於",
+	"id": 20552
+}, {
+	"spell": "modest ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mɔdist]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "謙遜的；適度的；樸實的；端莊的",
+	"id": 20553
+}, {
+	"spell": "nuisance",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['nju:sns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "討厭之人、事、物",
+	"id": 20554
+}, {
+	"spell": "prompt ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prɔmpt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "準時的；按時的；迅速的；立刻行動的",
+	"id": 20555
+}, {
+	"spell": "quarrel ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kwɔrəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "爭吵；爭論吵架",
+	"id": 20556
+}, {
+	"spell": "run into ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "偶遇；碰上",
+	"id": 20557
+}, {
+	"spell": "scandal ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['skændl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "醜聞；引人憤慨之事",
+	"id": 20558
+}, {
+	"spell": "amuse ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'mju:z]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使歡樂；使愉快；使發笑",
+	"id": 20559
+}, {
+	"spell": "audience ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔ:diəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "聽眾；觀眾",
+	"id": 20560
+}, {
+	"spell": "ballet",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bælei]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "芭蕾舞",
+	"id": 20561
+}, {
+	"spell": "cable TV",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 有線電視",
+	"id": 20562
+}, {
+	"spell": "celebrity",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[si'lebriti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "名人；名聲",
+	"id": 20563
+}, {
+	"spell": "cinema ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sinimə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "電影；影片；電影院；電影藝術；電影業",
+	"id": 20564
+}, {
+	"spell": "composer",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kəm'pəuzə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "作曲家",
+	"id": 20565
+}, {
+	"spell": "conductor",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'dʌktə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "指揮家",
+	"id": 20566
+}, {
+	"spell": "cue ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "暗示；提示",
+	"id": 20567
+}, {
+	"spell": "drama ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['drɑ:mə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "戲劇；劇本",
+	"id": 20568
+}, {
+	"spell": "fare ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[fɛə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "車費；票價",
+	"id": 20569
+}, {
+	"spell": "headline",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['hedlain]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "（報紙的）標題",
+	"id": 20570
+}, {
+	"spell": "newscast ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['nju:zkɑ:st]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "新聞廣播",
+	"id": 20571
+}, {
+	"spell": "periodical",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,piəri'ɔdikəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "雜誌；期刊",
+	"id": 20572
+}, {
+	"spell": "premiere ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['premiɛə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "首次公演；首映",
+	"id": 20573
+}, {
+	"spell": "rate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[reit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "分級；分等",
+	"id": 20574
+}, {
+	"spell": "scenario",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[si'nɑ:riəu]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "戲劇的情節",
+	"id": 20575
+}, {
+	"spell": "scriptwriter",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['skript,raitə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "劇作家；編劇",
+	"id": 20576
+}, {
+	"spell": "symphony",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['simfəni]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "交響曲",
+	"id": 20577
+}, {
+	"spell": "ticket office ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "售票處",
+	"id": 20578
+}, {
+	"spell": "applaud",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'plɔ:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "鼓掌",
+	"id": 20579
+}, {
+	"spell": "audition",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ɔ:'diʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "試聽；試演",
+	"id": 20580
+}, {
+	"spell": "broadcast",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['brɔ:dkɑ:st]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "廣播；宣傳",
+	"id": 20581
+}, {
+	"spell": "carnival",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['brɔ:dkɑ:st]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美狂歡；歡宴；嘉年華會；巡迴娛樂表演",
+	"id": 20582
+}, {
+	"spell": "choreography",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔri'ɔgrəfi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "舞蹈設計；編舞",
+	"id": 20583
+}, {
+	"spell": "circus",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sə:kəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "馬戲團",
+	"id": 20584
+}, {
+	"spell": "concert ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kɔnsət]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "音樂會",
+	"id": 20585
+}, {
+	"spell": "critic ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kritik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "批評家；評論家；吹毛求疵的人",
+	"id": 20586
+}, {
+	"spell": "curtain call",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 謝幕 ",
+	"id": 20587
+}, {
+	"spell": "editorial",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,edi'tɔ:riəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "社論",
+	"id": 20588
+}, {
+	"spell": "finale",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[fi'nɑ:li]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "結局；樂曲的最後部分",
+	"id": 20589
+}, {
+	"spell": "media",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mi:diə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "媒體",
+	"id": 20590
+}, {
+	"spell": "performance",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pə'fɔ:məns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "演出；表現；性能",
+	"id": 20591
+}, {
+	"spell": "playwright ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pleirait]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "劇作家",
+	"id": 20592
+}, {
+	"spell": "preview",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pri:vju:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "試映；預告片",
+	"id": 20593
+}, {
+	"spell": "rehearsal",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'hə:sl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "預演；排練",
+	"id": 20594
+}, {
+	"spell": "screen ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "隔板；螢幕；螢光屏",
+	"id": 20595
+}, {
+	"spell": "stunt ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[stʌnt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "特技；噱頭",
+	"id": 20596
+}, {
+	"spell": "theater",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['θiətə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "戲院；劇院",
+	"id": 20597
+}, {
+	"spell": "violin ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,vaiə'lin]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "小提琴",
+	"id": 20598
+}, {
+	"spell": "aerobics",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ɛə'rəubiks]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有氧運動",
+	"id": 20599
+}, {
+	"spell": "coach ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kəutʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "教師；教練",
+	"id": 20600
+}, {
+	"spell": "compete",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kəm'pi:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "競爭；比賽",
+	"id": 20601
+}, {
+	"spell": "defeat ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'fi:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "失敗；擊敗",
+	"id": 20602
+}, {
+	"spell": "fitness ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fitnis]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "適合；恰當；身體健康",
+	"id": 20603
+}, {
+	"spell": "gym ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dʒim]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "健身房；體育館",
+	"id": 20604
+}, {
+	"spell": "league",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[li:g]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "聯盟；同盟",
+	"id": 20605
+}, {
+	"spell": "marathon",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mærəθɑn]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "馬拉松；耐力比賽",
+	"id": 20606
+}, {
+	"spell": "mountaineering ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,mauntə'niriŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "登山運動",
+	"id": 20607
+}, {
+	"spell": "participate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pɑ:'tisipeit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "參與；參加",
+	"id": 20608
+}, {
+	"spell": "recreation ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,rekri'eiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "娛樂；消遣",
+	"id": 20609
+}, {
+	"spell": "relaxation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ri:læk'seiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "鬆弛；緩和；休息；娛樂",
+	"id": 20610
+}, {
+	"spell": "rigor",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['rigə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "嚴格；嚴苛；艱苦",
+	"id": 20611
+}, {
+	"spell": "soccer",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sɔkə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "足球",
+	"id": 20612
+}, {
+	"spell": "stadium",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['steidiəm]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "體育場",
+	"id": 20613
+}, {
+	"spell": "stroll",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[strəul]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "散步；閒逛",
+	"id": 20614
+}, {
+	"spell": "surrender ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[sə'rendə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "（向敵人）投降；放棄",
+	"id": 20615
+}, {
+	"spell": "time-out ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "暫停",
+	"id": 20616
+}, {
+	"spell": "trophy",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['trəufi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "獎品；獎盃；戰利品",
+	"id": 20617
+}, {
+	"spell": "usher ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ʌʃə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "引座員；招待員",
+	"id": 20618
+}, {
+	"spell": "billiards",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['biljədz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "撞球",
+	"id": 20619
+}, {
+	"spell": "combative",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kəmbətiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "好戰的；好鬥的",
+	"id": 20620
+}, {
+	"spell": "default",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'fɔ:lt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "違約；棄權",
+	"id": 20621
+}, {
+	"spell": "defense ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'fens]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "保護；防衛",
+	"id": 20622
+}, {
+	"spell": "forfeit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fɔ:fit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "罰款；喪失",
+	"id": 20623
+}, {
+	"spell": "intensity",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'tensiti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "強度；強烈",
+	"id": 20624
+}, {
+	"spell": "leisure",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['li:ʒə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "空閒；閒暇時間",
+	"id": 20625
+}, {
+	"spell": "massage",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[mə'sɑ:ʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "按摩；揉捏",
+	"id": 20626
+}, {
+	"spell": "muscle ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mʌsl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "肌肉；力量",
+	"id": 20627
+}, {
+	"spell": "pastime ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pɑ:s,taim]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "娛樂；消遣",
+	"id": 20628
+}, {
+	"spell": "referee",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,refə'ri:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "球證；仲裁者",
+	"id": 20629
+}, {
+	"spell": "replacement ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'pleismənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "代替的人或物",
+	"id": 20630
+}, {
+	"spell": "runner-up",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['rʌnə'rʌp]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "第二名；亞軍",
+	"id": 20631
+}, {
+	"spell": "spectator ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[spek'teitə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "觀眾；旁觀者",
+	"id": 20632
+}, {
+	"spell": "stretch",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[stretʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "伸張；伸開；伸展",
+	"id": 20633
+}, {
+	"spell": "surfing",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sə:fiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "衝浪",
+	"id": 20634
+}, {
+	"spell": "tactic",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['tæktik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "戰略；策略（常用複數）",
+	"id": 20635
+}, {
+	"spell": "tournament",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['tuənəmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "比賽；錦標賽",
+	"id": 20636
+}, {
+	"spell": "umpire",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ʌmpaiə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "裁判；仲裁",
+	"id": 20637
+}, {
+	"spell": "volleyball ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vɔli,bɔ:l]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "排球",
+	"id": 20638
+}, {
+	"spell": "alleviate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'li:vieit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "減輕；緩和",
+	"id": 20639
+}, {
+	"spell": "bacteria ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[bæk'tiəriə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "細菌",
+	"id": 20640
+}, {
+	"spell": "collision ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'liʒən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "碰撞；牴觸",
+	"id": 20641
+}, {
+	"spell": "compensation",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔmpen'seiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "補償；賠償；報償",
+	"id": 20642
+}, {
+	"spell": "contagious ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'teidʒəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "接觸傳染的",
+	"id": 20643
+}, {
+	"spell": "crash ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "相撞；碰撞；突然發出巨響",
+	"id": 20644
+}, {
+	"spell": "emergency room",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 急診室 ",
+	"id": 20645
+}, {
+	"spell": "expiration date",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 有效期限  ",
+	"id": 20646
+}, {
+	"spell": "general hospital ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "綜合醫院 ",
+	"id": 20647
+}, {
+	"spell": "immune",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[i'mju:n]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "免除的；豁免的；免疫的",
+	"id": 20648
+}, {
+	"spell": "infection ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'fekʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美感染",
+	"id": 20649
+}, {
+	"spell": "investigator",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'vestigeitə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "調查員家用電器",
+	"id": 20650
+}, {
+	"spell": "mandatory ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mændətəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "命令的；強制的；義務的",
+	"id": 20651
+}, {
+	"spell": "option ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔpʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "選擇權；選擇之自由；可選擇的東西",
+	"id": 20652
+}, {
+	"spell": "outpatient",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['aut,peiʃənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "門診病人",
+	"id": 20653
+}, {
+	"spell": "premium",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pri:miəm]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "獎品；額外費用；保費",
+	"id": 20654
+}, {
+	"spell": "severe",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[si'viə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "嚴苛的；嚴格的；嚴重的",
+	"id": 20655
+}, {
+	"spell": "stroke ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[strəuk]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "腦血管破裂或阻塞；中風",
+	"id": 20656
+}, {
+	"spell": "terms",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[tə:m]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "條文；條款；付款條件；價錢",
+	"id": 20657
+}, {
+	"spell": "vital",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vaitl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "非常必要的；及其重要的；攸關生死的",
+	"id": 20658
+}, {
+	"spell": "antibiotic ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,æntibai'ɔtik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "抗生素",
+	"id": 20659
+}, {
+	"spell": "claim ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kleim]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "要求；聲稱",
+	"id": 20660
+}, {
+	"spell": "commission",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'miʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "佣金",
+	"id": 20661
+}, {
+	"spell": "comprehensive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,kɔmpri'hensiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "全面的；廣泛的",
+	"id": 20662
+}, {
+	"spell": "coverage",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kʌvəridʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "報導範圍；保險範圍",
+	"id": 20663
+}, {
+	"spell": "diagnose ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['daiəgnəuz]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "診斷；判斷",
+	"id": 20664
+}, {
+	"spell": "excruciating",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[iks'kru:ʃieitiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "極痛苦的；極度的",
+	"id": 20665
+}, {
+	"spell": "fraud ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[frɔ:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "詐騙；騙局；騙子",
+	"id": 20666
+}, {
+	"spell": "handicap",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['hændikæp]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "殘障；不利條件；障礙",
+	"id": 20667
+}, {
+	"spell": "indemnity",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'demniti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "損害保障；損害賠償",
+	"id": 20668
+}, {
+	"spell": "intensive care unit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "加護病房",
+	"id": 20669
+}, {
+	"spell": "liable",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['laiəbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有義務的；易於...的；傾向於...的",
+	"id": 20670
+}, {
+	"spell": "nutrition",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[nju:'triʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "營養之供給或攝取；營養",
+	"id": 20671
+}, {
+	"spell": "organ donor ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "器官捐贈者",
+	"id": 20672
+}, {
+	"spell": "pharmaceutical",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,fɑ:mə'sju:tikl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "製藥的；藥品的",
+	"id": 20673
+}, {
+	"spell": "purification",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,pjurifi'keiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "洗淨；淨化",
+	"id": 20674
+}, {
+	"spell": "side effect",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " （藥物之）副作用",
+	"id": 20675
+}, {
+	"spell": "surgery ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['sə:dʒəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "（外科）手術",
+	"id": 20676
+}, {
+	"spell": "trauma ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['trɔ:mə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "外傷；心靈的傷",
+	"id": 20677
+}, {
+	"spell": "waive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[weiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "放棄；棄權",
+	"id": 20678
+}, {
+	"spell": "appliance",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'plaiəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "設備；器具；工具；",
+	"id": 20679
+}, {
+	"spell": "burglar ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bə:glə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "竊賊；夜間入屋行竊的小偷",
+	"id": 20680
+}, {
+	"spell": "community",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kə'mju:niti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "社區",
+	"id": 20681
+}, {
+	"spell": "electronics",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ilek'trɔniks]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "電子學",
+	"id": 20682
+}, {
+	"spell": "fire extinguisher ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "滅火器 ",
+	"id": 20683
+}, {
+	"spell": "furniture ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fə:nitʃə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "傢俱",
+	"id": 20684
+}, {
+	"spell": "garbage disposal ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "垃圾處理機",
+	"id": 20685
+}, {
+	"spell": "landlord",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['lændlɔ:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "地主；房東",
+	"id": 20686
+}, {
+	"spell": "laundry ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['lɔ:ndri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "洗衣店；要洗或已洗好的衣物",
+	"id": 20687
+}, {
+	"spell": "lease ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[li:s]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "租約；出租；租用",
+	"id": 20688
+}, {
+	"spell": "mattress ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mætris]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "床墊",
+	"id": 20689
+}, {
+	"spell": "mortgage ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mætris]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "抵押貨（借）款",
+	"id": 20690
+}, {
+	"spell": "ornament ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔ:nəmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "裝飾品",
+	"id": 20691
+}, {
+	"spell": "plumbing",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['plʌmiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "水管設施",
+	"id": 20692
+}, {
+	"spell": "possession",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pə'zeʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "所有；個人財產",
+	"id": 20693
+}, {
+	"spell": "real estate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "不動產 ",
+	"id": 20694
+}, {
+	"spell": "renovate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['renə,veit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "更新；修復；恢復",
+	"id": 20695
+}, {
+	"spell": "rural",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ru:rəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "鄉下；田園",
+	"id": 20696
+}, {
+	"spell": "suburb",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ru:rəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "（常用複數）郊區；近郊",
+	"id": 20697
+}, {
+	"spell": "urban",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ə:bən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "都市的；都市式的",
+	"id": 20698
+}, {
+	"spell": "balcony",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['bælkəni]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "陽台；包廂",
+	"id": 20699
+}, {
+	"spell": "chore",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[tʃɔ:]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "家務難事；困難繁瑣無趣的工作",
+	"id": 20700
+}, {
+	"spell": "down payment",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": " 頭期款；預付金；定金",
+	"id": 20701
+}, {
+	"spell": "fire alarm ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "火災警報器",
+	"id": 20702
+}, {
+	"spell": "furnishings ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fə:niʃiŋ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "傢俱；室內陳設",
+	"id": 20703
+}, {
+	"spell": "garage ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['gærɑ:ʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "車庫；修車廠",
+	"id": 20704
+}, {
+	"spell": "kitchenware ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['kitʃin,wɛə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "廚房用具",
+	"id": 20705
+}, {
+	"spell": "laundromat ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['lɔ:ndrəmæt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "自助洗衣店",
+	"id": 20706
+}, {
+	"spell": "lawn ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[lɔ:n]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "草坪；草地",
+	"id": 20707
+}, {
+	"spell": "loan shark ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "放高利貸者 ",
+	"id": 20708
+}, {
+	"spell": "messy ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mesi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "雜亂的；骯髒的",
+	"id": 20709
+}, {
+	"spell": "neighborhood ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['neibəhud]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "街坊；住宅區；臨近地區",
+	"id": 20710
+}, {
+	"spell": "playground ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "運動場；遊戲場；遊樂場",
+	"id": 20711
+}, {
+	"spell": "porch ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pɔ:tʃ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "門廊；遊廊",
+	"id": 20712
+}, {
+	"spell": "property ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['prɔpəti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "財產；地產",
+	"id": 20713
+}, {
+	"spell": "relocate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ri:ləu'keit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "重新安置；遷徙",
+	"id": 20714
+}, {
+	"spell": "residence ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['rezidəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "住所；公館；居住",
+	"id": 20715
+}, {
+	"spell": "storage ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['stɔ:ridʒ]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "儲藏；藏室",
+	"id": 20716
+}, {
+	"spell": "tenant ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['tenənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "房客；承租人；佃戶",
+	"id": 20717
+}, {
+	"spell": "utility ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ju:'tiliti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "公共實業；實用",
+	"id": 20718
+}, {
+	"spell": "affection",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'fekʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "感情；鍾愛",
+	"id": 20719
+}, {
+	"spell": "anticipate ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[æn'tisipeit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "預見；期待；在...之前行動；預先考慮；提前使用",
+	"id": 20720
+}, {
+	"spell": "brag",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[bræg]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "自誇；吹噓",
+	"id": 20721
+}, {
+	"spell": "delighted ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'laitid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美欣喜的；愉快的",
+	"id": 20722
+}, {
+	"spell": "detest ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'test]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "憎惡；痛恨；嫌惡",
+	"id": 20723
+}, {
+	"spell": "disgust",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dis'gʌst]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美作嘔；厭惡；反感導致反感",
+	"id": 20724
+}, {
+	"spell": "distress ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'stres]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "悲痛；貧困；危難",
+	"id": 20725
+}, {
+	"spell": "enthusiastic",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in,θju:zi'æstik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "熱心的；狂熱的",
+	"id": 20726
+}, {
+	"spell": "esteem ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[is'ti:m]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "（1）好評；尊敬（2）極看重；尊重",
+	"id": 20727
+}, {
+	"spell": "fascination",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,fæsineiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "入迷；著迷；強烈吸引力；魅力",
+	"id": 20728
+}, {
+	"spell": "gloomy ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['glu:mi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "幽暗的；令人沮喪的；憂鬱的；沒有希望的",
+	"id": 20729
+}, {
+	"spell": "impartial ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[im'pɑ:ʃəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "不偏袒；無偏見的；公正的",
+	"id": 20730
+}, {
+	"spell": "impulsive ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[im'pʌlsiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "衝動的",
+	"id": 20731
+}, {
+	"spell": "irritated ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['iriteit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "被激怒的；發炎的；疼痛的",
+	"id": 20732
+}, {
+	"spell": "mad ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[mæd]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "發瘋的；瘋狂的；著迷的；愚蠢的；生氣的",
+	"id": 20733
+}, {
+	"spell": "objective ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[əb'dʒektiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "目標；客觀的",
+	"id": 20734
+}, {
+	"spell": "panic",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['pænik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "恐慌；使恐慌",
+	"id": 20735
+}, {
+	"spell": "prejudice",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['predʒudis]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "偏見；歧視",
+	"id": 20736
+}, {
+	"spell": "repulsive ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'pʌlsiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使人反感的；令人厭惡的",
+	"id": 20737
+}, {
+	"spell": "tranquility",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[træŋ'kwiliti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "平靜的；安寧",
+	"id": 20738
+}, {
+	"spell": "ambition ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[æm'biʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "雄心；野心",
+	"id": 20739
+}, {
+	"spell": "attraction ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'trækʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "吸引力；吸引人之物",
+	"id": 20740
+}, {
+	"spell": "contentment ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[kən'tentmənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美滿意；滿足",
+	"id": 20741
+}, {
+	"spell": "despair",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'spɛə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "絶望；使人絶望的事物",
+	"id": 20742
+}, {
+	"spell": "devoted",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'vəutid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美摯愛的；忠實的；熱忱的",
+	"id": 20743
+}, {
+	"spell": "disposition ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,dispə'ziʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "傾向；性格；氣質；性情",
+	"id": 20744
+}, {
+	"spell": "elegant ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['eligənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "高雅的；有品味的；上等的",
+	"id": 20745
+}, {
+	"spell": "entice",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'tais]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "誘惑；引誘",
+	"id": 20746
+}, {
+	"spell": "fancy ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fænsi]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "精心設計的；特技的；花俏的；昂貴的",
+	"id": 20747
+}, {
+	"spell": "fondness ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fɔndnis]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "鍾愛；溺愛；嗜好；癖好",
+	"id": 20748
+}, {
+	"spell": "hideous",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['hidiəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "醜的嚇人；不忍睹的；醜惡的；可憎的",
+	"id": 20749
+}, {
+	"spell": "impression ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[im'preʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "意念；印象；不太明確的感覺或想法",
+	"id": 20750
+}, {
+	"spell": "instinct",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['instiŋkt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "天性；本能；直覺",
+	"id": 20751
+}, {
+	"spell": "jealous",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dʒeləs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "嫉妒的；羡慕的；唯恐失去的",
+	"id": 20752
+}, {
+	"spell": "nasty",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['nɑ:sti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "骯髒的；不道德的；惡毒的；令人不愉快的；嚴重的",
+	"id": 20753
+}, {
+	"spell": "optimistic",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ɔpti'mistik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美樂觀的",
+	"id": 20754
+}, {
+	"spell": "perceive ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pə'si:v]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "感知；察覺；理會",
+	"id": 20755
+}, {
+	"spell": "provoke ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'vəuk]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美激怒；引起；激起",
+	"id": 20756
+}, {
+	"spell": "startle",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['stɑ:tl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美驚嚇；使嚇一跳",
+	"id": 20757
+}, {
+	"spell": "upset",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ʌp'set]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使心煩意亂；使不舒服；使失敗；打翻",
+	"id": 20758
+}, {
+	"spell": "aspect",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æspekt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "面貌；方向；朝向",
+	"id": 20759
+}, {
+	"spell": "assumption",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'sʌmpʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "假定；假設",
+	"id": 20760
+}, {
+	"spell": "attempt",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'tempt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "企圖；攻擊；努力嘗試；企圖",
+	"id": 20761
+}, {
+	"spell": "call waiting ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "電話插播",
+	"id": 20762
+}, {
+	"spell": "declaration",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,deklə'reiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "宣佈；公佈；宣言",
+	"id": 20763
+}, {
+	"spell": "endeavor ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'devə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "努力；儘力試圖；嘗試",
+	"id": 20764
+}, {
+	"spell": "exceed ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ik'si:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "超過；超出；超越",
+	"id": 20765
+}, {
+	"spell": "identity",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ai'dentiti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "身份；本體；相同；同一",
+	"id": 20766
+}, {
+	"spell": "implication",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,impli'keiʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "含義；暗示；牽連",
+	"id": 20767
+}, {
+	"spell": "inspire",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'spair]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "鼓舞；激發；引發",
+	"id": 20768
+}, {
+	"spell": "intention ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'tenʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "意圖；目的",
+	"id": 20769
+}, {
+	"spell": "interrupt",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,intə'rʌpt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "打斷；中斷",
+	"id": 20770
+}, {
+	"spell": "manipulate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[mə'nipjuleit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "操作；操縱",
+	"id": 20771
+}, {
+	"spell": "obstacle",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔbstəkl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "障礙物；阻礙",
+	"id": 20772
+}, {
+	"spell": "priority ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prai'ɔriti]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "優先權；優先考慮的事",
+	"id": 20773
+}, {
+	"spell": "prohibit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'hibit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "禁止；防止；阻止",
+	"id": 20774
+}, {
+	"spell": "reassure",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ri:ə'ʃuə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使安心；使放心；使恢復信心；再保證",
+	"id": 20775
+}, {
+	"spell": "remind ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ri'maind]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "提醒；使想起",
+	"id": 20776
+}, {
+	"spell": "sustain ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[səs'tein]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "維持；持續；支撐；蒙受",
+	"id": 20777
+}, {
+	"spell": "undertake ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,ʌndə'teik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "承擔；許諾；保證",
+	"id": 20778
+}, {
+	"spell": "alter",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ɔ:ltə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "改變；修改",
+	"id": 20779
+}, {
+	"spell": "assurance ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'ʃuərəns]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "保證；擔保；自信；把握",
+	"id": 20780
+}, {
+	"spell": "clarify ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['klærifai]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美澄清；使純淨",
+	"id": 20781
+}, {
+	"spell": "discard ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dis'kɑ:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "拋棄；丟棄",
+	"id": 20782
+}, {
+	"spell": "entitle",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'taitl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "定名；使有資格",
+	"id": 20783
+}, {
+	"spell": "exhibition",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,eksi'biʃən]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "展覽會；表現",
+	"id": 20784
+}, {
+	"spell": "impact",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['impækt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "碰撞力；影響；行動",
+	"id": 20785
+}, {
+	"spell": "incentive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'sentiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美鼓勵；誘因",
+	"id": 20786
+}, {
+	"spell": "instruct ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'strʌkt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "教授；指導；下命令；指示",
+	"id": 20787
+}, {
+	"spell": "interfere",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,intə'fiə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "妨害；擾亂；介入；干涉",
+	"id": 20788
+}, {
+	"spell": "involve",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'vɔlv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "使捲入；牽涉；伴隨（指必然結果）",
+	"id": 20789
+}, {
+	"spell": "merit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['merit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "功勞；價值；優點",
+	"id": 20790
+}, {
+	"spell": "permit",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[pə'mit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "許可證；執照準許；許可",
+	"id": 20791
+}, {
+	"spell": "proceed ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'si:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "著手；繼續進行",
+	"id": 20792
+}, {
+	"spell": "protest ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[prə'test]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美抗議；反對",
+	"id": 20793
+}, {
+	"spell": "register",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['redʒistə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "登記簿；註冊簿；記錄；註冊；登記姓名",
+	"id": 20794
+}, {
+	"spell": "risk ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "風險；危險使遭受危險；冒...的危險",
+	"id": 20795
+}, {
+	"spell": "submit ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[səb'mit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "認輸；使服從；提出",
+	"id": 20796
+}, {
+	"spell": "speculate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['spekjuleit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "沉思；思索；猜測；推測；投機",
+	"id": 20797
+}, {
+	"spell": "verify ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['verifai]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "證明；證實；確認",
+	"id": 20798
+}, {
+	"spell": "absurd",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[əb'sə:d]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "荒謬的；不合理的；違反常理的",
+	"id": 20799
+}, {
+	"spell": "adequate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ædikwit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "足夠的；適當的",
+	"id": 20800
+}, {
+	"spell": "ample ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['æmpl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "廣大的；寬敞的；充足的",
+	"id": 20801
+}, {
+	"spell": "decent ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['di:snt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "合宜的；得體的；適當的",
+	"id": 20802
+}, {
+	"spell": "dreadful ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['dredfəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美令人恐怖的；令人害怕的",
+	"id": 20803
+}, {
+	"spell": "exceptional ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ik'sepʃənl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "異常的；例外的；特別優秀",
+	"id": 20804
+}, {
+	"spell": "exquisite ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ekskwizit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "精細的；精美的；敏鋭的；細緻的",
+	"id": 20805
+}, {
+	"spell": "far-fetched ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['fɑ:'fetʃt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "牽強的；不大可信的；不自然的",
+	"id": 20806
+}, {
+	"spell": "in light of ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "按照；根據",
+	"id": 20807
+}, {
+	"spell": "ingenious",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'dʒi:njəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有巧思的；有創意的；靈敏的",
+	"id": 20808
+}, {
+	"spell": "instant ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['instənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "立即的；（食品）快速方便的",
+	"id": 20809
+}, {
+	"spell": "legitimate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[li'dʒitimit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "合法的；正當的；婚生的",
+	"id": 20810
+}, {
+	"spell": "moderate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['mɔdərit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "中等的；適度的；有節制的；溫和的",
+	"id": 20811
+}, {
+	"spell": "oblivious",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'bliviəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "遺忘的；遺忘的；不注意的；不在意的",
+	"id": 20812
+}, {
+	"spell": "random ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['rændəm]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "隨便的；無目的的",
+	"id": 20813
+}, {
+	"spell": "relevant ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['relivənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "有關的；切題的；有實際價值或重要性的",
+	"id": 20814
+}, {
+	"spell": "substantially ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[səb'stænʃəli]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "相當大的；基本上；本質的",
+	"id": 20815
+}, {
+	"spell": "temporary",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['tempəreri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "暫時的臨時的",
+	"id": 20816
+}, {
+	"spell": "unprecedented",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ʌn'presidəntid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "史無前例的；空前的",
+	"id": 20817
+}, {
+	"spell": "versatile ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['və:sətail]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "多才多藝的；有多種用途的",
+	"id": 20818
+}, {
+	"spell": "accurate",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ækjurit]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "準確的；正確無誤的；精確的",
+	"id": 20819
+}, {
+	"spell": "alert",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'lə:t]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "警覺的；留心的；機警的；敏捷的",
+	"id": 20820
+}, {
+	"spell": "approximately",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ə'prɔksimitli]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "大約；大概",
+	"id": 20821
+}, {
+	"spell": "distinctive ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[di'stiŋktiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "與眾不同的；有特色的；顯著的",
+	"id": 20822
+}, {
+	"spell": "dynamic",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[dai'næmik]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "充滿活力的；動力的",
+	"id": 20823
+}, {
+	"spell": "excessive",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[ik'sesiv]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "過多的；過度的；過分的",
+	"id": 20824
+}, {
+	"spell": "extraordinary ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[iks'trɔ:dnri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "特別的；格外的；值得注意的",
+	"id": 20825
+}, {
+	"spell": "fragile ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['frædʒil]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "易碎的；易損壞的；脆弱的",
+	"id": 20826
+}, {
+	"spell": "inferior ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[in'fiəriə]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "品質差的；下等的；下級的",
+	"id": 20827
+}, {
+	"spell": "initial ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[i'niʃəl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "開始的；最初的",
+	"id": 20828
+}, {
+	"spell": "irresistible",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,iri'zistəbl]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "極為誘人的；無法抗拒的",
+	"id": 20829
+}, {
+	"spell": "miscellaneous ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[,misi'leinjəs]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "不同種類的；各式各樣的；混雜的",
+	"id": 20830
+}, {
+	"spell": "noteworthy",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['nəut,wə:ði]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "值得注意的；顯著的",
+	"id": 20831
+}, {
+	"spell": "on and off ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "phr.",
+	"translation": "斷斷續續的；偶爾；有時 ",
+	"id": 20832
+}, {
+	"spell": "rapid",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ræpid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "迅速的；快速的；快的",
+	"id": 20833
+}, {
+	"spell": "self-explanatory ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['selfiks'plænətəri]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "不需要加以說明的；不言自明的",
+	"id": 20834
+}, {
+	"spell": "sufficient",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[sə'fiʃənt]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "足夠的",
+	"id": 20835
+}, {
+	"spell": "ultimately ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['ʌltimitli]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "美最後；最終",
+	"id": 20836
+}, {
+	"spell": "vague",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "[veig]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "含糊不清的；模糊不清的",
+	"id": 20837
+}, {
+	"spell": "vivid ",
+	"cnSentence": ["未定義例句"],
+	"phonetic": "['vivid]",
+	"enSentence": ["default sentence"],
+	"level": 0,
+	"partOfSpeech": "",
+	"translation": "生龍活虎的；鮮艷的；鮮明的；生動逼真的",
+	"id": 20838
+}]

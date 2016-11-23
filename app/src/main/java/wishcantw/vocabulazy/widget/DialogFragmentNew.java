@@ -1,6 +1,6 @@
 package wishcantw.vocabulazy.widget;
 
-import wishcantw.vocabulazy.ga.GABaseFragment;
+import wishcantw.vocabulazy.analytics.ga.GABaseFragment;
 
 /**
  * Created by SwallowChen on 9/4/16.

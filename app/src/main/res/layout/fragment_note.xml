@@ -18,6 +18,7 @@
         android:src="@drawable/no_note_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:contentDescription="@null"
         android:visibility="invisible"/>
 

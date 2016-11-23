@@ -1,4 +1,4 @@
-<wishcantw.vocabulazy.player.view.PlayerPanelView
+<wishcantw.vocabulazy.activities.player.view.PlayerPanelView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,4 +34,4 @@
             android:onClick="onOptionClicked"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp" />
-</wishcantw.vocabulazy.player.view.PlayerPanelView>
+</wishcantw.vocabulazy.activities.player.view.PlayerPanelView>
