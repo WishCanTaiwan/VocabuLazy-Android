@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import wishcantw.vocabulazy.R;
-import wishcantw.vocabulazy.mainmenu.activity.MainMenuActivity;
+import wishcantw.vocabulazy.activities.mainmenu.activity.MainMenuActivity;
 //import wishcantw.vocabulazy.view.adapter.LinkedListPagerAdapter;
 
 import java.util.LinkedList;

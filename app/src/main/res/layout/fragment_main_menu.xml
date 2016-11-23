@@ -15,7 +15,7 @@
         app:tabSelectedTextColor="@color/main_menu_fragment_tab_selected_text_color"
         app:tabTextAppearance="@style/AppTheme.MainMenuActivity.TextAppearance"/>
 
-    <wishcantw.vocabulazy.mainmenu.view.MainMenuViewPager
+    <wishcantw.vocabulazy.activities.mainmenu.view.MainMenuViewPager
         android:id="@+id/main_menu_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
