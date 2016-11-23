@@ -4,13 +4,13 @@
     android:id="@+id/activity_cover_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="wishcantw.vocabulazy.cover.activity.CoverActivity">
+    tools:context=".activities.cover.activity.CoverActivity">
 
     <fragment
         android:id="@+id/cover_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="wishcantw.vocabulazy.cover.fragment.CoverFragment"
+        android:name="wishcantw.vocabulazy.activities.cover.fragment.CoverFragment"
         tools:layout="@layout/fragment_cover" />
 
 </RelativeLayout>

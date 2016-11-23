@@ -14,9 +14,9 @@ public class AppPreference {
 
     private boolean isAudioFocused;
 
-    private int playerBookIndex;
-    private int playerLessonIndex;
-    private int playerItemIndex;
+    private int playerBookIndex = -1359;
+    private int playerLessonIndex = -1359;
+    private int playerItemIndex = -1359;
     private int playerOptionMode = 0;
     private AudioPlayerUtils.PlayerField playerField = AudioPlayerUtils.PlayerField.SPELL;
     private AudioPlayerUtils.PlayerState playerState = AudioPlayerUtils.PlayerState.IDLE;

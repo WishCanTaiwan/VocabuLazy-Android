@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wishcantw.vocabulazy.exam.view.ExamResultView xmlns:android="http://schemas.android.com/apk/res/android"
+<wishcantw.vocabulazy.activities.exam.view.ExamResultView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="wishcantw.vocabulazy.exam.activity.ExamActivity">
+    tools:context=".activities.exam.activity.ExamActivity">
 
     <ProgressBar
         android:id="@+id/exam_progressbar"
@@ -84,7 +84,7 @@
 
         </LinearLayout>
 
-        <wishcantw.vocabulazy.exam.view.ExamResultAnswerView
+        <wishcantw.vocabulazy.activities.exam.view.ExamResultAnswerView
             android:id="@+id/exam_result_try_again"
             android:layout_width="match_parent"
             android:layout_height="@dimen/exam_result_answer_height"
@@ -99,9 +99,9 @@
                 android:textSize="@dimen/exam_result_answer_text"
                 android:textColor="@color/white_1"/>
 
-        </wishcantw.vocabulazy.exam.view.ExamResultAnswerView>
+        </wishcantw.vocabulazy.activities.exam.view.ExamResultAnswerView>
 
-        <wishcantw.vocabulazy.exam.view.ExamResultAnswerView
+        <wishcantw.vocabulazy.activities.exam.view.ExamResultAnswerView
             android:id="@+id/exam_result_try_other"
             android:layout_width="match_parent"
             android:layout_height="@dimen/exam_result_answer_height"
@@ -116,8 +116,8 @@
                 android:textSize="@dimen/exam_result_answer_text"
                 android:textColor="@color/white_1"/>
 
-        </wishcantw.vocabulazy.exam.view.ExamResultAnswerView>
+        </wishcantw.vocabulazy.activities.exam.view.ExamResultAnswerView>
 
     </LinearLayout>
 
-</wishcantw.vocabulazy.exam.view.ExamResultView>
+</wishcantw.vocabulazy.activities.exam.view.ExamResultView>
