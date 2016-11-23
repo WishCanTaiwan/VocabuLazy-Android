@@ -24,7 +24,7 @@ android {
         applicationId "wishcantw.vocabulazy"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 15
+        versionCode 16
         versionName '1.0.8'
     }
     buildTypes {
