@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wishcantw.vocabulazy.search.view.SearchView
+<wishcantw.vocabulazy.activities.search.view.SearchView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wishcantw.vocabulazy.search.view.SearchListView
+    <wishcantw.vocabulazy.activities.search.view.SearchListView
         android:id="@+id/search_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/transparent"/>
 
-</wishcantw.vocabulazy.search.view.SearchView>
+</wishcantw.vocabulazy.activities.search.view.SearchView>
