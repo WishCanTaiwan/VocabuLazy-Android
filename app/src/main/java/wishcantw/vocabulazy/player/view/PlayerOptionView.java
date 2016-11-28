@@ -3,7 +3,6 @@ package wishcantw.vocabulazy.player.view;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -41,18 +40,20 @@ public class PlayerOptionView extends LinearLayout {
     public static final int IDX_MODE_1 = 0x11;
     public static final int IDX_MODE_2 = 0x12;
 
+    private static final int IDX_SEEK_BAR_REPEAT = PlayerOptionSeekBarsView.IDX_SEEK_BAR_REPEAT;
+    private static final int IDX_SEEK_BAR_SPEED  = PlayerOptionSeekBarsView.IDX_SEEK_BAR_SPEED;
+    private static final int IDX_SEEK_BAR_PLAY_TIME = PlayerOptionSeekBarsView.IDX_SEEK_BAR_PLAY_TIME;
+
     private static final int VIEW_PLAYER_OPTION_VOICE_SWITCH_ID           = R.id.player_option_voice_switch;
     private static final int VIEW_PLAYER_OPTION_SENTENCE_SWITCH_ID        = R.id.player_option_sentence_switch;
     private static final int VIEW_PLAYER_OPTION_MODE_RADIO_GROUP_ID       = R.id.player_option_mode_radio_group;
     private static final int VIEW_PLAYER_OPTION_LIST_ORDER_RADIO_GROUP_ID = R.id.player_option_list_order_radio_group;
     private static final int VIEW_PLAYER_OPTION_VOC_ORDER_RADIO_GROUP_ID  = R.id.player_option_voc_order_radio_group;
-    private static final int VIEW_PLAYER_OPTION_REPEAT_SEEK_BAR           = R.id.player_option_repeat_seekbar;
-    private static final int VIEW_PLAYER_OPTION_SPEED_SEEK_BAR            = R.id.player_option_speed_seekbar;
-    private static final int VIEW_PLAYER_OPTION_PLAYING_TIME_SEEK_BAR     = R.id.player_option_playing_time_seekbar;
+    private static final int VIEW_PLAYER_OPTION_SEEK_BARS_ID              = R.id.player_option_seekbars;
 
     private Switch mVoiceSwitch, mSentenceSwitch;
     private RadioGroup mModeRadioGroup, mListOrderRadioGroup, mVocOrderRadioGroup;
-    private SeekBar mRepeatSeekBar, mSpeedSeekBar, mPlayingSeekBar;
+    private PlayerOptionSeekBarsView mPlayerOptionSeekBarsView;
 
     private OnOptionChangedListener mOnOptionChangedListener, mRestoreListener;
 
@@ -72,9 +73,7 @@ public class PlayerOptionView extends LinearLayout {
         mModeRadioGroup      = (RadioGroup) findViewById(VIEW_PLAYER_OPTION_MODE_RADIO_GROUP_ID);
         mListOrderRadioGroup = (RadioGroup) findViewById(VIEW_PLAYER_OPTION_LIST_ORDER_RADIO_GROUP_ID);
         mVocOrderRadioGroup  = (RadioGroup) findViewById(VIEW_PLAYER_OPTION_VOC_ORDER_RADIO_GROUP_ID);
-        mRepeatSeekBar       = (SeekBar)    findViewById(VIEW_PLAYER_OPTION_REPEAT_SEEK_BAR);
-        mSpeedSeekBar        = (SeekBar)    findViewById(VIEW_PLAYER_OPTION_SPEED_SEEK_BAR);
-        mPlayingSeekBar      = (SeekBar)    findViewById(VIEW_PLAYER_OPTION_PLAYING_TIME_SEEK_BAR);
+        mPlayerOptionSeekBarsView = (PlayerOptionSeekBarsView) findViewById(VIEW_PLAYER_OPTION_SEEK_BARS_ID);
 
         for (int i = 0; i < Math.max(mModeRadioGroup.getChildCount(), Math.max(mListOrderRadioGroup.getChildCount(), mVocOrderRadioGroup.getChildCount())); i++) {
             if (mModeRadioGroup.getChildAt(i) != null) {
@@ -87,9 +86,10 @@ public class PlayerOptionView extends LinearLayout {
                 mVocOrderRadioGroup.getChildAt(i).setId(i);
             }
         }
-        mRepeatSeekBar.setMax(5);
-        mSpeedSeekBar.setMax(2);
-        mPlayingSeekBar.setMax(40);
+
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_REPEAT, 5);
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_SPEED, 2);
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_PLAY_TIME, 40);
         registerOptionListener();
     }
 
@@ -122,24 +122,15 @@ public class PlayerOptionView extends LinearLayout {
             // Use input option to determined the initial (or last time saved) mode
             mModeRadioGroup.check(modeIdx);
         }
-        // Force voice to turned on
+
         mVoiceSwitch.setChecked(voiceEnable);
-        // Force sentence to turned off (currently database is not supported)
         mSentenceSwitch.setChecked(sentenceEnable);
-        // Force list order to be serial order (1 is random order)
         mListOrderRadioGroup.check(listOrderIdx);
-        // Force voc order to be serial and not repeat the list
         mVocOrderRadioGroup.check(vocOrderIdx);
-        // TODO : Fine tuning the seek bar to increase 1 a time, but layout increase 1/5 seek bar
-        if (Build.VERSION.SDK_INT >= 24) {
-            mRepeatSeekBar.setProgress(option.getItemLoop(), true);
-            mSpeedSeekBar.setProgress(option.getSpeed(), true);
-            mPlayingSeekBar.setProgress(option.getPlayTime(), true);
-        } else {
-            mRepeatSeekBar.setProgress(option.getItemLoop());
-            mSpeedSeekBar.setProgress(option.getSpeed());
-            mPlayingSeekBar.setProgress(option.getPlayTime());
-        }
+
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_REPEAT, option.getItemLoop());
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_SPEED, option.getSpeed());
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_PLAY_TIME, option.getPlayTime());
 
         // register back
         restoreListener();
@@ -195,64 +186,29 @@ public class PlayerOptionView extends LinearLayout {
                 }
             }
         });
-        // The callback for repeat time picked
-        mRepeatSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        // The callback for any of seek bars is changed
+        mPlayerOptionSeekBarsView.setEventListener(new PlayerOptionSeekBarsView.EventListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                if (mOnOptionChangedListener != null) {
-                    mOnOptionChangedListener.onOptionChanged(IDX_OPTION_FREQUENCY, mModeRadioGroup.getCheckedRadioButtonId(), mRepeatSeekBar, i);
+            public void onSeekBarChanged(int seekBarIdx, SeekBar seekBar, int i, boolean b) {
+                switch (seekBarIdx) {
+                    case IDX_SEEK_BAR_REPEAT:
+                    case IDX_SEEK_BAR_SPEED:
+                    case IDX_SEEK_BAR_PLAY_TIME:
+                        if (mOnOptionChangedListener != null) {
+                            // Because Seek bar idx is started from IDX_SEEK_BAR_REPEAT (FREQUENCY) (0)
+                            int startIdx = IDX_OPTION_FREQUENCY;
+                            int modeId = mModeRadioGroup.getCheckedRadioButtonId();
+                            mOnOptionChangedListener.onOptionChanged(startIdx + seekBarIdx, modeId, seekBar, i);
+                        }
+                        break;
+                    default:
+                        break;
                 }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        // The callback for playing speed picked
-        mSpeedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                if (mOnOptionChangedListener != null) {
-                    mOnOptionChangedListener.onOptionChanged(IDX_OPTION_SPEED, mModeRadioGroup.getCheckedRadioButtonId(), mSpeedSeekBar, i);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        // The callback for playing duration (auto playing time, once times up, the player shutdown)
-        mPlayingSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                if (mOnOptionChangedListener != null) {
-                    mOnOptionChangedListener.onOptionChanged(IDX_OPTION_PLAY_TIME, mModeRadioGroup.getCheckedRadioButtonId(), mPlayingSeekBar, i);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
     }
+
+    /**----------------------------------- private method ---------------------------------------**/
 
     private void unregisterListener() {
         mRestoreListener = mOnOptionChangedListener;
