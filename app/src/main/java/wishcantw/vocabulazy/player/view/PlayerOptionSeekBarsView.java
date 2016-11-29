@@ -5,7 +5,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.ImageView;
+import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
@@ -39,11 +39,13 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
     private static final int VIEW_SPEED_SEEK_BAR_RES_ID     = R.id.player_option_speed_seekbar;
     private static final int VIEW_PLAY_TIME_SEEK_BAR_RES_ID = R.id.player_option_play_time_seekbar;
 
+    private static final int VIEW_PLAYER_BALLOON_RES_ID = R.layout.view_player_option_balloon;
+
     private static final int DIMEN_MARGIN_BALLOON = R.dimen.player_option_seekbar_balloon_margin;
 
     private static final int DRAWABLE_BALLOON = R.drawable.ic_room_black_48dp;
 
-    private ImageView mBalloonImageView;
+    private PlayerOptionBalloonView mBalloonView;
 
     private SeekBar mRepeatSeekBar, mSpeedSeekBar, mPlayingTimeSeekBar;
     private SeekBar mSeekBars[];
@@ -55,10 +57,8 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
 
     public PlayerOptionSeekBarsView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mBalloonImageView = new ImageView(context);
-        mBalloonImageView.setImageResource(DRAWABLE_BALLOON);
-        mBalloonImageView.setVisibility(GONE);
-        addView(mBalloonImageView);
+        mBalloonView = (PlayerOptionBalloonView) ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(VIEW_PLAYER_BALLOON_RES_ID, null);
+        mBalloonView.setVisibility(INVISIBLE);
     }
 
     @Override
@@ -69,6 +69,9 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
         mPlayingTimeSeekBar = (SeekBar) findViewById(VIEW_PLAY_TIME_SEEK_BAR_RES_ID);
 
         mSeekBars = new SeekBar[] {mRepeatSeekBar, mSpeedSeekBar, mPlayingTimeSeekBar};
+
+        // To make balloon view on top of all others view, addView after all view is inflated
+        addView(mBalloonView);
 
         registerEventListener();
     }
@@ -148,10 +151,10 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
      */
     private void showBalloon(boolean show, SeekBar seekBar) {
         if (!show) {
-            mBalloonImageView.setVisibility(GONE);
+            mBalloonView.setVisibility(INVISIBLE);
             return;
         }
-        mBalloonImageView.setVisibility(VISIBLE);
+        mBalloonView.setVisibility(VISIBLE);
         moveBalloon(seekBar, seekBar.getProgress());
     }
 
@@ -159,6 +162,7 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
      * move the balloon image view according to the seek bar
      * @param seekBar the view of the desired seek bar, used to calculate where balloon should be put
      * @param curVal the current value of the seek bar, used to calculate where balloon should be put
+     *               and indicate the value currently the PlayerOptionBalloon should show
      */
     private void moveBalloon(SeekBar seekBar, int curVal) {
         int width, height; /* balloon image view */
@@ -168,8 +172,8 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
         float xOffset, yOffset; /* where balloon should be */
         Rect parentViewRect, seekBarRect;
 
-        width = mBalloonImageView.getWidth();
-        height = mBalloonImageView.getHeight();
+        width = mBalloonView.getWidth();
+        height = mBalloonView.getHeight();
 
         left = seekBar.getLeft();
         right = seekBar.getRight();
@@ -196,9 +200,8 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
                 - getResources().getDimension(DIMEN_MARGIN_BALLOON)
                 - height;
 
-        mBalloonImageView.setX(xOffset);
-        mBalloonImageView.setY(yOffset);
-
-        Log.d("PlayerSeekBar", "moveBalloon X:" + xOffset + " Y:" + seekBarRect.top);
+        mBalloonView.setX(xOffset);
+        mBalloonView.setY(yOffset);
+        mBalloonView.setBalloonText(String.valueOf(curVal));
     }
 }
