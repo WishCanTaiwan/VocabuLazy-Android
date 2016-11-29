@@ -117,7 +117,7 @@ public class NoteFragment extends GABaseFragment implements NoteView.OnNoteItemC
         mNoteView.setAdapter(new NoteContentAdapter(
                 ((MainMenuActivity) getActivity()).getMainMenuModel().getNoteGroupItems(),
                 ((MainMenuActivity) getActivity()).getMainMenuModel().getNoteChildItemsMap()));
-        if (mGroupItems.size() > 0) {
+        if (((MainMenuActivity) getActivity()).getMainMenuModel().getNoteGroupItems().size() > 0) {
             imageView.setVisibility(View.INVISIBLE);
         } else {
             imageView.setVisibility(View.VISIBLE);

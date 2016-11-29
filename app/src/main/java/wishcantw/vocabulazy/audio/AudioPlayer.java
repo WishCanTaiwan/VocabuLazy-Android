@@ -203,10 +203,12 @@ public class AudioPlayer {
                 string = content.get(itemIndex).getSpell();
                 vlTextToSpeech.setLanguage(Locale.ENGLISH);
                 break;
+
             case TRANSLATE:
                 string = content.get(itemIndex).getTranslation();
                 vlTextToSpeech.setLanguage(Locale.TAIWAN);
                 break;
+
             default:
                 Logger.d("AudioPlayer", "unexpected case in startPlayingItemAt: " + itemIndex + ", " +
                         "playing " + playerField);
