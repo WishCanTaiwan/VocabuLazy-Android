@@ -24,7 +24,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
                                                                  PlayerVocTooLessDialogFragment.OnPlayerAlertDoneListener {
     // layout ids
     private static final int VIEW_RES_ID = R.layout.activity_player;
-    private static final int VIEW_MAIN_RES_ID = R.id.activity_player_container;
+    private static final int VIEW_MAIN_RES_ID = R.id.player_fragment_container;
 
     // tag for debugging
     public static final String TAG = "PlayerActivity";
