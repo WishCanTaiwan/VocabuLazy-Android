@@ -1,5 +1,6 @@
 package wishcantw.vocabulazy.activities.player.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,14 +60,14 @@ public class PlayerNewNoteDialogFragment extends DialogFragmentNew implements Di
 
     @Override
     public void onYesClick() {
-        getActivity().onBackPressed();
-
         // get name of new note
         String newNoteString = mPlayerNewNoteDialogView.getNewNoteString();
 
         // access search model and add new note to database
         PlayerModel playerModel = ((PlayerActivity) getActivity()).getPlayerModel();
         playerModel.addNewNote(newNoteString);
+
+        getActivity().onBackPressed();
 
         if (mOnDialogFinishListener != null) {
             mOnDialogFinishListener.onNewNoteDone(newNoteString);

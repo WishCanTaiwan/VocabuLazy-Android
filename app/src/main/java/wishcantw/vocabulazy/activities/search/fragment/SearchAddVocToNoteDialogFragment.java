@@ -96,8 +96,7 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
     @Override
     public void onYesClick() {
 
-        // remove current fragment
-        getActivity().onBackPressed();
+
 
         // get selected note index
         int selectedNoteIndex = mSearchAddVocToNoteDialogView.getCurrentCheckedNoteIndex();
@@ -105,11 +104,16 @@ public class SearchAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
         // if the selected index is the last one, then pop NewNoteDialog to create new note
         // otherwise add the vocabulary to the seleceted note
         if (mSearchAddVocToNoteDialogView.getCurrentCheckedNoteIndex() == mNoteNameList.size()) {
+            // remove current fragment
+            getActivity().onBackPressed();
             if (mOnAddVocToNoteDialogFinishListener != null) {
                 mOnAddVocToNoteDialogFinishListener.onNeedNewNote();
             }
         } else {
-            mSearchModel.addVocToNote(selectedVocId, selectedNoteIndex);
+
+            mSearchModel.addVocToNote(((SearchActivity) getActivity()).getVocIdToBeAdded(), selectedNoteIndex);
+            // remove current fragment
+            getActivity().onBackPressed();
         }
     }
 

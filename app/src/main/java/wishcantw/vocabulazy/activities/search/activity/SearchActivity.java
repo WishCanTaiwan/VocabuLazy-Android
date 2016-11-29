@@ -33,6 +33,10 @@ public class SearchActivity extends ParentActivity implements SearchView.OnQuery
     private SearchFragment mSearchFragment;
     private SearchModel mSearchModel;
 
+    // TODO: 2016/11/30 The variable is used as quick solution, need re-evaluation on the structure of fragments.
+    // vocabulary id to be added
+    private int vocIdToBeAdded;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +114,15 @@ public class SearchActivity extends ParentActivity implements SearchView.OnQuery
         return mSearchModel;
     }
 
+    /**
+     * Get the id of vocabulary which is being added to a note
+     *
+     * @return the id of the vocabulary
+     */
+    public int getVocIdToBeAdded() {
+        return vocIdToBeAdded;
+    }
+
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -125,8 +138,9 @@ public class SearchActivity extends ParentActivity implements SearchView.OnQuery
     @Override
     public void onSearchListClick(int vocId) {
         Logger.d(TAG, "onSearchListClick");
+        vocIdToBeAdded = vocId;
         SearchAddVocToNoteDialogFragment dialogFragment = new SearchAddVocToNoteDialogFragment();
-        dialogFragment.setSelectedVocId(vocId);
+//        dialogFragment.setSelectedVocId(vocId);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(SearchActivity.VIEW_MAIN_RES_ID, dialogFragment, "SearchAddVocToNoteDialogFragment");
         fragmentTransaction.addToBackStack("SearchAddVocToNoteDialogFragment");

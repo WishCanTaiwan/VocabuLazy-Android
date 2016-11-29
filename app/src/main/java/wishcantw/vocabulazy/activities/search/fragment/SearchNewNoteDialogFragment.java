@@ -71,15 +71,14 @@ public class SearchNewNoteDialogFragment extends DialogFragmentNew implements Di
 
     @Override
     public void onYesClick() {
-
-        // remove current fragment
-        getActivity().onBackPressed();
-
         // get name of new note
         String newNoteString = mSearchNewNoteDialogView.getNewNoteString();
 
         // access search model and add new note to database
         mSearchModel.addNewNote(newNoteString);
+
+        // remove current fragment
+        getActivity().onBackPressed();
 
         // notify new note has been added
         if (mOnDialogFinishListener != null) {

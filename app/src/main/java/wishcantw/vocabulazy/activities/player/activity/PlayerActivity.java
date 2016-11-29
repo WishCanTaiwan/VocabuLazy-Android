@@ -35,6 +35,10 @@ public class PlayerActivity extends ParentActivity implements PlayerFragment.OnP
     // tag for lesson change
     private boolean isLessonChanged = true;
 
+    // TODO: 2016/11/30 The variable is used as quick solution, need re-evaluation on the structure of fragments.
+    // voc id to be add
+    private int vocIdToBeAdded;
+
     // player model
     private PlayerModel mPlayerModel;
 
@@ -126,6 +130,15 @@ public class PlayerActivity extends ParentActivity implements PlayerFragment.OnP
         return isLessonChanged;
     }
 
+    /**
+     * Get the vocabulary id which is being added to note
+     *
+     * @return the id of the vocabulary
+     */
+    public int getVocIdToBeAdded() {
+        return vocIdToBeAdded;
+    }
+
     /**-- PlayerFragment callback --**/
     @Override
     public void onLessonChange(int lesson) {
@@ -137,8 +150,9 @@ public class PlayerActivity extends ParentActivity implements PlayerFragment.OnP
     @Override
     public void onFavoriteClick(int vocId) {
         Logger.d(TAG, "onNewNote");
+        vocIdToBeAdded = vocId;
         PlayerAddVocToNoteDialogFragment dialogFragment = new PlayerAddVocToNoteDialogFragment();
-        dialogFragment.setSelectedVocId(vocId);
+//        dialogFragment.setSelectedVocId(vocId);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(PlayerActivity.VIEW_MAIN_RES_ID, dialogFragment, "PlayerAddVocToNoteDialogFragment");
         fragmentTransaction.addToBackStack("PlayerAddVocToNoteDialogFragment");
