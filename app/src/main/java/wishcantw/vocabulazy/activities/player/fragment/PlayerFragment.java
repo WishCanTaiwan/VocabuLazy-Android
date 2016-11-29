@@ -223,8 +223,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
         mPlayerModel.createPlayerDetailContent(vocabularies.get(itemIndex));
 
+        setContent(vocabularies);
+
         if (!vocabularies.isEmpty() && isLessonChanged) {
-            setContent(vocabularies);
             startPlayingAt(0, AudioPlayerUtils.PlayerField.SPELL);
         }
     }
