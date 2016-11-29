@@ -35,6 +35,7 @@ public class PlayerActivity extends ParentActivity implements PlayerFragment.OnP
     // tag for lesson change
     private boolean isLessonChanged = true;
 
+    // TODO: 2016/11/30 The variable is used as quick solution, need re-evaluation on the structure of fragments.
     // voc id to be add
     private int vocIdToBeAdded;
 

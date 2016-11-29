@@ -33,6 +33,7 @@ public class SearchActivity extends ParentActivity implements SearchView.OnQuery
     private SearchFragment mSearchFragment;
     private SearchModel mSearchModel;
 
+    // TODO: 2016/11/30 The variable is used as quick solution, need re-evaluation on the structure of fragments.
     // vocabulary id to be added
     private int vocIdToBeAdded;
 
