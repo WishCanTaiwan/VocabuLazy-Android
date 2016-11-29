@@ -89,14 +89,15 @@ public class PlayerAddVocToNoteDialogFragment extends DialogFragmentNew<Integer>
 
     @Override
     public void onYesClick() {
-        getActivity().onBackPressed();
         int selectedNoteIndex = mPlayerAddVocToNoteDialogView.getCurrentCheckedNoteIndex();
         if (selectedNoteIndex == mNoteNameList.size()) {
+            getActivity().onBackPressed();
             if (mOnAddVocToNoteDialogFinishListener != null) {
                 mOnAddVocToNoteDialogFinishListener.onNeedNewNote();
             }
         } else {
-            mPlayerModel.addVocToNote(mSelectedVocId, selectedNoteIndex);
+            mPlayerModel.addVocToNote(((PlayerActivity) getActivity()).getVocIdToBeAdded(), selectedNoteIndex);
+            getActivity().onBackPressed();
         }
     }
 
