@@ -59,14 +59,27 @@ public class Database {
 
     }
 
-    public void storeData(@NonNull final Context context) {
+    public void storeData(@NonNull final Context context,
+                          @NonNull final boolean isFromMainMenu) {
         final FileWriter fileWriter = FileWriter.getInstance();
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
+                if (!isFromMainMenu) {
+//                    ((ParentActivity) context).showProgressDialog(context, "Storing data", "Please be patient");
+                }
                 fileWriter.writeNote(context, mNotes);
                 fileWriter.writeOptionSettings(context, mOptionSettings);
                 return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                if (!isFromMainMenu) {
+//                    ((ParentActivity) context).dismissDialog();
+//                    ((ParentActivity) context).onBackPressed();
+                }
             }
         }.execute();
     }

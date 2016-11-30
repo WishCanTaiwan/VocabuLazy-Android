@@ -18,7 +18,7 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="wishcantw.vocabulazy.player.fragment.PlayerFragment" />
+            android:name="wishcantw.vocabulazy.activities.player.fragment.PlayerFragment" />
 
     </RelativeLayout>
 

@@ -1,4 +1,4 @@
-<wishcantw.vocabulazy.player.view.PlayerView
+<wishcantw.vocabulazy.activities.player.view.PlayerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,10 +11,10 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true" />
 
-    <wishcantw.vocabulazy.player.view.PlayerMainView
+    <wishcantw.vocabulazy.activities.player.view.PlayerMainView
         android:id="@+id/player_main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/player_panel" />
 
-</wishcantw.vocabulazy.player.view.PlayerView>
+</wishcantw.vocabulazy.activities.player.view.PlayerView>

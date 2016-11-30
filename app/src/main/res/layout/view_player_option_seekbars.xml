@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wishcantw.vocabulazy.player.view.PlayerOptionSeekBarsView
+<wishcantw.vocabulazy.activities.player.view.PlayerOptionSeekBarsView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -82,4 +82,4 @@
 
     </LinearLayout>
 
-</wishcantw.vocabulazy.player.view.PlayerOptionSeekBarsView>
+</wishcantw.vocabulazy.activities.player.view.PlayerOptionSeekBarsView>
