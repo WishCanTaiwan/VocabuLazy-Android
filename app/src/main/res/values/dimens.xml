@@ -27,6 +27,14 @@
     <dimen name="textbook_group_subtitle_text_size">22dp</dimen>
     <dimen name="textbook_child_text_size">20dp</dimen>
     <dimen name="note_dialog_rename_translation_z">@dimen/dialog_z</dimen>
+    <dimen name="note_create_dialog_content_width">295dp</dimen>
+    <dimen name="note_create_dialog_content_height">150dp</dimen>
+    <dimen name="note_create_dialog_content_text_size">20sp</dimen>
+    <dimen name="note_create_dialog_content_yes_no_container_height">53dp</dimen>
+    <dimen name="note_create_dialog_content_translation_z">@dimen/dialog_z</dimen>
+    <dimen name="note_create_dialog_content_yes_no_container_translation_z">10dp</dimen>
+    <dimen name="note_create_dialog_content_padding">20dp</dimen>
+    <dimen name="note_create_dialog_content_yes_no_container_margin">28dp</dimen>
     <!-- exam -->
     <dimen name="exam_result_parent_margin_top">47dp</dimen>
     <dimen name="exam_result_parent_padding">22dp</dimen>
@@ -70,12 +78,6 @@
     <dimen name="player_dialog_add_voc_to_note_content_yes_no_container_height">53dp</dimen>
     <dimen name="player_dialog_add_voc_to_note_content_translation_z">@dimen/dialog_z</dimen>
     <dimen name="player_dialog_add_voc_to_note_content_yes_no_container_translation_z">10dp</dimen>
-    <dimen name="player_dialog_new_note_content_width">295dp</dimen>
-    <dimen name="player_dialog_new_note_content_height">150dp</dimen>
-    <dimen name="player_dialog_new_note_content_text_size">20sp</dimen>
-    <dimen name="player_dialog_new_note_content_yes_no_container_height">53dp</dimen>
-    <dimen name="player_dialog_new_note_content_translation_z">@dimen/dialog_z</dimen>
-    <dimen name="player_dialog_new_note_content_yes_no_container_translation_z">10dp</dimen>
     <dimen name="player_dialog_voc_too_less_width">295dp</dimen>
     <dimen name="player_dialog_voc_too_less_height">150dp</dimen>
     <dimen name="player_dialog_voc_too_less_yes_no_container_height">53dp</dimen>
@@ -85,6 +87,12 @@
     <dimen name="player_dialog_voc_too_less_content_text_size">20sp</dimen>
     <dimen name="player_dialog_add_voc_too_less_content_yes_no_container_margin">28dp</dimen>
     <dimen name="player_option_level_image_padding">33dp</dimen>
+    <dimen name="player_dialog_new_note_content_width">295dp</dimen>
+    <dimen name="player_dialog_new_note_content_height">150dp</dimen>
+    <dimen name="player_dialog_new_note_content_text_size">20sp</dimen>
+    <dimen name="player_dialog_new_note_content_yes_no_container_height">53dp</dimen>
+    <dimen name="player_dialog_new_note_content_translation_z">@dimen/dialog_z</dimen>
+    <dimen name="player_dialog_new_note_content_yes_no_container_translation_z">10dp</dimen>
     <!-- search -->
     <dimen name="search_divider_height">2dp</dimen>
     <dimen name="search_list_result_cross">25dp</dimen>
