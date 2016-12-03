@@ -29,6 +29,16 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
         void onSeekBarChanged(int seekBarIdx, SeekBar seekBar, int i, boolean b);
     }
 
+    public interface BalloonCallbackFunc {
+        /**
+         * The callback function for user to indicate the value to be shown on seek bar
+         * @param seekBarIdx indicate which seek bar is ready to show the value
+         * @param i indicate the current value of seek bar
+         * @return the value to be shown on seek bar
+         */
+        int getBalloonVal(int seekBarIdx, int i);
+    }
+
     // Only PlayerOptionView can access, TODO : should practice to modify all access ability
     protected static final int IDX_SEEK_BAR_REPEAT       = 0x0;
     protected static final int IDX_SEEK_BAR_SPEED        = 0x1;
@@ -50,6 +60,8 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
     private SeekBar mSeekBars[];
 
     private EventListener mEventListener;
+    private BalloonCallbackFunc mBalloonCallbackFunc;
+
     public PlayerOptionSeekBarsView(Context context) {
         this(context, null);
     }
@@ -83,6 +95,10 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
      */
     public void setEventListener(EventListener eventListener) {
         mEventListener = eventListener;
+    }
+
+    public void setBalloonCallbackFunc(BalloonCallbackFunc callbackFunc) {
+        mBalloonCallbackFunc = callbackFunc;
     }
 
     /**
@@ -120,24 +136,25 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
      */
     private void registerEventListener() {
         for (int j = 0; j < mSeekBars.length; j++) {
+            final int seekBarIdx = j;
             mSeekBars[j].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                     int curVal = i;
-                    moveBalloon(seekBar, curVal);
+                    moveBalloon(seekBarIdx, seekBar, curVal);
                     if (mEventListener != null) {
-                        mEventListener.onSeekBarChanged(i, seekBar, i, b);
+                        mEventListener.onSeekBarChanged(seekBarIdx, seekBar, i, b);
                     }
                 }
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-                    showBalloon(true, seekBar);
+                    showBalloon(seekBarIdx, true, seekBar);
                 }
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-                    showBalloon(false, seekBar);
+                    showBalloon(seekBarIdx, false, seekBar);
                 }
             });
         }
@@ -148,13 +165,13 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
      * @param show True if the image view is desired for showing
      * @param seekBar the view of the desired seek bar
      */
-    private void showBalloon(boolean show, SeekBar seekBar) {
+    private void showBalloon(int seekBarIdx, boolean show, SeekBar seekBar) {
         if (!show) {
             mBalloonView.setVisibility(INVISIBLE);
             return;
         }
         mBalloonView.setVisibility(VISIBLE);
-        moveBalloon(seekBar, seekBar.getProgress());
+        moveBalloon(seekBarIdx, seekBar, seekBar.getProgress());
     }
 
     /**
@@ -163,11 +180,12 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
      * @param curVal the current value of the seek bar, used to calculate where balloon should be put
      *               and indicate the value currently the PlayerOptionBalloon should show
      */
-    private void moveBalloon(SeekBar seekBar, int curVal) {
+    private void moveBalloon(int seekBarIdx, SeekBar seekBar, int curVal) {
         int width, height; /* balloon image view */
         int left, right, top, quantity; /* seek bar */
         int paddingLeft, paddingRight;
         int xStart, xEnd, yStart, yEnd;
+        int balloonVal;
         float xOffset, yOffset; /* where balloon should be */
         Rect parentViewRect, seekBarRect;
 
@@ -201,6 +219,7 @@ public class PlayerOptionSeekBarsView extends RelativeLayout {
 
         mBalloonView.setX(xOffset);
         mBalloonView.setY(yOffset);
-        mBalloonView.setBalloonText(String.valueOf(curVal));
+        balloonVal = (mBalloonCallbackFunc == null) ? curVal : mBalloonCallbackFunc.getBalloonVal(seekBarIdx, curVal);
+        mBalloonView.setBalloonText(String.valueOf(balloonVal));
     }
 }

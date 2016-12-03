@@ -24,6 +24,19 @@ public class PlayerOptionView extends LinearLayout {
         void onOptionChanged(int optionID, int mode, View v, int value);
     }
 
+    /**
+     * OptionCallbackFunc is the set of all callback functions in option view
+     */
+    public interface OptionCallbackFunc {
+        /**
+         * The callback function for user to indicate the value to be shown on seek bar
+         * @param seekBarIdx indicate which seek bar is ready to show the value
+         * @param i indicate the current value of seek bar
+         * @return the value to be shown on seek bar
+         */
+        int getBalloonVal(int seekBarIdx, int i);
+    }
+
     // TODO : To be determined with beibei
     public static final int IDX_OPTION_MODE      = 0x0;
     public static final int IDX_OPTION_RANDOM    = 0x1;
@@ -39,9 +52,9 @@ public class PlayerOptionView extends LinearLayout {
     public static final int IDX_MODE_1 = 0x11;
     public static final int IDX_MODE_2 = 0x12;
 
-    private static final int IDX_SEEK_BAR_REPEAT = PlayerOptionSeekBarsView.IDX_SEEK_BAR_REPEAT;
-    private static final int IDX_SEEK_BAR_SPEED  = PlayerOptionSeekBarsView.IDX_SEEK_BAR_SPEED;
-    private static final int IDX_SEEK_BAR_PLAY_TIME = PlayerOptionSeekBarsView.IDX_SEEK_BAR_PLAY_TIME;
+    public static final int IDX_SEEK_BAR_REPEAT = PlayerOptionSeekBarsView.IDX_SEEK_BAR_REPEAT;
+    public static final int IDX_SEEK_BAR_SPEED  = PlayerOptionSeekBarsView.IDX_SEEK_BAR_SPEED;
+    public static final int IDX_SEEK_BAR_PLAY_TIME = PlayerOptionSeekBarsView.IDX_SEEK_BAR_PLAY_TIME;
 
     private static final int VIEW_PLAYER_OPTION_VOICE_SWITCH_ID           = R.id.player_option_voice_switch;
     private static final int VIEW_PLAYER_OPTION_SENTENCE_SWITCH_ID        = R.id.player_option_sentence_switch;
@@ -55,6 +68,7 @@ public class PlayerOptionView extends LinearLayout {
     private PlayerOptionSeekBarsView mPlayerOptionSeekBarsView;
 
     private OnOptionChangedListener mOnOptionChangedListener, mRestoreListener;
+    private OptionCallbackFunc mOptionCallbackFunc;
 
     public PlayerOptionView(Context context) {
         this(context, null);
@@ -92,12 +106,18 @@ public class PlayerOptionView extends LinearLayout {
         registerOptionListener();
     }
 
+    /**------------------------------------ public method ---------------------------------------**/
+
     /**
      * Hook the callback function
      * @param listener the callback function
      */
     public void setOnOptionChangedListener(OnOptionChangedListener listener) {
         mOnOptionChangedListener = listener;
+    }
+
+    public void setOptionCallbackFunc(OptionCallbackFunc callbackFunc) {
+        mOptionCallbackFunc = callbackFunc;
     }
 
     /**
@@ -134,6 +154,8 @@ public class PlayerOptionView extends LinearLayout {
         // register back
         restoreListener();
     }
+
+    /**----------------------------------- private method ---------------------------------------**/
 
     /**
      * Register the callback function to monitor all event in PlayerOptionView. The listener will
@@ -205,9 +227,17 @@ public class PlayerOptionView extends LinearLayout {
                 }
             }
         });
+        // The callback for user to indicate what the value should be shown on the seek bar
+        mPlayerOptionSeekBarsView.setBalloonCallbackFunc(new PlayerOptionSeekBarsView.BalloonCallbackFunc() {
+            @Override
+            public int getBalloonVal(int seekBarIdx, int i) {
+                if (mOptionCallbackFunc != null) {
+                    return mOptionCallbackFunc.getBalloonVal(seekBarIdx, i);
+                }
+                return i;
+            }
+        });
     }
-
-    /**----------------------------------- private method ---------------------------------------**/
 
     private void unregisterListener() {
         mRestoreListener = mOnOptionChangedListener;

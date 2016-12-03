@@ -20,7 +20,8 @@ import wishcantw.vocabulazy.widget.DialogFragmentNew;
  * Created by SwallowChen on 11/21/16.
  */
 
-public class PlayerOptionDialogFragment extends DialogFragmentNew implements PlayerOptionDialogView.PlayerOptionEventListener {
+public class PlayerOptionDialogFragment extends DialogFragmentNew implements PlayerOptionDialogView.PlayerOptionEventListener,
+                                                                             PlayerOptionDialogView.PlayerOptionCallbackFunc {
 
     // layout resources
     private static final int LAYOUT_RES_ID = R.layout.view_player_option_dialog;
@@ -72,6 +73,21 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
         mPlayerModel.updateOptionSettings(optionID, mode, v, value);
         // TODO : notify the service that option settings has changed
          optionChanged();
+    }
+
+    /**--------------------- PlayerOptionDialogView.PlayerOptionCallbackFunc --------------------**/
+
+    @Override
+    public int getBalloonVal(int seekBarIdx, int seekBarVal) {
+        switch (seekBarIdx) {
+            case PlayerOptionView.IDX_SEEK_BAR_SPEED:
+                // TODO : Beibei please fill in the formula of the speed
+                return seekBarVal;
+            case PlayerOptionView.IDX_SEEK_BAR_REPEAT:
+            case PlayerOptionView.IDX_SEEK_BAR_PLAY_TIME:
+            default:
+                return seekBarVal;
+        }
     }
 
     /**------------------------------------- private method -------------------------------------**/
