@@ -42,7 +42,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:id="@+id/search_new_note_dialog_yes_no_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/search_dialog_new_note_content_yes_no_container_height"
@@ -90,7 +90,7 @@
 
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
+            </LinearLayout>
 
         </RelativeLayout>
 
