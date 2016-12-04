@@ -100,9 +100,9 @@ public class PlayerOptionView extends LinearLayout {
             }
         }
 
-        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_REPEAT, 5);
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_REPEAT, 4);
         mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_SPEED, 2);
-        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_PLAY_TIME, 40);
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_PLAY_TIME, 30);
         registerOptionListener();
     }
 
@@ -147,9 +147,9 @@ public class PlayerOptionView extends LinearLayout {
         mListOrderRadioGroup.check(listOrderIdx);
         mVocOrderRadioGroup.check(vocOrderIdx);
 
-        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_REPEAT, option.getItemLoop());
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_REPEAT, option.getItemLoop()-1);
         mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_SPEED, option.getSpeed());
-        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_PLAY_TIME, option.getPlayTime());
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_PLAY_TIME, option.getPlayTime()-10);
 
         // register back
         restoreListener();

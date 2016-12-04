@@ -102,12 +102,10 @@ public class PlayerModel {
                 break;
 
             case PlayerOptionView.IDX_OPTION_RANDOM:
-                // TODO : boolean is strange, need to discuss with beibei
                 optionSettings.setRandom(!optionSettings.isRandom());
                 break;
 
             case PlayerOptionView.IDX_OPTION_SENTENCE:
-                // TODO : logic is strange
                 optionSettings.setSentence(!optionSettings.isSentence());
                 break;
 
@@ -120,8 +118,7 @@ public class PlayerModel {
                 break;
 
             case PlayerOptionView.IDX_OPTION_FREQUENCY:
-                // frequency ranging from 1~5, thus "-1" for standardization and then "+1" for increasement.
-                optionSettings.setItemLoop(value);
+                optionSettings.setItemLoop(value+1); // de-standardize value
                 break;
 
             case PlayerOptionView.IDX_OPTION_SPEED:
@@ -129,7 +126,7 @@ public class PlayerModel {
                 break;
 
             case PlayerOptionView.IDX_OPTION_PLAY_TIME:
-                optionSettings.setPlayTime(value);
+                optionSettings.setPlayTime(value+10); // de-standardize value
                 break;
 
             case PlayerOptionView.IDX_OPTION_VOICE:

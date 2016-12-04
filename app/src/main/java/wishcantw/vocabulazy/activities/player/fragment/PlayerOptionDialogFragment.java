@@ -42,6 +42,7 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPlayerOptionDialogView = (PlayerOptionDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
         mPlayerOptionDialogView.setPlayerOptionEventListener(this);
+        mPlayerOptionDialogView.setPlayerOptionCallbackFunc(this);
         return mPlayerOptionDialogView;
     }
 
@@ -80,14 +81,23 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
     @Override
     public int getBalloonVal(int seekBarIdx, int seekBarVal) {
         switch (seekBarIdx) {
+
             case PlayerOptionView.IDX_SEEK_BAR_SPEED:
                 // TODO : Beibei please fill in the formula of the speed
-                return seekBarVal;
+                break;
+
             case PlayerOptionView.IDX_SEEK_BAR_REPEAT:
+                seekBarVal += 1;
+                break;
+
             case PlayerOptionView.IDX_SEEK_BAR_PLAY_TIME:
+                seekBarVal += 10;
+                break;
+
             default:
-                return seekBarVal;
+                break;
         }
+        return seekBarVal;
     }
 
     /**------------------------------------- private method -------------------------------------**/
