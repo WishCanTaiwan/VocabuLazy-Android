@@ -8,10 +8,6 @@ import com.flurry.android.FlurryAgent;
 import io.fabric.sdk.android.Fabric;
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.analytics.firebase.FirebaseManager;
-import wishcantw.vocabulazy.database.object.OptionSettings;
-import wishcantw.vocabulazy.database.object.Vocabulary;
-
-import java.util.ArrayList;
 
 /**
  * This class is created for giving a global overview to our application.

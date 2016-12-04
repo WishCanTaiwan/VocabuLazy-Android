@@ -72,7 +72,7 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
         // Refresh option settings
         mPlayerModel.updateOptionSettings(optionID, mode, v, value);
         // TODO : notify the service that option settings has changed
-         optionChanged();
+        optionChanged();
     }
 
     /**--------------------- PlayerOptionDialogView.PlayerOptionCallbackFunc --------------------**/

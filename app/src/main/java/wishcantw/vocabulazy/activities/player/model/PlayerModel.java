@@ -15,6 +15,9 @@ import wishcantw.vocabulazy.audio.AudioPlayerUtils;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
+import static wishcantw.vocabulazy.activities.player.view.PlayerOptionView.IDX_OPTION_RANDOM;
+import static wishcantw.vocabulazy.activities.player.view.PlayerOptionView.IDX_OPTION_REPEAT;
+
 public class PlayerModel {
 
     // tag for debugging
@@ -85,59 +88,61 @@ public class PlayerModel {
      * @param v the view that has been changed
      * @param value the value that option has been shown
      */
-    @SuppressWarnings("unused")
     public void updateOptionSettings(int optionItemId,
                                      int mode,
                                      @NonNull View v,
                                      int value) {
+        // set option mode
+        appPreference.setPlayerOptionMode(mode);
 
+        // get the player option settings
         OptionSettings optionSettings = mDatabase.getPlayerOptionSettings();
+
         switch (optionItemId) {
+
+            case PlayerOptionView.IDX_OPTION_MODE:
+                appPreference.setPlayerOptionMode(mode);
+                break;
+
             case PlayerOptionView.IDX_OPTION_RANDOM:
                 // TODO : boolean is strange, need to discuss with beibei
-                boolean oldRandom = optionSettings.isRandom();
-                boolean newRandom = !oldRandom;
-                optionSettings.setRandom(newRandom);
+                optionSettings.setRandom(!optionSettings.isRandom());
                 break;
-            case PlayerOptionView.IDX_OPTION_REPEAT:
-                int oldRepeatVal = optionSettings.getListLoop();
-                int newRepeatVal = value;
-                optionSettings.setListLoop(newRepeatVal);
-                break;
+
             case PlayerOptionView.IDX_OPTION_SENTENCE:
                 // TODO : logic is strange
-                boolean oldSentence = optionSettings.isSentence();
-                boolean newSentence = !oldSentence;
-                optionSettings.setSentence(newSentence);
+                optionSettings.setSentence(!optionSettings.isSentence());
                 break;
+
+            case PlayerOptionView.IDX_OPTION_REPEAT:
+                optionSettings.setListLoop(value);
+                break;
+
             case PlayerOptionView.IDX_OPTION_SECOND:
-                int oldSecond = optionSettings.getStopPeriod();
-                int newSecond = value;
-                optionSettings.setStopPeriod(newSecond);
+                optionSettings.setStopPeriod(value);
                 break;
+
             case PlayerOptionView.IDX_OPTION_FREQUENCY:
-                int oldFrequency = optionSettings.getItemLoop();
-                int newFrequency = value; // frequency ranging from 1~5, thus "-1" for standardization and then "+1" for increasement.
-                optionSettings.setItemLoop(newFrequency);
+                // frequency ranging from 1~5, thus "-1" for standardization and then "+1" for increasement.
+                optionSettings.setItemLoop(value);
                 break;
+
             case PlayerOptionView.IDX_OPTION_SPEED:
-                int oldSpeed = optionSettings.getSpeed();
-                int newSpeed = value;
-                optionSettings.setSpeed(newSpeed);
+                optionSettings.setSpeed(value);
                 break;
+
             case PlayerOptionView.IDX_OPTION_PLAY_TIME:
-                int oldPlayTime = optionSettings.getPlayTime();
-                int newPlayTime = value;
-                optionSettings.setPlayTime(newPlayTime);
+                optionSettings.setPlayTime(value);
                 break;
-            case PlayerOptionView.IDX_MODE_0:
-            case PlayerOptionView.IDX_MODE_1:
-            case PlayerOptionView.IDX_MODE_2:
+
+            case PlayerOptionView.IDX_OPTION_VOICE:
                 break;
+
             default:
                 break;
         }
-        appPreference.setPlayerOptionMode(mode);
+
+        // set the option settings
         mDatabase.setPlayerOptionSettings(optionSettings);
     }
 

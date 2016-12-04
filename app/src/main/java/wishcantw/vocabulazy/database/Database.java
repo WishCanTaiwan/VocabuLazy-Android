@@ -34,7 +34,7 @@ public class Database {
     private ArrayList<OptionSettings> mOptionSettings = new ArrayList<>();
     private ArrayList<Vocabulary> mPlayerContent = new ArrayList<>();
 
-    public void init(@NonNull final Context context, final DatabaseCallback callback) {
+    public void init(@NonNull final Context context, final DatabaseCallback callback, final boolean shouldLoadNewOption) {
         final FileLoader fileLoader = FileLoader.getInstance();
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -42,7 +42,7 @@ public class Database {
                 mVocabularies = fileLoader.loadVocabularies(context);
                 mTextbooks = fileLoader.loadTextbook(context);
                 mNotes = fileLoader.loadNote(context);
-                mOptionSettings = fileLoader.loadOptionSettings(context);
+                mOptionSettings = fileLoader.loadOptionSettings(context, shouldLoadNewOption);
                 return null;
             }
 
@@ -144,6 +144,7 @@ public class Database {
     }
 
     public void setPlayerOptionSettings(OptionSettings optionSettings) {
+        AppPreference.getInstance().setPlayerOptionMode(optionSettings.getMode());
         int mode = AppPreference.getInstance().getPlayerOptionMode();
         mOptionSettings.set(mode, optionSettings);
     }

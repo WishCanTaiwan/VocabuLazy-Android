@@ -307,6 +307,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
             // remove old playerview
             mPlayerView.removeOldPlayer(direction == Infinite3View.MOVE_TO_RIGHT ? Infinite3View.RIGHT_VIEW_INDEX : Infinite3View.LEFT_VIEW_INDEX);
+
+            // lesson changed
+            mOnPlayerLessonChangeListener.onLessonChange(mPlayerModel.getLessonIndex());
         }
     }
 

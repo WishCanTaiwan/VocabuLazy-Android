@@ -84,11 +84,23 @@ public class AudioPlayer {
     }
 
     public void updateOptionSettings(OptionSettings optionSettings) {
+
+        if (optionSettings.getItemLoop() != itemLoop) {
+            itemLoop = optionSettings.getItemLoop();
+            resetItemLoopCountDown();
+        }
+
+        if (optionSettings.getListLoop() != listLoop) {
+            listLoop = optionSettings.getListLoop();
+            resetListLoopCountDown();
+        }
+        
+        if (optionSettings.getPlayTime() != playTime) {
+            // TODO: 2016/12/3 reset timer
+        }
+
         itemLoop = optionSettings.getItemLoop();
         listLoop = optionSettings.getListLoop();
-        resetItemLoopCountDown();
-        resetListLoopCountDown();
-
         isRandom = optionSettings.isRandom();
         speed = optionSettings.getSpeed();
         stopPeriod = optionSettings.getStopPeriod();
@@ -154,16 +166,25 @@ public class AudioPlayer {
                 // pick up next item index
                 newItemIndex = audioPlayerUtils.pickNextItem(isRandom, database.getPlayerContent().size());
 
-                // if item index is -1,
+                // if item index is -1, jump to new list
                 if (newItemIndex == -1) {
                     newItemIndex = 0;
-                    listLoopCountDown--;
-                    if (listLoopCountDown == 0) {
-                        audioServiceBroadcaster.onListComplete();
-                        resetListLoopCountDown();
-                        audioPlayerUtils.loadNewContent(database, databaseUtils);
-                        audioServiceBroadcaster.toNextList();
-                        AudioPlayerUtils.getInstance().sleep(1500);
+
+                    switch (listLoop) {
+                        case 0: // repeat list
+                            // do nothing, keep playing
+                            break;
+
+                        case 1: // random list
+                            audioServiceBroadcaster.onListComplete();
+                            resetListLoopCountDown();
+                            audioPlayerUtils.loadNewContent(database, databaseUtils);
+                            audioServiceBroadcaster.toNextList();
+                            AudioPlayerUtils.getInstance().sleep(1500);
+                            break;
+
+                        default:
+                            break;
                     }
                 }
 

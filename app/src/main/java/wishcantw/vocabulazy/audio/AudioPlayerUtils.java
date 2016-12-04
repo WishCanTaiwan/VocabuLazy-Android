@@ -72,8 +72,12 @@ public class AudioPlayerUtils {
                 ? databaseUtils.getNoteAmount(database.getNotes())
                 : databaseUtils.getLessonAmount(database.getTextbooks(), currentBookIndex);
 
-        // index of new lesson/note
-        int newLessonIndex = (currentLessonIndex+1) % lessonAmount;
+        // random an index of new lesson/note
+        int newLessonIndex;
+        Random random = new Random(System.currentTimeMillis());
+        do {
+            newLessonIndex = random.nextInt(lessonAmount);
+        } while (currentLessonIndex == newLessonIndex);
         appPreference.setPlayerLessonIndex(newLessonIndex);
 
         // content ids of new lesson/note

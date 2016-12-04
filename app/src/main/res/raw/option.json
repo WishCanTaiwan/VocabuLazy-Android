@@ -2,7 +2,7 @@
   {
     "mode": 0,
     "random": false,
-    "listLoop": 3,
+    "listLoop": 0,
     "sentence": false,
     "stopPeriod": 1,
     "itemLoop": 3,
@@ -12,7 +12,7 @@
   {
     "mode": 1,
     "random": true,
-    "listLoop": 2,
+    "listLoop": 1,
     "sentence": false,
     "stopPeriod": 3,
     "itemLoop": 1,
@@ -22,7 +22,7 @@
   {
     "mode": 2,
     "random": false,
-    "listLoop": 3,
+    "listLoop": 0,
     "sentence": true,
     "stopPeriod": 3,
     "itemLoop": 1,
