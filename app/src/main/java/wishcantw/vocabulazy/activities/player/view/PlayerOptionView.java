@@ -1,6 +1,7 @@
 package wishcantw.vocabulazy.activities.player.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -10,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 
 /**
@@ -47,10 +49,6 @@ public class PlayerOptionView extends LinearLayout {
     public static final int IDX_OPTION_SPEED     = 0x6;
     public static final int IDX_OPTION_PLAY_TIME = 0x7;
     public static final int IDX_OPTION_VOICE     = 0x8;
-
-    public static final int IDX_MODE_0 = 0x10;
-    public static final int IDX_MODE_1 = 0x11;
-    public static final int IDX_MODE_2 = 0x12;
 
     public static final int IDX_SEEK_BAR_REPEAT = PlayerOptionSeekBarsView.IDX_SEEK_BAR_REPEAT;
     public static final int IDX_SEEK_BAR_SPEED  = PlayerOptionSeekBarsView.IDX_SEEK_BAR_SPEED;
@@ -124,13 +122,14 @@ public class PlayerOptionView extends LinearLayout {
      * The api for setting all options in the PlayerOptionView
      * @param option The object containing all settings about the {@link}OptionSettings
      */
-    public void setOptionInModeContent(OptionSettings option, boolean init) {
+    public void setOptionInModeContent(@NonNull OptionSettings option,
+                                       boolean init,
+                                       boolean voiceEnable) {
         // unregister listener first to prevent from dependency
-        boolean voiceEnable, sentenceEnable;
+        boolean sentenceEnable;
         int modeIdx, listOrderIdx, vocOrderIdx;
 
         unregisterListener();
-        voiceEnable = true;
         sentenceEnable = option.isSentence();
         modeIdx = option.getMode();
         listOrderIdx = option.getListLoop();

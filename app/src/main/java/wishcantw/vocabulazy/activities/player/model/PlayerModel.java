@@ -130,6 +130,7 @@ public class PlayerModel {
                 break;
 
             case PlayerOptionView.IDX_OPTION_VOICE:
+                appPreference.setPlayerVolume((float) value);
                 break;
 
             default:
