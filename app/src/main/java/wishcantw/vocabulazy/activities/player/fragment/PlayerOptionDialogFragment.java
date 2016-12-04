@@ -23,6 +23,9 @@ import wishcantw.vocabulazy.widget.DialogFragmentNew;
 public class PlayerOptionDialogFragment extends DialogFragmentNew implements PlayerOptionDialogView.PlayerOptionEventListener,
                                                                              PlayerOptionDialogView.PlayerOptionCallbackFunc {
 
+    public interface OnPlayPrankListener {
+        void onPlayPrank(int count);
+    }
     // layout resources
     private static final int LAYOUT_RES_ID = R.layout.view_player_option_dialog;
 
@@ -31,6 +34,8 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
 
     // Model
     private PlayerModel mPlayerModel;
+
+    private OnPlayPrankListener mOnPlayPrankListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPlayerOptionDialogView = (PlayerOptionDialogView) inflater.inflate(LAYOUT_RES_ID, container, false);
         mPlayerOptionDialogView.setPlayerOptionEventListener(this);
+        mPlayerOptionDialogView.setPlayerOptionCallbackFunc(this);
         return mPlayerOptionDialogView;
     }
 
@@ -57,6 +63,11 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
     @Override
     protected String getGALabel() {
         return null;
+    }
+
+    /**------------------------------------- public method --------------------------------------**/
+    public void setOnPlayPrankListener(OnPlayPrankListener listener) {
+        mOnPlayPrankListener = listener;
     }
 
     /**--------------------- PlayerOptionDialogView.PlayerOptionEventListener -------------------**/
@@ -87,6 +98,13 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
             case PlayerOptionView.IDX_SEEK_BAR_PLAY_TIME:
             default:
                 return seekBarVal;
+        }
+    }
+
+    @Override
+    public void playPrank(int count) {
+        if (mOnPlayPrankListener != null) {
+            mOnPlayPrankListener.onPlayPrank(count);
         }
     }
 
