@@ -44,7 +44,6 @@ public class PlayerOptionView extends LinearLayout {
         void playPrank(int idx);
     }
 
-    // TODO : To be determined with beibei
     public static final int IDX_OPTION_MODE      = 0x0;
     public static final int IDX_OPTION_RANDOM    = 0x1;
     public static final int IDX_OPTION_REPEAT    = 0x2;

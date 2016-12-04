@@ -220,7 +220,6 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
             if (playerState.equals(AudioPlayerUtils.PlayerState.PLAYING)) {
                 appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOPPED_BY_FOCUS_CHANGE);
                 audioServiceBroadcaster.onPlayerStateChanged();
-                // todo: release vl text to speech
             }
         }
     }
