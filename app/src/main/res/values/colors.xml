@@ -64,6 +64,7 @@
     <color name="note_child_background_color">@color/grey_2</color>
     <color name="note_child_text_color">@color/white_1</color>
     <color name="note_divider_color">@color/white_2</color>
+    <color name="note_new_note_background">@color/black_alpha_1</color>
     <color name="exam_default_background_color">@color/white_2</color>
     <color name="exam_index_border">@color/grey_2</color>
     <color name="exam_index_selected">@color/grey_2</color>
