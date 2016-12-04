@@ -12,6 +12,7 @@ import wishcantw.vocabulazy.activities.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.activities.player.fragment.PlayerAddVocToNoteDialogFragment;
 import wishcantw.vocabulazy.activities.player.fragment.PlayerFragment;
 import wishcantw.vocabulazy.activities.player.fragment.PlayerNewNoteDialogFragment;
+import wishcantw.vocabulazy.activities.player.fragment.PlayerPrankDialogFragment;
 import wishcantw.vocabulazy.activities.player.fragment.PlayerVocTooLessDialogFragment;
 import wishcantw.vocabulazy.activities.player.model.PlayerModel;
 import wishcantw.vocabulazy.activities.player.fragment.PlayerOptionDialogFragment;
@@ -19,10 +20,10 @@ import wishcantw.vocabulazy.utility.Logger;
 
 public class PlayerActivity extends ParentActivity implements PlayerFragment.OnPlayerLessonChangeListener,
                                                                  PlayerFragment.OnPlayerPanelClickListener,
-
                                                                  PlayerAddVocToNoteDialogFragment.OnAddVocToNoteDialogFinishListener,
                                                                  PlayerNewNoteDialogFragment.OnNewNoteDialogFinishListener,
-                                                                 PlayerVocTooLessDialogFragment.OnPlayerAlertDoneListener {
+                                                                 PlayerVocTooLessDialogFragment.OnPlayerAlertDoneListener,
+                                                                 PlayerOptionDialogFragment.OnPlayPrankListener {
     // layout ids
     private static final int VIEW_RES_ID = R.layout.activity_player;
     private static final int VIEW_MAIN_RES_ID = R.id.player_fragment_container;
@@ -76,23 +77,26 @@ public class PlayerActivity extends ParentActivity implements PlayerFragment.OnP
         super.onAttachFragment(fragment);
 
         if (fragment instanceof PlayerFragment) {
-            PlayerFragment mPlayerFragment = (PlayerFragment) fragment;
-            mPlayerFragment.addOnPlayerLessonChangeListener(this);
-            mPlayerFragment.setOnPlayerPanelClickListener(this);
+            PlayerFragment playerFragment = (PlayerFragment) fragment;
+            playerFragment.addOnPlayerLessonChangeListener(this);
+            playerFragment.setOnPlayerPanelClickListener(this);
 
         } else if (fragment instanceof PlayerAddVocToNoteDialogFragment) {
-            PlayerAddVocToNoteDialogFragment mPlayerAddVocToNoteDialogFragment = (PlayerAddVocToNoteDialogFragment) fragment;
-            mPlayerAddVocToNoteDialogFragment.setOnAddVocToNoteDialogFinishListener(this);
+            PlayerAddVocToNoteDialogFragment playerAddVocToNoteDialogFragment = (PlayerAddVocToNoteDialogFragment) fragment;
+            playerAddVocToNoteDialogFragment.setOnAddVocToNoteDialogFinishListener(this);
 
         } else if (fragment instanceof PlayerNewNoteDialogFragment) {
-            PlayerNewNoteDialogFragment mPlayerNewNoteDialogFragment = (PlayerNewNoteDialogFragment) fragment;
-            mPlayerNewNoteDialogFragment.setOnNewNoteDialogFinishListener(this);
+            PlayerNewNoteDialogFragment playerNewNoteDialogFragment = (PlayerNewNoteDialogFragment) fragment;
+            playerNewNoteDialogFragment.setOnNewNoteDialogFinishListener(this);
 
         } else if (fragment instanceof PlayerVocTooLessDialogFragment) {
-            PlayerVocTooLessDialogFragment mPlayerVocTooLessDialogFragment = (PlayerVocTooLessDialogFragment) fragment;
-            mPlayerVocTooLessDialogFragment.setOnExamAlertDoneListener(this);
+            PlayerVocTooLessDialogFragment playerVocTooLessDialogFragment = (PlayerVocTooLessDialogFragment) fragment;
+            playerVocTooLessDialogFragment.setOnExamAlertDoneListener(this);
 
         } else if (fragment instanceof PlayerOptionDialogFragment) {
+            PlayerOptionDialogFragment playerOptionDialogFragment = (PlayerOptionDialogFragment) fragment;
+            playerOptionDialogFragment.setOnPlayPrankListener(this);
+        } else if (fragment instanceof PlayerPrankDialogFragment) {
         }
     }
 
@@ -199,6 +203,20 @@ public class PlayerActivity extends ParentActivity implements PlayerFragment.OnP
     public void onPlayerAlertDone() {
         Logger.d(TAG, "onPlayerAlertDone");
         finish();
+    }
+
+    /**-------------------------- PlayerOptionDialogFragment callback ---------------------------**/
+    @Override
+    public void onPlayPrank(int count) {
+        PlayerPrankDialogFragment dialogFragment = new PlayerPrankDialogFragment();
+        dialogFragment.setPrankTypeByCount(count);
+        if (dialogFragment.getPrankType() != PlayerPrankDialogFragment.PRANK_TYPE_NORMAL) {
+            return;
+        }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(PlayerActivity.VIEW_MAIN_RES_ID, dialogFragment, "PlayerPrankDialogFragment");
+        fragmentTransaction.addToBackStack("PlayerPrankDialogFragment");
+        fragmentTransaction.commit();
     }
 
     /**------------------------------------ private function ------------------------------------**/
