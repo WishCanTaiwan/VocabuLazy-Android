@@ -46,7 +46,7 @@ class Timer {
      * @param callback the timer callback
      */
     void startTimer(int minute,
-                           final @NonNull Callback callback) {
+                    final @NonNull Callback callback) {
         if (minute < 0) {
             return;
         }

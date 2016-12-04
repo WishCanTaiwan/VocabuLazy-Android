@@ -45,7 +45,7 @@ public class AudioPlayer {
     private int speed;
     private int stopPeriod;
     private int playTime;
-    private boolean isTimeUp = false;
+    private boolean isTimeUp = true;
 
     private boolean isFromExam;
 
@@ -96,7 +96,8 @@ public class AudioPlayer {
         }
         
         if (optionSettings.getPlayTime() != playTime) {
-            // TODO: 2016/12/3 reset timer
+            playTime = optionSettings.getPlayTime();
+            resetTimer();
         }
 
         itemLoop = optionSettings.getItemLoop();
@@ -122,6 +123,10 @@ public class AudioPlayer {
     private void utteranceHasFinished() {
         if (isFromExam) {
             isFromExam = false;
+            return;
+        }
+
+        if (isTimeUp) {
             return;
         }
 
@@ -211,7 +216,7 @@ public class AudioPlayer {
 
     public void play(int itemIndex, AudioPlayerUtils.PlayerField playerField) {
 
-        if (vlTextToSpeech == null || isTimeUp) {
+        if (vlTextToSpeech == null) {
             return;
         }
 
@@ -246,17 +251,7 @@ public class AudioPlayer {
 
         // set up timer
         if (isTimeUp) {
-            isTimeUp = false;
-            timer.startTimer(playTime, new Timer.Callback() {
-                @Override
-                public void timeUp() {
-                    super.timeUp();
-                    isTimeUp = true;
-                    vlTextToSpeech.stop();
-                    AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.STOPPED);
-                    audioServiceBroadcaster.onPlayerStateChanged();
-                }
-            });
+            startTimer();
         }
 
     }
@@ -267,5 +262,36 @@ public class AudioPlayer {
         }
 
         vlTextToSpeech.stop();
+    }
+
+    public void resetTimer() {
+        if (timer != null) {
+            timer.stopTimer();
+            timer.startTimer(playTime, new Timer.Callback() {
+                @Override
+                public void timeUp() {
+                    super.timeUp();
+                    stopTimer();
+                }
+            });
+        }
+    }
+
+    public void startTimer() {
+        isTimeUp = false;
+        timer.startTimer(playTime, new Timer.Callback() {
+            @Override
+            public void timeUp() {
+                super.timeUp();
+                stopTimer();
+            }
+        });
+    }
+
+    private void stopTimer() {
+        isTimeUp = true;
+        vlTextToSpeech.stop();
+        AppPreference.getInstance().setPlayerState(AudioPlayerUtils.PlayerState.STOPPED);
+        audioServiceBroadcaster.onPlayerStateChanged();
     }
 }
