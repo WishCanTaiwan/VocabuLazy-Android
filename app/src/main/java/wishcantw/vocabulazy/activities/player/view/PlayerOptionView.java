@@ -133,7 +133,7 @@ public class PlayerOptionView extends LinearLayout {
         voiceEnable = true;
         sentenceEnable = option.isSentence();
         modeIdx = option.getMode();
-        listOrderIdx = option.isRandom() ? 1 : 0;
+        listOrderIdx = option.getListLoop();
         vocOrderIdx = option.isRandom() ? 1 : 0;
 
         // Only when init state need to setup mode option

@@ -147,6 +147,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
             case START_PLAYING:
                 mAudioPlayer.resetItemLoopCountDown();
                 mAudioPlayer.resetSpellLoopCountDown();
+                mAudioPlayer.updateOptionSettings(Database.getInstance().getPlayerOptionSettings());
                 mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
                 break;
 

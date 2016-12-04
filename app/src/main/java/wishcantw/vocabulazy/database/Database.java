@@ -43,6 +43,9 @@ public class Database {
                 mTextbooks = fileLoader.loadTextbook(context);
                 mNotes = fileLoader.loadNote(context);
                 mOptionSettings = fileLoader.loadOptionSettings(context, shouldLoadNewOption);
+                if (shouldLoadNewOption) {
+                    FileWriter.getInstance().writeOptionSettings(context, mOptionSettings);
+                }
                 return null;
             }
 

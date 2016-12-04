@@ -15,9 +15,6 @@ import wishcantw.vocabulazy.audio.AudioPlayerUtils;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-import static wishcantw.vocabulazy.activities.player.view.PlayerOptionView.IDX_OPTION_RANDOM;
-import static wishcantw.vocabulazy.activities.player.view.PlayerOptionView.IDX_OPTION_REPEAT;
-
 public class PlayerModel {
 
     // tag for debugging
