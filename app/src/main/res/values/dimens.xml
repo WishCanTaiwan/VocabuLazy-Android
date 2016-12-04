@@ -93,6 +93,19 @@
     <dimen name="player_dialog_new_note_content_yes_no_container_height">53dp</dimen>
     <dimen name="player_dialog_new_note_content_translation_z">@dimen/dialog_z</dimen>
     <dimen name="player_dialog_new_note_content_yes_no_container_translation_z">10dp</dimen>
+
+    <dimen name="player_dialog_prank_title_margin">5dp</dimen>
+    <dimen name="player_dialog_prank_radio_button_padding">20dp</dimen>
+    <dimen name="player_dialog_prank_radio_button_margin">10dp</dimen>
+    <dimen name="player_dialog_prank_radio_button_text_size">20dp</dimen>
+    <dimen name="player_dialog_prank_content_width">295dp</dimen>
+    <dimen name="player_dialog_prank_content_height">150dp</dimen>
+    <dimen name="player_dialog_prank_content_padding">20dp</dimen>
+    <dimen name="player_dialog_prank_content_text_size">20sp</dimen>
+    <dimen name="player_dialog_prank_content_yes_no_container_margin">28dp</dimen>
+    <dimen name="player_dialog_prank_content_yes_no_container_height">53dp</dimen>
+    <dimen name="player_dialog_prank_content_translation_z">@dimen/dialog_z</dimen>
+    <dimen name="player_dialog_prank_content_yes_no_container_translation_z">10dp</dimen>
     <!-- search -->
     <dimen name="search_divider_height">2dp</dimen>
     <dimen name="search_list_result_cross">25dp</dimen>

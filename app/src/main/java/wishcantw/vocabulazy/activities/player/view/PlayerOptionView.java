@@ -37,6 +37,11 @@ public class PlayerOptionView extends LinearLayout {
          * @return the value to be shown on seek bar
          */
         int getBalloonVal(int seekBarIdx, int i);
+
+        /**
+         *
+         */
+        void playPrank(int idx);
     }
 
     // TODO : To be determined with beibei
@@ -64,6 +69,8 @@ public class PlayerOptionView extends LinearLayout {
     private Switch mVoiceSwitch, mSentenceSwitch;
     private RadioGroup mModeRadioGroup, mListOrderRadioGroup, mVocOrderRadioGroup;
     private PlayerOptionSeekBarsView mPlayerOptionSeekBarsView;
+    // play a prank if user keep pressing the sentence switch
+    private EasterEggTask mEasterEggTask;
 
     private OnOptionChangedListener mOnOptionChangedListener, mRestoreListener;
     private OptionCallbackFunc mOptionCallbackFunc;
@@ -177,6 +184,13 @@ public class PlayerOptionView extends LinearLayout {
                 if (mOnOptionChangedListener != null) {
                     mOnOptionChangedListener.onOptionChanged(IDX_OPTION_SENTENCE, mModeRadioGroup.getCheckedRadioButtonId(), mSentenceSwitch, b ? 1 : 0);
                 }
+                // create easter egg for mSentenceSwitch for currently not support sentence voice
+                if (b == true) {
+                    if (mEasterEggTask == null) {
+                        mEasterEggTask = new EasterEggTask(mSentenceSwitch, false);
+                    }
+                    mSentenceSwitch.postDelayed(mEasterEggTask, 200);
+                }
             }
         });
         // The callback for changing mode choose
@@ -245,5 +259,32 @@ public class PlayerOptionView extends LinearLayout {
 
     private void restoreListener() {
         mOnOptionChangedListener = mRestoreListener;
+    }
+
+    private void playPrank(int count) {
+        if (mOptionCallbackFunc != null) {
+            mOptionCallbackFunc.playPrank(count);
+        }
+    }
+
+    // special task for easter egg, currently not support sentence voice
+    private class EasterEggTask implements Runnable {
+        private Switch mSwitchView;
+        private boolean mForceVal;
+        private int mTriggerCount;
+
+        public EasterEggTask(Switch switchView, boolean forceVal) {
+            mSwitchView = switchView;
+            mForceVal = forceVal;
+        }
+
+        @Override
+        public void run() {
+            if (mSwitchView != null) {
+                mTriggerCount++;
+                mSwitchView.setChecked(mForceVal);
+                playPrank(mTriggerCount);
+            }
+        }
     }
 }

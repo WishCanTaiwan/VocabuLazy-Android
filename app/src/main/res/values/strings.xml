@@ -112,6 +112,12 @@
     <string name="player_dialog_new_note_no">取消</string>
     <string name="player_dialog_voc_too_less_yes">確認</string>
     <string name="player_dialog_voc_too_less_title">請新增至少一個單字</string>
+    <string name="player_dialog_prank_yes">確認</string>
+    <string name="player_dialog_prank_title">目前還不支援例句播放</string>
+    <string name="player_dialog_prank_msg_1">再按1次即將成為開發人員</string>
+    <string name="player_dialog_prank_msg_2">真的想成為開發人員嗎?</string>
+    <string name="player_dialog_prank_msg_3">你確定?</string>
+    <string name="player_dialog_prank_msg_4">...</string>
     <!-- search -->
     <string name="search_menu_item">Search Menu Item</string>
     <string name="search_dialog_add_voc_to_note_title">加入筆記清單</string>

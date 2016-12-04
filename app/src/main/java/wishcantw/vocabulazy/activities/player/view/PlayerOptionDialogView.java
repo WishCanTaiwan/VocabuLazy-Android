@@ -35,6 +35,11 @@ public class PlayerOptionDialogView extends DialogViewNew {
          * @return the value to be shown on seek bar
          */
         int getBalloonVal(int seekBarIdx, int seekBarVal);
+
+        /**
+         *
+         */
+        void playPrank(int count);
     }
 
     private static final int VIEW_PLAYER_OPTION_VIEW_RES_ID = R.id.view_player_option;
@@ -98,6 +103,13 @@ public class PlayerOptionDialogView extends DialogViewNew {
                     return mPlayerOptionCallbackFunc.getBalloonVal(seekBarIdx, i);
                 }
                 return i;
+            }
+
+            @Override
+            public void playPrank(int count) {
+                if (mPlayerOptionCallbackFunc != null) {
+                    mPlayerOptionCallbackFunc.playPrank(count);
+                }
             }
         });
     }
