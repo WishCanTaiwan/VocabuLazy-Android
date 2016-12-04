@@ -45,7 +45,8 @@
         android:layout_height="55dp"
         android:gravity="center_vertical"
         android:layout_marginTop="1dp"
-        android:background="@color/green_1">
+        android:background="@color/green_1"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="0dp"
