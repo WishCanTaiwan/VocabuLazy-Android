@@ -69,7 +69,7 @@
     <string name="note_delete_dialog_subtitle">清單名稱</string>
     <string name="note_delete_dialog_confirm">確定</string>
     <string name="note_delete_dialog_cancel">取消</string>
-    <string name="note_create_dialog_title">新增清單</string>
+    <string name="note_create_dialog_title">新增筆記清單</string>
     <string name="note_create_dialog_hint">輸入欲新增清單名稱</string>
     <string name="note_create_dialog_confirm">確定</string>
     <string name="note_create_dialog_cancel">取消</string>
