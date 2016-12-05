@@ -134,9 +134,9 @@
     <string name="cover_dialog_button_confirm">前往 Google Play</string>
     <string name="cover_dialog_update_title">版本 %s 更新內容</string>
     <string name="cover_dialog_update_message">
-        1. 我們現在有多益以及托福單字了！
-        2. 改善效能。
-        3. 修正改變系統字體時可能造成的程式崩潰。
+        1. 播放設定有了新的畫面！\n
+        2. 修了好多爸葛。\n
+        3. 多了一個小彩蛋。
     </string>
     <string name="cover_dialog_update_positive_button">我知道了</string>
 
