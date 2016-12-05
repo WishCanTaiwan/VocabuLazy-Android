@@ -1,6 +1,7 @@
 package wishcantw.vocabulazy.activities.player.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -77,8 +78,10 @@ public class PlayerOptionDialogView extends DialogViewNew {
      * The api for setting PlayerOptionView content by OptionSettings
      * @param option
      */
-    public void setPlayerOptionModeContent(OptionSettings option, boolean init) {
-        mPlayerOptionView.setOptionInModeContent(option, init);
+    public void setPlayerOptionModeContent(@NonNull OptionSettings option,
+                                           boolean init,
+                                           boolean voiceEnable) {
+        mPlayerOptionView.setOptionInModeContent(option, init, voiceEnable);
     }
 
     /**------------------------------------ private method --------------------------------------**/

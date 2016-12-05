@@ -20,6 +20,7 @@ public class AppPreference {
     private int playerOptionMode = 0;
     private AudioPlayerUtils.PlayerField playerField = AudioPlayerUtils.PlayerField.SPELL;
     private AudioPlayerUtils.PlayerState playerState = AudioPlayerUtils.PlayerState.IDLE;
+    private float playerVolume = 1.0f;
 
     public int getPlayerBookIndex() {
         return playerBookIndex;
@@ -75,5 +76,13 @@ public class AppPreference {
 
     public void setAudioFocused(boolean audioFocused) {
         isAudioFocused = audioFocused;
+    }
+
+    public float getPlayerVolume() {
+        return playerVolume;
+    }
+
+    public void setPlayerVolume(float playerVolume) {
+        this.playerVolume = playerVolume;
     }
 }

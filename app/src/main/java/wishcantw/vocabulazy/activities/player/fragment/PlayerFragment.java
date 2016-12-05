@@ -233,7 +233,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     /**------------------------ Implement PlayerView.PlayerEventListener ------------------------**/
     @Override
     public void onPlayerVerticalScrollStop(int currentPosition, boolean isViewTouchedDown) {
-        if (isViewTouchedDown) {
+        Logger.d("PlayerFragment", "player vertical scroll stop");
+        if (isViewTouchedDown
+                && currentPosition != AppPreference.getInstance().getPlayerItemIndex()) {
             newItemFocused(currentPosition);
 
             if (mPlayerModel == null) {
@@ -257,6 +259,7 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     @Override
     public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
 
+        // TODO: 2016/12/5 if tapping on item will trigger this event, and since the order hasn't changed, the player plays the item over again.
         // if the order of Infinite3View has not changed, the player should remain the same
         if (!isOrderChanged) {
             startPlayingAt(mPlayerModel.getItemIndex(), AudioPlayerUtils.PlayerField.SPELL);
@@ -307,6 +310,9 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
 
             // remove old playerview
             mPlayerView.removeOldPlayer(direction == Infinite3View.MOVE_TO_RIGHT ? Infinite3View.RIGHT_VIEW_INDEX : Infinite3View.LEFT_VIEW_INDEX);
+
+            // lesson changed
+            mOnPlayerLessonChangeListener.onLessonChange(mPlayerModel.getLessonIndex());
         }
     }
 

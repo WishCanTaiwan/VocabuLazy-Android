@@ -1,6 +1,7 @@
 package wishcantw.vocabulazy.activities.player.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -10,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 
 /**
@@ -42,7 +44,6 @@ public class PlayerOptionView extends LinearLayout {
         void playPrank(int idx);
     }
 
-    // TODO : To be determined with beibei
     public static final int IDX_OPTION_MODE      = 0x0;
     public static final int IDX_OPTION_RANDOM    = 0x1;
     public static final int IDX_OPTION_REPEAT    = 0x2;
@@ -52,10 +53,6 @@ public class PlayerOptionView extends LinearLayout {
     public static final int IDX_OPTION_SPEED     = 0x6;
     public static final int IDX_OPTION_PLAY_TIME = 0x7;
     public static final int IDX_OPTION_VOICE     = 0x8;
-
-    public static final int IDX_MODE_0 = 0x10;
-    public static final int IDX_MODE_1 = 0x11;
-    public static final int IDX_MODE_2 = 0x12;
 
     public static final int IDX_SEEK_BAR_REPEAT = PlayerOptionSeekBarsView.IDX_SEEK_BAR_REPEAT;
     public static final int IDX_SEEK_BAR_SPEED  = PlayerOptionSeekBarsView.IDX_SEEK_BAR_SPEED;
@@ -107,9 +104,9 @@ public class PlayerOptionView extends LinearLayout {
             }
         }
 
-        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_REPEAT, 5);
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_REPEAT, 4);
         mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_SPEED, 2);
-        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_PLAY_TIME, 40);
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_PLAY_TIME, 30);
         registerOptionListener();
     }
 
@@ -131,16 +128,17 @@ public class PlayerOptionView extends LinearLayout {
      * The api for setting all options in the PlayerOptionView
      * @param option The object containing all settings about the {@link}OptionSettings
      */
-    public void setOptionInModeContent(OptionSettings option, boolean init) {
+    public void setOptionInModeContent(@NonNull OptionSettings option,
+                                       boolean init,
+                                       boolean voiceEnable) {
         // unregister listener first to prevent from dependency
-        boolean voiceEnable, sentenceEnable;
+        boolean sentenceEnable;
         int modeIdx, listOrderIdx, vocOrderIdx;
 
         unregisterListener();
-        voiceEnable = true;
         sentenceEnable = option.isSentence();
         modeIdx = option.getMode();
-        listOrderIdx = option.isRandom() ? 1 : 0;
+        listOrderIdx = option.getListLoop();
         vocOrderIdx = option.isRandom() ? 1 : 0;
 
         // Only when init state need to setup mode option
@@ -154,9 +152,9 @@ public class PlayerOptionView extends LinearLayout {
         mListOrderRadioGroup.check(listOrderIdx);
         mVocOrderRadioGroup.check(vocOrderIdx);
 
-        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_REPEAT, option.getItemLoop());
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_REPEAT, option.getItemLoop()-1);
         mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_SPEED, option.getSpeed());
-        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_PLAY_TIME, option.getPlayTime());
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_PLAY_TIME, option.getPlayTime()-10);
 
         // register back
         restoreListener();

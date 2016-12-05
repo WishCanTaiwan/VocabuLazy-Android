@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
 import wishcantw.vocabulazy.audio.AudioService;
+import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.activities.player.activity.PlayerActivity;
 import wishcantw.vocabulazy.activities.player.model.PlayerModel;
@@ -57,7 +58,12 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
         mPlayerModel = ((PlayerActivity) getActivity()).getPlayerModel();
 
         OptionSettings optionSettings = mPlayerModel.getPlayerOptionSettings();
-        mPlayerOptionDialogView.setPlayerOptionModeContent(optionSettings, true);
+
+        mPlayerOptionDialogView.setPlayerOptionModeContent(
+                optionSettings,
+                true,
+                (AppPreference.getInstance().getPlayerVolume() == 1.0f)
+        );
     }
 
     @Override
@@ -74,16 +80,23 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
 
     @Override
     public void onPlayerOptionChanged(int optionID, int mode, View v, int value) {
+
         if (optionID == PlayerOptionView.IDX_OPTION_MODE) {
             // The value is the mode option index that is selected
-            int newMode = value;
-            OptionSettings optionSettings = mPlayerModel.getOptionSettings().get(newMode);
-            mPlayerOptionDialogView.setPlayerOptionModeContent(optionSettings, false);
+            AppPreference.getInstance().setPlayerOptionMode(value);
+
+            mPlayerOptionDialogView.setPlayerOptionModeContent(
+                    mPlayerModel.getPlayerOptionSettings(),
+                    false,
+                    (AppPreference.getInstance().getPlayerVolume() == 1.0f));
         }
+
         // Refresh option settings
         mPlayerModel.updateOptionSettings(optionID, mode, v, value);
-        // TODO : notify the service that option settings has changed
-         optionChanged();
+
+        Intent intent = new Intent(getActivity(), AudioService.class);
+        intent.setAction(AudioService.OPTION_SETTINGS_CHANGED);
+        getActivity().startService(intent);
     }
 
     /**--------------------- PlayerOptionDialogView.PlayerOptionCallbackFunc --------------------**/
@@ -91,14 +104,24 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
     @Override
     public int getBalloonVal(int seekBarIdx, int seekBarVal) {
         switch (seekBarIdx) {
+
             case PlayerOptionView.IDX_SEEK_BAR_SPEED:
                 // TODO : Beibei please fill in the formula of the speed
-                return seekBarVal;
+                break;
+
             case PlayerOptionView.IDX_SEEK_BAR_REPEAT:
+                seekBarVal += 1;
+                break;
+
             case PlayerOptionView.IDX_SEEK_BAR_PLAY_TIME:
+                seekBarVal += 10;
+                break;
+
             default:
-                return seekBarVal;
+                break;
         }
+
+        return seekBarVal;
     }
 
     @Override
@@ -106,13 +129,5 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
         if (mOnPlayPrankListener != null) {
             mOnPlayPrankListener.onPlayPrank(count);
         }
-    }
-
-    /**------------------------------------- private method -------------------------------------**/
-
-    private void optionChanged() {
-        Intent intent = new Intent(getActivity(), AudioService.class);
-        intent.setAction(AudioService.OPTION_SETTINGS_CHANGED);
-        getActivity().startService(intent);
     }
 }

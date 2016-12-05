@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import wishcantw.vocabulazy.R;
@@ -24,6 +25,7 @@ import wishcantw.vocabulazy.database.DatabaseCallback;
 import wishcantw.vocabulazy.activities.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.database.VersionCode;
+import wishcantw.vocabulazy.database.object.OptionSettings;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class CoverActivity extends ParentActivity {
@@ -36,6 +38,8 @@ public class CoverActivity extends ParentActivity {
 
     // google text-to-speech package name
     private static final String PACKAGE_NAME_GOOGLE_TTS_ENGINE = "com.google.android.tts";
+
+    private boolean shouldLoadNewOption = false;
 
     /** Life cycles **/
 
@@ -85,7 +89,7 @@ public class CoverActivity extends ParentActivity {
                 super.failed();
                 // should show some information
             }
-        });
+        }, shouldLoadNewOption);
     }
 
     private void askUserToInstallTTS() {
@@ -185,12 +189,14 @@ public class CoverActivity extends ParentActivity {
 
         int versionCodeInConfig = new Gson().fromJson(builder.toString(), VersionCode.class).getVersionCode();
 
-        Logger.d(TAG, "version code in config: " + versionCodeInConfig);
-
         if (versionCodeInConfig >= versionCode) {
             // check whether Text-to-Speech Engine is installed
             checkTTSEngine();
             return;
+        }
+
+        if (versionCode == 17) {
+            shouldLoadNewOption = true;
         }
 
         // if version code is not the latest
@@ -213,7 +219,6 @@ public class CoverActivity extends ParentActivity {
 
         // update version code config
         try {
-            Logger.d(TAG, "update config version");
             FileOutputStream fos = openFileOutput(getString(R.string.version_config), Context.MODE_PRIVATE);
             fos.write(new Gson().toJson(new VersionCode(versionCode)).getBytes());
             fos.close();
