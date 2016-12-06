@@ -135,14 +135,6 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
         return (mTextToSpeech.isLanguageAvailable(Locale.ENGLISH) >= 0 && mTextToSpeech.isLanguageAvailable(Locale.TAIWAN) >= 0);
     }
 
-    public void mute() {
-        AppPreference.getInstance().setPlayerVolume(0.0f);
-    }
-
-    public void unMute() {
-        AppPreference.getInstance().setPlayerVolume(1.0f);
-    }
-
     @Override
     protected void onUtteranceFinished(String utteranceId) {
         String utteranceAfterSilence = currentUtterance + UTTERANCE_SILENCE;
