@@ -163,6 +163,18 @@
                 android:gravity="center"
                 android:button="@android:color/transparent"
                 android:background="@drawable/player_radio_button"
+                android:text="順序清單"
+                android:textColor="@color/grey_2"/>
+
+            <wishcantw.vocabulazy.activities.player.view.PlayerOptionRadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center"
+                android:button="@android:color/transparent"
+                android:background="@drawable/player_radio_button"
                 android:text="重複清單"
                 android:textColor="@color/grey_2"/>
 
