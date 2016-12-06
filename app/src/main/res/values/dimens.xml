@@ -13,6 +13,8 @@
     <dimen name="widget_xx_circle_size">50dp</dimen>
     <dimen name="widget_xx_length_size">14dp</dimen>
     <dimen name="widget_xx_thick">5dp</dimen>
+    <dimen name="widget_flag_width">27dp</dimen>
+    <dimen name="widget_flag_height">48dp</dimen>
     <!-- cover -->
     <dimen name="cover_dialog_width">184dp</dimen>
     <dimen name="cover_dialog_vertical_margin">20dp</dimen>
