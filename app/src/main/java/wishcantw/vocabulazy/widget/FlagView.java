@@ -24,44 +24,68 @@ public class FlagView extends RelativeLayout {
     private static final int DIMEN_FLAG_WIDTH_RES_ID  = R.dimen.widget_flag_width;
     private static final int DIMEN_FLAG_HEIGHT_RES_ID = R.dimen.widget_flag_height;
 
+    private int mWidth, mHeight;
+    private ShapeDrawable mFlagDrawable;
     public FlagView(Context context) {
         this(context, null);
     }
 
     public FlagView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        int width, height;
-        ShapeDrawable flagDrawable;
         Path path;
 
-        width  = (int) context.getResources().getDimension(DIMEN_FLAG_WIDTH_RES_ID);
-        height = (int) context.getResources().getDimension(DIMEN_FLAG_HEIGHT_RES_ID);
-        path = getFlagDrawablePath(width, height);
-        flagDrawable = new ShapeDrawable(new PathShape(path, width, height));
-        flagDrawable.getPaint().setColor(ContextCompat.getColor(context, COLOR_FLAG_RES_ID));
-        flagDrawable.invalidateSelf();
+        mWidth  = (int) context.getResources().getDimension(DIMEN_FLAG_WIDTH_RES_ID);
+        mHeight = (int) context.getResources().getDimension(DIMEN_FLAG_HEIGHT_RES_ID);
+        path = getFlagDrawablePath(mWidth, mHeight);
+        mFlagDrawable = new ShapeDrawable(new PathShape(path, mWidth, mHeight));
+        setFlagColor(ContextCompat.getColor(context, COLOR_FLAG_RES_ID));
 
-        setLayoutParams(new LayoutParams(width, height));
-        setBackground(flagDrawable);
+        setLayoutParams(new LayoutParams(mWidth, mHeight));
+        setBackground(mFlagDrawable);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             /** this is important, change outline make shadow appear */
-            setOutlineProvider(new FlagOutlineProvider(context, width, height));
+            setOutlineProvider(new FlagOutlineProvider(context, mWidth, mHeight));
             setClipToOutline(true);
         }
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        widthMeasureSpec  = MeasureSpec.makeMeasureSpec(mWidth, MeasureSpec.EXACTLY);
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(mHeight, MeasureSpec.EXACTLY);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    /**------------------------------------- public method --------------------------------------**/
+
+    /**
+     * The api for setting the flag color
+     * @param color should be rgb, instead of res id
+     */
+    public void setFlagColor(int color) {
+        mFlagDrawable.getPaint().setColor(color);
+        mFlagDrawable.invalidateSelf();
+    }
+
+    /**------------------------------------- private method -------------------------------------**/
     /*(0,0)        (w,0)
-      |-------------|
-      |             |
-      |             |
-      |             |
-      |             |
-      |    /---\    |
-      |   /     \   |
-      |  /       \  |
-      |_/---------\_|
-      (0,h)        (w,h)
+          |-------------|
+          |             |
+          |             |
+          |             |
+          |             |
+          |    /---\    |
+          |   /     \   |
+          |  /       \  |
+          |_/---------\_|
+          (0,h)        (w,h)
+    */
+    /**
+     * The path to draw the flag
+     * @param width
+     * @param height
+     * @return
      */
     private Path getFlagDrawablePath(int width, int height){
         int w = width, h = height;
