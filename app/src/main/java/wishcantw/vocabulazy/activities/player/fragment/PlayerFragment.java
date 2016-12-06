@@ -259,6 +259,10 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     @Override
     public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
 
+        if (!isOrderChanged) {
+            return;
+        }
+
         if (mPlayerView == null || mOnPlayerLessonChangeListener == null) {
             return;
         }
