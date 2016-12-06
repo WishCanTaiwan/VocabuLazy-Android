@@ -176,11 +176,12 @@ public class AudioPlayer {
                     newItemIndex = 0;
 
                     switch (listLoop) {
-                        case 0: // repeat list
+                        case 0: // list in order
+                        case 1: // list repeat
                             // do nothing, keep playing
                             break;
 
-                        case 1: // random list
+                        case 2: // list random
                             audioServiceBroadcaster.onListComplete();
                             resetListLoopCountDown();
                             audioPlayerUtils.loadNewContent(database, databaseUtils);
