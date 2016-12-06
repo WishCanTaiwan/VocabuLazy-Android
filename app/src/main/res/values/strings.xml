@@ -117,7 +117,7 @@
     <string name="player_dialog_prank_msg_1">再按1次即將成為開發人員</string>
     <string name="player_dialog_prank_msg_2">真的想成為開發人員嗎?</string>
     <string name="player_dialog_prank_msg_3">你確定?</string>
-    <string name="player_dialog_prank_msg_4">...</string>
+    <string name="player_dialog_prank_msg_4">&#8230;</string>
     <!-- search -->
     <string name="search_menu_item">Search Menu Item</string>
     <string name="search_dialog_add_voc_to_note_title">加入筆記清單</string>
