@@ -58,9 +58,11 @@ public class AudioPlayerUtils {
      *
      * @param database database instance
      * @param databaseUtils database utilities instance
+     * @param isRandom whether picking next list randomly
      */
     public void loadNewContent(@NonNull Database database,
-                               @NonNull DatabaseUtils databaseUtils) {
+                               @NonNull DatabaseUtils databaseUtils,
+                               boolean isRandom) {
         // get instances
         AppPreference appPreference = AppPreference.getInstance();
 
@@ -72,12 +74,16 @@ public class AudioPlayerUtils {
                 ? databaseUtils.getNoteAmount(database.getNotes())
                 : databaseUtils.getLessonAmount(database.getTextbooks(), currentBookIndex);
 
-        // random an index of new lesson/note
+        // decide the index of new lesson/note
         int newLessonIndex;
-        Random random = new Random(System.currentTimeMillis());
-        do {
-            newLessonIndex = random.nextInt(lessonAmount);
-        } while (currentLessonIndex == newLessonIndex);
+        if (isRandom) {
+            Random random = new Random(System.currentTimeMillis());
+            do {
+                newLessonIndex = random.nextInt(lessonAmount);
+            } while (currentLessonIndex == newLessonIndex);
+        } else {
+            newLessonIndex = (currentLessonIndex+1) % lessonAmount;
+        }
         appPreference.setPlayerLessonIndex(newLessonIndex);
 
         // content ids of new lesson/note

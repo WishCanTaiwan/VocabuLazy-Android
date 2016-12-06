@@ -259,13 +259,6 @@ public class PlayerFragment extends GABaseFragment implements PlayerView.PlayerE
     @Override
     public void onPlayerHorizontalScrollStop(boolean isOrderChanged, int direction, boolean isViewTouchedDown) {
 
-        // TODO: 2016/12/5 if tapping on item will trigger this event, and since the order hasn't changed, the player plays the item over again.
-        // if the order of Infinite3View has not changed, the player should remain the same
-        if (!isOrderChanged) {
-            startPlayingAt(mPlayerModel.getItemIndex(), AudioPlayerUtils.PlayerField.SPELL);
-            return;
-        }
-
         if (mPlayerView == null || mOnPlayerLessonChangeListener == null) {
             return;
         }

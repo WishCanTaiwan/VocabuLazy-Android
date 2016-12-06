@@ -175,8 +175,18 @@ public class AudioPlayer {
                 if (newItemIndex == -1) {
                     newItemIndex = 0;
 
+                    // TODO: 2016/12/6: list loop switch-case requires refinement
+                    // The switch-case structure looks weird and requires refinement. However, since
+                    // our main goal is to fast-release, I will leave the refinement to future.
                     switch (listLoop) {
                         case 0: // list in order
+                            audioServiceBroadcaster.onListComplete();
+                            resetListLoopCountDown();
+                            audioPlayerUtils.loadNewContent(database, databaseUtils, false);
+                            audioServiceBroadcaster.toNextList();
+                            AudioPlayerUtils.getInstance().sleep(1500);
+                            break;
+
                         case 1: // list repeat
                             // do nothing, keep playing
                             break;
@@ -184,7 +194,7 @@ public class AudioPlayer {
                         case 2: // list random
                             audioServiceBroadcaster.onListComplete();
                             resetListLoopCountDown();
-                            audioPlayerUtils.loadNewContent(database, databaseUtils);
+                            audioPlayerUtils.loadNewContent(database, databaseUtils, true);
                             audioServiceBroadcaster.toNextList();
                             AudioPlayerUtils.getInstance().sleep(1500);
                             break;
