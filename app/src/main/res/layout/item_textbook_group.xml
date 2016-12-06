@@ -1,40 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView_bookTitle"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:background="@drawable/expandable_group_background"
-        android:text="@string/textbook_group_title"
-        android:textSize="@dimen/textbook_group_title_text_size"
-        android:textColor="@color/textbook_group_title_text_color"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"/>
+    <LinearLayout
+        android:id="@+id/view_parent"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
-    <TextView
-        android:id="@+id/textView_bookSubTitle"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/expandable_child_background"
-        android:text="@string/textbook_group_subtitle"
-        android:textSize="@dimen/textbook_group_subtitle_text_size"
-        android:textColor="@color/textbook_group_subtitle_text_color"
-        android:textAllCaps="false"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:drawableRight="@drawable/main_menu_text_book_arrow"
-        android:drawableEnd="@drawable/main_menu_text_book_arrow"/>
+        <TextView
+            android:id="@+id/textView_bookTitle"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:background="@drawable/expandable_group_background"
+            android:text="@string/textbook_group_title"
+            android:textSize="@dimen/textbook_group_title_text_size"
+            android:textColor="@color/textbook_group_title_text_color"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"/>
 
-    <View
-        android:id="@+id/view_divider"
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="@color/textbook_fragment_divider_color"/>
+        <TextView
+            android:id="@+id/textView_bookSubTitle"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/expandable_child_background"
+            android:text="@string/textbook_group_subtitle"
+            android:textSize="@dimen/textbook_group_subtitle_text_size"
+            android:textColor="@color/textbook_group_subtitle_text_color"
+            android:textAllCaps="false"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:drawableRight="@drawable/main_menu_text_book_arrow"
+            android:drawableEnd="@drawable/main_menu_text_book_arrow"/>
 
-</LinearLayout>
+        <View
+            android:id="@+id/view_divider"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@color/textbook_fragment_divider_color"/>
+
+    </LinearLayout>
+
+    <wishcantw.vocabulazy.widget.FlagView
+        android:layout_width="@dimen/widget_flag_width"
+        android:layout_height="@dimen/widget_flag_height"
+        android:layout_marginRight="20dp"
+        android:layout_alignRight="@id/view_parent"
+        android:translationZ="5dp"/>
+
+</RelativeLayout>

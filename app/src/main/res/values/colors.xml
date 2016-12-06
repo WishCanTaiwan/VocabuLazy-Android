@@ -40,6 +40,7 @@
     <color name="widget_pop_details_color">@color/yellow_2</color>
     <color name="widget_slide_back_view_pager_background">@color/transparent</color>
     <color name="widget_tab_view_mask">@color/black_alpha_1</color>
+    <color name="widget_flag_background">@color/yellow_1</color>
 
     <!--*************************************** cover ******************************************-->
     <color name="cover_text">@color/white_1</color>
