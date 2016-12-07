@@ -43,11 +43,12 @@ public class FlagView extends RelativeLayout {
         setLayoutParams(new LayoutParams(mWidth, mHeight));
         setBackground(mFlagDrawable);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            /** this is important, change outline make shadow appear */
-            setOutlineProvider(new FlagOutlineProvider(context, mWidth, mHeight));
-            setClipToOutline(true);
-        }
+        /* outline provider cannot support FlagView's shape */
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            /** this is important, change outline make shadow appear */
+//            setOutlineProvider(new FlagOutlineProvider(context, mWidth, mHeight));
+//            setClipToOutline(true);
+//        }
     }
 
     @Override
@@ -99,7 +100,7 @@ public class FlagView extends RelativeLayout {
     }
 
     @TargetApi(21)
-    private static class FlagOutlineProvider extends ViewOutlineProvider {
+    private class FlagOutlineProvider extends ViewOutlineProvider {
 
         int mW, mH;
 
@@ -116,7 +117,9 @@ public class FlagView extends RelativeLayout {
             path.lineTo((int) (0.5 * mW), (int) (0.8 * mH));
             path.lineTo(mW, mH);
             path.lineTo(mW, 0);
-            outline.setConvexPath(path);
+            if (path.isConvex()) {
+                outline.setConvexPath(path);
+            }
         }
     }
 }
