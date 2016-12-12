@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.activities.mainmenu.info;
+package wishcantw.vocabulazy.activities.mainmenu.info.fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.activities.mainmenu.info.view.InfoView;
 import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.analytics.ga.GABaseFragment;
 import wishcantw.vocabulazy.activities.mainmenu.activity.MainMenuActivity;

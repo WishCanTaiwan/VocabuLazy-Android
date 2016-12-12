@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wishcantw.vocabulazy.activities.mainmenu.info.ReportPageView xmlns:android="http://schemas.android.com/apk/res/android"
+<wishcantw.vocabulazy.activities.mainmenu.info.view.ReportPageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="18dp"
@@ -69,4 +69,4 @@
     </LinearLayout>
 
 
-</wishcantw.vocabulazy.activities.mainmenu.info.ReportPageView>
+</wishcantw.vocabulazy.activities.mainmenu.info.view.ReportPageView>
