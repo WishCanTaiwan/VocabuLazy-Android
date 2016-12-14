@@ -49,6 +49,7 @@ public class MainMenuActivity extends ParentActivity implements MainMenuFragment
     private boolean isPlaying;
 
     private boolean isNavigatingToPlayer;
+    private boolean isNavigatingToSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +78,13 @@ public class MainMenuActivity extends ParentActivity implements MainMenuFragment
     protected void onResume() {
         super.onResume();
         isNavigatingToPlayer = false;
+        isNavigatingToSearch = false;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (!isNavigatingToPlayer) {
+        if (!isNavigatingToPlayer && !isNavigatingToSearch) {
             Database.getInstance().storeData(MainMenuActivity.this, true);
         }
     }
@@ -253,6 +255,7 @@ public class MainMenuActivity extends ParentActivity implements MainMenuFragment
     }
 
     public void navigateToSearch() {
+        isNavigatingToSearch = true;
         Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
         startActivity(intent);
     }
