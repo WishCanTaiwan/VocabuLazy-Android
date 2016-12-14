@@ -52577,13 +52577,13 @@
 	"translation": "協調；調整",
 	"id": 20066
 }, {
-	"spell": "deadline ",
+	"spell": "deadline",
 	"cnSentence": ["未定義例句"],
 	"phonetic": "['dedlain]",
 	"enSentence": ["default sentence"],
 	"level": 0,
 	"partOfSpeech": "",
-	"translation": "截至期限",
+	"translation": "截止、期限",
 	"id": 20067
 }, {
 	"spell": "employee",
@@ -52871,7 +52871,7 @@
 	"enSentence": ["default sentence"],
 	"level": 0,
 	"partOfSpeech": "",
-	"translation": "獲得漲落",
+	"translation": "獲得",
 	"id": 20099
 }, {
 	"spell": "affiliate ",
@@ -52892,13 +52892,13 @@
 	"translation": "評估（財產價值）；評定",
 	"id": 20101
 }, {
-	"spell": "benchmark ",
+	"spell": "benchmark",
 	"cnSentence": ["未定義例句"],
 	"phonetic": "['bentʃ,mɑ:k]",
 	"enSentence": ["default sentence"],
 	"level": 0,
 	"partOfSpeech": "",
-	"translation": "基準；水準點；標脹準",
+	"translation": "標準",
 	"id": 20102
 }, {
 	"spell": "carry out ",
@@ -52997,7 +52997,7 @@
 	"enSentence": ["default sentence"],
 	"level": 0,
 	"partOfSpeech": "",
-	"translation": "物價飛漲；通貨膨",
+	"translation": "物價飛漲；通貨膨脹",
 	"id": 20113
 }, {
 	"spell": "overdraft",

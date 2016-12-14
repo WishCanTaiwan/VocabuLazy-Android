@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.activities.mainmenu.info;
+package wishcantw.vocabulazy.activities.mainmenu.info.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;

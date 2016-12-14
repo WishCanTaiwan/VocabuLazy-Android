@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.activities.mainmenu.info;
+package wishcantw.vocabulazy.activities.mainmenu.info.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.activities.mainmenu.info.view.MemberInfoViewHolder;
 
 /**
  * Created by allencheng07 on 2016/9/29.

@@ -15,10 +15,10 @@ import wishcantw.vocabulazy.activities.ParentActivity;
 import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.activities.exam.activity.ExamActivity;
 import wishcantw.vocabulazy.activities.mainmenu.fragment.MainMenuFragment;
-import wishcantw.vocabulazy.activities.mainmenu.info.ReportPageFragment;
-import wishcantw.vocabulazy.activities.mainmenu.info.TNCFragment;
-import wishcantw.vocabulazy.activities.mainmenu.info.UserGuideFragment;
-import wishcantw.vocabulazy.activities.mainmenu.info.WishCanIntroFragment;
+import wishcantw.vocabulazy.activities.mainmenu.info.fragment.ReportPageFragment;
+import wishcantw.vocabulazy.activities.mainmenu.info.fragment.TNCFragment;
+import wishcantw.vocabulazy.activities.mainmenu.info.fragment.UserGuideFragment;
+import wishcantw.vocabulazy.activities.mainmenu.info.fragment.WishCanIntroFragment;
 import wishcantw.vocabulazy.activities.mainmenu.model.MainMenuModel;
 import wishcantw.vocabulazy.activities.mainmenu.note.fragment.NoteCreateDialogFragment;
 import wishcantw.vocabulazy.activities.mainmenu.note.fragment.NoteDeleteDialogFragment;
@@ -49,6 +49,7 @@ public class MainMenuActivity extends ParentActivity implements MainMenuFragment
     private boolean isPlaying;
 
     private boolean isNavigatingToPlayer;
+    private boolean isNavigatingToSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +78,13 @@ public class MainMenuActivity extends ParentActivity implements MainMenuFragment
     protected void onResume() {
         super.onResume();
         isNavigatingToPlayer = false;
+        isNavigatingToSearch = false;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (!isNavigatingToPlayer) {
+        if (!isNavigatingToPlayer && !isNavigatingToSearch) {
             Database.getInstance().storeData(MainMenuActivity.this, true);
         }
     }
@@ -253,6 +255,7 @@ public class MainMenuActivity extends ParentActivity implements MainMenuFragment
     }
 
     public void navigateToSearch() {
+        isNavigatingToSearch = true;
         Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
         startActivity(intent);
     }
