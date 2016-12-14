@@ -84,6 +84,7 @@ public class InfoFragment extends GABaseFragment {
                 ((MainMenuActivity) getActivity()).displayIntroPage();
             }
         });
+        introTextView.setVisibility(View.GONE);
 
     }
 
