@@ -42,7 +42,7 @@
     <string name="main_menu_exam_index_textbook">七千單字</string>
     <string name="main_menu_exam_index_note">自訂清單</string>
     <string-array name="main_menu_tab_title">
-        <item>七千單字</item>
+        <item>單字書</item>
         <item>自訂清單</item>
         <item>測驗特區</item>
         <item>關於我們</item>
