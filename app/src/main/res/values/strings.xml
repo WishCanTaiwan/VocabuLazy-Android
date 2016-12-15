@@ -42,7 +42,7 @@
     <string name="main_menu_exam_index_textbook">七千單字</string>
     <string name="main_menu_exam_index_note">自訂清單</string>
     <string-array name="main_menu_tab_title">
-        <item>七千單字</item>
+        <item>單字書</item>
         <item>自訂清單</item>
         <item>測驗特區</item>
         <item>關於我們</item>
@@ -69,7 +69,7 @@
     <string name="note_delete_dialog_subtitle">清單名稱</string>
     <string name="note_delete_dialog_confirm">確定</string>
     <string name="note_delete_dialog_cancel">取消</string>
-    <string name="note_create_dialog_title">新增清單</string>
+    <string name="note_create_dialog_title">新增筆記清單</string>
     <string name="note_create_dialog_hint">輸入欲新增清單名稱</string>
     <string name="note_create_dialog_confirm">確定</string>
     <string name="note_create_dialog_cancel">取消</string>
@@ -112,6 +112,12 @@
     <string name="player_dialog_new_note_no">取消</string>
     <string name="player_dialog_voc_too_less_yes">確認</string>
     <string name="player_dialog_voc_too_less_title">請新增至少一個單字</string>
+    <string name="player_dialog_prank_yes">確認</string>
+    <string name="player_dialog_prank_title">目前還不支援例句播放</string>
+    <string name="player_dialog_prank_msg_1">再按1次即將成為開發人員</string>
+    <string name="player_dialog_prank_msg_2">真的想成為開發人員嗎?</string>
+    <string name="player_dialog_prank_msg_3">你確定?</string>
+    <string name="player_dialog_prank_msg_4">&#8230;</string>
     <!-- search -->
     <string name="search_menu_item">Search Menu Item</string>
     <string name="search_dialog_add_voc_to_note_title">加入筆記清單</string>
@@ -128,9 +134,9 @@
     <string name="cover_dialog_button_confirm">前往 Google Play</string>
     <string name="cover_dialog_update_title">版本 %s 更新內容</string>
     <string name="cover_dialog_update_message">
-        1. 我們現在有多益以及托福單字了！
-        2. 改善效能。
-        3. 修正改變系統字體時可能造成的程式崩潰。
+        1. 播放設定有了新的畫面！\n
+        2. 修了好多爸葛。\n
+        3. 多了一個小彩蛋。
     </string>
     <string name="cover_dialog_update_positive_button">我知道了</string>
 

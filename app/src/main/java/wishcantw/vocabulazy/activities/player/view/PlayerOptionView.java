@@ -1,88 +1,78 @@
 package wishcantw.vocabulazy.activities.player.view;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Outline;
-import android.graphics.Path;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.PathShape;
-import android.os.Build;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.Switch;
 
 import wishcantw.vocabulazy.R;
-
+import wishcantw.vocabulazy.database.AppPreference;
 import wishcantw.vocabulazy.database.object.OptionSettings;
-import wishcantw.vocabulazy.widget.LinkedListPagerAdapter;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
- * @author Swallow Chen
- * @since 2016/1/17
+ * Created by SwallowChen on 11/18/16.
  */
+
 public class PlayerOptionView extends LinearLayout {
     /**
      * OnOptionChangedListener is the callback function when any of option, including tab, is changed
      * */
-    public interface OnOptionChangedListener{
-        void onOptionChanged(int optionID, int mode, View v, int leftOrRight);
+    public interface OnOptionChangedListener {
+        void onOptionChanged(int optionID, int mode, View v, int value);
     }
 
-    private static final int VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID = R.id.player_option_tab_layout;
-    private static final int VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID = R.id.player_option_tab_pager;
-    private static final int DEFAULT_TRAPEZOID_LONG_HEIGHT = R.dimen.player_option_trapezoid_long_height;
-    private static final int DEFAULT_TRAPEZOID_SHORT_HEIGHT = R.dimen.player_option_trapezoid_short_height;
-
-    private Context mContext;
-
     /**
-     * This linearlayout is used to place tabs, all tabs weight is set to 1
-     * */
-    private LinearLayout mTabLayout;
+     * OptionCallbackFunc is the set of all callback functions in option view
+     */
+    public interface OptionCallbackFunc {
+        /**
+         * The callback function for user to indicate the value to be shown on seek bar
+         * @param seekBarIdx indicate which seek bar is ready to show the value
+         * @param i indicate the current value of seek bar
+         * @return the value to be shown on seek bar
+         */
+        int getBalloonVal(int seekBarIdx, int i);
 
-    /**
-     * ViewPager usually doesn't support wrap_content
-     * */
-    private WrapContentViewPager mViewPager;
+        /**
+         *
+         */
+        void playPrank(int idx);
+    }
 
-    /**
-     * TabContentSlidePagerAdapter is used for giving the ViewPager the content
-     * */
-    private PagerAdapter mPagerAdapter;
+    public static final int IDX_OPTION_MODE      = 0x0;
+    public static final int IDX_OPTION_RANDOM    = 0x1;
+    public static final int IDX_OPTION_REPEAT    = 0x2;
+    public static final int IDX_OPTION_SENTENCE  = 0x3;
+    public static final int IDX_OPTION_SECOND    = 0x4;
+    public static final int IDX_OPTION_FREQUENCY = 0x5;
+    public static final int IDX_OPTION_SPEED     = 0x6;
+    public static final int IDX_OPTION_PLAY_TIME = 0x7;
+    public static final int IDX_OPTION_VOICE     = 0x8;
 
-    /**
-     * mTabContentList contains all TabContent
-     * */
-    private LinkedList<ViewGroup> mTabContentList;
+    public static final int IDX_SEEK_BAR_REPEAT = PlayerOptionSeekBarsView.IDX_SEEK_BAR_REPEAT;
+    public static final int IDX_SEEK_BAR_SPEED  = PlayerOptionSeekBarsView.IDX_SEEK_BAR_SPEED;
+    public static final int IDX_SEEK_BAR_PLAY_TIME = PlayerOptionSeekBarsView.IDX_SEEK_BAR_PLAY_TIME;
 
-    /**
-     * Indicate which Tab is currently chosen
-     * */
-    private PlayerOptionTabView mCurrentTab;
+    private static final int VIEW_PLAYER_OPTION_VOICE_SWITCH_ID           = R.id.player_option_voice_switch;
+    private static final int VIEW_PLAYER_OPTION_SENTENCE_SWITCH_ID        = R.id.player_option_sentence_switch;
+    private static final int VIEW_PLAYER_OPTION_MODE_RADIO_GROUP_ID       = R.id.player_option_mode_radio_group;
+    private static final int VIEW_PLAYER_OPTION_LIST_ORDER_RADIO_GROUP_ID = R.id.player_option_list_order_radio_group;
+    private static final int VIEW_PLAYER_OPTION_VOC_ORDER_RADIO_GROUP_ID  = R.id.player_option_voc_order_radio_group;
+    private static final int VIEW_PLAYER_OPTION_SEEK_BARS_ID              = R.id.player_option_seekbars;
 
-    /**
-     * Indicate the chosen tab index
-     * */
-    private int mCurrentTabIndex;
+    private Switch mVoiceSwitch, mSentenceSwitch;
+    private RadioGroup mModeRadioGroup, mListOrderRadioGroup, mVocOrderRadioGroup;
+    private PlayerOptionSeekBarsView mPlayerOptionSeekBarsView;
+    // play a prank if user keep pressing the sentence switch
+    private EasterEggTask mEasterEggTask;
 
-    /**
-     * The callback function 
-     * */
-    private OnOptionChangedListener mOnOptionChangedListener;
+    private OnOptionChangedListener mOnOptionChangedListener, mRestoreListener;
+    private OptionCallbackFunc mOptionCallbackFunc;
 
     public PlayerOptionView(Context context) {
         this(context, null);
@@ -90,351 +80,210 @@ public class PlayerOptionView extends LinearLayout {
 
     public PlayerOptionView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        mContext = context;
-        mTabContentList = new LinkedList<>();
-
     }
-    
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mTabLayout = (LinearLayout) findViewById(VIEW_PLAYER_OPTION_TAB_LAYOUT_RES_ID);
+        mVoiceSwitch         = (Switch)     findViewById(VIEW_PLAYER_OPTION_VOICE_SWITCH_ID);
+        mSentenceSwitch      = (Switch)     findViewById(VIEW_PLAYER_OPTION_SENTENCE_SWITCH_ID);
+        mModeRadioGroup      = (RadioGroup) findViewById(VIEW_PLAYER_OPTION_MODE_RADIO_GROUP_ID);
+        mListOrderRadioGroup = (RadioGroup) findViewById(VIEW_PLAYER_OPTION_LIST_ORDER_RADIO_GROUP_ID);
+        mVocOrderRadioGroup  = (RadioGroup) findViewById(VIEW_PLAYER_OPTION_VOC_ORDER_RADIO_GROUP_ID);
+        mPlayerOptionSeekBarsView = (PlayerOptionSeekBarsView) findViewById(VIEW_PLAYER_OPTION_SEEK_BARS_ID);
 
-        mViewPager = (WrapContentViewPager) findViewById(VIEW_PLAYER_OPTION_TAB_PAGER_RES_ID);
-        for (int i = 0; i < mViewPager.getChildCount(); i++) {
-            PlayerOptionContentView tabContent = (PlayerOptionContentView) mViewPager.getChildAt(i);
-            tabContent.setContentBackgroundColor(((PlayerOptionTabView) mTabLayout.getChildAt(i)).getColor());
-            mTabContentList.add(tabContent);
+        for (int i = 0; i < Math.max(mModeRadioGroup.getChildCount(), Math.max(mListOrderRadioGroup.getChildCount(), mVocOrderRadioGroup.getChildCount())); i++) {
+            if (mModeRadioGroup.getChildAt(i) != null) {
+                mModeRadioGroup.getChildAt(i).setId(i);
+            }
+            if (mListOrderRadioGroup.getChildAt(i) != null) {
+                mListOrderRadioGroup.getChildAt(i).setId(i);
+            }
+            if (mVocOrderRadioGroup.getChildAt(i) != null) {
+                mVocOrderRadioGroup.getChildAt(i).setId(i);
+            }
         }
-        mPagerAdapter = new LinkedListPagerAdapter(mTabContentList);
-        mViewPager.setAdapter(mPagerAdapter);
-        mViewPager.setPagingEnabled(true);
 
-        registerOptionsListener();
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_REPEAT, 4);
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_SPEED, 2);
+        mPlayerOptionSeekBarsView.setSeekBarMax(IDX_SEEK_BAR_PLAY_TIME, 30);
+        registerOptionListener();
     }
+
+    /**------------------------------------ public method ---------------------------------------**/
 
     /**
      * Hook the callback function
      * @param listener the callback function
-     * */
+     */
     public void setOnOptionChangedListener(OnOptionChangedListener listener) {
         mOnOptionChangedListener = listener;
     }
 
+    public void setOptionCallbackFunc(OptionCallbackFunc callbackFunc) {
+        mOptionCallbackFunc = callbackFunc;
+    }
+
     /**
-     * Register all the child's event
-     * */
-    private void registerOptionsListener() {
-        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
-            final int nextTabIndex = i;
-            PlayerOptionContentView tabContent = getTabContent(i);
-            PlayerOptionTabView tabView = (PlayerOptionTabView) mTabLayout.getChildAt(i);
-            tabView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setCurrentTab(view);
-                    if (mOnOptionChangedListener != null) {
-                        /** Tab index is also mode id */
-                        mOnOptionChangedListener.onOptionChanged(PlayerOptionTabView.IDX_OPTION_TAB_0 | nextTabIndex, nextTabIndex, view, 0);
-                    }
+     * The api for setting all options in the PlayerOptionView
+     * @param option The object containing all settings about the {@link}OptionSettings
+     */
+    public void setOptionInModeContent(@NonNull OptionSettings option,
+                                       boolean init,
+                                       boolean voiceEnable) {
+        // unregister listener first to prevent from dependency
+        boolean sentenceEnable;
+        int modeIdx, listOrderIdx, vocOrderIdx;
+
+        unregisterListener();
+        sentenceEnable = option.isSentence();
+        modeIdx = option.getMode();
+        listOrderIdx = option.getListLoop();
+        vocOrderIdx = option.isRandom() ? 1 : 0;
+
+        // Only when init state need to setup mode option
+        if (init) {
+            // Use input option to determined the initial (or last time saved) mode
+            mModeRadioGroup.check(modeIdx);
+        }
+
+        mVoiceSwitch.setChecked(voiceEnable);
+        mSentenceSwitch.setChecked(sentenceEnable);
+        mListOrderRadioGroup.check(listOrderIdx);
+        mVocOrderRadioGroup.check(vocOrderIdx);
+
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_REPEAT, option.getItemLoop()-1);
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_SPEED, option.getSpeed());
+        mPlayerOptionSeekBarsView.setSeekBarProgress(IDX_SEEK_BAR_PLAY_TIME, option.getPlayTime()-10);
+
+        // register back
+        restoreListener();
+    }
+
+    /**----------------------------------- private method ---------------------------------------**/
+
+    /**
+     * Register the callback function to monitor all event in PlayerOptionView. The listener will
+     * sent event back if there's listener registered on top level, here is PlayerView.
+     */
+    private void registerOptionListener() {
+        // The callback for voice enable switch
+        mVoiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (mOnOptionChangedListener != null) {
+                    mOnOptionChangedListener.onOptionChanged(IDX_OPTION_VOICE, mModeRadioGroup.getCheckedRadioButtonId(), mVoiceSwitch, b ? 1 : 0);
                 }
-            });
-            tabContent.setOnOptionClickListener(new PlayerOptionContentView.OnOptionClickListener() {
-                @Override
-                public void onOptionClick(int optionID, View v, int leftOrRight) {
-                    if (mOnOptionChangedListener != null) {
-                        /** Tab index is also mode id */
-                        mOnOptionChangedListener.onOptionChanged(optionID, nextTabIndex, v, leftOrRight);
-                    }
+            }
+        });
+        // The callback for sentence switch
+        mSentenceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (mOnOptionChangedListener != null) {
+                    mOnOptionChangedListener.onOptionChanged(IDX_OPTION_SENTENCE, mModeRadioGroup.getCheckedRadioButtonId(), mSentenceSwitch, b ? 1 : 0);
                 }
-            });
-        }
-    }
-
-    /**
-     * Use the api to get tab content object to customized options
-     * @param index indicate which tab content will be return
-     * @return PlayerOptionContentView return depends on the input
-     * */
-    public PlayerOptionContentView getTabContent(int index) {
-        return (PlayerOptionContentView) mTabContentList.get(index);
-    }
-
-    /**
-     * Use the api to make PlayerOption change to specific tab according to certain tab view
-     * @param v should be the tabview
-     * */
-    public void setCurrentTab(View v) {
-        int nextTabIndex = mTabLayout.indexOfChild(v);
-        mViewPager.setCurrentItem(nextTabIndex, true);
-        mCurrentTab = (PlayerOptionTabView) v;
-        for (int i = nextTabIndex, k = 0; k < getChildCount(); i = (i + 1) % mTabLayout.getChildCount(), k++) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                PlayerOptionTabView tabView = (PlayerOptionTabView) mTabLayout.getChildAt(i);
-                tabView.setElevation(k == 0 ? 50 : k == 1 ? 20 : 10);
-            }
-        }
-        mCurrentTabIndex = nextTabIndex;
-    }
-
-    /**
-     * Use input linkedlist to set all options in tab contents
-     * @param optionSettingsLL the list length should only be 3
-     * */
-    public void setOptionsInTabContent(ArrayList<OptionSettings> optionSettingsLL) {
-
-        if (optionSettingsLL == null) { /** if no option setting, using default value */
-            return;
-        }
-
-        Iterator<OptionSettings> ii = optionSettingsLL.iterator();
-        while (ii.hasNext()) {
-            OptionSettings optionSettings = ii.next();
-            int mode = optionSettings.getMode() - 1;
-            PlayerOptionContentView tabContent = getTabContent(mode);
-            tabContent.setOptionSettings(optionSettings);
-        }
-    }
-
-    /**
-     * PlayerOptionTabView is our Tab items, which is a RelativeLayout containing a
-     * PlayerOptionImageView (a trapezoid) and a TextView(the tab item's title)
-     * */
-    public static class PlayerOptionTabView extends RelativeLayout{
-
-        public static final int IDX_OPTION_TAB_0 = 0x10;
-        public static final int IDX_OPTION_TAB_1 = 0x11;
-        public static final int IDX_OPTION_TAB_2 = 0x12;
-
-        private static final int COLOR_TAB_RES_ID = R.color.player_option_tab0;
-        private static final int STR_TAB_RES_ID = R.string.player_option_tab_0;
-        private static final int COLOR_TAB_TEXT_RES_ID = R.color.player_option_tab0_text;
-        private static final int DEFAULT_TAB_TEXT_SIZE_RES_ID = R.dimen.player_option_tab_text;
-
-        private static final int PLAYER_OPTION_TAB_ATTRIBUTE_s[] = {
-            R.styleable.PlayerOptionTabView_setPlayerTabBackgroundColor,
-            R.styleable.PlayerOptionTabView_setPlayerTabStringColor,
-            R.styleable.PlayerOptionTabView_setPlayerTabString,
-            R.styleable.PlayerOptionTabView_setPlayerTabStringSize
-        };
-
-        private Context mContext;
-        private TextView mTextView;
-        private ShapeDrawable shadowDrawable;
-        private int mShadowLongHeight;
-        private String mTagString;
-        private int mTagStringColor;
-        private int mBackgroundColor;
-        private int mTagStringSize;
-
-        public PlayerOptionTabView(Context context) {
-            this(context, null);
-        }
-
-        public PlayerOptionTabView(Context context, AttributeSet attrs) {
-            super(context, attrs);
-
-            mContext = context;
-            TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PlayerOptionTabView, 0, 0);
-
-            int shadowWidth = getResources().getDisplayMetrics().widthPixels / 3;
-            int shadowLongHeight = mShadowLongHeight =(int) getResources().getDimension(DEFAULT_TRAPEZOID_LONG_HEIGHT);
-            int shadowShortHeight =(int) getResources().getDimension(DEFAULT_TRAPEZOID_SHORT_HEIGHT);
-
-            Path path = setPathToTrapezoid(shadowWidth, shadowLongHeight, shadowShortHeight);
-            shadowDrawable = new ShapeDrawable(new PathShape(path, shadowWidth, shadowLongHeight));
-
-            initAllLayout();
-
-            try {
-                final int N = PLAYER_OPTION_TAB_ATTRIBUTE_s.length;
-
-                for (int i = 0; i < N; i++) {
-                    int attribute = PLAYER_OPTION_TAB_ATTRIBUTE_s[i];
-                    switch(attribute) {
-                        case R.styleable.PlayerOptionTabView_setPlayerTabBackgroundColor:
-                            mBackgroundColor = ta.getColor(attribute, ContextCompat.getColor(context, COLOR_TAB_RES_ID));
-                            break;
-                        case R.styleable.PlayerOptionTabView_setPlayerTabStringColor:
-                            mTagStringColor = ta.getColor(attribute, ContextCompat.getColor(context, COLOR_TAB_TEXT_RES_ID));
-                            break;
-                        case R.styleable.PlayerOptionTabView_setPlayerTabString:
-                            mTagString = ta.getString(attribute);
-                            break;
-                        case R.styleable.PlayerOptionTabView_setPlayerTabStringSize:
-                            mTagStringSize = ta.getDimensionPixelSize(attribute, 10);
-                            break;
+                // create easter egg for mSentenceSwitch for currently not support sentence voice
+                if (b == true) {
+                    if (mEasterEggTask == null) {
+                        mEasterEggTask = new EasterEggTask(mSentenceSwitch, false);
                     }
+                    mSentenceSwitch.postDelayed(mEasterEggTask, 200);
                 }
-            } finally {
-                setColor(mBackgroundColor);
-                setTextStr(mTagString);
-                setTextColor(mTagStringColor);
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, mTagStringSize);
             }
-        }
-
-        /**
-         * Initialize the layout of child view
-         * */
-        private void initAllLayout(){
-
-            setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, mShadowLongHeight));
-
-            setBackground(shadowDrawable);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                /** this is important, change outline make shadow appear */
-                setOutlineProvider(new TrapezoidOutlineProvider(mContext));
-                setClipToOutline(true);
+        });
+        // The callback for changing mode choose
+        mModeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (mOnOptionChangedListener != null) {
+                    mOnOptionChangedListener.onOptionChanged(IDX_OPTION_MODE, i, mModeRadioGroup, i);
+                }
             }
+        });
+        // The callback for list order choose
+        mListOrderRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (mOnOptionChangedListener != null) {
+                    mOnOptionChangedListener.onOptionChanged(IDX_OPTION_REPEAT, mModeRadioGroup.getCheckedRadioButtonId(), mListOrderRadioGroup, i);
+                }
+            }
+        });
+        // The callback for vocabulary order choose
+        mVocOrderRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (mOnOptionChangedListener != null) {
+                    mOnOptionChangedListener.onOptionChanged(IDX_OPTION_RANDOM, mModeRadioGroup.getCheckedRadioButtonId(), mVocOrderRadioGroup, i);
+                }
+            }
+        });
+        // The callback for any of seek bars is changed
+        mPlayerOptionSeekBarsView.setEventListener(new PlayerOptionSeekBarsView.EventListener() {
+            @Override
+            public void onSeekBarChanged(int seekBarIdx, SeekBar seekBar, int i, boolean b) {
+                switch (seekBarIdx) {
+                    case IDX_SEEK_BAR_REPEAT:
+                    case IDX_SEEK_BAR_SPEED:
+                    case IDX_SEEK_BAR_PLAY_TIME:
+                        if (mOnOptionChangedListener != null) {
+                            // Because Seek bar idx is started from IDX_SEEK_BAR_REPEAT (FREQUENCY) (0)
+                            int startIdx = IDX_OPTION_FREQUENCY;
+                            int modeId = mModeRadioGroup.getCheckedRadioButtonId();
+                            mOnOptionChangedListener.onOptionChanged(startIdx + seekBarIdx, modeId, seekBar, i);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        // The callback for user to indicate what the value should be shown on the seek bar
+        mPlayerOptionSeekBarsView.setBalloonCallbackFunc(new PlayerOptionSeekBarsView.BalloonCallbackFunc() {
+            @Override
+            public int getBalloonVal(int seekBarIdx, int i) {
+                if (mOptionCallbackFunc != null) {
+                    return mOptionCallbackFunc.getBalloonVal(seekBarIdx, i);
+                }
+                return i;
+            }
+        });
+    }
 
-            setClipToPadding(false);
-            mTextView = new TextView(mContext);
-            mTextView.setText(mTagString);
-            LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-            layoutParams.addRule(CENTER_IN_PARENT);
-            mTextView.setLayoutParams(layoutParams);
+    private void unregisterListener() {
+        mRestoreListener = mOnOptionChangedListener;
+        mOnOptionChangedListener = null;
+    }
 
-            addView(mTextView);
-        }
+    private void restoreListener() {
+        mOnOptionChangedListener = mRestoreListener;
+    }
 
-        /**
-         * Draw the tab view by path of Trapezoid
-         * @param width assign the tab's width
-         * @param longHeight long height of trapezoid
-         * @param shortHeight short height of trapezoid
-         * */
-        private Path setPathToTrapezoid(int width, int longHeight, int shortHeight){
-
-            Path path  = new Path();
-            path.moveTo(0, 0);
-            path.lineTo(0, longHeight);
-            path.lineTo(width, longHeight);
-            path.lineTo(width, longHeight - shortHeight);
-            return path;
-        }
-
-        /**
-         * Api for changing tab's color
-         * @param color the tab color
-         * */
-        public void setColor(int color){
-            shadowDrawable.getPaint().setColor(color);
-            shadowDrawable.invalidateSelf();
-        }
-
-        /**
-         * Api for changing tab's indicator
-         * @param str the tab indicator string
-         * */
-        public void setTextStr(String str){
-            mTextView.setText(str);
-        }
-
-        /**
-         * Api for changing tab's indicator color
-         * @param color the tab text's color
-         * */
-        public void setTextColor(int color){
-            mTextView.setTextColor(color);
-        }
-
-        /**
-         * Api for changing tab's indicator size
-         * @param size the tab text's size
-         * */
-        public void setTextSize(int size){
-            mTextView.setTextSize(size);
-        }
-
-        /**
-         * Api for changing tab's indicator size
-         * @param unit the size unit
-         * @param size the tab text's size
-         * */
-        public void setTextSize(int unit, float size){
-            mTextView.setTextSize(unit, size);
-        }
-
-        /**
-         * Api for getting tab's color
-         * */
-        public int getColor() {
-            return mBackgroundColor;
-        }
-
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(mShadowLongHeight, MeasureSpec.EXACTLY));
+    private void playPrank(int count) {
+        if (mOptionCallbackFunc != null) {
+            mOptionCallbackFunc.playPrank(count);
         }
     }
 
-    /**
-     * The path class of Trapezoid
-     * */
-    @TargetApi(21)
-    private static class TrapezoidOutlineProvider extends ViewOutlineProvider {
+    // special task for easter egg, currently not support sentence voice
+    private class EasterEggTask implements Runnable {
+        private Switch mSwitchView;
+        private boolean mForceVal;
+        private int mTriggerCount;
 
-        int width, longHeight, shortHeight;
-
-        public TrapezoidOutlineProvider(Context context) {
-            width = context.getResources().getDisplayMetrics().widthPixels / 3;
-            longHeight = (int) context.getResources().getDimension(DEFAULT_TRAPEZOID_LONG_HEIGHT);
-            shortHeight = (int) context.getResources().getDimension(DEFAULT_TRAPEZOID_SHORT_HEIGHT);
+        public EasterEggTask(Switch switchView, boolean forceVal) {
+            mSwitchView = switchView;
+            mForceVal = forceVal;
         }
 
         @Override
-        public void getOutline(View view, Outline outline) {
-            Path path  = new Path();
-            path.moveTo(0, 0);
-            path.lineTo(0, longHeight);
-            path.lineTo(width, longHeight);
-            path.lineTo(width, longHeight - shortHeight);
-            outline.setConvexPath(path);
-        }
-    }
-
-    /**
-     * WrapContentViewPager enables ViewPager can be assigned a specific size.
-     * */
-    public static class WrapContentViewPager extends ViewPager {
-
-        private Context mContext;
-        private boolean isPagingEnabled = true;
-
-        public WrapContentViewPager(Context context) {
-            this(context, null);
-        }
-
-        public WrapContentViewPager(Context context, AttributeSet attrs) {
-            super(context, attrs);
-            mContext = context;
-        }
-
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec((int)(mContext.getResources().getDisplayMetrics().heightPixels * 0.5), MeasureSpec.EXACTLY);
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        }
-
-        @Override
-        public boolean onTouchEvent(MotionEvent event) {
-            return this.isPagingEnabled && super.onTouchEvent(event);
-        }
-
-        @Override
-        public boolean onInterceptTouchEvent(MotionEvent event) {
-            return this.isPagingEnabled && super.onInterceptTouchEvent(event);
-        }
-
-        /**
-         * Enable or disable the page sliding
-         * @param b true enable otherwise disable
-         * */
-        public void setPagingEnabled(boolean b) {
-            this.isPagingEnabled = b;
+        public void run() {
+            if (mSwitchView != null) {
+                mTriggerCount++;
+                mSwitchView.setChecked(mForceVal);
+                playPrank(mTriggerCount);
+            }
         }
     }
 }

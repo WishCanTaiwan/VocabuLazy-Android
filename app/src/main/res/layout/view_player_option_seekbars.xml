@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wishcantw.vocabulazy.activities.player.view.PlayerOptionSeekBarsView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <SeekBar
+                android:id="@+id/player_option_repeat_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="38dp"
+                android:paddingRight="38dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="38dp"
+                android:paddingRight="38dp"
+                android:text="組合單字（中文＋英文）播放次數"
+                android:textColor="@color/black_2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <SeekBar
+                android:id="@+id/player_option_speed_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="38dp"
+                android:paddingRight="38dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="38dp"
+                android:paddingRight="38dp"
+                android:text="單字播放速度"
+                android:textColor="@color/black_2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <SeekBar
+                android:id="@+id/player_option_play_time_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="38dp"
+                android:paddingRight="38dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="38dp"
+                android:paddingRight="38dp"
+                android:text="播放時間（單位／小時）"
+                android:textColor="@color/black_2"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</wishcantw.vocabulazy.activities.player.view.PlayerOptionSeekBarsView>

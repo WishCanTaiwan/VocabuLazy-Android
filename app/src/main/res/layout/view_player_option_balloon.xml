@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wishcantw.vocabulazy.activities.player.view.PlayerOptionBalloonView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/player_option_balloon_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/player_balloon"/>
+
+    <TextView
+        android:id="@+id/player_option_balloon_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="30dp"
+        android:textColor="@color/white_1"/>
+
+</wishcantw.vocabulazy.activities.player.view.PlayerOptionBalloonView>

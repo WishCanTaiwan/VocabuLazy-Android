@@ -86,10 +86,13 @@ public class FileLoader {
      *
      * @return the array list of option settings
      */
-    public ArrayList<OptionSettings> loadOptionSettings(@NonNull Context context) {
+    public ArrayList<OptionSettings> loadOptionSettings(@NonNull Context context,
+                                                        boolean shouldLoadNewOption) {
         ArrayList<OptionSettings> optionSettings;
         try {
-            optionSettings = load(OptionSettings[].class, context.openFileInput("optionSetting"));
+            optionSettings = load(OptionSettings[].class, (shouldLoadNewOption)
+                    ? context.getResources().openRawResource(R.raw.option)
+                    : context.openFileInput("optionSetting"));
         } catch (FileNotFoundException e) {
             optionSettings = load(OptionSettings[].class, context.getResources().openRawResource(R.raw.option));
         }

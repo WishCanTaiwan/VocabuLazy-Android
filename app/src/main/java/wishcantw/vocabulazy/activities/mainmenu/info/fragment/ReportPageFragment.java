@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.activities.mainmenu.info;
+package wishcantw.vocabulazy.activities.mainmenu.info.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import wishcantw.vocabulazy.R;
+import wishcantw.vocabulazy.activities.mainmenu.info.view.ReportPageView;
 import wishcantw.vocabulazy.analytics.Analytics;
 import wishcantw.vocabulazy.analytics.ga.GABaseFragment;
 import wishcantw.vocabulazy.activities.mainmenu.activity.MainMenuActivity;

@@ -97,8 +97,6 @@ public class ExamFragment extends GABaseFragment implements ExamView.ExamEventLi
 
     @Override
     public void onExamPlayerClick(String questionString) {
-        // TODO: Beibei please add the function when player button is clicked
-
         Intent intent = new Intent(getActivity(), AudioService.class);
         intent.setAction(AudioService.START_SINGLE_ITEM);
         intent.putExtra(AudioService.EXAM_UTTERANCE, questionString);

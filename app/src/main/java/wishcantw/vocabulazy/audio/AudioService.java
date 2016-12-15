@@ -147,6 +147,7 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
             case START_PLAYING:
                 mAudioPlayer.resetItemLoopCountDown();
                 mAudioPlayer.resetSpellLoopCountDown();
+                mAudioPlayer.updateOptionSettings(Database.getInstance().getPlayerOptionSettings());
                 mAudioPlayer.play(appPreference.getPlayerItemIndex(), appPreference.getPlayerField());
                 break;
 
@@ -219,7 +220,6 @@ public class AudioService extends IntentService implements AudioManager.OnAudioF
             if (playerState.equals(AudioPlayerUtils.PlayerState.PLAYING)) {
                 appPreference.setPlayerState(AudioPlayerUtils.PlayerState.STOPPED_BY_FOCUS_CHANGE);
                 audioServiceBroadcaster.onPlayerStateChanged();
-                // todo: release vl text to speech
             }
         }
     }

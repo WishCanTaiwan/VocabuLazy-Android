@@ -18,7 +18,7 @@ import wishcantw.vocabulazy.analytics.ga.GABaseFragment;
 import wishcantw.vocabulazy.activities.mainmenu.activity.MainMenuActivity;
 import wishcantw.vocabulazy.activities.mainmenu.adapter.MainMenuFragmentPagerAdapter;
 import wishcantw.vocabulazy.activities.mainmenu.exam.fragment.ExamIndexFragment;
-import wishcantw.vocabulazy.activities.mainmenu.info.InfoFragment;
+import wishcantw.vocabulazy.activities.mainmenu.info.fragment.InfoFragment;
 import wishcantw.vocabulazy.activities.mainmenu.model.MainMenuModel;
 import wishcantw.vocabulazy.activities.mainmenu.note.fragment.NoteFragment;
 import wishcantw.vocabulazy.activities.mainmenu.textbook.fragment.TextbookFragment;

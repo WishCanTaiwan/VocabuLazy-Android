@@ -64,6 +64,7 @@
     <color name="note_child_background_color">@color/grey_2</color>
     <color name="note_child_text_color">@color/white_1</color>
     <color name="note_divider_color">@color/white_2</color>
+    <color name="note_new_note_background">@color/black_alpha_1</color>
     <color name="exam_default_background_color">@color/white_2</color>
     <color name="exam_index_border">@color/grey_2</color>
     <color name="exam_index_selected">@color/grey_2</color>
@@ -90,6 +91,8 @@
     <color name="player_dialog_add_voc_to_note_background">@color/black_alpha_1</color>
     <color name="player_dialog_new_note_background">@color/black_alpha_1</color>
     <color name="player_dialog_voc_too_less_background">@color/black_alpha_1</color>
+    <color name="player_dialog_prank_text">@color/grey_4</color>
+    <color name="player_dialog_prank_background">@color/black_alpha_1</color>
     <!--**************************************** search ****************************************-->
     <color name="search_list_item_background">@color/white_2</color>
     <color name="search_xx_color">@color/green_1</color>

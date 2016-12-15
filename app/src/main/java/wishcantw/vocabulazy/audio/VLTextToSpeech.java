@@ -2,10 +2,13 @@ package wishcantw.vocabulazy.audio;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 
 import java.util.HashMap;
 import java.util.Locale;
+
+import wishcantw.vocabulazy.database.AppPreference;
 
 public class VLTextToSpeech extends VLTextToSpeechListener {
 
@@ -73,10 +76,13 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mTextToSpeech.setSpeechRate(0.7f * rate);
-            mTextToSpeech.speak(utterance, TextToSpeech.QUEUE_ADD, null, utterance);
+            Bundle bundle = new Bundle();
+            bundle.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, AppPreference.getInstance().getPlayerVolume());
+            mTextToSpeech.speak(utterance, TextToSpeech.QUEUE_ADD, bundle, utterance);
         } else {
             mTextToSpeech.setSpeechRate(0.7f * rate);
             HashMap<String, String> params = new HashMap<>();
+            params.put(TextToSpeech.Engine.KEY_PARAM_VOLUME, String.format(Locale.getDefault(), "%f", AppPreference.getInstance().getPlayerVolume()));
             params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, utterance);
             mTextToSpeech.speak(utterance, TextToSpeech.QUEUE_ADD, params);
         }
@@ -93,6 +99,7 @@ public class VLTextToSpeech extends VLTextToSpeechListener {
             mTextToSpeech.playSilentUtterance(time, TextToSpeech.QUEUE_ADD, silenceUtterance);
         } else {
             HashMap<String, String> params = new HashMap<>();
+            params.put(TextToSpeech.Engine.KEY_PARAM_VOLUME, String.format(Locale.getDefault(), "%f", AppPreference.getInstance().getPlayerVolume()));
             params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, silenceUtterance);
             mTextToSpeech.playSilence(time, TextToSpeech.QUEUE_ADD, params);
         }
