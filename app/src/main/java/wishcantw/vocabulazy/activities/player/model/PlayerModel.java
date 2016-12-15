@@ -75,6 +75,15 @@ public class PlayerModel {
         return (appPreference.getPlayerState().equals(AudioPlayerUtils.PlayerState.PLAYING));
     }
 
+    /**
+     * Store data
+     *
+     * @param context
+     */
+    public void storeData(@NonNull Context context) {
+        mDatabase.storeData(context, false);
+    }
+
     // --------------------------------------------------------------- Options //
 
     /**

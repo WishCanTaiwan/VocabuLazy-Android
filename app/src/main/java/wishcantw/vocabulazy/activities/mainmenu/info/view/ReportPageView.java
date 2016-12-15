@@ -1,4 +1,4 @@
-package wishcantw.vocabulazy.activities.mainmenu.info;
+package wishcantw.vocabulazy.activities.mainmenu.info.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

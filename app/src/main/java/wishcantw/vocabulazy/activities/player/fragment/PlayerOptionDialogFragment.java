@@ -59,6 +59,7 @@ public class PlayerOptionDialogFragment extends DialogFragmentNew implements Pla
 
         OptionSettings optionSettings = mPlayerModel.getPlayerOptionSettings();
 
+        // TODO : 2016/12/6, Beibei please help to refine the new OptionSetting
         mPlayerOptionDialogView.setPlayerOptionModeContent(
                 optionSettings,
                 true,

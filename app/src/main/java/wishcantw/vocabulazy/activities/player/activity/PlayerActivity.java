@@ -16,6 +16,7 @@ import wishcantw.vocabulazy.activities.player.fragment.PlayerPrankDialogFragment
 import wishcantw.vocabulazy.activities.player.fragment.PlayerVocTooLessDialogFragment;
 import wishcantw.vocabulazy.activities.player.model.PlayerModel;
 import wishcantw.vocabulazy.activities.player.fragment.PlayerOptionDialogFragment;
+import wishcantw.vocabulazy.database.Database;
 import wishcantw.vocabulazy.utility.Logger;
 
 public class PlayerActivity extends ParentActivity implements PlayerFragment.OnPlayerLessonChangeListener,
@@ -114,6 +115,12 @@ public class PlayerActivity extends ParentActivity implements PlayerFragment.OnP
         setPlayerStateResult();
 
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPlayerModel.storeData(PlayerActivity.this);
     }
 
     /**

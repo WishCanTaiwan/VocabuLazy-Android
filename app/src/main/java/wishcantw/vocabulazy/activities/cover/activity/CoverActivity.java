@@ -3,6 +3,7 @@ package wishcantw.vocabulazy.activities.cover.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -55,6 +56,9 @@ public class CoverActivity extends ParentActivity {
 
         // check version code
         checkVersion();
+
+        // check option file status
+        checkOptionSettingStatus();
     }
 
     /** Private methods **/
@@ -187,16 +191,14 @@ public class CoverActivity extends ParentActivity {
             e.printStackTrace();
         }
 
+
+
         int versionCodeInConfig = new Gson().fromJson(builder.toString(), VersionCode.class).getVersionCode();
 
         if (versionCodeInConfig >= versionCode) {
             // check whether Text-to-Speech Engine is installed
             checkTTSEngine();
             return;
-        }
-
-        if (versionCode == 17) {
-            shouldLoadNewOption = true;
         }
 
         // if version code is not the latest
@@ -225,5 +227,10 @@ public class CoverActivity extends ParentActivity {
         } catch (IOException ioe) {
             // io exception
         }
+    }
+
+    private void checkOptionSettingStatus() {
+        SharedPreferences sharedPreferences = getSharedPreferences("VocabuLazy", MODE_PRIVATE);
+        shouldLoadNewOption = sharedPreferences.getBoolean("shouldLoadNewOption", true);
     }
 }
