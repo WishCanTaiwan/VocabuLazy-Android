@@ -1,6 +1,7 @@
 package wishcantw.vocabulazy.database;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
@@ -34,7 +35,9 @@ public class Database {
     private ArrayList<OptionSettings> mOptionSettings = new ArrayList<>();
     private ArrayList<Vocabulary> mPlayerContent = new ArrayList<>();
 
-    public void init(@NonNull final Context context, final DatabaseCallback callback, final boolean shouldLoadNewOption) {
+    public void init(@NonNull final Context context,
+                     final DatabaseCallback callback,
+                     final boolean shouldLoadNewOption) {
         final FileLoader fileLoader = FileLoader.getInstance();
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -45,6 +48,8 @@ public class Database {
                 mOptionSettings = fileLoader.loadOptionSettings(context, shouldLoadNewOption);
                 if (shouldLoadNewOption) {
                     FileWriter.getInstance().writeOptionSettings(context, mOptionSettings);
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("VocabuLazy", Context.MODE_PRIVATE);
+                    sharedPreferences.edit().putBoolean("shouldLoadNewOption", false).apply();
                 }
                 return null;
             }
